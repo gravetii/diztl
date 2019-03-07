@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+message Node {
+    string ip = 1;
+    int32 id = 2;
+}
+
+message FileMetadata {
+    string name = 1;
+    int32 id = 2;
+}
+
+message File {
+    FileMetadata metadata = 1;
+    bytes data = 2;
+    int32 chunk = 3;
+}
+
+message SearchRequest {
+    string filename = 1;
+    Node source = 2;
+}
+
+message SearchResponse {
+    int32 count = 1;
+    repeated FileMetadata files = 2;
+    Node node = 3;
+}
+
+message DownloadRequest {
+    Node source = 1;
+    FileMetadata metadata = 2;
+}
+
+service DiztlService {
+    rpc search (SearchRequest) returns (SearchResponse) {
+    }
+    rpc upload (DownloadRequest) returns (stream File) {
+    }
+}
+
+service TrackerService {
+    rpc register (Node) returns (Node) {
+    }
+    rpc search (SearchRequest) returns (stream SearchResponse) {
+    }
+}
