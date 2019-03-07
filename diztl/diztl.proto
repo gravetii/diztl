@@ -1,5 +1,19 @@
 syntax = "proto3";
 
+service DiztlService {
+    rpc Search (SearchRequest) returns (SearchResponse) {
+    }
+    rpc Upload (DownloadRequest) returns (stream File) {
+    }
+}
+
+service TrackerService {
+    rpc Register (Node) returns (Node) {
+    }
+    rpc Search (SearchRequest) returns (stream SearchResponse) {
+    }
+}
+
 message Node {
     string ip = 1;
     int32 id = 2;
@@ -30,18 +44,4 @@ message SearchResponse {
 message DownloadRequest {
     Node source = 1;
     FileMetadata metadata = 2;
-}
-
-service DiztlService {
-    rpc search (SearchRequest) returns (SearchResponse) {
-    }
-    rpc upload (DownloadRequest) returns (stream File) {
-    }
-}
-
-service TrackerService {
-    rpc register (Node) returns (Node) {
-    }
-    rpc search (SearchRequest) returns (stream SearchResponse) {
-    }
 }
