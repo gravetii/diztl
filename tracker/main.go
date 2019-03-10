@@ -13,15 +13,14 @@ const (
 	port = ":50052"
 )
 
-// server is used to implement diztl.TrackerServer
-type server struct{}
+type trackerservice struct{}
 
-func (s *server) Register(ctx context.Context, in *pb.Node) (*pb.Node, error) {
+func (s *trackerservice) Register(ctx context.Context, in *pb.Node) (*pb.Node, error) {
 	log.Printf("Received register request: %v", in.GetIp())
 	return &pb.Node{Ip: in.GetIp(), Id: 1}, nil
 }
 
-func (s *server) Search(in *pb.SearchRequest, stream pb.TrackerService_SearchServer) error {
+func (s *trackerservice) Search(in *pb.SearchRequest, stream pb.TrackerService_SearchServer) error {
 	log.Printf("Received search request: %v", in.GetSource().GetIp())
 	return nil
 }
@@ -33,7 +32,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	pb.RegisterTrackerServiceServer(s, &server{})
+	pb.RegisterTrackerServiceServer(s, &trackerservice{})
 	serr := s.Serve(lis)
 	if serr != nil {
 		log.Fatalf("Failed to serve: %v", err)
