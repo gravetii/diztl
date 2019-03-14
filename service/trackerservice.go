@@ -3,9 +3,11 @@ package service
 import (
 	"context"
 	"log"
+	"time"
 
 	"github.com/gravetii/diztl/builder"
 	"github.com/gravetii/diztl/diztl"
+	pb "github.com/gravetii/diztl/diztl"
 )
 
 // TrackerService : Implements the tracker server interface definition.
@@ -26,7 +28,26 @@ func (s *TrackerService) Search(request *diztl.SearchRequest, stream diztl.Track
 	return nil
 }
 
-func broadcast(request *diztl.SearchRequest) {
-	log.Printf("Broadcasting search request: %v", request.GetSource().GetIp())
-	//todo
+func (s *TrackerService) broadcast(request *diztl.SearchRequest) []diztl.SearchResponse {
+	log.Printf("Broadcasting search request to all nodes on the network: %s", request.GetSource().GetIp())
+	responses := []diztl.SearchResponse{}
+	activeNodes := s.nodekeeper.ActiveNodes()
+
+	for _, node := range activeNodes {
+		conn, err := s.nodekeeper.GetConnection(*node)
+		if err != nil {
+			panic(err)
+		}
+
+		ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+		defer cancel()
+		r, err := pb.NewDiztlServiceClient(conn).Search(ctx, request)
+		if err != nil {
+			log.Fatalf("Could not call search on node %s: %v", node.GetIp(), err)
+		} else if r.Count > 0 {
+			responses = append(responses, *r)
+		}
+	}
+
+	return responses
 }
