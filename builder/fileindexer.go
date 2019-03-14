@@ -17,18 +17,20 @@ type FileIndexer struct {
 
 // Index : Indexes all the files present in the default share directory making them available for discovery by peers.
 func (f *FileIndexer) Index() []diztl.FileMetadata {
+	log.Println("Indexing files...")
 	dir := shareDir()
 	files := fileWalk(dir)
 	f.files = files
+	log.Println("Finished indexing...")
 	return files
 }
 
 // Search : Searches for a given pattern in the names of the indexed files and returns those files.
-func (f *FileIndexer) search(pattern string) []diztl.FileMetadata {
-	result := []diztl.FileMetadata{}
+func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
+	result := []*diztl.FileMetadata{}
 	for _, file := range f.files {
 		if strings.Contains(file.Name, pattern) {
-			result = append(result, file)
+			result = append(result, &file)
 		}
 	}
 

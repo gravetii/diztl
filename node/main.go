@@ -6,7 +6,7 @@ import (
 
 	"github.com/gravetii/diztl/builder"
 
-	pb "github.com/gravetii/diztl/diztl"
+	diztl "github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/service"
 	"google.golang.org/grpc"
 )
@@ -23,7 +23,7 @@ func main() {
 
 	s := grpc.NewServer()
 	ns := service.NodeService{Indexer: &builder.FileIndexer{}}
-	pb.RegisterDiztlServiceServer(s, &ns)
+	diztl.RegisterDiztlServiceServer(s, &ns)
 	go ns.Init()
 	serr := s.Serve(lis)
 	if serr != nil {

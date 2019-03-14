@@ -20,9 +20,12 @@ func (s *NodeService) Init() {
 }
 
 // Search : func
-func (s *NodeService) Search(ctx context.Context, in *diztl.SearchRequest) (*diztl.SearchResponse, error) {
-	log.Printf("Received search request: %v", in.GetSource())
-	return &diztl.SearchResponse{Count: 1, Files: nil, Node: nil}, nil
+func (s *NodeService) Search(ctx context.Context, request *diztl.SearchRequest) (*diztl.SearchResponse, error) {
+	log.Printf("Received search request: %v", request.GetSource())
+	files := s.Indexer.Search(request.GetFilename())
+	// todo - check explicit conversion from int to int32
+	response := diztl.SearchResponse{Count: int32(len(files)), Files: files}
+	return &response, nil
 }
 
 // Upload : func
