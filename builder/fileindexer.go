@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/util"
@@ -20,6 +21,18 @@ func (f *FileIndexer) Index() []diztl.FileMetadata {
 	files := fileWalk(dir)
 	f.files = files
 	return files
+}
+
+// Search : Searches for a given pattern in the names of the indexed files and returns those files.
+func (f *FileIndexer) search(pattern string) []diztl.FileMetadata {
+	result := []diztl.FileMetadata{}
+	for _, file := range f.files {
+		if strings.Contains(file.Name, pattern) {
+			result = append(result, file)
+		}
+	}
+
+	return result
 }
 
 // Returns the path to the default share directory.
