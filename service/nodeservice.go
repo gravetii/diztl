@@ -1,4 +1,4 @@
-package nodeservice
+package service
 
 import (
 	"context"
