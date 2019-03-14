@@ -4,9 +4,9 @@ import (
 	"log"
 	"net"
 
+	builder "github.com/gravetii/diztl/builder"
 	pb "github.com/gravetii/diztl/diztl"
-	nk "github.com/gravetii/diztl/nodekeeper"
-	"github.com/gravetii/diztl/trackerservice"
+	service "github.com/gravetii/diztl/service"
 	"google.golang.org/grpc"
 )
 
@@ -21,8 +21,8 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	nodekeeper := &nk.NodeKeeper{}
-	pb.RegisterTrackerServiceServer(s, &trackerservice.TrackerService{"nodekeeper": nodekeeper})
+	nodekeeper := &builder.NodeKeeper{}
+	pb.RegisterTrackerServiceServer(s, &service.TrackerService{"nodekeeper": nodekeeper})
 	serr := s.Serve(lis)
 	if serr != nil {
 		log.Fatalf("Failed to serve: %v", err)

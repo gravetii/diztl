@@ -4,14 +4,22 @@ import (
 	"log"
 	"net"
 
+	"github.com/gravetii/diztl/builder"
 	pb "github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/nodeservice"
+	"github.com/gravetii/diztl/service"
 	"google.golang.org/grpc"
 )
 
 const (
 	port = ":50051"
 )
+
+func index() {
+	ixer := builder.FileIndexer{}
+	log.Println("Indexing files...")
+	ixer.Index()
+	log.Println("Finished indexing files...")
+}
 
 func main() {
 	lis, err := net.Listen("tcp", port)
@@ -20,7 +28,11 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	pb.RegisterDiztlServiceServer(s, &nodeservice.NodeService{})
+	pb.RegisterDiztlServiceServer(s, &service.NodeService{})
+
+	// Index share directory here.
+	go index()
+
 	serr := s.Serve(lis)
 	if serr != nil {
 		log.Fatalf("Failed to serve: %v", err)

@@ -16,23 +16,23 @@ type NodeKeeper struct {
 	mux               sync.Mutex
 }
 
-// Register : Called when a new node asks the tracker to register itself.
-func (nodekeeper *NodeKeeper) Register(node diztl.Node) *diztl.Node {
+// Register : Called when a new node asks the tracker to register itself. Here the tracker assigns a unique ID to the node.
+func (nodekeeper *NodeKeeper) Register(node *diztl.Node) {
 	nodekeeper.mux.Lock()
 	defer nodekeeper.mux.Unlock()
 	nodekeeper.activeCount++
 	c := nodekeeper.activeCount
-	rnode := diztl.Node{Ip: node.GetIp(), Id: c}
-	nodekeeper.activeNodes[node.GetIp()] = &rnode
-	return &rnode
+	node.Id = c
+	nodekeeper.activeNodes[node.GetIp()] = node
+	log.Printf("Node successfully registered: %s", node.GetIp())
 }
 
-// ActiveNodes : To get the list of active nodes as a map of IP -> Node.
+// ActiveNodes :Returns the list of active nodes as a map of IP -> Node.
 func (nodekeeper *NodeKeeper) ActiveNodes() map[string]*diztl.Node {
 	return nodekeeper.activeNodes
 }
 
-// GetConnection : Return a connection to any node.
+// GetConnection : Returns a connection to any node.
 func (nodekeeper *NodeKeeper) GetConnection(node diztl.Node) (*grpc.ClientConn, error) {
 	conn, ok := nodekeeper.activeConnections[node.GetIp()]
 	if !ok {

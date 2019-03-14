@@ -4,19 +4,19 @@ import (
 	"context"
 	"log"
 
-	pb "github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/diztl"
 )
 
 // NodeService : Implements the node server interface definition.
 type NodeService struct{}
 
 // Search : func
-func (s *NodeService) Search(ctx context.Context, in *pb.SearchRequest) (*pb.SearchResponse, error) {
+func (s *NodeService) Search(ctx context.Context, in *diztl.SearchRequest) (*diztl.SearchResponse, error) {
 	log.Printf("Received search request: %v", in.GetSource())
-	return &pb.SearchResponse{Count: 1, Files: nil, Node: nil}, nil
+	return &diztl.SearchResponse{Count: 1, Files: nil, Node: nil}, nil
 }
 
 // Upload : func
-func (s *NodeService) Upload(in *pb.DownloadRequest, stream pb.DiztlService_UploadServer) error {
+func (s *NodeService) Upload(in *diztl.DownloadRequest, stream diztl.DiztlService_UploadServer) error {
 	return nil
 }
