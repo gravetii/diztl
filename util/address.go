@@ -3,6 +3,8 @@ package util
 import (
 	"log"
 	"net"
+
+	"github.com/gravetii/diztl/diztl"
 )
 
 // GetMyIP : Returns the host's IP address.
@@ -20,4 +22,9 @@ func GetMyIP() string {
 
 	log.Printf("Got local IP as %s", ip)
 	return ip
+}
+
+// Address : Returns the address of the node as a string.
+func Address(node diztl.Node) string {
+	return node.GetIp() + ":" + "50051"
 }
