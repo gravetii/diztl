@@ -3,12 +3,12 @@ package service
 import (
 	"context"
 	"log"
-	"net"
 	"time"
 
 	"github.com/gravetii/diztl/builder"
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/util"
 	"google.golang.org/grpc"
 )
 
@@ -19,25 +19,8 @@ type NodeService struct {
 	tracker *grpc.ClientConn
 }
 
-func getMyIP() string {
-	addrs, _ := net.InterfaceAddrs()
-
-	ip := "127.0.0.1"
-	for _, a := range addrs {
-		if ipnet, ok := a.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
-			if ipnet.IP.To4() != nil {
-				ip = ipnet.IP.String()
-			}
-		}
-	}
-
-	log.Printf("Got local IP as %s", ip)
-	return ip
-}
-
 func (s *NodeService) connectToTracker() {
-	ip := getMyIP()
-
+	ip := util.GetMyIP()
 	addr := ip + ":50052"
 	conn, err := grpc.Dial(addr, grpc.WithInsecure())
 	if err != nil {
@@ -50,7 +33,7 @@ func (s *NodeService) connectToTracker() {
 
 // Register this node to the tracker.
 func (s *NodeService) register() {
-	ip := getMyIP()
+	ip := util.GetMyIP()
 	node := &diztl.Node{Ip: ip}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
