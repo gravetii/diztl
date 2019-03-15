@@ -13,7 +13,7 @@ type NodeService struct {
 	Indexer *builder.FileIndexer
 }
 
-// Init : Performs the necessary initialisations for this service.
+// Init : Performs the necessary initialisation when the service comes up for the first time.
 func (s *NodeService) Init() {
 	log.Println("Initialising node service...")
 	s.Indexer.Index()

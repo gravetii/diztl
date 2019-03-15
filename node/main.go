@@ -22,9 +22,9 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	ns := service.NodeService{Indexer: &builder.FileIndexer{}}
-	diztl.RegisterDiztlServiceServer(s, &ns)
-	go ns.Init()
+	nodeservice := service.NodeService{Indexer: &builder.FileIndexer{}}
+	diztl.RegisterDiztlServiceServer(s, &nodeservice)
+	go nodeservice.Init()
 	serr := s.Serve(lis)
 	if serr != nil {
 		log.Fatalf("Failed to serve: %v", err)
