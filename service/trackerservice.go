@@ -12,13 +12,13 @@ import (
 
 // TrackerService : Implements the tracker server interface definition.
 type TrackerService struct {
-	nodekeeper *builder.NodeKeeper
+	Nodekeeper *builder.NodeKeeper
 }
 
-// Register : Every node invokes this method on the tracker to register itself.
+// Register : Every node that joins the network invokes this method on the tracker to register itself.
 func (s *TrackerService) Register(ctx context.Context, node *diztl.Node) (*diztl.Node, error) {
-	log.Printf("Received register request from node: %v", node.GetIp())
-	s.nodekeeper.Register(node)
+	s.Nodekeeper.Register(node)
+	log.Printf("Successfully registered node %s, %d", node.GetIp(), node.GetId())
 	return node, nil
 }
 
@@ -31,10 +31,9 @@ func (s *TrackerService) Search(request *diztl.SearchRequest, stream diztl.Track
 func (s *TrackerService) broadcast(request *diztl.SearchRequest) []diztl.SearchResponse {
 	log.Printf("Broadcasting search request to all nodes on the network: %s", request.GetSource().GetIp())
 	responses := []diztl.SearchResponse{}
-	activeNodes := s.nodekeeper.ActiveNodes()
 
-	for _, node := range activeNodes {
-		conn, err := s.nodekeeper.GetConnection(*node)
+	for _, node := range s.Nodekeeper.ActiveNodes {
+		conn, err := s.Nodekeeper.GetConnection(*node)
 		if err != nil {
 			panic(err)
 		}

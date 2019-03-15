@@ -10,9 +10,9 @@ import (
 
 // NodeKeeper : A struct type that keeps track of active nodes.
 type NodeKeeper struct {
-	activeNodes       map[string]*diztl.Node
+	ActiveNodes       map[string]*diztl.Node
 	activeCount       int32
-	activeConnections map[string]*grpc.ClientConn
+	ActiveConnections map[string]*grpc.ClientConn
 	mux               sync.Mutex
 }
 
@@ -23,18 +23,13 @@ func (nodekeeper *NodeKeeper) Register(node *diztl.Node) {
 	nodekeeper.activeCount++
 	c := nodekeeper.activeCount
 	node.Id = c
-	nodekeeper.activeNodes[node.GetIp()] = node
+	nodekeeper.ActiveNodes[node.GetIp()] = node
 	log.Printf("Node successfully registered: %s", node.GetIp())
-}
-
-// ActiveNodes :Returns the list of active nodes as a map of IP -> Node.
-func (nodekeeper *NodeKeeper) ActiveNodes() map[string]*diztl.Node {
-	return nodekeeper.activeNodes
 }
 
 // GetConnection : Returns a connection to any node.
 func (nodekeeper *NodeKeeper) GetConnection(node diztl.Node) (*grpc.ClientConn, error) {
-	conn, ok := nodekeeper.activeConnections[node.GetIp()]
+	conn, ok := nodekeeper.ActiveConnections[node.GetIp()]
 	if !ok {
 		// connection not present already, so we create a new one.
 		conn, err := grpc.Dial(node.Address(), grpc.WithInsecure())
@@ -42,7 +37,7 @@ func (nodekeeper *NodeKeeper) GetConnection(node diztl.Node) (*grpc.ClientConn, 
 			log.Fatalf("did not connect: %v", err)
 		}
 
-		nodekeeper.activeConnections[node.GetIp()] = conn
+		nodekeeper.ActiveConnections[node.GetIp()] = conn
 		return conn, err
 	}
 
