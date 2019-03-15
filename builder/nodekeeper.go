@@ -5,6 +5,7 @@ import (
 	"sync"
 
 	"github.com/gravetii/diztl/diztl"
+	pb "github.com/gravetii/diztl/diztl"
 	"google.golang.org/grpc"
 )
 
@@ -12,7 +13,7 @@ import (
 type NodeKeeper struct {
 	ActiveNodes       map[string]*diztl.Node
 	activeCount       int32
-	ActiveConnections map[string]*grpc.ClientConn
+	ActiveConnections map[string]diztl.DiztlServiceClient
 	mux               sync.Mutex
 }
 
@@ -28,18 +29,19 @@ func (nodekeeper *NodeKeeper) Register(node *diztl.Node) {
 }
 
 // GetConnection : Returns a connection to any node.
-func (nodekeeper *NodeKeeper) GetConnection(node diztl.Node) (*grpc.ClientConn, error) {
-	conn, ok := nodekeeper.ActiveConnections[node.GetIp()]
-	if !ok {
-		// connection not present already, so we create a new one.
-		conn, err := grpc.Dial(node.Address(), grpc.WithInsecure())
-		if err != nil {
-			log.Fatalf("did not connect: %v", err)
-		}
-
-		nodekeeper.ActiveConnections[node.GetIp()] = conn
-		return conn, err
+func (nodekeeper *NodeKeeper) GetConnection(node diztl.Node) (pb.DiztlServiceClient, error) {
+	c, exists := nodekeeper.ActiveConnections[node.GetIp()]
+	if exists {
+		return c, nil
 	}
 
-	return conn, nil
+	conn, err := grpc.Dial(node.Address(), grpc.WithInsecure())
+	if err != nil {
+		log.Fatalf("Could not connect to node %s: %v", node.GetIp(), err)
+		return nil, err
+	}
+
+	r := pb.NewDiztlServiceClient(conn)
+	nodekeeper.ActiveConnections[node.GetIp()] = r
+	return r, nil
 }

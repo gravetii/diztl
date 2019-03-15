@@ -22,9 +22,9 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	nk := &builder.NodeKeeper{ActiveNodes: make(map[string]*diztl.Node), ActiveConnections: make(map[string]*grpc.ClientConn)}
+	nk := &builder.NodeKeeper{ActiveNodes: make(map[string]*diztl.Node), ActiveConnections: make(map[string]diztl.DiztlServiceClient)}
 	pb.RegisterTrackerServiceServer(s, &service.TrackerService{Nodekeeper: nk})
-	log.Printf("Server started on port: %s", port)
+	log.Printf("Server started on port %s", port)
 	serr := s.Serve(lis)
 	if serr != nil {
 		log.Fatalf("Failed to serve: %v", err)

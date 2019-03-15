@@ -7,7 +7,6 @@ import (
 
 	"github.com/gravetii/diztl/builder"
 	"github.com/gravetii/diztl/diztl"
-	pb "github.com/gravetii/diztl/diztl"
 )
 
 // TrackerService : Implements the tracker server interface definition.
@@ -33,18 +32,18 @@ func (s *TrackerService) broadcast(request *diztl.SearchRequest) []diztl.SearchR
 	responses := []diztl.SearchResponse{}
 
 	for _, node := range s.Nodekeeper.ActiveNodes {
-		conn, err := s.Nodekeeper.GetConnection(*node)
+		c, err := s.Nodekeeper.GetConnection(*node)
 		if err != nil {
-			panic(err)
-		}
-
-		ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-		defer cancel()
-		r, err := pb.NewDiztlServiceClient(conn).Search(ctx, request)
-		if err != nil {
-			log.Fatalf("Could not call search on node %s: %v", node.GetIp(), err)
-		} else if r.Count > 0 {
-			responses = append(responses, *r)
+			log.Printf("Could not connect to node %s: %v", node.GetIp(), err)
+		} else {
+			ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+			defer cancel()
+			r, err := c.Search(ctx, request)
+			if err != nil {
+				log.Fatalf("Error while invoking Search on node %s: %v", node.GetIp(), err)
+			} else if r.Count > 0 {
+				responses = append(responses, *r)
+			}
 		}
 	}
 
