@@ -6,6 +6,7 @@ import (
 
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/util"
 	"google.golang.org/grpc"
 )
 
@@ -35,7 +36,7 @@ func (nodekeeper *NodeKeeper) GetConnection(node diztl.Node) (pb.DiztlServiceCli
 		return c, nil
 	}
 
-	conn, err := grpc.Dial(node.Address(), grpc.WithInsecure())
+	conn, err := grpc.Dial(util.Address(node), grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Could not connect to node %s: %v", node.GetIp(), err)
 		return nil, err
