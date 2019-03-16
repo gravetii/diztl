@@ -25,6 +25,6 @@ func GetMyIP() string {
 }
 
 // Address : Returns the address of the node as a string.
-func Address(node diztl.Node) string {
+func Address(node *diztl.Node) string {
 	return node.GetIp() + ":" + "50051"
 }

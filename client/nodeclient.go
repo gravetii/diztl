@@ -1,9 +1,11 @@
 package client
 
 import (
+	"bufio"
 	"context"
 	"io"
 	"log"
+	"os"
 	"time"
 
 	"github.com/gravetii/diztl/diztl"
@@ -12,12 +14,24 @@ import (
 	"google.golang.org/grpc"
 )
 
+// Nodeclient : An instance of the NodeClient type.
 var nodeclient *NodeClient
 
 // NodeClient : This struct enables communication with the tracker and/or other nodes.
 type NodeClient struct {
 	node    *diztl.Node
 	tracker diztl.TrackerServiceClient
+}
+
+func getConnection(node *diztl.Node) (pb.DiztlServiceClient, error) {
+	conn, err := grpc.Dial(util.Address(node), grpc.WithInsecure())
+	if err != nil {
+		log.Fatalf("Could not connect to node %s: %v", node.GetIp(), err)
+		return nil, err
+	}
+
+	r := pb.NewDiztlServiceClient(conn)
+	return r, nil
 }
 
 func connectToTracker() diztl.TrackerServiceClient {
@@ -82,4 +96,39 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 	}
 
 	return results, nil
+}
+
+// Download : Download the file/files specified by the supplied DownloadRequest.
+func (c *NodeClient) Download(r pb.DownloadRequest) {
+	ctx, cancel := context.WithTimeout(context.Background(), downloadTimeout)
+	defer cancel()
+	client, _ := getConnection(r.GetSource())
+	log.Printf("Calling upload for request: %v", r)
+	stream, _ := client.Upload(ctx, &r)
+	var buf *bufio.Writer
+	var obj *os.File
+	var filename string
+
+	for {
+		f, err := stream.Recv()
+
+		if err == io.EOF {
+			buf.Flush()
+			obj.Close()
+			log.Printf("Finished reading file at %d chunk.", f.GetChunk())
+			log.Printf("Finished downloading file: %s", filename)
+			break
+		}
+
+		if f.GetChunk() == 1 {
+			filename = f.GetMetadata().GetName()
+			filepath := util.GetOutputPath(filename)
+			obj, _ = os.Create(filepath)
+			buf = bufio.NewWriter(obj)
+			log.Printf("Created new file on first chunk: %s", filename)
+		}
+
+		n, _ := buf.Write(f.GetData())
+		log.Printf("Read bytes: %d, Chunk no. %d", n, f.GetChunk())
+	}
 }
