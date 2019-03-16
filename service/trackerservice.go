@@ -24,12 +24,18 @@ func (s *TrackerService) Register(ctx context.Context, node *diztl.Node) (*diztl
 // Search : Invoked by a search request by any node.
 func (s *TrackerService) Search(request *diztl.SearchRequest, stream diztl.TrackerService_SearchServer) error {
 	log.Printf("Received search request: %v", request.GetSource().GetIp())
+	responses := s.broadcast(request)
+	log.Printf("Got responses from broadcast request as: %v", responses)
+	for _, r := range responses {
+		stream.Send(r)
+	}
+
 	return nil
 }
 
-func (s *TrackerService) broadcast(request *diztl.SearchRequest) []diztl.SearchResponse {
-	log.Printf("Broadcasting search request to all nodes on the network: %s", request.GetSource().GetIp())
-	responses := []diztl.SearchResponse{}
+func (s *TrackerService) broadcast(request *diztl.SearchRequest) []*diztl.SearchResponse {
+	log.Printf("Broadcasting search request to all nodes on the network: %s, %s", request.GetSource().GetIp(), request.GetFilename())
+	responses := []*diztl.SearchResponse{}
 
 	for _, node := range s.Nodekeeper.ActiveNodes {
 		c, err := s.Nodekeeper.GetConnection(*node)
@@ -42,7 +48,7 @@ func (s *TrackerService) broadcast(request *diztl.SearchRequest) []diztl.SearchR
 			if err != nil {
 				log.Fatalf("Error while invoking Search on node %s: %v", node.GetIp(), err)
 			} else if r.Count > 0 {
-				responses = append(responses, *r)
+				responses = append(responses, r)
 			}
 		}
 	}

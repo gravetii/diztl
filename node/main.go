@@ -6,6 +6,7 @@ import (
 
 	"github.com/gravetii/diztl/builder"
 
+	"github.com/gravetii/diztl/client"
 	diztl "github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/service"
 	"google.golang.org/grpc"
@@ -25,6 +26,8 @@ func main() {
 	nodeservice := service.NodeService{Indexer: &builder.FileIndexer{}}
 	diztl.RegisterDiztlServiceServer(s, &nodeservice)
 	go nodeservice.Init()
+	go client.Init()
+	log.Println("Started node server...")
 	serr := s.Serve(lis)
 	if serr != nil {
 		log.Fatalf("Failed to serve: %v", err)
