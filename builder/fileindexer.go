@@ -16,7 +16,7 @@ const (
 
 // FileIndexer : The struct type that represents a file indexer on a node which indexes all the shared files.
 type FileIndexer struct {
-	files []diztl.FileMetadata
+	files []*diztl.FileMetadata
 }
 
 // Index : Indexes all the files present in the default share directory thus making them available for discovery by peers.
@@ -25,15 +25,17 @@ func (f *FileIndexer) Index() {
 	dir := shareDir()
 	files := fileWalk(dir)
 	f.files = files
-	log.Println("Finished indexing...")
+	log.Println("Finished indexing.")
 }
 
 // Search : Searches for a given pattern in the names of the indexed files and returns those files.
 func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
+	log.Printf("Searching in indexer for pattern: %s", pattern)
 	result := []*diztl.FileMetadata{}
 	for _, file := range f.files {
 		if strings.Contains(file.Name, pattern) {
-			result = append(result, &file)
+			log.Printf("Got a valid search result: %s", file.Name)
+			result = append(result, file)
 		}
 	}
 
@@ -53,11 +55,11 @@ func shareDir() string {
 }
 
 // Performs a recursive file walk of the given directory path.
-func fileWalk(dir string) []diztl.FileMetadata {
-	files := []diztl.FileMetadata{}
+func fileWalk(dir string) []*diztl.FileMetadata {
+	files := []*diztl.FileMetadata{}
 	var start int32
 	counter := util.Counter{Count: &start}
-	log.Println("File walk --->")
+	log.Println("Performing file walk...")
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if info.IsDir() {
 			return nil
@@ -65,7 +67,7 @@ func fileWalk(dir string) []diztl.FileMetadata {
 
 		counter.IncrBy1()
 		metadata := diztl.FileMetadata{Id: counter.Value(), Name: info.Name()}
-		files = append(files, metadata)
+		files = append(files, &metadata)
 		log.Printf("%d: %s", metadata.Id, metadata.Name)
 		return nil
 	})
