@@ -10,20 +10,15 @@ import (
 	"github.com/gravetii/diztl/util"
 )
 
-const (
-	sharePathSuffix = "/Documents/diztl/share"
-)
-
 // FileIndexer : The struct type that represents a file indexer on a node which indexes all the shared files.
 type FileIndexer struct {
 	files []*diztl.FileMetadata
 }
 
-// Index : Indexes all the files present in the default share directory thus making them available for discovery by peers.
-func (f *FileIndexer) Index() {
+// Index : Indexes all the files in the given directory thus making them available for discovery by peers.
+func (f *FileIndexer) Index(dir string) {
 	log.Println("Indexing files...")
-	dir := shareDir()
-	files := fileWalk(dir)
+	files := filewalk(dir)
 	f.files = files
 	log.Println("Finished indexing.")
 }
@@ -42,20 +37,8 @@ func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
 	return result
 }
 
-// Returns the path to the default share directory.
-func shareDir() string {
-	rootdir, err := os.UserHomeDir()
-	if err != nil {
-		log.Printf("Unable to fetch user's home directory: %v", err)
-		panic(err)
-	}
-
-	dir := rootdir + sharePathSuffix
-	return dir
-}
-
 // Performs a recursive file walk of the given directory path.
-func fileWalk(dir string) []*diztl.FileMetadata {
+func filewalk(dir string) []*diztl.FileMetadata {
 	files := []*diztl.FileMetadata{}
 	var start int32
 	counter := util.Counter{Count: &start}
