@@ -101,11 +101,10 @@ func (c *NodeClient) download(r *pb.DownloadRequest) error {
 	ctx, cancel := context.WithTimeout(context.Background(), downloadTimeout)
 	defer cancel()
 	client, _ := getConnection(r.GetSource())
-	log.Printf("Calling upload for request: %v", r)
 	stream, _ := client.Upload(ctx, r)
 	var buf *bufio.Writer
 	var obj *os.File
-	var fname string
+	var metadata *diztl.FileMetadata
 
 	for {
 		f, err := stream.Recv()
@@ -113,7 +112,7 @@ func (c *NodeClient) download(r *pb.DownloadRequest) error {
 			if err == io.EOF {
 				buf.Flush()
 				obj.Close()
-				log.Printf("Finished downloading file: %s", fname)
+				log.Printf("Finished downloading file: %s", metadata.GetName())
 				break
 			}
 
@@ -121,15 +120,14 @@ func (c *NodeClient) download(r *pb.DownloadRequest) error {
 		}
 
 		if f.GetChunk() == 1 {
-			fname = f.GetMetadata().GetName()
-			fpath := util.GetOutputPath(fname)
+			metadata = f.GetMetadata()
+			fpath := util.GetOutputPath(metadata.GetName())
 			obj, err := createFile(fpath)
 			if err != nil {
 				return err
 			}
 
 			buf = bufio.NewWriter(obj)
-			log.Printf("Created new file on receiving first chunk: %s", fname)
 		} else {
 			_, err := buf.Write(f.GetData())
 			if err != nil {

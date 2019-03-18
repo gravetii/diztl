@@ -40,7 +40,6 @@ func (s *NodeService) Search(ctx context.Context, request *diztl.SearchRequest) 
 
 // Upload : func
 func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlService_UploadServer) error {
-	log.Printf("Uploading file for download request: %v", request)
 	fname := request.GetMetadata().GetName()
 	fpath := util.GetSharePath(fname)
 
@@ -58,7 +57,6 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 			// Send metadata of the file without actual payload in the first chunk.
 			fchunk := &diztl.File{Metadata: request.GetMetadata(), Chunk: 1}
 			stream.Send(fchunk)
-			log.Printf("Sent file metadata in starting chunk.")
 		} else {
 			_, err := reader.Read(p)
 			if err == io.EOF {
