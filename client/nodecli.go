@@ -2,6 +2,7 @@ package client
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	pb "github.com/gravetii/diztl/diztl"
@@ -19,8 +20,8 @@ func ReadUserInput() {
 	var opt int
 
 	for {
-		fmt.Printf("***************  DIZTL  ***************\n\n")
-		fmt.Printf("DIZTL | Enter a pattern to search for. * to Exit\n")
+		fmt.Printf("\n\n***************  DIZTL  ***************\n\n")
+		fmt.Printf("Enter a pattern to search for. * to Exit -\n")
 		fmt.Scanf("%s", &pattern)
 		if pattern == "*" {
 			fmt.Printf("Thank you for using Diztl. Bye!\n")
@@ -28,6 +29,11 @@ func ReadUserInput() {
 		} else {
 			fmt.Printf("Performing search for pattern: %s\n", pattern)
 			responses, _ := nodeclient.Search(pattern)
+			if len(responses) == 0 {
+				fmt.Printf("No files with the given name were found in the network. Try another search!")
+				continue
+			}
+
 			fmt.Printf("%30s | %30s", "Option", "File Name\n")
 			for c, resp := range responses {
 				m := *resp.GetFiles()[0]
@@ -39,8 +45,11 @@ func ReadUserInput() {
 			r := responses[opt]
 			m := r.GetFiles()[0]
 			s := r.GetNode()
-			req := pb.DownloadRequest{Source: s, Metadata: m}
-			nodeclient.download(req)
+			req := &pb.DownloadRequest{Source: s, Metadata: m}
+			err := nodeclient.download(req)
+			if err != nil {
+				log.Fatalf("Error while downloading file %s: %v", m.GetName(), err)
+			}
 		}
 	}
 }
