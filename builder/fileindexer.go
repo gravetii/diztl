@@ -49,9 +49,9 @@ func filewalk(dir string) []*diztl.FileMetadata {
 		}
 
 		counter.IncrBy1()
-		metadata := diztl.FileMetadata{Id: counter.Value(), Name: info.Name()}
+		metadata := diztl.FileMetadata{Id: counter.Value(), Name: info.Name(), Size: info.Size()}
 		files = append(files, &metadata)
-		log.Printf("%d: %s", metadata.Id, metadata.Name)
+		log.Printf("%d. %s, %d, %d", counter.Value(), metadata.GetName(), metadata.GetId(), metadata.GetSize())
 		return nil
 	})
 
