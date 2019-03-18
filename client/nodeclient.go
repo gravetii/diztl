@@ -8,6 +8,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/gravetii/diztl/builder"
+
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/util"
@@ -18,19 +20,9 @@ var nodeclient *NodeClient
 
 // NodeClient : This struct enables communication with the tracker and/or other nodes.
 type NodeClient struct {
-	node    *diztl.Node
-	tracker diztl.TrackerServiceClient
-}
-
-func getConnection(node *diztl.Node) (pb.DiztlServiceClient, error) {
-	conn, err := grpc.Dial(util.Address(node), grpc.WithInsecure())
-	if err != nil {
-		log.Fatalf("Could not connect to node %s: %v", node.GetIp(), err)
-		return nil, err
-	}
-
-	r := pb.NewDiztlServiceClient(conn)
-	return r, nil
+	node       *diztl.Node
+	tracker    diztl.TrackerServiceClient
+	nodekeeper *builder.NodeKeeper
 }
 
 func connectToTracker() diztl.TrackerServiceClient {
@@ -49,7 +41,8 @@ func connectToTracker() diztl.TrackerServiceClient {
 // Init : Initialises the NodeClient.
 func Init() {
 	log.Println("Initialising nodeclient...")
-	nodeclient = &NodeClient{}
+	nk := builder.NewNodeKeeper()
+	nodeclient = &NodeClient{nodekeeper: nk}
 	tracker := connectToTracker()
 	nodeclient.tracker = tracker
 	nodeclient.register()
@@ -100,7 +93,12 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 func (c *NodeClient) download(r *pb.DownloadRequest) error {
 	ctx, cancel := context.WithTimeout(context.Background(), downloadTimeout)
 	defer cancel()
-	client, _ := getConnection(r.GetSource())
+	client, err := c.nodekeeper.GetConnection(r.GetSource())
+	if err != nil {
+		log.Fatalf("Could not connect to node %s: %v", r.GetSource().GetIp(), err)
+		return err
+	}
+
 	stream, _ := client.Upload(ctx, r)
 	var buf *bufio.Writer
 	var obj *os.File

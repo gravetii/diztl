@@ -37,9 +37,9 @@ func (s *TrackerService) broadcast(request *diztl.SearchRequest) []*diztl.Search
 	responses := []*diztl.SearchResponse{}
 
 	for _, node := range s.Nodekeeper.ActiveNodes {
-		c, err := s.Nodekeeper.GetConnection(*node)
+		c, err := s.Nodekeeper.GetConnection(node)
 		if err != nil {
-			log.Printf("Could not connect to node %s: %v", node.GetIp(), err)
+			log.Fatalf("Could not connect to node %s: %v", node.GetIp(), err)
 		} else {
 			ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 			defer cancel()
