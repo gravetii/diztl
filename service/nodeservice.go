@@ -44,13 +44,8 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 	filename := request.GetMetadata().GetName()
 	filepath := util.GetSharePath(filename)
 
-	// upload the file located in this path
-	f, err := os.Open(filepath)
-	if os.IsNotExist(err) {
-		log.Fatalf("Specified file %s does not exist: %v", filename, err)
-		return err
-	} else if err != nil {
-		log.Fatalf("Error while uploading file: %v", err)
+	f, err := openFile(filepath)
+	if err != nil {
 		return err
 	}
 
@@ -73,4 +68,19 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 	}
 
 	return nil
+}
+
+func openFile(fpath string) (*os.File, error) {
+	f, err := os.Open(fpath)
+	if err != nil {
+		if os.IsNotExist(err) {
+			log.Fatalf("Specified file %s does not exist: %v", fpath, err)
+		} else {
+			log.Fatalf("Error while reading file %s to upload: %v", fpath, err)
+		}
+
+		return nil, err
+	}
+
+	return f, err
 }

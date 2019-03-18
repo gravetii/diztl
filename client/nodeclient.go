@@ -14,7 +14,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-// Nodeclient : An instance of the NodeClient type.
 var nodeclient *NodeClient
 
 // NodeClient : This struct enables communication with the tracker and/or other nodes.
@@ -56,7 +55,7 @@ func Init() {
 	nodeclient.register()
 	log.Println("Successfully initialised nodeclient.")
 	log.Println("\nEnter a search...")
-	ReadUserInput()
+	go ReadUserInput()
 }
 
 func (c *NodeClient) register() {
@@ -98,8 +97,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 	return results, nil
 }
 
-// Download : Download the file/files specified by the supplied DownloadRequest.
-func (c *NodeClient) Download(r pb.DownloadRequest) {
+func (c *NodeClient) download(r pb.DownloadRequest) {
 	ctx, cancel := context.WithTimeout(context.Background(), downloadTimeout)
 	defer cancel()
 	client, _ := getConnection(r.GetSource())

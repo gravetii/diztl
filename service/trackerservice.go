@@ -23,9 +23,8 @@ func (s *TrackerService) Register(ctx context.Context, node *diztl.Node) (*diztl
 
 // Search : Invoked by a search request by any node.
 func (s *TrackerService) Search(request *diztl.SearchRequest, stream diztl.TrackerService_SearchServer) error {
-	log.Printf("Received search request: %v", request.GetSource().GetIp())
+	log.Printf("Received search request from node %s: %v", request.GetSource().GetIp(), *request)
 	responses := s.broadcast(request)
-	log.Printf("Got responses from broadcast request as: %v", responses)
 	for _, r := range responses {
 		stream.Send(r)
 	}
