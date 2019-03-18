@@ -41,30 +41,35 @@ func (s *NodeService) Search(ctx context.Context, request *diztl.SearchRequest) 
 // Upload : func
 func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlService_UploadServer) error {
 	log.Printf("Uploading file for download request: %v", request)
-	filename := request.GetMetadata().GetName()
-	filepath := util.GetSharePath(filename)
+	fname := request.GetMetadata().GetName()
+	fpath := util.GetSharePath(fname)
 
-	f, err := openFile(filepath)
+	f, err := openFile(fpath)
 	if err != nil {
 		return err
 	}
 
 	p := make([]byte, bufsize)
 	reader := bufio.NewReader(f)
-	c := 1
+	chunk := 1
 
 	for {
-		n, err := reader.Read(p)
-		if err == io.EOF {
-			log.Printf("Finished uploading file :%s", filename)
-			break
-		} else {
-			metadata := diztl.FileMetadata{Name: filename}
-			fchunk := &diztl.File{Metadata: &metadata, Data: p, Chunk: int32(c)}
+		if chunk == 1 {
+			// Send metadata of the file without actual payload in the first chunk.
+			fchunk := &diztl.File{Metadata: request.GetMetadata(), Chunk: 1}
 			stream.Send(fchunk)
-			log.Printf("Wrote bytes: %d, Chunk no. %d", n, c)
-			c++
+			log.Printf("Sent file metadata in starting chunk.")
+		} else {
+			_, err := reader.Read(p)
+			if err == io.EOF {
+				log.Printf("Finished uploading file :%s", fname)
+				break
+			}
+			fchunk := &diztl.File{Data: p, Chunk: int32(chunk)}
+			stream.Send(fchunk)
 		}
+
+		chunk++
 	}
 
 	return nil

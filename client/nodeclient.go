@@ -97,36 +97,56 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 	return results, nil
 }
 
-func (c *NodeClient) download(r pb.DownloadRequest) {
+func (c *NodeClient) download(r *pb.DownloadRequest) error {
 	ctx, cancel := context.WithTimeout(context.Background(), downloadTimeout)
 	defer cancel()
 	client, _ := getConnection(r.GetSource())
 	log.Printf("Calling upload for request: %v", r)
-	stream, _ := client.Upload(ctx, &r)
+	stream, _ := client.Upload(ctx, r)
 	var buf *bufio.Writer
 	var obj *os.File
-	var filename string
+	var fname string
 
 	for {
 		f, err := stream.Recv()
+		if err != nil {
+			if err == io.EOF {
+				buf.Flush()
+				obj.Close()
+				log.Printf("Finished downloading file: %s", fname)
+				break
+			}
 
-		if err == io.EOF {
-			buf.Flush()
-			obj.Close()
-			log.Printf("Finished reading file at %d chunk.", f.GetChunk())
-			log.Printf("Finished downloading file: %s", filename)
-			break
+			return err
 		}
 
 		if f.GetChunk() == 1 {
-			filename = f.GetMetadata().GetName()
-			filepath := util.GetOutputPath(filename)
-			obj, _ = os.Create(filepath)
-			buf = bufio.NewWriter(obj)
-			log.Printf("Created new file on first chunk: %s", filename)
-		}
+			fname = f.GetMetadata().GetName()
+			fpath := util.GetOutputPath(fname)
+			obj, err := createFile(fpath)
+			if err != nil {
+				return err
+			}
 
-		n, _ := buf.Write(f.GetData())
-		log.Printf("Read bytes: %d, Chunk no. %d", n, f.GetChunk())
+			buf = bufio.NewWriter(obj)
+			log.Printf("Created new file on receiving first chunk: %s", fname)
+		} else {
+			_, err := buf.Write(f.GetData())
+			if err != nil {
+				return err
+			}
+		}
 	}
+
+	return nil
+}
+
+func createFile(fpath string) (*os.File, error) {
+	f, err := os.Create(fpath)
+	if err != nil {
+		log.Fatalf("Unable to create file %s: %v", fpath, err)
+		return nil, err
+	}
+
+	return f, nil
 }
