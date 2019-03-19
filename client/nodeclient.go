@@ -126,6 +126,7 @@ func (c *NodeClient) download(r *pb.DownloadRequest) error {
 			}
 
 			buf = bufio.NewWriter(obj)
+			log.Printf("Downloading file: %s\n", obj.Name())
 		} else {
 			_, err := buf.Write(f.GetData())
 			if err != nil {

@@ -36,7 +36,7 @@ func (s *TrackerService) broadcast(request *diztl.SearchRequest) []*diztl.Search
 	log.Printf("Broadcasting search request to all nodes on the network: %s, %s", request.GetSource().GetIp(), request.GetFilename())
 	responses := []*diztl.SearchResponse{}
 
-	for _, node := range s.Nodekeeper.ActiveNodes {
+	for _, node := range s.Nodekeeper.Nodes {
 		c, err := s.Nodekeeper.GetConnection(node)
 		if err != nil {
 			log.Fatalf("Could not connect to node %s: %v", node.GetIp(), err)
