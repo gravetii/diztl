@@ -7,20 +7,22 @@ import (
 	"github.com/gravetii/diztl/diztl"
 )
 
-// GetMyIP : Returns the host's IP address.
-func GetMyIP() string {
-	addrs, _ := net.InterfaceAddrs()
+var ip = findMyIP()
 
-	ip := "127.0.0.1"
-	for _, a := range addrs {
-		if ipnet, ok := a.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
-			if ipnet.IP.To4() != nil {
-				ip = ipnet.IP.String()
-			}
-		}
+func findMyIP() string {
+	conn, err := net.Dial("udp", "8.8.8.8:80")
+	if err != nil {
+		log.Fatalf("Could not fetch the host's IP: %v", err)
+		panic(err)
 	}
 
-	log.Printf("Got local IP as %s", ip)
+	defer conn.Close()
+	addr := conn.LocalAddr().(*net.UDPAddr)
+	return addr.IP.String()
+}
+
+// GetMyIP : Returns the host's IP address.
+func GetMyIP() string {
 	return ip
 }
 
