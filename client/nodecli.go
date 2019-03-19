@@ -44,8 +44,7 @@ func ReadUserInput() {
 			fmt.Scanf("%d", &opt)
 			r := responses[opt]
 			m := r.GetFiles()[0]
-			s := r.GetNode()
-			req := &pb.DownloadRequest{Source: s, Metadata: m}
+			req := &pb.DownloadRequest{Source: r.GetNode(), Metadata: m}
 			err := nodeclient.download(req)
 			if err != nil {
 				log.Fatalf("Error while downloading file %s: %v", m.GetName(), err)

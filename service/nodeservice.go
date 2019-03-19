@@ -34,7 +34,7 @@ func (s *NodeService) Search(ctx context.Context, request *diztl.SearchRequest) 
 	log.Printf("Received search request: %v", request.GetSource())
 	files := s.Indexer.Search(request.GetFilename())
 	// todo - check explicit conversion from int to int32
-	response := diztl.SearchResponse{Count: int32(len(files)), Files: files}
+	response := diztl.SearchResponse{Count: int32(len(files)), Files: files, Node: s.node}
 	return &response, nil
 }
 
