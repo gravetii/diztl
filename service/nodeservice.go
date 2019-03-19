@@ -54,6 +54,7 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 
 	for {
 		if chunk == 1 {
+			log.Printf("Uploading file: %s\n", fname)
 			// Send metadata of the file without actual payload in the first chunk.
 			fchunk := &diztl.File{Metadata: request.GetMetadata(), Chunk: 1}
 			stream.Send(fchunk)
