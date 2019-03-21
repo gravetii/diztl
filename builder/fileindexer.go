@@ -25,7 +25,6 @@ func (f *FileIndexer) Index(dir string) {
 
 // Search : Searches for a given pattern in the names of the indexed files and returns those files.
 func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
-	log.Printf("Searching in indexer for pattern: %s", pattern)
 	result := []*diztl.FileMetadata{}
 	for _, file := range f.files {
 		fname := util.GetFilename(file)
