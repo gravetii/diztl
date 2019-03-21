@@ -48,7 +48,7 @@ func Init() {
 	nodeclient.register()
 	log.Println("Successfully initialised nodeclient.")
 	log.Println("\nEnter a search...")
-	go ReadUserInput()
+	go UserCLI()
 }
 
 func (c *NodeClient) register() {
