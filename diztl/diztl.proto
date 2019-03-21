@@ -20,7 +20,7 @@ message Node {
 }
 
 message FileMetadata {
-    string name = 1;
+    string path = 1;
     int32 id = 2;
     int64 size = 3;
 }
