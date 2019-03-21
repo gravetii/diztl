@@ -23,39 +23,54 @@ var downloadTimeout = 5 * time.Minute
 
 // UserCLI : Starts a for{} to take user inputs for file search.
 func UserCLI() {
-	var pattern string
-	var opt int
-
 	for {
-		fmt.Printf("\n\n***************  DIZTL  ***************\n\n")
-		fmt.Printf("Enter a pattern to search for. * to Exit - ")
-		fmt.Scanf("%s", &pattern)
-		if pattern == "*" {
-			fmt.Printf("Thank you for using Diztl. Bye!\n")
+		in, ok := searchInput()
+		if !ok {
 			break
 		}
 
-		fmt.Printf("Performing search for pattern: %s\n", pattern)
-		responses, _ := nodeclient.Search(pattern)
-		res, ok := validateResponses(responses)
-
+		s, ok := search(in)
 		if ok {
-			fmt.Printf("%30s | %30s", "Option", "File Name\n")
-			for c, r := range res {
-				fmt.Printf("%30d | %30s\n", c+1, util.GetFilename(r.file))
-			}
-
-			fmt.Printf("Enter option to download file - ")
-			fmt.Scanf("%d", &opt)
-			r := validateOption(opt, res)
-			if r == nil {
-				fmt.Printf("Invalid option, please try again!\n")
-				continue
-			} else {
+			r, ok := optInput(s)
+			if ok {
 				download(r)
 			}
 		}
 	}
+}
+
+func search(in string) ([]*searchResult, bool) {
+	fmt.Printf("Performing search for string: %s\n", in)
+	responses, _ := nodeclient.Search(in)
+	return validateResponses(responses)
+}
+
+func display(res []*searchResult) {
+	fmt.Printf("\n%30s | %30s", "Option", "File Name\n")
+	for c, r := range res {
+		fmt.Printf("%30d | %30s\n", c+1, util.GetFilename(r.file))
+	}
+}
+
+func searchInput() (string, bool) {
+	var pattern string
+	fmt.Printf("\n\n***************  DIZTL  ***************\n\n")
+	fmt.Printf("Enter a pattern to search for. * to Exit - ")
+	fmt.Scanf("%s", &pattern)
+
+	if pattern == "*" {
+		fmt.Printf("Thank you for using Diztl. Bye!\n")
+		return "*", false
+	}
+
+	return pattern, true
+}
+
+func optInput(res []*searchResult) (*searchResult, bool) {
+	var opt int
+	fmt.Printf("Enter option to download file - ")
+	fmt.Scanf("%d", &opt)
+	return validateOption(opt, res)
 }
 
 func download(r *searchResult) {
@@ -67,28 +82,29 @@ func download(r *searchResult) {
 }
 
 func validateResponses(responses []*diztl.SearchResponse) ([]*searchResult, bool) {
-	r := []*searchResult{}
 	if len(responses) == 0 {
 		fmt.Printf("No files with the given name were found in the network. Try another search!")
 		return nil, false
 	}
 
+	r := []*searchResult{}
 	for _, resp := range responses {
 		if resp.GetCount() > 0 {
 			for _, file := range resp.GetFiles() {
 				r = append(r, &searchResult{resp.GetNode(), file})
-				log.Printf("Appended file: %v", *file)
 			}
 		}
 	}
 
+	display(r)
 	return r, true
 }
 
-func validateOption(o int, files []*searchResult) *searchResult {
+func validateOption(o int, files []*searchResult) (*searchResult, bool) {
 	if o <= len(files) {
-		return files[o-1]
+		return files[o-1], true
 	}
 
-	return nil
+	fmt.Printf("Invalid option, please try again!\n")
+	return nil, false
 }
