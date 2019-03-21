@@ -75,9 +75,11 @@ func optInput(res []*searchResult) (*searchResult, bool) {
 
 func download(r *searchResult) {
 	req := &pb.DownloadRequest{Source: r.node, Metadata: r.file}
-	err := nodeclient.download(req)
+	f, err := nodeclient.download(req)
 	if err != nil {
 		log.Fatalf("Error while downloading file %s: %v", util.GetFilename(r.file), err)
+	} else {
+		log.Printf("Finished downloading file: %s", f.Name())
 	}
 }
 

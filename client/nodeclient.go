@@ -90,13 +90,13 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 	return results, nil
 }
 
-func (c *NodeClient) download(r *pb.DownloadRequest) error {
+func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), downloadTimeout)
 	defer cancel()
 	client, err := c.nodekeeper.GetConnection(r.GetSource())
 	if err != nil {
 		log.Fatalf("Could not connect to node %s: %v", r.GetSource().GetIp(), err)
-		return err
+		return nil, err
 	}
 
 	stream, _ := client.Upload(ctx, r)
@@ -107,19 +107,18 @@ func (c *NodeClient) download(r *pb.DownloadRequest) error {
 		f, err := stream.Recv()
 		if err != nil {
 			if err == io.EOF {
-				log.Printf("Finished downloading file: %s", obj.Name())
 				buf.Flush()
 				obj.Close()
-				break
-			} else {
-				return err
+				return obj, nil
 			}
+
+			return nil, err
 		}
 
 		if f.GetChunk() == 1 {
 			obj, err = createFile(f.GetMetadata())
 			if err != nil {
-				return err
+				return nil, err
 			}
 
 			buf = bufio.NewWriter(obj)
@@ -127,12 +126,10 @@ func (c *NodeClient) download(r *pb.DownloadRequest) error {
 		} else {
 			_, err := buf.Write(f.GetData())
 			if err != nil {
-				return err
+				return nil, err
 			}
 		}
 	}
-
-	return nil
 }
 
 func createFile(metadata *diztl.FileMetadata) (*os.File, error) {
