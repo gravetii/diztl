@@ -2,6 +2,9 @@ package util
 
 import (
 	"os"
+	"path/filepath"
+
+	"github.com/gravetii/diztl/diztl"
 )
 
 const (
@@ -16,12 +19,12 @@ func GetShareDir() string {
 	return dir
 }
 
-// GetSharePath : Returns the file share path for the file.
-func GetSharePath(filename string) string {
-	return GetShareDir() + "/" + filename
-}
-
 // GetOutputPath : Returns the output file path for the file.
 func GetOutputPath(filename string) string {
 	return GetShareDir() + "/output/" + filename
+}
+
+// GetFilename returns the filename of the file pointed by the metadata.
+func GetFilename(m *diztl.FileMetadata) string {
+	return filepath.Base(m.GetPath())
 }

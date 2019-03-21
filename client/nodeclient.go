@@ -102,25 +102,22 @@ func (c *NodeClient) download(r *pb.DownloadRequest) error {
 	stream, _ := client.Upload(ctx, r)
 	var buf *bufio.Writer
 	var obj *os.File
-	var metadata *diztl.FileMetadata
 
 	for {
 		f, err := stream.Recv()
 		if err != nil {
 			if err == io.EOF {
+				log.Printf("Finished downloading file: %s", obj.Name())
 				buf.Flush()
 				obj.Close()
-				log.Printf("Finished downloading file: %s", metadata.GetName())
 				break
+			} else {
+				return err
 			}
-
-			return err
 		}
 
 		if f.GetChunk() == 1 {
-			metadata = f.GetMetadata()
-			fpath := util.GetOutputPath(metadata.GetName())
-			obj, err := createFile(fpath)
+			obj, err = createFile(f.GetMetadata())
 			if err != nil {
 				return err
 			}
@@ -138,7 +135,9 @@ func (c *NodeClient) download(r *pb.DownloadRequest) error {
 	return nil
 }
 
-func createFile(fpath string) (*os.File, error) {
+func createFile(metadata *diztl.FileMetadata) (*os.File, error) {
+	fname := util.GetFilename(metadata)
+	fpath := util.GetOutputPath(fname)
 	f, err := os.Create(fpath)
 	if err != nil {
 		log.Fatalf("Unable to create file %s: %v", fpath, err)
@@ -146,4 +145,5 @@ func createFile(fpath string) (*os.File, error) {
 	}
 
 	return f, nil
+
 }

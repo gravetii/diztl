@@ -7,6 +7,7 @@ import (
 
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/util"
 )
 
 const (
@@ -41,7 +42,7 @@ func UserCLI() {
 		if ok {
 			fmt.Printf("%30s | %30s", "Option", "File Name\n")
 			for c, r := range res {
-				fmt.Printf("%30d | %30s\n", c+1, r.file.GetName())
+				fmt.Printf("%30d | %30s\n", c+1, util.GetFilename(r.file))
 			}
 
 			fmt.Printf("Enter option to download file - ")
@@ -61,7 +62,7 @@ func download(r *searchResult) {
 	req := &pb.DownloadRequest{Source: r.node, Metadata: r.file}
 	err := nodeclient.download(req)
 	if err != nil {
-		log.Fatalf("Error while downloading file %s: %v", r.file.GetName(), err)
+		log.Fatalf("Error while downloading file %s: %v", util.GetFilename(r.file), err)
 	}
 }
 

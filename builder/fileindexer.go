@@ -28,8 +28,8 @@ func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
 	log.Printf("Searching in indexer for pattern: %s", pattern)
 	result := []*diztl.FileMetadata{}
 	for _, file := range f.files {
-		if strings.Contains(file.Name, pattern) {
-			log.Printf("Got a valid search result: %s", file.Name)
+		fname := util.GetFilename(file)
+		if strings.Contains(fname, pattern) {
 			result = append(result, file)
 		}
 	}
@@ -49,9 +49,9 @@ func filewalk(dir string) []*diztl.FileMetadata {
 		}
 
 		counter.IncrBy1()
-		metadata := diztl.FileMetadata{Id: counter.Value(), Name: info.Name(), Size: info.Size()}
+		metadata := diztl.FileMetadata{Id: counter.Value(), Path: path, Size: info.Size()}
 		files = append(files, &metadata)
-		log.Printf("%d. %s, %d, %d", counter.Value(), metadata.GetName(), metadata.GetId(), metadata.GetSize())
+		log.Printf("%d. %s, %d, %d", counter.Value(), metadata.GetPath(), metadata.GetId(), metadata.GetSize())
 		return nil
 	})
 
