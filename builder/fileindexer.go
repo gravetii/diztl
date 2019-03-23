@@ -39,8 +39,7 @@ func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
 // Performs a recursive file walk of the given directory path.
 func filewalk(dir string) []*diztl.FileMetadata {
 	files := []*diztl.FileMetadata{}
-	var start int32
-	counter := util.Counter{Count: &start}
+	counter := util.NewCounter(0)
 	log.Println("Performing file walk...")
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if info.IsDir() {

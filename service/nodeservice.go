@@ -49,10 +49,10 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 
 	p := make([]byte, bufsize)
 	reader := bufio.NewReader(f)
-	chunk := 1
+	chunk := util.NewCounter(1)
 
 	for {
-		if chunk == 1 {
+		if chunk.Value() == 1 {
 			log.Printf("Uploading file: %s\n", fpath)
 			// Send metadata of the file without actual payload in the first chunk.
 			fchunk := &diztl.File{Metadata: request.GetMetadata(), Chunk: 1}
@@ -63,11 +63,11 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 				log.Printf("Finished uploading file :%s", fpath)
 				break
 			}
-			fchunk := &diztl.File{Data: p, Chunk: int32(chunk)}
+			fchunk := &diztl.File{Data: p, Chunk: chunk.Value()}
 			stream.Send(fchunk)
 		}
 
-		chunk++
+		chunk.IncrBy1()
 	}
 
 	return nil
