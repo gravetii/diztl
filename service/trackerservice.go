@@ -17,7 +17,6 @@ type TrackerService struct {
 // Register : Every node that joins the network invokes this method on the tracker to register itself.
 func (s *TrackerService) Register(ctx context.Context, node *diztl.Node) (*diztl.Node, error) {
 	s.Nodekeeper.Register(node)
-	log.Printf("Successfully registered node %s, %d", node.GetIp(), node.GetId())
 	return node, nil
 }
 
