@@ -8,12 +8,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/util"
-)
-
-const (
-	indexFilesMin = 5
 )
 
 // FileIndexer : The struct type that represents a file indexer on a node which indexes all the shared files.
@@ -36,8 +33,8 @@ func (f *FileIndexer) Index() error {
 }
 
 func (f *FileIndexer) hasMin() bool {
-	if len(f.files) < indexFilesMin {
-		fmt.Printf("You need to share at least %d files to diztl before you can ask!\n", indexFilesMin)
+	if len(f.files) < config.MinIndexFiles {
+		fmt.Printf("You need to share at least %d files to diztl before you can ask!\n", config.MinIndexFiles)
 		return false
 	}
 
