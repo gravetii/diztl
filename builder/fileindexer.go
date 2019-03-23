@@ -1,6 +1,8 @@
 package builder
 
 import (
+	"errors"
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -10,17 +12,36 @@ import (
 	"github.com/gravetii/diztl/util"
 )
 
+const (
+	indexFilesMin = 5
+)
+
 // FileIndexer : The struct type that represents a file indexer on a node which indexes all the shared files.
 type FileIndexer struct {
 	files []*diztl.FileMetadata
 }
 
 // Index : Indexes all the files in the given directory thus making them available for discovery by peers.
-func (f *FileIndexer) Index(dir string) {
-	log.Println("Indexing files...")
+func (f *FileIndexer) Index() error {
+	dir := util.GetShareDir()
+	log.Printf("Indexing files in directory: %s", dir)
 	files := filewalk(dir)
 	f.files = files
-	log.Println("Finished indexing.")
+	if !f.hasMin() {
+		return errors.New("less than minimum number of indexed files")
+	}
+
+	log.Println("Indexing finished successfully.")
+	return nil
+}
+
+func (f *FileIndexer) hasMin() bool {
+	if len(f.files) < indexFilesMin {
+		fmt.Printf("You need to share at least %d files to diztl before you can ask!\n", indexFilesMin)
+		return false
+	}
+
+	return true
 }
 
 // Search : Searches for a given pattern in the names of the indexed files and returns those files.
