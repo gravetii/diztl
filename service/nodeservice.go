@@ -25,8 +25,11 @@ type NodeService struct {
 // Init : Performs the necessary initialisation when the service comes up for the first time.
 func (s *NodeService) Init() {
 	log.Println("Initialising node service...")
-	sharedir := util.GetShareDir()
-	s.Indexer.Index(sharedir)
+	err := s.Indexer.Index()
+	if err != nil {
+		log.Fatalf("Error while indexing files: %v", err)
+		panic(err)
+	}
 }
 
 // Search : func
