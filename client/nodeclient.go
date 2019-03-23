@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/gravetii/diztl/builder"
+	"github.com/gravetii/diztl/config"
 
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
@@ -26,9 +27,7 @@ type NodeClient struct {
 }
 
 func connectToTracker() diztl.TrackerServiceClient {
-	trackerHost := util.GetMyIP()
-	trackerAddr := trackerHost + ":50052"
-	conn, err := grpc.Dial(trackerAddr, grpc.WithInsecure())
+	conn, err := grpc.Dial(config.TrackerAddress, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Could not connect to tracker: %v", err)
 		panic(err)
@@ -47,7 +46,6 @@ func Init() {
 	nodeclient.tracker = tracker
 	nodeclient.register()
 	log.Println("Successfully initialised nodeclient.")
-	log.Println("\nEnter a search...")
 	go UserCLI()
 }
 
@@ -91,7 +89,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 }
 
 func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), downloadTimeout)
+	ctx, cancel := context.WithTimeout(context.Background(), config.DownloadTimeout)
 	defer cancel()
 	client, err := c.nodekeeper.GetConnection(r.GetSource())
 	if err != nil {

@@ -3,23 +3,16 @@ package client
 import (
 	"fmt"
 	"log"
-	"time"
 
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/util"
 )
 
-const (
-	bufsize = 1024 * 512
-)
-
 type searchResult struct {
 	node *diztl.Node
 	file *diztl.FileMetadata
 }
-
-var downloadTimeout = 5 * time.Minute
 
 // UserCLI : Starts a for{} to take user inputs for file search.
 func UserCLI() {
@@ -31,6 +24,7 @@ func UserCLI() {
 
 		s, ok := search(in)
 		if ok {
+			display(s)
 			r, ok := optInput(s)
 			if ok {
 				download(r)
@@ -55,7 +49,7 @@ func display(res []*searchResult) {
 func searchInput() (string, bool) {
 	var pattern string
 	fmt.Printf("\n\n***************  DIZTL  ***************\n\n")
-	fmt.Printf("Enter a pattern to search for. * to Exit - ")
+	fmt.Printf("Enter a pattern to search for. '*' to Exit - ")
 	fmt.Scanf("%s", &pattern)
 
 	if pattern == "*" {
@@ -98,7 +92,6 @@ func validateResponses(responses []*diztl.SearchResponse) ([]*searchResult, bool
 		}
 	}
 
-	display(r)
 	return r, true
 }
 

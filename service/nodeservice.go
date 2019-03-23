@@ -8,12 +8,9 @@ import (
 	"os"
 
 	"github.com/gravetii/diztl/builder"
+	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/util"
-)
-
-const (
-	bufsize = 1024 * 512
 )
 
 // NodeService : Implements the node server interface definition.
@@ -50,7 +47,7 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 		return err
 	}
 
-	p := make([]byte, bufsize)
+	p := make([]byte, config.ChunkBufSize)
 	reader := bufio.NewReader(f)
 	chunk := util.NewCounter(1)
 

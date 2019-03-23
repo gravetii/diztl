@@ -5,6 +5,7 @@ import (
 	"net"
 
 	"github.com/gravetii/diztl/builder"
+	"github.com/gravetii/diztl/config"
 
 	"github.com/gravetii/diztl/client"
 	diztl "github.com/gravetii/diztl/diztl"
@@ -12,12 +13,8 @@ import (
 	"google.golang.org/grpc"
 )
 
-const (
-	port = ":50051"
-)
-
 func main() {
-	lis, err := net.Listen("tcp", port)
+	lis, err := net.Listen("tcp", ":"+config.NodePort)
 	if err != nil {
 		log.Fatalf("Unable to start node server: %v", err)
 	}
