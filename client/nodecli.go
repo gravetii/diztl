@@ -96,10 +96,10 @@ func validateResponses(responses []*diztl.SearchResponse) ([]*searchResult, bool
 }
 
 func validateOption(o int, files []*searchResult) (*searchResult, bool) {
-	if o <= len(files) {
-		return files[o-1], true
+	if o <= 0 || o > len(files) {
+		fmt.Printf("Invalid option, please try again!\n")
+		return nil, false
 	}
 
-	fmt.Printf("Invalid option, please try again!\n")
-	return nil, false
+	return files[o-1], true
 }
