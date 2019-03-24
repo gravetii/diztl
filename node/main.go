@@ -4,7 +4,6 @@ import (
 	"log"
 	"net"
 
-	"github.com/gravetii/diztl/builder"
 	"github.com/gravetii/diztl/config"
 
 	"github.com/gravetii/diztl/client"
@@ -20,7 +19,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	nodeservice := service.NodeService{Indexer: &builder.FileIndexer{}}
+	nodeservice := service.NewNodeService()
 	diztl.RegisterDiztlServiceServer(s, &nodeservice)
 	go nodeservice.Init()
 	go client.Init()

@@ -15,7 +15,7 @@ var NodePort = "50051"
 var TrackerAddress = TrackerHost + ":" + TrackerPort
 
 // MinIndexFiles : Minimum number of files each node has to share to the network.
-var MinIndexFiles = 5
+var MinIndexFiles int32 = 5
 
 // DownloadTimeout : The timeout after which file download errors out.
 var DownloadTimeout = 5 * time.Minute

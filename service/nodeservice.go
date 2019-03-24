@@ -7,16 +7,27 @@ import (
 	"log"
 	"os"
 
-	"github.com/gravetii/diztl/builder"
 	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/indexer"
 	"github.com/gravetii/diztl/util"
 )
 
 // NodeService : Implements the node server interface definition.
 type NodeService struct {
-	Indexer *builder.FileIndexer
+	Indexer *indexer.FileIndexer
 	node    *diztl.Node
+}
+
+// NewNodeService : Returns an instance of the Node Service.
+func NewNodeService() NodeService {
+	f, err := indexer.NewFileIndexer()
+	if err != nil {
+		log.Fatalf("Error while creating the node service: %v", err)
+		panic(err)
+	}
+
+	return NodeService{Indexer: f}
 }
 
 // Init : Performs the necessary initialisation when the service comes up for the first time.
