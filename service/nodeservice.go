@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/gravetii/diztl/config"
+	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/indexer"
 	"github.com/gravetii/diztl/util"
@@ -61,7 +62,7 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 
 	p := make([]byte, config.ChunkBufSize)
 	reader := bufio.NewReader(f)
-	chunk := util.NewCounter(1)
+	chunk := counter.New(1)
 
 	for {
 		if chunk.Value() == 1 {
