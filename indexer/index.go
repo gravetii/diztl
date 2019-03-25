@@ -8,19 +8,19 @@ import (
 	"strings"
 
 	"github.com/gravetii/diztl/config"
+	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/util"
 )
 
 // Index : Represents a file-index.
 type Index struct {
 	files   map[string]*diztl.FileMetadata
-	counter *util.AtomicCounter
+	counter *counter.AtomicCounter
 }
 
 func newIndex() *Index {
 	// A non-atomic counter would probably do here too.
-	return &Index{files: make(map[string]*diztl.FileMetadata), counter: util.NewAtomicCounter(0)}
+	return &Index{files: make(map[string]*diztl.FileMetadata), counter: counter.NewAtomic(0)}
 }
 
 func (index *Index) add(path string, info os.FileInfo) {

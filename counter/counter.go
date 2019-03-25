@@ -1,4 +1,4 @@
-package util
+package counter
 
 import (
 	"sync"
@@ -10,8 +10,8 @@ type AtomicCounter struct {
 	mux   sync.Mutex
 }
 
-// NewAtomicCounter returns a new instance of the AtomicCounter type.
-func NewAtomicCounter(n int32) *AtomicCounter {
+// NewAtomic returns a new instance of the AtomicCounter type.
+func NewAtomic(n int32) *AtomicCounter {
 	return &AtomicCounter{count: &n}
 }
 
@@ -51,8 +51,8 @@ type Counter struct {
 	count *int32
 }
 
-// NewCounter returns a new instance of the Counter type.
-func NewCounter(n int32) *Counter {
+// New returns a new instance of the Counter type.
+func New(n int32) *Counter {
 	return &Counter{count: &n}
 }
 

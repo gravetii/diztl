@@ -4,6 +4,7 @@ import (
 	"log"
 	"sync"
 
+	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/util"
@@ -13,7 +14,7 @@ import (
 // NodeKeeper : A struct type that keeps track of active nodes.
 type NodeKeeper struct {
 	Nodes       map[string]*diztl.Node
-	Count       *util.AtomicCounter
+	Count       *counter.AtomicCounter
 	Connections map[string]diztl.DiztlServiceClient
 	mux         sync.Mutex
 }
@@ -22,7 +23,7 @@ type NodeKeeper struct {
 func NewNodeKeeper() *NodeKeeper {
 	nodes := make(map[string]*diztl.Node)
 	connections := make(map[string]diztl.DiztlServiceClient)
-	nk := NodeKeeper{Nodes: nodes, Connections: connections, Count: util.NewAtomicCounter(0)}
+	nk := NodeKeeper{Nodes: nodes, Connections: connections, Count: counter.NewAtomic(0)}
 	return &nk
 }
 
