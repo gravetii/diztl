@@ -24,7 +24,6 @@ func NewNodeService() NodeService {
 	f, err := indexer.NewFileIndexer()
 	if err != nil {
 		log.Fatalf("Error while creating the node service: %v", err)
-		panic(err)
 	}
 
 	return NodeService{Indexer: f}
@@ -33,10 +32,12 @@ func NewNodeService() NodeService {
 // Init : Performs the necessary initialisation when the service comes up for the first time.
 func (s *NodeService) Init() {
 	log.Println("Initialising node service...")
-	err := s.Indexer.Index()
-	if err != nil {
+
+	// Ensure that necessary folders are created
+	util.EnsureDirs()
+
+	if err := s.Indexer.Index(); err != nil {
 		log.Fatalf("Error while indexing files: %v", err)
-		panic(err)
 	}
 }
 
