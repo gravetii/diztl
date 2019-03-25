@@ -47,7 +47,7 @@ func (index *Index) validate() error {
 func (index *Index) search(pattern string) []*diztl.FileMetadata {
 	result := []*diztl.FileMetadata{}
 	for path, file := range index.files {
-		if strings.Contains(path, pattern) {
+		if strings.Contains(strings.ToLower(path), strings.ToLower(pattern)) {
 			result = append(result, file)
 		}
 	}
