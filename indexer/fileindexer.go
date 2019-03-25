@@ -34,23 +34,17 @@ func NewFileIndexer() (*FileIndexer, error) {
 func (f *FileIndexer) Index() error {
 	log.Println("Started file indexing process.")
 
-	if err := f.dirwalk(); err != nil {
-		return err
-	}
-
+	f.dirwalk()
 	go f.watch()
 	log.Println("Indexing finished successfully.")
 	return nil
 }
 
-func (f *FileIndexer) dirwalk() error {
+func (f *FileIndexer) dirwalk() {
 	dir := util.ShareDir
 	if err := f.filewalk(dir); err != nil {
 		log.Fatalf("Error while performing filewalk for dir %s: %v", dir, err)
-		return err
 	}
-
-	return nil
 }
 
 func (f *FileIndexer) watch() {
@@ -97,8 +91,7 @@ func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
 func (f *FileIndexer) add(path string, info os.FileInfo) error {
 	err := f.watcher.Add(path)
 	if err != nil {
-		log.Fatalf("Error while adding path to watcher - %s: %v", path, err)
-		return err
+		log.Printf("Error while adding path to watcher - %s: %v\n", path, err)
 	}
 
 	if !info.IsDir() {
