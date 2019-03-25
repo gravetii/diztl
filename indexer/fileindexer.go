@@ -44,7 +44,7 @@ func (f *FileIndexer) Index() error {
 }
 
 func (f *FileIndexer) dirwalk() error {
-	dir := util.GetShareDir()
+	dir := util.ShareDir
 	if err := f.filewalk(dir); err != nil {
 		log.Fatalf("Error while performing filewalk for dir %s: %v", dir, err)
 		return err

@@ -1,6 +1,7 @@
 package util
 
 import (
+	"log"
 	"os"
 	"path/filepath"
 
@@ -8,23 +9,44 @@ import (
 )
 
 const (
-	suffix = "/Documents/diztl/share"
+	shareSuffix  = "/Documents/diztl/share"
+	outputSuffix = "/output"
 )
 
 var rootdir, _ = os.UserHomeDir()
 
-// GetShareDir : Returns the default share directory.
-func GetShareDir() string {
-	dir := rootdir + suffix
-	return dir
-}
+// ShareDir : The default diztl share directory.
+var ShareDir = rootdir + shareSuffix
+
+// OutputDir : The diztl output directory.
+var OutputDir = ShareDir + outputSuffix
 
 // GetOutputPath : Returns the output file path for the file.
 func GetOutputPath(filename string) string {
-	return GetShareDir() + "/output/" + filename
+	return OutputDir + "/" + filename
 }
 
-// GetFilename returns the filename of the file pointed by the metadata.
+// GetFilename : Returns the filename of the file pointed by the metadata.
 func GetFilename(m *diztl.FileMetadata) string {
 	return filepath.Base(m.GetPath())
+}
+
+// EnsureDirs : Checks if the required directories are created, creating them if not.
+func EnsureDirs() {
+	ensureDir(ShareDir)
+	ensureDir(OutputDir)
+}
+
+func ensureDir(dir string) {
+	info, err := os.Stat(dir)
+	if os.IsNotExist(err) {
+		log.Printf("Creating directory: %s\n", dir)
+		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
+			log.Fatalf("Could not create directory - %s: %v", dir, err)
+		}
+	} else if !info.IsDir() {
+		log.Fatalf("Seems like there's a resource already: %s\n", dir)
+	} else if err != nil {
+		log.Fatalf("Could not ensure that directory exists - %s: %v", dir, err)
+	}
 }
