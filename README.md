@@ -29,6 +29,9 @@ Once the `Node` starts up without any errors, you will be able to search for fil
 
 - fsnotify: The project makes use of [fsnotify](https://github.com/fsnotify/fsnotify) to detect file-system changes and indexes them dynamically, thus making them avaiable for search across the entire network in real-time.
 
+## Contributing
+Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to the project.
+
 ## Authors
 - Sandeep Dasika
 
