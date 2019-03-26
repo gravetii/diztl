@@ -25,12 +25,15 @@ In the root folder of the project:
 Once the `Node` starts up without any errors, you will be able to search for files that have been shared by other peers in the same network.
 
 ## Built With
-- gRPC: The project uses gRPC as its communication protocol along with protocol-buffers as the data-interchange format.
+- gRPC: The project uses [gRPC](https://grpc.io/docs/) as its communication protocol along with protocol buffers as the data-interchange format.
 
 - fsnotify: The project makes use of [fsnotify](https://github.com/fsnotify/fsnotify) to detect file-system changes and indexes them dynamically, thus making them avaiable for search across the entire network in real-time.
 
 ## Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to the project.
+
+## IRC Channel
+You can join the IRC channel `#diztl` on freenode to discuss more about the project.
 
 ## Authors
 - Sandeep Dasika
