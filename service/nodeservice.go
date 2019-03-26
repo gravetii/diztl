@@ -53,22 +53,25 @@ func (s *NodeService) Search(ctx context.Context, request *diztl.SearchRequest) 
 
 // Upload : func
 func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlService_UploadServer) error {
-	fpath := request.GetMetadata().GetPath()
+	metadata := request.GetMetadata()
+	fpath := metadata.GetPath()
 
 	f, err := openFile(fpath)
 	if err != nil {
 		return err
 	}
 
-	p := make([]byte, config.ChunkBufSize)
 	reader := bufio.NewReader(f)
 	chunk := counter.New(1)
 
 	for {
+		p := make([]byte, config.ChunkBufSize)
 		if chunk.Value() == 1 {
 			log.Printf("Uploading file: %s\n", fpath)
 			// Send metadata of the file without actual payload in the first chunk.
-			fchunk := &diztl.File{Metadata: request.GetMetadata(), Chunk: 1}
+			chunks := int32(metadata.GetSize() / int64(config.ChunkBufSize))
+			metadata.Chunks = chunks
+			fchunk := &diztl.File{Metadata: metadata, Chunk: 1}
 			stream.Send(fchunk)
 		} else {
 			_, err := reader.Read(p)

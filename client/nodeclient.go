@@ -3,6 +3,7 @@ package client
 import (
 	"bufio"
 	"context"
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -100,6 +101,7 @@ func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
 	stream, _ := client.Upload(ctx, r)
 	var buf *bufio.Writer
 	var obj *os.File
+	var metadata *diztl.FileMetadata
 
 	for {
 		f, err := stream.Recv()
@@ -107,24 +109,41 @@ func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
 			if err == io.EOF {
 				buf.Flush()
 				obj.Close()
-				return obj, nil
+				break
 			}
 
 			return nil, err
 		}
 
 		if f.GetChunk() == 1 {
-			obj, err = createFile(f.GetMetadata())
+			metadata = f.GetMetadata()
+			obj, err = createFile(metadata)
 			if err != nil {
 				return nil, err
 			}
 
 			buf = bufio.NewWriter(obj)
-			log.Printf("Downloading file: %s\n", obj.Name())
+			log.Printf("Downloading file: %s. Prepared to receive %d chunks.", obj.Name(), metadata.GetChunks())
 		} else {
 			_, err := buf.Write(f.GetData())
 			if err != nil {
 				return nil, err
+			}
+			logProg(f.GetChunk(), metadata.GetChunks())
+		}
+	}
+
+	return obj, nil
+}
+
+func logProg(chunk int32, chunks int32) {
+	if chunk == chunks {
+		fmt.Println("..")
+	} else {
+		c := chunks / 10
+		if c != 0 {
+			if chunk%c == 0 {
+				fmt.Print("..")
 			}
 		}
 	}

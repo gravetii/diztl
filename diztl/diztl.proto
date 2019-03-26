@@ -23,6 +23,7 @@ message FileMetadata {
     string path = 1;
     int32 id = 2;
     int64 size = 3;
+    int32 chunks = 4;
 }
 
 message File {
