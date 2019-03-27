@@ -3,7 +3,7 @@ syntax = "proto3";
 service DiztlService {
     rpc Search (SearchRequest) returns (SearchResponse) {
     }
-    rpc Upload (DownloadRequest) returns (stream File) {
+    rpc Upload (DownloadRequest) returns (stream FileChunk) {
     }
 }
 
@@ -26,7 +26,7 @@ message FileMetadata {
     int32 chunks = 4;
 }
 
-message File {
+message FileChunk {
     FileMetadata metadata = 1;
     bytes data = 2;
     int32 chunk = 3;
