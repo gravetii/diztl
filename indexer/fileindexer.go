@@ -33,7 +33,6 @@ func NewFileIndexer() (*FileIndexer, error) {
 // Index : Indexes all the files in the given directory thus making them available for discovery by peers.
 func (f *FileIndexer) Index() error {
 	log.Println("Started file indexing process.")
-
 	f.dirwalk()
 	go f.watch()
 	log.Println("Indexing finished successfully.")
