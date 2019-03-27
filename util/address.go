@@ -14,7 +14,6 @@ func findMyIP() string {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
 		log.Fatalf("Could not fetch the host's IP: %v", err)
-		panic(err)
 	}
 
 	defer conn.Close()

@@ -22,7 +22,7 @@ func (s *TrackerService) Register(ctx context.Context, node *diztl.Node) (*diztl
 
 // Search : Invoked by a search request by any node.
 func (s *TrackerService) Search(request *diztl.SearchRequest, stream diztl.TrackerService_SearchServer) error {
-	log.Printf("Received search request from node %s: %v", request.GetSource().GetIp(), *request)
+	log.Printf("Received search request from node %s: %v\n", request.GetSource().GetIp(), *request)
 	responses := s.broadcast(request)
 	for _, r := range responses {
 		stream.Send(r)
@@ -32,7 +32,7 @@ func (s *TrackerService) Search(request *diztl.SearchRequest, stream diztl.Track
 }
 
 func (s *TrackerService) broadcast(request *diztl.SearchRequest) []*diztl.SearchResponse {
-	log.Printf("Broadcasting search request to all nodes on the network: %s, %s", request.GetSource().GetIp(), request.GetFilename())
+	log.Printf("Broadcasting search request to all nodes on the network: %s, %s\n", request.GetSource().GetIp(), request.GetFilename())
 	responses := []*diztl.SearchResponse{}
 
 	for _, node := range s.Nodekeeper.Nodes {

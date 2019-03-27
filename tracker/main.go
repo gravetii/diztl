@@ -22,10 +22,10 @@ func main() {
 	ip := util.GetMyIP()
 	nk := builder.NewNodeKeeper()
 	pb.RegisterTrackerServiceServer(s, &service.TrackerService{Nodekeeper: nk})
-	log.Printf("Server started on %s:%s", ip, config.TrackerPort)
+	log.Printf("Server started on %s:%s\n", ip, config.TrackerPort)
 	serr := s.Serve(lis)
 	if serr != nil {
-		log.Fatalf("Failed to serve: %v", err)
+		log.Fatalf("Failed to serve: %v\n", err)
 	}
 
 	log.Println("Shutting down tracker server.")

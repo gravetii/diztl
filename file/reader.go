@@ -33,9 +33,9 @@ func openFile(fpath string) (*os.File, error) {
 	f, err := os.Open(fpath)
 	if err != nil {
 		if os.IsNotExist(err) {
-			log.Fatalf("Specified file %s does not exist: %v", fpath, err)
+			log.Printf("Specified file %s does not exist: %v\n", fpath, err)
 		} else {
-			log.Fatalf("Error while reading file %s to upload: %v", fpath, err)
+			log.Printf("Error while reading file %s to upload: %v\n", fpath, err)
 		}
 
 		return nil, err

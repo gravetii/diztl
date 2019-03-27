@@ -42,11 +42,11 @@ func ensureDir(dir string) {
 	if os.IsNotExist(err) {
 		log.Printf("Creating directory: %s\n", dir)
 		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
-			log.Fatalf("Could not create directory - %s: %v", dir, err)
+			log.Fatalf("Could not create directory - %s: %v\n", dir, err)
 		}
 	} else if !info.IsDir() {
 		log.Fatalf("Seems like there's a resource already: %s\n", dir)
 	} else if err != nil {
-		log.Fatalf("Could not ensure that directory exists - %s: %v", dir, err)
+		log.Fatalf("Could not ensure that directory exists - %s: %v\n", dir, err)
 	}
 }
