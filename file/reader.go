@@ -1,4 +1,4 @@
-package service
+package file
 
 import (
 	"bufio"
@@ -10,13 +10,15 @@ import (
 	"github.com/gravetii/diztl/diztl"
 )
 
-type fileReader struct {
+// Reader : The file reader.
+type Reader struct {
 	buf *bufio.Reader
 	f   *os.File
 	c   *counter.Counter
 }
 
-func createReader(m *diztl.FileMetadata) (*fileReader, error) {
+// CreateReader : Returns an instance of the Reader for the given file metadata.
+func CreateReader(m *diztl.FileMetadata) (*Reader, error) {
 	fpath := m.GetPath()
 	f, err := openFile(fpath)
 	if err != nil {
@@ -24,7 +26,7 @@ func createReader(m *diztl.FileMetadata) (*fileReader, error) {
 	}
 
 	buf := bufio.NewReader(f)
-	return &fileReader{buf: buf, f: f, c: counter.New(0)}, nil
+	return &Reader{buf: buf, f: f, c: counter.New(0)}, nil
 }
 
 func openFile(fpath string) (*os.File, error) {
@@ -42,7 +44,8 @@ func openFile(fpath string) (*os.File, error) {
 	return f, nil
 }
 
-func (obj *fileReader) read() ([]byte, error) {
+// Read : Reads a set of bytes from the underlying file and writes it to the array for transmission.
+func (obj *Reader) Read() ([]byte, error) {
 	p := make([]byte, config.ChunkBufSize)
 	_, err := obj.buf.Read(p)
 	if err != nil {
@@ -53,6 +56,7 @@ func (obj *fileReader) read() ([]byte, error) {
 	return p, nil
 }
 
-func (obj *fileReader) chunk() int32 {
+// Chunk : Returns the number of chunks read from the file at any point in time.
+func (obj *Reader) Chunk() int32 {
 	return obj.c.Value()
 }

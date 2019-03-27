@@ -7,6 +7,7 @@ import (
 
 	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/file"
 	"github.com/gravetii/diztl/indexer"
 	"github.com/gravetii/diztl/util"
 )
@@ -53,13 +54,13 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 	metadata := request.GetMetadata()
 	fpath := metadata.GetPath()
 
-	r, err := createReader(metadata)
+	r, err := file.CreateReader(metadata)
 	if err != nil {
 		return err
 	}
 
 	for {
-		data, err := r.read()
+		data, err := r.Read()
 		if err != nil {
 			if err == io.EOF {
 				log.Printf("Finished uploading file :%s\n", fpath)
@@ -69,8 +70,8 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 			return err
 		}
 
-		fchunk := diztl.FileChunk{Chunk: r.chunk(), Data: data}
-		if r.chunk() == 1 {
+		fchunk := diztl.FileChunk{Chunk: r.Chunk(), Data: data}
+		if r.Chunk() == 1 {
 			chunks := int32(metadata.GetSize() / int64(config.ChunkBufSize))
 			metadata.Chunks = chunks
 			log.Printf("Uploading file: %s\n", fpath)
