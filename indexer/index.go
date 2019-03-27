@@ -26,13 +26,13 @@ func newIndex() *Index {
 func (index *Index) add(path string, info os.FileInfo) {
 	f := diztl.FileMetadata{Path: path, Id: index.counter.IncrBy1(), Size: info.Size()}
 	index.files[path] = &f
-	log.Printf("Added %d. %s.", index.counter.Value(), path)
+	log.Printf("Added %d. %s\n", index.counter.Value(), path)
 }
 
 func (index *Index) remove(path string) {
 	delete(index.files, path)
 	index.counter.DecrBy1()
-	log.Printf("Removed %s.", path)
+	log.Printf("Removed %s\n", path)
 }
 
 func (index *Index) validate() error {

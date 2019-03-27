@@ -35,7 +35,7 @@ func (nodekeeper *NodeKeeper) Register(node *diztl.Node) {
 	c := nodekeeper.Count.IncrBy1()
 	node.Id = c
 	nodekeeper.Nodes[node.GetIp()] = node
-	log.Printf("Node successfully registered: %s, %d", node.GetIp(), node.GetId())
+	log.Printf("Node successfully registered: %s, %d\n", node.GetIp(), node.GetId())
 }
 
 // GetConnection : Returns a connection to any node.

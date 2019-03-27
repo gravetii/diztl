@@ -61,13 +61,13 @@ func (c *NodeClient) register() {
 	}
 
 	c.node = &diztl.Node{Ip: rnode.GetIp(), Id: rnode.GetId()}
-	log.Printf("Successfully registered node to tracker: %s, %d", rnode.GetIp(), rnode.GetId())
+	log.Printf("Successfully registered node to tracker: %s, %d\n", rnode.GetIp(), rnode.GetId())
 }
 
 // Search : Search for files on the network that have names with the given pattern.
 func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 	results := []*diztl.SearchResponse{}
-	log.Printf("Searching for pattern: %s", pattern)
+	log.Printf("Searching for pattern: %s\n", pattern)
 	r := diztl.SearchRequest{Filename: pattern, Source: c.node}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
@@ -78,7 +78,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 			break
 		}
 		if err != nil {
-			log.Fatalf("Error while reading search response from another node: %v", err)
+			log.Printf("Error while reading search response from another node\n: %v", err)
 			continue
 		}
 
@@ -93,7 +93,7 @@ func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
 	defer cancel()
 	client, err := c.nodekeeper.GetConnection(r.GetSource())
 	if err != nil {
-		log.Fatalf("Could not connect to node %s: %v", r.GetSource().GetIp(), err)
+		log.Printf("Could not connect to node %s: %v\n", r.GetSource().GetIp(), err)
 		return nil, err
 	}
 
@@ -116,7 +116,7 @@ func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
 				return nil, err
 			}
 
-			log.Printf("Downloading file: %s. Prepared to receive %d chunks.", w.Name(), w.Chunks())
+			log.Printf("Downloading file: %s. Prepared to receive %d chunks.\n", w.Name(), w.Chunks())
 		}
 
 		if err := w.Write(f.GetData()); err != nil {

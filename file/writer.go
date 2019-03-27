@@ -39,7 +39,7 @@ func createFile(metadata *diztl.FileMetadata) (*os.File, error) {
 	fpath := util.GetOutputPath(fname)
 	f, err := os.Create(fpath)
 	if err != nil {
-		log.Fatalf("Unable to create file %s: %v", fpath, err)
+		log.Printf("Unable to create file %s: %v\n", fpath, err)
 		return nil, err
 	}
 
