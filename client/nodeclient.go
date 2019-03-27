@@ -26,15 +26,15 @@ type NodeClient struct {
 	nodekeeper *builder.NodeKeeper
 }
 
-func connectToTracker() diztl.TrackerServiceClient {
-	conn, err := grpc.Dial(config.TrackerAddress, grpc.WithInsecure())
+func (c *NodeClient) connectToTracker() {
+	conn, err := grpc.Dial(config.TrackerAddress, grpc.WithInsecure(),
+		grpc.WithBlock(), grpc.WithTimeout(config.TrackerConnectTimeout))
 	if err != nil {
 		log.Fatalf("Could not connect to tracker: %v", err)
-		panic(err)
 	}
 
 	log.Println("Successfully connected to tracker...")
-	return pb.NewTrackerServiceClient(conn)
+	c.tracker = pb.NewTrackerServiceClient(conn)
 }
 
 // Init : Initialises the NodeClient.
@@ -42,8 +42,7 @@ func Init() {
 	log.Println("Initialising nodeclient...")
 	nk := builder.NewNodeKeeper()
 	nodeclient = &NodeClient{nodekeeper: nk}
-	tracker := connectToTracker()
-	nodeclient.tracker = tracker
+	nodeclient.connectToTracker()
 	nodeclient.register()
 	log.Println("Successfully initialised nodeclient.")
 	go UserCLI()

@@ -22,3 +22,6 @@ var DownloadTimeout = 5 * time.Minute
 
 // ChunkBufSize : The buffer size required for a single chunk of a file.
 var ChunkBufSize = 1024 * 512
+
+// TrackerConnectTimeout : Duration after which client connection to tracker times out.
+var TrackerConnectTimeout = 5 * time.Second
