@@ -10,6 +10,7 @@ import (
 
 	"github.com/gravetii/diztl/builder"
 	"github.com/gravetii/diztl/config"
+	"github.com/gravetii/diztl/file"
 
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
@@ -97,36 +98,33 @@ func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
 	}
 
 	stream, _ := client.Upload(ctx, r)
-	var w *fileWriter
+	var w *file.Writer
 
 	for {
 		f, err := stream.Recv()
 		if err != nil {
 			if err == io.EOF {
-				w.close()
-				break
+				return w.Close(), nil
 			}
 
 			return nil, err
 		}
 
 		if f.GetChunk() == 1 {
-			w, err = createWriter(f.GetMetadata())
+			w, err = file.CreateWriter(f.GetMetadata())
 			if err != nil {
 				return nil, err
 			}
 
-			log.Printf("Downloading file: %s. Prepared to receive %d chunks.", w.name(), w.chunks())
+			log.Printf("Downloading file: %s. Prepared to receive %d chunks.", w.Name(), w.Chunks())
 		}
 
-		if err := w.write(f.GetData()); err != nil {
+		if err := w.Write(f.GetData()); err != nil {
 			return nil, err
 		}
 
-		logProg(f.GetChunk(), w.chunks())
+		logProg(f.GetChunk(), w.Chunks())
 	}
-
-	return w.f, nil
 }
 
 func logProg(chunk int32, chunks int32) {
