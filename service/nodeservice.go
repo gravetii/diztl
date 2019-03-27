@@ -71,7 +71,7 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 			// Send metadata of the file without actual payload in the first chunk.
 			chunks := int32(metadata.GetSize() / int64(config.ChunkBufSize))
 			metadata.Chunks = chunks
-			fchunk := &diztl.File{Metadata: metadata, Chunk: 1}
+			fchunk := &diztl.FileChunk{Metadata: metadata, Chunk: 1}
 			stream.Send(fchunk)
 		} else {
 			_, err := reader.Read(p)
@@ -79,7 +79,7 @@ func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlS
 				log.Printf("Finished uploading file :%s", fpath)
 				break
 			}
-			fchunk := &diztl.File{Data: p, Chunk: chunk.Value()}
+			fchunk := &diztl.FileChunk{Data: p, Chunk: chunk.Value()}
 			stream.Send(fchunk)
 		}
 
