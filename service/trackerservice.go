@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 	"log"
-	"time"
 
 	"github.com/gravetii/diztl/builder"
+	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/diztl"
 )
 
@@ -37,17 +37,18 @@ func (s *TrackerService) broadcast(request *diztl.SearchRequest) []*diztl.Search
 
 	for _, node := range s.Nodekeeper.Nodes {
 		c, err := s.Nodekeeper.GetConnection(node)
-		if err != nil {
-			log.Fatalf("Could not connect to node %s: %v", node.GetIp(), err)
-		} else {
-			ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+		if err == nil {
+			ctx, cancel := context.WithTimeout(context.Background(), config.SearchTimeout)
 			defer cancel()
 			r, err := c.Search(ctx, request)
 			if err != nil {
-				log.Fatalf("Error while invoking Search on node %s: %v", node.GetIp(), err)
+				log.Printf("Error while invoking Search on node %s: %v\n", node.GetIp(), err)
 			} else if r.Count > 0 {
 				responses = append(responses, r)
 			}
+		} else {
+			log.Printf("Could not connect to node %s: %v\n", node.GetIp(), err)
+			continue
 		}
 	}
 

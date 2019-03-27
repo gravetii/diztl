@@ -4,6 +4,7 @@ import (
 	"log"
 	"sync"
 
+	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
@@ -39,17 +40,14 @@ func (nodekeeper *NodeKeeper) Register(node *diztl.Node) {
 
 // GetConnection : Returns a connection to any node.
 func (nodekeeper *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, error) {
-	c, exists := nodekeeper.Connections[node.GetIp()]
-	if exists {
+	if c, exists := nodekeeper.Connections[node.GetIp()]; exists {
 		return c, nil
 	}
-
-	conn, err := grpc.Dial(util.Address(node), grpc.WithInsecure())
+	conn, err := grpc.Dial(util.Address(node), grpc.WithInsecure(),
+		grpc.WithBlock(), grpc.WithTimeout(config.NodeConnectTimeout))
 	if err != nil {
-		log.Fatalf("Could not connect to node %s: %v", node.GetIp(), err)
 		return nil, err
 	}
-
 	r := pb.NewDiztlServiceClient(conn)
 	nodekeeper.Connections[node.GetIp()] = r
 	return r, nil
