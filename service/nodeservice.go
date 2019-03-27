@@ -1,14 +1,11 @@
 package service
 
 import (
-	"bufio"
 	"context"
 	"io"
 	"log"
-	"os"
 
 	"github.com/gravetii/diztl/config"
-	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/indexer"
 	"github.com/gravetii/diztl/util"
@@ -42,7 +39,7 @@ func (s *NodeService) Init() {
 	}
 }
 
-// Search : func
+// Search : The tracker invokes the search call when it broadcasts a search request from another node.
 func (s *NodeService) Search(ctx context.Context, request *diztl.SearchRequest) (*diztl.SearchResponse, error) {
 	log.Printf("Received search request: %v", request.GetSource())
 	files := s.Indexer.Search(request.GetFilename())
@@ -51,55 +48,37 @@ func (s *NodeService) Search(ctx context.Context, request *diztl.SearchRequest) 
 	return &response, nil
 }
 
-// Upload : func
+// Upload : A requesting node invokes this call on this node asking it to upload the file of interest.
 func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlService_UploadServer) error {
 	metadata := request.GetMetadata()
 	fpath := metadata.GetPath()
 
-	f, err := openFile(fpath)
+	r, err := createReader(metadata)
 	if err != nil {
 		return err
 	}
 
-	reader := bufio.NewReader(f)
-	chunk := counter.New(1)
-
 	for {
-		p := make([]byte, config.ChunkBufSize)
-		if chunk.Value() == 1 {
-			log.Printf("Uploading file: %s\n", fpath)
-			// Send metadata of the file without actual payload in the first chunk.
-			chunks := int32(metadata.GetSize() / int64(config.ChunkBufSize))
-			metadata.Chunks = chunks
-			fchunk := &diztl.FileChunk{Metadata: metadata, Chunk: 1}
-			stream.Send(fchunk)
-		} else {
-			_, err := reader.Read(p)
+		data, err := r.read()
+		if err != nil {
 			if err == io.EOF {
-				log.Printf("Finished uploading file :%s", fpath)
+				log.Printf("Finished uploading file :%s\n", fpath)
 				break
 			}
-			fchunk := &diztl.FileChunk{Data: p, Chunk: chunk.Value()}
-			stream.Send(fchunk)
+
+			return err
 		}
 
-		chunk.IncrBy1()
+		fchunk := diztl.FileChunk{Chunk: r.chunk(), Data: data}
+		if r.chunk() == 1 {
+			chunks := int32(metadata.GetSize() / int64(config.ChunkBufSize))
+			metadata.Chunks = chunks
+			log.Printf("Uploading file: %s\n", fpath)
+			fchunk.Metadata = metadata
+		}
+
+		stream.Send(&fchunk)
 	}
 
 	return nil
-}
-
-func openFile(fpath string) (*os.File, error) {
-	f, err := os.Open(fpath)
-	if err != nil {
-		if os.IsNotExist(err) {
-			log.Fatalf("Specified file %s does not exist: %v", fpath, err)
-		} else {
-			log.Fatalf("Error while reading file %s to upload: %v", fpath, err)
-		}
-
-		return nil, err
-	}
-
-	return f, err
 }

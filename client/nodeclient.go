@@ -1,7 +1,6 @@
 package client
 
 import (
-	"bufio"
 	"context"
 	"fmt"
 	"io"
@@ -99,16 +98,13 @@ func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
 	}
 
 	stream, _ := client.Upload(ctx, r)
-	var buf *bufio.Writer
-	var obj *os.File
-	var metadata *diztl.FileMetadata
+	var w *fileWriter
 
 	for {
 		f, err := stream.Recv()
 		if err != nil {
 			if err == io.EOF {
-				buf.Flush()
-				obj.Close()
+				w.close()
 				break
 			}
 
@@ -116,24 +112,22 @@ func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
 		}
 
 		if f.GetChunk() == 1 {
-			metadata = f.GetMetadata()
-			obj, err = createFile(metadata)
+			w, err = createWriter(f.GetMetadata())
 			if err != nil {
 				return nil, err
 			}
 
-			buf = bufio.NewWriter(obj)
-			log.Printf("Downloading file: %s. Prepared to receive %d chunks.", obj.Name(), metadata.GetChunks())
-		} else {
-			_, err := buf.Write(f.GetData())
-			if err != nil {
-				return nil, err
-			}
-			logProg(f.GetChunk(), metadata.GetChunks())
+			log.Printf("Downloading file: %s. Prepared to receive %d chunks.", w.name(), w.chunks())
 		}
+
+		if err := w.write(f.GetData()); err != nil {
+			return nil, err
+		}
+
+		logProg(f.GetChunk(), w.chunks())
 	}
 
-	return obj, nil
+	return w.f, nil
 }
 
 func logProg(chunk int32, chunks int32) {
@@ -147,17 +141,4 @@ func logProg(chunk int32, chunks int32) {
 			}
 		}
 	}
-}
-
-func createFile(metadata *diztl.FileMetadata) (*os.File, error) {
-	fname := util.GetFilename(metadata)
-	fpath := util.GetOutputPath(fname)
-	f, err := os.Create(fpath)
-	if err != nil {
-		log.Fatalf("Unable to create file %s: %v", fpath, err)
-		return nil, err
-	}
-
-	return f, nil
-
 }
