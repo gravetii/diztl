@@ -19,9 +19,9 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	nodeservice := service.NewNodeService()
-	diztl.RegisterDiztlServiceServer(s, &nodeservice)
-	go nodeservice.Init()
+	node := service.NewNode()
+	diztl.RegisterDiztlServiceServer(s, node)
+	go node.Init()
 	go client.Init()
 	log.Println("Started node server...")
 	serr := s.Serve(lis)

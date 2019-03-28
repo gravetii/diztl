@@ -6,7 +6,6 @@ import (
 
 	"github.com/gravetii/diztl/config"
 	pb "github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/keeper"
 	service "github.com/gravetii/diztl/service"
 	"github.com/gravetii/diztl/util"
 	"google.golang.org/grpc"
@@ -20,8 +19,7 @@ func main() {
 
 	s := grpc.NewServer()
 	ip := util.GetMyIP()
-	nk := keeper.NewNodeKeeper()
-	pb.RegisterTrackerServiceServer(s, &service.TrackerService{Nodekeeper: nk})
+	pb.RegisterTrackerServiceServer(s, service.NewTracker())
 	log.Printf("Server started on %s:%s\n", ip, config.TrackerPort)
 	serr := s.Serve(lis)
 	if serr != nil {

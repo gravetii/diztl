@@ -18,14 +18,14 @@ type NodeService struct {
 	node    *diztl.Node
 }
 
-// NewNodeService : Returns an instance of the Node Service.
-func NewNodeService() NodeService {
+// NewNode : Returns an instance of the Node Service.
+func NewNode() *NodeService {
 	f, err := indexer.NewFileIndexer()
 	if err != nil {
 		log.Fatalf("Error while creating the node service: %v", err)
 	}
 
-	return NodeService{Indexer: f}
+	return &NodeService{Indexer: f}
 }
 
 // Init : Performs the necessary initialisation when the service comes up for the first time.
