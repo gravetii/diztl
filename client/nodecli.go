@@ -63,7 +63,11 @@ func searchInput() (string, bool) {
 func optInput(res []*searchResult) (*searchResult, bool) {
 	var opt int
 	fmt.Printf("Enter option to download file - ")
-	fmt.Scanf("%d", &opt)
+	_, err := fmt.Scanf("%d", &opt)
+	if err != nil {
+		return nil, false
+	}
+
 	return validateOption(opt, res)
 }
 
@@ -85,10 +89,8 @@ func validateResponses(responses []*diztl.SearchResponse) ([]*searchResult, bool
 
 	r := []*searchResult{}
 	for _, resp := range responses {
-		if resp.GetCount() > 0 {
-			for _, file := range resp.GetFiles() {
-				r = append(r, &searchResult{resp.GetNode(), file})
-			}
+		for _, file := range resp.GetFiles() {
+			r = append(r, &searchResult{resp.GetNode(), file})
 		}
 	}
 
