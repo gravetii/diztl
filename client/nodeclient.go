@@ -57,11 +57,10 @@ func (c *NodeClient) register() {
 	rnode, err := c.tracker.Register(ctx, node)
 	if err != nil {
 		log.Fatalf("Error while registering node to tracker: %v", err)
-		panic(err)
 	}
 
 	c.node = &diztl.Node{Ip: rnode.GetIp(), Id: rnode.GetId()}
-	log.Printf("Successfully registered node to tracker: %s, %d\n", rnode.GetIp(), rnode.GetId())
+	log.Printf("Successfully registered node to tracker: %s, %s\n", rnode.GetIp(), rnode.GetId())
 }
 
 // Search : Search for files on the network that have names with the given pattern.

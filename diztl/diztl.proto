@@ -16,7 +16,7 @@ service TrackerService {
 
 message Node {
     string ip = 1;
-    int32 id = 2;
+    string id = 2;
 }
 
 message FileMetadata {
