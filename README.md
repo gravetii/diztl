@@ -1,7 +1,4 @@
 # <img src="diztl_icon.png" width="50" height="50" alt="Diztl Icon"> Diztl
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/101c65eb6356411baa7bc042bcb1b073)](https://app.codacy.com/app/gravetii/diztl?utm_source=github.com&utm_medium=referral&utm_content=gravetii/diztl&utm_campaign=Badge_Grade_Settings)
-
 A distributed peer-to-peer file discovery and sharing platform written in Go!
 
 ## Getting started
