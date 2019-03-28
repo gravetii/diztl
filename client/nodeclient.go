@@ -8,9 +8,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/gravetii/diztl/builder"
 	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/file"
+	"github.com/gravetii/diztl/keeper"
 
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
@@ -24,7 +24,7 @@ var nodeclient *NodeClient
 type NodeClient struct {
 	node       *diztl.Node
 	tracker    diztl.TrackerServiceClient
-	nodekeeper *builder.NodeKeeper
+	nodekeeper *keeper.NodeKeeper
 }
 
 func (c *NodeClient) connectToTracker() {
@@ -41,7 +41,7 @@ func (c *NodeClient) connectToTracker() {
 // Init : Initialises the NodeClient.
 func Init() {
 	log.Println("Initialising nodeclient...")
-	nk := builder.NewNodeKeeper()
+	nk := keeper.NewNodeKeeper()
 	nodeclient = &NodeClient{nodekeeper: nk}
 	nodeclient.connectToTracker()
 	nodeclient.register()

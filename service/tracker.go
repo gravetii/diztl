@@ -4,14 +4,14 @@ import (
 	"context"
 	"log"
 
-	"github.com/gravetii/diztl/builder"
 	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/keeper"
 )
 
 // TrackerService : Implements the tracker server interface definition.
 type TrackerService struct {
-	Nodekeeper *builder.NodeKeeper
+	Nodekeeper *keeper.NodeKeeper
 }
 
 // Register : Every node that joins the network invokes this method on the tracker to register itself.
