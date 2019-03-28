@@ -22,9 +22,9 @@ var nodeclient *NodeClient
 
 // NodeClient : This struct enables communication with the tracker and/or other nodes.
 type NodeClient struct {
-	node       *diztl.Node
-	tracker    diztl.TrackerServiceClient
-	nodekeeper *keeper.NodeKeeper
+	node    *diztl.Node
+	tracker diztl.TrackerServiceClient
+	nk      *keeper.NodeKeeper
 }
 
 func (c *NodeClient) connectToTracker() {
@@ -41,8 +41,8 @@ func (c *NodeClient) connectToTracker() {
 // Init : Initialises the NodeClient.
 func Init() {
 	log.Println("Initialising nodeclient...")
-	nk := keeper.NewNodeKeeper()
-	nodeclient = &NodeClient{nodekeeper: nk}
+	nk := keeper.New()
+	nodeclient = &NodeClient{nk: nk}
 	nodeclient.connectToTracker()
 	nodeclient.register()
 	log.Println("Successfully initialised nodeclient.")
@@ -91,7 +91,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), config.DownloadTimeout)
 	defer cancel()
-	client, err := c.nodekeeper.GetConnection(r.GetSource())
+	client, err := c.nk.GetConnection(r.GetSource())
 	if err != nil {
 		log.Printf("Could not connect to node %s: %v\n", r.GetSource().GetIp(), err)
 		return nil, err

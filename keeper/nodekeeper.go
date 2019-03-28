@@ -20,8 +20,8 @@ type NodeKeeper struct {
 	mux         sync.Mutex
 }
 
-// NewNodeKeeper : Return a new instance of NodeKeeper.
-func NewNodeKeeper() *NodeKeeper {
+// New : Returns a new instance of the NodeKeeper.
+func New() *NodeKeeper {
 	nodes := make(map[string]*diztl.Node)
 	connections := make(map[string]diztl.DiztlServiceClient)
 	nk := NodeKeeper{Nodes: nodes, Connections: connections, Count: counter.NewAtomic(0)}
@@ -49,7 +49,6 @@ func (nk *NodeKeeper) invalidateIfExists(node *diztl.Node) (int32, bool) {
 		c := v.GetId()
 		delete(nk.Nodes, node.GetIp())
 		delete(nk.Connections, node.GetIp())
-		log.Printf("Returning ID: %d\n", c)
 		return c, true
 	}
 
