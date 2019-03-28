@@ -43,7 +43,7 @@ func (s *TrackerService) broadcast(request *diztl.SearchRequest) []*diztl.Search
 			r, err := c.Search(ctx, request)
 			if err != nil {
 				log.Printf("Error while invoking Search on node %s: %v\n", node.GetIp(), err)
-			} else if r.Count > 0 {
+			} else if len(r.GetFiles()) > 0 {
 				responses = append(responses, r)
 			}
 		} else {

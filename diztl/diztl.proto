@@ -38,9 +38,8 @@ message SearchRequest {
 }
 
 message SearchResponse {
-    int32 count = 1;
-    repeated FileMetadata files = 2;
-    Node node = 3;
+    repeated FileMetadata files = 1;
+    Node node = 2;
 }
 
 message DownloadRequest {
