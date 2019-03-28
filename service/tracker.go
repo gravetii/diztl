@@ -60,3 +60,14 @@ func (s *TrackerService) broadcast(request *diztl.SearchRequest) []*diztl.Search
 
 	return responses
 }
+
+// Disconnect : A disconnecting node invokes this call on the tracker before leaving the network.
+func (s *TrackerService) Disconnect(ctx context.Context, request *diztl.DisconnectRequest) (*diztl.DisconnectResponse, error) {
+	node := request.GetNode()
+	log.Printf("Received disconnect request from node %s\n", node.GetIp())
+	if !s.nk.Disconnect(node) {
+		log.Printf("Disconnect returned false for %s\n", node.GetIp())
+	}
+
+	return &diztl.DisconnectResponse{}, nil
+}

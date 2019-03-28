@@ -8,6 +8,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/gravetii/diztl/shutdown"
+
 	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/file"
 	"github.com/gravetii/diztl/keeper"
@@ -46,7 +48,15 @@ func Init() {
 	nodeclient.connectToTracker()
 	nodeclient.register()
 	log.Println("Successfully initialised nodeclient.")
+	shutdown.Listen(shutdownCallback{})
 	go UserCLI()
+}
+
+type shutdownCallback struct{}
+
+func (sc shutdownCallback) Execute() {
+	nodeclient.disconnect()
+	os.Exit(0)
 }
 
 func (c *NodeClient) register() {
@@ -61,6 +71,18 @@ func (c *NodeClient) register() {
 
 	c.node = &diztl.Node{Ip: rnode.GetIp(), Id: rnode.GetId()}
 	log.Printf("Successfully registered node to tracker: %s, %s\n", rnode.GetIp(), rnode.GetId())
+}
+
+func (c *NodeClient) disconnect() {
+	ctx, cancel := context.WithTimeout(context.Background(), config.DisconnectTimeout)
+	defer cancel()
+	req := diztl.DisconnectRequest{Node: c.node}
+	_, err := c.tracker.Disconnect(ctx, &req)
+	if err != nil {
+		log.Fatalf("Error while disconnecting: %v", err)
+	}
+
+	fmt.Println("\nBye!")
 }
 
 // Search : Search for files on the network that have names with the given pattern.

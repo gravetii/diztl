@@ -23,6 +23,9 @@ var DownloadTimeout = 5 * time.Minute
 // SearchTimeout : Duration after which the search call times out.
 var SearchTimeout = 3 * time.Second
 
+// DisconnectTimeout : Duration after which the disconnect call times out.
+var DisconnectTimeout = 3 * time.Second
+
 // ChunkBufSize : The buffer size required for a single chunk of a file.
 var ChunkBufSize = 1024 * 512
 
