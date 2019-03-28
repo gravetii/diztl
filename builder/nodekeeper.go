@@ -29,18 +29,36 @@ func NewNodeKeeper() *NodeKeeper {
 }
 
 // Register : Called when a new node asks the tracker to register itself. Here the tracker assigns a unique ID to the node.
-func (nodekeeper *NodeKeeper) Register(node *diztl.Node) {
-	nodekeeper.mux.Lock()
-	defer nodekeeper.mux.Unlock()
-	c := nodekeeper.Count.IncrBy1()
+func (nk *NodeKeeper) Register(node *diztl.Node) {
+	nk.mux.Lock()
+	defer nk.mux.Unlock()
+	c, stale := nk.invalidateIfExists(node)
+	if !stale {
+		c = nk.Count.IncrBy1()
+	}
+
 	node.Id = c
-	nodekeeper.Nodes[node.GetIp()] = node
+	nk.Nodes[node.GetIp()] = node
 	log.Printf("Node successfully registered: %s, %d\n", node.GetIp(), node.GetId())
 }
 
+func (nk *NodeKeeper) invalidateIfExists(node *diztl.Node) (int32, bool) {
+	v, exists := nk.Nodes[node.GetIp()]
+	if exists {
+		log.Printf("Stale connection found for %s, invalidating...\n", node.GetIp())
+		c := v.GetId()
+		delete(nk.Nodes, node.GetIp())
+		delete(nk.Connections, node.GetIp())
+		log.Printf("Returning ID: %d\n", c)
+		return c, true
+	}
+
+	return -1, false
+}
+
 // GetConnection : Returns a connection to any node.
-func (nodekeeper *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, error) {
-	if c, exists := nodekeeper.Connections[node.GetIp()]; exists {
+func (nk *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, error) {
+	if c, exists := nk.Connections[node.GetIp()]; exists {
 		return c, nil
 	}
 	conn, err := grpc.Dial(util.Address(node), grpc.WithInsecure(),
@@ -49,6 +67,6 @@ func (nodekeeper *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceCl
 		return nil, err
 	}
 	r := pb.NewDiztlServiceClient(conn)
-	nodekeeper.Connections[node.GetIp()] = r
+	nk.Connections[node.GetIp()] = r
 	return r, nil
 }
