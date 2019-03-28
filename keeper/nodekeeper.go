@@ -4,6 +4,8 @@ import (
 	"log"
 	"sync"
 
+	"github.com/google/uuid"
+
 	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
@@ -32,27 +34,23 @@ func New() *NodeKeeper {
 func (nk *NodeKeeper) Register(node *diztl.Node) {
 	nk.mux.Lock()
 	defer nk.mux.Unlock()
-	c, stale := nk.invalidateIfExists(node)
-	if !stale {
-		c = nk.Count.IncrBy1()
-	}
-
-	node.Id = c
+	nk.invalidateIfExists(node)
+	uuid, _ := uuid.NewRandom()
+	node.Id = uuid.String()
 	nk.Nodes[node.GetIp()] = node
-	log.Printf("Node successfully registered: %s, %d\n", node.GetIp(), node.GetId())
+	log.Printf("Node successfully registered: %s, %s\n", node.GetIp(), node.GetId())
 }
 
-func (nk *NodeKeeper) invalidateIfExists(node *diztl.Node) (int32, bool) {
-	v, exists := nk.Nodes[node.GetIp()]
+func (nk *NodeKeeper) invalidateIfExists(node *diztl.Node) bool {
+	_, exists := nk.Nodes[node.GetIp()]
 	if exists {
 		log.Printf("Stale connection found for %s, invalidating...\n", node.GetIp())
-		c := v.GetId()
 		delete(nk.Nodes, node.GetIp())
 		delete(nk.Connections, node.GetIp())
-		return c, true
+		return true
 	}
 
-	return -1, false
+	return false
 }
 
 // GetConnection : Returns a connection to any node.
