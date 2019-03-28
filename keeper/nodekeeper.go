@@ -34,7 +34,9 @@ func New() *NodeKeeper {
 func (nk *NodeKeeper) Register(node *diztl.Node) {
 	nk.mux.Lock()
 	defer nk.mux.Unlock()
-	nk.invalidateIfExists(node)
+	if nk.invalidateIfExists(node) {
+		log.Printf("Stale connection found for %s\n", node.GetIp())
+	}
 	uuid, _ := uuid.NewRandom()
 	node.Id = uuid.String()
 	nk.Nodes[node.GetIp()] = node
@@ -44,7 +46,6 @@ func (nk *NodeKeeper) Register(node *diztl.Node) {
 func (nk *NodeKeeper) invalidateIfExists(node *diztl.Node) bool {
 	_, exists := nk.Nodes[node.GetIp()]
 	if exists {
-		log.Printf("Stale connection found for %s, invalidating...\n", node.GetIp())
 		delete(nk.Nodes, node.GetIp())
 		delete(nk.Connections, node.GetIp())
 		return true
@@ -66,4 +67,11 @@ func (nk *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, er
 	r := pb.NewDiztlServiceClient(conn)
 	nk.Connections[node.GetIp()] = r
 	return r, nil
+}
+
+// Disconnect : Invalidates the given node from the nodekeeper when the client disconnects.
+// Returns true if the node could be invalidated, false if there's no entry of this node
+// in the nodekeeper.
+func (nk *NodeKeeper) Disconnect(node *diztl.Node) bool {
+	return nk.invalidateIfExists(node)
 }

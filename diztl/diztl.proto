@@ -12,6 +12,8 @@ service TrackerService {
     }
     rpc Search (SearchRequest) returns (stream SearchResponse) {
     }
+    rpc disconnect (DisconnectRequest) returns (DisconnectResponse) {
+    }
 }
 
 message Node {
@@ -45,4 +47,12 @@ message SearchResponse {
 message DownloadRequest {
     Node source = 1;
     FileMetadata metadata = 2;
+}
+
+message DisconnectRequest {
+    Node node = 1;
+}
+
+message DisconnectResponse {
+    string message = 1;
 }
