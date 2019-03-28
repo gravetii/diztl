@@ -1,4 +1,4 @@
-# <img src="diztl_icon.png" width="30" height="30" alt="Diztl Icon"> diztl
+# <img src="diztl_icon.png" width="50" height="50" alt="Diztl Icon"> Diztl
 A distributed peer-to-peer file discovery and sharing platform written in Go!
 
 ## Getting started
@@ -13,7 +13,7 @@ The current implementation isn't completely decentralized in that the search que
 
 Once the requesting `Node` decides on the file it wants to download from the target peer, communication happens solely between the two peers without any intervention from the `Tracker`.
 
-When the `Node` first starts up, it indexes all the files to be shared in the default share folder located under `<user_root>/Documents/diztl/share`. By default, downloaded files are located under `/output` directory of the shared folder.
+When the `Node` first starts up, it indexes all the files to be shared in the default share folder located under `<user_root>/Documents/diztl/share`. By default, downloaded files are located under `/output` directory of the shared folder. It then connects to the `Tracker` and registers itself after which it can participate in the network and communicate with other nodes.
 
 ## Running diztl
 
