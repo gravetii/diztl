@@ -77,3 +77,15 @@ func (nk *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, er
 func (nk *NodeKeeper) Disconnect(node *diztl.Node) bool {
 	return nk.invalidateIfExists(node)
 }
+
+// Close : Clears the resources held by this nodekeeper, making it unusable for further operations.
+func (nk *NodeKeeper) Close() {
+	for node, conn := range nk.connections {
+		err := conn.Close()
+		if err != nil {
+			log.Printf("Error while closing connection to %s: %v", node, err)
+		} else {
+			log.Printf("Closed connection to %s\n", node)
+		}
+	}
+}
