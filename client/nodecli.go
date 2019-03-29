@@ -35,7 +35,13 @@ func UserCLI() {
 
 func search(in string) ([]*searchResult, bool) {
 	fmt.Printf("Performing search for string: %s\n", in)
-	responses, _ := nodeclient.Search(in)
+	responses, err := nodeclient.Search(in)
+	if err != nil {
+		log.Printf("Could not search due to an error: %v\n", err)
+		fmt.Println("Unable to search the network at this moment.")
+		return nil, false
+	}
+
 	return validateResponses(responses)
 }
 

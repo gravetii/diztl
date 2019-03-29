@@ -95,7 +95,10 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 	r := diztl.SearchRequest{Filename: pattern, Source: c.node}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	stream, _ := c.tracker.Search(ctx, &r)
+	stream, err := c.tracker.Search(ctx, &r)
+	if err != nil {
+		return nil, err
+	}
 	for {
 		resp, err := stream.Recv()
 		if err == io.EOF {
