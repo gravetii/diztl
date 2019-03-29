@@ -15,7 +15,6 @@ import (
 // NodeService : Implements the node server interface definition.
 type NodeService struct {
 	Indexer *indexer.FileIndexer
-	node    *diztl.Node
 }
 
 // NewNode : Returns an instance of the Node Service.
@@ -44,7 +43,7 @@ func (s *NodeService) Init() {
 func (s *NodeService) Search(ctx context.Context, request *diztl.SearchRequest) (*diztl.SearchResponse, error) {
 	log.Printf("Received search request: %v\n", request.GetSource())
 	files := s.Indexer.Search(request.GetFilename())
-	response := diztl.SearchResponse{Files: files, Node: s.node}
+	response := diztl.SearchResponse{Files: files}
 	return &response, nil
 }
 

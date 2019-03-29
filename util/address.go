@@ -18,7 +18,9 @@ func findMyIP() string {
 
 	defer conn.Close()
 	addr := conn.LocalAddr().(*net.UDPAddr)
-	return addr.IP.String()
+	ip := addr.IP.String()
+	log.Printf("Got IP: %s\n", ip)
+	return ip
 }
 
 // GetMyIP : Returns the host's IP address.
