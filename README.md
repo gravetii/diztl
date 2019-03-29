@@ -1,19 +1,21 @@
 # <img src="diztl_icon.png" width="50" height="50" alt="Diztl Icon"> Diztl
-A distributed peer-to-peer file discovery and sharing platform written in Go!
+A peer-to-peer file discovery and sharing platform written in Go!
 
 ## Getting started
 ```go get -u github.com/gravetii/diztl```
 
 ## Implementation
-The diztl peer-to-peer file discovery and sharing platform consists of two main components:
+Diztl consists of two main components:
 - Tracker: The `Tracker`'s responsibility is to allow co-ordination and communication between the different `Node`s.
 - Node: A `Node` is basically any peer in the network. It can share resources as well as request for and download resources from other `Node`s in the network.
 
-The current implementation isn't completely decentralized in that the search queries from a `Node` are sent to the `Tracker` which then broadcasts the request across all peers in the network, requesting them to reply back with the files it has that might be of interest to the caller `Node`.
+The current implementation isn't completely decentralized in that the search queries from a `Node` are sent to the `Tracker` which then broadcasts the request across all peers in the network, requesting them to reply back with the files they have that might be of interest to the caller `Node`.
 
 Once the requesting `Node` decides on the file it wants to download from the target peer, communication happens solely between the two peers without any intervention from the `Tracker`.
 
-When the `Node` first starts up, it indexes all the files to be shared in the default share folder located under `<user_root>/Documents/diztl/share`. By default, downloaded files are located under `/output` directory of the shared folder. It then connects to the `Tracker` and registers itself after which it can participate in the network and communicate with other nodes.
+When the `Node` first starts up, it indexes all the files to be shared in the default share folder located under `<user_root>/Documents/diztl/share`. By default, downloaded files are located under `/output` directory of the shared folder. The `Node` then connects to the `Tracker` and registers itself after which it can participate in the network and communicate with other nodes.
+
+For the formats of different request-response structures, take a look at the `diztl/diztl.proto` file which contains the protobuf specifications as well as the gRPC service definitions.
 
 ## Running diztl
 
