@@ -55,6 +55,9 @@ func Init() {
 type shutdownCallback struct{}
 
 func (sc shutdownCallback) Execute() {
+	// Close the nodekeeper.
+	nodeclient.nk.Close()
+	// Disconnect from the tracker.
 	nodeclient.disconnect()
 	os.Exit(0)
 }
