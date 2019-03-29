@@ -3,6 +3,9 @@ package service
 import (
 	"context"
 	"log"
+	"os"
+
+	"github.com/gravetii/diztl/shutdown"
 
 	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/diztl"
@@ -17,7 +20,9 @@ type TrackerService struct {
 // NewTracker : Returns an instance of the Tracker Service.
 func NewTracker() *TrackerService {
 	nk := keeper.New()
-	return &TrackerService{nk: nk}
+	tracker := &TrackerService{nk}
+	shutdown.Listen(shutdownCallback{tracker})
+	return tracker
 }
 
 // Register : Every node that joins the network invokes this method on the tracker to register itself.
@@ -35,6 +40,17 @@ func (s *TrackerService) Search(request *diztl.SearchRequest, stream diztl.Track
 	}
 
 	return nil
+}
+
+// Disconnect : A disconnecting node invokes this call on the tracker before leaving the network.
+func (s *TrackerService) Disconnect(ctx context.Context, request *diztl.DisconnectRequest) (*diztl.DisconnectResponse, error) {
+	node := request.GetNode()
+	log.Printf("Received disconnect request from node %s\n", node.GetIp())
+	if !s.nk.Disconnect(node) {
+		log.Printf("Disconnect returned false for %s\n", node.GetIp())
+	}
+
+	return &diztl.DisconnectResponse{}, nil
 }
 
 func (s *TrackerService) broadcast(request *diztl.SearchRequest) []*diztl.SearchResponse {
@@ -61,13 +77,13 @@ func (s *TrackerService) broadcast(request *diztl.SearchRequest) []*diztl.Search
 	return responses
 }
 
-// Disconnect : A disconnecting node invokes this call on the tracker before leaving the network.
-func (s *TrackerService) Disconnect(ctx context.Context, request *diztl.DisconnectRequest) (*diztl.DisconnectResponse, error) {
-	node := request.GetNode()
-	log.Printf("Received disconnect request from node %s\n", node.GetIp())
-	if !s.nk.Disconnect(node) {
-		log.Printf("Disconnect returned false for %s\n", node.GetIp())
-	}
+type shutdownCallback struct {
+	tracker *TrackerService
+}
 
-	return &diztl.DisconnectResponse{}, nil
+func (sc shutdownCallback) Execute() {
+	// Close the nodekeeper.
+	sc.tracker.nk.Close()
+	log.Println("Tracker shut down successfully.")
+	os.Exit(0)
 }

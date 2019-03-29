@@ -88,4 +88,6 @@ func (nk *NodeKeeper) Close() {
 			log.Printf("Closed connection to %s\n", node)
 		}
 	}
+
+	log.Println("Nodekeeper shut down successfully.")
 }
