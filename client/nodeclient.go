@@ -47,7 +47,7 @@ func Init() {
 	nodeclient = &NodeClient{nk: nk}
 	nodeclient.connectToTracker()
 	nodeclient.register()
-	log.Println("Successfully initialised nodeclient.")
+	log.Println("Finished initialising nodeclient.")
 	shutdown.Listen(shutdownCallback{})
 	go UserCLI()
 }

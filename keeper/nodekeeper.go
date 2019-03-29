@@ -66,6 +66,7 @@ func (nk *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, er
 		return nil, err
 	}
 
+	log.Printf("Created connection to node %s\n", node.GetIp())
 	nk.connections[node.GetIp()] = conn
 	r := pb.NewDiztlServiceClient(conn)
 	return r, nil
