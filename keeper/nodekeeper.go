@@ -18,15 +18,16 @@ import (
 type NodeKeeper struct {
 	Nodes       map[string]*diztl.Node
 	Count       *counter.AtomicCounter
-	Connections map[string]diztl.DiztlServiceClient
+	connections map[string]*grpc.ClientConn
 	mux         sync.Mutex
+	// diztl.DiztlServiceClient
 }
 
 // New : Returns a new instance of the NodeKeeper.
 func New() *NodeKeeper {
 	nodes := make(map[string]*diztl.Node)
-	connections := make(map[string]diztl.DiztlServiceClient)
-	nk := NodeKeeper{Nodes: nodes, Connections: connections, Count: counter.NewAtomic(0)}
+	connections := make(map[string]*grpc.ClientConn)
+	nk := NodeKeeper{Nodes: nodes, connections: connections, Count: counter.NewAtomic(0)}
 	return &nk
 }
 
@@ -47,7 +48,7 @@ func (nk *NodeKeeper) invalidateIfExists(node *diztl.Node) bool {
 	_, exists := nk.Nodes[node.GetIp()]
 	if exists {
 		delete(nk.Nodes, node.GetIp())
-		delete(nk.Connections, node.GetIp())
+		delete(nk.connections, node.GetIp())
 		return true
 	}
 
@@ -56,16 +57,17 @@ func (nk *NodeKeeper) invalidateIfExists(node *diztl.Node) bool {
 
 // GetConnection : Returns a connection to any node.
 func (nk *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, error) {
-	if c, exists := nk.Connections[node.GetIp()]; exists {
-		return c, nil
+	if conn, exists := nk.connections[node.GetIp()]; exists {
+		return pb.NewDiztlServiceClient(conn), nil
 	}
 	conn, err := grpc.Dial(util.Address(node), grpc.WithInsecure(),
 		grpc.WithBlock(), grpc.WithTimeout(config.NodeConnectTimeout))
 	if err != nil {
 		return nil, err
 	}
+
+	nk.connections[node.GetIp()] = conn
 	r := pb.NewDiztlServiceClient(conn)
-	nk.Connections[node.GetIp()] = r
 	return r, nil
 }
 
