@@ -48,11 +48,7 @@ func createFile(metadata *diztl.FileMetadata) (*os.File, error) {
 // Write : Writes the given set of bytes to the underlying buffer.
 func (obj *Writer) Write(data []byte) error {
 	_, err := obj.buf.Write(data)
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return err
 }
 
 // Name : Returns the name of the file that will be created by this file writer.

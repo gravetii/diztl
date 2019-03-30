@@ -12,13 +12,13 @@ import (
 
 // FileIndexer : The struct type that represents a file indexer on a node which indexes all the shared files.
 type FileIndexer struct {
-	index   *Index
+	index   *TreeIndex
 	watcher *fsnotify.Watcher
 }
 
 // NewFileIndexer : Returns a new instance of FileIndexer.
 func NewFileIndexer() (*FileIndexer, error) {
-	f := FileIndexer{index: newIndex()}
+	f := FileIndexer{index: NewTreeIndex()}
 	w, err := fsnotify.NewWatcher()
 	if err != nil {
 		log.Fatalf("Unable to establish file-system watcher: %v", err)
@@ -32,7 +32,11 @@ func NewFileIndexer() (*FileIndexer, error) {
 // Index : Indexes all the files in the given directory thus making them available for discovery by peers.
 func (f *FileIndexer) Index() error {
 	log.Println("Started file indexing process.")
-	f.dirwalk()
+	err := f.dirwalk()
+	if err != nil {
+		return err
+	}
+
 	go f.watch()
 	log.Println("Indexing finished successfully.")
 	return nil
@@ -43,11 +47,9 @@ func (f *FileIndexer) Close() error {
 	return f.watcher.Close()
 }
 
-func (f *FileIndexer) dirwalk() {
+func (f *FileIndexer) dirwalk() error {
 	dir := util.ShareDir
-	if err := f.filewalk(dir); err != nil {
-		log.Fatalf("Error while performing filewalk for dir %s: %v", dir, err)
-	}
+	return f.filewalk(dir)
 }
 
 func (f *FileIndexer) watch() {
@@ -65,16 +67,23 @@ func (f *FileIndexer) handleFsEvent(event fsnotify.Event) {
 	path := event.Name
 	if isCreate(event) {
 		info, _ := os.Stat(path)
-		f.add(path, info)
+		err := f.add(path, info)
+		if err != nil {
+			log.Printf("Error while adding path: %s\n", path)
+		}
 	} else if isRename(event) {
+		log.Printf("Got rename for %s\n", event.Name)
 		// some issue with fsnotify? why does rename => remove?
-		f.remove(path)
+		err := f.remove(path)
+		if err != nil {
+			log.Printf("Error while removing path: %s\n", path)
+		}
 	}
 }
 
 // Performs a recursive file walk of the given directory path.
 func (f *FileIndexer) filewalk(dir string) error {
-	log.Println("Performing file walk...")
+	log.Printf("Performing filewalk for dir %s\n", dir)
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		return f.add(path, info)
 	})
@@ -98,7 +107,7 @@ func (f *FileIndexer) add(path string, info os.FileInfo) error {
 	}
 
 	if !info.IsDir() {
-		f.index.add(path, info)
+		f.index.addFile(path, info)
 	}
 
 	return nil
@@ -108,6 +117,6 @@ func (f *FileIndexer) remove(path string) error {
 	log.Printf("Removing path :%s\n", path)
 	// No need to remove path from watcher, fsnotify does it by default.
 	// So, just remove the path from the index.
-	f.index.remove(path)
-	return nil
+	err := f.index.removePath(path)
+	return err
 }
