@@ -23,7 +23,9 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type Node struct {
-	Ip                   string   `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
+	// The IP address of the node.
+	Ip string `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
+	// The unique assigned to the node by the tracker.
 	Id                   string   `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -70,10 +72,15 @@ func (m *Node) GetId() string {
 }
 
 type FileMetadata struct {
-	Path                 string   `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
-	Id                   int32    `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
-	Size                 int64    `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
-	Chunks               int32    `protobuf:"varint,4,opt,name=chunks,proto3" json:"chunks,omitempty"`
+	// Path to the file.
+	Path string `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	// ID of the file in the local namespace.
+	Id int32 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	// Size of the file in bytes.
+	Size int64 `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
+	// Number of chunks constituting this file based on the buffer size config.
+	Chunks int32 `protobuf:"varint,4,opt,name=chunks,proto3" json:"chunks,omitempty"`
+	// Name of the file.
 	Name                 string   `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -141,12 +148,15 @@ func (m *FileMetadata) GetName() string {
 }
 
 type FileChunk struct {
-	Metadata             *FileMetadata `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	Data                 []byte        `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	Chunk                int32         `protobuf:"varint,3,opt,name=chunk,proto3" json:"chunk,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	// The metadata of the parent file typically sent in the first file chunk.
+	Metadata *FileMetadata `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// The data of this file chunk.
+	Data []byte `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	// The chunk number of this chunk of data starting from one.
+	Chunk                int32    `protobuf:"varint,3,opt,name=chunk,proto3" json:"chunk,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *FileChunk) Reset()         { *m = FileChunk{} }
@@ -196,7 +206,9 @@ func (m *FileChunk) GetChunk() int32 {
 }
 
 type SearchReq struct {
-	Filename             string   `protobuf:"bytes,1,opt,name=filename,proto3" json:"filename,omitempty"`
+	// The filename to search for.
+	Filename string `protobuf:"bytes,1,opt,name=filename,proto3" json:"filename,omitempty"`
+	// The origin node of this request.
 	Source               *Node    `protobuf:"bytes,2,opt,name=source,proto3" json:"source,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -243,11 +255,14 @@ func (m *SearchReq) GetSource() *Node {
 }
 
 type SearchResp struct {
-	Files                []*FileMetadata `protobuf:"bytes,1,rep,name=files,proto3" json:"files,omitempty"`
-	Node                 *Node           `protobuf:"bytes,2,opt,name=node,proto3" json:"node,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+	// The list of files gathered from all the nodes in the network that might
+	// be of interest to the calling node.
+	Files []*FileMetadata `protobuf:"bytes,1,rep,name=files,proto3" json:"files,omitempty"`
+	// The node to which the files belong.
+	Node                 *Node    `protobuf:"bytes,2,opt,name=node,proto3" json:"node,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *SearchResp) Reset()         { *m = SearchResp{} }
@@ -290,7 +305,9 @@ func (m *SearchResp) GetNode() *Node {
 }
 
 type DownloadReq struct {
-	Source               *Node         `protobuf:"bytes,1,opt,name=source,proto3" json:"source,omitempty"`
+	// The node from which the requester node wants to download a file of interest.
+	Source *Node `protobuf:"bytes,1,opt,name=source,proto3" json:"source,omitempty"`
+	// The metadata of the file to be downloaded.
 	Metadata             *FileMetadata `protobuf:"bytes,2,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
 	XXX_unrecognized     []byte        `json:"-"`

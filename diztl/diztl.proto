@@ -17,36 +17,53 @@ service TrackerService {
 }
 
 message Node {
+    // The IP address of the node.
     string ip = 1;
+    // The unique assigned to the node by the tracker.
     string id = 2;
 }
 
 message FileMetadata {
+    // Path to the file.
     string path = 1;
+    // ID of the file in the local namespace.
     int32 id = 2;
+    // Size of the file in bytes.
     int64 size = 3;
+    // Number of chunks constituting this file based on the buffer size config.
     int32 chunks = 4;
+    // Name of the file.
     string name = 5;
 }
 
 message FileChunk {
+    // The metadata of the parent file typically sent in the first file chunk.
     FileMetadata metadata = 1;
+    // The data of this file chunk.
     bytes data = 2;
+    // The chunk number of this chunk of data starting from one.
     int32 chunk = 3;
 }
 
 message SearchReq {
+    // The filename to search for.
     string filename = 1;
+    // The origin node of this request.
     Node source = 2;
 }
 
 message SearchResp {
+    // The list of files gathered from all the nodes in the network that might
+    // be of interest to the calling node.
     repeated FileMetadata files = 1;
+    // The node to which the files belong.
     Node node = 2;
 }
 
 message DownloadReq {
+    // The node from which the requester node wants to download a file of interest.
     Node source = 1;
+    // The metadata of the file to be downloaded.
     FileMetadata metadata = 2;
 }
 
