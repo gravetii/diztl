@@ -32,7 +32,7 @@ func (s *TrackerService) Register(ctx context.Context, node *diztl.Node) (*diztl
 }
 
 // Search : Invoked by a search request by any node.
-func (s *TrackerService) Search(request *diztl.SearchRequest, stream diztl.TrackerService_SearchServer) error {
+func (s *TrackerService) Search(request *diztl.SearchReq, stream diztl.TrackerService_SearchServer) error {
 	log.Printf("Received search request from node %s: %v\n", request.GetSource().GetIp(), *request)
 	responses := s.broadcast(request)
 	for _, r := range responses {
@@ -43,19 +43,19 @@ func (s *TrackerService) Search(request *diztl.SearchRequest, stream diztl.Track
 }
 
 // Disconnect : A disconnecting node invokes this call on the tracker before leaving the network.
-func (s *TrackerService) Disconnect(ctx context.Context, request *diztl.DisconnectRequest) (*diztl.DisconnectResponse, error) {
+func (s *TrackerService) Disconnect(ctx context.Context, request *diztl.DisconnectReq) (*diztl.DisconnectResp, error) {
 	node := request.GetNode()
 	log.Printf("Received disconnect request from node %s\n", node.GetIp())
 	if !s.nk.Disconnect(node) {
 		log.Printf("Disconnect returned false for %s\n", node.GetIp())
 	}
 
-	return &diztl.DisconnectResponse{}, nil
+	return &diztl.DisconnectResp{}, nil
 }
 
-func (s *TrackerService) broadcast(request *diztl.SearchRequest) []*diztl.SearchResponse {
+func (s *TrackerService) broadcast(request *diztl.SearchReq) []*diztl.SearchResp {
 	log.Printf("Broadcasting search request to all nodes on the network: %s, %s\n", request.GetSource().GetIp(), request.GetFilename())
-	responses := []*diztl.SearchResponse{}
+	responses := []*diztl.SearchResp{}
 
 	for _, node := range s.nk.Nodes {
 		c, err := s.nk.GetConnection(node)

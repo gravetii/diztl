@@ -79,7 +79,7 @@ func (c *NodeClient) register() {
 func (c *NodeClient) disconnect() {
 	ctx, cancel := context.WithTimeout(context.Background(), config.DisconnectTimeout)
 	defer cancel()
-	req := diztl.DisconnectRequest{Node: c.node}
+	req := diztl.DisconnectReq{Node: c.node}
 	_, err := c.tracker.Disconnect(ctx, &req)
 	if err != nil {
 		log.Fatalf("Error while disconnecting: %v", err)
@@ -89,10 +89,10 @@ func (c *NodeClient) disconnect() {
 }
 
 // Search : Search for files on the network that have names with the given pattern.
-func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
-	results := []*diztl.SearchResponse{}
+func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
+	results := []*diztl.SearchResp{}
 	log.Printf("Searching for pattern: %s\n", pattern)
-	r := diztl.SearchRequest{Filename: pattern, Source: c.node}
+	r := diztl.SearchReq{Filename: pattern, Source: c.node}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	stream, err := c.tracker.Search(ctx, &r)
@@ -115,7 +115,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResponse, error) {
 	return results, nil
 }
 
-func (c *NodeClient) download(r *pb.DownloadRequest) (*os.File, error) {
+func (c *NodeClient) download(r *pb.DownloadReq) (*os.File, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), config.DownloadTimeout)
 	defer cancel()
 	client, err := c.nk.GetConnection(r.GetSource())
