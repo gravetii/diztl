@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/gravetii/diztl/config"
@@ -24,7 +25,7 @@ func newIndex() *Index {
 }
 
 func (index *Index) add(path string, info os.FileInfo) {
-	f := diztl.FileMetadata{Path: path, Id: index.counter.IncrBy1(), Size: info.Size()}
+	f := diztl.FileMetadata{Path: path, Id: index.counter.IncrBy1(), Size: info.Size(), Name: filepath.Base(path)}
 	index.files[path] = &f
 	log.Printf("Added %d. %s\n", index.counter.Value(), path)
 }

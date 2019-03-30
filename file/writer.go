@@ -35,8 +35,7 @@ func CreateWriter(m *diztl.FileMetadata) (*Writer, error) {
 }
 
 func createFile(metadata *diztl.FileMetadata) (*os.File, error) {
-	fname := util.GetFilename(metadata)
-	fpath := util.GetOutputPath(fname)
+	fpath := util.GetOutputPath(metadata.GetName())
 	f, err := os.Create(fpath)
 	if err != nil {
 		log.Printf("Unable to create file %s: %v\n", fpath, err)

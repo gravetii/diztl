@@ -4,31 +4,21 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-
-	"github.com/gravetii/diztl/diztl"
-)
-
-const (
-	shareSuffix  = "/Documents/diztl/share"
-	outputSuffix = "/output"
 )
 
 var rootdir, _ = os.UserHomeDir()
+var shareDirElems = []string{rootdir, "Documents", "diztl", "share"}
+var outputDirElems = append(shareDirElems, "output")
 
 // ShareDir : The default diztl share directory.
-var ShareDir = rootdir + shareSuffix
+var ShareDir = filepath.Join(shareDirElems...)
 
 // OutputDir : The diztl output directory.
-var OutputDir = ShareDir + outputSuffix
+var OutputDir = filepath.Join(outputDirElems...)
 
 // GetOutputPath : Returns the output file path for the file.
 func GetOutputPath(filename string) string {
-	return OutputDir + "/" + filename
-}
-
-// GetFilename : Returns the filename of the file pointed by the metadata.
-func GetFilename(m *diztl.FileMetadata) string {
-	return filepath.Base(m.GetPath())
+	return filepath.Join(OutputDir, filename)
 }
 
 // EnsureDirs : Checks if the required directories are created, creating them if not.

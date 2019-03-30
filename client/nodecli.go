@@ -6,7 +6,6 @@ import (
 
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/util"
 )
 
 type searchResult struct {
@@ -48,7 +47,7 @@ func search(in string) ([]*searchResult, bool) {
 func display(res []*searchResult) {
 	fmt.Printf("\n%30s | %30s", "Option", "File Name\n")
 	for c, r := range res {
-		fmt.Printf("%30d | %30s\n", c+1, util.GetFilename(r.file))
+		fmt.Printf("%30d | %30s\n", c+1, r.file.GetName())
 	}
 }
 
@@ -81,7 +80,7 @@ func download(r *searchResult) {
 	req := &pb.DownloadRequest{Source: r.node, Metadata: r.file}
 	f, err := nodeclient.download(req)
 	if err != nil {
-		log.Printf("Error while downloading file %s: %v\n", util.GetFilename(r.file), err)
+		log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
 	} else {
 		log.Printf("Finished downloading file: %s\n", f.Name())
 	}
