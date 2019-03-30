@@ -26,6 +26,7 @@ message FileMetadata {
     int32 id = 2;
     int64 size = 3;
     int32 chunks = 4;
+    string name = 5;
 }
 
 message FileChunk {

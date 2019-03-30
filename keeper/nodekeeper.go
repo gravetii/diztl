@@ -20,7 +20,6 @@ type NodeKeeper struct {
 	Count       *counter.AtomicCounter
 	connections map[string]*grpc.ClientConn
 	mux         sync.Mutex
-	// diztl.DiztlServiceClient
 }
 
 // New : Returns a new instance of the NodeKeeper.
