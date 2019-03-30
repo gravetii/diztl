@@ -5,6 +5,8 @@ import (
 	"io"
 	"log"
 
+	"github.com/gravetii/diztl/shutdown"
+
 	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/file"
@@ -24,7 +26,9 @@ func NewNode() *NodeService {
 		log.Fatalf("Error while creating the node service: %v", err)
 	}
 
-	return &NodeService{Indexer: f}
+	s := NodeService{Indexer: f}
+	shutdown.Listen(nodeShutdownCallback{f})
+	return &s
 }
 
 // Init : Performs the necessary initialisation when the service comes up for the first time.
@@ -36,6 +40,18 @@ func (s *NodeService) Init() {
 
 	if err := s.Indexer.Index(); err != nil {
 		log.Fatalf("Error while indexing files: %v", err)
+	}
+}
+
+type nodeShutdownCallback struct {
+	f *indexer.FileIndexer
+}
+
+func (sc nodeShutdownCallback) Execute() {
+	if err := sc.f.Close(); err != nil {
+		log.Printf("Error while closing file watcher: %v\n", err)
+	} else {
+		log.Println("Closed file watcher successfully.")
 	}
 }
 

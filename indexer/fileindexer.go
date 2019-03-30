@@ -25,7 +25,6 @@ func NewFileIndexer() (*FileIndexer, error) {
 		return nil, err
 	}
 
-	// figure out how & when to close this watcher. [SIGINT/SIGTERM]
 	f.watcher = w
 	return &f, nil
 }
@@ -37,6 +36,11 @@ func (f *FileIndexer) Index() error {
 	go f.watch()
 	log.Println("Indexing finished successfully.")
 	return nil
+}
+
+// Close : Closes any resources held by this file-indexer.
+func (f *FileIndexer) Close() error {
+	return f.watcher.Close()
 }
 
 func (f *FileIndexer) dirwalk() {
@@ -102,7 +106,8 @@ func (f *FileIndexer) add(path string, info os.FileInfo) error {
 
 func (f *FileIndexer) remove(path string) error {
 	log.Printf("Removing path :%s\n", path)
-	// No need to remove path from watcher, fsnotify does it by default. So, just remove the path from the index.
+	// No need to remove path from watcher, fsnotify does it by default.
+	// So, just remove the path from the index.
 	f.index.remove(path)
 	return nil
 }
