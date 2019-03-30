@@ -77,7 +77,7 @@ func optInput(res []*searchResult) (*searchResult, bool) {
 }
 
 func download(r *searchResult) {
-	req := &pb.DownloadRequest{Source: r.node, Metadata: r.file}
+	req := &pb.DownloadReq{Source: r.node, Metadata: r.file}
 	f, err := nodeclient.download(req)
 	if err != nil {
 		log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
@@ -86,7 +86,7 @@ func download(r *searchResult) {
 	}
 }
 
-func validateResponses(responses []*diztl.SearchResponse) ([]*searchResult, bool) {
+func validateResponses(responses []*diztl.SearchResp) ([]*searchResult, bool) {
 	if len(responses) == 0 {
 		fmt.Printf("No files with the given name were found in the network. Try another search!")
 		return nil, false

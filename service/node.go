@@ -56,15 +56,15 @@ func (sc nodeShutdownCallback) Execute() {
 }
 
 // Search : The tracker invokes the search call when it broadcasts a search request from another node.
-func (s *NodeService) Search(ctx context.Context, request *diztl.SearchRequest) (*diztl.SearchResponse, error) {
+func (s *NodeService) Search(ctx context.Context, request *diztl.SearchReq) (*diztl.SearchResp, error) {
 	log.Printf("Received search request: %v\n", request.GetSource())
 	files := s.Indexer.Search(request.GetFilename())
-	response := diztl.SearchResponse{Files: files}
+	response := diztl.SearchResp{Files: files}
 	return &response, nil
 }
 
 // Upload : A requesting node invokes this call on this node asking it to upload the file of interest.
-func (s *NodeService) Upload(request *diztl.DownloadRequest, stream diztl.DiztlService_UploadServer) error {
+func (s *NodeService) Upload(request *diztl.DownloadReq, stream diztl.DiztlService_UploadServer) error {
 	metadata := request.GetMetadata()
 	r, err := file.CreateReader(metadata)
 	if err != nil {

@@ -1,18 +1,18 @@
 syntax = "proto3";
 
 service DiztlService {
-    rpc Search (SearchRequest) returns (SearchResponse) {
+    rpc Search (SearchReq) returns (SearchResp) {
     }
-    rpc Upload (DownloadRequest) returns (stream FileChunk) {
+    rpc Upload (DownloadReq) returns (stream FileChunk) {
     }
 }
 
 service TrackerService {
     rpc Register (Node) returns (Node) {
     }
-    rpc Search (SearchRequest) returns (stream SearchResponse) {
+    rpc Search (SearchReq) returns (stream SearchResp) {
     }
-    rpc disconnect (DisconnectRequest) returns (DisconnectResponse) {
+    rpc disconnect (DisconnectReq) returns (DisconnectResp) {
     }
 }
 
@@ -35,25 +35,25 @@ message FileChunk {
     int32 chunk = 3;
 }
 
-message SearchRequest {
+message SearchReq {
     string filename = 1;
     Node source = 2;
 }
 
-message SearchResponse {
+message SearchResp {
     repeated FileMetadata files = 1;
     Node node = 2;
 }
 
-message DownloadRequest {
+message DownloadReq {
     Node source = 1;
     FileMetadata metadata = 2;
 }
 
-message DisconnectRequest {
+message DisconnectReq {
     Node node = 1;
 }
 
-message DisconnectResponse {
+message DisconnectResp {
     string message = 1;
 }
