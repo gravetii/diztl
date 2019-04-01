@@ -3,6 +3,7 @@ package client
 import (
 	"fmt"
 	"log"
+	"strconv"
 
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
@@ -66,13 +67,9 @@ func searchInput() (string, bool) {
 }
 
 func optInput(res []*searchResult) (*searchResult, bool) {
-	var opt int
+	var opt string
 	fmt.Printf("Enter option to download file - ")
-	_, err := fmt.Scanf("%d", &opt)
-	if err != nil {
-		return nil, false
-	}
-
+	fmt.Scanf("%s", &opt)
 	return validateOption(opt, res)
 }
 
@@ -102,7 +99,13 @@ func validateResponses(responses []*diztl.SearchResp) ([]*searchResult, bool) {
 	return r, true
 }
 
-func validateOption(o int, files []*searchResult) (*searchResult, bool) {
+func validateOption(opt string, files []*searchResult) (*searchResult, bool) {
+	o, err := strconv.Atoi(opt)
+	if err != nil {
+		fmt.Printf("Invalid option, please try again!\n")
+		return nil, false
+	}
+
 	if o <= 0 || o > len(files) {
 		fmt.Printf("Invalid option, please try again!\n")
 		return nil, false
