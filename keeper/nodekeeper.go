@@ -72,8 +72,7 @@ func (nk *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, er
 }
 
 // Disconnect : Invalidates the given node from the nodekeeper when the client disconnects.
-// Returns true if the node could be invalidated, false if there's no entry of this node
-// in the nodekeeper.
+// Returns true if the node could be invalidated, false if there's no entry for this node.
 func (nk *NodeKeeper) Disconnect(node *diztl.Node) bool {
 	return nk.invalidateIfExists(node)
 }

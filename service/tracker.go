@@ -21,7 +21,7 @@ type TrackerService struct {
 func NewTracker() *TrackerService {
 	nk := keeper.New()
 	tracker := &TrackerService{nk}
-	shutdown.Listen(trackerShutdownCallback{nk})
+	shutdown.Listen(tracker)
 	return tracker
 }
 
@@ -80,13 +80,9 @@ func (s *TrackerService) broadcast(request *diztl.SearchReq) []*diztl.SearchResp
 	return responses
 }
 
-type trackerShutdownCallback struct {
-	nk *keeper.NodeKeeper
-}
-
-func (sc trackerShutdownCallback) Execute() {
-	// Close the nodekeeper.
-	sc.nk.Close()
+// OnShutdown : Actions to perform on shutdown.
+func (s *TrackerService) OnShutdown() {
+	s.nk.Close()
 	log.Println("Tracker shut down successfully.")
 	os.Exit(0)
 }

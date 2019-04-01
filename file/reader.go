@@ -26,7 +26,7 @@ func CreateReader(m *diztl.FileMetadata) (*Reader, error) {
 	}
 
 	buf := bufio.NewReader(f)
-	return &Reader{buf: buf, f: f, c: counter.New(0)}, nil
+	return &Reader{buf, f, counter.New(0)}, nil
 }
 
 func openFile(fpath string) (*os.File, error) {
