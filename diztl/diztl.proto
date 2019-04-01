@@ -8,7 +8,7 @@ service DiztlService {
 }
 
 service TrackerService {
-    rpc Register (Node) returns (Node) {
+    rpc Register (RegisterReq) returns (RegisterResp) {
     }
     rpc Search (SearchReq) returns (stream SearchResp) {
     }
@@ -43,6 +43,14 @@ message FileChunk {
     bytes data = 2;
     // The chunk number of this chunk of data starting from one.
     int32 chunk = 3;
+}
+
+message RegisterReq {
+    Node node = 1;
+}
+
+message RegisterResp {
+    Node node = 1;
 }
 
 message SearchReq {
