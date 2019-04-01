@@ -4,10 +4,10 @@ import (
 	"log"
 	"net"
 
+	"github.com/gravetii/diztl/addr"
 	"github.com/gravetii/diztl/config"
 	pb "github.com/gravetii/diztl/diztl"
 	service "github.com/gravetii/diztl/service"
-	"github.com/gravetii/diztl/util"
 	"google.golang.org/grpc"
 )
 
@@ -18,7 +18,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	ip := util.GetMyIP()
+	ip := addr.GetMyIP()
 	pb.RegisterTrackerServiceServer(s, service.NewTracker())
 	log.Printf("Server started on %s:%s\n", ip, config.TrackerPort)
 	serr := s.Serve(lis)

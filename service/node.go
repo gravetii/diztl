@@ -5,13 +5,13 @@ import (
 	"io"
 	"log"
 
+	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/shutdown"
 
 	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/file"
 	"github.com/gravetii/diztl/indexer"
-	"github.com/gravetii/diztl/util"
 )
 
 // NodeService : Implements the node server interface definition.
@@ -36,7 +36,7 @@ func (s *NodeService) Init() {
 	log.Println("Initialising node service...")
 
 	// Ensure that necessary folders are created
-	util.EnsureDirs()
+	dir.Ensure()
 
 	if err := s.Indexer.Index(); err != nil {
 		log.Fatalf("Error while indexing files: %v", err)
