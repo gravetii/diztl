@@ -8,6 +8,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/gravetii/diztl/addr"
 	"github.com/gravetii/diztl/shutdown"
 
 	"github.com/gravetii/diztl/config"
@@ -16,7 +17,6 @@ import (
 
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/util"
 	"google.golang.org/grpc"
 )
 
@@ -63,7 +63,7 @@ func (sc shutdownCallback) Execute() {
 }
 
 func (c *NodeClient) register() {
-	ip := util.GetMyIP()
+	ip := addr.GetMyIP()
 	node := &diztl.Node{Ip: ip}
 	req := &diztl.RegisterReq{Node: node}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)

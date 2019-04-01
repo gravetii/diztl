@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 
 	"github.com/fsnotify/fsnotify"
+	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/util"
 )
 
 // FileIndexer : The struct type that represents a file indexer on a node which indexes all the shared files.
@@ -48,8 +48,7 @@ func (f *FileIndexer) Close() error {
 }
 
 func (f *FileIndexer) dirwalk() error {
-	dir := util.ShareDir
-	return f.filewalk(dir)
+	return f.filewalk(dir.ShareDir)
 }
 
 func (f *FileIndexer) watch() {

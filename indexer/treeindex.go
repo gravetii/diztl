@@ -8,11 +8,11 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/gravetii/diztl/dir"
+
 	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/counter"
-
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/util"
 )
 
 // TreeNode : Represents a single unit of the TreeIndex.
@@ -39,7 +39,7 @@ func NewTreeIndex() *TreeIndex {
 }
 
 func (t *TreeIndex) addFile(path string, info os.FileInfo) {
-	tokens := util.Split(path)
+	tokens := dir.Split(path)
 	fpath := ""
 	parent := t.root
 	for n, token := range tokens {
@@ -68,7 +68,7 @@ func (t *TreeIndex) addPath(path string, token string, parent *TreeNode, info os
 }
 
 func (t *TreeIndex) removePath(path string) error {
-	tokens := util.Split(path)
+	tokens := dir.Split(path)
 	fpath := ""
 	node := t.root
 	parent := node.parent

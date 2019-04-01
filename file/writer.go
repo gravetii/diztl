@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
+	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/util"
 )
 
 // Writer : The file writer.
@@ -35,7 +35,7 @@ func CreateWriter(m *diztl.FileMetadata) (*Writer, error) {
 }
 
 func createFile(metadata *diztl.FileMetadata) (*os.File, error) {
-	fpath := util.GetOutputPath(metadata.GetName())
+	fpath := dir.GetOutputPath(metadata.GetName())
 	f, err := os.Create(fpath)
 	if err != nil {
 		log.Printf("Unable to create file %s: %v\n", fpath, err)

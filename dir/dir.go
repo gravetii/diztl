@@ -1,4 +1,4 @@
-package util
+package dir
 
 import (
 	"log"
@@ -21,8 +21,8 @@ func GetOutputPath(filename string) string {
 	return filepath.Join(OutputDir, filename)
 }
 
-// EnsureDirs : Checks if the required directories are created, creating them if not.
-func EnsureDirs() {
+// Ensure : Checks if the required directories are created, creating them if not.
+func Ensure() {
 	ensureDir(ShareDir)
 	ensureDir(OutputDir)
 }
