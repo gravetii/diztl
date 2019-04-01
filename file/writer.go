@@ -24,14 +24,14 @@ func (obj *Writer) Close() *os.File {
 }
 
 // CreateWriter : Returns an instance of the Writer for the given file metadata.
-func CreateWriter(m *diztl.FileMetadata) (*Writer, error) {
-	f, err := createFile(m)
+func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
+	f, err := createFile(metadata)
 	if err != nil {
 		return nil, err
 	}
 
 	buf := bufio.NewWriter(f)
-	return &Writer{metadata: m, buf: buf, f: f}, nil
+	return &Writer{metadata, buf, f}, nil
 }
 
 func createFile(metadata *diztl.FileMetadata) (*os.File, error) {

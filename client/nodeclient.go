@@ -48,17 +48,14 @@ func Init() {
 	nodeclient.connectToTracker()
 	nodeclient.register()
 	log.Println("Finished initialising nodeclient.")
-	shutdown.Listen(shutdownCallback{})
+	shutdown.Listen(nodeclient)
 	go UserCLI()
 }
 
-type shutdownCallback struct{}
-
-func (sc shutdownCallback) Execute() {
-	// Close the nodekeeper.
-	nodeclient.nk.Close()
-	// Disconnect from the tracker.
-	nodeclient.disconnect()
+// OnShutdown : Actions to perform on shutdown.
+func (c *NodeClient) OnShutdown() {
+	c.nk.Close()
+	c.disconnect()
 	os.Exit(0)
 }
 
