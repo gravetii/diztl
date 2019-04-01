@@ -65,13 +65,15 @@ func (sc shutdownCallback) Execute() {
 func (c *NodeClient) register() {
 	ip := util.GetMyIP()
 	node := &diztl.Node{Ip: ip}
+	req := &diztl.RegisterReq{Node: node}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	rnode, err := c.tracker.Register(ctx, node)
+	resp, err := c.tracker.Register(ctx, req)
 	if err != nil {
 		log.Fatalf("Error while registering node to tracker: %v", err)
 	}
 
+	rnode := resp.GetNode()
 	c.node = &diztl.Node{Ip: rnode.GetIp(), Id: rnode.GetId()}
 	log.Printf("Successfully registered node to tracker: %s, %s\n", rnode.GetIp(), rnode.GetId())
 }
