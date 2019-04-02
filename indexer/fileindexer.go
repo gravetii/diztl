@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/fsnotify/fsnotify"
-	"github.com/gravetii/diztl/dir"
+	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/diztl"
 )
 
@@ -48,7 +48,14 @@ func (f *FileIndexer) Close() error {
 }
 
 func (f *FileIndexer) dirwalk() error {
-	return f.filewalk(dir.ShareDir)
+	for _, dir := range conf.ShareDirs() {
+		err := f.filewalk(dir)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 func (f *FileIndexer) watch() {

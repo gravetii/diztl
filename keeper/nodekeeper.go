@@ -7,7 +7,7 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/gravetii/diztl/addr"
-	"github.com/gravetii/diztl/config"
+	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
@@ -59,8 +59,9 @@ func (nk *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, er
 	if conn, exists := nk.connections[node.GetIp()]; exists {
 		return pb.NewDiztlServiceClient(conn), nil
 	}
+
 	conn, err := grpc.Dial(addr.Address(node), grpc.WithInsecure(),
-		grpc.WithBlock(), grpc.WithTimeout(config.NodeConnectTimeout))
+		grpc.WithBlock(), grpc.WithTimeout(conf.NodeConnectTimeout()))
 	if err != nil {
 		return nil, err
 	}

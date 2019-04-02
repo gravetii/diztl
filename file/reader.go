@@ -5,9 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/gravetii/diztl/config"
+	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/counter"
-	"github.com/gravetii/diztl/diztl"
 )
 
 // Reader : The file reader.
@@ -17,9 +16,8 @@ type Reader struct {
 	c   *counter.Counter
 }
 
-// CreateReader : Returns an instance of the Reader for the given file metadata.
-func CreateReader(m *diztl.FileMetadata) (*Reader, error) {
-	fpath := m.GetPath()
+// CreateReader : Returns an instance of the Reader for the given file path.
+func CreateReader(fpath string) (*Reader, error) {
 	f, err := openFile(fpath)
 	if err != nil {
 		return nil, err
@@ -46,7 +44,7 @@ func openFile(fpath string) (*os.File, error) {
 
 // Read : Reads a set of bytes from the underlying file and writes it to the array for transmission.
 func (obj *Reader) Read() ([]byte, error) {
-	p := make([]byte, config.ChunkBufSize)
+	p := make([]byte, conf.ChunkBufSize())
 	_, err := obj.buf.Read(p)
 	if err != nil {
 		return nil, err

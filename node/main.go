@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/gravetii/diztl/config"
+	"github.com/gravetii/diztl/conf"
 
 	"github.com/gravetii/diztl/client"
 	diztl "github.com/gravetii/diztl/diztl"
@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	lis, err := net.Listen("tcp", ":"+config.NodePort)
+	lis, err := net.Listen("tcp", ":"+conf.NodePort())
 	if err != nil {
 		log.Fatalf("Unable to start node server: %v", err)
 	}
