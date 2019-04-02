@@ -4,27 +4,25 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/gravetii/diztl/conf"
 )
-
-var rootdir, _ = os.UserHomeDir()
-var shareDirElems = []string{rootdir, "Documents", "diztl", "share"}
-var outputDirElems = append(shareDirElems, "output")
-
-// ShareDir : The default diztl share directory.
-var ShareDir = filepath.Join(shareDirElems...)
-
-// OutputDir : The diztl output directory.
-var OutputDir = filepath.Join(outputDirElems...)
 
 // GetOutputPath : Returns the output file path for the file.
 func GetOutputPath(filename string) string {
-	return filepath.Join(OutputDir, filename)
+	return filepath.Join(conf.OutputDir(), filename)
 }
 
 // Ensure : Checks if the required directories are created, creating them if not.
 func Ensure() {
-	ensureDir(ShareDir)
-	ensureDir(OutputDir)
+	ensureDirs(conf.ShareDirs())
+	ensureDir(conf.OutputDir())
+}
+
+func ensureDirs(dirs []string) {
+	for _, dir := range dirs {
+		ensureDir(dir)
+	}
 }
 
 func ensureDir(dir string) {

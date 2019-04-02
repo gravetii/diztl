@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/gravetii/diztl/config"
+	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
 )
@@ -37,8 +37,9 @@ func (index *Index) remove(path string) {
 }
 
 func (index *Index) validate() error {
-	if index.counter.Value() < config.MinIndexFiles {
-		fmt.Printf("You need to share at least %d files to diztl before you can ask!\n", config.MinIndexFiles)
+	minFiles := conf.MinIndexFiles()
+	if index.counter.Value() < minFiles {
+		fmt.Printf("You need to share at least %d files to diztl before you can ask!\n", minFiles)
 		return errors.New("less than minimum number of indexed files")
 	}
 

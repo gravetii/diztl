@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/gravetii/diztl/addr"
+	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/shutdown"
 
-	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/file"
 	"github.com/gravetii/diztl/keeper"
 
@@ -30,8 +30,8 @@ type NodeClient struct {
 }
 
 func (c *NodeClient) connectToTracker() {
-	conn, err := grpc.Dial(config.TrackerAddress, grpc.WithInsecure(),
-		grpc.WithBlock(), grpc.WithTimeout(config.TrackerConnectTimeout))
+	conn, err := grpc.Dial(conf.TrackerAddress(), grpc.WithInsecure(),
+		grpc.WithBlock(), grpc.WithTimeout(conf.TrackerConnectTimeout()))
 	if err != nil {
 		log.Fatalf("Could not connect to tracker: %v", err)
 	}
@@ -76,7 +76,7 @@ func (c *NodeClient) register() {
 }
 
 func (c *NodeClient) disconnect() {
-	ctx, cancel := context.WithTimeout(context.Background(), config.DisconnectTimeout)
+	ctx, cancel := context.WithTimeout(context.Background(), conf.DisconnectTimeout())
 	defer cancel()
 	req := diztl.DisconnectReq{Node: c.node}
 	_, err := c.tracker.Disconnect(ctx, &req)
@@ -115,7 +115,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 }
 
 func (c *NodeClient) download(r *pb.DownloadReq) (*os.File, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), config.DownloadTimeout)
+	ctx, cancel := context.WithTimeout(context.Background(), conf.DownloadTimeout())
 	defer cancel()
 	client, err := c.nk.GetConnection(r.GetSource())
 	if err != nil {

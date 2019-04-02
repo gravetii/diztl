@@ -5,9 +5,10 @@ import (
 	"log"
 	"os"
 
+	"github.com/gravetii/diztl/conf"
+
 	"github.com/gravetii/diztl/shutdown"
 
-	"github.com/gravetii/diztl/config"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/keeper"
 )
@@ -62,7 +63,7 @@ func (s *TrackerService) broadcast(request *diztl.SearchReq) []*diztl.SearchResp
 	for _, node := range s.nk.Nodes {
 		c, err := s.nk.GetConnection(node)
 		if err == nil {
-			ctx, cancel := context.WithTimeout(context.Background(), config.SearchTimeout)
+			ctx, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
 			defer cancel()
 			r, err := c.Search(ctx, request)
 			if err != nil {

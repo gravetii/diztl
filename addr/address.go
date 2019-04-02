@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/gravetii/diztl/config"
+	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/diztl"
 )
 
@@ -30,5 +30,5 @@ func GetMyIP() string {
 
 // Address : Returns the address of the node as a string.
 func Address(node *diztl.Node) string {
-	return node.GetIp() + ":" + config.NodePort
+	return node.GetIp() + ":" + conf.NodePort()
 }
