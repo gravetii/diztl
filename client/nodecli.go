@@ -3,7 +3,6 @@ package client
 import (
 	"fmt"
 	"log"
-	"strconv"
 
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
@@ -25,9 +24,9 @@ func UserCLI() {
 		s, ok := search(in)
 		if ok {
 			display(s)
-			r, ok := optInput(s)
+			res, ok := optInput(s)
 			if ok {
-				download(r)
+				go download(res)
 			}
 		}
 	}
@@ -66,20 +65,15 @@ func searchInput() (string, bool) {
 	return pattern, true
 }
 
-func optInput(res []*searchResult) (*searchResult, bool) {
-	var opt string
-	fmt.Printf("Enter option to download file - ")
-	fmt.Scanf("%s", &opt)
-	return validateOption(opt, res)
-}
-
-func download(r *searchResult) {
-	req := &pb.DownloadReq{Source: r.node, Metadata: r.file}
-	f, err := nodeclient.download(req)
-	if err != nil {
-		log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
-	} else {
-		log.Printf("Finished downloading file: %s\n", f.Name())
+func download(res []*searchResult) {
+	for _, r := range res {
+		req := &pb.DownloadReq{Source: r.node, Metadata: r.file}
+		f, err := nodeclient.download(req)
+		if err != nil {
+			log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
+		} else {
+			log.Printf("Finished downloading file: %s\n", f.Name())
+		}
 	}
 }
 
@@ -97,19 +91,4 @@ func validateResponses(responses []*diztl.SearchResp) ([]*searchResult, bool) {
 	}
 
 	return r, true
-}
-
-func validateOption(opt string, files []*searchResult) (*searchResult, bool) {
-	o, err := strconv.Atoi(opt)
-	if err != nil {
-		fmt.Printf("Invalid option, please try again!\n")
-		return nil, false
-	}
-
-	if o <= 0 || o > len(files) {
-		fmt.Printf("Invalid option, please try again!\n")
-		return nil, false
-	}
-
-	return files[o-1], true
 }
