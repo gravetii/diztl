@@ -29,7 +29,7 @@ type conf struct {
 	ChunkBufSize  int32                    `yaml:"chunkBufSize"`
 }
 
-var c = getConf()
+var config = getConf()
 
 func getConf() *conf {
 	config := &conf{}
@@ -48,15 +48,15 @@ func getConf() *conf {
 
 // MinIndexFiles : The minimum cumulative number of files that each node should index to enter the network.
 func MinIndexFiles() int32 {
-	return c.MinIndexFiles
+	return config.MinIndexFiles
 }
 
 // ShareDirs : The share directories of this node that need to be indexed when the node starts up.
 func ShareDirs() []string {
-	dirs := c.Dir.Share
+	dirs := config.Dir.Share
 	if len(dirs) == 0 {
 		dirs = []string{shareDirDefault}
-		c.Dir.Share = dirs
+		config.Dir.Share = dirs
 	}
 
 	log.Printf("Share dirs: %s", dirs)
@@ -65,10 +65,10 @@ func ShareDirs() []string {
 
 // OutputDir : The output directory of this node where the downloaded files are placed.
 func OutputDir() string {
-	dir := c.Dir.Output
+	dir := config.Dir.Output
 	if dir == "" {
 		dir = outputDirDefault
-		c.Dir.Output = dir
+		config.Dir.Output = dir
 	}
 
 	log.Printf("Output dir: %s", dir)
@@ -77,47 +77,47 @@ func OutputDir() string {
 
 // TrackerPort : The port of the tracker service.
 func TrackerPort() string {
-	return c.Tracker["port"]
+	return config.Tracker["port"]
 }
 
 // TrackerAddress : The address of the tracker.
 func TrackerAddress() string {
-	addr := c.Tracker["host"] + ":" + c.Tracker["port"]
+	addr := config.Tracker["host"] + ":" + config.Tracker["port"]
 	return addr
 }
 
 // NodePort : The port exposed by each Node for communication with the other nodes
 // and the tracker.
 func NodePort() string {
-	return c.Node["port"]
+	return config.Node["port"]
 }
 
 // DownloadTimeout : The download timeout.
 func DownloadTimeout() time.Duration {
-	return time.Second * c.Timeout["download"]
+	return time.Second * config.Timeout["download"]
 }
 
 // SearchTimeout : The search timeout.
 func SearchTimeout() time.Duration {
-	return time.Second * c.Timeout["search"]
+	return time.Second * config.Timeout["search"]
 }
 
 // DisconnectTimeout : The disconnect timeout.
 func DisconnectTimeout() time.Duration {
-	return time.Second * c.Timeout["disconnect"]
+	return time.Second * config.Timeout["disconnect"]
 }
 
 // TrackerConnectTimeout : The tracker connect timeout.
 func TrackerConnectTimeout() time.Duration {
-	return time.Second * c.Timeout["trackerConnect"]
+	return time.Second * config.Timeout["trackerConnect"]
 }
 
 // NodeConnectTimeout : The node connect timeout.
 func NodeConnectTimeout() time.Duration {
-	return time.Second * c.Timeout["nodeConnect"]
+	return time.Second * config.Timeout["nodeConnect"]
 }
 
 // ChunkBufSize : The size of each chunk of a file.
 func ChunkBufSize() int32 {
-	return c.ChunkBufSize
+	return config.ChunkBufSize
 }
