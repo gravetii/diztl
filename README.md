@@ -13,7 +13,7 @@ The current implementation isn't completely decentralized in that the search que
 
 Once the requesting `Node` decides on the file it wants to download from the target peer, communication happens solely between the two peers without any intervention from the `Tracker`.
 
-When the `Node` first starts up, it indexes all the files to be shared in the default share folder located under `<user_root>/Documents/diztl/share`. By default, downloaded files are located under `/output` directory of the shared folder. The `Node` then connects to the `Tracker` and registers itself after which it can participate in the network and communicate with other nodes.
+When the `Node` first starts up, it indexes all the files to be shared in the default share folder located under `<user_root>/Documents/diztl/share`. By default, downloaded files are located under `/output` directory of the shared folder. The `Node` then connects to the `Tracker` and registers itself after which it can participate in the network and communicate with other nodes. The share and output folders can be configured by changing the corresponding configurations in the `config.yaml` file (requires restart of tracker and/or node).
 
 For the formats of different request-response structures, take a look at the `diztl/diztl.proto` file which contains the protobuf specifications as well as the gRPC service definitions.
 
@@ -21,7 +21,7 @@ For the formats of different request-response structures, take a look at the `di
 
 In the root folder of the project:
 - `go run tracker/main.go`: This runs the tracker node on the localhost.
-- Specify the local IP address of the `Tracker` in `config.go` under `TrackerHost` to allow `Node`s to connect to it.
+- Specify the local IP address of the `Tracker` in the `config.yaml` file to allow `Node`s to connect to it.
 - `go run node/main.go`: Run this anywhere on any machine in the network to fire up a `Node`.
 
 Once the `Node` starts up without any errors, you will be able to search for files that have been shared by other peers in the same network.
