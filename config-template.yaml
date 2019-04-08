@@ -1,0 +1,27 @@
+# Diztl Config file
+
+tracker:
+  host: "localhost"
+  port: "50052"
+
+node:
+  port: "50051"
+
+minIndexFiles: 5
+
+# dir:
+#   share:
+#     - 
+#   output:
+
+# Various timeouts in seconds.
+timeout:
+  download: 300
+  search: 3
+  disconnect: 3
+  trackerConnect: 5
+  nodeConnect: 5
+
+chunkBufSize: 524288 #1024*512
+
+
