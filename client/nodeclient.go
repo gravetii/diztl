@@ -92,7 +92,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 	results := []*diztl.SearchResp{}
 	log.Printf("Searching for pattern: %s\n", pattern)
 	r := diztl.SearchReq{Filename: pattern, Source: c.node}
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 2*conf.SearchTimeout())
 	defer cancel()
 	stream, err := c.tracker.Search(ctx, &r)
 	if err != nil {
