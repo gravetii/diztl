@@ -1,16 +1,19 @@
 package client
 
 import (
+	"bufio"
 	"fmt"
 	"log"
+	"os"
 
 	pb "github.com/gravetii/diztl/diztl"
 )
 
 // UserCLI : Starts a for{} to take user inputs for file search.
 func UserCLI() {
+	r := bufio.NewScanner(os.Stdin)
 	for {
-		in, ok := input()
+		in, ok := input(r)
 		if !ok {
 			break
 		}
@@ -33,11 +36,11 @@ func display(res []*searchResult) {
 	}
 }
 
-func input() (string, bool) {
-	var pattern string
+func input(r *bufio.Scanner) (string, bool) {
 	fmt.Printf("\n\n***************  DIZTL  ***************\n\n")
 	fmt.Printf("Enter a pattern to search for. '*' to Exit - ")
-	fmt.Scanf("%s", &pattern)
+	r.Scan()
+	pattern := r.Text()
 
 	if pattern == "*" {
 		fmt.Printf("Thank you for using Diztl. Bye!\n")
