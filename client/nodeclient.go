@@ -24,9 +24,9 @@ var nodeclient *NodeClient
 
 // NodeClient : This struct enables communication with the tracker and/or other nodes.
 type NodeClient struct {
-	node    *diztl.Node
-	tracker diztl.TrackerServiceClient
-	nk      *keeper.NodeKeeper
+	node        *diztl.Node
+	trackerConn *grpc.ClientConn
+	nk          *keeper.NodeKeeper
 }
 
 func (c *NodeClient) connectToTracker() {
@@ -36,8 +36,12 @@ func (c *NodeClient) connectToTracker() {
 		log.Fatalf("Could not connect to tracker: %v", err)
 	}
 
+	c.trackerConn = conn
 	log.Println("Successfully connected to tracker...")
-	c.tracker = pb.NewTrackerServiceClient(conn)
+}
+
+func (c *NodeClient) getTracker() diztl.TrackerServiceClient {
+	return pb.NewTrackerServiceClient(c.trackerConn)
 }
 
 // Init : Initialises the NodeClient.
@@ -65,7 +69,8 @@ func (c *NodeClient) register() {
 	req := &diztl.RegisterReq{Node: node}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	resp, err := c.tracker.Register(ctx, req)
+	t := c.getTracker()
+	resp, err := t.Register(ctx, req)
 	if err != nil {
 		log.Fatalf("Error while registering node to tracker: %v", err)
 	}
@@ -79,7 +84,8 @@ func (c *NodeClient) disconnect() {
 	ctx, cancel := context.WithTimeout(context.Background(), conf.DisconnectTimeout())
 	defer cancel()
 	req := diztl.DisconnectReq{Node: c.node}
-	_, err := c.tracker.Disconnect(ctx, &req)
+	t := c.getTracker()
+	_, err := t.Disconnect(ctx, &req)
 	if err != nil {
 		log.Fatalf("Error while disconnecting: %v", err)
 	}
@@ -94,7 +100,8 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 	r := diztl.SearchReq{Filename: pattern, Source: c.node}
 	ctx, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
 	defer cancel()
-	stream, err := c.tracker.Search(ctx, &r)
+	t := c.getTracker()
+	stream, err := t.Search(ctx, &r)
 	if err != nil {
 		return nil, err
 	}
