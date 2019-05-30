@@ -5,11 +5,11 @@ import (
 	"net"
 
 	"github.com/gravetii/diztl/conf"
+	"github.com/gravetii/diztl/diztl"
+	"google.golang.org/grpc"
 
 	"github.com/gravetii/diztl/client"
-	diztl "github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/service"
-	"google.golang.org/grpc"
 )
 
 func main() {
@@ -21,8 +21,8 @@ func main() {
 	s := grpc.NewServer()
 	node := service.NewNode()
 	diztl.RegisterDiztlServiceServer(s, node)
-	go node.Init()
-	go client.Init()
+	node.Init()
+	client.Init()
 	log.Println("Started node server...")
 	serr := s.Serve(lis)
 	if serr != nil {

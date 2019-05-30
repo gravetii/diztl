@@ -24,4 +24,6 @@ timeout:
 
 chunkBufSize: 524288 #1024*512
 
+useWatcher: false
+
 
