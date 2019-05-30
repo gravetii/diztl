@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/gravetii/diztl/conf"
@@ -32,12 +33,14 @@ func NewFileIndexer() (*FileIndexer, error) {
 // Index : Indexes all the files in the given directory thus making them available for discovery by peers.
 func (f *FileIndexer) Index() error {
 	log.Println("Started file indexing process.")
-	err := f.dirwalk()
-	if err != nil {
+	if err := f.dirwalk(); err != nil {
 		return err
 	}
 
-	go f.watch()
+	if conf.UseWatcher() {
+		go f.watch()
+	}
+
 	log.Println("Indexing finished successfully.")
 	return nil
 }
@@ -49,8 +52,7 @@ func (f *FileIndexer) Close() error {
 
 func (f *FileIndexer) dirwalk() error {
 	for _, dir := range conf.ShareDirs() {
-		err := f.filewalk(dir)
-		if err != nil {
+		if err := f.filewalk(dir); err != nil {
 			return err
 		}
 	}
@@ -107,16 +109,18 @@ func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
 	return f.index.search(pattern)
 }
 
+func openFilesLimitExceeded(err error) bool {
+	return err != nil && strings.Contains(err.Error(), "too many open files")
+}
+
 func (f *FileIndexer) add(path string, info os.FileInfo) error {
 	if info.IsDir() {
-		// Add only directories to the watcher, not files.
-		err := f.watcher.Add(path)
-		if err != nil {
-			log.Printf("Error while adding path to watcher - %s: %v\n", path, err)
-			return err
+		if conf.UseWatcher() {
+			if err := f.watcher.Add(path); err != nil {
+				log.Printf("Error while watching directory: %s - %v", path, err)
+			}
 		}
 	} else {
-		// Add only files to index, not directories.
 		f.index.addFile(path, info)
 	}
 

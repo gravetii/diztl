@@ -27,6 +27,7 @@ type conf struct {
 	Dir           dir                      `yaml:"dir"`
 	Timeout       map[string]time.Duration `yaml:"timeout"`
 	ChunkBufSize  int32                    `yaml:"chunkBufSize"`
+	UseWatcher    bool                     `yaml:"useWatcher"`
 }
 
 var config = getConf()
@@ -34,7 +35,7 @@ var config = getConf()
 func getConf() *conf {
 	config := &conf{}
 	log.Println("Reading config...")
-	f, err := ioutil.ReadFile("config.yaml")
+	f, err := ioutil.ReadFile("config.yml")
 	if err != nil {
 		log.Fatalf("Error while reading conf: %v ", err)
 	}
@@ -120,4 +121,9 @@ func NodeConnectTimeout() time.Duration {
 // ChunkBufSize : The size of each chunk of a file.
 func ChunkBufSize() int32 {
 	return config.ChunkBufSize
+}
+
+// UseWatcher : Boolean flag that determines if we should use the file-watcher to watch for new/deleted files
+func UseWatcher() bool {
+	return config.UseWatcher
 }
