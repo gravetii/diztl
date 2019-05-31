@@ -4,7 +4,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/gravetii/diztl/conf"
@@ -107,10 +106,6 @@ func (f *FileIndexer) filewalk(dir string) error {
 // Search : Searches for a given pattern in the names of the indexed files and returns those files.
 func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
 	return f.index.search(pattern)
-}
-
-func openFilesLimitExceeded(err error) bool {
-	return err != nil && strings.Contains(err.Error(), "too many open files")
 }
 
 func (f *FileIndexer) add(path string, info os.FileInfo) error {

@@ -40,7 +40,7 @@ func (c *NodeClient) connectToTracker() {
 	log.Println("Successfully connected to tracker...")
 }
 
-func (c *NodeClient) getTracker() diztl.TrackerServiceClient {
+func (c *NodeClient) tracker() diztl.TrackerServiceClient {
 	return pb.NewTrackerServiceClient(c.trackerConn)
 }
 
@@ -69,7 +69,7 @@ func (c *NodeClient) register() {
 	req := &diztl.RegisterReq{Node: node}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	t := c.getTracker()
+	t := c.tracker()
 	resp, err := t.Register(ctx, req)
 	if err != nil {
 		log.Fatalf("Error while registering node to tracker: %v", err)
@@ -84,7 +84,7 @@ func (c *NodeClient) disconnect() {
 	ctx, cancel := context.WithTimeout(context.Background(), conf.DisconnectTimeout())
 	defer cancel()
 	req := diztl.DisconnectReq{Node: c.node}
-	t := c.getTracker()
+	t := c.tracker()
 	_, err := t.Disconnect(ctx, &req)
 	if err != nil {
 		log.Fatalf("Error while disconnecting: %v", err)
@@ -100,7 +100,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 	r := diztl.SearchReq{Filename: pattern, Source: c.node}
 	ctx, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
 	defer cancel()
-	t := c.getTracker()
+	t := c.tracker()
 	stream, err := t.Search(ctx, &r)
 	if err != nil {
 		return nil, err
