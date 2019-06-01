@@ -21,6 +21,7 @@ timeout:
   disconnect: 3
   trackerConnect: 5
   nodeConnect: 5
+  ping: 2
 
 chunkBufSize: 524288 #1024*512
 

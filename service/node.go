@@ -93,3 +93,9 @@ func (s *NodeService) Upload(request *diztl.DownloadReq, stream diztl.DiztlServi
 
 	return nil
 }
+
+// Ping : Any node can invoke this call on any node to see if it's currently active.
+func (s *NodeService) Ping(ctx context.Context, request *diztl.PingReq) (*diztl.PingResp, error) {
+	log.Printf("Received ping from %v\n", request.GetSource())
+	return &diztl.PingResp{Message: "online"}, nil
+}
