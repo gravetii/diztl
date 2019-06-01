@@ -98,6 +98,11 @@ func DownloadTimeout() time.Duration {
 	return time.Second * config.Timeout["download"]
 }
 
+// PingTimeout : The ping timeout.
+func PingTimeout() time.Duration {
+	return time.Second * config.Timeout["ping"]
+}
+
 // SearchTimeout : The search timeout.
 func SearchTimeout() time.Duration {
 	return time.Second * config.Timeout["search"]

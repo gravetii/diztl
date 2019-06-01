@@ -63,6 +63,7 @@ func (nk *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, er
 	conn, err := grpc.Dial(addr.Address(node), grpc.WithInsecure(),
 		grpc.WithBlock(), grpc.WithTimeout(conf.NodeConnectTimeout()))
 	if err != nil {
+		log.Printf("Could not connect to node %s: %v\n", node.GetIp(), err)
 		return nil, err
 	}
 

@@ -121,12 +121,24 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 	return results, nil
 }
 
+// Ping : ping another node to see if it's currently active.
+func (c *NodeClient) Ping(node *diztl.Node) (*diztl.PingResp, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), conf.PingTimeout())
+	defer cancel()
+	client, err := c.nk.GetConnection(node)
+	if err != nil {
+		return nil, err
+	}
+
+	req := diztl.PingReq{Source: c.node, Dest: node}
+	return client.Ping(ctx, &req)
+}
+
 func (c *NodeClient) download(r *pb.DownloadReq) (*os.File, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), conf.DownloadTimeout())
 	defer cancel()
 	client, err := c.nk.GetConnection(r.GetSource())
 	if err != nil {
-		log.Printf("Could not connect to node %s: %v\n", r.GetSource().GetIp(), err)
 		return nil, err
 	}
 

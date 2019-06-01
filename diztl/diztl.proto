@@ -5,6 +5,8 @@ service DiztlService {
     }
     rpc Upload (DownloadReq) returns (stream FileChunk) {
     }
+    rpc Ping (PingReq) returns (PingResp) {
+    }
 }
 
 service TrackerService {
@@ -80,5 +82,14 @@ message DisconnectReq {
 }
 
 message DisconnectResp {
+    string message = 1;
+}
+
+message PingReq {
+    Node source = 1;
+    Node dest = 2;
+}
+
+message PingResp {
     string message = 1;
 }
