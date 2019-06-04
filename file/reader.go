@@ -58,3 +58,8 @@ func (obj *Reader) Read() ([]byte, error) {
 func (obj *Reader) Chunk() int32 {
 	return obj.c.Value()
 }
+
+// Close closes the underlying file opened by this reader.
+func (obj *Reader) Close() {
+	obj.f.Close()
+}
