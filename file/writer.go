@@ -2,6 +2,8 @@ package file
 
 import (
 	"bufio"
+	"bytes"
+	"errors"
 	"log"
 	"os"
 
@@ -16,10 +18,24 @@ type Writer struct {
 	f        *os.File
 }
 
-// Close closes the resources held by this writer and returns the created file.
-func (obj *Writer) Close() *os.File {
+// Close closes the resources held by this writer and returns the created file after verifying checksum.
+func (obj *Writer) Close() (*os.File, error) {
 	obj.f.Close()
-	return obj.f
+	if !obj.verifyChecksum() {
+		return obj.f, errors.New("Invalid checksum, file is probably corrupted")
+	}
+
+	return obj.f, nil
+}
+
+func (obj *Writer) verifyChecksum() bool {
+	hash, err := Hash(obj.f.Name())
+	if err != nil {
+		log.Printf("Unable to checksum file %s. File is probably corrupted.\n", obj.f.Name())
+		return false
+	}
+
+	return bytes.Equal(obj.metadata.Hash, hash)
 }
 
 // CreateWriter returns an instance of the Writer for the given file metadata.
