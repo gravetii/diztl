@@ -1,16 +1,15 @@
 package indexer
 
 import (
-	"crypto/sha1"
 	"errors"
 	"fmt"
-	"io"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/gravetii/diztl/conf"
+	"github.com/gravetii/diztl/file"
 
 	"github.com/gravetii/diztl/dir"
 
@@ -42,25 +41,8 @@ func NewTreeIndex() *TreeIndex {
 	return t
 }
 
-func hashFile(path string) ([]byte, error) {
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-
-	defer file.Close()
-
-	hash := sha1.New()
-	if _, err = io.Copy(hash, file); err != nil {
-		return nil, err
-	}
-
-	result := hash.Sum(nil)
-	return result, nil
-}
-
 func (t *TreeIndex) addFile(path string, info os.FileInfo) {
-	hash, err := hashFile(path)
+	hash, err := file.Hash(path)
 	if err != nil {
 		log.Printf("Error while creating hash, not adding file %s - %v\n", path, err)
 		return
@@ -74,7 +56,7 @@ func (t *TreeIndex) addFile(path string, info os.FileInfo) {
 		parent = t.addPath(fpath, token, parent, info, hash, n != len(tokens)-1)
 	}
 
-	log.Printf("Added %d. %s\n", t.counter.Value(), path)
+	log.Printf("Added %d. %s, %x\n", t.counter.Value(), path, hash)
 }
 
 func (t *TreeIndex) addPath(path string, token string, parent *TreeNode, info os.FileInfo, hash []byte, isDir bool) *TreeNode {

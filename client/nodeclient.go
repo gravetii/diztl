@@ -146,17 +146,22 @@ func (c *NodeClient) download(r *pb.DownloadReq) (*os.File, error) {
 	var w *file.Writer
 
 	for {
-		f, err := stream.Recv()
+		fc, err := stream.Recv()
 		if err != nil {
 			if err == io.EOF {
-				return w.Close(), nil
+				f, serr := w.Close()
+				if serr != nil {
+					return nil, serr
+				}
+
+				return f, nil
 			}
 
 			return nil, err
 		}
 
-		if f.GetChunk() == 1 {
-			w, err = file.CreateWriter(f.GetMetadata())
+		if fc.GetChunk() == 1 {
+			w, err = file.CreateWriter(fc.GetMetadata())
 			if err != nil {
 				return nil, err
 			}
@@ -164,11 +169,11 @@ func (c *NodeClient) download(r *pb.DownloadReq) (*os.File, error) {
 			log.Printf("Downloading file: %s. Prepared to receive %d chunks.\n", w.Name(), w.Chunks())
 		}
 
-		if err := w.Write(f.GetData()); err != nil {
+		if err := w.Write(fc.GetData()); err != nil {
 			return nil, err
 		}
 
-		logProg(f.GetChunk(), w.Chunks())
+		logProg(fc.GetChunk(), w.Chunks())
 	}
 }
 
