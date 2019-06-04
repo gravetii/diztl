@@ -36,6 +36,8 @@ message FileMetadata {
     int32 chunks = 4;
     // Name of the file.
     string name = 5;
+    // Hash of the file's content
+    bytes hash = 6;
 }
 
 message FileChunk {

@@ -37,7 +37,7 @@ func (nk *NodeKeeper) Register(node *diztl.Node) {
 	if nk.invalidateIfExists(node) {
 		log.Printf("Stale connection found for %s\n", node.GetIp())
 	}
-	uuid, _ := uuid.NewRandom()
+	uuid := uuid.New()
 	node.Id = uuid.String()
 	nk.Nodes[node.GetIp()] = node
 	log.Printf("Node successfully registered: %s, %s\n", node.GetIp(), node.GetId())

@@ -1,8 +1,10 @@
 package indexer
 
 import (
+	"crypto/sha1"
 	"errors"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -20,6 +22,7 @@ import (
 type TreeNode struct {
 	isDir    bool
 	path     string
+	hash     string
 	file     *diztl.FileMetadata
 	parent   *TreeNode
 	children map[string]*TreeNode
@@ -39,26 +42,49 @@ func NewTreeIndex() *TreeIndex {
 	return t
 }
 
+func hashFile(path string) ([]byte, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+
+	defer file.Close()
+
+	hash := sha1.New()
+	if _, err = io.Copy(hash, file); err != nil {
+		return nil, err
+	}
+
+	result := hash.Sum(nil)
+	return result, nil
+}
+
 func (t *TreeIndex) addFile(path string, info os.FileInfo) {
+	hash, err := hashFile(path)
+	if err != nil {
+		log.Printf("Error while creating hash, not adding file %s - %v\n", path, err)
+		return
+	}
+
 	tokens := dir.Split(path)
 	fpath := ""
 	parent := t.root
 	for n, token := range tokens {
 		fpath = filepath.Join(fpath, token)
-		parent = t.addPath(fpath, token, parent, info, n != len(tokens)-1)
+		parent = t.addPath(fpath, token, parent, info, hash, n != len(tokens)-1)
 	}
 
 	log.Printf("Added %d. %s\n", t.counter.Value(), path)
 }
 
-func (t *TreeIndex) addPath(path string, token string, parent *TreeNode, info os.FileInfo, isDir bool) *TreeNode {
+func (t *TreeIndex) addPath(path string, token string, parent *TreeNode, info os.FileInfo, hash []byte, isDir bool) *TreeNode {
 	var treenode TreeNode
 	if node, exists := parent.children[token]; exists {
 		treenode = *node
 	} else {
 		treenode = TreeNode{isDir: isDir, path: path, parent: parent, children: make(map[string]*TreeNode)}
 		if !isDir {
-			metadata := diztl.FileMetadata{Path: path, Id: t.counter.IncrBy1(), Size: info.Size(), Name: token}
+			metadata := diztl.FileMetadata{Path: path, Id: t.counter.IncrBy1(), Size: info.Size(), Name: token, Hash: hash}
 			treenode.file = &metadata
 		}
 
