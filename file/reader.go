@@ -45,12 +45,19 @@ func openFile(fpath string) (*os.File, error) {
 // Read : Reads a set of bytes from the underlying file and writes it to the array for transmission.
 func (obj *Reader) Read() ([]byte, error) {
 	p := make([]byte, conf.ChunkBufSize())
-	_, err := obj.buf.Read(p)
+	n, err := obj.buf.Read(p)
 	if err != nil {
 		return nil, err
 	}
 
 	obj.c.IncrBy1()
+
+	if n < len(p) {
+		res := make([]byte, n)
+		copy(res, p)
+		return res, nil
+	}
+
 	return p, nil
 }
 
