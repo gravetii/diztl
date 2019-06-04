@@ -1,5 +1,9 @@
-# <img src="diztl_icon.png" width="50" height="50" alt="Diztl Icon"> Diztl
-A peer-to-peer file discovery and sharing platform written in Go!
+<p align="center">
+<img src="diztl_icon.png" width="650" height="600" alt="Diztl Icon" />
+</p>
+
+# DIZTL
+A peer-to-peer file discovery and sharing tool for LANs written in Go!
 
 ## Getting started
 ```go get -u github.com/gravetii/diztl```
@@ -37,7 +41,7 @@ For the formats of different request-response structures, take a look at the `di
 - fsnotify: The project makes use of [fsnotify](https://github.com/fsnotify/fsnotify) to detect file-system changes and indexes them dynamically, thus making them avaiable for search across the entire network in real-time.
 
 
-Edit [May 30, 2019]: Watching on file-system changes is currently disabled through config because of [this](https://github.com/gravetii/diztl/issues/7) issue. This means new files added to shared folders aren't immediately available to other peers without node restart.
+Edit [May 30, 2019]: Watching on file-system changes is currently disabled through config because of [this](https://github.com/gravetii/diztl/issues/7) issue. This means new files added to shared folders aren't immediately available for discovery to other peers without node restart.
 
 ## Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to the project.
