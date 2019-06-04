@@ -18,7 +18,6 @@ type Writer struct {
 
 // Close : Closes the resources held by this writer and returns the created file.
 func (obj *Writer) Close() *os.File {
-	obj.buf.Flush()
 	obj.f.Close()
 	return obj.f
 }
