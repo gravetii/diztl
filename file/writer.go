@@ -31,7 +31,7 @@ func (obj *Writer) Close() (*os.File, error) {
 func (obj *Writer) verifyChecksum() bool {
 	hash, err := Hash(obj.f.Name())
 	if err != nil {
-		log.Printf("Unable to checksum file %s. File is probably corrupted.\n", obj.f.Name())
+		log.Printf("Unable to verify checksum for file %s. File is probably corrupted.\n", obj.f.Name())
 		return false
 	}
 
