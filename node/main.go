@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net"
 
@@ -24,6 +25,7 @@ func main() {
 	node.Init()
 	client.Init()
 	log.Println("Started node server...")
+	fmt.Println("You are now online!")
 	serr := s.Serve(lis)
 	if serr != nil {
 		log.Fatalf("Failed to serve: %v", err)
