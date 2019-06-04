@@ -73,6 +73,7 @@ func (s *NodeService) Upload(request *diztl.DownloadReq, stream diztl.DiztlServi
 		data, err := r.Read()
 		if err != nil {
 			if err == io.EOF {
+				r.Close()
 				log.Printf("Finished uploading file: %s\n", metadata.GetPath())
 				break
 			}
