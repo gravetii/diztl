@@ -37,7 +37,8 @@ func (s *NodeService) Init() {
 	log.Println("Initialising node service...")
 
 	// Ensure that necessary folders are created
-	dir.Ensure()
+	dir.EnsureShareDirs()
+	dir.EnsureOutputDir()
 
 	if err := s.Indexer.Index(); err != nil {
 		log.Fatalf("Error while indexing files: %v", err)
