@@ -13,16 +13,16 @@ func GetOutputPath(filename string) string {
 	return filepath.Join(conf.OutputDir(), filename)
 }
 
-// Ensure : Checks if the required directories are created, creating them if not.
-func Ensure() {
-	ensureDirs(conf.ShareDirs())
-	ensureDir(conf.OutputDir())
-}
-
-func ensureDirs(dirs []string) {
-	for _, dir := range dirs {
+// EnsureShareDirs ensures that user-configured share directories are created.
+func EnsureShareDirs() {
+	for _, dir := range conf.ShareDirs() {
 		ensureDir(dir)
 	}
+}
+
+// EnsureOutputDir ensures that the user-configured output directory is created.
+func EnsureOutputDir() {
+	ensureDir(conf.OutputDir())
 }
 
 func ensureDir(dir string) {
