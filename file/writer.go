@@ -29,15 +29,16 @@ func (obj *Writer) Close() (*os.File, error) {
 }
 
 func (obj *Writer) verifyChecksum() bool {
+	c := obj.metadata.Hash.Checksum
 	hash, err := Hash(obj.f.Name())
 	if err != nil {
-		log.Printf("Unable to verify checksum for file %s. File is probably corrupted.\n", obj.f.Name())
+		log.Printf("Unable to verify checksum for file %s. File is probably corrupted.\n: %v", obj.f.Name(), err)
 		return false
 	}
 
-	log.Printf("Original checksum: %x", obj.metadata.Hash)
-	log.Printf("Downloaded checksum: %x", hash)
-	return bytes.Equal(obj.metadata.Hash, hash)
+	log.Printf("Original checksum: %x", c)
+	log.Printf("Downloaded checksum: %x", hash.Checksum)
+	return bytes.Equal(c, hash.Checksum)
 }
 
 // CreateWriter returns an instance of the Writer for the given file metadata.

@@ -4,10 +4,13 @@ import (
 	"crypto/sha1"
 	"io"
 	"os"
+	"time"
+
+	"github.com/gravetii/diztl/diztl"
 )
 
 // Hash performs an SHA1 hash of the file present at the given path.
-func Hash(path string) ([]byte, error) {
+func Hash(path string) (*diztl.FileHash, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -20,6 +23,7 @@ func Hash(path string) ([]byte, error) {
 		return nil, err
 	}
 
-	result := hash.Sum(nil)
+	checksum := hash.Sum(nil)
+	result := &diztl.FileHash{Checksum: checksum, Ts: time.Now().Unix()}
 	return result, nil
 }

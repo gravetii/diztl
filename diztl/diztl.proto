@@ -36,8 +36,15 @@ message FileMetadata {
     int32 chunks = 4;
     // Name of the file.
     string name = 5;
-    // Hash of the file's content
-    bytes hash = 6;
+    // The hash data of the file.
+    FileHash hash = 6;
+}
+
+message FileHash {
+    // The checksum of the file.
+    bytes checksum = 1;
+    // The timestamp at which the file's checksum was calculated.
+    int64 ts = 2;
 }
 
 message FileChunk {
