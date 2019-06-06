@@ -35,6 +35,8 @@ func (obj *Writer) verifyChecksum() bool {
 		return false
 	}
 
+	log.Printf("Original checksum: %x", obj.metadata.Hash)
+	log.Printf("Downloaded checksum: %x", hash)
 	return bytes.Equal(obj.metadata.Hash, hash)
 }
 
