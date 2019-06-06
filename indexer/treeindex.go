@@ -21,7 +21,6 @@ import (
 type TreeNode struct {
 	isDir    bool
 	path     string
-	hash     string
 	file     *diztl.FileMetadata
 	parent   *TreeNode
 	children map[string]*TreeNode
@@ -56,10 +55,12 @@ func (t *TreeIndex) addFile(path string, info os.FileInfo) {
 		parent = t.addPath(fpath, token, parent, info, hash, n != len(tokens)-1)
 	}
 
-	log.Printf("Added %d. %s, %x\n", t.counter.Value(), path, hash)
+	log.Printf("Added %d. %s, %x\n", t.counter.Value(), path, hash.Checksum)
 }
 
-func (t *TreeIndex) addPath(path string, token string, parent *TreeNode, info os.FileInfo, hash []byte, isDir bool) *TreeNode {
+func (t *TreeIndex) addPath(path string, token string, parent *TreeNode,
+	info os.FileInfo, hash *diztl.FileHash, isDir bool) *TreeNode {
+
 	var treenode TreeNode
 	if node, exists := parent.children[token]; exists {
 		treenode = *node
