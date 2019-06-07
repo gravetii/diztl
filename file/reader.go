@@ -5,26 +5,32 @@ import (
 	"log"
 	"os"
 
-	"github.com/gravetii/diztl/conf"
+	"github.com/gravetii/diztl/diztl"
+
 	"github.com/gravetii/diztl/counter"
 )
 
 // Reader : The file reader.
 type Reader struct {
-	buf *bufio.Reader
-	f   *os.File
-	c   *counter.Counter
+	buf      *bufio.Reader
+	metadata *diztl.FileMetadata
+	contract *diztl.DownloadContract
+	file     *os.File
+	chunk    *counter.Counter
 }
 
-// CreateReader : Returns an instance of the Reader for the given file path.
-func CreateReader(fpath string) (*Reader, error) {
-	f, err := openFile(fpath)
+// CreateReader returns an instance of the Reader for the given file metadata and download contract.
+func CreateReader(metadata *diztl.FileMetadata, contract *diztl.DownloadContract) (*Reader, error) {
+	file, err := openFile(metadata.GetPath())
 	if err != nil {
 		return nil, err
 	}
 
-	buf := bufio.NewReader(f)
-	return &Reader{buf, f, counter.New(0)}, nil
+	chunks := int32(metadata.GetSize() / int64(contract.GetChunkSize()))
+	metadata.Chunks = chunks
+	buf := bufio.NewReader(file)
+	reader := Reader{buf, metadata, contract, file, counter.New(0)}
+	return &reader, nil
 }
 
 func openFile(fpath string) (*os.File, error) {
@@ -42,15 +48,30 @@ func openFile(fpath string) (*os.File, error) {
 	return f, nil
 }
 
-// Read : Reads a set of bytes from the underlying file and writes it to the array for transmission.
-func (obj *Reader) Read() ([]byte, error) {
-	p := make([]byte, conf.ChunkSize())
-	n, err := obj.buf.Read(p)
+// Read reads the next chunk of data from the source buffer and returns it for
+// transmission to the receiver node.
+func (r *Reader) Read() (*diztl.FileChunk, error) {
+	data, err := r.read()
 	if err != nil {
 		return nil, err
 	}
 
-	obj.c.IncrBy1()
+	c := r.chunk.IncrBy1()
+	fchunk := diztl.FileChunk{Chunk: c, Data: data}
+	if c == 1 {
+		fchunk.Metadata = r.metadata
+	}
+
+	return &fchunk, nil
+}
+
+func (r *Reader) read() ([]byte, error) {
+	chunkSize := r.contract.GetChunkSize()
+	p := make([]byte, chunkSize)
+	n, err := r.buf.Read(p)
+	if err != nil {
+		return nil, err
+	}
 
 	if n < len(p) {
 		res := make([]byte, n)
@@ -61,12 +82,7 @@ func (obj *Reader) Read() ([]byte, error) {
 	return p, nil
 }
 
-// Chunk : Returns the number of chunks read from the file at any point in time.
-func (obj *Reader) Chunk() int32 {
-	return obj.c.Value()
-}
-
 // Close closes the underlying file opened by this reader.
-func (obj *Reader) Close() {
-	obj.f.Close()
+func (r *Reader) Close() {
+	r.file.Close()
 }
