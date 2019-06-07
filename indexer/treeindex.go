@@ -113,25 +113,19 @@ func (t *TreeIndex) validate() error {
 }
 
 func (t *TreeIndex) search(pattern string) []*diztl.FileMetadata {
-	result := []*diztl.FileMetadata{}
-	files := traverse(t.root)
-	for _, f := range files {
-		path := f.GetPath()
-		if strings.Contains(strings.ToLower(path), strings.ToLower(pattern)) {
-			result = append(result, f)
-		}
-	}
-
-	return result
+	return traverse(t.root, pattern)
 }
 
-func traverse(root *TreeNode) []*diztl.FileMetadata {
+func traverse(root *TreeNode, pattern string) []*diztl.FileMetadata {
 	res := []*diztl.FileMetadata{}
 	for _, treenode := range root.children {
 		if !treenode.isDir {
-			res = append(res, treenode.file)
+			path := treenode.file.GetPath()
+			if strings.Contains(strings.ToLower(path), strings.ToLower(pattern)) {
+				res = append(res, treenode.file)
+			}
 		} else {
-			res = append(res, traverse(treenode)...)
+			res = append(res, traverse(treenode, pattern)...)
 		}
 	}
 
