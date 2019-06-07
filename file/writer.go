@@ -33,7 +33,8 @@ func (obj *Writer) verifyChecksum() bool {
 	c := obj.metadata.Hash.Checksum
 	hash, err := Hash(obj.f.Name())
 	if err != nil {
-		log.Printf("Unable to verify checksum for file %s. File is probably corrupted.\n: %v", obj.f.Name(), err)
+		log.Printf("Unable to verify checksum for file %s. File is probably corrupted.: %v\n",
+			obj.f.Name(), err)
 		return false
 	}
 
