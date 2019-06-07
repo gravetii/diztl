@@ -84,7 +84,7 @@ func (s *NodeService) Upload(request *diztl.DownloadReq, stream diztl.DiztlServi
 
 		fchunk := diztl.FileChunk{Chunk: r.Chunk(), Data: data}
 		if r.Chunk() == 1 {
-			chunks := int32(metadata.GetSize() / int64(conf.ChunkBufSize()))
+			chunks := int32(metadata.GetSize() / int64(conf.ChunkSize()))
 			metadata.Chunks = chunks
 			log.Printf("Uploading file: %s\n", metadata.GetPath())
 			fchunk.Metadata = metadata

@@ -79,6 +79,10 @@ message SearchResp {
     Node node = 2;
 }
 
+message DownloadContract {
+    
+}
+
 message DownloadReq {
     // The node from which the requester node wants to download a file of interest.
     Node source = 1;
