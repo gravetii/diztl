@@ -26,7 +26,7 @@ type conf struct {
 	MinIndexFiles int32                    `yaml:"minIndexFiles"`
 	Dir           dir                      `yaml:"dir"`
 	Timeout       map[string]time.Duration `yaml:"timeout"`
-	ChunkBufSize  int32                    `yaml:"chunkBufSize"`
+	ChunkSize     int32                    `yaml:"chunkSize"`
 	UseWatcher    bool                     `yaml:"useWatcher"`
 }
 
@@ -123,9 +123,9 @@ func NodeConnectTimeout() time.Duration {
 	return time.Second * config.Timeout["nodeConnect"]
 }
 
-// ChunkBufSize : The size of each chunk of a file.
-func ChunkBufSize() int32 {
-	return config.ChunkBufSize
+// ChunkSize : The size of each chunk of a file.
+func ChunkSize() int32 {
+	return config.ChunkSize
 }
 
 // UseWatcher : Boolean flag that determines if we should use the file-watcher to watch for new/deleted files

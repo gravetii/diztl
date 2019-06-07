@@ -23,7 +23,7 @@ timeout:
   nodeConnect: 5
   ping: 2
 
-chunkBufSize: 524288 #1024*512
+chunkSize: 524288 #1024*512
 
 useWatcher: false
 
