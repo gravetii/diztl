@@ -80,7 +80,11 @@ message SearchResp {
 }
 
 message DownloadContract {
-    
+    // The file chunk size which the receiver node specifies while sending a
+    // download request to the sender node. The sender node has to honour this value
+    // and create chunks of this size when it uploads the file to the receiver to
+    // not overwhelm it when it processes the downloaded chunks.
+    int32 chunkSize = 1;
 }
 
 message DownloadReq {
@@ -88,6 +92,8 @@ message DownloadReq {
     Node source = 1;
     // The metadata of the file to be downloaded.
     FileMetadata metadata = 2;
+    // The download contract that the receiver node wants to let the sender node know.
+    DownloadContract contract = 3;
 }
 
 message DisconnectReq {

@@ -6,6 +6,8 @@ import (
 	"log"
 	"os"
 
+	"github.com/gravetii/diztl/conf"
+
 	pb "github.com/gravetii/diztl/diztl"
 )
 
@@ -52,8 +54,9 @@ func input(r *bufio.Scanner) (string, bool) {
 
 func download(res []*searchResult) {
 	for _, r := range res {
-		req := &pb.DownloadReq{Source: r.node, Metadata: r.file}
-		f, err := nodeclient.download(req)
+		c := pb.DownloadContract{ChunkSize: conf.ChunkSize()}
+		req := pb.DownloadReq{Source: r.node, Metadata: r.file, Contract: &c}
+		f, err := nodeclient.download(&req)
 		if err != nil {
 			log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
 		} else {
