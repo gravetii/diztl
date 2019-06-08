@@ -13,6 +13,13 @@ func GetOutputPath(filename string) string {
 	return filepath.Join(conf.OutputDir(), filename)
 }
 
+// GetTempPath returns the path to the file in the system's temp directory.
+// This is where the file is first created on the receiver node when download
+// is initiated and is later moved to the output folder when download completes.
+func GetTempPath(filename string) string {
+	return filepath.Join(os.TempDir(), filename)
+}
+
 // EnsureShareDirs ensures that user-configured share directories are created.
 func EnsureShareDirs() {
 	for _, dir := range conf.ShareDirs() {
