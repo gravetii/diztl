@@ -72,7 +72,6 @@ func OutputDir() string {
 		config.Dir.Output = dir
 	}
 
-	log.Printf("Output dir: %s", dir)
 	return dir
 }
 

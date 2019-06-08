@@ -6,6 +6,7 @@ import (
 	"errors"
 	"log"
 	"os"
+	"path"
 
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
@@ -26,7 +27,23 @@ func (obj *Writer) Close() (*os.File, error) {
 		return obj.f, errors.New("Invalid checksum, file is probably corrupted")
 	}
 
-	return obj.f, nil
+	return obj.moveToOutputDir()
+}
+
+func (obj *Writer) moveToOutputDir() (*os.File, error) {
+	fname := path.Base(obj.f.Name())
+	dir.EnsureOutputDir()
+	fpath := dir.GetOutputPath(fname)
+	if err := os.Rename(obj.f.Name(), fpath); err != nil {
+		return nil, err
+	}
+
+	f, err := openFile(fpath)
+	if err != nil {
+		return nil, err
+	}
+
+	return f, nil
 }
 
 func (obj *Writer) verifyChecksum() bool {
@@ -38,8 +55,6 @@ func (obj *Writer) verifyChecksum() bool {
 		return false
 	}
 
-	log.Printf("Original checksum: %x", c)
-	log.Printf("Downloaded checksum: %x", hash.Checksum)
 	return bytes.Equal(c, hash.Checksum)
 }
 
@@ -55,8 +70,7 @@ func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
 }
 
 func createFile(fname string) (*os.File, error) {
-	fpath := dir.GetOutputPath(fname)
-	dir.EnsureOutputDir()
+	fpath := dir.GetTempPath(fname)
 	f, err := os.Create(fpath)
 	if err != nil {
 		log.Printf("Unable to create file %s: %v\n", fpath, err)
