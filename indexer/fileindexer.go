@@ -10,7 +10,7 @@ import (
 	"github.com/gravetii/diztl/diztl"
 )
 
-// FileIndexer : The struct type that represents a file indexer on a node which indexes all the shared files.
+// FileIndexer is the struct type that represents a file indexer on a node which indexes all the shared files.
 type FileIndexer struct {
 	index   *TreeIndex
 	watcher *fsnotify.Watcher
@@ -29,7 +29,8 @@ func NewFileIndexer() (*FileIndexer, error) {
 	return &f, nil
 }
 
-// Index : Indexes all the files in the given directory thus making them available for discovery by peers.
+// Index indexes all the files in the user-configured shared folders,
+// making them available for discovery by peers.
 func (f *FileIndexer) Index() error {
 	log.Println("Started file indexing process.")
 	if err := f.dirwalk(); err != nil {
@@ -44,7 +45,7 @@ func (f *FileIndexer) Index() error {
 	return nil
 }
 
-// Close : Closes any resources held by this file-indexer.
+// Close closes any resources held by this file indexer.
 func (f *FileIndexer) Close() error {
 	return f.watcher.Close()
 }
@@ -103,7 +104,7 @@ func (f *FileIndexer) filewalk(dir string) error {
 	return f.index.validate()
 }
 
-// Search : Searches for a given pattern in the names of the indexed files and returns those files.
+// Search searches for a given pattern in the names of the indexed files and returns files that match.
 func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
 	return f.index.search(pattern)
 }

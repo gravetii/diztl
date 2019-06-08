@@ -16,7 +16,6 @@ import (
 	"github.com/gravetii/diztl/keeper"
 
 	"github.com/gravetii/diztl/diztl"
-	pb "github.com/gravetii/diztl/diztl"
 	"google.golang.org/grpc"
 )
 
@@ -41,7 +40,7 @@ func (c *NodeClient) connectToTracker() {
 }
 
 func (c *NodeClient) tracker() diztl.TrackerServiceClient {
-	return pb.NewTrackerServiceClient(c.trackerConn)
+	return diztl.NewTrackerServiceClient(c.trackerConn)
 }
 
 // Init : Initialises the NodeClient.
@@ -93,7 +92,7 @@ func (c *NodeClient) disconnect() {
 	fmt.Println("\nBye!")
 }
 
-// Search : Search for files on the network that have names with the given pattern.
+// Search searches for files on the network that have names with the given pattern.
 func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 	results := []*diztl.SearchResp{}
 	log.Printf("Searching for pattern: %s\n", pattern)
@@ -121,7 +120,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 	return results, nil
 }
 
-// Ping : ping another node to see if it's currently active.
+// Ping pings another node to see if it's currently active.
 func (c *NodeClient) Ping(node *diztl.Node) (*diztl.PingResp, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), conf.PingTimeout())
 	defer cancel()
@@ -134,7 +133,7 @@ func (c *NodeClient) Ping(node *diztl.Node) (*diztl.PingResp, error) {
 	return client.Ping(ctx, &req)
 }
 
-func (c *NodeClient) download(r *pb.DownloadReq) (*os.File, error) {
+func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), conf.DownloadTimeout())
 	defer cancel()
 	client, err := c.nk.GetConnection(r.GetSource())

@@ -8,10 +8,10 @@ import (
 
 	"github.com/gravetii/diztl/conf"
 
-	pb "github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/diztl"
 )
 
-// UserCLI : Starts a for{} to take user inputs for file search.
+// UserCLI starts a for{} to take user inputs for file search.
 func UserCLI() {
 	r := bufio.NewScanner(os.Stdin)
 	for {
@@ -54,8 +54,8 @@ func input(r *bufio.Scanner) (string, bool) {
 
 func download(res []*searchResult) {
 	for _, r := range res {
-		c := pb.DownloadContract{ChunkSize: conf.ChunkSize()}
-		req := pb.DownloadReq{Source: r.node, Metadata: r.file, Contract: &c}
+		c := diztl.DownloadContract{ChunkSize: conf.ChunkSize()}
+		req := diztl.DownloadReq{Source: r.node, Metadata: r.file, Contract: &c}
 		f, err := nodeclient.download(&req)
 		if err != nil {
 			log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
