@@ -10,7 +10,7 @@ import (
 	"github.com/gravetii/diztl/counter"
 )
 
-// Reader : The file reader.
+// Reader - The file reader object which reads chunks of data from the underlying buffer.
 type Reader struct {
 	buf      *bufio.Reader
 	metadata *diztl.FileMetadata

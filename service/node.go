@@ -14,12 +14,12 @@ import (
 	"github.com/gravetii/diztl/indexer"
 )
 
-// NodeService : Implements the node server interface definition.
+// NodeService implements the node server interface definition.
 type NodeService struct {
 	Indexer *indexer.FileIndexer
 }
 
-// NewNode : Returns an instance of the Node Service.
+// NewNode returns an instance of the Node Service.
 func NewNode() *NodeService {
 	f, err := indexer.NewFileIndexer()
 	if err != nil {
@@ -31,7 +31,7 @@ func NewNode() *NodeService {
 	return s
 }
 
-// Init : Performs the necessary initialisation when the service comes up for the first time.
+// Init performs the necessary initialisation when the service comes up for the first time.
 func (s *NodeService) Init() {
 	log.Println("Initialising node service...")
 
@@ -44,7 +44,7 @@ func (s *NodeService) Init() {
 	}
 }
 
-// OnShutdown : Actions to perform on shutdown.
+// OnShutdown defines actions to perform on node shutdown.
 func (s *NodeService) OnShutdown() {
 	if err := s.Indexer.Close(); err != nil {
 		log.Printf("Error while closing file watcher: %v\n", err)
@@ -53,7 +53,7 @@ func (s *NodeService) OnShutdown() {
 	}
 }
 
-// Search : The tracker invokes the search call when it broadcasts a search request from another node.
+// Search - The tracker invokes the search call on all the nodes when it broadcasts a search request from another node.
 func (s *NodeService) Search(ctx context.Context, request *diztl.SearchReq) (*diztl.SearchResp, error) {
 	log.Printf("Received search request: %v\n", request.GetSource())
 	files := s.Indexer.Search(request.GetFilename())
@@ -61,7 +61,7 @@ func (s *NodeService) Search(ctx context.Context, request *diztl.SearchReq) (*di
 	return &response, nil
 }
 
-// Upload : A requesting node invokes this call on this node asking it to upload the file of interest.
+// Upload - A requesting node invokes this call on this node asking it to upload the file of interest.
 func (s *NodeService) Upload(request *diztl.DownloadReq, stream diztl.DiztlService_UploadServer) error {
 	metadata := request.GetMetadata()
 	r, err := file.CreateReader(metadata, request.GetContract())
@@ -91,7 +91,7 @@ func (s *NodeService) Upload(request *diztl.DownloadReq, stream diztl.DiztlServi
 	return nil
 }
 
-// Ping : Any node can invoke this call on any node to see if it's currently active.
+// Ping - Any node can invoke this call on any node to see if it's currently active.
 func (s *NodeService) Ping(ctx context.Context, request *diztl.PingReq) (*diztl.PingResp, error) {
 	log.Printf("Received ping from %v\n", request.GetSource())
 	return &diztl.PingResp{Message: "online"}, nil
