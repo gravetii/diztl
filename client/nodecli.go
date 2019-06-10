@@ -40,7 +40,7 @@ func display(res []*searchResult) {
 
 func input(r *bufio.Scanner) (string, bool) {
 	fmt.Printf("\n\n***************  DIZTL  ***************\n\n")
-	fmt.Printf("Enter a pattern to search for. '*' to Exit - ")
+	fmt.Printf("Enter a pattern to search for. '*' to Exit - \n")
 	r.Scan()
 	pattern := r.Text()
 
@@ -59,7 +59,7 @@ func download(res []*searchResult) {
 		f, err := nodeclient.download(&req)
 		defer f.Close()
 		if err != nil {
-			log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
+			log.Printf("Error while downloading file %s: %v\n", f.Name(), err)
 		} else {
 			log.Printf("Finished downloading file: %s\n", f.Name())
 		}
