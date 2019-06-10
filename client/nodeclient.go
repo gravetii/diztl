@@ -171,20 +171,5 @@ func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
 		if err := w.Write(fc.GetData()); err != nil {
 			return nil, err
 		}
-
-		logProg(fc.GetChunk(), w.Chunks())
-	}
-}
-
-func logProg(chunk int32, chunks int32) {
-	if chunk == chunks {
-		fmt.Println("..")
-	} else {
-		c := chunks / 10
-		if c != 0 {
-			if chunk%c == 0 {
-				fmt.Print("..")
-			}
-		}
 	}
 }
