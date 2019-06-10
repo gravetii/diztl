@@ -165,7 +165,7 @@ func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
 				return nil, err
 			}
 
-			log.Printf("Downloading file: %s. Prepared to receive %d chunks.\n", w.Name(), w.Chunks())
+			log.Printf("Downloading file: %s. Prepared to receive %d chunks.\n", fc.GetMetadata().GetName(), w.Chunks())
 		}
 
 		if err := w.Write(fc.GetData()); err != nil {

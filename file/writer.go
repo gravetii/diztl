@@ -4,9 +4,12 @@ import (
 	"bufio"
 	"bytes"
 	"errors"
+	"io"
 	"log"
 	"os"
 	"path"
+
+	"gopkg.in/cheggaaa/pb.v1"
 
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
@@ -16,13 +19,31 @@ import (
 type Writer struct {
 	metadata *diztl.FileMetadata
 	buf      *bufio.Writer
+	pbar     *pb.ProgressBar
 	f        *os.File
+	out      io.Writer
+}
+
+// CreateWriter returns an instance of the Writer for the given file metadata.
+func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
+	f, err := createFile(metadata.GetName())
+	if err != nil {
+		return nil, err
+	}
+
+	buf := bufio.NewWriter(f)
+	pbar := pb.New64(metadata.GetSize()).SetUnits(pb.U_BYTES_DEC).SetWidth(100)
+	pbar.ManualUpdate = true
+	pbar.Start()
+	out := io.MultiWriter(buf, pbar)
+	return &Writer{metadata, buf, pbar, f, out}, nil
 }
 
 // Close closes the resources held by this writer and returns the created file after verifying checksum.
 func (obj *Writer) Close() (*os.File, error) {
 	obj.buf.Flush()
 	obj.f.Close()
+	obj.pbar.Finish()
 	if !obj.verifyChecksum() {
 		return obj.f, errors.New("Invalid checksum, file is probably corrupted")
 	}
@@ -58,17 +79,6 @@ func (obj *Writer) verifyChecksum() bool {
 	return bytes.Equal(c, hash.Checksum)
 }
 
-// CreateWriter returns an instance of the Writer for the given file metadata.
-func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
-	f, err := createFile(metadata.GetName())
-	if err != nil {
-		return nil, err
-	}
-
-	buf := bufio.NewWriter(f)
-	return &Writer{metadata, buf, f}, nil
-}
-
 func createFile(fname string) (*os.File, error) {
 	fpath := dir.GetTempPath(fname)
 	f, err := os.Create(fpath)
@@ -82,13 +92,9 @@ func createFile(fname string) (*os.File, error) {
 
 // Write writes the given set of bytes to the underlying buffer.
 func (obj *Writer) Write(data []byte) error {
-	_, err := obj.buf.Write(data)
+	_, err := obj.out.Write(data)
+	obj.pbar.Update()
 	return err
-}
-
-// Name returns the name of the file that will be created by this file writer.
-func (obj *Writer) Name() string {
-	return obj.f.Name()
 }
 
 // Chunks returns the total number of chunks that need to be written to create the file.
