@@ -18,10 +18,14 @@ import (
 // Writer - the file writer.
 type Writer struct {
 	metadata *diztl.FileMetadata
-	buf      *bufio.Writer
-	pbar     *pb.ProgressBar
 	f        *os.File
-	out      io.Writer
+	o        *out
+}
+
+type out struct {
+	buf     *bufio.Writer
+	pbar    *pb.ProgressBar
+	mwriter io.Writer
 }
 
 // CreateWriter returns an instance of the Writer for the given file metadata.
@@ -31,19 +35,29 @@ func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
 		return nil, err
 	}
 
+	o := createOut(f, metadata)
+	return &Writer{metadata, f, o}, nil
+}
+
+func createOut(f *os.File, metadata *diztl.FileMetadata) *out {
 	buf := bufio.NewWriter(f)
 	pbar := pb.New64(metadata.GetSize()).SetUnits(pb.U_BYTES_DEC).SetWidth(100)
 	pbar.ManualUpdate = true
 	pbar.Start()
-	out := io.MultiWriter(buf, pbar)
-	return &Writer{metadata, buf, pbar, f, out}, nil
+	mwriter := io.MultiWriter(buf, pbar)
+	o := out{buf, pbar, mwriter}
+	return &o
+}
+
+func (o *out) close() {
+	o.buf.Flush()
+	o.pbar.Finish()
 }
 
 // Close closes the resources held by this writer and returns the created file after verifying checksum.
 func (obj *Writer) Close() (*os.File, error) {
-	obj.buf.Flush()
+	obj.o.close()
 	obj.f.Close()
-	obj.pbar.Finish()
 	if !obj.verifyChecksum() {
 		return obj.f, errors.New("Invalid checksum, file is probably corrupted")
 	}
@@ -90,11 +104,15 @@ func createFile(fname string) (*os.File, error) {
 	return f, nil
 }
 
+func (o *out) write(data []byte) error {
+	_, err := o.mwriter.Write(data)
+	o.pbar.Update()
+	return err
+}
+
 // Write writes the given set of bytes to the underlying buffer.
 func (obj *Writer) Write(data []byte) error {
-	_, err := obj.out.Write(data)
-	obj.pbar.Update()
-	return err
+	return obj.o.write(data)
 }
 
 // Chunks returns the total number of chunks that need to be written to create the file.
