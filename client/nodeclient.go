@@ -43,7 +43,7 @@ func (c *NodeClient) tracker() diztl.TrackerServiceClient {
 	return diztl.NewTrackerServiceClient(c.trackerConn)
 }
 
-// Init : Initialises the NodeClient.
+// Init initialises the NodeClient.
 func Init() {
 	log.Println("Initialising nodeclient...")
 	nk := keeper.New()
@@ -52,7 +52,11 @@ func Init() {
 	nodeclient.register()
 	log.Println("Finished initialising nodeclient.")
 	shutdown.Listen(nodeclient)
-	go UserCLI()
+}
+
+// StartCLI starts the input loop to take user requests.
+func StartCLI() {
+	go userCLI()
 }
 
 // OnShutdown : Actions to perform on shutdown.

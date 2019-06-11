@@ -9,6 +9,7 @@ node:
 
 minIndexFiles: 5
 
+# Add paths to directories here to configure sharing and output folders.
 # dir:
 #   share:
 #     - 
@@ -26,5 +27,8 @@ timeout:
 chunkSize: 524288 #1024*512
 
 useWatcher: false
+
+# Check the available list of fonts here: https://github.com/gravetii/go-figure/tree/master/fonts.
+bannerFont: "starwars"
 
 
