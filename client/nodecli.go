@@ -11,8 +11,7 @@ import (
 	"github.com/gravetii/diztl/diztl"
 )
 
-// UserCLI starts a for{} to take user inputs for file search.
-func UserCLI() {
+func userCLI() {
 	r := bufio.NewScanner(os.Stdin)
 	for {
 		in, ok := input(r)
@@ -39,8 +38,7 @@ func display(res []*searchResult) {
 }
 
 func input(r *bufio.Scanner) (string, bool) {
-	fmt.Printf("\n\n***************  DIZTL  ***************\n\n")
-	fmt.Printf("Enter a pattern to search for. '*' to Exit - \n")
+	fmt.Printf("Enter a pattern to search for. '*' to Exit - ")
 	r.Scan()
 	pattern := r.Text()
 
