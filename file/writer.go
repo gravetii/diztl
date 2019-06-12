@@ -30,13 +30,24 @@ type out struct {
 
 // CreateWriter returns an instance of the Writer for the given file metadata.
 func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
-	f, err := createFile(metadata.GetName())
+	if checkIfOutFileExists(metadata.GetName()) {
+		return nil, errors.New("file with given name already exists in output folder")
+	}
+
+	f, err := createTempFile(metadata.GetName())
 	if err != nil {
 		return nil, err
 	}
 
 	o := createOut(f, metadata)
 	return &Writer{metadata, f, o}, nil
+}
+
+// checks if a file with given name is already present before starting download.
+func checkIfOutFileExists(fname string) bool {
+	fpath := dir.GetOutputPath(fname)
+	_, err := os.Stat(fpath)
+	return !os.IsNotExist(err)
 }
 
 func createOut(f *os.File, metadata *diztl.FileMetadata) *out {
@@ -93,7 +104,7 @@ func (obj *Writer) verifyChecksum() bool {
 	return bytes.Equal(c, hash.Checksum)
 }
 
-func createFile(fname string) (*os.File, error) {
+func createTempFile(fname string) (*os.File, error) {
 	fpath := dir.GetTempPath(fname)
 	f, err := os.Create(fpath)
 	if err != nil {

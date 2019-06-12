@@ -55,11 +55,11 @@ func download(res []*searchResult) {
 		c := diztl.DownloadContract{ChunkSize: conf.ChunkSize()}
 		req := diztl.DownloadReq{Source: r.node, Metadata: r.file, Contract: &c}
 		f, err := nodeclient.download(&req)
-		defer f.Close()
 		if err != nil {
-			log.Printf("Error while downloading file %s: %v\n", f.Name(), err)
+			log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
 		} else {
 			log.Printf("Finished downloading file: %s\n", f.Name())
+			f.Close()
 		}
 	}
 }
