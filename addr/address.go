@@ -1,30 +1,34 @@
 package addr
 
 import (
-	"log"
 	"net"
 
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/logger"
 )
 
-var ip = findMyIP()
+var ip string
 
 func findMyIP() string {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
-		log.Fatalf("Could not fetch the host's IP: %v", err)
+		logger.Log.Fatalf("Could not fetch the host's IP: %v", err)
 	}
 
 	defer conn.Close()
 	addr := conn.LocalAddr().(*net.UDPAddr)
 	ip := addr.IP.String()
-	log.Printf("Got IP: %s\n", ip)
+	logger.Log.Printf("Got IP: %s\n", ip)
 	return ip
 }
 
-// GetMyIP : Returns the host's IP address.
+// GetMyIP returns the host's IP address.
 func GetMyIP() string {
+	if ip == "" {
+		ip = findMyIP()
+	}
+
 	return ip
 }
 

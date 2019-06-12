@@ -2,12 +2,12 @@ package file
 
 import (
 	"bufio"
-	"log"
 	"os"
 
 	"github.com/gravetii/diztl/diztl"
 
 	"github.com/gravetii/diztl/counter"
+	"github.com/gravetii/diztl/logger"
 )
 
 // Reader - The file reader object which reads chunks of data from the underlying buffer.
@@ -37,9 +37,9 @@ func openFile(fpath string) (*os.File, error) {
 	f, err := os.Open(fpath)
 	if err != nil {
 		if os.IsNotExist(err) {
-			log.Printf("Specified file %s does not exist: %v\n", fpath, err)
+			logger.Log.Printf("Specified file %s does not exist: %v\n", fpath, err)
 		} else {
-			log.Printf("Error while reading file %s to upload: %v\n", fpath, err)
+			logger.Log.Printf("Error while reading file %s to upload: %v\n", fpath, err)
 		}
 
 		return nil, err

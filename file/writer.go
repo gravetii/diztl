@@ -5,7 +5,6 @@ import (
 	"bytes"
 	"errors"
 	"io"
-	"log"
 	"os"
 	"path"
 
@@ -13,6 +12,7 @@ import (
 
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/logger"
 )
 
 // Writer - the file writer.
@@ -107,7 +107,7 @@ func createTempFile(fname string) (*os.File, error) {
 	fpath := dir.GetTempPath(fname)
 	f, err := os.Create(fpath)
 	if err != nil {
-		log.Printf("Unable to create file %s: %v\n", fpath, err)
+		logger.Log.Printf("Unable to create file %s: %v\n", fpath, err)
 		return nil, err
 	}
 

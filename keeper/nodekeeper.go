@@ -1,7 +1,6 @@
 package keeper
 
 import (
-	"log"
 	"sync"
 
 	"github.com/google/uuid"
@@ -11,6 +10,7 @@ import (
 	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/logger"
 	"google.golang.org/grpc"
 )
 
@@ -35,12 +35,12 @@ func (nk *NodeKeeper) Register(node *diztl.Node) {
 	nk.mux.Lock()
 	defer nk.mux.Unlock()
 	if nk.invalidateIfExists(node) {
-		log.Printf("Stale connection found for %s\n", node.GetIp())
+		logger.Log.Printf("Stale connection found for %s\n", node.GetIp())
 	}
 	uuid := uuid.New()
 	node.Id = uuid.String()
 	nk.Nodes[node.GetIp()] = node
-	log.Printf("Node successfully registered: %s, %s\n", node.GetIp(), node.GetId())
+	logger.Log.Printf("Node successfully registered: %s, %s\n", node.GetIp(), node.GetId())
 }
 
 func (nk *NodeKeeper) invalidateIfExists(node *diztl.Node) bool {
@@ -63,11 +63,11 @@ func (nk *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, er
 	conn, err := grpc.Dial(addr.Address(node), grpc.WithInsecure(),
 		grpc.WithBlock(), grpc.WithTimeout(conf.NodeConnectTimeout()))
 	if err != nil {
-		log.Printf("Could not connect to node %s: %v\n", node.GetIp(), err)
+		logger.Log.Printf("Could not connect to node %s: %v\n", node.GetIp(), err)
 		return nil, err
 	}
 
-	log.Printf("Created connection to node %s\n", node.GetIp())
+	logger.Log.Printf("Created connection to node %s\n", node.GetIp())
 	nk.connections[node.GetIp()] = conn
 	r := pb.NewDiztlServiceClient(conn)
 	return r, nil
@@ -84,11 +84,11 @@ func (nk *NodeKeeper) Close() {
 	for node, conn := range nk.connections {
 		err := conn.Close()
 		if err != nil {
-			log.Printf("Error while closing connection to %s: %v", node, err)
+			logger.Log.Printf("Error while closing connection to %s: %v", node, err)
 		} else {
-			log.Printf("Closed connection to %s\n", node)
+			logger.Log.Printf("Closed connection to %s\n", node)
 		}
 	}
 
-	log.Println("Nodekeeper shut down successfully.")
+	logger.Log.Println("Nodekeeper shut down successfully.")
 }

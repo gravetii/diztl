@@ -1,30 +1,32 @@
 package main
 
 import (
-	"log"
 	"net"
 
 	"github.com/gravetii/diztl/addr"
 	"github.com/gravetii/diztl/conf"
-	pb "github.com/gravetii/diztl/diztl"
-	service "github.com/gravetii/diztl/service"
+	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/logger"
+	"github.com/gravetii/diztl/service"
 	"google.golang.org/grpc"
 )
 
 func main() {
+	conf.Load()
+	logger.Load()
 	lis, err := net.Listen("tcp", ":"+conf.TrackerPort())
 	if err != nil {
-		log.Fatalf("Unable to start server :%v", err)
+		logger.Log.Fatalf("Unable to start server :%v", err)
 	}
 
 	s := grpc.NewServer()
 	ip := addr.GetMyIP()
-	pb.RegisterTrackerServiceServer(s, service.NewTracker())
-	log.Printf("Server started on %s:%s\n", ip, conf.TrackerPort())
+	diztl.RegisterTrackerServiceServer(s, service.NewTracker())
+	logger.Log.Printf("Server started on %s:%s\n", ip, conf.TrackerPort())
 	serr := s.Serve(lis)
 	if serr != nil {
-		log.Fatalf("Failed to serve: %v\n", err)
+		logger.Log.Fatalf("Failed to serve: %v\n", err)
 	}
 
-	log.Println("Shutting down tracker server.")
+	logger.Log.Println("Shutting down tracker server.")
 }

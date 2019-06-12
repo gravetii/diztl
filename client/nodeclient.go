@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"time"
 
@@ -16,6 +15,7 @@ import (
 	"github.com/gravetii/diztl/keeper"
 
 	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/logger"
 	"google.golang.org/grpc"
 )
 
@@ -32,11 +32,11 @@ func (c *NodeClient) connectToTracker() {
 	conn, err := grpc.Dial(conf.TrackerAddress(), grpc.WithInsecure(),
 		grpc.WithBlock(), grpc.WithTimeout(conf.TrackerConnectTimeout()))
 	if err != nil {
-		log.Fatalf("Could not connect to tracker: %v", err)
+		logger.Log.Fatalf("Could not connect to tracker: %v", err)
 	}
 
 	c.trackerConn = conn
-	log.Println("Successfully connected to tracker...")
+	logger.Log.Println("Successfully connected to tracker...")
 }
 
 func (c *NodeClient) tracker() diztl.TrackerServiceClient {
@@ -45,12 +45,12 @@ func (c *NodeClient) tracker() diztl.TrackerServiceClient {
 
 // Init initialises the NodeClient.
 func Init() {
-	log.Println("Initialising nodeclient...")
+	logger.Log.Println("Initialising nodeclient...")
 	nk := keeper.New()
 	nodeclient = &NodeClient{nk: nk}
 	nodeclient.connectToTracker()
 	nodeclient.register()
-	log.Println("Finished initialising nodeclient.")
+	logger.Log.Println("Finished initialising nodeclient.")
 	shutdown.Listen(nodeclient)
 }
 
@@ -75,12 +75,12 @@ func (c *NodeClient) register() {
 	t := c.tracker()
 	resp, err := t.Register(ctx, req)
 	if err != nil {
-		log.Fatalf("Error while registering node to tracker: %v", err)
+		logger.Log.Fatalf("Error while registering node to tracker: %v", err)
 	}
 
 	rnode := resp.GetNode()
 	c.node = &diztl.Node{Ip: rnode.GetIp(), Id: rnode.GetId()}
-	log.Printf("Successfully registered node to tracker: %s, %s\n", rnode.GetIp(), rnode.GetId())
+	logger.Log.Printf("Successfully registered node to tracker: %s, %s\n", rnode.GetIp(), rnode.GetId())
 }
 
 func (c *NodeClient) disconnect() {
@@ -90,7 +90,7 @@ func (c *NodeClient) disconnect() {
 	t := c.tracker()
 	_, err := t.Disconnect(ctx, &req)
 	if err != nil {
-		log.Fatalf("Error while disconnecting: %v", err)
+		logger.Log.Fatalf("Error while disconnecting: %v", err)
 	}
 
 	fmt.Println("\nBye!")
@@ -99,7 +99,7 @@ func (c *NodeClient) disconnect() {
 // Search searches for files on the network that have names with the given pattern.
 func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 	results := []*diztl.SearchResp{}
-	log.Printf("Searching for pattern: %s\n", pattern)
+	logger.Log.Printf("Searching for pattern: %s\n", pattern)
 	r := diztl.SearchReq{Filename: pattern, Source: c.node}
 	ctx, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
 	defer cancel()
@@ -112,7 +112,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 		resp, err := stream.Recv()
 		if err != nil {
 			if err != io.EOF {
-				log.Printf("Error while reading search response from tracker\n: %v", err)
+				logger.Log.Printf("Error while reading search response from tracker\n: %v", err)
 			}
 
 			break
@@ -147,7 +147,7 @@ func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
 
 	stream, err := client.Upload(ctx, r)
 	if err != nil {
-		log.Printf("Download failed due to error in sender host: %v\n", err)
+		logger.Log.Printf("Download failed due to error in sender host: %v\n", err)
 		fmt.Println("Download failed. It's not you, it's them.")
 		return nil, err
 	}
@@ -175,7 +175,7 @@ func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
 				return nil, err
 			}
 
-			log.Printf("Downloading file: %s. Prepared to receive %d chunks.\n", fc.GetMetadata().GetName(), w.Chunks())
+			logger.Log.Printf("Downloading file: %s. Prepared to receive %d chunks.\n", fc.GetMetadata().GetName(), w.Chunks())
 		}
 
 		if err := w.Write(fc.GetData()); err != nil {

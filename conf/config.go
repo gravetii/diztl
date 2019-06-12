@@ -2,7 +2,6 @@ package conf
 
 import (
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 	"time"
@@ -14,10 +13,12 @@ var rootdir, _ = os.UserHomeDir()
 
 var shareDirDefault = filepath.Join(rootdir, "Documents", "diztl", "share")
 var outputDirDefault = filepath.Join(shareDirDefault, "output")
+var appDirDefault = filepath.Join(rootdir, "Library", "Logs", "diztl")
 
 type dir struct {
 	Share  []string `yaml:"share"`
 	Output string   `yaml:"output"`
+	App    string   `yaml:"app"`
 }
 
 type conf struct {
@@ -31,29 +32,28 @@ type conf struct {
 	BannerFont    string                   `yaml:"bannerFont"`
 }
 
-var config = getConf()
+var config *conf
 
-func getConf() *conf {
-	config := &conf{}
-	log.Println("Reading config...")
+// Load loads the app wide configuration.
+func Load() {
+	config = &conf{}
 	f, err := ioutil.ReadFile("config.yml")
 	if err != nil {
-		log.Fatalf("Error while reading conf: %v ", err)
+		panic(err)
 	}
+
 	err = yaml.Unmarshal(f, config)
 	if err != nil {
-		log.Fatalf("Error while unmarshalling conf file: %v", err)
+		panic(err)
 	}
-
-	return config
 }
 
-// MinIndexFiles : The minimum cumulative number of files that each node should index to enter the network.
+// MinIndexFiles returns the minimum cumulative number of files that each node should index to enter the network.
 func MinIndexFiles() int32 {
 	return config.MinIndexFiles
 }
 
-// ShareDirs : The share directories of this node that need to be indexed when the node starts up.
+// ShareDirs returns the share directories on this node that need to be indexed when the node starts up.
 func ShareDirs() []string {
 	dirs := config.Dir.Share
 	if len(dirs) == 0 {
@@ -61,11 +61,10 @@ func ShareDirs() []string {
 		config.Dir.Share = dirs
 	}
 
-	log.Printf("Share dirs: %s", dirs)
 	return dirs
 }
 
-// OutputDir : The output directory of this node where the downloaded files are placed.
+// OutputDir returns the output directory on this node where the downloaded files are placed.
 func OutputDir() string {
 	dir := config.Dir.Output
 	if dir == "" {
@@ -76,7 +75,18 @@ func OutputDir() string {
 	return dir
 }
 
-// TrackerPort : The port of the tracker service.
+// AppDir returns the application directory on this node where process generated files are placed.
+func AppDir() string {
+	dir := config.Dir.App
+	if dir == "" {
+		dir = appDirDefault
+		config.Dir.App = dir
+	}
+
+	return dir
+}
+
+// TrackerPort returns the port of the tracker service.
 func TrackerPort() string {
 	return config.Tracker["port"]
 }
@@ -87,53 +97,53 @@ func TrackerAddress() string {
 	return addr
 }
 
-// NodePort : The port exposed by each Node for communication with the other nodes
+// NodePort returns the port exposed by each Node for communication with the other nodes
 // and the tracker.
 func NodePort() string {
 	return config.Node["port"]
 }
 
-// DownloadTimeout : The download timeout.
+// DownloadTimeout returns the download timeout.
 func DownloadTimeout() time.Duration {
 	return time.Second * config.Timeout["download"]
 }
 
-// PingTimeout : The ping timeout.
+// PingTimeout returns the ping timeout.
 func PingTimeout() time.Duration {
 	return time.Second * config.Timeout["ping"]
 }
 
-// SearchTimeout : The search timeout.
+// SearchTimeout returns the search timeout.
 func SearchTimeout() time.Duration {
 	return time.Second * config.Timeout["search"]
 }
 
-// DisconnectTimeout : The disconnect timeout.
+// DisconnectTimeout returns the disconnect timeout.
 func DisconnectTimeout() time.Duration {
 	return time.Second * config.Timeout["disconnect"]
 }
 
-// TrackerConnectTimeout : The tracker connect timeout.
+// TrackerConnectTimeout returns the tracker connect timeout.
 func TrackerConnectTimeout() time.Duration {
 	return time.Second * config.Timeout["trackerConnect"]
 }
 
-// NodeConnectTimeout : The node connect timeout.
+// NodeConnectTimeout returns the node connect timeout.
 func NodeConnectTimeout() time.Duration {
 	return time.Second * config.Timeout["nodeConnect"]
 }
 
-// ChunkSize : The size of each chunk of a file.
+// ChunkSize returns the size of each chunk of a file.
 func ChunkSize() int32 {
 	return config.ChunkSize
 }
 
-// UseWatcher : Boolean flag that determines if we should use the file-watcher to watch for new/deleted files
+// UseWatcher is a boolean flag that determines if we should use the file-watcher to watch for new/deleted files
 func UseWatcher() bool {
 	return config.UseWatcher
 }
 
-// BannerFont : The font to use for the welcome banner string that's displayed when a node joins the network.
+// BannerFont is the font to use for the welcome banner string that's displayed when a node joins the network.
 func BannerFont() string {
 	return config.BannerFont
 }
