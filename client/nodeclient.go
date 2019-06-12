@@ -145,7 +145,13 @@ func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
 		return nil, err
 	}
 
-	stream, _ := client.Upload(ctx, r)
+	stream, err := client.Upload(ctx, r)
+	if err != nil {
+		log.Printf("Download failed due to error in sender host: %v\n", err)
+		fmt.Println("Download failed. It's not you, it's them.")
+		return nil, err
+	}
+
 	var w *file.Writer
 
 	for {

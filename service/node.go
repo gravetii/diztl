@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"log"
 
@@ -72,8 +73,8 @@ func (s *NodeService) Upload(request *diztl.DownloadReq, stream diztl.DiztlServi
 	for {
 		f, err := r.Read()
 		if err != nil {
+			r.Close()
 			if err == io.EOF {
-				r.Close()
 				log.Printf("Finished uploading file: %s\n", metadata.GetPath())
 				break
 			}
@@ -85,7 +86,12 @@ func (s *NodeService) Upload(request *diztl.DownloadReq, stream diztl.DiztlServi
 			log.Printf("Uploading file: %s\n", metadata.GetPath())
 		}
 
-		stream.Send(f)
+		serr := stream.Send(f)
+		if serr != nil {
+			log.Printf("Upload failed due to error in recipient host: %v\n", serr)
+			fmt.Println("Upload failed, but relax! It's not you, it's them.")
+			break
+		}
 	}
 
 	return nil
