@@ -3,7 +3,6 @@ package indexer
 import (
 	"errors"
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -11,6 +10,7 @@ import (
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/logger"
 )
 
 // Index : Represents a file-index.
@@ -27,13 +27,13 @@ func newIndex() *Index {
 func (index *Index) add(path string, info os.FileInfo) {
 	f := diztl.FileMetadata{Path: path, Id: index.counter.IncrBy1(), Size: info.Size(), Name: filepath.Base(path)}
 	index.files[path] = &f
-	log.Printf("Added %d. %s\n", index.counter.Value(), path)
+	logger.Log.Printf("Added %d. %s\n", index.counter.Value(), path)
 }
 
 func (index *Index) remove(path string) {
 	delete(index.files, path)
 	index.counter.DecrBy1()
-	log.Printf("Removed %s\n", path)
+	logger.Log.Printf("Removed %s\n", path)
 }
 
 func (index *Index) validate() error {

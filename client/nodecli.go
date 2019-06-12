@@ -3,12 +3,12 @@ package client
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/gravetii/diztl/conf"
 
 	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/logger"
 )
 
 func userCLI() {
@@ -56,9 +56,9 @@ func download(res []*searchResult) {
 		req := diztl.DownloadReq{Source: r.node, Metadata: r.file, Contract: &c}
 		f, err := nodeclient.download(&req)
 		if err != nil {
-			log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
+			logger.Log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
 		} else {
-			log.Printf("Finished downloading file: %s\n", f.Name())
+			logger.Log.Printf("Finished downloading file: %s\n", f.Name())
 			f.Close()
 		}
 	}

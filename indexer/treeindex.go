@@ -3,7 +3,6 @@ package indexer
 import (
 	"errors"
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -15,6 +14,7 @@ import (
 
 	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/logger"
 )
 
 // TreeNode : Represents a single unit of the TreeIndex.
@@ -43,7 +43,7 @@ func NewTreeIndex() *TreeIndex {
 func (t *TreeIndex) addFile(path string, info os.FileInfo) {
 	hash, err := file.Hash(path)
 	if err != nil {
-		log.Printf("Error while creating hash, not adding file %s - %v\n", path, err)
+		logger.Log.Printf("Error while creating hash, not adding file %s - %v\n", path, err)
 		return
 	}
 
@@ -55,7 +55,7 @@ func (t *TreeIndex) addFile(path string, info os.FileInfo) {
 		parent = t.addPath(fpath, token, parent, info, hash, n != len(tokens)-1)
 	}
 
-	log.Printf("Added %d. %s, %x\n", t.counter.Value(), path, hash.Checksum)
+	logger.Log.Printf("Added %d. %s, %x\n", t.counter.Value(), path, hash.Checksum)
 }
 
 func (t *TreeIndex) addPath(path string, token string, parent *TreeNode,
@@ -98,7 +98,7 @@ func (t *TreeIndex) removePath(path string) error {
 	token := tokens[len(tokens)-1]
 	delete(parent.children, token)
 	t.counter.DecrBy1()
-	log.Printf("Removed %s\n", path)
+	logger.Log.Printf("Removed %s\n", path)
 	return nil
 }
 

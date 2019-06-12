@@ -1,11 +1,11 @@
 package dir
 
 import (
-	"log"
 	"os"
 	"path/filepath"
 
 	"github.com/gravetii/diztl/conf"
+	"github.com/gravetii/diztl/logger"
 )
 
 // GetOutputPath : Returns the output file path for the file.
@@ -35,14 +35,14 @@ func EnsureOutputDir() {
 func ensureDir(dir string) {
 	info, err := os.Stat(dir)
 	if os.IsNotExist(err) {
-		log.Printf("Creating directory: %s\n", dir)
+		logger.Log.Printf("Creating directory: %s\n", dir)
 		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
-			log.Fatalf("Could not create directory - %s: %v\n", dir, err)
+			logger.Log.Fatalf("Could not create directory - %s: %v\n", dir, err)
 		}
 	} else if !info.IsDir() {
-		log.Fatalf("Seems like there's a resource already: %s\n", dir)
+		logger.Log.Fatalf("Seems like there's a resource already: %s\n", dir)
 	} else if err != nil {
-		log.Fatalf("Could not ensure that directory exists - %s: %v\n", dir, err)
+		logger.Log.Fatalf("Could not ensure that directory exists - %s: %v\n", dir, err)
 	}
 }
 

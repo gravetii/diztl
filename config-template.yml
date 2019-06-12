@@ -9,11 +9,12 @@ node:
 
 minIndexFiles: 5
 
-# Add paths to directories here to configure sharing and output folders.
+# Add paths to directories here to configure share and output folders.
 # dir:
 #   share:
 #     - 
 #   output:
+#   app:
 
 # Various timeouts in seconds.
 timeout:

@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"log"
 	"os"
 
 	"github.com/gravetii/diztl/conf"
@@ -11,6 +10,7 @@ import (
 
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/keeper"
+	"github.com/gravetii/diztl/logger"
 )
 
 // TrackerService : Implements the tracker server interface definition.
@@ -36,7 +36,7 @@ func (s *TrackerService) Register(ctx context.Context, req *diztl.RegisterReq) (
 
 // Search : Invoked by a search request by any node.
 func (s *TrackerService) Search(request *diztl.SearchReq, stream diztl.TrackerService_SearchServer) error {
-	log.Printf("Received search request from node %s: %v\n", request.GetSource().GetIp(), *request)
+	logger.Log.Printf("Received search request from node %s: %v\n", request.GetSource().GetIp(), *request)
 	responses := s.broadcast(request)
 	for _, r := range responses {
 		stream.Send(r)
@@ -48,16 +48,16 @@ func (s *TrackerService) Search(request *diztl.SearchReq, stream diztl.TrackerSe
 // Disconnect : A disconnecting node invokes this call on the tracker before leaving the network.
 func (s *TrackerService) Disconnect(ctx context.Context, request *diztl.DisconnectReq) (*diztl.DisconnectResp, error) {
 	node := request.GetNode()
-	log.Printf("Received disconnect request from node %s\n", node.GetIp())
+	logger.Log.Printf("Received disconnect request from node %s\n", node.GetIp())
 	if !s.nk.Disconnect(node) {
-		log.Printf("Disconnect returned false for %s\n", node.GetIp())
+		logger.Log.Printf("Disconnect returned false for %s\n", node.GetIp())
 	}
 
 	return &diztl.DisconnectResp{}, nil
 }
 
 func (s *TrackerService) broadcast(request *diztl.SearchReq) []*diztl.SearchResp {
-	log.Printf("Broadcasting search request to all nodes on the network: %s, %s\n", request.GetSource().GetIp(), request.GetFilename())
+	logger.Log.Printf("Broadcasting search request to all nodes on the network: %s, %s\n", request.GetSource().GetIp(), request.GetFilename())
 	responses := []*diztl.SearchResp{}
 
 	for _, node := range s.nk.Nodes {
@@ -67,13 +67,13 @@ func (s *TrackerService) broadcast(request *diztl.SearchReq) []*diztl.SearchResp
 			defer cancel()
 			r, err := c.Search(ctx, request)
 			if err != nil {
-				log.Printf("Error while invoking Search on node %s: %v\n", node.GetIp(), err)
+				logger.Log.Printf("Error while invoking Search on node %s: %v\n", node.GetIp(), err)
 			} else if len(r.GetFiles()) > 0 {
 				r.Node = node
 				responses = append(responses, r)
 			}
 		} else {
-			log.Printf("Could not connect to node %s: %v\n", node.GetIp(), err)
+			logger.Log.Printf("Could not connect to node %s: %v\n", node.GetIp(), err)
 			continue
 		}
 	}
@@ -84,6 +84,6 @@ func (s *TrackerService) broadcast(request *diztl.SearchReq) []*diztl.SearchResp
 // OnShutdown : Actions to perform on shutdown.
 func (s *TrackerService) OnShutdown() {
 	s.nk.Close()
-	log.Println("Tracker shut down successfully.")
+	logger.Log.Println("Tracker shut down successfully.")
 	os.Exit(0)
 }

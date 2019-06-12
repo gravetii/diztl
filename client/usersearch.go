@@ -2,9 +2,9 @@ package client
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/logger"
 )
 
 type searchResult struct {
@@ -16,7 +16,7 @@ func search(input string) ([]*searchResult, bool) {
 	fmt.Printf("Performing search for string: %s\n", input)
 	responses, err := nodeclient.Search(input)
 	if err != nil {
-		log.Printf("Could not search due to an error: %v\n", err)
+		logger.Log.Printf("Could not search due to an error: %v\n", err)
 		fmt.Println("Unable to search the network at this moment.")
 		return nil, false
 	}
