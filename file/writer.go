@@ -70,7 +70,8 @@ func (obj *Writer) Close() (*os.File, error) {
 	obj.o.close()
 	obj.f.Close()
 	if !obj.verifyChecksum() {
-		return obj.f, errors.New("Invalid checksum, file is probably corrupted")
+		os.Remove(obj.f.Name())
+		return nil, errors.New("Invalid checksum, file is probably corrupted")
 	}
 
 	return obj.moveToOutputDir()
@@ -96,8 +97,6 @@ func (obj *Writer) verifyChecksum() bool {
 	c := obj.metadata.Hash.Checksum
 	hash, err := Hash(obj.f.Name())
 	if err != nil {
-		log.Printf("Unable to verify checksum for file %s. File is probably corrupted.: %v\n",
-			obj.f.Name(), err)
 		return false
 	}
 
