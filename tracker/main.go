@@ -8,12 +8,14 @@ import (
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/logger"
 	"github.com/gravetii/diztl/service"
+	"github.com/gravetii/diztl/startup"
 	"google.golang.org/grpc"
 )
 
 func main() {
-	conf.Load()
-	logger.Load()
+	// Execute the initial startup steps
+	startup.Execute()
+
 	lis, err := net.Listen("tcp", ":"+conf.TrackerPort())
 	if err != nil {
 		logger.Log.Fatalf("Unable to start server :%v", err)

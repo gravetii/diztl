@@ -7,8 +7,6 @@ import (
 
 	"github.com/gravetii/diztl/shutdown"
 
-	"github.com/gravetii/diztl/dir"
-
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/file"
 	"github.com/gravetii/diztl/indexer"
@@ -35,10 +33,6 @@ func NewNode() *NodeService {
 // Init performs the necessary initialisation when the service comes up for the first time.
 func (s *NodeService) Init() {
 	logger.Log.Println("Initialising node service...")
-
-	// Ensure that necessary folders are created
-	dir.EnsureShareDirs()
-	dir.EnsureOutputDir()
 
 	if err := s.Indexer.Index(); err != nil {
 		logger.Log.Fatalf("Error while indexing files: %v", err)

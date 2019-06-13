@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net"
 
+	"github.com/gravetii/diztl/startup"
+
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/logger"
@@ -15,8 +17,9 @@ import (
 )
 
 func main() {
-	conf.Load()
-	logger.Load()
+	// Execute the initial startup steps
+	startup.Execute()
+
 	lis, err := net.Listen("tcp", ":"+conf.NodePort())
 	if err != nil {
 		logger.Log.Fatalf("Unable to start node server: %v", err)
