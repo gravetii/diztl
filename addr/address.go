@@ -10,10 +10,10 @@ import (
 
 var ip string
 
-func findMyIP() string {
+func find() string {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
-		logger.Log.Fatalf("Could not fetch the host's IP: %v", err)
+		logger.Log.Fatalf("Could not fetch the host's IP - %v", err)
 	}
 
 	defer conn.Close()
@@ -26,7 +26,7 @@ func findMyIP() string {
 // GetMyIP returns the host's IP address.
 func GetMyIP() string {
 	if ip == "" {
-		ip = findMyIP()
+		ip = find()
 	}
 
 	return ip

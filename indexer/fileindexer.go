@@ -6,6 +6,7 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/gravetii/diztl/conf"
+	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/logger"
 )
@@ -21,7 +22,7 @@ func NewFileIndexer() (*FileIndexer, error) {
 	f := FileIndexer{index: NewTreeIndex()}
 	w, err := fsnotify.NewWatcher()
 	if err != nil {
-		logger.Log.Fatalf("Unable to establish file-system watcher: %v", err)
+		logger.Log.Printf("Unable to establish file-system watcher - %v", err)
 		return nil, err
 	}
 
@@ -51,7 +52,12 @@ func (f *FileIndexer) Close() error {
 }
 
 func (f *FileIndexer) dirwalk() error {
-	for _, dir := range conf.ShareDirs() {
+	dirs, err := dir.GetShareDirs()
+	if err != nil {
+		return err
+	}
+
+	for _, dir := range dirs {
 		if err := f.filewalk(dir); err != nil {
 			return err
 		}

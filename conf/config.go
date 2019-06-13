@@ -34,18 +34,20 @@ type conf struct {
 
 var config *conf
 
-// Load loads the app wide configuration.
-func Load() {
+// Load loads the app wide configuration or returns an error if any.
+func Load() error {
 	config = &conf{}
 	f, err := ioutil.ReadFile("config.yml")
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	err = yaml.Unmarshal(f, config)
 	if err != nil {
-		panic(err)
+		return err
 	}
+
+	return nil
 }
 
 // MinIndexFiles returns the minimum cumulative number of files that each node should index to enter the network.
