@@ -1,8 +1,12 @@
 <p align="center">
-<img src="diztl_icon.png" width="650" height="600" alt="Diztl Icon" />
+<img src="images/diztl_icon.png" width="650" height="600" alt="Diztl Icon" />
 </p>
 
 # DIZTL
+
+<p align="center">
+<img src="images/sc1.png" width="800" height="230" alt="Screenshot 1" />
+</p>
 A peer-to-peer file discovery and sharing tool for LANs written in Go!
 
 ## Getting started
