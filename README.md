@@ -50,8 +50,9 @@ Edit [May 30, 2019]: Watching on file-system changes is currently disabled throu
 ## Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to the project.
 
-## IRC Channel
-You can join the IRC channel `#diztl` on freenode to discuss more about the project.
+## Gitter
+You can join the `diztl` community on Gitter to understand more about the project. 
+[![Gitter](https://badges.gitter.im/diztl/community.svg)](https://gitter.im/diztl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Authors
 - Sandeep Dasika
