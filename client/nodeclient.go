@@ -155,7 +155,7 @@ func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
 	var w *file.Writer
 
 	for {
-		fc, err := stream.Recv()
+		s, err := stream.Recv()
 		if err != nil {
 			if err == io.EOF {
 				f, serr := w.Close()
@@ -169,16 +169,16 @@ func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
 			return nil, err
 		}
 
-		if fc.GetChunk() == 1 {
-			w, err = file.CreateWriter(fc.GetMetadata())
+		if s.GetChunk() == 1 {
+			w, err = file.CreateWriter(s.GetMetadata())
 			if err != nil {
 				return nil, err
 			}
 
-			logger.Log.Printf("Downloading file: %s. Prepared to receive %d chunks.\n", fc.GetMetadata().GetName(), w.Chunks())
+			logger.Log.Printf("Downloading file: %s. Prepared to receive %d chunks.\n", s.GetMetadata().GetName(), w.Chunks())
 		}
 
-		if err := w.Write(fc.GetData()); err != nil {
+		if err := w.Write(s.GetData()); err != nil {
 			return nil, err
 		}
 	}

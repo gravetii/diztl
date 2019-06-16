@@ -2,8 +2,12 @@ package file
 
 import (
 	"bufio"
+	"errors"
+	"io"
 	"os"
+	"path"
 
+	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
 
 	"github.com/gravetii/diztl/counter"
@@ -21,7 +25,9 @@ type Reader struct {
 
 // CreateReader returns an instance of the Reader for the given file metadata and download contract.
 func CreateReader(metadata *diztl.FileMetadata, contract *diztl.DownloadContract) (*Reader, error) {
-	f, err := openFile(metadata.GetPath())
+	// Copy the source file to the system's temp directory to avoid effect of user changes
+	// and use that file to upload.
+	f, err := copyToTempDir(metadata)
 	if err != nil {
 		return nil, err
 	}
@@ -30,7 +36,51 @@ func CreateReader(metadata *diztl.FileMetadata, contract *diztl.DownloadContract
 	metadata.Chunks = chunks
 	buf := bufio.NewReader(f)
 	reader := Reader{buf, metadata, contract, f, counter.New(0)}
+	reader.reset()
 	return &reader, nil
+}
+
+func (r *Reader) reset() {
+	r.f.Seek(0, 0)
+}
+
+// createTempFileFromSource creates a copy of the source file in the system's temp directory.
+func createTempFileFromSource(src string) (*os.File, error) {
+	dest, err := dir.GetTempPathForUpload(path.Base(src))
+	if err != nil {
+		return nil, err
+	}
+
+	f, err := os.Create(dest)
+	if err != nil {
+		logger.Log.Printf("Error while creating temp file for upload: %s - %v\n", dest, err)
+		return nil, errors.New("could not create temp file for upload - " + err.Error())
+	}
+
+	return f, nil
+}
+
+func copyToTempDir(metadata *diztl.FileMetadata) (*os.File, error) {
+	src := metadata.GetPath()
+	in, err := openFile(src)
+	if err != nil {
+		return nil, err
+	}
+
+	defer in.Close()
+	out, err := createTempFileFromSource(src)
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = io.Copy(out, in)
+	if err != nil {
+		logger.Log.Printf("Error while copying source file to temp dir: %s - %v\n", src, err)
+		return nil, errors.New("could not copy source file to temp dir - " + err.Error())
+	}
+
+	logger.Log.Printf("Copied source file %s to temp dir %s\n", src, out.Name())
+	return out, nil
 }
 
 func openFile(fpath string) (*os.File, error) {
