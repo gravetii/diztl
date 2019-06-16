@@ -15,21 +15,21 @@ type Reader struct {
 	buf      *bufio.Reader
 	metadata *diztl.FileMetadata
 	contract *diztl.DownloadContract
-	file     *os.File
+	f        *os.File
 	chunk    *counter.Counter
 }
 
 // CreateReader returns an instance of the Reader for the given file metadata and download contract.
 func CreateReader(metadata *diztl.FileMetadata, contract *diztl.DownloadContract) (*Reader, error) {
-	file, err := openFile(metadata.GetPath())
+	f, err := openFile(metadata.GetPath())
 	if err != nil {
 		return nil, err
 	}
 
 	chunks := int32(metadata.GetSize() / int64(contract.GetChunkSize()))
 	metadata.Chunks = chunks
-	buf := bufio.NewReader(file)
-	reader := Reader{buf, metadata, contract, file, counter.New(0)}
+	buf := bufio.NewReader(f)
+	reader := Reader{buf, metadata, contract, f, counter.New(0)}
 	return &reader, nil
 }
 
@@ -84,5 +84,5 @@ func (r *Reader) read() ([]byte, error) {
 
 // Close closes the underlying file opened by this reader.
 func (r *Reader) Close() {
-	r.file.Close()
+	r.f.Close()
 }
