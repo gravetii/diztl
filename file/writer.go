@@ -115,12 +115,18 @@ func (obj *Writer) verifyChecksum() bool {
 	return bytes.Equal(c, hash.Checksum)
 }
 
+// createTempFile creates the file with the given name in the system's temp directory
+// before it's moved to the user-configured output folder.
 func createTempFile(fname string) (*os.File, error) {
-	fpath := dir.GetTempPath(fname)
+	fpath, err := dir.GetTempPathForDownload(fname)
+	if err != nil {
+		return nil, err
+	}
+
 	f, err := os.Create(fpath)
 	if err != nil {
-		logger.Log.Printf("Unable to create file %s: %v\n", fpath, err)
-		return nil, err
+		logger.Log.Printf("Unable to create temp file for download %s - %v\n", fpath, err)
+		return nil, errors.New("could not create temp file for download - " + err.Error())
 	}
 
 	return f, nil

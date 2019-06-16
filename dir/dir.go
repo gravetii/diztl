@@ -29,6 +29,29 @@ func GetOutputPath(fname string) (string, error) {
 	return filepath.Join(conf.OutputDir(), fname), nil
 }
 
+// GetTempPathForUpload returns the path to the file in the system's temp directory.
+// This is the location where the client sending a file to its peer copies the file
+// from the source folder before sending it in chunks to the receiver node.
+func GetTempPathForUpload(fname string) (string, error) {
+	return getTempPath(fname, "u")
+}
+
+// GetTempPathForDownload returns the path to the file in the system's temp directory.
+// This is the location where the file is initially downloaded and formed from the chunks sent
+// by the source node. After download, it's then moved to the user-configured output folder.
+func GetTempPathForDownload(fname string) (string, error) {
+	return getTempPath(fname, "d")
+}
+
+func getTempPath(fname string, prefix string) (string, error) {
+	fpath := filepath.Join(os.TempDir(), prefix)
+	if err := ensure(fpath); err != nil {
+		return "", errors.New("could not ensure required temp directories exist - " + err.Error())
+	}
+
+	return filepath.Join(fpath, fname), nil
+}
+
 // GetTempPath returns the path to the file in the system's temp directory.
 // This is where the file is first created on the receiver node when download
 // is initiated and is later moved to the output folder when download completes.
