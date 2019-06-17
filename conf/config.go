@@ -30,11 +30,12 @@ type conf struct {
 	ChunkSize     int32                    `yaml:"chunkSize"`
 	UseWatcher    bool                     `yaml:"useWatcher"`
 	BannerFont    string                   `yaml:"bannerFont"`
+	LogLevel      string                   `yaml:"logLevel"`
 }
 
 var config *conf
 
-// Load loads the app wide configuration or returns an error if any.
+// Load loads the app-wide configuration or returns an error if any.
 func Load() error {
 	config = &conf{}
 	f, err := ioutil.ReadFile("config.yml")
@@ -148,4 +149,9 @@ func UseWatcher() bool {
 // BannerFont is the font to use for the welcome banner string that's displayed when a node joins the network.
 func BannerFont() string {
 	return config.BannerFont
+}
+
+// LogLevel is the level for the app-wide logger.
+func LogLevel() string {
+	return config.LogLevel
 }

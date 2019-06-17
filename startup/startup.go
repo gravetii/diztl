@@ -44,7 +44,7 @@ func loadLogger() error {
 		return errors.New("Could not open log file - " + err.Error())
 	}
 
-	logger.SetLevel("debug")
+	logger.SetLevel(conf.LogLevel())
 	logger.SetOutput(f)
 	logger.Debugf("Successfully initialised logger.\n")
 	return nil
