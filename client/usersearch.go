@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/logger"
+	"github.com/gravetii/logger"
 )
 
 type searchResult struct {
@@ -16,8 +16,8 @@ func search(input string) ([]*searchResult, bool) {
 	fmt.Printf("Performing search for string: %s\n", input)
 	responses, err := nodeclient.Search(input)
 	if err != nil {
-		logger.Log.Printf("Could not search due to an error: %v\n", err)
-		fmt.Println("Unable to search the network at this moment.")
+		logger.Errorf("Could not search due to an error: %v\n", err)
+		fmt.Println("Unable to search the network at this moment. Please try again later.")
 		return nil, false
 	}
 

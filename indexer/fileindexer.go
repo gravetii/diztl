@@ -8,7 +8,7 @@ import (
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/logger"
+	"github.com/gravetii/logger"
 )
 
 // FileIndexer is the struct type that represents a file indexer on a node which indexes all the shared files.
@@ -22,7 +22,7 @@ func NewFileIndexer() (*FileIndexer, error) {
 	f := FileIndexer{index: NewTreeIndex()}
 	w, err := fsnotify.NewWatcher()
 	if err != nil {
-		logger.Log.Printf("Unable to establish file-system watcher - %v", err)
+		logger.Errorf("Unable to establish file-system watcher - %v\n", err)
 		return nil, err
 	}
 
@@ -33,7 +33,7 @@ func NewFileIndexer() (*FileIndexer, error) {
 // Index indexes all the files in the user-configured shared folders,
 // making them available for discovery by peers.
 func (f *FileIndexer) Index() error {
-	logger.Log.Println("Started file indexing process.")
+	logger.Debugf("Started file indexing process.\n")
 	if err := f.dirwalk(); err != nil {
 		return err
 	}
@@ -42,7 +42,7 @@ func (f *FileIndexer) Index() error {
 		go f.watch()
 	}
 
-	logger.Log.Println("Indexing finished successfully.")
+	logger.Infof("File indexing finished successfully.")
 	return nil
 }
 
@@ -72,7 +72,7 @@ func (f *FileIndexer) watch() {
 		case event := <-f.watcher.Events:
 			f.handleWatchEvent(event)
 		case err := <-f.watcher.Errors:
-			logger.Log.Printf("Got error from watcher: %v\n", err)
+			logger.Errorf("Got error from watcher: %v\n", err)
 		}
 	}
 }
@@ -98,7 +98,7 @@ func (f *FileIndexer) handleRemoveEvent(path string) {
 
 // Performs a recursive file walk of the given directory path.
 func (f *FileIndexer) filewalk(dir string) error {
-	logger.Log.Printf("Performing filewalk for dir %s\n", dir)
+	logger.Debugf("Performing filewalk for dir %s\n", dir)
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		return f.add(path, info)
 	})
@@ -119,7 +119,7 @@ func (f *FileIndexer) add(path string, info os.FileInfo) error {
 	if info.IsDir() {
 		if conf.UseWatcher() {
 			if err := f.watcher.Add(path); err != nil {
-				logger.Log.Printf("Error while watching directory: %s - %v", path, err)
+				logger.Errorf("Error while watching directory: %s - %v\n", path, err)
 			}
 		}
 	} else {
@@ -134,7 +134,7 @@ func (f *FileIndexer) remove(path string) error {
 	// So, just remove the path from the index.
 	err := f.index.removePath(path)
 	if err != nil {
-		logger.Log.Printf("Error while removing path from index - %s: %v\n", path, err)
+		logger.Errorf("Error while removing path from index - %s: %v\n", path, err)
 	}
 
 	return err

@@ -12,7 +12,7 @@ import (
 
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/logger"
+	"github.com/gravetii/logger"
 )
 
 // Writer - the file writer.
@@ -125,7 +125,7 @@ func createTempFile(fname string) (*os.File, error) {
 
 	f, err := os.Create(fpath)
 	if err != nil {
-		logger.Log.Printf("Unable to create temp file for download %s - %v\n", fpath, err)
+		logger.Errorf("Unable to create temp file for download %s - %v\n", fpath, err)
 		return nil, errors.New("Could not create temp file for download - " + err.Error())
 	}
 
