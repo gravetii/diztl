@@ -36,7 +36,7 @@ func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
 	}
 
 	if exists {
-		return nil, errors.New("file with given name already exists in output folder")
+		return nil, errors.New("A file with given name already exists in output folder")
 	}
 
 	f, err := createTempFile(metadata.GetName())
@@ -79,7 +79,7 @@ func (obj *Writer) Close() (*os.File, error) {
 	obj.o.close()
 	obj.f.Close()
 	if !obj.verifyChecksum() {
-		os.Remove(obj.f.Name())
+		defer os.Remove(obj.f.Name())
 		return nil, errors.New("Invalid checksum, file is probably corrupted")
 	}
 
@@ -126,7 +126,7 @@ func createTempFile(fname string) (*os.File, error) {
 	f, err := os.Create(fpath)
 	if err != nil {
 		logger.Log.Printf("Unable to create temp file for download %s - %v\n", fpath, err)
-		return nil, errors.New("could not create temp file for download - " + err.Error())
+		return nil, errors.New("Could not create temp file for download - " + err.Error())
 	}
 
 	return f, nil

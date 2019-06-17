@@ -40,7 +40,7 @@ func (index *Index) validate() error {
 	minFiles := conf.MinIndexFiles()
 	if index.counter.Value() < minFiles {
 		fmt.Printf("You need to share at least %d files to diztl before you can ask!\n", minFiles)
-		return errors.New("less than minimum number of indexed files")
+		return errors.New("Less than minimum number of indexed files")
 	}
 
 	return nil

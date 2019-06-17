@@ -54,7 +54,7 @@ func createTempFileFromSource(src string) (*os.File, error) {
 	f, err := os.Create(dest)
 	if err != nil {
 		logger.Log.Printf("Error while creating temp file for upload: %s - %v\n", dest, err)
-		return nil, errors.New("could not create temp file for upload - " + err.Error())
+		return nil, errors.New("Could not create temp file for upload - " + err.Error())
 	}
 
 	return f, nil
@@ -76,7 +76,7 @@ func copyToTempDir(metadata *diztl.FileMetadata) (*os.File, error) {
 	_, err = io.Copy(out, in)
 	if err != nil {
 		logger.Log.Printf("Error while copying source file to temp dir: %s - %v\n", src, err)
-		return nil, errors.New("could not copy source file to temp dir - " + err.Error())
+		return nil, errors.New("Could not copy source file to temp dir - " + err.Error())
 	}
 
 	logger.Log.Printf("Copied source file %s to temp dir %s\n", src, out.Name())
@@ -132,7 +132,9 @@ func (r *Reader) read() ([]byte, error) {
 	return p, nil
 }
 
-// Close closes the underlying file opened by this reader.
+// Close closes the underlying file opened by this reader and also deletes it
+// because it is a copy of the source file.
 func (r *Reader) Close() {
 	r.f.Close()
+	defer os.Remove(r.f.Name())
 }
