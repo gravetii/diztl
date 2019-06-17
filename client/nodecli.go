@@ -8,7 +8,7 @@ import (
 	"github.com/gravetii/diztl/conf"
 
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/logger"
+	"github.com/gravetii/logger"
 )
 
 func userCLI() {
@@ -56,9 +56,9 @@ func download(res []*searchResult) {
 		req := diztl.DownloadReq{Source: r.node, Metadata: r.file, Contract: &c}
 		f, err := nodeclient.download(&req)
 		if err != nil {
-			logger.Log.Printf("Error while downloading file %s: %v\n", r.file.GetName(), err)
+			logger.Errorf("Error while downloading file %s: %v\n", r.file.GetName(), err)
 		} else {
-			logger.Log.Printf("Finished downloading file: %s\n", f.Name())
+			logger.Infof("Finished downloading file: %s\n", f.Name())
 			f.Close()
 		}
 	}

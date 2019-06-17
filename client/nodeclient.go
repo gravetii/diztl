@@ -15,7 +15,7 @@ import (
 	"github.com/gravetii/diztl/keeper"
 
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/logger"
+	"github.com/gravetii/logger"
 	"google.golang.org/grpc"
 )
 
@@ -28,15 +28,17 @@ type NodeClient struct {
 	nk          *keeper.NodeKeeper
 }
 
-func (c *NodeClient) connectToTracker() {
+func (c *NodeClient) connectToTracker() error {
 	conn, err := grpc.Dial(conf.TrackerAddress(), grpc.WithInsecure(),
 		grpc.WithBlock(), grpc.WithTimeout(conf.TrackerConnectTimeout()))
 	if err != nil {
-		logger.Log.Fatalf("Could not connect to tracker: %v", err)
+		logger.Errorf("Couldn't connect to tracker - %v\n", err)
+		return err
 	}
 
 	c.trackerConn = conn
-	logger.Log.Println("Successfully connected to tracker...")
+	logger.Debugf("Successfully connected to tracker...\n")
+	return nil
 }
 
 func (c *NodeClient) tracker() diztl.TrackerServiceClient {
@@ -45,12 +47,12 @@ func (c *NodeClient) tracker() diztl.TrackerServiceClient {
 
 // Init initialises the NodeClient.
 func Init() {
-	logger.Log.Println("Initialising nodeclient...")
+	logger.Debugf("Initialising nodeclient...\n")
 	nk := keeper.New()
 	nodeclient = &NodeClient{nk: nk}
 	nodeclient.connectToTracker()
 	nodeclient.register()
-	logger.Log.Println("Finished initialising nodeclient.")
+	logger.Debugf("Finished initialising nodeclient.\n")
 	shutdown.Listen(nodeclient)
 }
 
@@ -66,8 +68,8 @@ func (c *NodeClient) OnShutdown() {
 	os.Exit(0)
 }
 
-func (c *NodeClient) register() {
-	ip := addr.GetMyIP()
+func (c *NodeClient) register() error {
+	ip := addr.LocalIP()
 	node := &diztl.Node{Ip: ip}
 	req := &diztl.RegisterReq{Node: node}
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
@@ -75,31 +77,35 @@ func (c *NodeClient) register() {
 	t := c.tracker()
 	resp, err := t.Register(ctx, req)
 	if err != nil {
-		logger.Log.Fatalf("Error while registering node to tracker: %v", err)
+		logger.Errorf("Error while registering node to tracker - %v\n", err)
+		return err
 	}
 
 	rnode := resp.GetNode()
 	c.node = &diztl.Node{Ip: rnode.GetIp(), Id: rnode.GetId()}
-	logger.Log.Printf("Successfully registered node to tracker: %s, %s\n", rnode.GetIp(), rnode.GetId())
+	logger.Infof("Successfully registered node to tracker: %s, %s\n", rnode.GetIp(), rnode.GetId())
+	return nil
 }
 
-func (c *NodeClient) disconnect() {
+func (c *NodeClient) disconnect() error {
 	ctx, cancel := context.WithTimeout(context.Background(), conf.DisconnectTimeout())
 	defer cancel()
 	req := diztl.DisconnectReq{Node: c.node}
 	t := c.tracker()
 	_, err := t.Disconnect(ctx, &req)
 	if err != nil {
-		logger.Log.Fatalf("Error while disconnecting: %v", err)
+		logger.Errorf("Error while disconnecting node from tracker - %v\n", err)
+		return err
 	}
 
 	fmt.Println("\nBye!")
+	return nil
 }
 
 // Search searches for files on the network that have names with the given pattern.
 func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 	results := []*diztl.SearchResp{}
-	logger.Log.Printf("Searching for pattern: %s\n", pattern)
+	logger.Debugf("Searching for pattern: %s\n", pattern)
 	r := diztl.SearchReq{Filename: pattern, Source: c.node}
 	ctx, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
 	defer cancel()
@@ -112,7 +118,7 @@ func (c *NodeClient) Search(pattern string) ([]*diztl.SearchResp, error) {
 		resp, err := stream.Recv()
 		if err != nil {
 			if err != io.EOF {
-				logger.Log.Printf("Error while reading search response from tracker\n: %v", err)
+				logger.Errorf("Error while reading search response from tracker\n: %v", err)
 			}
 
 			break
@@ -147,7 +153,7 @@ func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
 
 	stream, err := client.Upload(ctx, r)
 	if err != nil {
-		logger.Log.Printf("Download failed due to error in sender host: %v\n", err)
+		logger.Errorf("Download failed due to error in sender host - %v\n", err)
 		fmt.Println("Download failed. It's not you, it's them.")
 		return nil, err
 	}
@@ -175,7 +181,7 @@ func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
 				return nil, err
 			}
 
-			logger.Log.Printf("Downloading file: %s. Prepared to receive %d chunks.\n", s.GetMetadata().GetName(), w.Chunks())
+			logger.Infof("Downloading file: %s. Prepared to receive %d chunks.\n", s.GetMetadata().GetName(), w.Chunks())
 		}
 
 		if err := w.Write(s.GetData()); err != nil {

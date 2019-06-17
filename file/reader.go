@@ -11,7 +11,7 @@ import (
 	"github.com/gravetii/diztl/diztl"
 
 	"github.com/gravetii/diztl/counter"
-	"github.com/gravetii/diztl/logger"
+	"github.com/gravetii/logger"
 )
 
 // Reader - The file reader object which reads chunks of data from the underlying buffer.
@@ -53,7 +53,7 @@ func createTempFileFromSource(src string) (*os.File, error) {
 
 	f, err := os.Create(dest)
 	if err != nil {
-		logger.Log.Printf("Error while creating temp file for upload: %s - %v\n", dest, err)
+		logger.Errorf("Error while creating temp file for upload: %s - %v\n", dest, err)
 		return nil, errors.New("Could not create temp file for upload - " + err.Error())
 	}
 
@@ -75,11 +75,11 @@ func copyToTempDir(metadata *diztl.FileMetadata) (*os.File, error) {
 
 	_, err = io.Copy(out, in)
 	if err != nil {
-		logger.Log.Printf("Error while copying source file to temp dir: %s - %v\n", src, err)
+		logger.Errorf("Error while copying source file to temp dir: %s - %v\n", src, err)
 		return nil, errors.New("Could not copy source file to temp dir - " + err.Error())
 	}
 
-	logger.Log.Printf("Copied source file %s to temp dir %s\n", src, out.Name())
+	logger.Debugf("Copied source file %s to temp dir %s\n", src, out.Name())
 	return out, nil
 }
 
@@ -87,9 +87,9 @@ func openFile(fpath string) (*os.File, error) {
 	f, err := os.Open(fpath)
 	if err != nil {
 		if os.IsNotExist(err) {
-			logger.Log.Printf("Specified file %s does not exist: %v\n", fpath, err)
+			logger.Errorf("Specified file %s does not exist: %v\n", fpath, err)
 		} else {
-			logger.Log.Printf("Error while reading file %s to upload: %v\n", fpath, err)
+			logger.Errorf("Error while opening file %s to upload: %v\n", fpath, err)
 		}
 
 		return nil, err

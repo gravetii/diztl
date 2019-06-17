@@ -1,34 +1,34 @@
 package addr
 
 import (
+	"errors"
 	"net"
 
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/logger"
+	"github.com/gravetii/logger"
 )
 
 var ip string
 
-func find() string {
+// Find finds the host's local IP address.
+// Typically, this is done during the initial starup of the tracker/node.
+func Find() error {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
-		logger.Log.Fatalf("Could not fetch the host's IP - %v", err)
+		logger.Errorf("Could not fetch host's local ip - %v\n", err)
+		return errors.New("Could not fetch host's local ip - " + err.Error())
 	}
 
 	defer conn.Close()
 	addr := conn.LocalAddr().(*net.UDPAddr)
-	ip := addr.IP.String()
-	logger.Log.Printf("Got IP: %s\n", ip)
-	return ip
+	ip = addr.IP.String()
+	logger.Debugf("Host's local ip - %s\n", ip)
+	return nil
 }
 
-// GetMyIP returns the host's IP address.
-func GetMyIP() string {
-	if ip == "" {
-		ip = find()
-	}
-
+// LocalIP returns the host's IP address.
+func LocalIP() string {
 	return ip
 }
 

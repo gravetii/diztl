@@ -4,16 +4,18 @@ import (
 	"fmt"
 	"net"
 
+	"github.com/gravetii/diztl/addr"
+
 	"github.com/gravetii/diztl/startup"
 
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/logger"
 	"github.com/gravetii/go-figure"
 	"google.golang.org/grpc"
 
 	"github.com/gravetii/diztl/client"
 	"github.com/gravetii/diztl/service"
+	"github.com/gravetii/logger"
 )
 
 func main() {
@@ -22,7 +24,8 @@ func main() {
 
 	lis, err := net.Listen("tcp", ":"+conf.NodePort())
 	if err != nil {
-		logger.Log.Fatalf("Unable to start node server: %v", err)
+		logger.Errorf("Unable to start node - %v\n", err)
+		return
 	}
 
 	s := grpc.NewServer()
@@ -30,12 +33,13 @@ func main() {
 	diztl.RegisterDiztlServiceServer(s, node)
 	node.Init()
 	client.Init()
-	logger.Log.Println("Started node server...")
+	logger.Infof("Node %s is now up...\n", addr.LocalIP())
 	displayBanner()
 	client.StartCLI()
 	serr := s.Serve(lis)
 	if serr != nil {
-		logger.Log.Fatalf("Failed to serve: %v", err)
+		logger.Errorf("Failed to serve - %v\n", err)
+		return
 	}
 }
 

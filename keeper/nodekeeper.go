@@ -10,7 +10,7 @@ import (
 	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
 	pb "github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/diztl/logger"
+	"github.com/gravetii/logger"
 	"google.golang.org/grpc"
 )
 
@@ -35,12 +35,12 @@ func (nk *NodeKeeper) Register(node *diztl.Node) {
 	nk.mux.Lock()
 	defer nk.mux.Unlock()
 	if nk.invalidateIfExists(node) {
-		logger.Log.Printf("Stale connection found for %s\n", node.GetIp())
+		logger.Warnf("Stale connection found for %s\n", node.GetIp())
 	}
 	uuid := uuid.New()
 	node.Id = uuid.String()
 	nk.Nodes[node.GetIp()] = node
-	logger.Log.Printf("Node successfully registered: %s, %s\n", node.GetIp(), node.GetId())
+	logger.Infof("Node successfully registered: %s, %s\n", node.GetIp(), node.GetId())
 }
 
 func (nk *NodeKeeper) invalidateIfExists(node *diztl.Node) bool {
@@ -63,11 +63,11 @@ func (nk *NodeKeeper) GetConnection(node *diztl.Node) (pb.DiztlServiceClient, er
 	conn, err := grpc.Dial(addr.Address(node), grpc.WithInsecure(),
 		grpc.WithBlock(), grpc.WithTimeout(conf.NodeConnectTimeout()))
 	if err != nil {
-		logger.Log.Printf("Could not connect to node %s: %v\n", node.GetIp(), err)
+		logger.Errorf("Could not connect to node %s: %v\n", node.GetIp(), err)
 		return nil, err
 	}
 
-	logger.Log.Printf("Created connection to node %s\n", node.GetIp())
+	logger.Debugf("Created connection to node %s\n", node.GetIp())
 	nk.connections[node.GetIp()] = conn
 	r := pb.NewDiztlServiceClient(conn)
 	return r, nil
@@ -84,11 +84,11 @@ func (nk *NodeKeeper) Close() {
 	for node, conn := range nk.connections {
 		err := conn.Close()
 		if err != nil {
-			logger.Log.Printf("Error while closing connection to %s: %v", node, err)
+			logger.Errorf("Error while closing connection to %s - %v\n", node, err)
 		} else {
-			logger.Log.Printf("Closed connection to %s\n", node)
+			logger.Debugf("Closed connection to %s\n", node)
 		}
 	}
 
-	logger.Log.Println("Nodekeeper shut down successfully.")
+	logger.Infof("Nodekeeper shut down successfully.\n")
 }
