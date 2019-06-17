@@ -4,10 +4,9 @@ import (
 	"bufio"
 	"errors"
 	"io"
+	"io/ioutil"
 	"os"
-	"path"
 
-	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
 
 	"github.com/gravetii/diztl/counter"
@@ -44,38 +43,28 @@ func (r *Reader) reset() {
 	r.f.Seek(0, 0)
 }
 
-// createTempFileFromSource creates a copy of the source file in the system's temp directory.
-func createTempFileFromSource(src string) (*os.File, error) {
-	dest, err := dir.GetTempPathForUpload(path.Base(src))
-	if err != nil {
-		return nil, err
-	}
-
-	f, err := os.Create(dest)
-	if err != nil {
-		logger.Errorf("Error while creating temp file for upload: %s - %v\n", dest, err)
-		return nil, errors.New("Could not create temp file for upload - " + err.Error())
-	}
-
-	return f, nil
-}
-
 func copyToTempDir(metadata *diztl.FileMetadata) (*os.File, error) {
 	src := metadata.GetPath()
+	fname := metadata.GetName()
+
 	in, err := openFile(src)
 	if err != nil {
 		return nil, err
 	}
 
 	defer in.Close()
-	out, err := createTempFileFromSource(src)
+
+	out, err := ioutil.TempFile("", fname)
 	if err != nil {
-		return nil, err
+		logger.Errorf("Unable to create temp file for upload: %s - %v\n", src, err)
+		return nil, errors.New("Could not create temp file for upload - " + err.Error())
 	}
+
+	logger.Debugf("Created temp file for upload from %s - %s\n", src, out.Name())
 
 	_, err = io.Copy(out, in)
 	if err != nil {
-		logger.Errorf("Error while copying source file to temp dir: %s - %v\n", src, err)
+		logger.Errorf("Error while copying source file to temp dir: %s - %v\n", out.Name(), err)
 		return nil, errors.New("Could not copy source file to temp dir - " + err.Error())
 	}
 

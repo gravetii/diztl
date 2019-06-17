@@ -5,8 +5,8 @@ import (
 	"bytes"
 	"errors"
 	"io"
+	"io/ioutil"
 	"os"
-	"path"
 
 	"gopkg.in/cheggaaa/pb.v1"
 
@@ -30,7 +30,8 @@ type out struct {
 
 // CreateWriter returns an instance of the Writer for the given file metadata.
 func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
-	exists, err := checkIfOutFileExists(metadata.GetName())
+	fname := metadata.GetName()
+	exists, err := checkIfOutFileExists(fname)
 	if err != nil {
 		return nil, err
 	}
@@ -39,11 +40,13 @@ func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
 		return nil, errors.New("A file with given name already exists in output folder")
 	}
 
-	f, err := createTempFile(metadata.GetName())
+	f, err := ioutil.TempFile("", fname)
 	if err != nil {
-		return nil, err
+		logger.Errorf("Unable to create temp file for download: %s - %v\n", metadata.GetPath(), err)
+		return nil, errors.New("Could not create temp file for download - " + err.Error())
 	}
 
+	logger.Debugf("Created temp file for download from %s - %s\n", metadata.GetPath(), f.Name())
 	o := createOut(f, metadata)
 	return &Writer{metadata, f, o}, nil
 }
@@ -87,8 +90,7 @@ func (obj *Writer) Close() (*os.File, error) {
 }
 
 func (obj *Writer) moveToOutputDir() (*os.File, error) {
-	fname := path.Base(obj.f.Name())
-	fpath, err := dir.GetOutputPath(fname)
+	fpath, err := dir.GetOutputPath(obj.metadata.GetName())
 	if err != nil {
 		return nil, err
 	}
@@ -113,23 +115,6 @@ func (obj *Writer) verifyChecksum() bool {
 	}
 
 	return bytes.Equal(c, hash.Checksum)
-}
-
-// createTempFile creates the file with the given name in the system's temp directory
-// before it's moved to the user-configured output folder.
-func createTempFile(fname string) (*os.File, error) {
-	fpath, err := dir.GetTempPathForDownload(fname)
-	if err != nil {
-		return nil, err
-	}
-
-	f, err := os.Create(fpath)
-	if err != nil {
-		logger.Errorf("Unable to create temp file for download %s - %v\n", fpath, err)
-		return nil, errors.New("Could not create temp file for download - " + err.Error())
-	}
-
-	return f, nil
 }
 
 func (o *out) write(data []byte) error {
