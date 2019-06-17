@@ -12,7 +12,7 @@ import (
 func GetShareDirs() ([]string, error) {
 	for _, dir := range conf.ShareDirs() {
 		if err := ensure(dir); err != nil {
-			return nil, errors.New("could not ensure share directories exist - " + err.Error())
+			return nil, errors.New("Could not ensure share directories exist - " + err.Error())
 		}
 	}
 
@@ -23,7 +23,7 @@ func GetShareDirs() ([]string, error) {
 // or an error if any.
 func GetOutputPath(fname string) (string, error) {
 	if err := ensure(conf.OutputDir()); err != nil {
-		return "", errors.New("could not ensure output directory exists - " + err.Error())
+		return "", errors.New("Could not ensure output directory exists - " + err.Error())
 	}
 
 	return filepath.Join(conf.OutputDir(), fname), nil
@@ -46,7 +46,7 @@ func GetTempPathForDownload(fname string) (string, error) {
 func getTempPath(fname string, prefix string) (string, error) {
 	fpath := filepath.Join(os.TempDir(), prefix)
 	if err := ensure(fpath); err != nil {
-		return "", errors.New("could not ensure required temp directories exist - " + err.Error())
+		return "", errors.New("Could not ensure required temp directories exist - " + err.Error())
 	}
 
 	return filepath.Join(fpath, fname), nil
@@ -62,7 +62,7 @@ func GetTempPath(fname string) string {
 // GetLogPath returns the path to the logger file or an error if any.
 func GetLogPath(fname string) (string, error) {
 	if err := ensure(conf.AppDir()); err != nil {
-		return "", errors.New("could not ensure app directory exists - " + err.Error())
+		return "", errors.New("Could not ensure app directory exists - " + err.Error())
 	}
 
 	return filepath.Join(conf.AppDir(), fname), nil
