@@ -1,5 +1,5 @@
 <p align="center">
-<img src="images/diztl_icon.png" width="650" height="600" alt="Diztl Icon" />
+<img src="images/diztl_icon.png" width="450" height="400" alt="Diztl Icon" />
 </p>
 
 # DIZTL
