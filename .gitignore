@@ -1,1 +1,6 @@
 ./config.yml
+
+ui/*.iml
+ui/.idea/
+ui/target/
+ui/out/
