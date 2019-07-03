@@ -440,9 +440,87 @@ func (m *SearchResp) GetNode() *Node {
 	return nil
 }
 
-type DownloadContract struct {
-	// The file chunk size which the receiver node specifies while sending a
-	// download request to the sender node. The sender node has to honour this value
+type FindReq struct {
+	Pattern              string   `protobuf:"bytes,1,opt,name=pattern,proto3" json:"pattern,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FindReq) Reset()         { *m = FindReq{} }
+func (m *FindReq) String() string { return proto.CompactTextString(m) }
+func (*FindReq) ProtoMessage()    {}
+func (*FindReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa22f24bd08bc677, []int{8}
+}
+
+func (m *FindReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FindReq.Unmarshal(m, b)
+}
+func (m *FindReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FindReq.Marshal(b, m, deterministic)
+}
+func (m *FindReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FindReq.Merge(m, src)
+}
+func (m *FindReq) XXX_Size() int {
+	return xxx_messageInfo_FindReq.Size(m)
+}
+func (m *FindReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_FindReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FindReq proto.InternalMessageInfo
+
+func (m *FindReq) GetPattern() string {
+	if m != nil {
+		return m.Pattern
+	}
+	return ""
+}
+
+type FindResp struct {
+	Responses            []*SearchResp `protobuf:"bytes,1,rep,name=responses,proto3" json:"responses,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *FindResp) Reset()         { *m = FindResp{} }
+func (m *FindResp) String() string { return proto.CompactTextString(m) }
+func (*FindResp) ProtoMessage()    {}
+func (*FindResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa22f24bd08bc677, []int{9}
+}
+
+func (m *FindResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FindResp.Unmarshal(m, b)
+}
+func (m *FindResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FindResp.Marshal(b, m, deterministic)
+}
+func (m *FindResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FindResp.Merge(m, src)
+}
+func (m *FindResp) XXX_Size() int {
+	return xxx_messageInfo_FindResp.Size(m)
+}
+func (m *FindResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_FindResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FindResp proto.InternalMessageInfo
+
+func (m *FindResp) GetResponses() []*SearchResp {
+	if m != nil {
+		return m.Responses
+	}
+	return nil
+}
+
+type UploadContract struct {
+	// The file chunk size which the receiver node specifies while sending an
+	// upload request to the sender node. The sender node has to honour this value
 	// and create chunks of this size when it uploads the file to the receiver to
 	// not overwhelm it when it processes the downloaded chunks.
 	ChunkSize            int32    `protobuf:"varint,1,opt,name=chunkSize,proto3" json:"chunkSize,omitempty"`
@@ -451,55 +529,109 @@ type DownloadContract struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DownloadContract) Reset()         { *m = DownloadContract{} }
-func (m *DownloadContract) String() string { return proto.CompactTextString(m) }
-func (*DownloadContract) ProtoMessage()    {}
-func (*DownloadContract) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fa22f24bd08bc677, []int{8}
+func (m *UploadContract) Reset()         { *m = UploadContract{} }
+func (m *UploadContract) String() string { return proto.CompactTextString(m) }
+func (*UploadContract) ProtoMessage()    {}
+func (*UploadContract) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa22f24bd08bc677, []int{10}
 }
 
-func (m *DownloadContract) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DownloadContract.Unmarshal(m, b)
+func (m *UploadContract) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UploadContract.Unmarshal(m, b)
 }
-func (m *DownloadContract) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DownloadContract.Marshal(b, m, deterministic)
+func (m *UploadContract) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UploadContract.Marshal(b, m, deterministic)
 }
-func (m *DownloadContract) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DownloadContract.Merge(m, src)
+func (m *UploadContract) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UploadContract.Merge(m, src)
 }
-func (m *DownloadContract) XXX_Size() int {
-	return xxx_messageInfo_DownloadContract.Size(m)
+func (m *UploadContract) XXX_Size() int {
+	return xxx_messageInfo_UploadContract.Size(m)
 }
-func (m *DownloadContract) XXX_DiscardUnknown() {
-	xxx_messageInfo_DownloadContract.DiscardUnknown(m)
+func (m *UploadContract) XXX_DiscardUnknown() {
+	xxx_messageInfo_UploadContract.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DownloadContract proto.InternalMessageInfo
+var xxx_messageInfo_UploadContract proto.InternalMessageInfo
 
-func (m *DownloadContract) GetChunkSize() int32 {
+func (m *UploadContract) GetChunkSize() int32 {
 	if m != nil {
 		return m.ChunkSize
 	}
 	return 0
 }
 
-type DownloadReq struct {
+type UploadReq struct {
 	// The node from which the requester node wants to download a file of interest.
 	Source *Node `protobuf:"bytes,1,opt,name=source,proto3" json:"source,omitempty"`
-	// The metadata of the file to be downloaded.
+	// The metadata of the file to download.
 	Metadata *FileMetadata `protobuf:"bytes,2,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// The download contract that the receiver node wants to let the sender node know.
-	Contract             *DownloadContract `protobuf:"bytes,3,opt,name=contract,proto3" json:"contract,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
+	// The upload contract that the receiver node wants to let the sender node know.
+	Contract             *UploadContract `protobuf:"bytes,3,opt,name=contract,proto3" json:"contract,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *UploadReq) Reset()         { *m = UploadReq{} }
+func (m *UploadReq) String() string { return proto.CompactTextString(m) }
+func (*UploadReq) ProtoMessage()    {}
+func (*UploadReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa22f24bd08bc677, []int{11}
+}
+
+func (m *UploadReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UploadReq.Unmarshal(m, b)
+}
+func (m *UploadReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UploadReq.Marshal(b, m, deterministic)
+}
+func (m *UploadReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UploadReq.Merge(m, src)
+}
+func (m *UploadReq) XXX_Size() int {
+	return xxx_messageInfo_UploadReq.Size(m)
+}
+func (m *UploadReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_UploadReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UploadReq proto.InternalMessageInfo
+
+func (m *UploadReq) GetSource() *Node {
+	if m != nil {
+		return m.Source
+	}
+	return nil
+}
+
+func (m *UploadReq) GetMetadata() *FileMetadata {
+	if m != nil {
+		return m.Metadata
+	}
+	return nil
+}
+
+func (m *UploadReq) GetContract() *UploadContract {
+	if m != nil {
+		return m.Contract
+	}
+	return nil
+}
+
+type DownloadReq struct {
+	Source               *Node         `protobuf:"bytes,1,opt,name=source,proto3" json:"source,omitempty"`
+	Metadata             *FileMetadata `protobuf:"bytes,2,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
 func (m *DownloadReq) Reset()         { *m = DownloadReq{} }
 func (m *DownloadReq) String() string { return proto.CompactTextString(m) }
 func (*DownloadReq) ProtoMessage()    {}
 func (*DownloadReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fa22f24bd08bc677, []int{9}
+	return fileDescriptor_fa22f24bd08bc677, []int{12}
 }
 
 func (m *DownloadReq) XXX_Unmarshal(b []byte) error {
@@ -534,11 +666,43 @@ func (m *DownloadReq) GetMetadata() *FileMetadata {
 	return nil
 }
 
-func (m *DownloadReq) GetContract() *DownloadContract {
+type DownloadResp struct {
+	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DownloadResp) Reset()         { *m = DownloadResp{} }
+func (m *DownloadResp) String() string { return proto.CompactTextString(m) }
+func (*DownloadResp) ProtoMessage()    {}
+func (*DownloadResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fa22f24bd08bc677, []int{13}
+}
+
+func (m *DownloadResp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DownloadResp.Unmarshal(m, b)
+}
+func (m *DownloadResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DownloadResp.Marshal(b, m, deterministic)
+}
+func (m *DownloadResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DownloadResp.Merge(m, src)
+}
+func (m *DownloadResp) XXX_Size() int {
+	return xxx_messageInfo_DownloadResp.Size(m)
+}
+func (m *DownloadResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_DownloadResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DownloadResp proto.InternalMessageInfo
+
+func (m *DownloadResp) GetMessage() string {
 	if m != nil {
-		return m.Contract
+		return m.Message
 	}
-	return nil
+	return ""
 }
 
 type DisconnectReq struct {
@@ -552,7 +716,7 @@ func (m *DisconnectReq) Reset()         { *m = DisconnectReq{} }
 func (m *DisconnectReq) String() string { return proto.CompactTextString(m) }
 func (*DisconnectReq) ProtoMessage()    {}
 func (*DisconnectReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fa22f24bd08bc677, []int{10}
+	return fileDescriptor_fa22f24bd08bc677, []int{14}
 }
 
 func (m *DisconnectReq) XXX_Unmarshal(b []byte) error {
@@ -591,7 +755,7 @@ func (m *DisconnectResp) Reset()         { *m = DisconnectResp{} }
 func (m *DisconnectResp) String() string { return proto.CompactTextString(m) }
 func (*DisconnectResp) ProtoMessage()    {}
 func (*DisconnectResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fa22f24bd08bc677, []int{11}
+	return fileDescriptor_fa22f24bd08bc677, []int{15}
 }
 
 func (m *DisconnectResp) XXX_Unmarshal(b []byte) error {
@@ -631,7 +795,7 @@ func (m *PingReq) Reset()         { *m = PingReq{} }
 func (m *PingReq) String() string { return proto.CompactTextString(m) }
 func (*PingReq) ProtoMessage()    {}
 func (*PingReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fa22f24bd08bc677, []int{12}
+	return fileDescriptor_fa22f24bd08bc677, []int{16}
 }
 
 func (m *PingReq) XXX_Unmarshal(b []byte) error {
@@ -677,7 +841,7 @@ func (m *PingResp) Reset()         { *m = PingResp{} }
 func (m *PingResp) String() string { return proto.CompactTextString(m) }
 func (*PingResp) ProtoMessage()    {}
 func (*PingResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fa22f24bd08bc677, []int{13}
+	return fileDescriptor_fa22f24bd08bc677, []int{17}
 }
 
 func (m *PingResp) XXX_Unmarshal(b []byte) error {
@@ -714,8 +878,12 @@ func init() {
 	proto.RegisterType((*RegisterResp)(nil), "RegisterResp")
 	proto.RegisterType((*SearchReq)(nil), "SearchReq")
 	proto.RegisterType((*SearchResp)(nil), "SearchResp")
-	proto.RegisterType((*DownloadContract)(nil), "DownloadContract")
+	proto.RegisterType((*FindReq)(nil), "FindReq")
+	proto.RegisterType((*FindResp)(nil), "FindResp")
+	proto.RegisterType((*UploadContract)(nil), "UploadContract")
+	proto.RegisterType((*UploadReq)(nil), "UploadReq")
 	proto.RegisterType((*DownloadReq)(nil), "DownloadReq")
+	proto.RegisterType((*DownloadResp)(nil), "DownloadResp")
 	proto.RegisterType((*DisconnectReq)(nil), "DisconnectReq")
 	proto.RegisterType((*DisconnectResp)(nil), "DisconnectResp")
 	proto.RegisterType((*PingReq)(nil), "PingReq")
@@ -725,44 +893,49 @@ func init() {
 func init() { proto.RegisterFile("diztl.proto", fileDescriptor_fa22f24bd08bc677) }
 
 var fileDescriptor_fa22f24bd08bc677 = []byte{
-	// 581 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x54, 0x5f, 0x6f, 0xd3, 0x3e,
-	0x14, 0xad, 0xd3, 0x24, 0x4b, 0x6e, 0xb2, 0xfe, 0x7e, 0x58, 0x08, 0x65, 0x11, 0x93, 0x2a, 0x0f,
-	0xa6, 0x6e, 0x12, 0x66, 0x2a, 0x12, 0x5f, 0xa0, 0xd5, 0xc4, 0x03, 0x20, 0x94, 0xc2, 0x3b, 0x26,
-	0x31, 0x4d, 0xd4, 0x36, 0x09, 0xb1, 0x0b, 0x52, 0x3f, 0x00, 0xef, 0x88, 0x2f, 0x8c, 0xec, 0xfc,
-	0x69, 0xba, 0xa1, 0xb2, 0x37, 0xdf, 0x9b, 0x73, 0xaf, 0xcf, 0xb9, 0xc7, 0x37, 0xe0, 0x25, 0xd9,
-	0x4e, 0xae, 0x69, 0x59, 0x15, 0xb2, 0x20, 0x97, 0x60, 0xbe, 0x2f, 0x12, 0x8e, 0x47, 0x60, 0x64,
-	0x65, 0x80, 0xc6, 0x68, 0xe2, 0x46, 0x46, 0x56, 0xea, 0x38, 0x09, 0x8c, 0x26, 0x4e, 0xc8, 0x2f,
-	0x04, 0xfe, 0x6d, 0xb6, 0xe6, 0xef, 0xb8, 0x64, 0x09, 0x93, 0x0c, 0x63, 0x30, 0x4b, 0x26, 0xd3,
-	0xa6, 0x44, 0x9f, 0x7b, 0x45, 0x96, 0x2a, 0x52, 0x18, 0x91, 0xed, 0x78, 0x30, 0x1c, 0xa3, 0xc9,
-	0x30, 0xd2, 0x67, 0xfc, 0x04, 0xec, 0x38, 0xdd, 0xe6, 0x2b, 0x11, 0x98, 0x1a, 0xd7, 0x44, 0x0a,
-	0x9b, 0xb3, 0x0d, 0x0f, 0xac, 0xba, 0x9f, 0x3a, 0xe3, 0x73, 0x30, 0x53, 0x26, 0xd2, 0xc0, 0x1e,
-	0xa3, 0x89, 0x37, 0x75, 0xa9, 0x22, 0xf0, 0x86, 0x89, 0x34, 0xd2, 0x69, 0xf2, 0x1a, 0x9c, 0x36,
-	0x83, 0x43, 0x70, 0xe2, 0x94, 0xc7, 0x2b, 0xb1, 0xdd, 0x68, 0x4a, 0x7e, 0xd4, 0xc5, 0x8a, 0x96,
-	0x14, 0x9a, 0xd6, 0x30, 0x32, 0xa4, 0x20, 0x9f, 0xc1, 0x55, 0x75, 0x33, 0x75, 0x31, 0xbe, 0x02,
-	0x67, 0xd3, 0x68, 0xd2, 0x85, 0xde, 0xf4, 0x94, 0xf6, 0x85, 0x46, 0xdd, 0x67, 0x45, 0x51, 0xc3,
-	0x0c, 0xdd, 0x5f, 0x9f, 0xf1, 0x63, 0xb0, 0xb4, 0x00, 0xad, 0xd1, 0x8a, 0xea, 0x80, 0x4c, 0xc0,
-	0x8b, 0xf8, 0x32, 0x13, 0x92, 0x57, 0x11, 0xff, 0x86, 0xcf, 0xc0, 0xcc, 0x8b, 0x84, 0x37, 0xfd,
-	0x2d, 0xaa, 0x26, 0x1e, 0xe9, 0x14, 0xb9, 0x02, 0x7f, 0x8f, 0x14, 0xe5, 0x31, 0xe8, 0x2d, 0xb8,
-	0x0b, 0xce, 0xaa, 0x38, 0x55, 0x2d, 0x43, 0x70, 0xbe, 0x66, 0x6b, 0xae, 0x47, 0x56, 0x5b, 0xd0,
-	0xc5, 0xf8, 0x1c, 0x6c, 0x51, 0x6c, 0xab, 0x98, 0x6b, 0xa6, 0x5d, 0x97, 0x26, 0x49, 0xde, 0x02,
-	0xb4, 0x7d, 0x44, 0x89, 0x2f, 0xc0, 0x52, 0x85, 0x22, 0x40, 0xe3, 0xe1, 0x7d, 0xf1, 0xf5, 0xb7,
-	0x8e, 0x95, 0x71, 0x9f, 0xd5, 0x0d, 0xfc, 0x3f, 0x2f, 0x7e, 0xe4, 0xeb, 0x82, 0x25, 0xb3, 0x22,
-	0x97, 0x15, 0x8b, 0x25, 0x7e, 0x0a, 0xae, 0x9e, 0xc3, 0x42, 0x99, 0x8f, 0xf4, 0x60, 0xf6, 0x09,
-	0xf2, 0x13, 0x81, 0xd7, 0x96, 0x28, 0x29, 0x7b, 0xba, 0xe8, 0x2f, 0x74, 0x0f, 0x0c, 0x32, 0x8e,
-	0x1b, 0xf4, 0x02, 0x9c, 0xb8, 0xe1, 0xa0, 0xfd, 0xf0, 0xa6, 0x8f, 0xe8, 0x5d, 0x72, 0x51, 0x07,
-	0x21, 0xd7, 0x70, 0x3a, 0xcf, 0x44, 0x5c, 0xe4, 0x39, 0x8f, 0xe5, 0x3f, 0x7c, 0xba, 0x86, 0x51,
-	0x1f, 0x2b, 0x4a, 0x1c, 0xc0, 0xc9, 0x86, 0x0b, 0xc1, 0x96, 0xad, 0x01, 0x6d, 0x48, 0x66, 0x70,
-	0xf2, 0x21, 0xcb, 0x97, 0x0f, 0xd0, 0x76, 0x06, 0x66, 0xc2, 0x85, 0xbc, 0x33, 0x57, 0x95, 0x22,
-	0xcf, 0xc0, 0xa9, 0x9b, 0x1c, 0xbb, 0x6a, 0xba, 0x03, 0x7f, 0xae, 0xb6, 0x79, 0xc1, 0xab, 0xef,
-	0x59, 0xcc, 0xf1, 0x05, 0xd8, 0xb5, 0xb7, 0x18, 0x68, 0xf7, 0x58, 0x42, 0x8f, 0xee, 0x0d, 0x27,
-	0x03, 0x7c, 0x09, 0xf6, 0xa7, 0x52, 0xcd, 0x04, 0xfb, 0xb4, 0x67, 0x44, 0x08, 0xb4, 0x5b, 0x0b,
-	0x32, 0xb8, 0x41, 0x6a, 0xfd, 0x14, 0x05, 0xec, 0xd0, 0x46, 0x4e, 0xe8, 0xd2, 0x96, 0x13, 0x19,
-	0x4c, 0x7f, 0x23, 0x18, 0x7d, 0xac, 0x58, 0xbc, 0xe2, 0x55, 0x7b, 0xfd, 0x15, 0x38, 0xed, 0x6b,
-	0xc6, 0x3e, 0xed, 0xad, 0x40, 0x78, 0x4a, 0xfb, 0xcf, 0x9c, 0x0c, 0xf0, 0xf3, 0x07, 0x30, 0xbd,
-	0x41, 0xf8, 0x25, 0x40, 0xd2, 0xcd, 0x1d, 0x8f, 0xe8, 0x81, 0x61, 0xe1, 0x7f, 0xf4, 0xd0, 0x14,
-	0x32, 0xf8, 0x62, 0xeb, 0xff, 0xda, 0xab, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xd6, 0x03, 0x82,
-	0x87, 0xe6, 0x04, 0x00, 0x00,
+	// 663 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xcd, 0x6e, 0xd3, 0x40,
+	0x10, 0xb6, 0x9d, 0x9f, 0xda, 0x63, 0x27, 0x95, 0x56, 0x08, 0xb9, 0x16, 0x95, 0xa2, 0x6d, 0x41,
+	0x49, 0x91, 0x96, 0x2a, 0x08, 0x5e, 0xa0, 0x55, 0xc5, 0x01, 0x10, 0x72, 0x41, 0x5c, 0x59, 0xec,
+	0xa5, 0xb6, 0x9a, 0xd8, 0xae, 0x77, 0x03, 0x52, 0x8f, 0xbc, 0x01, 0xe2, 0x8d, 0x78, 0x32, 0x34,
+	0xeb, 0xdf, 0x50, 0x14, 0x7a, 0xe0, 0xb6, 0x33, 0x3b, 0x33, 0xfb, 0xcd, 0x7c, 0xdf, 0x0e, 0xb8,
+	0x71, 0x7a, 0xab, 0x56, 0xac, 0x28, 0x73, 0x95, 0xd3, 0x27, 0x30, 0x7c, 0x9b, 0xc7, 0x82, 0x4c,
+	0xc1, 0x4a, 0x0b, 0xdf, 0x9c, 0x99, 0x73, 0x27, 0xb4, 0xd2, 0x42, 0xdb, 0xb1, 0x6f, 0xd5, 0x76,
+	0x4c, 0x7f, 0x98, 0xe0, 0x5d, 0xa4, 0x2b, 0xf1, 0x46, 0x28, 0x1e, 0x73, 0xc5, 0x09, 0x81, 0x61,
+	0xc1, 0x55, 0x52, 0xa7, 0xe8, 0x73, 0x2f, 0x69, 0x84, 0x49, 0x18, 0x23, 0xd3, 0x5b, 0xe1, 0x0f,
+	0x66, 0xe6, 0x7c, 0x10, 0xea, 0x33, 0x79, 0x08, 0xe3, 0x28, 0xd9, 0x64, 0xd7, 0xd2, 0x1f, 0xea,
+	0xb8, 0xda, 0xc2, 0xd8, 0x8c, 0xaf, 0x85, 0x3f, 0xaa, 0xea, 0xe1, 0x99, 0x1c, 0xc2, 0x30, 0xe1,
+	0x32, 0xf1, 0xc7, 0x33, 0x73, 0xee, 0x2e, 0x1d, 0x86, 0x00, 0x5e, 0x71, 0x99, 0x84, 0xda, 0x4d,
+	0x5f, 0x82, 0xdd, 0x78, 0x48, 0x00, 0x76, 0x94, 0x88, 0xe8, 0x5a, 0x6e, 0xd6, 0x1a, 0x92, 0x17,
+	0xb6, 0x36, 0xc2, 0x52, 0x52, 0xc3, 0x1a, 0x84, 0x96, 0x92, 0xf4, 0x13, 0x38, 0x98, 0x77, 0x86,
+	0x0f, 0x93, 0x05, 0xd8, 0xeb, 0xba, 0x27, 0x9d, 0xe8, 0x2e, 0x27, 0xac, 0xdf, 0x68, 0xd8, 0x5e,
+	0x23, 0x44, 0x1d, 0x66, 0xe9, 0xfa, 0xfa, 0x4c, 0x1e, 0xc0, 0x48, 0x37, 0xa0, 0x7b, 0x1c, 0x85,
+	0x95, 0x41, 0xe7, 0xe0, 0x86, 0xe2, 0x2a, 0x95, 0x4a, 0x94, 0xa1, 0xb8, 0x21, 0x07, 0x30, 0xcc,
+	0xf2, 0x58, 0xd4, 0xf5, 0x47, 0x0c, 0x27, 0x1e, 0x6a, 0x17, 0x5d, 0x80, 0xd7, 0x45, 0xca, 0x62,
+	0x57, 0xe8, 0x05, 0x38, 0x97, 0x82, 0x97, 0x51, 0x82, 0x25, 0x03, 0xb0, 0xbf, 0xa4, 0x2b, 0xa1,
+	0x47, 0x56, 0x51, 0xd0, 0xda, 0xe4, 0x10, 0xc6, 0x32, 0xdf, 0x94, 0x91, 0xd0, 0x48, 0xdb, 0x2a,
+	0xb5, 0x93, 0xbe, 0x06, 0x68, 0xea, 0xc8, 0x82, 0x1c, 0xc1, 0x08, 0x13, 0xa5, 0x6f, 0xce, 0x06,
+	0x77, 0x9b, 0xaf, 0xee, 0x5a, 0x54, 0xd6, 0x5d, 0x54, 0x47, 0xb0, 0x77, 0x91, 0x66, 0x31, 0x62,
+	0xf2, 0x61, 0xaf, 0xe0, 0x4a, 0x89, 0x32, 0xab, 0x21, 0x35, 0x26, 0x7d, 0x81, 0x4c, 0x61, 0x90,
+	0x2c, 0xc8, 0x02, 0x9c, 0x52, 0xc8, 0x22, 0xcf, 0x64, 0xfb, 0xa8, 0xcb, 0x3a, 0x40, 0x61, 0x77,
+	0x4b, 0x19, 0x4c, 0x3f, 0x14, 0xab, 0x9c, 0xc7, 0x67, 0x79, 0xa6, 0x4a, 0x1e, 0x29, 0xf2, 0x08,
+	0x1c, 0x3d, 0xe1, 0x4b, 0x94, 0x95, 0xa9, 0x47, 0xde, 0x39, 0xe8, 0x77, 0x13, 0x9c, 0x2a, 0x01,
+	0xe1, 0x74, 0x63, 0x30, 0xff, 0x32, 0x86, 0x2d, 0xe2, 0xad, 0xdd, 0xc4, 0x3f, 0x05, 0x3b, 0xaa,
+	0x11, 0x68, 0x9e, 0xdd, 0xe5, 0x3e, 0xdb, 0x06, 0x16, 0xb6, 0x01, 0xf4, 0x23, 0xb8, 0xe7, 0xf9,
+	0xb7, 0xec, 0xbf, 0xa3, 0xa0, 0x73, 0xf0, 0xba, 0xc2, 0xb2, 0xc0, 0x71, 0xaf, 0x85, 0x94, 0xfc,
+	0xaa, 0x51, 0x40, 0x63, 0xd2, 0x13, 0x98, 0x9c, 0xa7, 0x32, 0xca, 0xb3, 0x4c, 0x44, 0xea, 0x1f,
+	0x02, 0x3c, 0x81, 0x69, 0x3f, 0x76, 0x67, 0xdd, 0x33, 0xd8, 0x7b, 0x97, 0x66, 0x57, 0xf7, 0x68,
+	0xeb, 0x00, 0x86, 0xb1, 0x90, 0xea, 0x0f, 0xc1, 0xa0, 0x8b, 0x1e, 0x83, 0x5d, 0x15, 0xd9, 0xf5,
+	0xd4, 0xf2, 0x97, 0x09, 0xde, 0x39, 0xee, 0xa9, 0x4b, 0x51, 0x7e, 0x4d, 0x23, 0x41, 0x8e, 0x60,
+	0x5c, 0x89, 0x84, 0x40, 0xab, 0x96, 0x9b, 0xa0, 0xaf, 0x1c, 0x6a, 0x90, 0x63, 0x18, 0x57, 0xbc,
+	0x10, 0x60, 0xad, 0x10, 0x02, 0x60, 0xed, 0x77, 0xa7, 0xc6, 0xa9, 0x89, 0x6b, 0x05, 0x11, 0x10,
+	0x9b, 0xd5, 0xdd, 0x04, 0x0e, 0x6b, 0x20, 0x51, 0x03, 0xaf, 0x51, 0xac, 0xc4, 0x66, 0xb5, 0xb0,
+	0x03, 0x87, 0x35, 0xea, 0xa5, 0x06, 0x32, 0xd6, 0xd0, 0x40, 0x3c, 0xd6, 0xa3, 0x3a, 0x98, 0xb0,
+	0x3e, 0x3f, 0xd4, 0x58, 0xfe, 0x34, 0x61, 0xfa, 0xbe, 0xe4, 0xd1, 0xb5, 0x28, 0x9b, 0x36, 0x16,
+	0x60, 0x37, 0xff, 0x9d, 0x78, 0xac, 0xb7, 0x24, 0x82, 0x09, 0xeb, 0x2f, 0x02, 0x6a, 0x90, 0xc7,
+	0xf7, 0xe8, 0xf8, 0xd4, 0x24, 0xcf, 0x00, 0x3a, 0x02, 0xc9, 0x94, 0x6d, 0x31, 0x1f, 0xec, 0xb3,
+	0x6d, 0x76, 0xa9, 0xf1, 0x79, 0xac, 0x37, 0xff, 0xf3, 0xdf, 0x01, 0x00, 0x00, 0xff, 0xff, 0x6f,
+	0xe0, 0xa9, 0x53, 0x08, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -778,8 +951,10 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type DiztlServiceClient interface {
 	Search(ctx context.Context, in *SearchReq, opts ...grpc.CallOption) (*SearchResp, error)
-	Upload(ctx context.Context, in *DownloadReq, opts ...grpc.CallOption) (DiztlService_UploadClient, error)
+	Upload(ctx context.Context, in *UploadReq, opts ...grpc.CallOption) (DiztlService_UploadClient, error)
 	Ping(ctx context.Context, in *PingReq, opts ...grpc.CallOption) (*PingResp, error)
+	Find(ctx context.Context, in *FindReq, opts ...grpc.CallOption) (*FindResp, error)
+	Download(ctx context.Context, in *DownloadReq, opts ...grpc.CallOption) (*DownloadResp, error)
 }
 
 type diztlServiceClient struct {
@@ -799,7 +974,7 @@ func (c *diztlServiceClient) Search(ctx context.Context, in *SearchReq, opts ...
 	return out, nil
 }
 
-func (c *diztlServiceClient) Upload(ctx context.Context, in *DownloadReq, opts ...grpc.CallOption) (DiztlService_UploadClient, error) {
+func (c *diztlServiceClient) Upload(ctx context.Context, in *UploadReq, opts ...grpc.CallOption) (DiztlService_UploadClient, error) {
 	stream, err := c.cc.NewStream(ctx, &_DiztlService_serviceDesc.Streams[0], "/DiztlService/Upload", opts...)
 	if err != nil {
 		return nil, err
@@ -840,11 +1015,31 @@ func (c *diztlServiceClient) Ping(ctx context.Context, in *PingReq, opts ...grpc
 	return out, nil
 }
 
+func (c *diztlServiceClient) Find(ctx context.Context, in *FindReq, opts ...grpc.CallOption) (*FindResp, error) {
+	out := new(FindResp)
+	err := c.cc.Invoke(ctx, "/DiztlService/Find", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *diztlServiceClient) Download(ctx context.Context, in *DownloadReq, opts ...grpc.CallOption) (*DownloadResp, error) {
+	out := new(DownloadResp)
+	err := c.cc.Invoke(ctx, "/DiztlService/Download", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DiztlServiceServer is the server API for DiztlService service.
 type DiztlServiceServer interface {
 	Search(context.Context, *SearchReq) (*SearchResp, error)
-	Upload(*DownloadReq, DiztlService_UploadServer) error
+	Upload(*UploadReq, DiztlService_UploadServer) error
 	Ping(context.Context, *PingReq) (*PingResp, error)
+	Find(context.Context, *FindReq) (*FindResp, error)
+	Download(context.Context, *DownloadReq) (*DownloadResp, error)
 }
 
 func RegisterDiztlServiceServer(s *grpc.Server, srv DiztlServiceServer) {
@@ -870,7 +1065,7 @@ func _DiztlService_Search_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _DiztlService_Upload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(DownloadReq)
+	m := new(UploadReq)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -908,6 +1103,42 @@ func _DiztlService_Ping_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DiztlService_Find_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DiztlServiceServer).Find(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/DiztlService/Find",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DiztlServiceServer).Find(ctx, req.(*FindReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DiztlService_Download_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DownloadReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DiztlServiceServer).Download(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/DiztlService/Download",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DiztlServiceServer).Download(ctx, req.(*DownloadReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _DiztlService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "DiztlService",
 	HandlerType: (*DiztlServiceServer)(nil),
@@ -919,6 +1150,14 @@ var _DiztlService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Ping",
 			Handler:    _DiztlService_Ping_Handler,
+		},
+		{
+			MethodName: "Find",
+			Handler:    _DiztlService_Find_Handler,
+		},
+		{
+			MethodName: "Download",
+			Handler:    _DiztlService_Download_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
@@ -991,7 +1230,7 @@ func (x *trackerServiceSearchClient) Recv() (*SearchResp, error) {
 
 func (c *trackerServiceClient) Disconnect(ctx context.Context, in *DisconnectReq, opts ...grpc.CallOption) (*DisconnectResp, error) {
 	out := new(DisconnectResp)
-	err := c.cc.Invoke(ctx, "/TrackerService/disconnect", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/TrackerService/Disconnect", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1075,7 +1314,7 @@ var _TrackerService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _TrackerService_Register_Handler,
 		},
 		{
-			MethodName: "disconnect",
+			MethodName: "Disconnect",
 			Handler:    _TrackerService_Disconnect_Handler,
 		},
 	},

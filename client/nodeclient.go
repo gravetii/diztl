@@ -143,7 +143,7 @@ func (c *NodeClient) Ping(node *diztl.Node) (*diztl.PingResp, error) {
 	return client.Ping(ctx, &req)
 }
 
-func (c *NodeClient) download(r *diztl.DownloadReq) (*os.File, error) {
+func (c *NodeClient) download(r *diztl.UploadReq) (*os.File, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), conf.DownloadTimeout())
 	defer cancel()
 	client, err := c.nk.GetConnection(r.GetSource())
