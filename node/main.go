@@ -13,7 +13,6 @@ import (
 	"github.com/gravetii/go-figure"
 	"google.golang.org/grpc"
 
-	"github.com/gravetii/diztl/client"
 	"github.com/gravetii/diztl/service"
 	"github.com/gravetii/logger"
 )
@@ -32,10 +31,10 @@ func main() {
 	node := service.NewNode()
 	diztl.RegisterDiztlServiceServer(s, node)
 	node.Init()
-	client.Init()
+	//client.Init()
 	logger.Infof("Node %s is now up...\n", addr.LocalIP())
 	displayBanner()
-	client.StartCLI()
+	//client.StartCLI()
 	serr := s.Serve(lis)
 	if serr != nil {
 		logger.Errorf("Failed to serve - %v\n", err)

@@ -4,3 +4,7 @@ ui/*.iml
 ui/.idea/
 ui/target/
 ui/out/
+
+ui/.classpath
+ui/.project
+ui/.settings/

@@ -52,8 +52,8 @@ func input(r *bufio.Scanner) (string, bool) {
 
 func download(res []*searchResult) {
 	for _, r := range res {
-		c := diztl.DownloadContract{ChunkSize: conf.ChunkSize()}
-		req := diztl.DownloadReq{Source: r.node, Metadata: r.file, Contract: &c}
+		c := diztl.UploadContract{ChunkSize: conf.ChunkSize()}
+		req := diztl.UploadReq{Source: r.node, Metadata: r.file, Contract: &c}
 		f, err := nodeclient.download(&req)
 		if err != nil {
 			logger.Errorf("Error while downloading file %s: %v\n", r.file.GetName(), err)

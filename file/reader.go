@@ -17,13 +17,13 @@ import (
 type Reader struct {
 	buf      *bufio.Reader
 	metadata *diztl.FileMetadata
-	contract *diztl.DownloadContract
+	contract *diztl.UploadContract
 	f        *os.File
 	chunk    *counter.Counter
 }
 
-// CreateReader returns an instance of the Reader for the given file metadata and download contract.
-func CreateReader(metadata *diztl.FileMetadata, contract *diztl.DownloadContract) (*Reader, error) {
+// CreateReader returns an instance of the Reader for the given file metadata and upload contract.
+func CreateReader(metadata *diztl.FileMetadata, contract *diztl.UploadContract) (*Reader, error) {
 	// Copy the source file to the system's temp directory to avoid effect of user changes
 	// and use that file to upload.
 	f, err := copyToTempDir(metadata)
