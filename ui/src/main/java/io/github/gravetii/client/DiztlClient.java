@@ -6,6 +6,7 @@ import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,21 +46,48 @@ public class DiztlClient {
   }
 
   public void find(String pattern) {
+    StreamObserver<Diztl.FindResp> observer = new StreamObserver<Diztl.FindResp>() {
+      @Override
+      public void onNext(Diztl.FindResp value) {
+        System.out.println("Got Find response: " + value.getResponsesList());
+      }
+
+      @Override
+      public void onError(Throwable t) {
+
+      }
+
+      @Override
+      public void onCompleted() {
+        System.out.println("Find completed.");
+      }
+    };
+
     Diztl.FindReq req = Diztl.FindReq.newBuilder().setPattern(pattern).build();
-    Diztl.FindResp resp = connection.getStub().find(req);
-    System.out.println("Found following files, downloading first one.");
-    resp.getResponsesList().forEach(r -> {
-      r.getFilesList().forEach(f -> {
-        System.out.println(f.getName());
-        download(f, r.getNode());
-      });
-    });
+    connection.getAsyncstub().find(req, observer);
   }
 
   public void download(FileMetadata metadata, Node source) {
+    StreamObserver<Diztl.DownloadResp> observer = new StreamObserver<Diztl.DownloadResp>() {
+      @Override
+      public void onNext(Diztl.DownloadResp value) {
+        System.out.println("On next called...");
+      }
+
+      @Override
+      public void onError(Throwable t) {
+
+      }
+
+      @Override
+      public void onCompleted() {
+        System.out.println("Download completed...");
+      }
+    };
+
     System.out.println("Downloading file now...");
     DownloadReq dreq = DownloadReq.newBuilder().setMetadata(metadata).setSource(source).build();
-    connection.getStub().download(dreq);
+    connection.getAsyncstub().download(dreq, observer);
   }
 
 }
