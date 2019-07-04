@@ -9,15 +9,17 @@ import java.util.Optional;
 
 public class StartScene extends FxScene {
   private FileSearchComponent fileSearchComponent;
+  private ResultListComponent resultListComponent;
 
   public StartScene(Stage stage) throws Exception {
     super(stage);
-    this.fileSearchComponent = new FileSearchComponent(stage, root);
+    this.fileSearchComponent = new FileSearchComponent(this);
+    this.resultListComponent = new ResultListComponent(stage, root);
   }
 
   @Override
   protected void build() {
-    this.showTop(fileSearchComponent);
+    this.showTop(fileSearchComponent).showBottom(resultListComponent);
   }
 
   @Override
@@ -27,7 +29,12 @@ public class StartScene extends FxScene {
 
   @Override
   protected Optional<FxDimensions> preferredDimensions() {
-    FxDimensions dimensions = new FxDimensions(new Dimension2D(600, 400));
+    FxDimensions dimensions = new FxDimensions(new Dimension2D(600, 500),
+            new Dimension2D(600, 500), new Dimension2D(600, 500));
     return Optional.of(dimensions);
+  }
+
+  public void showFileResult(String fileName, Long fileSize) {
+    this.resultListComponent.show(fileName, fileSize);
   }
 }

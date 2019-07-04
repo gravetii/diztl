@@ -15,6 +15,10 @@ public abstract class FxScene {
     this.root = new BorderPane();
   }
 
+  public BorderPane getRoot() {
+    return this.root;
+  }
+
   public FxScene showTop(FxComponent component) {
     this.root.setTop(component.getNode());
     return this;
