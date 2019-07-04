@@ -4,6 +4,7 @@ import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.gen.Diztl.DownloadReq;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
+import io.github.gravetii.scene.start.StartScene;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -45,11 +46,16 @@ public class DiztlClient {
     this(getMyIP(), 50051);
   }
 
-  public void find(String pattern) {
+  public void find(String pattern, StartScene scene) {
     StreamObserver<Diztl.FindResp> observer = new StreamObserver<Diztl.FindResp>() {
       @Override
       public void onNext(Diztl.FindResp value) {
         System.out.println("Got Find response: " + value.getResponsesList());
+        value.getResponsesList().forEach(r -> {
+          r.getFilesList().forEach(f -> {
+            scene.showFileResult(f.getName(), f.getSize());
+          });
+        });
       }
 
       @Override

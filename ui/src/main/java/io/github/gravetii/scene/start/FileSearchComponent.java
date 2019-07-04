@@ -4,22 +4,19 @@ import io.github.gravetii.controller.FileSearchController;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class FileSearchComponent extends FxComponent<FileSearchController, VBox> {
-  private Stage stage;
-  private BorderPane root;
+  private StartScene parent;
 
-  protected FileSearchComponent(Stage stage, BorderPane root) throws Exception {
+  public FileSearchComponent(StartScene parent) throws Exception {
     super("filesearch.fxml");
-    this.stage = stage;
-    this.root = root;
+    this.parent = parent;
     this.create();
   }
 
   @Override
   protected FileSearchController createController() {
-    return new FileSearchController(stage);
+    return new FileSearchController(parent);
   }
 
   @Override
