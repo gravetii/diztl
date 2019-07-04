@@ -11,12 +11,20 @@ public class FileResult {
     this.source = source;
   }
 
+  private static String humanReadableByteCount(long bytes) {
+    int unit = 1000;
+    if (bytes < unit) return bytes + " B";
+    int exp = (int) (Math.log(bytes) / Math.log(unit));
+    char pre = "kMGTPE".charAt(exp-1);
+    return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
+  }
+
   public String getFileName() {
     return file.getName();
   }
 
-  public Long getFileSize() {
-    return file.getSize();
+  public String getFileSize() {
+    return FileResult.humanReadableByteCount(file.getSize());
   }
 
   public Diztl.FileMetadata getFile() {

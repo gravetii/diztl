@@ -27,30 +27,30 @@ public final class DiztlServiceGrpc {
   public static final String SERVICE_NAME = "DiztlService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<Diztl.SearchReq,
-      Diztl.SearchResp> getSearchMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.SearchReq,
+      io.github.gravetii.gen.Diztl.SearchResp> getSearchMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Search",
-      requestType = Diztl.SearchReq.class,
-      responseType = Diztl.SearchResp.class,
+      requestType = io.github.gravetii.gen.Diztl.SearchReq.class,
+      responseType = io.github.gravetii.gen.Diztl.SearchResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Diztl.SearchReq,
-      Diztl.SearchResp> getSearchMethod() {
-    io.grpc.MethodDescriptor<Diztl.SearchReq, Diztl.SearchResp> getSearchMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.SearchReq,
+      io.github.gravetii.gen.Diztl.SearchResp> getSearchMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.SearchReq, io.github.gravetii.gen.Diztl.SearchResp> getSearchMethod;
     if ((getSearchMethod = DiztlServiceGrpc.getSearchMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getSearchMethod = DiztlServiceGrpc.getSearchMethod) == null) {
           DiztlServiceGrpc.getSearchMethod = getSearchMethod = 
-              io.grpc.MethodDescriptor.<Diztl.SearchReq, Diztl.SearchResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.gen.Diztl.SearchReq, io.github.gravetii.gen.Diztl.SearchResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "DiztlService", "Search"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Diztl.SearchReq.getDefaultInstance()))
+                  io.github.gravetii.gen.Diztl.SearchReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Diztl.SearchResp.getDefaultInstance()))
+                  io.github.gravetii.gen.Diztl.SearchResp.getDefaultInstance()))
                   .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Search"))
                   .build();
           }
@@ -59,30 +59,30 @@ public final class DiztlServiceGrpc {
      return getSearchMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Diztl.UploadReq,
-      Diztl.FileChunk> getUploadMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.UploadReq,
+      io.github.gravetii.gen.Diztl.FileChunk> getUploadMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Upload",
-      requestType = Diztl.UploadReq.class,
-      responseType = Diztl.FileChunk.class,
+      requestType = io.github.gravetii.gen.Diztl.UploadReq.class,
+      responseType = io.github.gravetii.gen.Diztl.FileChunk.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<Diztl.UploadReq,
-      Diztl.FileChunk> getUploadMethod() {
-    io.grpc.MethodDescriptor<Diztl.UploadReq, Diztl.FileChunk> getUploadMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.UploadReq,
+      io.github.gravetii.gen.Diztl.FileChunk> getUploadMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.UploadReq, io.github.gravetii.gen.Diztl.FileChunk> getUploadMethod;
     if ((getUploadMethod = DiztlServiceGrpc.getUploadMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getUploadMethod = DiztlServiceGrpc.getUploadMethod) == null) {
           DiztlServiceGrpc.getUploadMethod = getUploadMethod = 
-              io.grpc.MethodDescriptor.<Diztl.UploadReq, Diztl.FileChunk>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.gen.Diztl.UploadReq, io.github.gravetii.gen.Diztl.FileChunk>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "DiztlService", "Upload"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Diztl.UploadReq.getDefaultInstance()))
+                  io.github.gravetii.gen.Diztl.UploadReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Diztl.FileChunk.getDefaultInstance()))
+                  io.github.gravetii.gen.Diztl.FileChunk.getDefaultInstance()))
                   .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Upload"))
                   .build();
           }
@@ -91,30 +91,30 @@ public final class DiztlServiceGrpc {
      return getUploadMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Diztl.PingReq,
-      Diztl.PingResp> getPingMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.PingReq,
+      io.github.gravetii.gen.Diztl.PingResp> getPingMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Ping",
-      requestType = Diztl.PingReq.class,
-      responseType = Diztl.PingResp.class,
+      requestType = io.github.gravetii.gen.Diztl.PingReq.class,
+      responseType = io.github.gravetii.gen.Diztl.PingResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Diztl.PingReq,
-      Diztl.PingResp> getPingMethod() {
-    io.grpc.MethodDescriptor<Diztl.PingReq, Diztl.PingResp> getPingMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.PingReq,
+      io.github.gravetii.gen.Diztl.PingResp> getPingMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.PingReq, io.github.gravetii.gen.Diztl.PingResp> getPingMethod;
     if ((getPingMethod = DiztlServiceGrpc.getPingMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getPingMethod = DiztlServiceGrpc.getPingMethod) == null) {
           DiztlServiceGrpc.getPingMethod = getPingMethod = 
-              io.grpc.MethodDescriptor.<Diztl.PingReq, Diztl.PingResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.gen.Diztl.PingReq, io.github.gravetii.gen.Diztl.PingResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "DiztlService", "Ping"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Diztl.PingReq.getDefaultInstance()))
+                  io.github.gravetii.gen.Diztl.PingReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Diztl.PingResp.getDefaultInstance()))
+                  io.github.gravetii.gen.Diztl.PingResp.getDefaultInstance()))
                   .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Ping"))
                   .build();
           }
@@ -123,30 +123,30 @@ public final class DiztlServiceGrpc {
      return getPingMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Diztl.FindReq,
-      Diztl.FindResp> getFindMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.FindReq,
+      io.github.gravetii.gen.Diztl.FindResp> getFindMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Find",
-      requestType = Diztl.FindReq.class,
-      responseType = Diztl.FindResp.class,
+      requestType = io.github.gravetii.gen.Diztl.FindReq.class,
+      responseType = io.github.gravetii.gen.Diztl.FindResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Diztl.FindReq,
-      Diztl.FindResp> getFindMethod() {
-    io.grpc.MethodDescriptor<Diztl.FindReq, Diztl.FindResp> getFindMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.FindReq,
+      io.github.gravetii.gen.Diztl.FindResp> getFindMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.FindReq, io.github.gravetii.gen.Diztl.FindResp> getFindMethod;
     if ((getFindMethod = DiztlServiceGrpc.getFindMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getFindMethod = DiztlServiceGrpc.getFindMethod) == null) {
           DiztlServiceGrpc.getFindMethod = getFindMethod = 
-              io.grpc.MethodDescriptor.<Diztl.FindReq, Diztl.FindResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.gen.Diztl.FindReq, io.github.gravetii.gen.Diztl.FindResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "DiztlService", "Find"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Diztl.FindReq.getDefaultInstance()))
+                  io.github.gravetii.gen.Diztl.FindReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Diztl.FindResp.getDefaultInstance()))
+                  io.github.gravetii.gen.Diztl.FindResp.getDefaultInstance()))
                   .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Find"))
                   .build();
           }
@@ -155,30 +155,30 @@ public final class DiztlServiceGrpc {
      return getFindMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Diztl.DownloadReq,
-      Diztl.DownloadResp> getDownloadMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.DownloadReq,
+      io.github.gravetii.gen.Diztl.DownloadResp> getDownloadMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Download",
-      requestType = Diztl.DownloadReq.class,
-      responseType = Diztl.DownloadResp.class,
+      requestType = io.github.gravetii.gen.Diztl.DownloadReq.class,
+      responseType = io.github.gravetii.gen.Diztl.DownloadResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Diztl.DownloadReq,
-      Diztl.DownloadResp> getDownloadMethod() {
-    io.grpc.MethodDescriptor<Diztl.DownloadReq, Diztl.DownloadResp> getDownloadMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.DownloadReq,
+      io.github.gravetii.gen.Diztl.DownloadResp> getDownloadMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.DownloadReq, io.github.gravetii.gen.Diztl.DownloadResp> getDownloadMethod;
     if ((getDownloadMethod = DiztlServiceGrpc.getDownloadMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getDownloadMethod = DiztlServiceGrpc.getDownloadMethod) == null) {
           DiztlServiceGrpc.getDownloadMethod = getDownloadMethod = 
-              io.grpc.MethodDescriptor.<Diztl.DownloadReq, Diztl.DownloadResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.gen.Diztl.DownloadReq, io.github.gravetii.gen.Diztl.DownloadResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "DiztlService", "Download"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Diztl.DownloadReq.getDefaultInstance()))
+                  io.github.gravetii.gen.Diztl.DownloadReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Diztl.DownloadResp.getDefaultInstance()))
+                  io.github.gravetii.gen.Diztl.DownloadResp.getDefaultInstance()))
                   .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Download"))
                   .build();
           }
@@ -216,36 +216,36 @@ public final class DiztlServiceGrpc {
 
     /**
      */
-    public void search(Diztl.SearchReq request,
-        io.grpc.stub.StreamObserver<Diztl.SearchResp> responseObserver) {
+    public void search(io.github.gravetii.gen.Diztl.SearchReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.SearchResp> responseObserver) {
       asyncUnimplementedUnaryCall(getSearchMethod(), responseObserver);
     }
 
     /**
      */
-    public void upload(Diztl.UploadReq request,
-        io.grpc.stub.StreamObserver<Diztl.FileChunk> responseObserver) {
+    public void upload(io.github.gravetii.gen.Diztl.UploadReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.FileChunk> responseObserver) {
       asyncUnimplementedUnaryCall(getUploadMethod(), responseObserver);
     }
 
     /**
      */
-    public void ping(Diztl.PingReq request,
-        io.grpc.stub.StreamObserver<Diztl.PingResp> responseObserver) {
+    public void ping(io.github.gravetii.gen.Diztl.PingReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.PingResp> responseObserver) {
       asyncUnimplementedUnaryCall(getPingMethod(), responseObserver);
     }
 
     /**
      */
-    public void find(Diztl.FindReq request,
-        io.grpc.stub.StreamObserver<Diztl.FindResp> responseObserver) {
+    public void find(io.github.gravetii.gen.Diztl.FindReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.FindResp> responseObserver) {
       asyncUnimplementedUnaryCall(getFindMethod(), responseObserver);
     }
 
     /**
      */
-    public void download(Diztl.DownloadReq request,
-        io.grpc.stub.StreamObserver<Diztl.DownloadResp> responseObserver) {
+    public void download(io.github.gravetii.gen.Diztl.DownloadReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.DownloadResp> responseObserver) {
       asyncUnimplementedUnaryCall(getDownloadMethod(), responseObserver);
     }
 
@@ -255,36 +255,36 @@ public final class DiztlServiceGrpc {
             getSearchMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                Diztl.SearchReq,
-                Diztl.SearchResp>(
+                io.github.gravetii.gen.Diztl.SearchReq,
+                io.github.gravetii.gen.Diztl.SearchResp>(
                   this, METHODID_SEARCH)))
           .addMethod(
             getUploadMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                Diztl.UploadReq,
-                Diztl.FileChunk>(
+                io.github.gravetii.gen.Diztl.UploadReq,
+                io.github.gravetii.gen.Diztl.FileChunk>(
                   this, METHODID_UPLOAD)))
           .addMethod(
             getPingMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                Diztl.PingReq,
-                Diztl.PingResp>(
+                io.github.gravetii.gen.Diztl.PingReq,
+                io.github.gravetii.gen.Diztl.PingResp>(
                   this, METHODID_PING)))
           .addMethod(
             getFindMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                Diztl.FindReq,
-                Diztl.FindResp>(
+                io.github.gravetii.gen.Diztl.FindReq,
+                io.github.gravetii.gen.Diztl.FindResp>(
                   this, METHODID_FIND)))
           .addMethod(
             getDownloadMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                Diztl.DownloadReq,
-                Diztl.DownloadResp>(
+                io.github.gravetii.gen.Diztl.DownloadReq,
+                io.github.gravetii.gen.Diztl.DownloadResp>(
                   this, METHODID_DOWNLOAD)))
           .build();
     }
@@ -310,40 +310,40 @@ public final class DiztlServiceGrpc {
 
     /**
      */
-    public void search(Diztl.SearchReq request,
-        io.grpc.stub.StreamObserver<Diztl.SearchResp> responseObserver) {
+    public void search(io.github.gravetii.gen.Diztl.SearchReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.SearchResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getSearchMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void upload(Diztl.UploadReq request,
-        io.grpc.stub.StreamObserver<Diztl.FileChunk> responseObserver) {
+    public void upload(io.github.gravetii.gen.Diztl.UploadReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.FileChunk> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getUploadMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void ping(Diztl.PingReq request,
-        io.grpc.stub.StreamObserver<Diztl.PingResp> responseObserver) {
+    public void ping(io.github.gravetii.gen.Diztl.PingReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.PingResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getPingMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void find(Diztl.FindReq request,
-        io.grpc.stub.StreamObserver<Diztl.FindResp> responseObserver) {
+    public void find(io.github.gravetii.gen.Diztl.FindReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.FindResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getFindMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void download(Diztl.DownloadReq request,
-        io.grpc.stub.StreamObserver<Diztl.DownloadResp> responseObserver) {
+    public void download(io.github.gravetii.gen.Diztl.DownloadReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.DownloadResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getDownloadMethod(), getCallOptions()), request, responseObserver);
     }
@@ -369,36 +369,36 @@ public final class DiztlServiceGrpc {
 
     /**
      */
-    public Diztl.SearchResp search(Diztl.SearchReq request) {
+    public io.github.gravetii.gen.Diztl.SearchResp search(io.github.gravetii.gen.Diztl.SearchReq request) {
       return blockingUnaryCall(
           getChannel(), getSearchMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<Diztl.FileChunk> upload(
-        Diztl.UploadReq request) {
+    public java.util.Iterator<io.github.gravetii.gen.Diztl.FileChunk> upload(
+        io.github.gravetii.gen.Diztl.UploadReq request) {
       return blockingServerStreamingCall(
           getChannel(), getUploadMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Diztl.PingResp ping(Diztl.PingReq request) {
+    public io.github.gravetii.gen.Diztl.PingResp ping(io.github.gravetii.gen.Diztl.PingReq request) {
       return blockingUnaryCall(
           getChannel(), getPingMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Diztl.FindResp find(Diztl.FindReq request) {
+    public io.github.gravetii.gen.Diztl.FindResp find(io.github.gravetii.gen.Diztl.FindReq request) {
       return blockingUnaryCall(
           getChannel(), getFindMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Diztl.DownloadResp download(Diztl.DownloadReq request) {
+    public io.github.gravetii.gen.Diztl.DownloadResp download(io.github.gravetii.gen.Diztl.DownloadReq request) {
       return blockingUnaryCall(
           getChannel(), getDownloadMethod(), getCallOptions(), request);
     }
@@ -424,32 +424,32 @@ public final class DiztlServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Diztl.SearchResp> search(
-        Diztl.SearchReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.gen.Diztl.SearchResp> search(
+        io.github.gravetii.gen.Diztl.SearchReq request) {
       return futureUnaryCall(
           getChannel().newCall(getSearchMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Diztl.PingResp> ping(
-        Diztl.PingReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.gen.Diztl.PingResp> ping(
+        io.github.gravetii.gen.Diztl.PingReq request) {
       return futureUnaryCall(
           getChannel().newCall(getPingMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Diztl.FindResp> find(
-        Diztl.FindReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.gen.Diztl.FindResp> find(
+        io.github.gravetii.gen.Diztl.FindReq request) {
       return futureUnaryCall(
           getChannel().newCall(getFindMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Diztl.DownloadResp> download(
-        Diztl.DownloadReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.gen.Diztl.DownloadResp> download(
+        io.github.gravetii.gen.Diztl.DownloadReq request) {
       return futureUnaryCall(
           getChannel().newCall(getDownloadMethod(), getCallOptions()), request);
     }
@@ -479,24 +479,24 @@ public final class DiztlServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_SEARCH:
-          serviceImpl.search((Diztl.SearchReq) request,
-              (io.grpc.stub.StreamObserver<Diztl.SearchResp>) responseObserver);
+          serviceImpl.search((io.github.gravetii.gen.Diztl.SearchReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.SearchResp>) responseObserver);
           break;
         case METHODID_UPLOAD:
-          serviceImpl.upload((Diztl.UploadReq) request,
-              (io.grpc.stub.StreamObserver<Diztl.FileChunk>) responseObserver);
+          serviceImpl.upload((io.github.gravetii.gen.Diztl.UploadReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.FileChunk>) responseObserver);
           break;
         case METHODID_PING:
-          serviceImpl.ping((Diztl.PingReq) request,
-              (io.grpc.stub.StreamObserver<Diztl.PingResp>) responseObserver);
+          serviceImpl.ping((io.github.gravetii.gen.Diztl.PingReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.PingResp>) responseObserver);
           break;
         case METHODID_FIND:
-          serviceImpl.find((Diztl.FindReq) request,
-              (io.grpc.stub.StreamObserver<Diztl.FindResp>) responseObserver);
+          serviceImpl.find((io.github.gravetii.gen.Diztl.FindReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.FindResp>) responseObserver);
           break;
         case METHODID_DOWNLOAD:
-          serviceImpl.download((Diztl.DownloadReq) request,
-              (io.grpc.stub.StreamObserver<Diztl.DownloadResp>) responseObserver);
+          serviceImpl.download((io.github.gravetii.gen.Diztl.DownloadReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.DownloadResp>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -520,7 +520,7 @@ public final class DiztlServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return Diztl.getDescriptor();
+      return io.github.gravetii.gen.Diztl.getDescriptor();
     }
 
     @java.lang.Override
