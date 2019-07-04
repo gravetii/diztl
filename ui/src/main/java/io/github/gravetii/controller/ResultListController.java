@@ -10,15 +10,13 @@ import javafx.stage.Stage;
 
 public class ResultListController implements FxController {
   private Stage stage;
-  private DiztlClient client;
 
   @FXML private TableView<FileResult> resultListTbl;
   @FXML private TableColumn<FileResult, String> fileNameTblCol;
-  @FXML private TableColumn<FileResult, Long> fileSizeTblCol;
+  @FXML private TableColumn<FileResult, String> fileSizeTblCol;
 
   public ResultListController(Stage stage) {
     this.stage = stage;
-    this.client = new DiztlClient();
   }
 
   @FXML
@@ -33,7 +31,7 @@ public class ResultListController implements FxController {
                         if (event.getClickCount() == 2) {
                           if (!row.isEmpty()) {
                             FileResult result = row.getItem();
-                            client.download(result.getFile(), result.getSource());
+                            DiztlClient.get().download(result.getFile(), result.getSource());
                           }
                         }
                       });
