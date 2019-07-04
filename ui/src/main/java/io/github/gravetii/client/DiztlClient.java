@@ -53,7 +53,7 @@ public class DiztlClient {
         System.out.println("Got Find response: " + value.getResponsesList());
         value.getResponsesList().forEach(r -> {
           r.getFilesList().forEach(f -> {
-            scene.showFileResult(f.getName(), f.getSize());
+            scene.showFileResult(f, r.getNode());
           });
         });
       }
@@ -73,7 +73,7 @@ public class DiztlClient {
     connection.getAsyncstub().find(req, observer);
   }
 
-  public void download(FileMetadata metadata, Node source) {
+  public void download(FileMetadata file, Node source) {
     StreamObserver<Diztl.DownloadResp> observer = new StreamObserver<Diztl.DownloadResp>() {
       @Override
       public void onNext(Diztl.DownloadResp value) {
@@ -91,8 +91,8 @@ public class DiztlClient {
       }
     };
 
-    System.out.println("Downloading file now...");
-    DownloadReq dreq = DownloadReq.newBuilder().setMetadata(metadata).setSource(source).build();
+    System.out.println("Downloading file: " + file.getName() + " from " + source.getIp());
+    DownloadReq dreq = DownloadReq.newBuilder().setMetadata(file).setSource(source).build();
     connection.getAsyncstub().download(dreq, observer);
   }
 

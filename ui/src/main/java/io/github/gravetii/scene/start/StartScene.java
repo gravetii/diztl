@@ -1,5 +1,6 @@
 package io.github.gravetii.scene.start;
 
+import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
 import javafx.geometry.Dimension2D;
@@ -34,7 +35,7 @@ public class StartScene extends FxScene {
     return Optional.of(dimensions);
   }
 
-  public void showFileResult(String fileName, Long fileSize) {
-    this.resultListComponent.show(fileName, fileSize);
+  public void showFileResult(Diztl.FileMetadata file, Diztl.Node source) {
+    this.resultListComponent.show(file, source);
   }
 }
