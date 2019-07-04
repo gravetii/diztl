@@ -2,6 +2,7 @@ package io.github.gravetii.scene.start;
 
 import io.github.gravetii.controller.FileResult;
 import io.github.gravetii.controller.ResultListController;
+import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -28,7 +29,7 @@ public class ResultListComponent extends FxComponent<ResultListController, VBox>
     return this.loadNode();
   }
 
-  public void show(String fileName, Long fileSize) {
-    this.getController().show(new FileResult(fileName, fileSize));
+  public void show(Diztl.FileMetadata file, Diztl.Node source) {
+    this.getController().show(new FileResult(file, source));
   }
 }
