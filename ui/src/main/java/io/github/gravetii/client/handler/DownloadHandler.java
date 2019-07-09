@@ -7,7 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DownloadHandler {
-  private static final Logger logger = LoggerFactory.getLogger(DownloadHandler.class.getCanonicalName());
+  private static final Logger logger =
+      LoggerFactory.getLogger(DownloadHandler.class.getCanonicalName());
 
   private Diztl.FileMetadata file;
   private Diztl.Node source;
@@ -19,7 +20,8 @@ public class DownloadHandler {
 
   public void process(DiztlConnection connection) {
     logger.info("Downloading file from {} - {}", source.getIp(), file.getName());
-    Diztl.DownloadReq dreq = Diztl.DownloadReq.newBuilder().setMetadata(file).setSource(source).build();
+    Diztl.DownloadReq dreq =
+        Diztl.DownloadReq.newBuilder().setMetadata(file).setSource(source).build();
     connection.getAsyncstub().download(dreq, createObserver());
   }
 
@@ -31,8 +33,7 @@ public class DownloadHandler {
       }
 
       @Override
-      public void onError(Throwable t) {
-      }
+      public void onError(Throwable t) {}
 
       @Override
       public void onCompleted() {

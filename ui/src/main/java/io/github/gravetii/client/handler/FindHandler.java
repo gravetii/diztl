@@ -8,7 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class FindHandler {
-  private static final Logger logger = LoggerFactory.getLogger(FindHandler.class.getCanonicalName());
+  private static final Logger logger =
+      LoggerFactory.getLogger(FindHandler.class.getCanonicalName());
 
   private StartScene scene;
   private String pattern;
@@ -19,6 +20,7 @@ public class FindHandler {
   }
 
   public void process(DiztlConnection connection) {
+    scene.reset();
     Diztl.FindReq req = Diztl.FindReq.newBuilder().setPattern(pattern).build();
     logger.info("Searching for pattern - {}", pattern);
     connection.getAsyncstub().find(req, createObserver());
@@ -28,17 +30,20 @@ public class FindHandler {
     return new StreamObserver<Diztl.FindResp>() {
       @Override
       public void onNext(Diztl.FindResp value) {
-        value.getResponsesList().forEach(r -> {
-          r.getFilesList().forEach(f -> {
-            scene.showFileResult(f, r.getNode());
-          });
-        });
+        value
+            .getResponsesList()
+            .forEach(
+                r -> {
+                  r.getFilesList()
+                      .forEach(
+                          f -> {
+                            scene.show(f, r.getNode());
+                          });
+                });
       }
 
       @Override
-      public void onError(Throwable t) {
-
-      }
+      public void onError(Throwable t) {}
 
       @Override
       public void onCompleted() {

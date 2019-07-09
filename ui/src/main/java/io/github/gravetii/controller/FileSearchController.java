@@ -23,5 +23,4 @@ public class FileSearchController implements FxController {
     System.out.println("Searching for pattern: " + in);
     DiztlClient.get().find(in, parent);
   }
-
 }

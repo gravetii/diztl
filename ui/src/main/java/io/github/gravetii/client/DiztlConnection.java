@@ -1,13 +1,13 @@
 package io.github.gravetii.client;
 
-import io.github.gravetii.gen.*;
-
+import io.github.gravetii.gen.DiztlServiceGrpc;
 import io.grpc.ManagedChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DiztlConnection {
-  private static final Logger logger = LoggerFactory.getLogger(DiztlConnection.class.getCanonicalName());
+  private static final Logger logger =
+      LoggerFactory.getLogger(DiztlConnection.class.getCanonicalName());
 
   private ManagedChannel channel;
   private DiztlServiceGrpc.DiztlServiceBlockingStub stub;

@@ -24,25 +24,27 @@ public class ResultListController implements FxController {
     this.fileNameTblCol.setCellValueFactory(new PropertyValueFactory<>("fileName"));
     this.fileSizeTblCol.setCellValueFactory(new PropertyValueFactory<>("fileSize"));
     this.resultListTbl.setRowFactory(
-            callback -> {
-              TableRow<FileResult> row = new TableRow<>();
-              row.setOnMouseClicked(
-                      event -> {
-                        if (event.getClickCount() == 2) {
-                          if (!row.isEmpty()) {
-                            FileResult result = row.getItem();
-                            DiztlClient.get().download(result.getFile(), result.getSource());
-                          }
-                        }
-                      });
+        callback -> {
+          TableRow<FileResult> row = new TableRow<>();
+          row.setOnMouseClicked(
+              event -> {
+                if (event.getClickCount() == 2) {
+                  if (!row.isEmpty()) {
+                    FileResult result = row.getItem();
+                    DiztlClient.get().download(result.getFile(), result.getSource());
+                  }
+                }
+              });
 
-              return row;
-            }
-    );
+          return row;
+        });
   }
 
   public void show(FileResult value) {
     this.resultListTbl.getItems().add(value);
   }
 
+  public void reset() {
+    this.resultListTbl.getItems().clear();
+  }
 }
