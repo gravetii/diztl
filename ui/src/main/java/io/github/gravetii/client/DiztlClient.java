@@ -14,11 +14,19 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 public class DiztlClient {
-  private static final Logger logger = LoggerFactory.getLogger(DiztlClient.class.getCanonicalName());
+  private static final Logger logger =
+      LoggerFactory.getLogger(DiztlClient.class.getCanonicalName());
 
   private static DiztlClient INSTANCE = null;
 
   private DiztlConnection connection;
+
+  private DiztlClient() throws Exception {
+    String ip = fetchLocalIp();
+    ManagedChannel channel = ManagedChannelBuilder.forAddress(ip, 50051).usePlaintext().build();
+    this.connection = new DiztlConnection(channel);
+    Runtime.getRuntime().addShutdownHook(new Thread(() -> connection.close()));
+  }
 
   public static void init() throws Exception {
     logger.info("Initialized DiztlClient.");
@@ -27,13 +35,6 @@ public class DiztlClient {
 
   public static DiztlClient get() {
     return INSTANCE;
-  }
-
-  private DiztlClient() throws Exception {
-    String ip = fetchLocalIp();
-    ManagedChannel channel = ManagedChannelBuilder.forAddress(ip, 50051).usePlaintext().build();
-    this.connection = new DiztlConnection(channel);
-    Runtime.getRuntime().addShutdownHook(new Thread(() -> connection.close()));
   }
 
   private static String fetchLocalIp() throws Exception {
@@ -55,5 +56,4 @@ public class DiztlClient {
   public void download(FileMetadata file, Node source) {
     new DownloadHandler(file, source).process(connection);
   }
-
 }

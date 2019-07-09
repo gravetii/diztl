@@ -1,5 +1,6 @@
 package io.github.gravetii.scene.start;
 
+import io.github.gravetii.controller.FileResult;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
@@ -30,12 +31,18 @@ public class StartScene extends FxScene {
 
   @Override
   protected Optional<FxDimensions> preferredDimensions() {
-    FxDimensions dimensions = new FxDimensions(new Dimension2D(600, 500),
-            new Dimension2D(600, 500), new Dimension2D(600, 500));
+    FxDimensions dimensions =
+        new FxDimensions(
+            new Dimension2D(600, 500), new Dimension2D(600, 500), new Dimension2D(600, 500));
     return Optional.of(dimensions);
   }
 
-  public void showFileResult(Diztl.FileMetadata file, Diztl.Node source) {
-    this.resultListComponent.show(file, source);
+  public void show(Diztl.FileMetadata file, Diztl.Node source) {
+    FileResult result = new FileResult(file, source);
+    this.resultListComponent.getController().show(result);
+  }
+
+  public void reset() {
+    this.resultListComponent.getController().reset();
   }
 }
