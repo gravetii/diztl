@@ -21,7 +21,7 @@ type TrackerService struct {
 // NewTracker : Returns an instance of the Tracker Service.
 func NewTracker() *TrackerService {
 	nk := keeper.New()
-	tracker := &TrackerService{nk}
+	tracker := &TrackerService{nk: nk}
 	shutdown.Listen(tracker)
 	return tracker
 }
@@ -35,11 +35,21 @@ func (s *TrackerService) Register(ctx context.Context, req *diztl.RegisterReq) (
 }
 
 // Search : Invoked by a search request by any node.
-func (s *TrackerService) Search(request *diztl.SearchReq, stream diztl.TrackerService_SearchServer) error {
-	logger.Debugf("Received search request from node %s: %v\n", request.GetSource().GetIp(), *request)
-	responses := s.broadcast(request)
-	for _, r := range responses {
-		stream.Send(r)
+func (s *TrackerService) Search(req *diztl.SearchReq, stream diztl.TrackerService_SearchServer) error {
+	logger.Debugf("Received search request from node %s: %v\n", req.GetSource().GetIp(), *req)
+	resp := make(chan *diztl.SearchResp)
+	go func() {
+		for _, node := range s.nk.Nodes {
+			s.ask(req, node, resp)
+		}
+
+		close(resp)
+	}()
+
+	for r := range resp {
+		if r != nil {
+			stream.Send(r)
+		}
 	}
 
 	return nil
@@ -56,29 +66,21 @@ func (s *TrackerService) Disconnect(ctx context.Context, request *diztl.Disconne
 	return &diztl.DisconnectResp{}, nil
 }
 
-func (s *TrackerService) broadcast(request *diztl.SearchReq) []*diztl.SearchResp {
-	logger.Infof("Broadcasting search request to all nodes on the network: %s, %s\n", request.GetSource().GetIp(), request.GetFilename())
-	responses := []*diztl.SearchResp{}
-
-	for _, node := range s.nk.Nodes {
-		c, err := s.nk.GetConnection(node)
-		if err == nil {
-			ctx, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
-			defer cancel()
-			r, err := c.Search(ctx, request)
-			if err != nil {
-				logger.Errorf("Error while invoking Search on node %s: %v\n", node.GetIp(), err)
-			} else if len(r.GetFiles()) > 0 {
-				r.Node = node
-				responses = append(responses, r)
-			}
-		} else {
-			logger.Warnf("Could not connect to node %s: %v\n", node.GetIp(), err)
-			continue
+func (s *TrackerService) ask(request *diztl.SearchReq, node *diztl.Node, resp chan *diztl.SearchResp) {
+	logger.Infof("Asking node: %s\n", node.GetIp())
+	c, err := s.nk.GetConnection(node)
+	if err == nil {
+		ctx, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
+		defer cancel()
+		r, err := c.Search(ctx, request)
+		if err != nil {
+			logger.Errorf("Error while invoking Search on node %s - %v\n", node.GetIp(), err)
+		} else if len(r.GetFiles()) > 0 {
+			resp <- r
 		}
+	} else {
+		logger.Warnf("Could not connect to node from tracker: %s - %v\n", node.GetIp(), err)
 	}
-
-	return responses
 }
 
 // OnShutdown : Actions to perform on shutdown.

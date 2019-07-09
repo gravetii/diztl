@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	logFile = "diztl_new.log"
+	logFile = "diztl.log"
 )
 
 // Execute runs common startup steps for trackers and nodes.

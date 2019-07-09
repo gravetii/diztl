@@ -122,7 +122,7 @@ func (s *NodeService) OnShutdown() {
 func (s *NodeService) Search(ctx context.Context, request *diztl.SearchReq) (*diztl.SearchResp, error) {
 	logger.Debugf("Received search request for %s from %v\n", request.GetFilename(), request.GetSource())
 	files := s.Indexer.Search(request.GetFilename())
-	response := diztl.SearchResp{Files: files}
+	response := diztl.SearchResp{Files: files, Node: s.node}
 	return &response, nil
 }
 
