@@ -41,10 +41,10 @@ public class ResultListController implements FxController {
   }
 
   public void show(FileResult value) {
-    this.resultListTbl.getItems().add(value);
+    resultListTbl.getItems().add(value);
   }
 
   public void reset() {
-    this.resultListTbl.getItems().clear();
+    resultListTbl.getItems().clear();
   }
 }
