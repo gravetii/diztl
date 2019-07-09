@@ -6,9 +6,13 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Label?>
 <VBox stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="resultListTbl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="580.0">
+          <placeholder>
+              <Label />
+          </placeholder>
           <columns>
               <TableColumn fx:id="fileNameTblCol" prefWidth="448.0" text="File name" />
               <TableColumn fx:id="fileSizeTblCol" minWidth="0.0" prefWidth="130.0" text="Size" />
