@@ -67,7 +67,6 @@ func (s *TrackerService) Disconnect(ctx context.Context, request *diztl.Disconne
 }
 
 func (s *TrackerService) ask(request *diztl.SearchReq, node *diztl.Node, resp chan *diztl.SearchResp) {
-	logger.Infof("Asking node: %s\n", node.GetIp())
 	c, err := s.nk.GetConnection(node)
 	if err == nil {
 		ctx, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
