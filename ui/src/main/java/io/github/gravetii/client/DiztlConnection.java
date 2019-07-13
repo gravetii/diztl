@@ -5,6 +5,8 @@ import io.grpc.ManagedChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.TimeUnit;
+
 public class DiztlConnection {
   private static final Logger logger =
       LoggerFactory.getLogger(DiztlConnection.class.getCanonicalName());
@@ -34,6 +36,16 @@ public class DiztlConnection {
   }
 
   void close() {
+    channel.shutdown();
+    try {
+      boolean terminated = channel.awaitTermination(5, TimeUnit.SECONDS);
+      if (!terminated) {
+        channel.shutdownNow();
+      }
+    } catch (Exception e) {
+
+    }
+
     this.channel.shutdownNow();
     logger.info("Successfully closed communication channel");
   }

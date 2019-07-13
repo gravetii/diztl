@@ -12,10 +12,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class ShareDirsController implements FxController {
   private Stage stage;
@@ -45,7 +42,7 @@ public class ShareDirsController implements FxController {
     chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
     File selectedDir = chooser.showDialog(stage);
     if (selectedDir != null && !dirs.contains(selectedDir.getPath())) {
-      dirsList.getItems().add(new Label(selectedDir.getPath()));
+      displayDirs(Collections.singletonList(selectedDir.getPath()));
     }
   }
 
