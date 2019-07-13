@@ -4,7 +4,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.client.DiztlConnection;
 import io.github.gravetii.gen.Diztl;
-import io.github.gravetii.scene.share.UserDirsScene;
+import io.github.gravetii.scene.userdir.UserDirsScene;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class UserDirsHandler {
       try {
         Diztl.UserDirsResp resp = f.get();
         logger.info("Got share folders: {}", resp.getShareList());
-        scene.displayUserFolders(resp.getShareList());
+        scene.displayShareDirs(resp.getShareList());
       } catch (Exception e) {
         logger.error("Error while trying to fetch user dirs:", e);
       }

@@ -6,7 +6,7 @@ import io.github.gravetii.client.handler.UpdateUserDirsHandler;
 import io.github.gravetii.client.handler.UserDirsHandler;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
-import io.github.gravetii.scene.share.UserDirsScene;
+import io.github.gravetii.scene.userdir.UserDirsScene;
 import io.github.gravetii.scene.start.StartScene;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

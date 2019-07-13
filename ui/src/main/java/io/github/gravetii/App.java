@@ -2,7 +2,7 @@ package io.github.gravetii;
 
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.scene.FxScene;
-import io.github.gravetii.scene.share.UserDirsScene;
+import io.github.gravetii.scene.userdir.UserDirsScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
