@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXListView fx:id="dirsList" prefHeight="400.0" prefWidth="455.0" />
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <VBox prefHeight="400.0" prefWidth="137.0">
+         <children>
+            <JFXButton fx:id="addBtn" mnemonicParsing="false" onAction="#addDir" text="ADD" />
+         </children></VBox>
+   </children>
+</HBox>
