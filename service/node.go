@@ -9,6 +9,7 @@ import (
 
 	"github.com/gravetii/diztl/addr"
 	"github.com/gravetii/diztl/conf"
+	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/keeper"
 	"github.com/gravetii/diztl/shutdown"
 	"google.golang.org/grpc"
@@ -250,4 +251,26 @@ func (s *NodeService) Download(ctx context.Context, request *diztl.DownloadReq) 
 	}
 
 	return &diztl.DownloadResp{Message: "Successfully downloaded file..."}, nil
+}
+
+// GetUserDirs returns the user-configured directories.
+func (s *NodeService) GetUserDirs(ctx context.Context, request *diztl.UserDirsReq) (*diztl.UserDirsResp, error) {
+	logger.Infof("Received GetUserDirs call: %v\n", request)
+	resp := diztl.UserDirsResp{}
+
+	if request.GetShare() {
+		shareDirs, err := dir.GetShareDirs()
+		if err == nil {
+			resp.Share = shareDirs
+		}
+	}
+
+	if request.GetOutput() {
+		outputDir, err := dir.GetOutputDir()
+		if err == nil {
+			resp.Output = outputDir
+		}
+	}
+
+	return &resp, nil
 }

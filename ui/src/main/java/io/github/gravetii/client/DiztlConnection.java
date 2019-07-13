@@ -11,16 +11,22 @@ public class DiztlConnection {
 
   private ManagedChannel channel;
   private DiztlServiceGrpc.DiztlServiceBlockingStub stub;
+  private DiztlServiceGrpc.DiztlServiceFutureStub futureStub;
   private DiztlServiceGrpc.DiztlServiceStub asyncStub;
 
   DiztlConnection(ManagedChannel channel) {
     this.channel = channel;
     this.stub = DiztlServiceGrpc.newBlockingStub(channel);
+    this.futureStub = DiztlServiceGrpc.newFutureStub(channel);
     this.asyncStub = DiztlServiceGrpc.newStub(channel);
   }
 
   public DiztlServiceGrpc.DiztlServiceBlockingStub getStub() {
     return stub;
+  }
+
+  public DiztlServiceGrpc.DiztlServiceFutureStub getFutureStub() {
+    return futureStub;
   }
 
   public DiztlServiceGrpc.DiztlServiceStub getAsyncstub() {
