@@ -1,6 +1,6 @@
 package io.github.gravetii.scene.start;
 
-import io.github.gravetii.controller.ResultListController;
+import io.github.gravetii.controller.search.ResultListController;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;

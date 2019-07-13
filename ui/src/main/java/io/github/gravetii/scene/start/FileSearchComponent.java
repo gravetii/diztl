@@ -1,6 +1,6 @@
 package io.github.gravetii.scene.start;
 
-import io.github.gravetii.controller.FileSearchController;
+import io.github.gravetii.controller.search.FileSearchController;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.VBox;
 

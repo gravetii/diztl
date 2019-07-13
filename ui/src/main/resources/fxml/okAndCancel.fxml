@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="50.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXButton fx:id="okBtn" defaultButton="true" layoutX="101.0" layoutY="9.0" mnemonicParsing="false" onAction="#ok" prefHeight="35.0" prefWidth="106.0" ripplerFill="#93aaee" text="OK" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect></JFXButton>
+      <JFXButton fx:id="cancelBtn" cancelButton="true" layoutX="393.0" layoutY="9.0" mnemonicParsing="false" onAction="#cancel" prefHeight="35.0" prefWidth="106.0" ripplerFill="#93aaee" text="Cancel" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </JFXButton>
+   </children>
+</AnchorPane>

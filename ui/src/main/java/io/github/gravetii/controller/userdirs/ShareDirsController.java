@@ -1,8 +1,9 @@
-package io.github.gravetii.controller;
+package io.github.gravetii.controller.userdirs;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.userdir.UserDirsScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
