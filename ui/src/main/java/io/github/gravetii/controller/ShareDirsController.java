@@ -18,6 +18,7 @@ public class ShareDirsController implements FxController {
 
   @FXML private JFXListView<String> dirsList;
   @FXML private JFXButton addBtn;
+  @FXML private JFXButton removeBtn;
 
   public ShareDirsController(Stage stage, UserDirsScene parent) {
     this.stage = stage;
