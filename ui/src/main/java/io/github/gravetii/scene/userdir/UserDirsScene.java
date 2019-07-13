@@ -1,9 +1,12 @@
 package io.github.gravetii.scene.userdir;
 
+import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
+import javafx.geometry.Dimension2D;
 import javafx.stage.Stage;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserDirsScene extends FxScene {
   private ShareDirsComponent shareDirsComponent;
@@ -23,6 +26,14 @@ public class UserDirsScene extends FxScene {
   @Override
   protected String title() {
     return "Configure user folders";
+  }
+
+  @Override
+  protected Optional<FxDimensions> preferredDimensions() {
+    FxDimensions dimensions =
+            new FxDimensions(
+                    new Dimension2D(620, 350));
+    return Optional.of(dimensions);
   }
 
   public void displayShareDirs(List<String> shareDirs) {

@@ -31,7 +31,6 @@ public class ShareDirsController implements FxController {
   @FXML
   public void initialize() {
     DiztlClient.get().getUserDirs(true, false, parent);
-    dirsList.setDepth(1);
     removeBtn.disableProperty().bind(dirsList.getSelectionModel().selectedItemProperty().isNull());
   }
 

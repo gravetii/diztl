@@ -9,7 +9,7 @@ public class FxDimensions {
   private Dimension2D def;
 
   public FxDimensions(Dimension2D def) {
-    this(def, null, null);
+    this(def, def, def);
   }
 
   public FxDimensions(Dimension2D def, Dimension2D min, Dimension2D max) {
