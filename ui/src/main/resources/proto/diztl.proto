@@ -15,6 +15,8 @@ service DiztlService {
     }
     rpc GetUserDirs(UserDirsReq) returns (UserDirsResp) {
     }
+    rpc UpdateUserDirs(UpdateUserDirsReq) returns (UpdateUserDirsResp) {
+    }
 }
 
 service TrackerService {
@@ -146,4 +148,13 @@ message UserDirsReq {
 message UserDirsResp {
     repeated string share = 1;
     string output = 2;
+}
+
+message UpdateUserDirsReq {
+    repeated string share = 1;
+    string output = 2;
+}
+
+message UpdateUserDirsResp {
+    string message = 1;
 }

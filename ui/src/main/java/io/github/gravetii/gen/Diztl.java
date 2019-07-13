@@ -14350,6 +14350,1250 @@ public final class Diztl {
 
   }
 
+  public interface UpdateUserDirsReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:UpdateUserDirsReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated string share = 1;</code>
+     */
+    java.util.List<java.lang.String>
+        getShareList();
+    /**
+     * <code>repeated string share = 1;</code>
+     */
+    int getShareCount();
+    /**
+     * <code>repeated string share = 1;</code>
+     */
+    java.lang.String getShare(int index);
+    /**
+     * <code>repeated string share = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getShareBytes(int index);
+
+    /**
+     * <code>string output = 2;</code>
+     */
+    java.lang.String getOutput();
+    /**
+     * <code>string output = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getOutputBytes();
+  }
+  /**
+   * Protobuf type {@code UpdateUserDirsReq}
+   */
+  public  static final class UpdateUserDirsReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:UpdateUserDirsReq)
+      UpdateUserDirsReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use UpdateUserDirsReq.newBuilder() to construct.
+    private UpdateUserDirsReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UpdateUserDirsReq() {
+      share_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      output_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private UpdateUserDirsReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                share_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              share_.add(s);
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              output_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          share_ = share_.getUnmodifiableView();
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return io.github.gravetii.gen.Diztl.internal_static_UpdateUserDirsReq_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return io.github.gravetii.gen.Diztl.internal_static_UpdateUserDirsReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.github.gravetii.gen.Diztl.UpdateUserDirsReq.class, io.github.gravetii.gen.Diztl.UpdateUserDirsReq.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int SHARE_FIELD_NUMBER = 1;
+    private com.google.protobuf.LazyStringList share_;
+    /**
+     * <code>repeated string share = 1;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getShareList() {
+      return share_;
+    }
+    /**
+     * <code>repeated string share = 1;</code>
+     */
+    public int getShareCount() {
+      return share_.size();
+    }
+    /**
+     * <code>repeated string share = 1;</code>
+     */
+    public java.lang.String getShare(int index) {
+      return share_.get(index);
+    }
+    /**
+     * <code>repeated string share = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getShareBytes(int index) {
+      return share_.getByteString(index);
+    }
+
+    public static final int OUTPUT_FIELD_NUMBER = 2;
+    private volatile java.lang.Object output_;
+    /**
+     * <code>string output = 2;</code>
+     */
+    public java.lang.String getOutput() {
+      java.lang.Object ref = output_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        output_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string output = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getOutputBytes() {
+      java.lang.Object ref = output_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        output_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < share_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, share_.getRaw(i));
+      }
+      if (!getOutputBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, output_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < share_.size(); i++) {
+          dataSize += computeStringSizeNoTag(share_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getShareList().size();
+      }
+      if (!getOutputBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, output_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof io.github.gravetii.gen.Diztl.UpdateUserDirsReq)) {
+        return super.equals(obj);
+      }
+      io.github.gravetii.gen.Diztl.UpdateUserDirsReq other = (io.github.gravetii.gen.Diztl.UpdateUserDirsReq) obj;
+
+      boolean result = true;
+      result = result && getShareList()
+          .equals(other.getShareList());
+      result = result && getOutput()
+          .equals(other.getOutput());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getShareCount() > 0) {
+        hash = (37 * hash) + SHARE_FIELD_NUMBER;
+        hash = (53 * hash) + getShareList().hashCode();
+      }
+      hash = (37 * hash) + OUTPUT_FIELD_NUMBER;
+      hash = (53 * hash) + getOutput().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(io.github.gravetii.gen.Diztl.UpdateUserDirsReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code UpdateUserDirsReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:UpdateUserDirsReq)
+        io.github.gravetii.gen.Diztl.UpdateUserDirsReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return io.github.gravetii.gen.Diztl.internal_static_UpdateUserDirsReq_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return io.github.gravetii.gen.Diztl.internal_static_UpdateUserDirsReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                io.github.gravetii.gen.Diztl.UpdateUserDirsReq.class, io.github.gravetii.gen.Diztl.UpdateUserDirsReq.Builder.class);
+      }
+
+      // Construct using io.github.gravetii.gen.Diztl.UpdateUserDirsReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        share_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        output_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return io.github.gravetii.gen.Diztl.internal_static_UpdateUserDirsReq_descriptor;
+      }
+
+      public io.github.gravetii.gen.Diztl.UpdateUserDirsReq getDefaultInstanceForType() {
+        return io.github.gravetii.gen.Diztl.UpdateUserDirsReq.getDefaultInstance();
+      }
+
+      public io.github.gravetii.gen.Diztl.UpdateUserDirsReq build() {
+        io.github.gravetii.gen.Diztl.UpdateUserDirsReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public io.github.gravetii.gen.Diztl.UpdateUserDirsReq buildPartial() {
+        io.github.gravetii.gen.Diztl.UpdateUserDirsReq result = new io.github.gravetii.gen.Diztl.UpdateUserDirsReq(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          share_ = share_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.share_ = share_;
+        result.output_ = output_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof io.github.gravetii.gen.Diztl.UpdateUserDirsReq) {
+          return mergeFrom((io.github.gravetii.gen.Diztl.UpdateUserDirsReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(io.github.gravetii.gen.Diztl.UpdateUserDirsReq other) {
+        if (other == io.github.gravetii.gen.Diztl.UpdateUserDirsReq.getDefaultInstance()) return this;
+        if (!other.share_.isEmpty()) {
+          if (share_.isEmpty()) {
+            share_ = other.share_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureShareIsMutable();
+            share_.addAll(other.share_);
+          }
+          onChanged();
+        }
+        if (!other.getOutput().isEmpty()) {
+          output_ = other.output_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        io.github.gravetii.gen.Diztl.UpdateUserDirsReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (io.github.gravetii.gen.Diztl.UpdateUserDirsReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.LazyStringList share_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureShareIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          share_ = new com.google.protobuf.LazyStringArrayList(share_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated string share = 1;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getShareList() {
+        return share_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string share = 1;</code>
+       */
+      public int getShareCount() {
+        return share_.size();
+      }
+      /**
+       * <code>repeated string share = 1;</code>
+       */
+      public java.lang.String getShare(int index) {
+        return share_.get(index);
+      }
+      /**
+       * <code>repeated string share = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getShareBytes(int index) {
+        return share_.getByteString(index);
+      }
+      /**
+       * <code>repeated string share = 1;</code>
+       */
+      public Builder setShare(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureShareIsMutable();
+        share_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string share = 1;</code>
+       */
+      public Builder addShare(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureShareIsMutable();
+        share_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string share = 1;</code>
+       */
+      public Builder addAllShare(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureShareIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, share_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string share = 1;</code>
+       */
+      public Builder clearShare() {
+        share_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string share = 1;</code>
+       */
+      public Builder addShareBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        ensureShareIsMutable();
+        share_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object output_ = "";
+      /**
+       * <code>string output = 2;</code>
+       */
+      public java.lang.String getOutput() {
+        java.lang.Object ref = output_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          output_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string output = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getOutputBytes() {
+        java.lang.Object ref = output_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          output_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string output = 2;</code>
+       */
+      public Builder setOutput(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        output_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string output = 2;</code>
+       */
+      public Builder clearOutput() {
+        
+        output_ = getDefaultInstance().getOutput();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string output = 2;</code>
+       */
+      public Builder setOutputBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        output_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:UpdateUserDirsReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:UpdateUserDirsReq)
+    private static final io.github.gravetii.gen.Diztl.UpdateUserDirsReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.UpdateUserDirsReq();
+    }
+
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UpdateUserDirsReq>
+        PARSER = new com.google.protobuf.AbstractParser<UpdateUserDirsReq>() {
+      public UpdateUserDirsReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new UpdateUserDirsReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UpdateUserDirsReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpdateUserDirsReq> getParserForType() {
+      return PARSER;
+    }
+
+    public io.github.gravetii.gen.Diztl.UpdateUserDirsReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UpdateUserDirsRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:UpdateUserDirsResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string message = 1;</code>
+     */
+    java.lang.String getMessage();
+    /**
+     * <code>string message = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+  }
+  /**
+   * Protobuf type {@code UpdateUserDirsResp}
+   */
+  public  static final class UpdateUserDirsResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:UpdateUserDirsResp)
+      UpdateUserDirsRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use UpdateUserDirsResp.newBuilder() to construct.
+    private UpdateUserDirsResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UpdateUserDirsResp() {
+      message_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private UpdateUserDirsResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              message_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return io.github.gravetii.gen.Diztl.internal_static_UpdateUserDirsResp_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return io.github.gravetii.gen.Diztl.internal_static_UpdateUserDirsResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.github.gravetii.gen.Diztl.UpdateUserDirsResp.class, io.github.gravetii.gen.Diztl.UpdateUserDirsResp.Builder.class);
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object message_;
+    /**
+     * <code>string message = 1;</code>
+     */
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        message_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string message = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof io.github.gravetii.gen.Diztl.UpdateUserDirsResp)) {
+        return super.equals(obj);
+      }
+      io.github.gravetii.gen.Diztl.UpdateUserDirsResp other = (io.github.gravetii.gen.Diztl.UpdateUserDirsResp) obj;
+
+      boolean result = true;
+      result = result && getMessage()
+          .equals(other.getMessage());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessage().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(io.github.gravetii.gen.Diztl.UpdateUserDirsResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code UpdateUserDirsResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:UpdateUserDirsResp)
+        io.github.gravetii.gen.Diztl.UpdateUserDirsRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return io.github.gravetii.gen.Diztl.internal_static_UpdateUserDirsResp_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return io.github.gravetii.gen.Diztl.internal_static_UpdateUserDirsResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                io.github.gravetii.gen.Diztl.UpdateUserDirsResp.class, io.github.gravetii.gen.Diztl.UpdateUserDirsResp.Builder.class);
+      }
+
+      // Construct using io.github.gravetii.gen.Diztl.UpdateUserDirsResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        message_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return io.github.gravetii.gen.Diztl.internal_static_UpdateUserDirsResp_descriptor;
+      }
+
+      public io.github.gravetii.gen.Diztl.UpdateUserDirsResp getDefaultInstanceForType() {
+        return io.github.gravetii.gen.Diztl.UpdateUserDirsResp.getDefaultInstance();
+      }
+
+      public io.github.gravetii.gen.Diztl.UpdateUserDirsResp build() {
+        io.github.gravetii.gen.Diztl.UpdateUserDirsResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public io.github.gravetii.gen.Diztl.UpdateUserDirsResp buildPartial() {
+        io.github.gravetii.gen.Diztl.UpdateUserDirsResp result = new io.github.gravetii.gen.Diztl.UpdateUserDirsResp(this);
+        result.message_ = message_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof io.github.gravetii.gen.Diztl.UpdateUserDirsResp) {
+          return mergeFrom((io.github.gravetii.gen.Diztl.UpdateUserDirsResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(io.github.gravetii.gen.Diztl.UpdateUserDirsResp other) {
+        if (other == io.github.gravetii.gen.Diztl.UpdateUserDirsResp.getDefaultInstance()) return this;
+        if (!other.getMessage().isEmpty()) {
+          message_ = other.message_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        io.github.gravetii.gen.Diztl.UpdateUserDirsResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (io.github.gravetii.gen.Diztl.UpdateUserDirsResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object message_ = "";
+      /**
+       * <code>string message = 1;</code>
+       */
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          message_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string message = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        java.lang.Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string message = 1;</code>
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string message = 1;</code>
+       */
+      public Builder clearMessage() {
+        
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string message = 1;</code>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:UpdateUserDirsResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:UpdateUserDirsResp)
+    private static final io.github.gravetii.gen.Diztl.UpdateUserDirsResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.UpdateUserDirsResp();
+    }
+
+    public static io.github.gravetii.gen.Diztl.UpdateUserDirsResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UpdateUserDirsResp>
+        PARSER = new com.google.protobuf.AbstractParser<UpdateUserDirsResp>() {
+      public UpdateUserDirsResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new UpdateUserDirsResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UpdateUserDirsResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpdateUserDirsResp> getParserForType() {
+      return PARSER;
+    }
+
+    public io.github.gravetii.gen.Diztl.UpdateUserDirsResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Node_descriptor;
   private static final 
@@ -14450,6 +15694,16 @@ public final class Diztl {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_UserDirsResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_UpdateUserDirsReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_UpdateUserDirsReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_UpdateUserDirsResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_UpdateUserDirsResp_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -14484,18 +15738,22 @@ public final class Diztl {
       "(\0132\005.Node\022\023\n\004dest\030\002 \001(\0132\005.Node\"\033\n\010PingRe" +
       "sp\022\017\n\007message\030\001 \001(\t\",\n\013UserDirsReq\022\r\n\005sh" +
       "are\030\001 \001(\010\022\016\n\006output\030\002 \001(\010\"-\n\014UserDirsRes" +
-      "p\022\r\n\005share\030\001 \003(\t\022\016\n\006output\030\002 \001(\t2\360\001\n\014Diz" +
-      "tlService\022#\n\006Search\022\n.SearchReq\032\013.Search" +
-      "Resp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.FileChunk" +
-      "\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035\n\004F" +
-      "ind\022\010.FindReq\032\t.FindResp\"\000\022)\n\010Download\022\014" +
-      ".DownloadReq\032\r.DownloadResp\"\000\022,\n\013GetUser" +
-      "Dirs\022\014.UserDirsReq\032\r.UserDirsResp\"\0002\223\001\n\016" +
-      "TrackerService\022)\n\010Register\022\014.RegisterReq" +
-      "\032\r.RegisterResp\"\000\022%\n\006Search\022\n.SearchReq\032" +
-      "\013.SearchResp\"\0000\001\022/\n\nDisconnect\022\016.Disconn" +
-      "ectReq\032\017.DisconnectResp\"\000B\030\n\026io.github.g" +
-      "ravetii.genb\006proto3"
+      "p\022\r\n\005share\030\001 \003(\t\022\016\n\006output\030\002 \001(\t\"2\n\021Upda" +
+      "teUserDirsReq\022\r\n\005share\030\001 \003(\t\022\016\n\006output\030\002" +
+      " \001(\t\"%\n\022UpdateUserDirsResp\022\017\n\007message\030\001 " +
+      "\001(\t2\255\002\n\014DiztlService\022#\n\006Search\022\n.SearchR" +
+      "eq\032\013.SearchResp\"\000\022$\n\006Upload\022\n.UploadReq\032" +
+      "\n.FileChunk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.Ping" +
+      "Resp\"\000\022\035\n\004Find\022\010.FindReq\032\t.FindResp\"\000\022)\n" +
+      "\010Download\022\014.DownloadReq\032\r.DownloadResp\"\000" +
+      "\022,\n\013GetUserDirs\022\014.UserDirsReq\032\r.UserDirs" +
+      "Resp\"\000\022;\n\016UpdateUserDirs\022\022.UpdateUserDir" +
+      "sReq\032\023.UpdateUserDirsResp\"\0002\223\001\n\016TrackerS" +
+      "ervice\022)\n\010Register\022\014.RegisterReq\032\r.Regis" +
+      "terResp\"\000\022%\n\006Search\022\n.SearchReq\032\013.Search" +
+      "Resp\"\0000\001\022/\n\nDisconnect\022\016.DisconnectReq\032\017" +
+      ".DisconnectResp\"\000B\030\n\026io.github.gravetii." +
+      "genb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -14629,6 +15887,18 @@ public final class Diztl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UserDirsResp_descriptor,
         new java.lang.String[] { "Share", "Output", });
+    internal_static_UpdateUserDirsReq_descriptor =
+      getDescriptor().getMessageTypes().get(20);
+    internal_static_UpdateUserDirsReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UpdateUserDirsReq_descriptor,
+        new java.lang.String[] { "Share", "Output", });
+    internal_static_UpdateUserDirsResp_descriptor =
+      getDescriptor().getMessageTypes().get(21);
+    internal_static_UpdateUserDirsResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_UpdateUserDirsResp_descriptor,
+        new java.lang.String[] { "Message", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

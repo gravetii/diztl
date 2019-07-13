@@ -253,7 +253,7 @@ func (s *NodeService) Download(ctx context.Context, request *diztl.DownloadReq) 
 	return &diztl.DownloadResp{Message: "Successfully downloaded file..."}, nil
 }
 
-// GetUserDirs returns the user-configured directories.
+// GetUserDirs returns the configured user directories.
 func (s *NodeService) GetUserDirs(ctx context.Context, request *diztl.UserDirsReq) (*diztl.UserDirsResp, error) {
 	logger.Infof("Received GetUserDirs call: %v\n", request)
 	resp := diztl.UserDirsResp{}
@@ -272,5 +272,14 @@ func (s *NodeService) GetUserDirs(ctx context.Context, request *diztl.UserDirsRe
 		}
 	}
 
+	return &resp, nil
+}
+
+// UpdateUserDirs updates the user directories.
+func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateUserDirsReq) (*diztl.UpdateUserDirsResp, error) {
+	logger.Infof("Received UpdateUserDirs call: %v\n", request)
+	conf.UpdateShareDirs(request.GetShare())
+	logger.Infof("Finished updating user share dirs\n")
+	resp := diztl.UpdateUserDirsResp{Message: "Finished updating user share dirs"}
 	return &resp, nil
 }

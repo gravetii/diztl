@@ -27,6 +27,11 @@
                   <Insets left="40.0" top="40.0" />
                </VBox.margin>
             </JFXButton>
+            <JFXButton fx:id="submitBtn" mnemonicParsing="false" onAction="#onSubmit" ripplerFill="#99aaee" text="Submit">
+               <VBox.margin>
+                  <Insets left="50.0" top="100.0" />
+               </VBox.margin>
+            </JFXButton>
          </children>
       </VBox>
    </right>

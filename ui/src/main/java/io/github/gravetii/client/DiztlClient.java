@@ -3,6 +3,7 @@ package io.github.gravetii.client;
 import com.google.common.util.concurrent.ListenableFuture;
 import io.github.gravetii.client.handler.DownloadHandler;
 import io.github.gravetii.client.handler.FindHandler;
+import io.github.gravetii.client.handler.UpdateUserDirsHandler;
 import io.github.gravetii.client.handler.UserDirsHandler;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.gen.Diztl.FileMetadata;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -47,7 +49,6 @@ public class DiztlClient {
   public static void init() throws Exception {
     logger.info("Initialized DiztlClient.");
     INSTANCE = new DiztlClient();
-    INSTANCE.ping();
   }
 
   public static DiztlClient get() {
@@ -70,20 +71,6 @@ public class DiztlClient {
     }
   }
 
-  public void ping() {
-    Node source = Node.newBuilder().setIp(this.ip).build();
-    Node dest = Node.newBuilder(source).build();
-    Diztl.PingReq req = Diztl.PingReq.newBuilder().setSource(source).setDest(dest).build();
-    ListenableFuture<Diztl.PingResp> f = connection.getFutureStub().ping(req);
-    f.addListener(() -> {
-      try {
-        Diztl.PingResp resp = f.get();
-        logger.info("Got ping response message: {}", resp.getMessage());
-      } catch (Exception e) {
-        logger.error("Error while trying to ping:", e);
-      }
-    }, DiztlClient.get().executor());
-  }
   public void find(String pattern, StartScene scene) {
     new FindHandler(scene, pattern).process(connection);
   }
@@ -94,5 +81,9 @@ public class DiztlClient {
 
   public void getUserDirs(boolean share, boolean output, ShareFoldersScene scene) {
     new UserDirsHandler(scene, share, output).process(connection);
+  }
+
+  public void updateUserDirs(List<String> share, String output) {
+    new UpdateUserDirsHandler(share, output).process(connection);
   }
 }
