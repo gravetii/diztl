@@ -7,15 +7,17 @@ import java.util.List;
 
 public class UserDirsScene extends FxScene {
   private ShareDirsComponent shareDirsComponent;
+  private UserDirsSubmitComponent userDirsSubmitComponent;
 
   public UserDirsScene(Stage stage) throws Exception {
     super(stage);
     this.shareDirsComponent = new ShareDirsComponent(stage, this);
+    this.userDirsSubmitComponent = new UserDirsSubmitComponent();
   }
 
   @Override
   protected void build() {
-    this.showCenter(shareDirsComponent);
+    this.showCenter(shareDirsComponent).showBottom(userDirsSubmitComponent);
   }
 
   @Override
