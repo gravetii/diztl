@@ -75,8 +75,15 @@ func watch() {
 	})
 }
 
-// Set sets a configuration key-value and writes the new config to the file.
-func Set(key string, value interface{}) {
+func UpdateShareDirs(value []string) {
+	set("dir.share", value)
+}
+
+func UpdateOutputDir(value string) {
+	set("dir.output", value)
+}
+
+func set(key string, value interface{}) {
 	viper.Set(key, value)
 	viper.WriteConfig()
 }

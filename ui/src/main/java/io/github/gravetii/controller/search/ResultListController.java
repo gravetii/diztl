@@ -1,6 +1,7 @@
-package io.github.gravetii.controller;
+package io.github.gravetii.controller.search;
 
 import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.controller.FxController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
