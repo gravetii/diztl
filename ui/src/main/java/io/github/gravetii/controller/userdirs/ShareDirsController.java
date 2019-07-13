@@ -12,12 +12,12 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ShareDirsController implements FxController {
   private Stage stage;
   private UserDirsScene parent;
+  private Set<String> dirs;
 
   @FXML private JFXListView<Label> dirsList;
   @FXML private JFXButton addBtn;
@@ -26,6 +26,7 @@ public class ShareDirsController implements FxController {
   public ShareDirsController(Stage stage, UserDirsScene parent) {
     this.stage = stage;
     this.parent = parent;
+    this.dirs = new HashSet<>();
   }
 
   @FXML
@@ -39,9 +40,9 @@ public class ShareDirsController implements FxController {
     DirectoryChooser chooser = new DirectoryChooser();
     chooser.setTitle("Choose folder to share...");
     chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-    File selectedFolder = chooser.showDialog(stage);
-    if (selectedFolder != null) {
-      dirsList.getItems().add(new Label(selectedFolder.getPath()));
+    File selectedDir = chooser.showDialog(stage);
+    if (selectedDir != null && !dirs.contains(selectedDir.getPath())) {
+      dirsList.getItems().add(new Label(selectedDir.getPath()));
     }
   }
 
@@ -51,19 +52,19 @@ public class ShareDirsController implements FxController {
     List<Label> selectedItems = dirsList.getSelectionModel().getSelectedItems();
     selectedItems.forEach(item -> {
       dirsList.getItems().remove(item);
+      dirs.remove(item.getText());
     });
   }
 
   public void displayDirs(List<String> dirs) {
     dirs.forEach(dir -> {
       dirsList.getItems().add(new Label(dir));
+      this.dirs.add(dir);
     });
   }
 
   public List<String> getFinalDirs() {
-    List<String> result = new ArrayList<>(dirsList.getItems().size());
-    dirsList.getItems().forEach(dir -> result.add(dir.getText()));
-    return result;
+    return new ArrayList<>(dirs);
   }
 
 }
