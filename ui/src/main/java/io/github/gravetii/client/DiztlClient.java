@@ -1,14 +1,12 @@
 package io.github.gravetii.client;
 
-import com.google.common.util.concurrent.ListenableFuture;
 import io.github.gravetii.client.handler.DownloadHandler;
 import io.github.gravetii.client.handler.FindHandler;
 import io.github.gravetii.client.handler.UpdateUserDirsHandler;
 import io.github.gravetii.client.handler.UserDirsHandler;
-import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
-import io.github.gravetii.scene.share.ShareFoldersScene;
+import io.github.gravetii.scene.share.UserDirsScene;
 import io.github.gravetii.scene.start.StartScene;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -79,7 +77,7 @@ public class DiztlClient {
     new DownloadHandler(file, source).process(connection);
   }
 
-  public void getUserDirs(boolean share, boolean output, ShareFoldersScene scene) {
+  public void getUserDirs(boolean share, boolean output, UserDirsScene scene) {
     new UserDirsHandler(scene, share, output).process(connection);
   }
 

@@ -1,26 +1,26 @@
 package io.github.gravetii.scene.share;
 
-import io.github.gravetii.controller.ShareFoldersController;
+import io.github.gravetii.controller.UserDirsController;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.util.List;
 
-public class ShareFoldersComponent extends FxComponent<ShareFoldersController, BorderPane> {
+public class UserDirsComponent extends FxComponent<UserDirsController, BorderPane> {
   private Stage stage;
-  private ShareFoldersScene parent;
+  private UserDirsScene parent;
 
-  protected ShareFoldersComponent(Stage stage, ShareFoldersScene parent) throws Exception {
-    super("shareFolders.fxml");
+  protected UserDirsComponent(Stage stage, UserDirsScene parent) throws Exception {
+    super("userDirs.fxml");
     this.stage = stage;
     this.parent = parent;
     this.create();
   }
 
   @Override
-  protected ShareFoldersController createController() {
-    return new ShareFoldersController(stage, parent);
+  protected UserDirsController createController() {
+    return new UserDirsController(stage, parent);
   }
 
   @Override

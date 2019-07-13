@@ -4,18 +4,18 @@ import com.google.common.util.concurrent.ListenableFuture;
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.client.DiztlConnection;
 import io.github.gravetii.gen.Diztl;
-import io.github.gravetii.scene.share.ShareFoldersScene;
+import io.github.gravetii.scene.share.UserDirsScene;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class UserDirsHandler {
   private static final Logger logger = LoggerFactory.getLogger(UserDirsHandler.class.getCanonicalName());
 
-  private ShareFoldersScene scene;
+  private UserDirsScene scene;
   private boolean share;
   private boolean output;
 
-  public UserDirsHandler(ShareFoldersScene scene, boolean share, boolean output) {
+  public UserDirsHandler(UserDirsScene scene, boolean share, boolean output) {
     this.scene = scene;
     this.share = share;
     this.output = output;
