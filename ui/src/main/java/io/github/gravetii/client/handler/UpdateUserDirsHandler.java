@@ -10,7 +10,8 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 public class UpdateUserDirsHandler {
-  private static final Logger logger = LoggerFactory.getLogger(UpdateUserDirsHandler.class.getCanonicalName());
+  private static final Logger logger =
+      LoggerFactory.getLogger(UpdateUserDirsHandler.class.getCanonicalName());
 
   private List<String> share;
   private String output;
@@ -21,16 +22,18 @@ public class UpdateUserDirsHandler {
   }
 
   public void process(DiztlConnection connection) {
-    Diztl.UpdateUserDirsReq req = Diztl.UpdateUserDirsReq.newBuilder().addAllShare(share).setOutput(output).build();
+    Diztl.UpdateUserDirsReq req =
+        Diztl.UpdateUserDirsReq.newBuilder().addAllShare(share).setOutput(output).build();
     logger.info("Updating user dirs - share: {}, output: {}", share, output);
     ListenableFuture<Diztl.UpdateUserDirsResp> f = connection.getFutureStub().updateUserDirs(req);
-    f.addListener(() -> {
-      try {
-        logger.info(f.get().getMessage());
-      } catch (Exception e) {
-        logger.error("Error while updating user dirs:", e);
-      }
-    }, DiztlClient.get().executor());
-
+    f.addListener(
+        () -> {
+          try {
+            logger.info(f.get().getMessage());
+          } catch (Exception e) {
+            logger.error("Error while updating user dirs:", e);
+          }
+        },
+        DiztlClient.get().executor());
   }
 }

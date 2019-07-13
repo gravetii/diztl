@@ -30,14 +30,11 @@ public class UserDirsScene extends FxScene {
 
   @Override
   protected Optional<FxDimensions> preferredDimensions() {
-    FxDimensions dimensions =
-            new FxDimensions(
-                    new Dimension2D(620, 350));
+    FxDimensions dimensions = new FxDimensions(new Dimension2D(620, 350));
     return Optional.of(dimensions);
   }
 
   public void displayShareDirs(List<String> shareDirs) {
     this.shareDirsComponent.displayDirs(shareDirs);
   }
-
 }

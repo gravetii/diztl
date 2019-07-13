@@ -12,7 +12,10 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ShareDirsController implements FxController {
   private Stage stage;
@@ -50,21 +53,22 @@ public class ShareDirsController implements FxController {
   public void removeDir(ActionEvent event) {
     System.out.println("Removing item");
     List<Label> selectedItems = dirsList.getSelectionModel().getSelectedItems();
-    selectedItems.forEach(item -> {
-      dirsList.getItems().remove(item);
-      dirs.remove(item.getText());
-    });
+    selectedItems.forEach(
+        item -> {
+          dirsList.getItems().remove(item);
+          dirs.remove(item.getText());
+        });
   }
 
   public void displayDirs(List<String> dirs) {
-    dirs.forEach(dir -> {
-      dirsList.getItems().add(new Label(dir));
-      this.dirs.add(dir);
-    });
+    dirs.forEach(
+        dir -> {
+          dirsList.getItems().add(new Label(dir));
+          this.dirs.add(dir);
+        });
   }
 
   public List<String> getFinalDirs() {
     return new ArrayList<>(dirs);
   }
-
 }

@@ -6,8 +6,8 @@ import io.github.gravetii.client.handler.UpdateUserDirsHandler;
 import io.github.gravetii.client.handler.UserDirsHandler;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
-import io.github.gravetii.scene.userdir.UserDirsScene;
 import io.github.gravetii.scene.start.StartScene;
+import io.github.gravetii.scene.userdir.UserDirsScene;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.slf4j.Logger;
@@ -24,16 +24,16 @@ public class DiztlClient {
       LoggerFactory.getLogger(DiztlClient.class.getCanonicalName());
 
   private static DiztlClient INSTANCE = null;
-
-  private DiztlConnection connection;
   private final ExecutorService executor;
+  private DiztlConnection connection;
   private String ip;
 
   private DiztlClient() throws Exception {
     this.ip = fetchLocalIp();
     ManagedChannel channel = ManagedChannelBuilder.forAddress(ip, 50051).usePlaintext().build();
     this.connection = new DiztlConnection(channel);
-    this.executor = Executors.newFixedThreadPool(
+    this.executor =
+        Executors.newFixedThreadPool(
             3,
             (r) -> {
               Thread thread = new Thread(r);
@@ -53,10 +53,6 @@ public class DiztlClient {
     return INSTANCE;
   }
 
-  public ExecutorService executor() {
-    return executor;
-  }
-
   private static String fetchLocalIp() throws Exception {
     try (final DatagramSocket socket = new DatagramSocket()) {
       socket.connect(InetAddress.getByName("8.8.8.8"), 80);
@@ -67,6 +63,10 @@ public class DiztlClient {
       logger.error("Unable to fetch the host's local IP", e);
       throw new Exception("Unable to fetch the host's local IP", e);
     }
+  }
+
+  public ExecutorService executor() {
+    return executor;
   }
 
   public void find(String pattern, StartScene scene) {
