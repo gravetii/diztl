@@ -1,12 +1,12 @@
 package conf
 
 import (
-	"io/ioutil"
+	"errors"
 	"os"
 	"path/filepath"
 	"time"
 
-	"gopkg.in/yaml.v2"
+	"github.com/gravetii/viper"
 )
 
 var rootdir, _ = os.UserHomeDir()
@@ -37,15 +37,16 @@ var config *conf
 
 // Load loads the app-wide configuration or returns an error if any.
 func Load() error {
-	config = &conf{}
-	f, err := ioutil.ReadFile("config.yml")
+	viper.SetConfigFile("config.yml")
+	err := viper.ReadInConfig()
 	if err != nil {
 		return err
 	}
 
-	err = yaml.Unmarshal(f, config)
+	config = &conf{}
+	err = viper.Unmarshal(config)
 	if err != nil {
-		return err
+		return errors.New("Unable to unmarshall config into struct - " + err.Error())
 	}
 
 	return nil
