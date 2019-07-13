@@ -3,29 +3,36 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXListView fx:id="dirsList" prefHeight="200.0" prefWidth="603.0" showTooltip="true">
+      <JFXListView fx:id="dirsList" focusTraversable="false" prefHeight="200.0" prefWidth="681.0" showTooltip="true">
          <effect>
             <DropShadow color="WHITE" />
-         </effect></JFXListView>
+         </effect>
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" top="10.0" />
+         </HBox.margin></JFXListView>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <JFXButton fx:id="addBtn" layoutX="24.0" layoutY="38.0" mnemonicParsing="false" onAction="#addDir" prefWidth="50.0" textAlignment="CENTER">
+            <JFXButton fx:id="addBtn" alignment="CENTER" layoutX="6.0" layoutY="38.0" mnemonicParsing="false" onAction="#addDir" prefHeight="28.0" prefWidth="43.0" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <FontAwesomeIconView fill="#93aaee" glyphName="PLUS" size="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <FontAwesomeIconView glyphName="PLUS" size="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="removeBtn" layoutX="23.0" layoutY="100.0" mnemonicParsing="false" onAction="#removeDir" prefWidth="50.0" textAlignment="CENTER">
+            <JFXButton fx:id="removeBtn" alignment="CENTER" layoutX="3.0" layoutY="100.0" mnemonicParsing="false" onAction="#removeDir" prefWidth="50.0" textAlignment="CENTER">
                <graphic>
-                  <FontAwesomeIconView fill="#93aaee" glyphName="MINUS" size="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <FontAwesomeIconView glyphName="MINUS" size="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                </graphic>
             </JFXButton>
          </children>
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </HBox.margin>
       </AnchorPane>
    </children>
 </HBox>
