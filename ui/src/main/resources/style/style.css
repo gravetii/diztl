@@ -41,3 +41,38 @@
 .table-row-cell:empty {
     -fx-background-color: transparent;
 }
+
+.jfx-list-cell:selected {
+    -fx-background-color: #3d8c91;
+}
+
+.jfx-list-cell {
+    -fx-background-insets: 0.0;
+}
+
+.jfx-list-cell .jfx-rippler {
+    -fx-rippler-fill: BLUE;
+}
+
+.jfx-list-cell:hover {
+    -fx-background-color: #1bd79c;
+}
+
+.jfx-list-view {
+    -fx-background-insets: 0;
+    -fx-cell-vertical-margin: 0;
+    -fx-vertical-gap: 10px;
+}
+
+.jfx-button {
+    -fx-background-color: #3d8c91;
+    -fx-text-fill: #ffffff;
+}
+
+.jfx-button:hover {
+    -fx-cursor: HAND;
+}
+
+.jfx-button:selected {
+    -fx-background-color: transparent;
+}

@@ -19,14 +19,24 @@ func GetShareDirs() ([]string, error) {
 	return conf.ShareDirs(), nil
 }
 
-// GetOutputPath : Returns the user-configured output path for the file with given name
-// or an error if any.
-func GetOutputPath(fname string) (string, error) {
+// GetOutputDir returns the user-configured output directory on this node.
+func GetOutputDir() (string, error) {
 	if err := ensure(conf.OutputDir()); err != nil {
 		return "", errors.New("Could not ensure output directory exists - " + err.Error())
 	}
 
-	return filepath.Join(conf.OutputDir(), fname), nil
+	return conf.OutputDir(), nil
+}
+
+// GetOutputPath : Returns the user-configured output path for the file with given name
+// or an error if any.
+func GetOutputPath(fname string) (string, error) {
+	outputDir, err := GetOutputDir()
+	if err != nil {
+		return "", err
+	}
+
+	return filepath.Join(outputDir, fname), nil
 }
 
 // GetLogPath returns the path to the logger file or an error if any.

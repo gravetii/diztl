@@ -5,17 +5,21 @@ import io.grpc.ManagedChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.TimeUnit;
+
 public class DiztlConnection {
   private static final Logger logger =
       LoggerFactory.getLogger(DiztlConnection.class.getCanonicalName());
 
   private ManagedChannel channel;
   private DiztlServiceGrpc.DiztlServiceBlockingStub stub;
+  private DiztlServiceGrpc.DiztlServiceFutureStub futureStub;
   private DiztlServiceGrpc.DiztlServiceStub asyncStub;
 
   DiztlConnection(ManagedChannel channel) {
     this.channel = channel;
     this.stub = DiztlServiceGrpc.newBlockingStub(channel);
+    this.futureStub = DiztlServiceGrpc.newFutureStub(channel);
     this.asyncStub = DiztlServiceGrpc.newStub(channel);
   }
 
@@ -23,11 +27,25 @@ public class DiztlConnection {
     return stub;
   }
 
+  public DiztlServiceGrpc.DiztlServiceFutureStub getFutureStub() {
+    return futureStub;
+  }
+
   public DiztlServiceGrpc.DiztlServiceStub getAsyncstub() {
     return asyncStub;
   }
 
   void close() {
+    channel.shutdown();
+    try {
+      boolean terminated = channel.awaitTermination(5, TimeUnit.SECONDS);
+      if (!terminated) {
+        channel.shutdownNow();
+      }
+    } catch (Exception e) {
+
+    }
+
     this.channel.shutdownNow();
     logger.info("Successfully closed communication channel");
   }

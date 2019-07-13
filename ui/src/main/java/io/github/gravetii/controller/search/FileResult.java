@@ -1,4 +1,4 @@
-package io.github.gravetii.controller;
+package io.github.gravetii.controller.search;
 
 import io.github.gravetii.gen.Diztl;
 

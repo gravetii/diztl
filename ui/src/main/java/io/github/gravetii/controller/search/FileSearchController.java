@@ -1,8 +1,9 @@
-package io.github.gravetii.controller;
+package io.github.gravetii.controller.search;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.start.StartScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

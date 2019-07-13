@@ -20,6 +20,8 @@ public final class DiztlServiceGrpc {
   private static final int METHODID_PING = 2;
   private static final int METHODID_FIND = 3;
   private static final int METHODID_DOWNLOAD = 4;
+  private static final int METHODID_GET_USER_DIRS = 5;
+  private static final int METHODID_UPDATE_USER_DIRS = 6;
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<
           io.github.gravetii.gen.Diztl.SearchReq, io.github.gravetii.gen.Diztl.SearchResp>
@@ -36,6 +38,13 @@ public final class DiztlServiceGrpc {
   private static volatile io.grpc.MethodDescriptor<
           io.github.gravetii.gen.Diztl.DownloadReq, io.github.gravetii.gen.Diztl.DownloadResp>
       getDownloadMethod;
+  private static volatile io.grpc.MethodDescriptor<
+          io.github.gravetii.gen.Diztl.UserDirsReq, io.github.gravetii.gen.Diztl.UserDirsResp>
+      getGetUserDirsMethod;
+  private static volatile io.grpc.MethodDescriptor<
+          io.github.gravetii.gen.Diztl.UpdateUserDirsReq,
+          io.github.gravetii.gen.Diztl.UpdateUserDirsResp>
+      getUpdateUserDirsMethod;
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
   private DiztlServiceGrpc() {}
@@ -223,6 +232,83 @@ public final class DiztlServiceGrpc {
     return getDownloadMethod;
   }
 
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetUserDirs",
+      requestType = io.github.gravetii.gen.Diztl.UserDirsReq.class,
+      responseType = io.github.gravetii.gen.Diztl.UserDirsResp.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<
+          io.github.gravetii.gen.Diztl.UserDirsReq, io.github.gravetii.gen.Diztl.UserDirsResp>
+      getGetUserDirsMethod() {
+    io.grpc.MethodDescriptor<
+            io.github.gravetii.gen.Diztl.UserDirsReq, io.github.gravetii.gen.Diztl.UserDirsResp>
+        getGetUserDirsMethod;
+    if ((getGetUserDirsMethod = DiztlServiceGrpc.getGetUserDirsMethod) == null) {
+      synchronized (DiztlServiceGrpc.class) {
+        if ((getGetUserDirsMethod = DiztlServiceGrpc.getGetUserDirsMethod) == null) {
+          DiztlServiceGrpc.getGetUserDirsMethod =
+              getGetUserDirsMethod =
+                  io.grpc.MethodDescriptor
+                      .<io.github.gravetii.gen.Diztl.UserDirsReq,
+                          io.github.gravetii.gen.Diztl.UserDirsResp>
+                          newBuilder()
+                      .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                      .setFullMethodName(generateFullMethodName("DiztlService", "GetUserDirs"))
+                      .setSampledToLocalTracing(true)
+                      .setRequestMarshaller(
+                          io.grpc.protobuf.ProtoUtils.marshaller(
+                              io.github.gravetii.gen.Diztl.UserDirsReq.getDefaultInstance()))
+                      .setResponseMarshaller(
+                          io.grpc.protobuf.ProtoUtils.marshaller(
+                              io.github.gravetii.gen.Diztl.UserDirsResp.getDefaultInstance()))
+                      .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("GetUserDirs"))
+                      .build();
+        }
+      }
+    }
+    return getGetUserDirsMethod;
+  }
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UpdateUserDirs",
+      requestType = io.github.gravetii.gen.Diztl.UpdateUserDirsReq.class,
+      responseType = io.github.gravetii.gen.Diztl.UpdateUserDirsResp.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<
+          io.github.gravetii.gen.Diztl.UpdateUserDirsReq,
+          io.github.gravetii.gen.Diztl.UpdateUserDirsResp>
+      getUpdateUserDirsMethod() {
+    io.grpc.MethodDescriptor<
+            io.github.gravetii.gen.Diztl.UpdateUserDirsReq,
+            io.github.gravetii.gen.Diztl.UpdateUserDirsResp>
+        getUpdateUserDirsMethod;
+    if ((getUpdateUserDirsMethod = DiztlServiceGrpc.getUpdateUserDirsMethod) == null) {
+      synchronized (DiztlServiceGrpc.class) {
+        if ((getUpdateUserDirsMethod = DiztlServiceGrpc.getUpdateUserDirsMethod) == null) {
+          DiztlServiceGrpc.getUpdateUserDirsMethod =
+              getUpdateUserDirsMethod =
+                  io.grpc.MethodDescriptor
+                      .<io.github.gravetii.gen.Diztl.UpdateUserDirsReq,
+                          io.github.gravetii.gen.Diztl.UpdateUserDirsResp>
+                          newBuilder()
+                      .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                      .setFullMethodName(generateFullMethodName("DiztlService", "UpdateUserDirs"))
+                      .setSampledToLocalTracing(true)
+                      .setRequestMarshaller(
+                          io.grpc.protobuf.ProtoUtils.marshaller(
+                              io.github.gravetii.gen.Diztl.UpdateUserDirsReq.getDefaultInstance()))
+                      .setResponseMarshaller(
+                          io.grpc.protobuf.ProtoUtils.marshaller(
+                              io.github.gravetii.gen.Diztl.UpdateUserDirsResp.getDefaultInstance()))
+                      .setSchemaDescriptor(
+                          new DiztlServiceMethodDescriptorSupplier("UpdateUserDirs"))
+                      .build();
+        }
+      }
+    }
+    return getUpdateUserDirsMethod;
+  }
+
   /** Creates a new async stub that supports all call types for the service */
   public static DiztlServiceStub newStub(io.grpc.Channel channel) {
     return new DiztlServiceStub(channel);
@@ -255,6 +341,8 @@ public final class DiztlServiceGrpc {
                       .addMethod(getPingMethod())
                       .addMethod(getFindMethod())
                       .addMethod(getDownloadMethod())
+                      .addMethod(getGetUserDirsMethod())
+                      .addMethod(getUpdateUserDirsMethod())
                       .build();
         }
       }
@@ -300,6 +388,21 @@ public final class DiztlServiceGrpc {
       asyncUnimplementedUnaryCall(getDownloadMethod(), responseObserver);
     }
 
+    /** */
+    public void getUserDirs(
+        io.github.gravetii.gen.Diztl.UserDirsReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.UserDirsResp> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetUserDirsMethod(), responseObserver);
+    }
+
+    /** */
+    public void updateUserDirs(
+        io.github.gravetii.gen.Diztl.UpdateUserDirsReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.UpdateUserDirsResp>
+            responseObserver) {
+      asyncUnimplementedUnaryCall(getUpdateUserDirsMethod(), responseObserver);
+    }
+
     @java.lang.Override
     public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
@@ -333,6 +436,19 @@ public final class DiztlServiceGrpc {
                   new MethodHandlers<
                       io.github.gravetii.gen.Diztl.DownloadReq,
                       io.github.gravetii.gen.Diztl.DownloadResp>(this, METHODID_DOWNLOAD)))
+          .addMethod(
+              getGetUserDirsMethod(),
+              asyncUnaryCall(
+                  new MethodHandlers<
+                      io.github.gravetii.gen.Diztl.UserDirsReq,
+                      io.github.gravetii.gen.Diztl.UserDirsResp>(this, METHODID_GET_USER_DIRS)))
+          .addMethod(
+              getUpdateUserDirsMethod(),
+              asyncUnaryCall(
+                  new MethodHandlers<
+                      io.github.gravetii.gen.Diztl.UpdateUserDirsReq,
+                      io.github.gravetii.gen.Diztl.UpdateUserDirsResp>(
+                      this, METHODID_UPDATE_USER_DIRS)))
           .build();
     }
   }
@@ -391,6 +507,27 @@ public final class DiztlServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getDownloadMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /** */
+    public void getUserDirs(
+        io.github.gravetii.gen.Diztl.UserDirsReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.UserDirsResp> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetUserDirsMethod(), getCallOptions()),
+          request,
+          responseObserver);
+    }
+
+    /** */
+    public void updateUserDirs(
+        io.github.gravetii.gen.Diztl.UpdateUserDirsReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.UpdateUserDirsResp>
+            responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getUpdateUserDirsMethod(), getCallOptions()),
+          request,
+          responseObserver);
+    }
   }
 
   /** */
@@ -440,6 +577,18 @@ public final class DiztlServiceGrpc {
         io.github.gravetii.gen.Diztl.DownloadReq request) {
       return blockingUnaryCall(getChannel(), getDownloadMethod(), getCallOptions(), request);
     }
+
+    /** */
+    public io.github.gravetii.gen.Diztl.UserDirsResp getUserDirs(
+        io.github.gravetii.gen.Diztl.UserDirsReq request) {
+      return blockingUnaryCall(getChannel(), getGetUserDirsMethod(), getCallOptions(), request);
+    }
+
+    /** */
+    public io.github.gravetii.gen.Diztl.UpdateUserDirsResp updateUserDirs(
+        io.github.gravetii.gen.Diztl.UpdateUserDirsReq request) {
+      return blockingUnaryCall(getChannel(), getUpdateUserDirsMethod(), getCallOptions(), request);
+    }
   }
 
   /** */
@@ -483,6 +632,22 @@ public final class DiztlServiceGrpc {
             io.github.gravetii.gen.Diztl.DownloadResp>
         download(io.github.gravetii.gen.Diztl.DownloadReq request) {
       return futureUnaryCall(getChannel().newCall(getDownloadMethod(), getCallOptions()), request);
+    }
+
+    /** */
+    public com.google.common.util.concurrent.ListenableFuture<
+            io.github.gravetii.gen.Diztl.UserDirsResp>
+        getUserDirs(io.github.gravetii.gen.Diztl.UserDirsReq request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetUserDirsMethod(), getCallOptions()), request);
+    }
+
+    /** */
+    public com.google.common.util.concurrent.ListenableFuture<
+            io.github.gravetii.gen.Diztl.UpdateUserDirsResp>
+        updateUserDirs(io.github.gravetii.gen.Diztl.UpdateUserDirsReq request) {
+      return futureUnaryCall(
+          getChannel().newCall(getUpdateUserDirsMethod(), getCallOptions()), request);
     }
   }
 
@@ -531,6 +696,18 @@ public final class DiztlServiceGrpc {
           serviceImpl.download(
               (io.github.gravetii.gen.Diztl.DownloadReq) request,
               (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.DownloadResp>)
+                  responseObserver);
+          break;
+        case METHODID_GET_USER_DIRS:
+          serviceImpl.getUserDirs(
+              (io.github.gravetii.gen.Diztl.UserDirsReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.UserDirsResp>)
+                  responseObserver);
+          break;
+        case METHODID_UPDATE_USER_DIRS:
+          serviceImpl.updateUserDirs(
+              (io.github.gravetii.gen.Diztl.UpdateUserDirsReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.UpdateUserDirsResp>)
                   responseObserver);
           break;
         default:

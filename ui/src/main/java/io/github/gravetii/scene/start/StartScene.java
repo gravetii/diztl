@@ -1,6 +1,6 @@
 package io.github.gravetii.scene.start;
 
-import io.github.gravetii.controller.FileResult;
+import io.github.gravetii.controller.search.FileResult;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;

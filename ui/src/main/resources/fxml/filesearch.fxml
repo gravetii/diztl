@@ -24,7 +24,7 @@
                     <padding>
                         <Insets left="10.0" />
                     </padding></JFXTextField>
-                <JFXButton fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="35.0" prefWidth="70.0" GridPane.columnIndex="1">
+                <JFXButton fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="35.0" prefWidth="70.0" text="Button" GridPane.columnIndex="1">
                     <graphic>
                         <FontAwesomeIconView fill="#93aaee" glyphName="SEARCH" size="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                     </graphic></JFXButton>
