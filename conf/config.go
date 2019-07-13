@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/fsnotify/fsnotify"
 	"github.com/gravetii/viper"
 )
 
@@ -35,9 +36,23 @@ type conf struct {
 
 var config *conf
 
+func init() {
+	// Set the config file for viper.
+	viper.SetConfigFile("config.yml")
+}
+
 // Load loads the app-wide configuration or returns an error if any.
 func Load() error {
-	viper.SetConfigFile("config.yml")
+	err := load()
+	if err != nil {
+		return err
+	}
+
+	watch()
+	return nil
+}
+
+func load() error {
 	err := viper.ReadInConfig()
 	if err != nil {
 		return err
@@ -50,6 +65,20 @@ func Load() error {
 	}
 
 	return nil
+}
+
+func watch() {
+	viper.WatchConfig()
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		// If the config file is changed, load it again.
+		load()
+	})
+}
+
+// Set sets a configuration key-value and writes the new config to the file.
+func Set(key string, value interface{}) {
+	viper.Set(key, value)
+	viper.WriteConfig()
 }
 
 // MinIndexFiles returns the minimum cumulative number of files that each node should index to enter the network.
