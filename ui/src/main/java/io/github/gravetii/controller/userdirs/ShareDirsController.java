@@ -12,6 +12,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShareDirsController implements FxController {
@@ -58,6 +59,12 @@ public class ShareDirsController implements FxController {
     dirs.forEach(dir -> {
       dirsList.getItems().add(new Label(dir));
     });
+  }
+
+  public List<String> getFinalDirs() {
+    List<String> result = new ArrayList<>(dirsList.getItems().size());
+    dirsList.getItems().forEach(dir -> result.add(dir.getText()));
+    return result;
   }
 
 }

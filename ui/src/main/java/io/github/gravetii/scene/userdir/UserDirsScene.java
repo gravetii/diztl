@@ -12,7 +12,7 @@ public class UserDirsScene extends FxScene {
   public UserDirsScene(Stage stage) throws Exception {
     super(stage);
     this.shareDirsComponent = new ShareDirsComponent(stage, this);
-    this.userDirsSubmitComponent = new UserDirsSubmitComponent();
+    this.userDirsSubmitComponent = new UserDirsSubmitComponent(stage, shareDirsComponent);
   }
 
   @Override
