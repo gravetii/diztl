@@ -2,17 +2,30 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
-<?import javafx.scene.control.Separator?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXListView fx:id="dirsList" prefHeight="400.0" prefWidth="455.0" />
-      <Separator orientation="VERTICAL" prefHeight="200.0" />
-      <VBox prefHeight="400.0" prefWidth="137.0">
+      <JFXListView fx:id="dirsList" prefHeight="200.0" prefWidth="603.0" showTooltip="true">
+         <effect>
+            <DropShadow color="WHITE" />
+         </effect></JFXListView>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <JFXButton fx:id="addBtn" mnemonicParsing="false" onAction="#addDir" text="ADD" />
-         </children></VBox>
+            <JFXButton fx:id="addBtn" layoutX="24.0" layoutY="38.0" mnemonicParsing="false" onAction="#addDir" prefWidth="50.0" textAlignment="CENTER">
+               <graphic>
+                  <FontAwesomeIconView fill="#93aaee" glyphName="PLUS" size="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="removeBtn" layoutX="23.0" layoutY="100.0" mnemonicParsing="false" onAction="#removeDir" prefWidth="50.0" textAlignment="CENTER">
+               <graphic>
+                  <FontAwesomeIconView fill="#93aaee" glyphName="MINUS" size="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
    </children>
 </HBox>
