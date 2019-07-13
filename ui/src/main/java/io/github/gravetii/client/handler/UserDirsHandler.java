@@ -31,7 +31,7 @@ public class UserDirsHandler {
         logger.info("Got share folders: {}", resp.getShareList());
         scene.displayUserFolders(resp.getShareList());
       } catch (Exception e) {
-        logger.error("Error while trying to fetch share folders:", e);
+        logger.error("Error while trying to fetch user dirs:", e);
       }
     }, DiztlClient.get().executor());
   }

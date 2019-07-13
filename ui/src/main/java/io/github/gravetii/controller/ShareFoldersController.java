@@ -10,6 +10,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 public class ShareFoldersController implements FxController {
@@ -17,6 +18,7 @@ public class ShareFoldersController implements FxController {
   @FXML private ListView<String> foldersList;
   @FXML private JFXButton addBtn;
   @FXML private JFXButton removeBtn;
+  @FXML private JFXButton submitBtn;
 
   private Stage stage;
   private ShareFoldersScene parent;
@@ -49,6 +51,12 @@ public class ShareFoldersController implements FxController {
       System.out.println(item);
       foldersList.getItems().remove(item);
     });
+  }
+
+  @FXML
+  public void onSubmit(ActionEvent event) {
+    System.out.println("Updating user folders");
+    DiztlClient.get().updateUserDirs(foldersList.getItems(), "");
   }
 
   public void displayShareDirs(List<String> shareDirs) {
