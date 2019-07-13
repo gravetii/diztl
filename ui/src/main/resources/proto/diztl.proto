@@ -13,6 +13,8 @@ service DiztlService {
     }
     rpc Download (DownloadReq) returns (DownloadResp) {
     }
+    rpc GetUserDirs(UserDirsReq) returns (UserDirsResp) {
+    }
 }
 
 service TrackerService {
@@ -134,4 +136,14 @@ message PingReq {
 
 message PingResp {
     string message = 1;
+}
+
+message UserDirsReq {
+    bool share = 1;
+    bool output = 2;
+}
+
+message UserDirsResp {
+    repeated string share = 1;
+    string output = 2;
 }
