@@ -7,6 +7,7 @@ import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.userdir.UserDirsScene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -17,7 +18,7 @@ public class ShareDirsController implements FxController {
   private Stage stage;
   private UserDirsScene parent;
 
-  @FXML private JFXListView<String> dirsList;
+  @FXML private JFXListView<Label> dirsList;
   @FXML private JFXButton addBtn;
   @FXML private JFXButton removeBtn;
 
@@ -29,31 +30,33 @@ public class ShareDirsController implements FxController {
   @FXML
   public void initialize() {
     DiztlClient.get().getUserDirs(true, false, parent);
+    dirsList.setDepth(1);
+    removeBtn.disableProperty().bind(dirsList.getSelectionModel().selectedItemProperty().isNull());
   }
 
   @FXML
   public void addDir(ActionEvent event) {
-    System.out.println("Adding folder...");
     DirectoryChooser chooser = new DirectoryChooser();
     chooser.setTitle("Choose folder to share...");
     chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
     File selectedFolder = chooser.showDialog(stage);
-    dirsList.getItems().add(selectedFolder.getPath());
+    if (selectedFolder != null) {
+      dirsList.getItems().add(new Label(selectedFolder.getPath()));
+    }
   }
 
   @FXML
   public void removeDir(ActionEvent event) {
     System.out.println("Removing item");
-    List<String> selectedItems = dirsList.getSelectionModel().getSelectedItems();
+    List<Label> selectedItems = dirsList.getSelectionModel().getSelectedItems();
     selectedItems.forEach(item -> {
-      System.out.println(item);
       dirsList.getItems().remove(item);
     });
   }
 
   public void displayDirs(List<String> dirs) {
     dirs.forEach(dir -> {
-      dirsList.getItems().add(dir);
+      dirsList.getItems().add(new Label(dir));
     });
   }
 
