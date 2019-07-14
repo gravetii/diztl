@@ -43,7 +43,7 @@
 }
 
 .jfx-list-cell:selected {
-    -fx-background-color: #3d8c91;
+    -fx-background-color: #1bd79c;
 }
 
 .jfx-list-cell {
@@ -54,10 +54,6 @@
     -fx-rippler-fill: BLUE;
 }
 
-.jfx-list-cell:hover {
-    -fx-background-color: #1bd79c;
-}
-
 .jfx-list-view {
     -fx-background-insets: 0;
     -fx-cell-vertical-margin: 0;
@@ -65,7 +61,7 @@
 }
 
 .jfx-button {
-    -fx-background-color: #3d8c91;
+    -fx-background-color: #018786;
     -fx-text-fill: #ffffff;
 }
 
@@ -75,4 +71,9 @@
 
 .jfx-button:selected {
     -fx-background-color: transparent;
+}
+
+.cancelBtn {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #018786;
 }
