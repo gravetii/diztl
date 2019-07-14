@@ -3,32 +3,15 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <GridPane prefHeight="54.0" prefWidth="600.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="549.0" minWidth="10.0" prefWidth="537.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="63.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <JFXTextField fx:id="searchBox" focusColor="#93aaee" prefHeight="35.0" prefWidth="530.0" promptText="Search...">
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding></JFXTextField>
-                <JFXButton fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="35.0" prefWidth="70.0" text="Button" GridPane.columnIndex="1">
-                    <graphic>
-                        <FontAwesomeIconView fill="#93aaee" glyphName="SEARCH" size="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                    </graphic></JFXButton>
-            </children>
-        </GridPane>
-    </children>
-</VBox>
+<AnchorPane prefHeight="40.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXTextField fx:id="searchBox" focusColor="#97c7f5" layoutX="15.0" layoutY="1.0" prefHeight="34.0" prefWidth="533.0" promptText="Search..." unFocusColor="#585a5a" />
+      <JFXButton fx:id="searchBtn" layoutX="548.0" mnemonicParsing="false" onAction="#search" prefHeight="41.0" prefWidth="52.0" ripplerFill="WHITE" style="-fx-background-color: transparent;">
+         <graphic>
+            <FontAwesomeIconView glyphName="SEARCH" size="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="10.0" />
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>
