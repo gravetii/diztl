@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -53,11 +55,11 @@ public class DiztlClient {
     return INSTANCE;
   }
 
-  private static String fetchLocalIp() throws Exception {
-    try (final DatagramSocket socket = new DatagramSocket()) {
-      socket.connect(InetAddress.getByName("8.8.8.8"), 80);
-      String ip = socket.getLocalAddress().getHostAddress();
-      logger.info("Got local IP address as {}", ip);
+  private String fetchLocalIp() throws Exception {
+    try (final Socket socket = new Socket()) {
+      socket.connect(new InetSocketAddress("google.com", 80));
+      ip = socket.getLocalAddress().getHostAddress();
+      logger.info("Got local IP as: {}", ip);
       return ip;
     } catch (Exception e) {
       logger.error("Unable to fetch the host's local IP", e);
