@@ -19,12 +19,12 @@
          </HBox.margin></JFXListView>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <JFXButton fx:id="addBtn" alignment="CENTER" layoutX="16.0" layoutY="38.0" mnemonicParsing="false" onAction="#addDir" prefWidth="50.0" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="addBtn" alignment="CENTER" layoutX="20.0" layoutY="38.0" mnemonicParsing="false" onAction="#addDir" prefWidth="50.0" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView glyphName="PLUS" size="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="removeBtn" alignment="CENTER" layoutX="15.0" layoutY="100.0" mnemonicParsing="false" onAction="#removeDir" prefWidth="50.0" textAlignment="CENTER">
+            <JFXButton fx:id="removeBtn" alignment="CENTER" layoutX="19.0" layoutY="100.0" mnemonicParsing="false" onAction="#removeDir" prefWidth="50.0" textAlignment="CENTER">
                <graphic>
                   <FontAwesomeIconView glyphName="MINUS" size="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                </graphic>
