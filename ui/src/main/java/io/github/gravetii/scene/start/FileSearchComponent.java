@@ -2,9 +2,10 @@ package io.github.gravetii.scene.start;
 
 import io.github.gravetii.controller.search.FileSearchController;
 import io.github.gravetii.scene.FxComponent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-public class FileSearchComponent extends FxComponent<FileSearchController, VBox> {
+public class FileSearchComponent extends FxComponent<FileSearchController, AnchorPane> {
   private StartScene parent;
 
   public FileSearchComponent(StartScene parent) throws Exception {
@@ -19,7 +20,7 @@ public class FileSearchComponent extends FxComponent<FileSearchController, VBox>
   }
 
   @Override
-  protected VBox createNode() throws Exception {
+  protected AnchorPane createNode() throws Exception {
     return this.loadNode();
   }
 }
