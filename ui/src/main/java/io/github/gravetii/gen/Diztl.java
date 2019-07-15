@@ -56,9 +56,9 @@ public final class Diztl {
   private static final com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_DownloadReq_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-      internal_static_DownloadResp_descriptor;
+      internal_static_DownloadChunk_descriptor;
   private static final com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_DownloadResp_fieldAccessorTable;
+      internal_static_DownloadChunk_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
       internal_static_DisconnectReq_descriptor;
   private static final com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -113,29 +113,30 @@ public final class Diztl {
           + "\001(\0132\005.Node\022\037\n\010metadata\030\002 \001(\0132\r.FileMetad"
           + "ata\022!\n\010contract\030\003 \001(\0132\017.UploadContract\"E"
           + "\n\013DownloadReq\022\025\n\006source\030\001 \001(\0132\005.Node\022\037\n\010"
-          + "metadata\030\002 \001(\0132\r.FileMetadata\"\037\n\014Downloa"
-          + "dResp\022\017\n\007message\030\001 \001(\t\"$\n\rDisconnectReq\022"
-          + "\023\n\004node\030\001 \001(\0132\005.Node\"!\n\016DisconnectResp\022\017"
-          + "\n\007message\030\001 \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001"
-          + "(\0132\005.Node\022\023\n\004dest\030\002 \001(\0132\005.Node\"\033\n\010PingRe"
-          + "sp\022\017\n\007message\030\001 \001(\t\",\n\013UserDirsReq\022\r\n\005sh"
-          + "are\030\001 \001(\010\022\016\n\006output\030\002 \001(\010\"-\n\014UserDirsRes"
-          + "p\022\r\n\005share\030\001 \003(\t\022\016\n\006output\030\002 \001(\t\"2\n\021Upda"
-          + "teUserDirsReq\022\r\n\005share\030\001 \003(\t\022\016\n\006output\030\002"
-          + " \001(\t\"%\n\022UpdateUserDirsResp\022\017\n\007message\030\001 "
-          + "\001(\t2\255\002\n\014DiztlService\022#\n\006Search\022\n.SearchR"
-          + "eq\032\013.SearchResp\"\000\022$\n\006Upload\022\n.UploadReq\032"
-          + "\n.FileChunk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.Ping"
-          + "Resp\"\000\022\035\n\004Find\022\010.FindReq\032\t.FindResp\"\000\022)\n"
-          + "\010Download\022\014.DownloadReq\032\r.DownloadResp\"\000"
-          + "\022,\n\013GetUserDirs\022\014.UserDirsReq\032\r.UserDirs"
-          + "Resp\"\000\022;\n\016UpdateUserDirs\022\022.UpdateUserDir"
-          + "sReq\032\023.UpdateUserDirsResp\"\0002\223\001\n\016TrackerS"
-          + "ervice\022)\n\010Register\022\014.RegisterReq\032\r.Regis"
-          + "terResp\"\000\022%\n\006Search\022\n.SearchReq\032\013.Search"
-          + "Resp\"\0000\001\022/\n\nDisconnect\022\016.DisconnectReq\032\017"
-          + ".DisconnectResp\"\000B\030\n\026io.github.gravetii."
-          + "genb\006proto3"
+          + "metadata\030\002 \001(\0132\r.FileMetadata\"?\n\rDownloa"
+          + "dChunk\022\037\n\010metadata\030\001 \001(\0132\r.FileMetadata\022"
+          + "\r\n\005chunk\030\002 \001(\005\"$\n\rDisconnectReq\022\023\n\004node\030"
+          + "\001 \001(\0132\005.Node\"!\n\016DisconnectResp\022\017\n\007messag"
+          + "e\030\001 \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001(\0132\005.Nod"
+          + "e\022\023\n\004dest\030\002 \001(\0132\005.Node\"\033\n\010PingResp\022\017\n\007me"
+          + "ssage\030\001 \001(\t\",\n\013UserDirsReq\022\r\n\005share\030\001 \001("
+          + "\010\022\016\n\006output\030\002 \001(\010\"-\n\014UserDirsResp\022\r\n\005sha"
+          + "re\030\001 \003(\t\022\016\n\006output\030\002 \001(\t\"2\n\021UpdateUserDi"
+          + "rsReq\022\r\n\005share\030\001 \003(\t\022\016\n\006output\030\002 \001(\t\"%\n\022"
+          + "UpdateUserDirsResp\022\017\n\007message\030\001 \001(\t2\260\002\n\014"
+          + "DiztlService\022#\n\006Search\022\n.SearchReq\032\013.Sea"
+          + "rchResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.FileCh"
+          + "unk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035"
+          + "\n\004Find\022\010.FindReq\032\t.FindResp\"\000\022,\n\010Downloa"
+          + "d\022\014.DownloadReq\032\016.DownloadChunk\"\0000\001\022,\n\013G"
+          + "etUserDirs\022\014.UserDirsReq\032\r.UserDirsResp\""
+          + "\000\022;\n\016UpdateUserDirs\022\022.UpdateUserDirsReq\032"
+          + "\023.UpdateUserDirsResp\"\0002\223\001\n\016TrackerServic"
+          + "e\022)\n\010Register\022\014.RegisterReq\032\r.RegisterRe"
+          + "sp\"\000\022%\n\006Search\022\n.SearchReq\032\013.SearchResp\""
+          + "\0000\001\022/\n\nDisconnect\022\016.DisconnectReq\032\017.Disc"
+          + "onnectResp\"\000B\030\n\026io.github.gravetii.genb\006"
+          + "proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -238,12 +239,12 @@ public final class Diztl {
             new java.lang.String[] {
               "Source", "Metadata",
             });
-    internal_static_DownloadResp_descriptor = getDescriptor().getMessageTypes().get(13);
-    internal_static_DownloadResp_fieldAccessorTable =
+    internal_static_DownloadChunk_descriptor = getDescriptor().getMessageTypes().get(13);
+    internal_static_DownloadChunk_fieldAccessorTable =
         new com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_DownloadResp_descriptor,
+            internal_static_DownloadChunk_descriptor,
             new java.lang.String[] {
-              "Message",
+              "Metadata", "Chunk",
             });
     internal_static_DisconnectReq_descriptor = getDescriptor().getMessageTypes().get(14);
     internal_static_DisconnectReq_fieldAccessorTable =
@@ -893,15 +894,52 @@ public final class Diztl {
     /** <code>.FileMetadata metadata = 2;</code> */
     io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getMetadataOrBuilder();
   }
-  public interface DownloadRespOrBuilder
+  public interface DownloadChunkOrBuilder
       extends
-      // @@protoc_insertion_point(interface_extends:DownloadResp)
+      // @@protoc_insertion_point(interface_extends:DownloadChunk)
       com.google.protobuf.MessageOrBuilder {
 
-    /** <code>string message = 1;</code> */
-    java.lang.String getMessage();
-    /** <code>string message = 1;</code> */
-    com.google.protobuf.ByteString getMessageBytes();
+    /**
+     *
+     *
+     * <pre>
+     * Sent only in the first chunk.
+     * </pre>
+     *
+     * <code>.FileMetadata metadata = 1;</code>
+     */
+    boolean hasMetadata();
+    /**
+     *
+     *
+     * <pre>
+     * Sent only in the first chunk.
+     * </pre>
+     *
+     * <code>.FileMetadata metadata = 1;</code>
+     */
+    io.github.gravetii.gen.Diztl.FileMetadata getMetadata();
+    /**
+     *
+     *
+     * <pre>
+     * Sent only in the first chunk.
+     * </pre>
+     *
+     * <code>.FileMetadata metadata = 1;</code>
+     */
+    io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getMetadataOrBuilder();
+
+    /**
+     *
+     *
+     * <pre>
+     * The chunk number.
+     * </pre>
+     *
+     * <code>int32 chunk = 2;</code>
+     */
+    int getChunk();
   }
   public interface DisconnectReqOrBuilder
       extends
@@ -11067,40 +11105,41 @@ public final class Diztl {
     }
   }
 
-  /** Protobuf type {@code DownloadResp} */
-  public static final class DownloadResp extends com.google.protobuf.GeneratedMessageV3
+  /** Protobuf type {@code DownloadChunk} */
+  public static final class DownloadChunk extends com.google.protobuf.GeneratedMessageV3
       implements
-      // @@protoc_insertion_point(message_implements:DownloadResp)
-      DownloadRespOrBuilder {
-    public static final int MESSAGE_FIELD_NUMBER = 1;
+      // @@protoc_insertion_point(message_implements:DownloadChunk)
+      DownloadChunkOrBuilder {
+    public static final int METADATA_FIELD_NUMBER = 1;
+    public static final int CHUNK_FIELD_NUMBER = 2;
     private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:DownloadResp)
-    private static final io.github.gravetii.gen.Diztl.DownloadResp DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<DownloadResp> PARSER =
-        new com.google.protobuf.AbstractParser<DownloadResp>() {
-          public DownloadResp parsePartialFrom(
+    // @@protoc_insertion_point(class_scope:DownloadChunk)
+    private static final io.github.gravetii.gen.Diztl.DownloadChunk DEFAULT_INSTANCE;
+    private static final com.google.protobuf.Parser<DownloadChunk> PARSER =
+        new com.google.protobuf.AbstractParser<DownloadChunk>() {
+          public DownloadChunk parsePartialFrom(
               com.google.protobuf.CodedInputStream input,
               com.google.protobuf.ExtensionRegistryLite extensionRegistry)
               throws com.google.protobuf.InvalidProtocolBufferException {
-            return new DownloadResp(input, extensionRegistry);
+            return new DownloadChunk(input, extensionRegistry);
           }
         };
 
     static {
-      DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.DownloadResp();
+      DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.DownloadChunk();
     }
 
-    private volatile java.lang.Object message_;
+    private io.github.gravetii.gen.Diztl.FileMetadata metadata_;
+    private int chunk_;
     private byte memoizedIsInitialized = -1;
-
-    // Use DownloadResp.newBuilder() to construct.
-    private DownloadResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use DownloadChunk.newBuilder() to construct.
+    private DownloadChunk(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private DownloadResp() {
-      message_ = "";
+    private DownloadChunk() {
+      chunk_ = 0;
     }
-    private DownloadResp(
+    private DownloadChunk(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -11128,9 +11167,23 @@ public final class Diztl {
               }
             case 10:
               {
-                java.lang.String s = input.readStringRequireUtf8();
+                io.github.gravetii.gen.Diztl.FileMetadata.Builder subBuilder = null;
+                if (metadata_ != null) {
+                  subBuilder = metadata_.toBuilder();
+                }
+                metadata_ =
+                    input.readMessage(
+                        io.github.gravetii.gen.Diztl.FileMetadata.parser(), extensionRegistry);
+                if (subBuilder != null) {
+                  subBuilder.mergeFrom(metadata_);
+                  metadata_ = subBuilder.buildPartial();
+                }
 
-                message_ = s;
+                break;
+              }
+            case 16:
+              {
+                chunk_ = input.readInt32();
                 break;
               }
           }
@@ -11146,74 +11199,74 @@ public final class Diztl {
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-      return io.github.gravetii.gen.Diztl.internal_static_DownloadResp_descriptor;
+      return io.github.gravetii.gen.Diztl.internal_static_DownloadChunk_descriptor;
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseFrom(java.nio.ByteBuffer data)
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseFrom(java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseFrom(
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseFrom(
         java.nio.ByteBuffer data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseFrom(
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseFrom(
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseFrom(byte[] data)
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseFrom(
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseFrom(
         byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseFrom(java.io.InputStream input)
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseFrom(
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseFrom(
         java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3.parseWithIOException(
           PARSER, input, extensionRegistry);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseDelimitedFrom(
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseDelimitedFrom(
         java.io.InputStream input) throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseDelimitedFrom(
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseDelimitedFrom(
         java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3.parseDelimitedWithIOException(
           PARSER, input, extensionRegistry);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseFrom(
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseFrom(
         com.google.protobuf.CodedInputStream input) throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3.parseWithIOException(PARSER, input);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp parseFrom(
+    public static io.github.gravetii.gen.Diztl.DownloadChunk parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -11225,15 +11278,15 @@ public final class Diztl {
       return DEFAULT_INSTANCE.toBuilder();
     }
 
-    public static Builder newBuilder(io.github.gravetii.gen.Diztl.DownloadResp prototype) {
+    public static Builder newBuilder(io.github.gravetii.gen.Diztl.DownloadChunk prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
-    public static io.github.gravetii.gen.Diztl.DownloadResp getDefaultInstance() {
+    public static io.github.gravetii.gen.Diztl.DownloadChunk getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    public static com.google.protobuf.Parser<DownloadResp> parser() {
+    public static com.google.protobuf.Parser<DownloadChunk> parser() {
       return PARSER;
     }
 
@@ -11244,36 +11297,64 @@ public final class Diztl {
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.github.gravetii.gen.Diztl.internal_static_DownloadResp_fieldAccessorTable
+      return io.github.gravetii.gen.Diztl.internal_static_DownloadChunk_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              io.github.gravetii.gen.Diztl.DownloadResp.class,
-              io.github.gravetii.gen.Diztl.DownloadResp.Builder.class);
+              io.github.gravetii.gen.Diztl.DownloadChunk.class,
+              io.github.gravetii.gen.Diztl.DownloadChunk.Builder.class);
     }
 
-    /** <code>string message = 1;</code> */
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        message_ = s;
-        return s;
-      }
+    /**
+     *
+     *
+     * <pre>
+     * Sent only in the first chunk.
+     * </pre>
+     *
+     * <code>.FileMetadata metadata = 1;</code>
+     */
+    public boolean hasMetadata() {
+      return metadata_ != null;
     }
 
-    /** <code>string message = 1;</code> */
-    public com.google.protobuf.ByteString getMessageBytes() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
-        message_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    /**
+     *
+     *
+     * <pre>
+     * Sent only in the first chunk.
+     * </pre>
+     *
+     * <code>.FileMetadata metadata = 1;</code>
+     */
+    public io.github.gravetii.gen.Diztl.FileMetadata getMetadata() {
+      return metadata_ == null
+          ? io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance()
+          : metadata_;
+    }
+
+    /**
+     *
+     *
+     * <pre>
+     * Sent only in the first chunk.
+     * </pre>
+     *
+     * <code>.FileMetadata metadata = 1;</code>
+     */
+    public io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getMetadataOrBuilder() {
+      return getMetadata();
+    }
+
+    /**
+     *
+     *
+     * <pre>
+     * The chunk number.
+     * </pre>
+     *
+     * <code>int32 chunk = 2;</code>
+     */
+    public int getChunk() {
+      return chunk_;
     }
 
     public final boolean isInitialized() {
@@ -11286,8 +11367,11 @@ public final class Diztl {
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
-      if (!getMessageBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
+      if (metadata_ != null) {
+        output.writeMessage(1, getMetadata());
+      }
+      if (chunk_ != 0) {
+        output.writeInt32(2, chunk_);
       }
       unknownFields.writeTo(output);
     }
@@ -11297,8 +11381,11 @@ public final class Diztl {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMessageBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
+      if (metadata_ != null) {
+        size += com.google.protobuf.CodedOutputStream.computeMessageSize(1, getMetadata());
+      }
+      if (chunk_ != 0) {
+        size += com.google.protobuf.CodedOutputStream.computeInt32Size(2, chunk_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -11310,14 +11397,18 @@ public final class Diztl {
       if (obj == this) {
         return true;
       }
-      if (!(obj instanceof io.github.gravetii.gen.Diztl.DownloadResp)) {
+      if (!(obj instanceof io.github.gravetii.gen.Diztl.DownloadChunk)) {
         return super.equals(obj);
       }
-      io.github.gravetii.gen.Diztl.DownloadResp other =
-          (io.github.gravetii.gen.Diztl.DownloadResp) obj;
+      io.github.gravetii.gen.Diztl.DownloadChunk other =
+          (io.github.gravetii.gen.Diztl.DownloadChunk) obj;
 
       boolean result = true;
-      result = result && getMessage().equals(other.getMessage());
+      result = result && (hasMetadata() == other.hasMetadata());
+      if (hasMetadata()) {
+        result = result && getMetadata().equals(other.getMetadata());
+      }
+      result = result && (getChunk() == other.getChunk());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -11329,8 +11420,12 @@ public final class Diztl {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessage().hashCode();
+      if (hasMetadata()) {
+        hash = (37 * hash) + METADATA_FIELD_NUMBER;
+        hash = (53 * hash) + getMetadata().hashCode();
+      }
+      hash = (37 * hash) + CHUNK_FIELD_NUMBER;
+      hash = (53 * hash) + getChunk();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -11352,23 +11447,29 @@ public final class Diztl {
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<DownloadResp> getParserForType() {
+    public com.google.protobuf.Parser<DownloadChunk> getParserForType() {
       return PARSER;
     }
 
-    public io.github.gravetii.gen.Diztl.DownloadResp getDefaultInstanceForType() {
+    public io.github.gravetii.gen.Diztl.DownloadChunk getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
-    /** Protobuf type {@code DownloadResp} */
+    /** Protobuf type {@code DownloadChunk} */
     public static final class Builder
         extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
         implements
-        // @@protoc_insertion_point(builder_implements:DownloadResp)
-        io.github.gravetii.gen.Diztl.DownloadRespOrBuilder {
-      private java.lang.Object message_ = "";
+        // @@protoc_insertion_point(builder_implements:DownloadChunk)
+        io.github.gravetii.gen.Diztl.DownloadChunkOrBuilder {
+      private io.github.gravetii.gen.Diztl.FileMetadata metadata_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+              io.github.gravetii.gen.Diztl.FileMetadata,
+              io.github.gravetii.gen.Diztl.FileMetadata.Builder,
+              io.github.gravetii.gen.Diztl.FileMetadataOrBuilder>
+          metadataBuilder_;
+      private int chunk_;
 
-      // Construct using io.github.gravetii.gen.Diztl.DownloadResp.newBuilder()
+      // Construct using io.github.gravetii.gen.Diztl.DownloadChunk.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -11379,15 +11480,15 @@ public final class Diztl {
       }
 
       public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
-        return io.github.gravetii.gen.Diztl.internal_static_DownloadResp_descriptor;
+        return io.github.gravetii.gen.Diztl.internal_static_DownloadChunk_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return io.github.gravetii.gen.Diztl.internal_static_DownloadResp_fieldAccessorTable
+        return io.github.gravetii.gen.Diztl.internal_static_DownloadChunk_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                io.github.gravetii.gen.Diztl.DownloadResp.class,
-                io.github.gravetii.gen.Diztl.DownloadResp.Builder.class);
+                io.github.gravetii.gen.Diztl.DownloadChunk.class,
+                io.github.gravetii.gen.Diztl.DownloadChunk.Builder.class);
       }
 
       private void maybeForceBuilderInitialization() {
@@ -11396,31 +11497,42 @@ public final class Diztl {
 
       public Builder clear() {
         super.clear();
-        message_ = "";
+        if (metadataBuilder_ == null) {
+          metadata_ = null;
+        } else {
+          metadata_ = null;
+          metadataBuilder_ = null;
+        }
+        chunk_ = 0;
 
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
-        return io.github.gravetii.gen.Diztl.internal_static_DownloadResp_descriptor;
+        return io.github.gravetii.gen.Diztl.internal_static_DownloadChunk_descriptor;
       }
 
-      public io.github.gravetii.gen.Diztl.DownloadResp getDefaultInstanceForType() {
-        return io.github.gravetii.gen.Diztl.DownloadResp.getDefaultInstance();
+      public io.github.gravetii.gen.Diztl.DownloadChunk getDefaultInstanceForType() {
+        return io.github.gravetii.gen.Diztl.DownloadChunk.getDefaultInstance();
       }
 
-      public io.github.gravetii.gen.Diztl.DownloadResp build() {
-        io.github.gravetii.gen.Diztl.DownloadResp result = buildPartial();
+      public io.github.gravetii.gen.Diztl.DownloadChunk build() {
+        io.github.gravetii.gen.Diztl.DownloadChunk result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public io.github.gravetii.gen.Diztl.DownloadResp buildPartial() {
-        io.github.gravetii.gen.Diztl.DownloadResp result =
-            new io.github.gravetii.gen.Diztl.DownloadResp(this);
-        result.message_ = message_;
+      public io.github.gravetii.gen.Diztl.DownloadChunk buildPartial() {
+        io.github.gravetii.gen.Diztl.DownloadChunk result =
+            new io.github.gravetii.gen.Diztl.DownloadChunk(this);
+        if (metadataBuilder_ == null) {
+          result.metadata_ = metadata_;
+        } else {
+          result.metadata_ = metadataBuilder_.build();
+        }
+        result.chunk_ = chunk_;
         onBuilt();
         return result;
       }
@@ -11455,19 +11567,21 @@ public final class Diztl {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof io.github.gravetii.gen.Diztl.DownloadResp) {
-          return mergeFrom((io.github.gravetii.gen.Diztl.DownloadResp) other);
+        if (other instanceof io.github.gravetii.gen.Diztl.DownloadChunk) {
+          return mergeFrom((io.github.gravetii.gen.Diztl.DownloadChunk) other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(io.github.gravetii.gen.Diztl.DownloadResp other) {
-        if (other == io.github.gravetii.gen.Diztl.DownloadResp.getDefaultInstance()) return this;
-        if (!other.getMessage().isEmpty()) {
-          message_ = other.message_;
-          onChanged();
+      public Builder mergeFrom(io.github.gravetii.gen.Diztl.DownloadChunk other) {
+        if (other == io.github.gravetii.gen.Diztl.DownloadChunk.getDefaultInstance()) return this;
+        if (other.hasMetadata()) {
+          mergeMetadata(other.getMetadata());
+        }
+        if (other.getChunk() != 0) {
+          setChunk(other.getChunk());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -11482,11 +11596,11 @@ public final class Diztl {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        io.github.gravetii.gen.Diztl.DownloadResp parsedMessage = null;
+        io.github.gravetii.gen.Diztl.DownloadChunk parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (io.github.gravetii.gen.Diztl.DownloadResp) e.getUnfinishedMessage();
+          parsedMessage = (io.github.gravetii.gen.Diztl.DownloadChunk) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -11496,59 +11610,229 @@ public final class Diztl {
         return this;
       }
 
-      /** <code>string message = 1;</code> */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          message_ = s;
-          return s;
+      /**
+       *
+       *
+       * <pre>
+       * Sent only in the first chunk.
+       * </pre>
+       *
+       * <code>.FileMetadata metadata = 1;</code>
+       */
+      public boolean hasMetadata() {
+        return metadataBuilder_ != null || metadata_ != null;
+      }
+
+      /**
+       *
+       *
+       * <pre>
+       * Sent only in the first chunk.
+       * </pre>
+       *
+       * <code>.FileMetadata metadata = 1;</code>
+       */
+      public io.github.gravetii.gen.Diztl.FileMetadata getMetadata() {
+        if (metadataBuilder_ == null) {
+          return metadata_ == null
+              ? io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance()
+              : metadata_;
         } else {
-          return (java.lang.String) ref;
+          return metadataBuilder_.getMessage();
         }
       }
 
-      /** <code>string message = 1;</code> */
-      public Builder setMessage(java.lang.String value) {
-        if (value == null) {
-          throw new NullPointerException();
+      /**
+       *
+       *
+       * <pre>
+       * Sent only in the first chunk.
+       * </pre>
+       *
+       * <code>.FileMetadata metadata = 1;</code>
+       */
+      public Builder setMetadata(io.github.gravetii.gen.Diztl.FileMetadata value) {
+        if (metadataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          metadata_ = value;
+          onChanged();
+        } else {
+          metadataBuilder_.setMessage(value);
         }
 
-        message_ = value;
-        onChanged();
         return this;
       }
 
-      /** <code>string message = 1;</code> */
-      public com.google.protobuf.ByteString getMessageBytes() {
-        java.lang.Object ref = message_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-              com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
-          message_ = b;
-          return b;
+      /**
+       *
+       *
+       * <pre>
+       * Sent only in the first chunk.
+       * </pre>
+       *
+       * <code>.FileMetadata metadata = 1;</code>
+       */
+      public Builder setMetadata(
+          io.github.gravetii.gen.Diztl.FileMetadata.Builder builderForValue) {
+        if (metadataBuilder_ == null) {
+          metadata_ = builderForValue.build();
+          onChanged();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          metadataBuilder_.setMessage(builderForValue.build());
         }
-      }
 
-      /** <code>string message = 1;</code> */
-      public Builder setMessageBytes(com.google.protobuf.ByteString value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        checkByteStringIsUtf8(value);
-
-        message_ = value;
-        onChanged();
         return this;
       }
 
-      /** <code>string message = 1;</code> */
-      public Builder clearMessage() {
+      /**
+       *
+       *
+       * <pre>
+       * Sent only in the first chunk.
+       * </pre>
+       *
+       * <code>.FileMetadata metadata = 1;</code>
+       */
+      public Builder mergeMetadata(io.github.gravetii.gen.Diztl.FileMetadata value) {
+        if (metadataBuilder_ == null) {
+          if (metadata_ != null) {
+            metadata_ =
+                io.github.gravetii.gen.Diztl.FileMetadata.newBuilder(metadata_)
+                    .mergeFrom(value)
+                    .buildPartial();
+          } else {
+            metadata_ = value;
+          }
+          onChanged();
+        } else {
+          metadataBuilder_.mergeFrom(value);
+        }
 
-        message_ = getDefaultInstance().getMessage();
+        return this;
+      }
+
+      /**
+       *
+       *
+       * <pre>
+       * Sent only in the first chunk.
+       * </pre>
+       *
+       * <code>.FileMetadata metadata = 1;</code>
+       */
+      public Builder clearMetadata() {
+        if (metadataBuilder_ == null) {
+          metadata_ = null;
+          onChanged();
+        } else {
+          metadata_ = null;
+          metadataBuilder_ = null;
+        }
+
+        return this;
+      }
+
+      /**
+       *
+       *
+       * <pre>
+       * Sent only in the first chunk.
+       * </pre>
+       *
+       * <code>.FileMetadata metadata = 1;</code>
+       */
+      public io.github.gravetii.gen.Diztl.FileMetadata.Builder getMetadataBuilder() {
+
+        onChanged();
+        return getMetadataFieldBuilder().getBuilder();
+      }
+
+      /**
+       *
+       *
+       * <pre>
+       * Sent only in the first chunk.
+       * </pre>
+       *
+       * <code>.FileMetadata metadata = 1;</code>
+       */
+      public io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getMetadataOrBuilder() {
+        if (metadataBuilder_ != null) {
+          return metadataBuilder_.getMessageOrBuilder();
+        } else {
+          return metadata_ == null
+              ? io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance()
+              : metadata_;
+        }
+      }
+
+      /**
+       *
+       *
+       * <pre>
+       * Sent only in the first chunk.
+       * </pre>
+       *
+       * <code>.FileMetadata metadata = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+              io.github.gravetii.gen.Diztl.FileMetadata,
+              io.github.gravetii.gen.Diztl.FileMetadata.Builder,
+              io.github.gravetii.gen.Diztl.FileMetadataOrBuilder>
+          getMetadataFieldBuilder() {
+        if (metadataBuilder_ == null) {
+          metadataBuilder_ =
+              new com.google.protobuf.SingleFieldBuilderV3<
+                  io.github.gravetii.gen.Diztl.FileMetadata,
+                  io.github.gravetii.gen.Diztl.FileMetadata.Builder,
+                  io.github.gravetii.gen.Diztl.FileMetadataOrBuilder>(
+                  getMetadata(), getParentForChildren(), isClean());
+          metadata_ = null;
+        }
+        return metadataBuilder_;
+      }
+
+      /**
+       *
+       *
+       * <pre>
+       * The chunk number.
+       * </pre>
+       *
+       * <code>int32 chunk = 2;</code>
+       */
+      public int getChunk() {
+        return chunk_;
+      }
+      /**
+       *
+       *
+       * <pre>
+       * The chunk number.
+       * </pre>
+       *
+       * <code>int32 chunk = 2;</code>
+       */
+      public Builder setChunk(int value) {
+
+        chunk_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       *
+       *
+       * <pre>
+       * The chunk number.
+       * </pre>
+       *
+       * <code>int32 chunk = 2;</code>
+       */
+      public Builder clearChunk() {
+
+        chunk_ = 0;
         onChanged();
         return this;
       }
@@ -11563,7 +11847,7 @@ public final class Diztl {
         return super.mergeUnknownFields(unknownFields);
       }
 
-      // @@protoc_insertion_point(builder_scope:DownloadResp)
+      // @@protoc_insertion_point(builder_scope:DownloadChunk)
     }
   }
 
