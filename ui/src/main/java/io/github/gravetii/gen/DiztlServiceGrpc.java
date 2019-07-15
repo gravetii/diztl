@@ -36,7 +36,7 @@ public final class DiztlServiceGrpc {
           io.github.gravetii.gen.Diztl.FindReq, io.github.gravetii.gen.Diztl.FindResp>
       getFindMethod;
   private static volatile io.grpc.MethodDescriptor<
-          io.github.gravetii.gen.Diztl.DownloadReq, io.github.gravetii.gen.Diztl.DownloadResp>
+          io.github.gravetii.gen.Diztl.DownloadReq, io.github.gravetii.gen.Diztl.DownloadChunk>
       getDownloadMethod;
   private static volatile io.grpc.MethodDescriptor<
           io.github.gravetii.gen.Diztl.UserDirsReq, io.github.gravetii.gen.Diztl.UserDirsResp>
@@ -198,13 +198,13 @@ public final class DiztlServiceGrpc {
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Download",
       requestType = io.github.gravetii.gen.Diztl.DownloadReq.class,
-      responseType = io.github.gravetii.gen.Diztl.DownloadResp.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      responseType = io.github.gravetii.gen.Diztl.DownloadChunk.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<
-          io.github.gravetii.gen.Diztl.DownloadReq, io.github.gravetii.gen.Diztl.DownloadResp>
+          io.github.gravetii.gen.Diztl.DownloadReq, io.github.gravetii.gen.Diztl.DownloadChunk>
       getDownloadMethod() {
     io.grpc.MethodDescriptor<
-            io.github.gravetii.gen.Diztl.DownloadReq, io.github.gravetii.gen.Diztl.DownloadResp>
+            io.github.gravetii.gen.Diztl.DownloadReq, io.github.gravetii.gen.Diztl.DownloadChunk>
         getDownloadMethod;
     if ((getDownloadMethod = DiztlServiceGrpc.getDownloadMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
@@ -213,9 +213,9 @@ public final class DiztlServiceGrpc {
               getDownloadMethod =
                   io.grpc.MethodDescriptor
                       .<io.github.gravetii.gen.Diztl.DownloadReq,
-                          io.github.gravetii.gen.Diztl.DownloadResp>
+                          io.github.gravetii.gen.Diztl.DownloadChunk>
                           newBuilder()
-                      .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                      .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
                       .setFullMethodName(generateFullMethodName("DiztlService", "Download"))
                       .setSampledToLocalTracing(true)
                       .setRequestMarshaller(
@@ -223,7 +223,7 @@ public final class DiztlServiceGrpc {
                               io.github.gravetii.gen.Diztl.DownloadReq.getDefaultInstance()))
                       .setResponseMarshaller(
                           io.grpc.protobuf.ProtoUtils.marshaller(
-                              io.github.gravetii.gen.Diztl.DownloadResp.getDefaultInstance()))
+                              io.github.gravetii.gen.Diztl.DownloadChunk.getDefaultInstance()))
                       .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Download"))
                       .build();
         }
@@ -384,7 +384,7 @@ public final class DiztlServiceGrpc {
     /** */
     public void download(
         io.github.gravetii.gen.Diztl.DownloadReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.DownloadResp> responseObserver) {
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.DownloadChunk> responseObserver) {
       asyncUnimplementedUnaryCall(getDownloadMethod(), responseObserver);
     }
 
@@ -432,10 +432,10 @@ public final class DiztlServiceGrpc {
                       this, METHODID_FIND)))
           .addMethod(
               getDownloadMethod(),
-              asyncUnaryCall(
+              asyncServerStreamingCall(
                   new MethodHandlers<
                       io.github.gravetii.gen.Diztl.DownloadReq,
-                      io.github.gravetii.gen.Diztl.DownloadResp>(this, METHODID_DOWNLOAD)))
+                      io.github.gravetii.gen.Diztl.DownloadChunk>(this, METHODID_DOWNLOAD)))
           .addMethod(
               getGetUserDirsMethod(),
               asyncUnaryCall(
@@ -503,8 +503,8 @@ public final class DiztlServiceGrpc {
     /** */
     public void download(
         io.github.gravetii.gen.Diztl.DownloadReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.DownloadResp> responseObserver) {
-      asyncUnaryCall(
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.DownloadChunk> responseObserver) {
+      asyncServerStreamingCall(
           getChannel().newCall(getDownloadMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -573,9 +573,10 @@ public final class DiztlServiceGrpc {
     }
 
     /** */
-    public io.github.gravetii.gen.Diztl.DownloadResp download(
+    public java.util.Iterator<io.github.gravetii.gen.Diztl.DownloadChunk> download(
         io.github.gravetii.gen.Diztl.DownloadReq request) {
-      return blockingUnaryCall(getChannel(), getDownloadMethod(), getCallOptions(), request);
+      return blockingServerStreamingCall(
+          getChannel(), getDownloadMethod(), getCallOptions(), request);
     }
 
     /** */
@@ -625,13 +626,6 @@ public final class DiztlServiceGrpc {
     public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.gen.Diztl.FindResp>
         find(io.github.gravetii.gen.Diztl.FindReq request) {
       return futureUnaryCall(getChannel().newCall(getFindMethod(), getCallOptions()), request);
-    }
-
-    /** */
-    public com.google.common.util.concurrent.ListenableFuture<
-            io.github.gravetii.gen.Diztl.DownloadResp>
-        download(io.github.gravetii.gen.Diztl.DownloadReq request) {
-      return futureUnaryCall(getChannel().newCall(getDownloadMethod(), getCallOptions()), request);
     }
 
     /** */
@@ -695,7 +689,7 @@ public final class DiztlServiceGrpc {
         case METHODID_DOWNLOAD:
           serviceImpl.download(
               (io.github.gravetii.gen.Diztl.DownloadReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.DownloadResp>)
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.DownloadChunk>)
                   responseObserver);
           break;
         case METHODID_GET_USER_DIRS:

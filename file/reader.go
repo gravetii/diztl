@@ -5,6 +5,7 @@ import (
 	"errors"
 	"io"
 	"io/ioutil"
+	"math"
 	"os"
 
 	"github.com/gravetii/diztl/diztl"
@@ -31,7 +32,7 @@ func CreateReader(metadata *diztl.FileMetadata, contract *diztl.UploadContract) 
 		return nil, err
 	}
 
-	chunks := int32(metadata.GetSize() / int64(contract.GetChunkSize()))
+	chunks := int32(math.Ceil(float64(metadata.GetSize()) / float64(contract.GetChunkSize())))
 	metadata.Chunks = chunks
 	buf := bufio.NewReader(f)
 	reader := Reader{buf, metadata, contract, f, counter.New(0)}

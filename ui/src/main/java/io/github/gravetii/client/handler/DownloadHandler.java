@@ -25,19 +25,29 @@ public class DownloadHandler {
     connection.getAsyncstub().download(dreq, createObserver());
   }
 
-  private StreamObserver<Diztl.DownloadResp> createObserver() {
-    return new StreamObserver<Diztl.DownloadResp>() {
+  private StreamObserver<Diztl.DownloadChunk> createObserver() {
+    return new StreamObserver<Diztl.DownloadChunk>() {
       @Override
-      public void onNext(Diztl.DownloadResp resp) {
-        logger.info(resp.getMessage());
+      public void onNext(Diztl.DownloadChunk value) {
+        if (value.getChunk() == 1) {
+          // First chunk...process the metadata field for file details if required.
+          Diztl.FileMetadata file = value.getMetadata();
+          int totalChunks = file.getChunks();
+          logger.info(
+              "Received first chunk of file {}, total chunks - {}", file.getName(), totalChunks);
+        } else {
+          logger.info("Received chunk {}", value.getChunk());
+        }
       }
 
       @Override
-      public void onError(Throwable t) {}
+      public void onError(Throwable t) {
+        logger.error("Error while downloading file:", t);
+      }
 
       @Override
       public void onCompleted() {
-        logger.info("Finished downloading file - {}", file.getName());
+        logger.info("Finished downloading file: {}", file.getName());
       }
     };
   }
