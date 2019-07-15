@@ -1,4 +1,4 @@
-package io.github.gravetii.controller.userdirs;
+package io.github.gravetii.controller.userdir;
 
 import com.jfoenix.controls.JFXButton;
 import io.github.gravetii.client.DiztlClient;

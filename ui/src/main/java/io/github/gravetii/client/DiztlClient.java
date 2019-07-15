@@ -73,8 +73,8 @@ public class DiztlClient {
     new FindHandler(scene, pattern).process(connection);
   }
 
-  public void download(FileMetadata file, Node source) {
-    new DownloadHandler(file, source).process(connection);
+  public void download(FileMetadata file, Node source, StartScene scene) {
+    new DownloadHandler(file, source, scene).process(connection);
   }
 
   public void getUserDirs(boolean share, boolean output, UserDirsScene scene) {

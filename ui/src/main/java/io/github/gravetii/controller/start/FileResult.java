@@ -1,4 +1,4 @@
-package io.github.gravetii.controller.search;
+package io.github.gravetii.controller.start;
 
 import io.github.gravetii.gen.Diztl;
 import org.apache.commons.io.FilenameUtils;

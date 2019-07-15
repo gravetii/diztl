@@ -1,6 +1,6 @@
 package io.github.gravetii.scene.userdir;
 
-import io.github.gravetii.controller.userdirs.UserDirsSubmitController;
+import io.github.gravetii.controller.userdir.UserDirsSubmitController;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
