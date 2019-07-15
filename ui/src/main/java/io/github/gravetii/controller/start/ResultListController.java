@@ -1,7 +1,8 @@
-package io.github.gravetii.controller.search;
+package io.github.gravetii.controller.start;
 
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.controller.FxController;
+import io.github.gravetii.scene.start.StartScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 
 public class ResultListController implements FxController {
   private Stage stage;
+  private StartScene parent;
 
   @FXML private TableView<FileResult> resultListTbl;
   @FXML private TableColumn<FileResult, String> fileNameTblCol;
@@ -18,8 +20,9 @@ public class ResultListController implements FxController {
   @FXML private TableColumn<FileResult, String> fileTypeTblCol;
   @FXML private TableColumn<FileResult, String> filePathTblCol;
 
-  public ResultListController(Stage stage) {
+  public ResultListController(Stage stage, StartScene parent) {
     this.stage = stage;
+    this.parent = parent;
   }
 
   @FXML
@@ -36,7 +39,7 @@ public class ResultListController implements FxController {
                 if (event.getClickCount() == 2) {
                   if (!row.isEmpty()) {
                     FileResult result = row.getItem();
-                    DiztlClient.get().download(result.getFile(), result.getSource());
+                    DiztlClient.get().download(result.getFile(), result.getSource(), parent);
                   }
                 }
               });

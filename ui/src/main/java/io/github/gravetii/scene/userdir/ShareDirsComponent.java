@@ -1,6 +1,6 @@
 package io.github.gravetii.scene.userdir;
 
-import io.github.gravetii.controller.userdirs.ShareDirsController;
+import io.github.gravetii.controller.userdir.ShareDirsController;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
