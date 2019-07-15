@@ -15,6 +15,8 @@ public class ResultListController implements FxController {
   @FXML private TableView<FileResult> resultListTbl;
   @FXML private TableColumn<FileResult, String> fileNameTblCol;
   @FXML private TableColumn<FileResult, String> fileSizeTblCol;
+  @FXML private TableColumn<FileResult, String> fileTypeTblCol;
+  @FXML private TableColumn<FileResult, String> filePathTblCol;
 
   public ResultListController(Stage stage) {
     this.stage = stage;
@@ -22,8 +24,10 @@ public class ResultListController implements FxController {
 
   @FXML
   public void initialize() {
-    this.fileNameTblCol.setCellValueFactory(new PropertyValueFactory<>("fileName"));
-    this.fileSizeTblCol.setCellValueFactory(new PropertyValueFactory<>("fileSize"));
+    this.fileNameTblCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+    this.fileSizeTblCol.setCellValueFactory(new PropertyValueFactory<>("size"));
+    this.fileTypeTblCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+    this.filePathTblCol.setCellValueFactory(new PropertyValueFactory<>("path"));
     this.resultListTbl.setRowFactory(
         callback -> {
           TableRow<FileResult> row = new TableRow<>();
