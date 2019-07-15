@@ -1,6 +1,7 @@
 package io.github.gravetii.controller.search;
 
 import io.github.gravetii.gen.Diztl;
+import org.apache.commons.io.FilenameUtils;
 
 public class FileResult {
   private Diztl.FileMetadata file;
@@ -19,12 +20,20 @@ public class FileResult {
     return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
   }
 
-  public String getFileName() {
+  public String getName() {
     return file.getName();
   }
 
-  public String getFileSize() {
+  public String getSize() {
     return FileResult.humanReadableByteCount(file.getSize());
+  }
+
+  public String getType() {
+    return FilenameUtils.getExtension(file.getName());
+  }
+
+  public String getPath() {
+    return file.getPath();
   }
 
   public Diztl.FileMetadata getFile() {
