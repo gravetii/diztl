@@ -7,21 +7,29 @@ import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class DownloadHandler {
   private static final Logger logger =
       LoggerFactory.getLogger(DownloadHandler.class.getCanonicalName());
 
+  private static ExecutorService EXECUTOR = Executors.newSingleThreadExecutor((r) -> {
+    Thread thread = new Thread(r);
+    thread.setDaemon(true);
+    return thread;
+  });
+
   private Diztl.FileMetadata file;
   private Diztl.Node source;
   private StartScene scene;
-  private DownloadProgressTask progressTask;
+  private DownloadTask task;
 
   public DownloadHandler(Diztl.FileMetadata file, Diztl.Node source, StartScene scene) {
     this.file = file;
     this.source = source;
     this.scene = scene;
-    this.progressTask = new DownloadProgressTask();
-    //scene.getProgressBar().progressProperty().bind(progressTask.progressProperty());
+    this.task = new DownloadTask();
   }
 
   public void process(DiztlConnection connection) {
@@ -36,11 +44,11 @@ public class DownloadHandler {
       @Override
       public void onNext(Diztl.DownloadChunk value) {
         if (value.getChunk() == 1) {
-          Diztl.FileMetadata file = value.getMetadata();
-          progressTask.setChunks(file.getChunks());
-          scene.showDownloadResult(file);
+          task.setFile(value.getMetadata());
+          EXECUTOR.execute(task);
+          scene.showDownloadResult(task);
         } else {
-          progressTask.update(value.getChunk());
+          task.update(value.getChunk());
         }
       }
 
