@@ -1,6 +1,6 @@
-package io.github.gravetii.controller.start;
+package io.github.gravetii.controller.download;
 
-import io.github.gravetii.client.handler.DownloadTask;
+import io.github.gravetii.client.handler.DownloadResult;
 import io.github.gravetii.controller.FxController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -12,11 +12,11 @@ import javafx.stage.Stage;
 public class DownloadResultController implements FxController {
   private Stage stage;
 
-  @FXML private TableView<DownloadTask> downloadResultTbl;
-  @FXML private TableColumn<DownloadTask, String> fileNameTblCol;
-  @FXML private TableColumn<DownloadTask, Double> statusTblCol;
-  @FXML private TableColumn<DownloadTask, String> sizeTblCol;
-  @FXML private TableColumn<DownloadTask, String> typeTblCol;
+  @FXML private TableView<DownloadResult> downloadResultTbl;
+  @FXML private TableColumn<DownloadResult, String> fileNameTblCol;
+  @FXML private TableColumn<DownloadResult, Double> statusTblCol;
+  @FXML private TableColumn<DownloadResult, String> sizeTblCol;
+  @FXML private TableColumn<DownloadResult, String> typeTblCol;
 
   public DownloadResultController(Stage stage) {
     this.stage = stage;
@@ -31,12 +31,11 @@ public class DownloadResultController implements FxController {
     typeTblCol.setCellValueFactory(new PropertyValueFactory<>("type"));
   }
 
-  public void show(DownloadTask value) {
-    downloadResultTbl.getItems().add(value);
+  public void show(DownloadResult result) {
+    downloadResultTbl.getItems().add(result);
   }
 
   public void reset() {
     downloadResultTbl.getItems().clear();
   }
-
 }

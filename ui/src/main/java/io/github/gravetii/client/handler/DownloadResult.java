@@ -1,11 +1,11 @@
 package io.github.gravetii.client.handler;
 
-import io.github.gravetii.controller.start.FileResult;
 import io.github.gravetii.gen.Diztl;
+import io.github.gravetii.util.Utils;
 import javafx.concurrent.Task;
 import org.apache.commons.io.FilenameUtils;
 
-public class DownloadTask extends Task<Void> {
+public class DownloadResult extends Task<Void> {
   private Diztl.FileMetadata file;
 
   public void setFile(Diztl.FileMetadata file) {
@@ -17,7 +17,7 @@ public class DownloadTask extends Task<Void> {
   }
 
   public String getSize() {
-    return FileResult.humanReadableByteCount(file.getSize());
+    return Utils.humanReadableByteCount(file.getSize());
   }
 
   public String getType() {

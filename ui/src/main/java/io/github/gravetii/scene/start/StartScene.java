@@ -1,10 +1,11 @@
 package io.github.gravetii.scene.start;
 
-import io.github.gravetii.client.handler.DownloadTask;
+import io.github.gravetii.client.handler.DownloadResult;
 import io.github.gravetii.controller.start.FileResult;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
+import io.github.gravetii.scene.download.DownloadResultComponent;
 import javafx.geometry.Dimension2D;
 import javafx.stage.Stage;
 
@@ -14,21 +15,19 @@ public class StartScene extends FxScene {
   private FileSearchComponent fileSearchComponent;
   private ResultListComponent resultListComponent;
   private DownloadResultComponent downloadResultComponent;
-//  private DownloadProgressComponent downloadProgressComponent;
 
   public StartScene(Stage stage) throws Exception {
     super(stage);
     this.fileSearchComponent = new FileSearchComponent(this);
-    this.resultListComponent = new ResultListComponent(stage, root, this);
+    this.resultListComponent = new ResultListComponent(stage, this);
     this.downloadResultComponent = new DownloadResultComponent(stage);
-//    this.downloadProgressComponent = new DownloadProgressComponent();
   }
 
   @Override
   protected void build() {
     this.showTop(fileSearchComponent)
-            .showCenter(resultListComponent)
-            .showBottom(downloadResultComponent);
+        .showCenter(resultListComponent)
+        .showBottom(downloadResultComponent);
   }
 
   @Override
@@ -38,8 +37,7 @@ public class StartScene extends FxScene {
 
   @Override
   protected Optional<FxDimensions> preferredDimensions() {
-    FxDimensions dimensions =
-        new FxDimensions(new Dimension2D(600, 750));
+    FxDimensions dimensions = new FxDimensions(new Dimension2D(600, 750));
     return Optional.of(dimensions);
   }
 
@@ -52,7 +50,7 @@ public class StartScene extends FxScene {
     this.resultListComponent.getController().reset();
   }
 
-  public void showDownloadResult(DownloadTask task) {
-    this.downloadResultComponent.getController().show(task);
+  public void showDownloadResult(DownloadResult result) {
+    this.downloadResultComponent.getController().show(result);
   }
 }

@@ -1,6 +1,6 @@
-package io.github.gravetii.scene.start;
+package io.github.gravetii.scene.download;
 
-import io.github.gravetii.controller.start.DownloadResultController;
+import io.github.gravetii.controller.download.DownloadResultController;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;

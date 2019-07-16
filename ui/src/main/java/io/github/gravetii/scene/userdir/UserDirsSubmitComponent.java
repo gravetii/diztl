@@ -10,7 +10,7 @@ public class UserDirsSubmitComponent extends FxComponent<UserDirsSubmitControlle
   private ShareDirsComponent ref;
 
   protected UserDirsSubmitComponent(Stage stage, ShareDirsComponent ref) throws Exception {
-    super("okAndCancel.fxml");
+    super("submitButtons.fxml");
     this.stage = stage;
     this.ref = ref;
     this.create();

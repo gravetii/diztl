@@ -1,4 +1,4 @@
-package io.github.gravetii.client;
+package io.github.gravetii.client.connection;
 
 import io.github.gravetii.client.handler.DownloadHandler;
 import io.github.gravetii.client.handler.FindHandler;
@@ -19,19 +19,19 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class DiztlClient {
+public class CommunicationClient {
   private static final Logger logger =
-      LoggerFactory.getLogger(DiztlClient.class.getCanonicalName());
+      LoggerFactory.getLogger(CommunicationClient.class.getCanonicalName());
 
-  private static DiztlClient INSTANCE = null;
+  private static CommunicationClient INSTANCE = null;
   private final ExecutorService executor;
-  private DiztlConnection connection;
+  private Connection connection;
   private String ip;
 
-  private DiztlClient() throws Exception {
+  private CommunicationClient() throws Exception {
     this.ip = fetchLocalIp();
     ManagedChannel channel = ManagedChannelBuilder.forAddress(ip, 50051).usePlaintext().build();
-    this.connection = new DiztlConnection(channel);
+    this.connection = new Connection(channel);
     this.executor =
         Executors.newFixedThreadPool(
             3,
@@ -45,11 +45,11 @@ public class DiztlClient {
   }
 
   public static void init() throws Exception {
-    logger.info("Initialized DiztlClient.");
-    INSTANCE = new DiztlClient();
+    logger.info("Initialized communication client.");
+    INSTANCE = new CommunicationClient();
   }
 
-  public static DiztlClient get() {
+  public static CommunicationClient get() {
     return INSTANCE;
   }
 

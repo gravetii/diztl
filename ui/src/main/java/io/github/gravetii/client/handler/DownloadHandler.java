@@ -1,6 +1,6 @@
 package io.github.gravetii.client.handler;
 
-import io.github.gravetii.client.DiztlConnection;
+import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
 import io.grpc.stub.StreamObserver;
@@ -14,25 +14,28 @@ public class DownloadHandler {
   private static final Logger logger =
       LoggerFactory.getLogger(DownloadHandler.class.getCanonicalName());
 
-  private static ExecutorService EXECUTOR = Executors.newSingleThreadExecutor((r) -> {
-    Thread thread = new Thread(r);
-    thread.setDaemon(true);
-    return thread;
-  });
+  private static ExecutorService EXECUTOR =
+      Executors.newFixedThreadPool(
+          2,
+          (r) -> {
+            Thread thread = new Thread(r);
+            thread.setDaemon(true);
+            return thread;
+          });
 
   private Diztl.FileMetadata file;
   private Diztl.Node source;
   private StartScene scene;
-  private DownloadTask task;
+  private DownloadResult result;
 
   public DownloadHandler(Diztl.FileMetadata file, Diztl.Node source, StartScene scene) {
     this.file = file;
     this.source = source;
     this.scene = scene;
-    this.task = new DownloadTask();
+    this.result = new DownloadResult();
   }
 
-  public void process(DiztlConnection connection) {
+  public void process(Connection connection) {
     logger.info("Downloading file from {} - {}", source.getIp(), file.getName());
     Diztl.DownloadReq req =
         Diztl.DownloadReq.newBuilder().setMetadata(file).setSource(source).build();
@@ -44,11 +47,11 @@ public class DownloadHandler {
       @Override
       public void onNext(Diztl.DownloadChunk value) {
         if (value.getChunk() == 1) {
-          task.setFile(value.getMetadata());
-          EXECUTOR.execute(task);
-          scene.showDownloadResult(task);
+          result.setFile(value.getMetadata());
+          EXECUTOR.execute(result);
+          scene.showDownloadResult(result);
         } else {
-          task.update(value.getChunk());
+          result.update(value.getChunk());
         }
       }
 
