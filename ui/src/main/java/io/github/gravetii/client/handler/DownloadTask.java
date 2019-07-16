@@ -25,13 +25,12 @@ public class DownloadTask extends Task<Void> {
   }
 
   public void update(int chunk) {
-    double p = 1.0 * chunk / file.getChunks();
-    updateProgress(p, 1);
+    updateProgress(chunk, file.getChunks());
   }
 
   @Override
-  protected Void call() throws Exception {
-    updateProgress(0, 1);
+  protected Void call() {
+    updateProgress(0, file.getChunks());
     return null;
   }
 }
