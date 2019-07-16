@@ -4,7 +4,6 @@ import io.github.gravetii.client.DiztlConnection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
 import io.grpc.stub.StreamObserver;
-import javafx.concurrent.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,13 +14,13 @@ public class DownloadHandler {
   private Diztl.FileMetadata file;
   private Diztl.Node source;
   private StartScene scene;
-  private DownloadProgress progressTask;
+  private DownloadProgressTask progressTask;
 
   public DownloadHandler(Diztl.FileMetadata file, Diztl.Node source, StartScene scene) {
     this.file = file;
     this.source = source;
     this.scene = scene;
-    this.progressTask = new DownloadProgress();
+    this.progressTask = new DownloadProgressTask();
     //scene.getProgressBar().progressProperty().bind(progressTask.progressProperty());
   }
 
@@ -55,27 +54,5 @@ public class DownloadHandler {
         logger.info("Finished downloading file: {}", file.getName());
       }
     };
-  }
-
-  private static class DownloadProgress extends Task<Void> {
-    private int chunks;
-
-    private DownloadProgress() {
-      updateProgress(0, 0);
-    }
-
-    private void setChunks(int chunks) {
-      this.chunks = chunks;
-      updateProgress(0, chunks);
-    }
-
-    private void update(int chunk) {
-      updateProgress(chunk, chunks);
-    }
-
-    @Override
-    protected Void call() {
-      return null;
-    }
   }
 }
