@@ -1,6 +1,6 @@
 package io.github.gravetii.controller.start;
 
-import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.start.StartScene;
 import javafx.fxml.FXML;
@@ -39,7 +39,8 @@ public class ResultListController implements FxController {
                 if (event.getClickCount() == 2) {
                   if (!row.isEmpty()) {
                     FileResult result = row.getItem();
-                    DiztlClient.get().download(result.getFile(), result.getSource(), parent);
+                    CommunicationClient.get()
+                        .download(result.getFile(), result.getSource(), parent);
                   }
                 }
               });
@@ -48,8 +49,8 @@ public class ResultListController implements FxController {
         });
   }
 
-  public void show(FileResult value) {
-    resultListTbl.getItems().add(value);
+  public void show(FileResult result) {
+    resultListTbl.getItems().add(result);
   }
 
   public void reset() {

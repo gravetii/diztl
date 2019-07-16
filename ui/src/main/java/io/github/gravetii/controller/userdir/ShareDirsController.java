@@ -2,7 +2,7 @@ package io.github.gravetii.controller.userdir;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.userdir.UserDirsScene;
 import javafx.event.ActionEvent;
@@ -31,7 +31,7 @@ public class ShareDirsController implements FxController {
 
   @FXML
   public void initialize() {
-    DiztlClient.get().getUserDirs(true, false, parent);
+    CommunicationClient.get().getUserDirs(true, false, parent);
     removeBtn.disableProperty().bind(dirsList.getSelectionModel().selectedItemProperty().isNull());
   }
 

@@ -1,8 +1,8 @@
 package io.github.gravetii.client.handler;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import io.github.gravetii.client.DiztlClient;
-import io.github.gravetii.client.DiztlConnection;
+import io.github.gravetii.client.connection.CommunicationClient;
+import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ public class FindHandler {
     this.pattern = pattern;
   }
 
-  public void process(DiztlConnection connection) {
+  public void process(Connection connection) {
     scene.reset();
     Diztl.FindReq req = Diztl.FindReq.newBuilder().setPattern(pattern).build();
     logger.info("Searching for pattern - {}", pattern);
@@ -42,6 +42,6 @@ public class FindHandler {
             logger.error("Error while finding for pattern:", e);
           }
         },
-        DiztlClient.get().executor());
+        CommunicationClient.get().executor());
   }
 }

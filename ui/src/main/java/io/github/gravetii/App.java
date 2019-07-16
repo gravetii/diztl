@@ -1,6 +1,6 @@
 package io.github.gravetii;
 
-import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.scene.FxScene;
 import io.github.gravetii.scene.start.StartScene;
 import javafx.application.Application;
@@ -19,6 +19,6 @@ public class App extends Application {
 
   @Override
   public void init() throws Exception {
-    DiztlClient.init();
+    CommunicationClient.init();
   }
 }

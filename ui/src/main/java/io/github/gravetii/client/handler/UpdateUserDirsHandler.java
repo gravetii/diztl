@@ -1,8 +1,8 @@
 package io.github.gravetii.client.handler;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import io.github.gravetii.client.DiztlClient;
-import io.github.gravetii.client.DiztlConnection;
+import io.github.gravetii.client.connection.CommunicationClient;
+import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class UpdateUserDirsHandler {
     this.output = output;
   }
 
-  public void process(DiztlConnection connection) {
+  public void process(Connection connection) {
     Diztl.UpdateUserDirsReq req =
         Diztl.UpdateUserDirsReq.newBuilder().addAllShare(share).setOutput(output).build();
     logger.info("Updating user dirs - share: {}, output: {}", share, output);
@@ -34,6 +34,6 @@ public class UpdateUserDirsHandler {
             logger.error("Error while updating user dirs:", e);
           }
         },
-        DiztlClient.get().executor());
+        CommunicationClient.get().executor());
   }
 }

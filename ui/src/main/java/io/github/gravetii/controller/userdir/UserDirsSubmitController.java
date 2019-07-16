@@ -1,7 +1,7 @@
 package io.github.gravetii.controller.userdir;
 
 import com.jfoenix.controls.JFXButton;
-import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +24,7 @@ public class UserDirsSubmitController implements FxController {
   @FXML
   public void ok(ActionEvent event) {
     List<String> shareDirs = this.ref.getFinalDirs();
-    DiztlClient.get().updateUserDirs(shareDirs, "");
+    CommunicationClient.get().updateUserDirs(shareDirs, "");
     stage.close();
   }
 
