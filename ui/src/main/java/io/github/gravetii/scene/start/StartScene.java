@@ -1,5 +1,6 @@
 package io.github.gravetii.scene.start;
 
+import io.github.gravetii.controller.start.DownloadResult;
 import io.github.gravetii.controller.start.FileResult;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.FxDimensions;
@@ -13,20 +14,22 @@ import java.util.Optional;
 public class StartScene extends FxScene {
   private FileSearchComponent fileSearchComponent;
   private ResultListComponent resultListComponent;
-  private DownloadProgressComponent downloadProgressComponent;
+  private DownloadResultComponent downloadResultComponent;
+//  private DownloadProgressComponent downloadProgressComponent;
 
   public StartScene(Stage stage) throws Exception {
     super(stage);
     this.fileSearchComponent = new FileSearchComponent(this);
     this.resultListComponent = new ResultListComponent(stage, root, this);
-    this.downloadProgressComponent = new DownloadProgressComponent();
+    this.downloadResultComponent = new DownloadResultComponent(stage);
+//    this.downloadProgressComponent = new DownloadProgressComponent();
   }
 
   @Override
   protected void build() {
     this.showTop(fileSearchComponent)
             .showCenter(resultListComponent)
-            .showBottom(downloadProgressComponent);
+            .showBottom(downloadResultComponent);
   }
 
   @Override
@@ -42,7 +45,7 @@ public class StartScene extends FxScene {
     return Optional.of(dimensions);
   }
 
-  public void show(Diztl.FileMetadata file, Diztl.Node source) {
+  public void showFileResult(Diztl.FileMetadata file, Diztl.Node source) {
     FileResult result = new FileResult(file, source);
     this.resultListComponent.getController().show(result);
   }
@@ -51,7 +54,12 @@ public class StartScene extends FxScene {
     this.resultListComponent.getController().reset();
   }
 
-  public ProgressBar getProgressBar() {
-    return downloadProgressComponent.getProgressBar();
+//  public ProgressBar getProgressBar() {
+//    return downloadProgressComponent.getProgressBar();
+//  }
+
+  public void showDownloadResult(Diztl.FileMetadata file) {
+    DownloadResult result = new DownloadResult(file);
+    this.downloadResultComponent.getController().show(result);
   }
 }

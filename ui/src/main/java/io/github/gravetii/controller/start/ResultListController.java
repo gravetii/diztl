@@ -27,11 +27,11 @@ public class ResultListController implements FxController {
 
   @FXML
   public void initialize() {
-    this.fileNameTblCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-    this.fileSizeTblCol.setCellValueFactory(new PropertyValueFactory<>("size"));
-    this.fileTypeTblCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-    this.filePathTblCol.setCellValueFactory(new PropertyValueFactory<>("path"));
-    this.resultListTbl.setRowFactory(
+    fileNameTblCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+    fileSizeTblCol.setCellValueFactory(new PropertyValueFactory<>("size"));
+    fileTypeTblCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+    filePathTblCol.setCellValueFactory(new PropertyValueFactory<>("path"));
+    resultListTbl.setRowFactory(
         callback -> {
           TableRow<FileResult> row = new TableRow<>();
           row.setOnMouseClicked(
