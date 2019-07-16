@@ -1,7 +1,6 @@
 package io.github.gravetii.client.handler;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
@@ -42,6 +41,6 @@ public class FindHandler {
             logger.error("Error while finding for pattern:", e);
           }
         },
-        CommunicationClient.get().executor());
+        ExecutionHandler.get());
   }
 }

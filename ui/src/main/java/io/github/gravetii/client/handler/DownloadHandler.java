@@ -7,21 +7,9 @@ import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public class DownloadHandler {
   private static final Logger logger =
       LoggerFactory.getLogger(DownloadHandler.class.getCanonicalName());
-
-  private static ExecutorService EXECUTOR =
-      Executors.newFixedThreadPool(
-          2,
-          (r) -> {
-            Thread thread = new Thread(r);
-            thread.setDaemon(true);
-            return thread;
-          });
 
   private Diztl.FileMetadata file;
   private Diztl.Node source;
@@ -48,7 +36,7 @@ public class DownloadHandler {
       public void onNext(Diztl.DownloadChunk value) {
         if (value.getChunk() == 1) {
           result.setFile(value.getMetadata());
-          EXECUTOR.execute(result);
+          ExecutionHandler.submit(result);
           scene.showDownloadResult(result);
         } else {
           result.update(value.getChunk());
