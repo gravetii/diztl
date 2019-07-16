@@ -1,7 +1,6 @@
 package io.github.gravetii.client.handler;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.userdir.UserDirsScene;
@@ -37,6 +36,6 @@ public class UserDirsHandler {
             logger.error("Error while trying to fetch user dirs:", e);
           }
         },
-        CommunicationClient.get().executor());
+        ExecutionHandler.get());
   }
 }

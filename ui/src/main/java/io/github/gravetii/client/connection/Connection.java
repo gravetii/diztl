@@ -42,7 +42,7 @@ public class Connection {
         channel.shutdownNow();
       }
     } catch (Exception e) {
-      logger.error("Exception while shutting down communication channel", e);
+      logger.error("Exception while closing communication channel", e);
     }
 
     this.channel.shutdownNow();

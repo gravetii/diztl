@@ -48,7 +48,6 @@ public class ShareDirsController implements FxController {
 
   @FXML
   public void removeDir(ActionEvent event) {
-    System.out.println("Removing item");
     List<Label> selectedItems = dirsList.getSelectionModel().getSelectedItems();
 
     // To ensure that not all shared folders are removed.

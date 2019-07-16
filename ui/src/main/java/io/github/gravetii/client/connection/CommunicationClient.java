@@ -1,9 +1,6 @@
 package io.github.gravetii.client.connection;
 
-import io.github.gravetii.client.handler.DownloadHandler;
-import io.github.gravetii.client.handler.FindHandler;
-import io.github.gravetii.client.handler.UpdateUserDirsHandler;
-import io.github.gravetii.client.handler.UserDirsHandler;
+import io.github.gravetii.client.handler.*;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
 import io.github.gravetii.scene.start.StartScene;
@@ -16,15 +13,12 @@ import org.slf4j.LoggerFactory;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class CommunicationClient {
   private static final Logger logger =
       LoggerFactory.getLogger(CommunicationClient.class.getCanonicalName());
 
   private static CommunicationClient INSTANCE = null;
-  private final ExecutorService executor;
   private Connection connection;
   private String ip;
 
@@ -32,16 +26,13 @@ public class CommunicationClient {
     this.ip = fetchLocalIp();
     ManagedChannel channel = ManagedChannelBuilder.forAddress(ip, 50051).usePlaintext().build();
     this.connection = new Connection(channel);
-    this.executor =
-        Executors.newFixedThreadPool(
-            3,
-            (r) -> {
-              Thread thread = new Thread(r);
-              thread.setDaemon(true);
-              return thread;
-            });
-
-    Runtime.getRuntime().addShutdownHook(new Thread(() -> connection.close()));
+    Runtime.getRuntime()
+        .addShutdownHook(
+            new Thread(
+                () -> {
+                  ExecutionHandler.shutdown();
+                  connection.close();
+                }));
   }
 
   public static void init() throws Exception {
@@ -63,10 +54,6 @@ public class CommunicationClient {
       logger.error("Unable to fetch the host's local IP", e);
       throw new Exception("Unable to fetch the host's local IP", e);
     }
-  }
-
-  public ExecutorService executor() {
-    return executor;
   }
 
   public void find(String pattern, StartScene scene) {
