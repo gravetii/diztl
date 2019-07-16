@@ -199,58 +199,59 @@ func (s *NodeService) Find(ctx context.Context, request *diztl.FindReq) (*diztl.
 }
 
 // Download downloads a file.
-func (s *NodeService) Download(ctx context.Context, request *diztl.DownloadReq) (*diztl.DownloadResp, error) {
+func (s *NodeService) Download(request *diztl.DownloadReq, stream diztl.DiztlService_DownloadServer) error {
 	logger.Infof("Received download call: %v\n", request)
 	c, cancel := context.WithTimeout(context.Background(), conf.DownloadTimeout())
 	defer cancel()
 	client, err := s.nk.GetConnection(request.GetSource())
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	contract := &diztl.UploadContract{ChunkSize: conf.ChunkSize()}
 	r := &diztl.UploadReq{Source: request.GetSource(), Metadata: request.GetMetadata(), Contract: contract}
-	stream, err := client.Upload(c, r)
+	ustream, err := client.Upload(c, r)
 	if err != nil {
 		logger.Errorf("Download failed due to error in sender host - %v\n", err)
 		fmt.Println("Download failed. It's not you, it's them.")
-		return nil, err
+		return err
 	}
 
 	var w *file.Writer
 
 	for {
-		s, err := stream.Recv()
+		s, err := ustream.Recv()
 		if err != nil {
 			if err == io.EOF {
 				_, serr := w.Close()
 				if serr != nil {
-					return nil, serr
+					return serr
 				}
-
-				//return f, nil
 				break
 			}
-
-			// return nil, err
 			break
 		}
 
 		if s.GetChunk() == 1 {
 			w, err = file.CreateWriter(s.GetMetadata())
 			if err != nil {
-				return nil, err
+				return err
 			}
 
 			logger.Infof("Downloading file: %s. Prepared to receive %d chunks.\n", s.GetMetadata().GetName(), w.Chunks())
+			stream.Send(&diztl.DownloadChunk{Metadata: s.GetMetadata(), Chunk: 1})
 		}
 
 		if err := w.Write(s.GetData()); err != nil {
-			return nil, err
+			return err
+		}
+
+		if s.GetChunk() > 1 {
+			stream.Send(&diztl.DownloadChunk{Chunk: s.GetChunk()})
 		}
 	}
 
-	return &diztl.DownloadResp{Message: "Successfully downloaded file..."}, nil
+	return nil
 }
 
 // GetUserDirs returns the configured user directories.

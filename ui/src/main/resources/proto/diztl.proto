@@ -11,7 +11,7 @@ service DiztlService {
     }
     rpc Find (FindReq) returns (FindResp) {
     }
-    rpc Download (DownloadReq) returns (DownloadResp) {
+    rpc Download (DownloadReq) returns (stream DownloadChunk) {
     }
     rpc GetUserDirs(UserDirsReq) returns (UserDirsResp) {
     }
@@ -119,8 +119,11 @@ message DownloadReq {
     FileMetadata metadata = 2;
 }
 
-message DownloadResp {
-    string message = 1;
+message DownloadChunk {
+    // Sent only in the first chunk.
+    FileMetadata metadata = 1;
+    // The chunk number.
+    int32 chunk = 2;
 }
 
 message DisconnectReq {
