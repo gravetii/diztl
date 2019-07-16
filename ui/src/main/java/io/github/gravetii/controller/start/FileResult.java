@@ -1,4 +1,4 @@
-package io.github.gravetii.controller.search;
+package io.github.gravetii.controller.start;
 
 import io.github.gravetii.gen.Diztl;
 import org.apache.commons.io.FilenameUtils;
@@ -12,7 +12,7 @@ public class FileResult {
     this.source = source;
   }
 
-  private static String humanReadableByteCount(long bytes) {
+  public static String humanReadableByteCount(long bytes) {
     int unit = 1000;
     if (bytes < unit) return bytes + " B";
     int exp = (int) (Math.log(bytes) / Math.log(unit));

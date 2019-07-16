@@ -1,9 +1,8 @@
 package io.github.gravetii.scene.start;
 
-import io.github.gravetii.controller.search.FileSearchController;
+import io.github.gravetii.controller.start.FileSearchController;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 
 public class FileSearchComponent extends FxComponent<FileSearchController, AnchorPane> {
   private StartScene parent;

@@ -1,4 +1,4 @@
-package io.github.gravetii.controller.search;
+package io.github.gravetii.controller.start;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
