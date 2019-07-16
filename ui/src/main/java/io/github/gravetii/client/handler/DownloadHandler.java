@@ -22,7 +22,7 @@ public class DownloadHandler {
     this.source = source;
     this.scene = scene;
     this.progressTask = new DownloadProgress();
-    scene.getProgressBar().progressProperty().bind(progressTask.progressProperty());
+    //scene.getProgressBar().progressProperty().bind(progressTask.progressProperty());
   }
 
   public void process(DiztlConnection connection) {
@@ -39,6 +39,7 @@ public class DownloadHandler {
         if (value.getChunk() == 1) {
           Diztl.FileMetadata file = value.getMetadata();
           progressTask.setChunks(file.getChunks());
+          scene.showDownloadResult(file);
         } else {
           progressTask.update(value.getChunk());
         }
