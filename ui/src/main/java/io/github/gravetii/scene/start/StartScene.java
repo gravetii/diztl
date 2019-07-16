@@ -1,12 +1,11 @@
 package io.github.gravetii.scene.start;
 
-import io.github.gravetii.controller.start.DownloadResult;
+import io.github.gravetii.client.handler.DownloadTask;
 import io.github.gravetii.controller.start.FileResult;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
 import javafx.geometry.Dimension2D;
-import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 
 import java.util.Optional;
@@ -53,12 +52,7 @@ public class StartScene extends FxScene {
     this.resultListComponent.getController().reset();
   }
 
-//  public ProgressBar getProgressBar() {
-//    return downloadProgressComponent.getProgressBar();
-//  }
-
-  public void showDownloadResult(Diztl.FileMetadata file) {
-    DownloadResult result = new DownloadResult(file);
-    this.downloadResultComponent.getController().show(result);
+  public void showDownloadResult(DownloadTask task) {
+    this.downloadResultComponent.getController().show(task);
   }
 }
