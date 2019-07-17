@@ -25,11 +25,12 @@ public class FileSearchController implements FxController {
 
   @FXML
   public void initialize() {
-    searchBox.setOnKeyPressed(event -> {
-      if (event.getCode() == KeyCode.ENTER) {
-        search();
-      }
-    });
+    searchBox.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            search();
+          }
+        });
   }
 
   @FXML
