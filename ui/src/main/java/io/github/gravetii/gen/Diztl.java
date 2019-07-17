@@ -303,6 +303,7 @@ public final class Diztl {
               "Message",
             });
   }
+
   private Diztl() {}
 
   public static void registerAllExtensions(com.google.protobuf.ExtensionRegistryLite registry) {}
@@ -314,6 +315,7 @@ public final class Diztl {
   public static com.google.protobuf.Descriptors.FileDescriptor getDescriptor() {
     return descriptor;
   }
+
   public interface NodeOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:Node)
@@ -361,6 +363,7 @@ public final class Diztl {
      */
     com.google.protobuf.ByteString getIdBytes();
   }
+
   public interface FileMetadataOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:FileMetadata)
@@ -472,6 +475,7 @@ public final class Diztl {
      */
     io.github.gravetii.gen.Diztl.FileHashOrBuilder getHashOrBuilder();
   }
+
   public interface FileHashOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:FileHash)
@@ -499,6 +503,7 @@ public final class Diztl {
      */
     long getTs();
   }
+
   public interface FileChunkOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:FileChunk)
@@ -557,6 +562,7 @@ public final class Diztl {
      */
     int getChunk();
   }
+
   public interface RegisterReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:RegisterReq)
@@ -569,6 +575,7 @@ public final class Diztl {
     /** <code>.Node node = 1;</code> */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
   }
+
   public interface RegisterRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:RegisterResp)
@@ -581,6 +588,7 @@ public final class Diztl {
     /** <code>.Node node = 1;</code> */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
   }
+
   public interface SearchReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:SearchReq)
@@ -638,6 +646,7 @@ public final class Diztl {
      */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getSourceOrBuilder();
   }
+
   public interface SearchRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:SearchResp)
@@ -731,6 +740,7 @@ public final class Diztl {
      */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
   }
+
   public interface FindReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:FindReq)
@@ -741,6 +751,7 @@ public final class Diztl {
     /** <code>string pattern = 1;</code> */
     com.google.protobuf.ByteString getPatternBytes();
   }
+
   public interface FindRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:FindResp)
@@ -758,6 +769,7 @@ public final class Diztl {
     /** <code>repeated .SearchResp responses = 1;</code> */
     io.github.gravetii.gen.Diztl.SearchRespOrBuilder getResponsesOrBuilder(int index);
   }
+
   public interface UploadContractOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UploadContract)
@@ -777,6 +789,7 @@ public final class Diztl {
      */
     int getChunkSize();
   }
+
   public interface UploadReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UploadReq)
@@ -875,6 +888,7 @@ public final class Diztl {
      */
     io.github.gravetii.gen.Diztl.UploadContractOrBuilder getContractOrBuilder();
   }
+
   public interface DownloadReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:DownloadReq)
@@ -894,6 +908,7 @@ public final class Diztl {
     /** <code>.FileMetadata metadata = 2;</code> */
     io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getMetadataOrBuilder();
   }
+
   public interface DownloadChunkOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:DownloadChunk)
@@ -941,6 +956,7 @@ public final class Diztl {
      */
     int getChunk();
   }
+
   public interface DisconnectReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:DisconnectReq)
@@ -953,6 +969,7 @@ public final class Diztl {
     /** <code>.Node node = 1;</code> */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
   }
+
   public interface DisconnectRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:DisconnectResp)
@@ -963,6 +980,7 @@ public final class Diztl {
     /** <code>string message = 1;</code> */
     com.google.protobuf.ByteString getMessageBytes();
   }
+
   public interface PingReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:PingReq)
@@ -982,6 +1000,7 @@ public final class Diztl {
     /** <code>.Node dest = 2;</code> */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getDestOrBuilder();
   }
+
   public interface PingRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:PingResp)
@@ -992,6 +1011,7 @@ public final class Diztl {
     /** <code>string message = 1;</code> */
     com.google.protobuf.ByteString getMessageBytes();
   }
+
   public interface UserDirsReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UserDirsReq)
@@ -1003,6 +1023,7 @@ public final class Diztl {
     /** <code>bool output = 2;</code> */
     boolean getOutput();
   }
+
   public interface UserDirsRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UserDirsResp)
@@ -1022,6 +1043,7 @@ public final class Diztl {
     /** <code>string output = 2;</code> */
     com.google.protobuf.ByteString getOutputBytes();
   }
+
   public interface UpdateUserDirsReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UpdateUserDirsReq)
@@ -1041,6 +1063,7 @@ public final class Diztl {
     /** <code>string output = 2;</code> */
     com.google.protobuf.ByteString getOutputBytes();
   }
+
   public interface UpdateUserDirsRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UpdateUserDirsResp)
@@ -1083,6 +1106,7 @@ public final class Diztl {
     private Node(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Node() {
       ip_ = "";
       id_ = "";
@@ -1811,6 +1835,7 @@ public final class Diztl {
     private FileMetadata(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private FileMetadata() {
       path_ = "";
       id_ = 0;
@@ -1818,6 +1843,7 @@ public final class Diztl {
       chunks_ = 0;
       name_ = "";
     }
+
     private FileMetadata(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3037,6 +3063,7 @@ public final class Diztl {
       checksum_ = com.google.protobuf.ByteString.EMPTY;
       ts_ = 0L;
     }
+
     private FileHash(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3593,6 +3620,7 @@ public final class Diztl {
       data_ = com.google.protobuf.ByteString.EMPTY;
       chunk_ = 0;
     }
+
     private FileChunk(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4416,7 +4444,9 @@ public final class Diztl {
     private RegisterReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private RegisterReq() {}
+
     private RegisterReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4969,7 +4999,9 @@ public final class Diztl {
     private RegisterResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private RegisterResp() {}
+
     private RegisterResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5523,6 +5555,7 @@ public final class Diztl {
     private SearchReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private SearchReq() {
       filename_ = "";
     }
@@ -6341,9 +6374,11 @@ public final class Diztl {
     private SearchResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private SearchResp() {
       files_ = java.util.Collections.emptyList();
     }
+
     private SearchResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7520,9 +7555,11 @@ public final class Diztl {
     private FindReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private FindReq() {
       pattern_ = "";
     }
+
     private FindReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8019,9 +8056,11 @@ public final class Diztl {
     private FindResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private FindResp() {
       responses_ = java.util.Collections.emptyList();
     }
+
     private FindResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8714,9 +8753,11 @@ public final class Diztl {
     private UploadContract(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private UploadContract() {
       chunkSize_ = 0;
     }
+
     private UploadContract(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9201,6 +9242,7 @@ public final class Diztl {
     }
 
     private UploadReq() {}
+
     private UploadReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10401,7 +10443,9 @@ public final class Diztl {
     private DownloadReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private DownloadReq() {}
+
     private DownloadReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11136,9 +11180,11 @@ public final class Diztl {
     private DownloadChunk(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private DownloadChunk() {
       chunk_ = 0;
     }
+
     private DownloadChunk(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11881,7 +11927,9 @@ public final class Diztl {
     private DisconnectReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private DisconnectReq() {}
+
     private DisconnectReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12434,9 +12482,11 @@ public final class Diztl {
     private DisconnectResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private DisconnectResp() {
       message_ = "";
     }
+
     private DisconnectResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12935,7 +12985,9 @@ public final class Diztl {
     private PingReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private PingReq() {}
+
     private PingReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -13659,9 +13711,11 @@ public final class Diztl {
     private PingResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private PingResp() {
       message_ = "";
     }
+
     private PingResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -14164,6 +14218,7 @@ public final class Diztl {
       share_ = false;
       output_ = false;
     }
+
     private UserDirsReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -14648,10 +14703,12 @@ public final class Diztl {
     private UserDirsResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private UserDirsResp() {
       share_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       output_ = "";
     }
+
     private UserDirsResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -15300,10 +15357,12 @@ public final class Diztl {
     private UpdateUserDirsReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private UpdateUserDirsReq() {
       share_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       output_ = "";
     }
+
     private UpdateUserDirsReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -15951,9 +16010,11 @@ public final class Diztl {
     private UpdateUserDirsResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private UpdateUserDirsResp() {
       message_ = "";
     }
+
     private UpdateUserDirsResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
