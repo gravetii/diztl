@@ -1,5 +1,10 @@
 .table-view {
-    -fx-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, #000000, 10, 0, 0, 0);
+}
+
+.table-view:focused {
+    -fx-background-color: -fx-table-cell-border-color, -fx-background;
+    -fx-background-insets: 0, 0 0 1 0;
 }
 
 .table-view .column-header-background {
