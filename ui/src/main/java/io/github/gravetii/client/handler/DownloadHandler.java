@@ -22,6 +22,7 @@ public class DownloadHandler {
     this.scene = scene;
     this.result = new DownloadResult(file);
   }
+
   public void process(Connection connection) {
 
     logger.info("Downloading file from {} - {}", source.getIp(), file.getName());

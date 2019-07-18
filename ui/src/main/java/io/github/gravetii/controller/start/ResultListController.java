@@ -3,10 +3,9 @@ package io.github.gravetii.controller.start;
 import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.start.StartScene;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -34,13 +33,12 @@ public class ResultListController implements FxController {
     resultListTbl.setRowFactory(
         callback -> {
           TableRow<FileResult> row = new TableRow<>();
+          this.setContextMenu(row);
           row.setOnMouseClicked(
               event -> {
                 if (event.getClickCount() == 2) {
                   if (!row.isEmpty()) {
-                    FileResult result = row.getItem();
-                    CommunicationClient.get()
-                        .download(result.getFile(), result.getSource(), parent);
+                    download(row.getItem());
                   }
                 }
               });
@@ -49,6 +47,23 @@ public class ResultListController implements FxController {
         });
 
     setColumnWidths();
+  }
+
+  private void setContextMenu(TableRow<FileResult> row) {
+    ContextMenu menu = new ContextMenu();
+    MenuItem downloadMenuItem = new MenuItem("Download");
+    downloadMenuItem.setOnAction(
+        event -> {
+          download(row.getItem());
+        });
+
+    menu.getItems().add(downloadMenuItem);
+    row.contextMenuProperty()
+        .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
+  }
+
+  private void download(FileResult result) {
+    CommunicationClient.get().download(result.getFile(), result.getSource(), parent);
   }
 
   private void setColumnWidths() {

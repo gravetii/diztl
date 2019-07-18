@@ -4,8 +4,6 @@ import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.util.Utils;
 import org.apache.commons.io.FilenameUtils;
 
-import java.nio.file.Paths;
-
 public class FileResult {
   private Diztl.FileMetadata file;
   private Diztl.Node source;
