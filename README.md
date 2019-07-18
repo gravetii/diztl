@@ -5,6 +5,13 @@
 # DIZTL
 
 <p align="center">
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
+<a href="https://www.paypal.me/sandeepdasika"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="Donate" /></a>
+<a href="http://hits.dwyl.io/gravetii/diztl"><img src="http://hits.dwyl.io/gravetii/diztl.svg" alt="HitCount"/></a>
+<a href="https://saythanks.io/to/gravetii"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="Say Thanks!" /></a>
+</p>
+
+<p align="center">
 <img src="images/sc1.png" width="800" height="230" alt="Screenshot 1" />
 </p>
 A peer-to-peer file discovery and sharing tool for LANs written in Go!
