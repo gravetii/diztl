@@ -26,11 +26,15 @@ public class DownloadResult extends Task<Void> {
 
   public void update(int chunk) {
     updateProgress(chunk, file.getChunks());
+    if (chunk == file.getChunks()) {
+      updateMessage("Finished");
+    }
   }
 
   @Override
   protected Void call() {
     updateProgress(0, file.getChunks());
+    updateMessage("Downloading");
     return null;
   }
 }
