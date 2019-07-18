@@ -120,8 +120,8 @@ message DownloadReq {
 }
 
 message DownloadChunk {
-    // Sent only in the first chunk.
-    FileMetadata metadata = 1;
+    // Total number of chunks constituting the file; sent only in the first chunk.
+    int32 chunks = 1;
     // The chunk number.
     int32 chunk = 2;
 }
