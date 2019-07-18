@@ -1,41 +1,27 @@
 .table-view {
-    -fx-background-color: #808080;
+    -fx-border-color: transparent;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+    -fx-background-color: #FFFFFF;
 }
 
 .table-view .column-header-background .label {
     -fx-background-color: transparent;
-    -fx-text-fill: #FFFFFF;
-}
-
-.table-view .column-header {
-    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
 }
 
 .table-view .table-cell {
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #0d47a1;
 }
 
 .table-view .table-column {
     -fx-alignment: center;
 }
 
-.table-row-cell {
-    -fx-background-color: -fx-table-cell-border-color, #616161;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
-}
-
-.table-row-cell:odd {
-    -fx-background-color: -fx-table-cell-border-color, #424242;
-    -fx-background-insets: 0, 0 0 1 0;
-}
-
 .table-row-cell:selected {
-    -fx-table-cell-border-color: #FFFFFF;
+    -fx-background-color: #78bba1;
+    -fx-table-cell-border-color: #78bba1;
 }
 
 .table-row-cell:empty {
@@ -79,7 +65,7 @@
 }
 
 .progress-bar .bar {
-    -fx-background-color: #1bd79c;
+    -fx-background-color: #2196F3;
     -fx-background-insets: 0, 1, 2;
     -fx-padding: 0.4em;
 }
