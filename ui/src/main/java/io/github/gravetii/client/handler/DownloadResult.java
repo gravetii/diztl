@@ -34,7 +34,7 @@ public class DownloadResult extends Task<Void> {
   @Override
   protected Void call() {
     updateProgress(0, file.getChunks());
-    updateMessage("Downloading");
+    updateMessage("Downloading...");
     return null;
   }
 }

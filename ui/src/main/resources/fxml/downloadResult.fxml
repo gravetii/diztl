@@ -12,10 +12,11 @@
               <Label />
           </placeholder>
         <columns>
-          <TableColumn fx:id="fileNameTblCol" prefWidth="253.0" text="File" />
-          <TableColumn fx:id="statusTblCol" prefWidth="135.0" text="Status" />
-            <TableColumn fx:id="sizeTblCol" prefWidth="70.0" text="Size" />
-            <TableColumn fx:id="typeTblCol" prefWidth="121.0" text="Type" />
+          <TableColumn fx:id="fileNameTblCol" prefWidth="200.0" text="File" />
+          <TableColumn fx:id="statusTblCol" prefWidth="103.0" text="Status" />
+            <TableColumn fx:id="sizeTblCol" prefWidth="68.0" text="Size" />
+            <TableColumn fx:id="typeTblCol" prefWidth="64.0" text="Type" />
+            <TableColumn fx:id="progressTblCol" prefWidth="144.0" text="Progress" />
         </columns>
       </TableView>
    </children>
