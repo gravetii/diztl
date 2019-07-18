@@ -47,6 +47,15 @@ public class ResultListController implements FxController {
 
           return row;
         });
+
+    setColumnWidths();
+  }
+
+  private void setColumnWidths() {
+    fileNameTblCol.prefWidthProperty().bind(resultListTbl.widthProperty().multiply(0.3));
+    fileSizeTblCol.prefWidthProperty().bind(resultListTbl.widthProperty().multiply(0.2));
+    fileTypeTblCol.prefWidthProperty().bind(resultListTbl.widthProperty().multiply(0.2));
+    filePathTblCol.prefWidthProperty().bind(resultListTbl.widthProperty().multiply(0.3));
   }
 
   public void show(FileResult result) {

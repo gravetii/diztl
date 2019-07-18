@@ -2,10 +2,10 @@ package io.github.gravetii.scene.start;
 
 import io.github.gravetii.controller.start.ResultListController;
 import io.github.gravetii.scene.FxComponent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ResultListComponent extends FxComponent<ResultListController, VBox> {
+public class ResultListComponent extends FxComponent<ResultListController, AnchorPane> {
   private Stage stage;
   private StartScene scene;
 
@@ -22,7 +22,7 @@ public class ResultListComponent extends FxComponent<ResultListController, VBox>
   }
 
   @Override
-  protected VBox createNode() throws Exception {
+  protected AnchorPane createNode() throws Exception {
     return this.loadNode();
   }
 }
