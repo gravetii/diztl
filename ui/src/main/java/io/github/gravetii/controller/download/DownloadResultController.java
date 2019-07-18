@@ -31,6 +31,15 @@ public class DownloadResultController implements FxController {
     typeTblCol.setCellValueFactory(new PropertyValueFactory<>("type"));
     progressTblCol.setCellValueFactory(new PropertyValueFactory<>("progress"));
     progressTblCol.setCellFactory(ProgressBarTableCell.forTableColumn());
+    setColumnWidths();
+  }
+
+  private void setColumnWidths() {
+    fileNameTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.3));
+    statusTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.2));
+    sizeTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.1));
+    typeTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.1));
+    progressTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.3));
   }
 
   public void show(DownloadResult result) {

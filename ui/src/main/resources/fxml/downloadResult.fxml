@@ -7,16 +7,16 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="downloadResultTbl" prefHeight="218.0" prefWidth="600.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <TableView fx:id="downloadResultTbl" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
           <placeholder>
               <Label />
           </placeholder>
         <columns>
-          <TableColumn fx:id="fileNameTblCol" prefWidth="200.0" text="File" />
-          <TableColumn fx:id="statusTblCol" prefWidth="103.0" text="Status" />
-            <TableColumn fx:id="sizeTblCol" prefWidth="68.0" text="Size" />
-            <TableColumn fx:id="typeTblCol" prefWidth="64.0" text="Type" />
-            <TableColumn fx:id="progressTblCol" prefWidth="144.0" text="Progress" />
+          <TableColumn fx:id="fileNameTblCol" text="File" />
+          <TableColumn fx:id="statusTblCol" text="Status" />
+            <TableColumn fx:id="sizeTblCol" text="Size" />
+            <TableColumn fx:id="typeTblCol" text="Type" />
+            <TableColumn fx:id="progressTblCol" text="Progress" />
         </columns>
       </TableView>
    </children>
