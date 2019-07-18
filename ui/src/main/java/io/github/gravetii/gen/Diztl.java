@@ -118,24 +118,25 @@ public final class Diztl {
           + "\rDisconnectReq\022\023\n\004node\030\001 \001(\0132\005.Node\"!\n\016D"
           + "isconnectResp\022\017\n\007message\030\001 \001(\t\"5\n\007PingRe"
           + "q\022\025\n\006source\030\001 \001(\0132\005.Node\022\023\n\004dest\030\002 \001(\0132\005"
-          + ".Node\"\033\n\010PingResp\022\017\n\007message\030\001 \001(\t\",\n\013Us"
-          + "erDirsReq\022\r\n\005share\030\001 \001(\010\022\016\n\006output\030\002 \001(\010"
-          + "\"-\n\014UserDirsResp\022\r\n\005share\030\001 \003(\t\022\016\n\006outpu"
-          + "t\030\002 \001(\t\"2\n\021UpdateUserDirsReq\022\r\n\005share\030\001 "
-          + "\003(\t\022\016\n\006output\030\002 \001(\t\"%\n\022UpdateUserDirsRes"
-          + "p\022\017\n\007message\030\001 \001(\t2\260\002\n\014DiztlService\022#\n\006S"
-          + "earch\022\n.SearchReq\032\013.SearchResp\"\000\022$\n\006Uplo"
-          + "ad\022\n.UploadReq\032\n.FileChunk\"\0000\001\022\035\n\004Ping\022\010"
-          + ".PingReq\032\t.PingResp\"\000\022\035\n\004Find\022\010.FindReq\032"
-          + "\t.FindResp\"\000\022,\n\010Download\022\014.DownloadReq\032\016"
-          + ".DownloadChunk\"\0000\001\022,\n\013GetUserDirs\022\014.User"
-          + "DirsReq\032\r.UserDirsResp\"\000\022;\n\016UpdateUserDi"
-          + "rs\022\022.UpdateUserDirsReq\032\023.UpdateUserDirsR"
-          + "esp\"\0002\223\001\n\016TrackerService\022)\n\010Register\022\014.R"
-          + "egisterReq\032\r.RegisterResp\"\000\022%\n\006Search\022\n."
-          + "SearchReq\032\013.SearchResp\"\0000\001\022/\n\nDisconnect"
-          + "\022\016.DisconnectReq\032\017.DisconnectResp\"\000B\030\n\026i"
-          + "o.github.gravetii.genb\006proto3"
+          + ".Node\")\n\010PingResp\022\014\n\004code\030\001 \001(\005\022\017\n\007messa"
+          + "ge\030\002 \001(\t\",\n\013UserDirsReq\022\r\n\005share\030\001 \001(\010\022\016"
+          + "\n\006output\030\002 \001(\010\"-\n\014UserDirsResp\022\r\n\005share\030"
+          + "\001 \003(\t\022\016\n\006output\030\002 \001(\t\"2\n\021UpdateUserDirsR"
+          + "eq\022\r\n\005share\030\001 \003(\t\022\016\n\006output\030\002 \001(\t\"%\n\022Upd"
+          + "ateUserDirsResp\022\017\n\007message\030\001 \001(\t2\260\002\n\014Diz"
+          + "tlService\022#\n\006Search\022\n.SearchReq\032\013.Search"
+          + "Resp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.FileChunk"
+          + "\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035\n\004F"
+          + "ind\022\010.FindReq\032\t.FindResp\"\000\022,\n\010Download\022\014"
+          + ".DownloadReq\032\016.DownloadChunk\"\0000\001\022,\n\013GetU"
+          + "serDirs\022\014.UserDirsReq\032\r.UserDirsResp\"\000\022;"
+          + "\n\016UpdateUserDirs\022\022.UpdateUserDirsReq\032\023.U"
+          + "pdateUserDirsResp\"\0002\223\001\n\016TrackerService\022)"
+          + "\n\010Register\022\014.RegisterReq\032\r.RegisterResp\""
+          + "\000\022%\n\006Search\022\n.SearchReq\032\013.SearchResp\"\0000\001"
+          + "\022/\n\nDisconnect\022\016.DisconnectReq\032\017.Disconn"
+          + "ectResp\"\000B\030\n\026io.github.gravetii.genb\006pro"
+          + "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -271,7 +272,7 @@ public final class Diztl {
         new com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
             internal_static_PingResp_descriptor,
             new java.lang.String[] {
-              "Message",
+              "Code", "Message",
             });
     internal_static_UserDirsReq_descriptor = getDescriptor().getMessageTypes().get(18);
     internal_static_UserDirsReq_fieldAccessorTable =
@@ -966,9 +967,12 @@ public final class Diztl {
       // @@protoc_insertion_point(interface_extends:PingResp)
       com.google.protobuf.MessageOrBuilder {
 
-    /** <code>string message = 1;</code> */
+    /** <code>int32 code = 1;</code> */
+    int getCode();
+
+    /** <code>string message = 2;</code> */
     java.lang.String getMessage();
-    /** <code>string message = 1;</code> */
+    /** <code>string message = 2;</code> */
     com.google.protobuf.ByteString getMessageBytes();
   }
   public interface UserDirsReqOrBuilder
@@ -13419,7 +13423,8 @@ public final class Diztl {
       implements
       // @@protoc_insertion_point(message_implements:PingResp)
       PingRespOrBuilder {
-    public static final int MESSAGE_FIELD_NUMBER = 1;
+    public static final int CODE_FIELD_NUMBER = 1;
+    public static final int MESSAGE_FIELD_NUMBER = 2;
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:PingResp)
     private static final io.github.gravetii.gen.Diztl.PingResp DEFAULT_INSTANCE;
@@ -13437,14 +13442,16 @@ public final class Diztl {
       DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.PingResp();
     }
 
+    private int code_;
     private volatile java.lang.Object message_;
     private byte memoizedIsInitialized = -1;
-
     // Use PingResp.newBuilder() to construct.
     private PingResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private PingResp() {
+      code_ = 0;
       message_ = "";
     }
     private PingResp(
@@ -13473,7 +13480,12 @@ public final class Diztl {
                 }
                 break;
               }
-            case 10:
+            case 8:
+              {
+                code_ = input.readInt32();
+                break;
+              }
+            case 18:
               {
                 java.lang.String s = input.readStringRequireUtf8();
 
@@ -13597,7 +13609,12 @@ public final class Diztl {
               io.github.gravetii.gen.Diztl.PingResp.Builder.class);
     }
 
-    /** <code>string message = 1;</code> */
+    /** <code>int32 code = 1;</code> */
+    public int getCode() {
+      return code_;
+    }
+
+    /** <code>string message = 2;</code> */
     public java.lang.String getMessage() {
       java.lang.Object ref = message_;
       if (ref instanceof java.lang.String) {
@@ -13610,7 +13627,7 @@ public final class Diztl {
       }
     }
 
-    /** <code>string message = 1;</code> */
+    /** <code>string message = 2;</code> */
     public com.google.protobuf.ByteString getMessageBytes() {
       java.lang.Object ref = message_;
       if (ref instanceof java.lang.String) {
@@ -13633,8 +13650,11 @@ public final class Diztl {
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
+      }
       if (!getMessageBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
       }
       unknownFields.writeTo(output);
     }
@@ -13644,8 +13664,11 @@ public final class Diztl {
       if (size != -1) return size;
 
       size = 0;
+      if (code_ != 0) {
+        size += com.google.protobuf.CodedOutputStream.computeInt32Size(1, code_);
+      }
       if (!getMessageBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -13663,6 +13686,7 @@ public final class Diztl {
       io.github.gravetii.gen.Diztl.PingResp other = (io.github.gravetii.gen.Diztl.PingResp) obj;
 
       boolean result = true;
+      result = result && (getCode() == other.getCode());
       result = result && getMessage().equals(other.getMessage());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
@@ -13675,6 +13699,8 @@ public final class Diztl {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode();
       hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
       hash = (53 * hash) + getMessage().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -13712,6 +13738,7 @@ public final class Diztl {
         implements
         // @@protoc_insertion_point(builder_implements:PingResp)
         io.github.gravetii.gen.Diztl.PingRespOrBuilder {
+      private int code_;
       private java.lang.Object message_ = "";
 
       // Construct using io.github.gravetii.gen.Diztl.PingResp.newBuilder()
@@ -13742,6 +13769,8 @@ public final class Diztl {
 
       public Builder clear() {
         super.clear();
+        code_ = 0;
+
         message_ = "";
 
         return this;
@@ -13766,6 +13795,7 @@ public final class Diztl {
       public io.github.gravetii.gen.Diztl.PingResp buildPartial() {
         io.github.gravetii.gen.Diztl.PingResp result =
             new io.github.gravetii.gen.Diztl.PingResp(this);
+        result.code_ = code_;
         result.message_ = message_;
         onBuilt();
         return result;
@@ -13811,6 +13841,9 @@ public final class Diztl {
 
       public Builder mergeFrom(io.github.gravetii.gen.Diztl.PingResp other) {
         if (other == io.github.gravetii.gen.Diztl.PingResp.getDefaultInstance()) return this;
+        if (other.getCode() != 0) {
+          setCode(other.getCode());
+        }
         if (!other.getMessage().isEmpty()) {
           message_ = other.message_;
           onChanged();
@@ -13842,7 +13875,28 @@ public final class Diztl {
         return this;
       }
 
-      /** <code>string message = 1;</code> */
+      /** <code>int32 code = 1;</code> */
+      public int getCode() {
+        return code_;
+      }
+
+      /** <code>int32 code = 1;</code> */
+      public Builder setCode(int value) {
+
+        code_ = value;
+        onChanged();
+        return this;
+      }
+
+      /** <code>int32 code = 1;</code> */
+      public Builder clearCode() {
+
+        code_ = 0;
+        onChanged();
+        return this;
+      }
+
+      /** <code>string message = 2;</code> */
       public java.lang.String getMessage() {
         java.lang.Object ref = message_;
         if (!(ref instanceof java.lang.String)) {
@@ -13855,7 +13909,7 @@ public final class Diztl {
         }
       }
 
-      /** <code>string message = 1;</code> */
+      /** <code>string message = 2;</code> */
       public Builder setMessage(java.lang.String value) {
         if (value == null) {
           throw new NullPointerException();
@@ -13866,7 +13920,7 @@ public final class Diztl {
         return this;
       }
 
-      /** <code>string message = 1;</code> */
+      /** <code>string message = 2;</code> */
       public com.google.protobuf.ByteString getMessageBytes() {
         java.lang.Object ref = message_;
         if (ref instanceof String) {
@@ -13879,7 +13933,7 @@ public final class Diztl {
         }
       }
 
-      /** <code>string message = 1;</code> */
+      /** <code>string message = 2;</code> */
       public Builder setMessageBytes(com.google.protobuf.ByteString value) {
         if (value == null) {
           throw new NullPointerException();
@@ -13891,7 +13945,7 @@ public final class Diztl {
         return this;
       }
 
-      /** <code>string message = 1;</code> */
+      /** <code>string message = 2;</code> */
       public Builder clearMessage() {
 
         message_ = getDefaultInstance().getMessage();

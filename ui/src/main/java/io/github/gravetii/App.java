@@ -5,8 +5,12 @@ import io.github.gravetii.scene.FxScene;
 import io.github.gravetii.scene.start.StartScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class App extends Application {
+  private static final Logger logger = LoggerFactory.getLogger(App.class.getCanonicalName());
+
   public static void main(String[] args) {
     launch(args);
   }
@@ -18,7 +22,12 @@ public class App extends Application {
   }
 
   @Override
-  public void init() throws Exception {
-    CommunicationClient.init();
+  public void init() {
+    try {
+      CommunicationClient.init();
+    } catch (Exception e) {
+      logger.error("Couldn't connect to node", e);
+      System.exit(0);
+    }
   }
 }

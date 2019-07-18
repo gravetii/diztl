@@ -165,7 +165,7 @@ func (s *NodeService) Upload(request *diztl.UploadReq, stream diztl.DiztlService
 // Ping - Any node can invoke this call on any node to see if it's currently active.
 func (s *NodeService) Ping(ctx context.Context, request *diztl.PingReq) (*diztl.PingResp, error) {
 	logger.Infof("Received ping from %v\n", request.GetSource())
-	return &diztl.PingResp{Message: "online"}, nil
+	return &diztl.PingResp{Code: 1, Message: "online"}, nil
 }
 
 // Find finds for files in the network whose name has the given pattern string.
