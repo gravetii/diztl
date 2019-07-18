@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/gravetii/diztl/conf"
+	"github.com/gravetii/diztl/diztl"
 )
 
 // GetShareDirs returns the user-configured share directories on this node.
@@ -73,4 +74,9 @@ func Split(path string) []string {
 
 	res = append(res, name)
 	return res
+}
+
+// GetFilePath returns the path to the file using the enclosing dir and file name.
+func GetFilePath(metadata *diztl.FileMetadata) string {
+	return filepath.Join(metadata.GetDir(), metadata.GetName())
 }

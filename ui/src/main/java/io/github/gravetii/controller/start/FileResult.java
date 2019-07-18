@@ -4,6 +4,8 @@ import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.util.Utils;
 import org.apache.commons.io.FilenameUtils;
 
+import java.nio.file.Paths;
+
 public class FileResult {
   private Diztl.FileMetadata file;
   private Diztl.Node source;
@@ -25,8 +27,8 @@ public class FileResult {
     return FilenameUtils.getExtension(file.getName());
   }
 
-  public String getPath() {
-    return file.getPath();
+  public String getDirectory() {
+    return file.getDir();
   }
 
   public Diztl.FileMetadata getFile() {

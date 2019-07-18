@@ -8,6 +8,7 @@ import (
 	"math"
 	"os"
 
+	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
 
 	"github.com/gravetii/diztl/counter"
@@ -45,7 +46,7 @@ func (r *Reader) reset() {
 }
 
 func copyToTempDir(metadata *diztl.FileMetadata) (*os.File, error) {
-	src := metadata.GetPath()
+	src := dir.GetFilePath(metadata)
 	fname := metadata.GetName()
 
 	in, err := openFile(src)

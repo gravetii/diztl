@@ -42,11 +42,11 @@ func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
 
 	f, err := ioutil.TempFile("", fname)
 	if err != nil {
-		logger.Errorf("Unable to create temp file for download: %s - %v\n", metadata.GetPath(), err)
+		logger.Errorf("Unable to create temp file for download: %s - %v\n", dir.GetFilePath(metadata), err)
 		return nil, errors.New("Could not create temp file for download - " + err.Error())
 	}
 
-	logger.Debugf("Created temp file for download from %s - %s\n", metadata.GetPath(), f.Name())
+	logger.Debugf("Created temp file for download from %s - %s\n", dir.GetFilePath(metadata), f.Name())
 	o := createOut(f, metadata)
 	return &Writer{metadata, f, o}, nil
 }

@@ -36,8 +36,8 @@ message Node {
 }
 
 message FileMetadata {
-    // Path to the file.
-    string path = 1;
+    // The directory containing this file.
+    string dir = 1;
     // ID of the file in the local namespace.
     int32 id = 2;
     // Size of the file in bytes.
