@@ -14,9 +14,10 @@ public class DownloadResultController implements FxController {
 
   @FXML private TableView<DownloadResult> downloadResultTbl;
   @FXML private TableColumn<DownloadResult, String> fileNameTblCol;
-  @FXML private TableColumn<DownloadResult, Double> statusTblCol;
+  @FXML private TableColumn<DownloadResult, Double> progressTblCol;
   @FXML private TableColumn<DownloadResult, String> sizeTblCol;
   @FXML private TableColumn<DownloadResult, String> typeTblCol;
+  @FXML private TableColumn<DownloadResult, String> statusTblCol;
 
   public DownloadResultController(Stage stage) {
     this.stage = stage;
@@ -25,10 +26,11 @@ public class DownloadResultController implements FxController {
   @FXML
   public void initialize() {
     fileNameTblCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-    statusTblCol.setCellValueFactory(new PropertyValueFactory<>("progress"));
-    statusTblCol.setCellFactory(ProgressBarTableCell.forTableColumn());
+    statusTblCol.setCellValueFactory(new PropertyValueFactory<>("message"));
     sizeTblCol.setCellValueFactory(new PropertyValueFactory<>("size"));
     typeTblCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+    progressTblCol.setCellValueFactory(new PropertyValueFactory<>("progress"));
+    progressTblCol.setCellFactory(ProgressBarTableCell.forTableColumn());
   }
 
   public void show(DownloadResult result) {
