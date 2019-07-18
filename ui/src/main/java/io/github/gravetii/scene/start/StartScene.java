@@ -25,7 +25,7 @@ public class StartScene extends FxScene {
 
   @Override
   protected void build() {
-    this.showTop(fileSearchComponent)
+    this.showLeft(fileSearchComponent)
         .showCenter(resultListComponent)
         .showBottom(downloadResultComponent);
   }
