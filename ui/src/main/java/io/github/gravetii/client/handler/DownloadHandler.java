@@ -40,18 +40,19 @@ public class DownloadHandler {
           result.setChunks(value.getChunks());
         }
 
-        result.update(value.getChunk());
+        result.next(value.getChunk());
       }
 
       @Override
       public void onError(Throwable t) {
-        logger.error("Error while downloading file:", t);
+        logger.error("Error while downloading file - {}", t.getMessage());
+        result.error(t);
       }
 
       @Override
       public void onCompleted() {
         logger.info("Finished downloading file: {}", file.getName());
-        result.close();
+        result.completed();
       }
     };
   }

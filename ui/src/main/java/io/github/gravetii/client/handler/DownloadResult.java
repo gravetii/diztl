@@ -30,11 +30,15 @@ public class DownloadResult extends Task<Void> {
     return FilenameUtils.getExtension(file.getName());
   }
 
-  public void update(int chunk) {
+  public void next(int chunk) {
     updateProgress(chunk, chunks);
   }
 
-  public void close() {
+  public void error(Throwable t) {
+    updateMessage("Failed");
+  }
+
+  public void completed() {
     updateMessage("Completed");
   }
 
