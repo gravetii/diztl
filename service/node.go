@@ -140,7 +140,7 @@ func (s *NodeService) Upload(request *diztl.UploadReq, stream diztl.DiztlService
 		if err != nil {
 			r.Close()
 			if err == io.EOF {
-				logger.Infof("Finished uploading file: %s\n", metadata.GetPath())
+				logger.Infof("Finished uploading file: %s\n", dir.GetFilePath(metadata))
 				break
 			}
 
@@ -148,7 +148,7 @@ func (s *NodeService) Upload(request *diztl.UploadReq, stream diztl.DiztlService
 		}
 
 		if f.Chunk == 1 {
-			logger.Debugf("Uploading file: %s\n", metadata.GetPath())
+			logger.Debugf("Uploading file: %s\n", dir.GetFilePath(metadata))
 		}
 
 		serr := stream.Send(f)

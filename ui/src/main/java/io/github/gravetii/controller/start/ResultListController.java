@@ -18,7 +18,7 @@ public class ResultListController implements FxController {
   @FXML private TableColumn<FileResult, String> fileNameTblCol;
   @FXML private TableColumn<FileResult, String> fileSizeTblCol;
   @FXML private TableColumn<FileResult, String> fileTypeTblCol;
-  @FXML private TableColumn<FileResult, String> filePathTblCol;
+  @FXML private TableColumn<FileResult, String> fileDirTblCol;
 
   public ResultListController(Stage stage, StartScene parent) {
     this.stage = stage;
@@ -30,7 +30,7 @@ public class ResultListController implements FxController {
     fileNameTblCol.setCellValueFactory(new PropertyValueFactory<>("name"));
     fileSizeTblCol.setCellValueFactory(new PropertyValueFactory<>("size"));
     fileTypeTblCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-    filePathTblCol.setCellValueFactory(new PropertyValueFactory<>("path"));
+    fileDirTblCol.setCellValueFactory(new PropertyValueFactory<>("directory"));
     resultListTbl.setRowFactory(
         callback -> {
           TableRow<FileResult> row = new TableRow<>();
@@ -55,7 +55,7 @@ public class ResultListController implements FxController {
     fileNameTblCol.prefWidthProperty().bind(resultListTbl.widthProperty().multiply(0.3));
     fileSizeTblCol.prefWidthProperty().bind(resultListTbl.widthProperty().multiply(0.2));
     fileTypeTblCol.prefWidthProperty().bind(resultListTbl.widthProperty().multiply(0.2));
-    filePathTblCol.prefWidthProperty().bind(resultListTbl.widthProperty().multiply(0.3));
+    fileDirTblCol.prefWidthProperty().bind(resultListTbl.widthProperty().multiply(0.3));
   }
 
   public void show(FileResult result) {

@@ -25,7 +25,7 @@ func newIndex() *Index {
 }
 
 func (index *Index) add(path string, info os.FileInfo) {
-	f := diztl.FileMetadata{Path: path, Id: index.counter.IncrBy1(), Size: info.Size(), Name: filepath.Base(path)}
+	f := diztl.FileMetadata{Dir: filepath.Dir(path), Id: index.counter.IncrBy1(), Size: info.Size(), Name: filepath.Base(path)}
 	index.files[path] = &f
 	logger.Debugf("Added %d. %s\n", index.counter.Value(), path)
 }

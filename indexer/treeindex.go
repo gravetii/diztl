@@ -67,7 +67,7 @@ func (t *TreeIndex) addPath(path string, token string, parent *TreeNode,
 	} else {
 		treenode = TreeNode{isDir: isDir, path: path, parent: parent, children: make(map[string]*TreeNode)}
 		if !isDir {
-			metadata := diztl.FileMetadata{Path: path, Id: t.counter.IncrBy1(), Size: info.Size(), Name: token, Hash: hash}
+			metadata := diztl.FileMetadata{Dir: filepath.Dir(path), Id: t.counter.IncrBy1(), Size: info.Size(), Name: token, Hash: hash}
 			treenode.file = &metadata
 		}
 
@@ -120,7 +120,7 @@ func traverse(root *TreeNode, pattern string) []*diztl.FileMetadata {
 	res := []*diztl.FileMetadata{}
 	for _, treenode := range root.children {
 		if !treenode.isDir {
-			path := treenode.file.GetPath()
+			path := dir.GetFilePath(treenode.file)
 			if strings.Contains(strings.ToLower(path), strings.ToLower(pattern)) {
 				res = append(res, treenode.file)
 			}
