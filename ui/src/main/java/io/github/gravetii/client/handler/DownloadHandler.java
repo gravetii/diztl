@@ -51,6 +51,7 @@ public class DownloadHandler {
       @Override
       public void onCompleted() {
         logger.info("Finished downloading file: {}", file.getName());
+        result.close();
       }
     };
   }
