@@ -77,3 +77,9 @@
     -fx-background-color: #ffffff;
     -fx-text-fill: #018786;
 }
+
+.progress-bar .bar {
+    -fx-background-color: #1bd79c;
+    -fx-background-insets: 0, 1, 2;
+    -fx-padding: 0.4em;
+}
