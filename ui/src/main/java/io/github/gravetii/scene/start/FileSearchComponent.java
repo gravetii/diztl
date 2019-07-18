@@ -8,7 +8,7 @@ public class FileSearchComponent extends FxComponent<FileSearchController, Ancho
   private StartScene parent;
 
   public FileSearchComponent(StartScene parent) throws Exception {
-    super("filesearch.fxml");
+    super("fileSearch.fxml");
     this.parent = parent;
     this.create();
   }

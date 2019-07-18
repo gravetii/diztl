@@ -10,7 +10,7 @@ public class ResultListComponent extends FxComponent<ResultListController, Ancho
   private StartScene scene;
 
   public ResultListComponent(Stage stage, StartScene scene) throws Exception {
-    super("resultlist.fxml");
+    super("resultList.fxml");
     this.stage = stage;
     this.scene = scene;
     this.create();
