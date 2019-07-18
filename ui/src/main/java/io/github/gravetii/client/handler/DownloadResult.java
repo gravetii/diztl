@@ -7,9 +7,15 @@ import org.apache.commons.io.FilenameUtils;
 
 public class DownloadResult extends Task<Void> {
   private Diztl.FileMetadata file;
+  private int chunks;
 
-  public void setFile(Diztl.FileMetadata file) {
+  public DownloadResult(Diztl.FileMetadata file) {
     this.file = file;
+  }
+
+  public void setChunks(int chunks) {
+    this.chunks = chunks;
+    updateMessage("Downloading...");
   }
 
   public String getName() {
@@ -25,7 +31,7 @@ public class DownloadResult extends Task<Void> {
   }
 
   public void update(int chunk) {
-    updateProgress(chunk, file.getChunks());
+    updateProgress(chunk, chunks);
   }
 
   public void close() {
@@ -34,8 +40,8 @@ public class DownloadResult extends Task<Void> {
 
   @Override
   protected Void call() {
-    updateProgress(0, file.getChunks());
-    updateMessage("Downloading...");
+    updateProgress(0, 0);
+    updateMessage("Connecting...");
     return null;
   }
 }

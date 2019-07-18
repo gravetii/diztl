@@ -239,14 +239,16 @@ func (s *NodeService) Download(request *diztl.DownloadReq, stream diztl.DiztlSer
 			}
 
 			logger.Infof("Downloading file: %s. Prepared to receive %d chunks.\n", s.GetMetadata().GetName(), w.Chunks())
-			stream.Send(&diztl.DownloadChunk{Metadata: s.GetMetadata(), Chunk: 1})
 		}
 
 		if err := w.Write(s.GetData()); err != nil {
 			return err
 		}
 
-		if s.GetChunk() > 1 {
+		if s.GetChunk() == 1 {
+			// Send the value of total number of chunks only in the first chunk.
+			stream.Send(&diztl.DownloadChunk{Chunk: 1, Chunks: s.GetMetadata().GetChunks()})
+		} else {
 			stream.Send(&diztl.DownloadChunk{Chunk: s.GetChunk()})
 		}
 	}

@@ -113,30 +113,29 @@ public final class Diztl {
           + "\001(\0132\005.Node\022\037\n\010metadata\030\002 \001(\0132\r.FileMetad"
           + "ata\022!\n\010contract\030\003 \001(\0132\017.UploadContract\"E"
           + "\n\013DownloadReq\022\025\n\006source\030\001 \001(\0132\005.Node\022\037\n\010"
-          + "metadata\030\002 \001(\0132\r.FileMetadata\"?\n\rDownloa"
-          + "dChunk\022\037\n\010metadata\030\001 \001(\0132\r.FileMetadata\022"
-          + "\r\n\005chunk\030\002 \001(\005\"$\n\rDisconnectReq\022\023\n\004node\030"
-          + "\001 \001(\0132\005.Node\"!\n\016DisconnectResp\022\017\n\007messag"
-          + "e\030\001 \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001(\0132\005.Nod"
-          + "e\022\023\n\004dest\030\002 \001(\0132\005.Node\"\033\n\010PingResp\022\017\n\007me"
-          + "ssage\030\001 \001(\t\",\n\013UserDirsReq\022\r\n\005share\030\001 \001("
-          + "\010\022\016\n\006output\030\002 \001(\010\"-\n\014UserDirsResp\022\r\n\005sha"
-          + "re\030\001 \003(\t\022\016\n\006output\030\002 \001(\t\"2\n\021UpdateUserDi"
-          + "rsReq\022\r\n\005share\030\001 \003(\t\022\016\n\006output\030\002 \001(\t\"%\n\022"
-          + "UpdateUserDirsResp\022\017\n\007message\030\001 \001(\t2\260\002\n\014"
-          + "DiztlService\022#\n\006Search\022\n.SearchReq\032\013.Sea"
-          + "rchResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.FileCh"
-          + "unk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035"
-          + "\n\004Find\022\010.FindReq\032\t.FindResp\"\000\022,\n\010Downloa"
-          + "d\022\014.DownloadReq\032\016.DownloadChunk\"\0000\001\022,\n\013G"
-          + "etUserDirs\022\014.UserDirsReq\032\r.UserDirsResp\""
-          + "\000\022;\n\016UpdateUserDirs\022\022.UpdateUserDirsReq\032"
-          + "\023.UpdateUserDirsResp\"\0002\223\001\n\016TrackerServic"
-          + "e\022)\n\010Register\022\014.RegisterReq\032\r.RegisterRe"
-          + "sp\"\000\022%\n\006Search\022\n.SearchReq\032\013.SearchResp\""
-          + "\0000\001\022/\n\nDisconnect\022\016.DisconnectReq\032\017.Disc"
-          + "onnectResp\"\000B\030\n\026io.github.gravetii.genb\006"
-          + "proto3"
+          + "metadata\030\002 \001(\0132\r.FileMetadata\".\n\rDownloa"
+          + "dChunk\022\016\n\006chunks\030\001 \001(\005\022\r\n\005chunk\030\002 \001(\005\"$\n"
+          + "\rDisconnectReq\022\023\n\004node\030\001 \001(\0132\005.Node\"!\n\016D"
+          + "isconnectResp\022\017\n\007message\030\001 \001(\t\"5\n\007PingRe"
+          + "q\022\025\n\006source\030\001 \001(\0132\005.Node\022\023\n\004dest\030\002 \001(\0132\005"
+          + ".Node\"\033\n\010PingResp\022\017\n\007message\030\001 \001(\t\",\n\013Us"
+          + "erDirsReq\022\r\n\005share\030\001 \001(\010\022\016\n\006output\030\002 \001(\010"
+          + "\"-\n\014UserDirsResp\022\r\n\005share\030\001 \003(\t\022\016\n\006outpu"
+          + "t\030\002 \001(\t\"2\n\021UpdateUserDirsReq\022\r\n\005share\030\001 "
+          + "\003(\t\022\016\n\006output\030\002 \001(\t\"%\n\022UpdateUserDirsRes"
+          + "p\022\017\n\007message\030\001 \001(\t2\260\002\n\014DiztlService\022#\n\006S"
+          + "earch\022\n.SearchReq\032\013.SearchResp\"\000\022$\n\006Uplo"
+          + "ad\022\n.UploadReq\032\n.FileChunk\"\0000\001\022\035\n\004Ping\022\010"
+          + ".PingReq\032\t.PingResp\"\000\022\035\n\004Find\022\010.FindReq\032"
+          + "\t.FindResp\"\000\022,\n\010Download\022\014.DownloadReq\032\016"
+          + ".DownloadChunk\"\0000\001\022,\n\013GetUserDirs\022\014.User"
+          + "DirsReq\032\r.UserDirsResp\"\000\022;\n\016UpdateUserDi"
+          + "rs\022\022.UpdateUserDirsReq\032\023.UpdateUserDirsR"
+          + "esp\"\0002\223\001\n\016TrackerService\022)\n\010Register\022\014.R"
+          + "egisterReq\032\r.RegisterResp\"\000\022%\n\006Search\022\n."
+          + "SearchReq\032\013.SearchResp\"\0000\001\022/\n\nDisconnect"
+          + "\022\016.DisconnectReq\032\017.DisconnectResp\"\000B\030\n\026i"
+          + "o.github.gravetii.genb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -244,7 +243,7 @@ public final class Diztl {
         new com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
             internal_static_DownloadChunk_descriptor,
             new java.lang.String[] {
-              "Metadata", "Chunk",
+              "Chunks", "Chunk",
             });
     internal_static_DisconnectReq_descriptor = getDescriptor().getMessageTypes().get(14);
     internal_static_DisconnectReq_fieldAccessorTable =
@@ -303,7 +302,6 @@ public final class Diztl {
               "Message",
             });
   }
-
   private Diztl() {}
 
   public static void registerAllExtensions(com.google.protobuf.ExtensionRegistryLite registry) {}
@@ -315,7 +313,6 @@ public final class Diztl {
   public static com.google.protobuf.Descriptors.FileDescriptor getDescriptor() {
     return descriptor;
   }
-
   public interface NodeOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:Node)
@@ -363,7 +360,6 @@ public final class Diztl {
      */
     com.google.protobuf.ByteString getIdBytes();
   }
-
   public interface FileMetadataOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:FileMetadata)
@@ -475,7 +471,6 @@ public final class Diztl {
      */
     io.github.gravetii.gen.Diztl.FileHashOrBuilder getHashOrBuilder();
   }
-
   public interface FileHashOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:FileHash)
@@ -503,7 +498,6 @@ public final class Diztl {
      */
     long getTs();
   }
-
   public interface FileChunkOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:FileChunk)
@@ -562,7 +556,6 @@ public final class Diztl {
      */
     int getChunk();
   }
-
   public interface RegisterReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:RegisterReq)
@@ -575,7 +568,6 @@ public final class Diztl {
     /** <code>.Node node = 1;</code> */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
   }
-
   public interface RegisterRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:RegisterResp)
@@ -588,7 +580,6 @@ public final class Diztl {
     /** <code>.Node node = 1;</code> */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
   }
-
   public interface SearchReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:SearchReq)
@@ -646,7 +637,6 @@ public final class Diztl {
      */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getSourceOrBuilder();
   }
-
   public interface SearchRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:SearchResp)
@@ -740,7 +730,6 @@ public final class Diztl {
      */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
   }
-
   public interface FindReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:FindReq)
@@ -751,7 +740,6 @@ public final class Diztl {
     /** <code>string pattern = 1;</code> */
     com.google.protobuf.ByteString getPatternBytes();
   }
-
   public interface FindRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:FindResp)
@@ -769,7 +757,6 @@ public final class Diztl {
     /** <code>repeated .SearchResp responses = 1;</code> */
     io.github.gravetii.gen.Diztl.SearchRespOrBuilder getResponsesOrBuilder(int index);
   }
-
   public interface UploadContractOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UploadContract)
@@ -789,7 +776,6 @@ public final class Diztl {
      */
     int getChunkSize();
   }
-
   public interface UploadReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UploadReq)
@@ -888,7 +874,6 @@ public final class Diztl {
      */
     io.github.gravetii.gen.Diztl.UploadContractOrBuilder getContractOrBuilder();
   }
-
   public interface DownloadReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:DownloadReq)
@@ -908,7 +893,6 @@ public final class Diztl {
     /** <code>.FileMetadata metadata = 2;</code> */
     io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getMetadataOrBuilder();
   }
-
   public interface DownloadChunkOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:DownloadChunk)
@@ -918,32 +902,12 @@ public final class Diztl {
      *
      *
      * <pre>
-     * Sent only in the first chunk.
+     * Total number of chunks constituting the file; sent only in the first chunk.
      * </pre>
      *
-     * <code>.FileMetadata metadata = 1;</code>
+     * <code>int32 chunks = 1;</code>
      */
-    boolean hasMetadata();
-    /**
-     *
-     *
-     * <pre>
-     * Sent only in the first chunk.
-     * </pre>
-     *
-     * <code>.FileMetadata metadata = 1;</code>
-     */
-    io.github.gravetii.gen.Diztl.FileMetadata getMetadata();
-    /**
-     *
-     *
-     * <pre>
-     * Sent only in the first chunk.
-     * </pre>
-     *
-     * <code>.FileMetadata metadata = 1;</code>
-     */
-    io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getMetadataOrBuilder();
+    int getChunks();
 
     /**
      *
@@ -956,7 +920,6 @@ public final class Diztl {
      */
     int getChunk();
   }
-
   public interface DisconnectReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:DisconnectReq)
@@ -969,7 +932,6 @@ public final class Diztl {
     /** <code>.Node node = 1;</code> */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
   }
-
   public interface DisconnectRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:DisconnectResp)
@@ -980,7 +942,6 @@ public final class Diztl {
     /** <code>string message = 1;</code> */
     com.google.protobuf.ByteString getMessageBytes();
   }
-
   public interface PingReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:PingReq)
@@ -1000,7 +961,6 @@ public final class Diztl {
     /** <code>.Node dest = 2;</code> */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getDestOrBuilder();
   }
-
   public interface PingRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:PingResp)
@@ -1011,7 +971,6 @@ public final class Diztl {
     /** <code>string message = 1;</code> */
     com.google.protobuf.ByteString getMessageBytes();
   }
-
   public interface UserDirsReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UserDirsReq)
@@ -1023,7 +982,6 @@ public final class Diztl {
     /** <code>bool output = 2;</code> */
     boolean getOutput();
   }
-
   public interface UserDirsRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UserDirsResp)
@@ -1043,7 +1001,6 @@ public final class Diztl {
     /** <code>string output = 2;</code> */
     com.google.protobuf.ByteString getOutputBytes();
   }
-
   public interface UpdateUserDirsReqOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UpdateUserDirsReq)
@@ -1063,7 +1020,6 @@ public final class Diztl {
     /** <code>string output = 2;</code> */
     com.google.protobuf.ByteString getOutputBytes();
   }
-
   public interface UpdateUserDirsRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:UpdateUserDirsResp)
@@ -1106,7 +1062,6 @@ public final class Diztl {
     private Node(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private Node() {
       ip_ = "";
       id_ = "";
@@ -1835,7 +1790,6 @@ public final class Diztl {
     private FileMetadata(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private FileMetadata() {
       path_ = "";
       id_ = 0;
@@ -1843,7 +1797,6 @@ public final class Diztl {
       chunks_ = 0;
       name_ = "";
     }
-
     private FileMetadata(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3063,7 +3016,6 @@ public final class Diztl {
       checksum_ = com.google.protobuf.ByteString.EMPTY;
       ts_ = 0L;
     }
-
     private FileHash(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3620,7 +3572,6 @@ public final class Diztl {
       data_ = com.google.protobuf.ByteString.EMPTY;
       chunk_ = 0;
     }
-
     private FileChunk(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4444,9 +4395,7 @@ public final class Diztl {
     private RegisterReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private RegisterReq() {}
-
     private RegisterReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4999,9 +4948,7 @@ public final class Diztl {
     private RegisterResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private RegisterResp() {}
-
     private RegisterResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5555,7 +5502,6 @@ public final class Diztl {
     private SearchReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private SearchReq() {
       filename_ = "";
     }
@@ -6374,11 +6320,9 @@ public final class Diztl {
     private SearchResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private SearchResp() {
       files_ = java.util.Collections.emptyList();
     }
-
     private SearchResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7555,11 +7499,9 @@ public final class Diztl {
     private FindReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private FindReq() {
       pattern_ = "";
     }
-
     private FindReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8056,11 +7998,9 @@ public final class Diztl {
     private FindResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private FindResp() {
       responses_ = java.util.Collections.emptyList();
     }
-
     private FindResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8753,11 +8693,9 @@ public final class Diztl {
     private UploadContract(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private UploadContract() {
       chunkSize_ = 0;
     }
-
     private UploadContract(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9242,7 +9180,6 @@ public final class Diztl {
     }
 
     private UploadReq() {}
-
     private UploadReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10443,9 +10380,7 @@ public final class Diztl {
     private DownloadReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private DownloadReq() {}
-
     private DownloadReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11154,7 +11089,7 @@ public final class Diztl {
       implements
       // @@protoc_insertion_point(message_implements:DownloadChunk)
       DownloadChunkOrBuilder {
-    public static final int METADATA_FIELD_NUMBER = 1;
+    public static final int CHUNKS_FIELD_NUMBER = 1;
     public static final int CHUNK_FIELD_NUMBER = 2;
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:DownloadChunk)
@@ -11173,7 +11108,7 @@ public final class Diztl {
       DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.DownloadChunk();
     }
 
-    private io.github.gravetii.gen.Diztl.FileMetadata metadata_;
+    private int chunks_;
     private int chunk_;
     private byte memoizedIsInitialized = -1;
     // Use DownloadChunk.newBuilder() to construct.
@@ -11182,9 +11117,9 @@ public final class Diztl {
     }
 
     private DownloadChunk() {
+      chunks_ = 0;
       chunk_ = 0;
     }
-
     private DownloadChunk(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11211,20 +11146,9 @@ public final class Diztl {
                 }
                 break;
               }
-            case 10:
+            case 8:
               {
-                io.github.gravetii.gen.Diztl.FileMetadata.Builder subBuilder = null;
-                if (metadata_ != null) {
-                  subBuilder = metadata_.toBuilder();
-                }
-                metadata_ =
-                    input.readMessage(
-                        io.github.gravetii.gen.Diztl.FileMetadata.parser(), extensionRegistry);
-                if (subBuilder != null) {
-                  subBuilder.mergeFrom(metadata_);
-                  metadata_ = subBuilder.buildPartial();
-                }
-
+                chunks_ = input.readInt32();
                 break;
               }
             case 16:
@@ -11353,41 +11277,13 @@ public final class Diztl {
      *
      *
      * <pre>
-     * Sent only in the first chunk.
+     * Total number of chunks constituting the file; sent only in the first chunk.
      * </pre>
      *
-     * <code>.FileMetadata metadata = 1;</code>
+     * <code>int32 chunks = 1;</code>
      */
-    public boolean hasMetadata() {
-      return metadata_ != null;
-    }
-
-    /**
-     *
-     *
-     * <pre>
-     * Sent only in the first chunk.
-     * </pre>
-     *
-     * <code>.FileMetadata metadata = 1;</code>
-     */
-    public io.github.gravetii.gen.Diztl.FileMetadata getMetadata() {
-      return metadata_ == null
-          ? io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance()
-          : metadata_;
-    }
-
-    /**
-     *
-     *
-     * <pre>
-     * Sent only in the first chunk.
-     * </pre>
-     *
-     * <code>.FileMetadata metadata = 1;</code>
-     */
-    public io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getMetadataOrBuilder() {
-      return getMetadata();
+    public int getChunks() {
+      return chunks_;
     }
 
     /**
@@ -11413,8 +11309,8 @@ public final class Diztl {
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
-      if (metadata_ != null) {
-        output.writeMessage(1, getMetadata());
+      if (chunks_ != 0) {
+        output.writeInt32(1, chunks_);
       }
       if (chunk_ != 0) {
         output.writeInt32(2, chunk_);
@@ -11427,8 +11323,8 @@ public final class Diztl {
       if (size != -1) return size;
 
       size = 0;
-      if (metadata_ != null) {
-        size += com.google.protobuf.CodedOutputStream.computeMessageSize(1, getMetadata());
+      if (chunks_ != 0) {
+        size += com.google.protobuf.CodedOutputStream.computeInt32Size(1, chunks_);
       }
       if (chunk_ != 0) {
         size += com.google.protobuf.CodedOutputStream.computeInt32Size(2, chunk_);
@@ -11450,10 +11346,7 @@ public final class Diztl {
           (io.github.gravetii.gen.Diztl.DownloadChunk) obj;
 
       boolean result = true;
-      result = result && (hasMetadata() == other.hasMetadata());
-      if (hasMetadata()) {
-        result = result && getMetadata().equals(other.getMetadata());
-      }
+      result = result && (getChunks() == other.getChunks());
       result = result && (getChunk() == other.getChunk());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
@@ -11466,10 +11359,8 @@ public final class Diztl {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasMetadata()) {
-        hash = (37 * hash) + METADATA_FIELD_NUMBER;
-        hash = (53 * hash) + getMetadata().hashCode();
-      }
+      hash = (37 * hash) + CHUNKS_FIELD_NUMBER;
+      hash = (53 * hash) + getChunks();
       hash = (37 * hash) + CHUNK_FIELD_NUMBER;
       hash = (53 * hash) + getChunk();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -11507,12 +11398,7 @@ public final class Diztl {
         implements
         // @@protoc_insertion_point(builder_implements:DownloadChunk)
         io.github.gravetii.gen.Diztl.DownloadChunkOrBuilder {
-      private io.github.gravetii.gen.Diztl.FileMetadata metadata_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-              io.github.gravetii.gen.Diztl.FileMetadata,
-              io.github.gravetii.gen.Diztl.FileMetadata.Builder,
-              io.github.gravetii.gen.Diztl.FileMetadataOrBuilder>
-          metadataBuilder_;
+      private int chunks_;
       private int chunk_;
 
       // Construct using io.github.gravetii.gen.Diztl.DownloadChunk.newBuilder()
@@ -11543,12 +11429,8 @@ public final class Diztl {
 
       public Builder clear() {
         super.clear();
-        if (metadataBuilder_ == null) {
-          metadata_ = null;
-        } else {
-          metadata_ = null;
-          metadataBuilder_ = null;
-        }
+        chunks_ = 0;
+
         chunk_ = 0;
 
         return this;
@@ -11573,11 +11455,7 @@ public final class Diztl {
       public io.github.gravetii.gen.Diztl.DownloadChunk buildPartial() {
         io.github.gravetii.gen.Diztl.DownloadChunk result =
             new io.github.gravetii.gen.Diztl.DownloadChunk(this);
-        if (metadataBuilder_ == null) {
-          result.metadata_ = metadata_;
-        } else {
-          result.metadata_ = metadataBuilder_.build();
-        }
+        result.chunks_ = chunks_;
         result.chunk_ = chunk_;
         onBuilt();
         return result;
@@ -11623,8 +11501,8 @@ public final class Diztl {
 
       public Builder mergeFrom(io.github.gravetii.gen.Diztl.DownloadChunk other) {
         if (other == io.github.gravetii.gen.Diztl.DownloadChunk.getDefaultInstance()) return this;
-        if (other.hasMetadata()) {
-          mergeMetadata(other.getMetadata());
+        if (other.getChunks() != 0) {
+          setChunks(other.getChunks());
         }
         if (other.getChunk() != 0) {
           setChunk(other.getChunk());
@@ -11660,184 +11538,45 @@ public final class Diztl {
        *
        *
        * <pre>
-       * Sent only in the first chunk.
+       * Total number of chunks constituting the file; sent only in the first chunk.
        * </pre>
        *
-       * <code>.FileMetadata metadata = 1;</code>
+       * <code>int32 chunks = 1;</code>
        */
-      public boolean hasMetadata() {
-        return metadataBuilder_ != null || metadata_ != null;
+      public int getChunks() {
+        return chunks_;
       }
 
       /**
        *
        *
        * <pre>
-       * Sent only in the first chunk.
+       * Total number of chunks constituting the file; sent only in the first chunk.
        * </pre>
        *
-       * <code>.FileMetadata metadata = 1;</code>
+       * <code>int32 chunks = 1;</code>
        */
-      public io.github.gravetii.gen.Diztl.FileMetadata getMetadata() {
-        if (metadataBuilder_ == null) {
-          return metadata_ == null
-              ? io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance()
-              : metadata_;
-        } else {
-          return metadataBuilder_.getMessage();
-        }
-      }
+      public Builder setChunks(int value) {
 
-      /**
-       *
-       *
-       * <pre>
-       * Sent only in the first chunk.
-       * </pre>
-       *
-       * <code>.FileMetadata metadata = 1;</code>
-       */
-      public Builder setMetadata(io.github.gravetii.gen.Diztl.FileMetadata value) {
-        if (metadataBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          metadata_ = value;
-          onChanged();
-        } else {
-          metadataBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-
-      /**
-       *
-       *
-       * <pre>
-       * Sent only in the first chunk.
-       * </pre>
-       *
-       * <code>.FileMetadata metadata = 1;</code>
-       */
-      public Builder setMetadata(
-          io.github.gravetii.gen.Diztl.FileMetadata.Builder builderForValue) {
-        if (metadataBuilder_ == null) {
-          metadata_ = builderForValue.build();
-          onChanged();
-        } else {
-          metadataBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-
-      /**
-       *
-       *
-       * <pre>
-       * Sent only in the first chunk.
-       * </pre>
-       *
-       * <code>.FileMetadata metadata = 1;</code>
-       */
-      public Builder mergeMetadata(io.github.gravetii.gen.Diztl.FileMetadata value) {
-        if (metadataBuilder_ == null) {
-          if (metadata_ != null) {
-            metadata_ =
-                io.github.gravetii.gen.Diztl.FileMetadata.newBuilder(metadata_)
-                    .mergeFrom(value)
-                    .buildPartial();
-          } else {
-            metadata_ = value;
-          }
-          onChanged();
-        } else {
-          metadataBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-
-      /**
-       *
-       *
-       * <pre>
-       * Sent only in the first chunk.
-       * </pre>
-       *
-       * <code>.FileMetadata metadata = 1;</code>
-       */
-      public Builder clearMetadata() {
-        if (metadataBuilder_ == null) {
-          metadata_ = null;
-          onChanged();
-        } else {
-          metadata_ = null;
-          metadataBuilder_ = null;
-        }
-
-        return this;
-      }
-
-      /**
-       *
-       *
-       * <pre>
-       * Sent only in the first chunk.
-       * </pre>
-       *
-       * <code>.FileMetadata metadata = 1;</code>
-       */
-      public io.github.gravetii.gen.Diztl.FileMetadata.Builder getMetadataBuilder() {
-
+        chunks_ = value;
         onChanged();
-        return getMetadataFieldBuilder().getBuilder();
+        return this;
       }
 
       /**
        *
        *
        * <pre>
-       * Sent only in the first chunk.
+       * Total number of chunks constituting the file; sent only in the first chunk.
        * </pre>
        *
-       * <code>.FileMetadata metadata = 1;</code>
+       * <code>int32 chunks = 1;</code>
        */
-      public io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getMetadataOrBuilder() {
-        if (metadataBuilder_ != null) {
-          return metadataBuilder_.getMessageOrBuilder();
-        } else {
-          return metadata_ == null
-              ? io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance()
-              : metadata_;
-        }
-      }
+      public Builder clearChunks() {
 
-      /**
-       *
-       *
-       * <pre>
-       * Sent only in the first chunk.
-       * </pre>
-       *
-       * <code>.FileMetadata metadata = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-              io.github.gravetii.gen.Diztl.FileMetadata,
-              io.github.gravetii.gen.Diztl.FileMetadata.Builder,
-              io.github.gravetii.gen.Diztl.FileMetadataOrBuilder>
-          getMetadataFieldBuilder() {
-        if (metadataBuilder_ == null) {
-          metadataBuilder_ =
-              new com.google.protobuf.SingleFieldBuilderV3<
-                  io.github.gravetii.gen.Diztl.FileMetadata,
-                  io.github.gravetii.gen.Diztl.FileMetadata.Builder,
-                  io.github.gravetii.gen.Diztl.FileMetadataOrBuilder>(
-                  getMetadata(), getParentForChildren(), isClean());
-          metadata_ = null;
-        }
-        return metadataBuilder_;
+        chunks_ = 0;
+        onChanged();
+        return this;
       }
 
       /**
@@ -11927,9 +11666,7 @@ public final class Diztl {
     private DisconnectReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private DisconnectReq() {}
-
     private DisconnectReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12482,11 +12219,9 @@ public final class Diztl {
     private DisconnectResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private DisconnectResp() {
       message_ = "";
     }
-
     private DisconnectResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12985,9 +12720,7 @@ public final class Diztl {
     private PingReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private PingReq() {}
-
     private PingReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -13711,11 +13444,9 @@ public final class Diztl {
     private PingResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private PingResp() {
       message_ = "";
     }
-
     private PingResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -14218,7 +13949,6 @@ public final class Diztl {
       share_ = false;
       output_ = false;
     }
-
     private UserDirsReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -14703,12 +14433,10 @@ public final class Diztl {
     private UserDirsResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private UserDirsResp() {
       share_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       output_ = "";
     }
-
     private UserDirsResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -15357,12 +15085,10 @@ public final class Diztl {
     private UpdateUserDirsReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private UpdateUserDirsReq() {
       share_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       output_ = "";
     }
-
     private UpdateUserDirsReq(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -16010,11 +15736,9 @@ public final class Diztl {
     private UpdateUserDirsResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-
     private UpdateUserDirsResp() {
       message_ = "";
     }
-
     private UpdateUserDirsResp(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)

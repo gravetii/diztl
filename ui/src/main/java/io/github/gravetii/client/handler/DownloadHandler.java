@@ -20,11 +20,13 @@ public class DownloadHandler {
     this.file = file;
     this.source = source;
     this.scene = scene;
-    this.result = new DownloadResult();
+    this.result = new DownloadResult(file);
   }
 
   public void process(Connection connection) {
     logger.info("Downloading file from {} - {}", source.getIp(), file.getName());
+    ExecutionHandler.submit(result);
+    scene.showDownloadResult(result);
     Diztl.DownloadReq req =
         Diztl.DownloadReq.newBuilder().setMetadata(file).setSource(source).build();
     connection.getAsyncstub().download(req, createObserver());
@@ -35,12 +37,10 @@ public class DownloadHandler {
       @Override
       public void onNext(Diztl.DownloadChunk value) {
         if (value.getChunk() == 1) {
-          result.setFile(value.getMetadata());
-          ExecutionHandler.submit(result);
-          scene.showDownloadResult(result);
-        } else {
-          result.update(value.getChunk());
+          result.setChunks(value.getChunks());
         }
+
+        result.update(value.getChunk());
       }
 
       @Override
