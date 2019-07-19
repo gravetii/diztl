@@ -24,7 +24,6 @@ public class DownloadHandler {
   }
 
   public void process(Connection connection) {
-
     logger.info("Downloading file from {} - {}", source.getIp(), file.getName());
     ExecutionHandler.submit(result);
     scene.showDownloadResult(result);

@@ -75,10 +75,12 @@ func watch() {
 	})
 }
 
+// UpdateShareDirs sets the share directories in the config file to the given values.
 func UpdateShareDirs(value []string) {
 	set("dir.share", value)
 }
 
+// UpdateOutputDir sets the output directory in the config file to the given value.
 func UpdateOutputDir(value string) {
 	set("dir.output", value)
 }

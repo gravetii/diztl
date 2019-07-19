@@ -32,7 +32,7 @@ public class StartScene extends FxScene {
 
   @Override
   protected String title() {
-    return "DIZTL";
+    return "Diztl";
   }
 
   @Override

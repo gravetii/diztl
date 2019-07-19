@@ -5,6 +5,8 @@
 # DIZTL
 
 <p align="center">
+<a href="https://godoc.org/github.com/gravetii/diztl"><img src="https://godoc.org/github.com/gravetii/diztl?status.svg" alt="GoDoc Reference" /></a>
+<a href="https://goreportcard.com/report/github.com/gravetii/diztl"><img src="https://goreportcard.com/badge/github.com/gravetii/diztl" alt="Go Report" /></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
 <a href="https://www.paypal.me/sandeepdasika"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="Donate" /></a>
 <a href="http://hits.dwyl.io/gravetii/diztl"><img src="http://hits.dwyl.io/gravetii/diztl.svg" alt="HitCount"/></a>
