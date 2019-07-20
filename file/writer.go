@@ -6,6 +6,7 @@ import (
 	"errors"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
@@ -18,12 +19,18 @@ type Writer struct {
 	chunks   int32
 	f        *os.File
 	buf      *bufio.Writer
+	out      string
 }
 
 // CreateWriter returns an instance of the Writer for the given file metadata.
 func CreateWriter(metadata *diztl.FileMetadata, chunks int32) (*Writer, error) {
 	fname := metadata.GetName()
-	exists, err := checkIfOutFileExists(fname)
+	out, err := dir.GetOutputDir()
+	if err != nil {
+		return nil, err
+	}
+
+	exists, err := checkIfOutFileExists(out, fname)
 	if err != nil {
 		return nil, err
 	}
@@ -40,48 +47,35 @@ func CreateWriter(metadata *diztl.FileMetadata, chunks int32) (*Writer, error) {
 
 	logger.Debugf("Created temp file for download from %s - %s\n", dir.GetFilePath(metadata), f.Name())
 	buf := bufio.NewWriter(f)
-	return &Writer{metadata, chunks, f, buf}, nil
+	return &Writer{metadata, chunks, f, buf, out}, nil
 }
 
 // checks if a file with given name is already present before starting download.
-func checkIfOutFileExists(fname string) (bool, error) {
-	fpath, err := dir.GetOutputPath(fname)
-	if err != nil {
-		return false, err
-	}
-
-	_, err = os.Stat(fpath)
+func checkIfOutFileExists(out string, fname string) (bool, error) {
+	fpath := filepath.Join(out, fname)
+	_, err := os.Stat(fpath)
 	return !os.IsNotExist(err), nil
 }
 
 // Close closes the resources held by this writer and returns the created file after verifying checksum.
-func (obj *Writer) Close() (*os.File, error) {
+func (obj *Writer) Close() error {
 	obj.buf.Flush()
 	obj.f.Close()
 	if !obj.verifyChecksum() {
 		defer os.Remove(obj.f.Name())
-		return nil, errors.New("Invalid checksum, file is probably corrupted")
+		return errors.New("Invalid checksum, file is probably corrupted")
 	}
 
 	return obj.moveToOutputDir()
 }
 
-func (obj *Writer) moveToOutputDir() (*os.File, error) {
-	fpath, err := dir.GetOutputPath(obj.metadata.GetName())
-	if err != nil {
-		return nil, err
-	}
-
+func (obj *Writer) moveToOutputDir() error {
+	fpath := filepath.Join(obj.out, obj.metadata.GetName())
 	if err := os.Rename(obj.f.Name(), fpath); err != nil {
-		return nil, err
+		return err
 	}
 
-	f, err := openFile(fpath)
-	if err != nil {
-		return nil, err
-	}
-
-	return f, nil
+	return nil
 }
 
 func (obj *Writer) verifyChecksum() bool {
