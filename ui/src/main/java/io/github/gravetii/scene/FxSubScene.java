@@ -12,11 +12,16 @@ public abstract class FxSubScene {
     this.root = new BorderPane();
   }
 
-  public Stage getStage() {
+  protected Stage getStage() {
     return stage;
   }
 
-  public BorderPane getRoot() {
+  protected BorderPane getRoot() {
+    return root;
+  }
+
+  public BorderPane show() {
+    build();
     return root;
   }
 
