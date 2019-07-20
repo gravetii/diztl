@@ -46,6 +46,13 @@ public class DownloadResultController implements FxController {
         callback -> {
           TableRow<DownloadResult> row = new TableRow<>();
           setContextMenu(row);
+          row.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+              if (!row.isEmpty()) {
+                open(row.getItem());
+              }
+            }
+          });
           return row;
         });
     setColumnWidths();
@@ -65,18 +72,21 @@ public class DownloadResultController implements FxController {
     downloadResultTbl.setContextMenu(menu);
   }
 
+  private void open(DownloadResult result) {
+    try {
+      Desktop.getDesktop().open(new File(result.getFilepath()));
+    } catch (Exception e) {
+      logger.error("Unable to open file - {}", result.getFilepath());
+    }
+  }
+
   private void setContextMenu(TableRow<DownloadResult> row) {
     ContextMenu menu = new ContextMenu();
     MenuItem openMenuItem = new MenuItem("Open");
     MenuItem removeMenuItem = new MenuItem("Remove");
     openMenuItem.setOnAction(
         event -> {
-          DownloadResult result = row.getItem();
-          try {
-            Desktop.getDesktop().open(new File(result.getFilepath()));
-          } catch (Exception e) {
-            logger.error("Unable to open file - {}", result.getFilepath());
-          }
+          open(row.getItem());
         });
     removeMenuItem.setOnAction(
         event -> {
