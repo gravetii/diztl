@@ -32,7 +32,11 @@ public class StartScene extends FxScene {
 
   @Override
   protected Optional<FxDimensions> preferredDimensions() {
-    FxDimensions dimensions = new FxDimensions(new Dimension2D(600, 750));
+    FxDimensions dimensions =
+        new FxDimensions(
+            new Dimension2D(800, 650),
+            new Dimension2D(800, 650),
+            new Dimension2D(Double.MAX_VALUE, Double.MAX_VALUE));
     return Optional.of(dimensions);
   }
 

@@ -20,7 +20,7 @@ public class StartSubScene extends FxSubScene {
 
   @Override
   protected void build() {
-    root.setTop(fileSearchComponent.getNode());
+    root.setLeft(fileSearchComponent.getNode());
     root.setCenter(resultListComponent.getNode());
     root.setBottom(downloadResultComponent.getNode());
   }
