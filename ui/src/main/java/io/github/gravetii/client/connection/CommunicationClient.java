@@ -40,7 +40,7 @@ public class CommunicationClient {
   public static void init() throws Exception {
     logger.info("Initializing communication client.");
     INSTANCE = new CommunicationClient();
-//    INSTANCE.ping();
+    //    INSTANCE.ping();
   }
 
   public static CommunicationClient get() {

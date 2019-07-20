@@ -21,8 +21,9 @@ public class UserDirsScene extends FxScene {
 
   @Override
   protected void build() {
-    root.setCenter(shareDirsComponent.getNode());
-    root.setBottom(userDirsSubmitComponent.getNode());
+    BorderPane pane = (BorderPane) root;
+    pane.setCenter(shareDirsComponent.getNode());
+    pane.setBottom(userDirsSubmitComponent.getNode());
   }
 
   @Override

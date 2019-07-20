@@ -6,23 +6,27 @@ import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
 import javafx.geometry.Dimension2D;
-import javafx.scene.layout.BorderPane;
+import javafx.geometry.Orientation;
+import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
 
 import java.util.Optional;
 
 public class StartScene extends FxScene {
-  private StartSubScene subscene;
+  private SearchResultScene searchResultScene;
+  private DownloadResultScene downloadResultScene;
 
   public StartScene(Stage stage) throws Exception {
-    super(stage, new BorderPane());
-    this.subscene = new StartSubScene(stage, this);
+    super(stage, new SplitPane());
+    searchResultScene = new SearchResultScene(stage, this);
+    downloadResultScene = new DownloadResultScene(stage);
   }
 
   @Override
   protected void build() {
-    subscene.build();
-    root.setCenter(subscene.getRoot());
+    SplitPane pane = (SplitPane) root;
+    pane.setOrientation(Orientation.VERTICAL);
+    pane.getItems().addAll(searchResultScene.show(), downloadResultScene.show());
   }
 
   @Override
@@ -42,14 +46,14 @@ public class StartScene extends FxScene {
 
   public void show(Diztl.FileMetadata file, Diztl.Node source) {
     FileResult result = new FileResult(file, source);
-    subscene.show(result);
+    searchResultScene.show(result);
   }
 
   public void reset() {
-    subscene.reset();
+    searchResultScene.reset();
   }
 
   public void show(DownloadResult result) {
-    subscene.show(result);
+    downloadResultScene.show(result);
   }
 }
