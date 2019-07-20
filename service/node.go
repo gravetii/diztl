@@ -223,7 +223,7 @@ func (s *NodeService) Download(request *diztl.DownloadReq, stream diztl.DiztlSer
 		s, err := ustream.Recv()
 		if err != nil {
 			if err == io.EOF {
-				_, serr := w.Close()
+				serr := w.Close()
 				if serr != nil {
 					return serr
 				}
