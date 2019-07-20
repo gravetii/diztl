@@ -1,14 +1,11 @@
 package io.github.gravetii.client.connection;
 
 import io.github.gravetii.client.handler.*;
-import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
 import io.github.gravetii.scene.start.StartScene;
-import io.github.gravetii.scene.userdir.UserDirsScene;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.StatusRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +37,7 @@ public class CommunicationClient {
   public static void init() throws Exception {
     logger.info("Initializing communication client.");
     INSTANCE = new CommunicationClient();
-    //    INSTANCE.ping();
+    INSTANCE.getUserDirs(true, true);
   }
 
   public static CommunicationClient get() {
@@ -67,18 +64,11 @@ public class CommunicationClient {
     new DownloadHandler(file, source, scene).process(connection);
   }
 
-  public void getUserDirs(boolean share, boolean output, UserDirsScene scene) {
-    new UserDirsHandler(scene, share, output).process(connection);
+  public void getUserDirs(boolean share, boolean output) {
+    new UserDirsHandler(share, output).process(connection);
   }
 
   public void updateUserDirs(List<String> share, String output) {
     new UpdateUserDirsHandler(share, output).process(connection);
-  }
-
-  private void ping() throws StatusRuntimeException {
-    Node node = Diztl.Node.newBuilder().setIp(ip).build();
-    Diztl.PingReq req = Diztl.PingReq.newBuilder().setSource(node).setDest(node).build();
-    Diztl.PingResp resp = connection.getStub().ping(req);
-    logger.info("Ping status code: {}", resp.getCode());
   }
 }
