@@ -7,16 +7,16 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="downloadResultTbl" layoutY="9.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="downloadResultTbl" layoutY="9.0" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
           <placeholder>
               <Label />
           </placeholder>
         <columns>
           <TableColumn fx:id="fileNameTblCol" text="File" />
           <TableColumn fx:id="statusTblCol" text="Status" />
+            <TableColumn fx:id="progressTblCol" text="Progress" />
             <TableColumn fx:id="sizeTblCol" text="Size" />
             <TableColumn fx:id="typeTblCol" text="Type" />
-            <TableColumn fx:id="progressTblCol" text="Progress" />
         </columns>
       </TableView>
    </children>
