@@ -8,6 +8,7 @@ import io.github.gravetii.scene.FxScene;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Orientation;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.util.Optional;
@@ -23,11 +24,12 @@ public class StartScene extends FxScene {
   }
 
   @Override
-  protected void build() {
+  public Region build() {
     SplitPane pane = (SplitPane) root;
     pane.setDividerPositions(0.67);
     pane.setOrientation(Orientation.VERTICAL);
-    pane.getItems().addAll(searchResultScene.show(), downloadResultScene.show());
+    pane.getItems().addAll(searchResultScene.build(), downloadResultScene.build());
+    return pane;
   }
 
   @Override

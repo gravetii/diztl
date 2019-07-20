@@ -4,6 +4,7 @@ import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
 import javafx.geometry.Dimension2D;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -20,10 +21,11 @@ public class UserDirsScene extends FxScene {
   }
 
   @Override
-  protected void build() {
+  public Region build() {
     BorderPane pane = (BorderPane) root;
     pane.setCenter(shareDirsComponent.getNode());
     pane.setBottom(userDirsSubmitComponent.getNode());
+    return pane;
   }
 
   @Override

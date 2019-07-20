@@ -15,7 +15,7 @@ public abstract class FxScene {
     this.root = root;
   }
 
-  protected abstract void build();
+  public abstract Region build();
 
   protected abstract String title();
 
@@ -28,10 +28,10 @@ public abstract class FxScene {
   }
 
   public void show() {
-    this.build();
-    Scene scene = new Scene(this.root);
+    build();
+    Scene scene = new Scene(root);
     this.stage.setScene(scene);
-    this.stage.setTitle(this.title());
+    this.stage.setTitle(title());
     this.setDimensions();
     this.stage.show();
   }
