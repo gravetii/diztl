@@ -4,11 +4,8 @@ import (
 	"bufio"
 	"bytes"
 	"errors"
-	"io"
 	"io/ioutil"
 	"os"
-
-	"gopkg.in/cheggaaa/pb.v1"
 
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
@@ -20,13 +17,7 @@ type Writer struct {
 	metadata *diztl.FileMetadata
 	chunks   int32
 	f        *os.File
-	o        *out
-}
-
-type out struct {
-	buf     *bufio.Writer
-	pbar    *pb.ProgressBar
-	mwriter io.Writer
+	buf      *bufio.Writer
 }
 
 // CreateWriter returns an instance of the Writer for the given file metadata.
@@ -48,8 +39,8 @@ func CreateWriter(metadata *diztl.FileMetadata, chunks int32) (*Writer, error) {
 	}
 
 	logger.Debugf("Created temp file for download from %s - %s\n", dir.GetFilePath(metadata), f.Name())
-	o := createOut(f, metadata)
-	return &Writer{metadata, chunks, f, o}, nil
+	buf := bufio.NewWriter(f)
+	return &Writer{metadata, chunks, f, buf}, nil
 }
 
 // checks if a file with given name is already present before starting download.
@@ -63,24 +54,9 @@ func checkIfOutFileExists(fname string) (bool, error) {
 	return !os.IsNotExist(err), nil
 }
 
-func createOut(f *os.File, metadata *diztl.FileMetadata) *out {
-	buf := bufio.NewWriter(f)
-	pbar := pb.New64(metadata.GetSize()).SetUnits(pb.U_BYTES_DEC).SetWidth(100)
-	pbar.ManualUpdate = true
-	pbar.Start()
-	mwriter := io.MultiWriter(buf, pbar)
-	o := out{buf, pbar, mwriter}
-	return &o
-}
-
-func (o *out) close() {
-	o.buf.Flush()
-	o.pbar.Finish()
-}
-
 // Close closes the resources held by this writer and returns the created file after verifying checksum.
 func (obj *Writer) Close() (*os.File, error) {
-	obj.o.close()
+	obj.buf.Flush()
 	obj.f.Close()
 	if !obj.verifyChecksum() {
 		defer os.Remove(obj.f.Name())
@@ -118,13 +94,8 @@ func (obj *Writer) verifyChecksum() bool {
 	return bytes.Equal(c, hash.Checksum)
 }
 
-func (o *out) write(data []byte) error {
-	_, err := o.mwriter.Write(data)
-	o.pbar.Update()
-	return err
-}
-
 // Write writes the given set of bytes to the underlying buffer.
 func (obj *Writer) Write(data []byte) error {
-	return obj.o.write(data)
+	_, err := obj.buf.Write(data)
+	return err
 }
