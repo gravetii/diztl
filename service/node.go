@@ -233,12 +233,12 @@ func (s *NodeService) Download(request *diztl.DownloadReq, stream diztl.DiztlSer
 		}
 
 		if s.GetChunk() == 1 {
-			w, err = file.CreateWriter(s.GetMetadata())
+			w, err = file.CreateWriter(s.GetMetadata(), s.GetChunks())
 			if err != nil {
 				return err
 			}
 
-			logger.Infof("Downloading file: %s. Prepared to receive %d chunks.\n", s.GetMetadata().GetName(), w.Chunks())
+			logger.Infof("Downloading file: %s. Prepared to receive %d chunks.\n", s.GetMetadata().GetName(), s.GetChunks())
 		}
 
 		if err := w.Write(s.GetData()); err != nil {
@@ -246,8 +246,7 @@ func (s *NodeService) Download(request *diztl.DownloadReq, stream diztl.DiztlSer
 		}
 
 		if s.GetChunk() == 1 {
-			// Send the value of total number of chunks only in the first chunk.
-			stream.Send(&diztl.DownloadChunk{Chunk: 1, Chunks: s.GetMetadata().GetChunks()})
+			stream.Send(&diztl.DownloadChunk{Chunk: 1, Chunks: s.GetChunks()})
 		} else {
 			stream.Send(&diztl.DownloadChunk{Chunk: s.GetChunk()})
 		}

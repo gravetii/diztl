@@ -18,6 +18,7 @@ import (
 // Writer - the file writer.
 type Writer struct {
 	metadata *diztl.FileMetadata
+	chunks   int32
 	f        *os.File
 	o        *out
 }
@@ -29,7 +30,7 @@ type out struct {
 }
 
 // CreateWriter returns an instance of the Writer for the given file metadata.
-func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
+func CreateWriter(metadata *diztl.FileMetadata, chunks int32) (*Writer, error) {
 	fname := metadata.GetName()
 	exists, err := checkIfOutFileExists(fname)
 	if err != nil {
@@ -48,7 +49,7 @@ func CreateWriter(metadata *diztl.FileMetadata) (*Writer, error) {
 
 	logger.Debugf("Created temp file for download from %s - %s\n", dir.GetFilePath(metadata), f.Name())
 	o := createOut(f, metadata)
-	return &Writer{metadata, f, o}, nil
+	return &Writer{metadata, chunks, f, o}, nil
 }
 
 // checks if a file with given name is already present before starting download.
@@ -126,9 +127,4 @@ func (o *out) write(data []byte) error {
 // Write writes the given set of bytes to the underlying buffer.
 func (obj *Writer) Write(data []byte) error {
 	return obj.o.write(data)
-}
-
-// Chunks returns the total number of chunks that need to be written to create the file.
-func (obj *Writer) Chunks() int32 {
-	return obj.metadata.GetChunks()
 }

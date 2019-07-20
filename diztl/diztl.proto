@@ -42,12 +42,10 @@ message FileMetadata {
     int32 id = 2;
     // Size of the file in bytes.
     int64 size = 3;
-    // Number of chunks constituting this file based on the buffer size config.
-    int32 chunks = 4;
     // Name of the file.
-    string name = 5;
+    string name = 4;
     // The hash data of the file.
-    FileHash hash = 6;
+    FileHash hash = 5;
 }
 
 message FileHash {
@@ -64,6 +62,9 @@ message FileChunk {
     bytes data = 2;
     // The chunk number of this chunk of data starting from one.
     int32 chunk = 3;
+    // The total number of chunks of this file that the receiver should
+    // expect...sent only in the first file chunk.
+    int32 chunks = 4;
 }
 
 message RegisterReq {
