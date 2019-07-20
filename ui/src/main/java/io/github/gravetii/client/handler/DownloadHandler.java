@@ -26,7 +26,7 @@ public class DownloadHandler {
   public void process(Connection connection) {
     logger.info("Downloading file from {} - {}", source.getIp(), file.getName());
     ExecutionHandler.submit(result);
-    scene.showDownloadResult(result);
+    scene.show(result);
     Diztl.DownloadReq req =
         Diztl.DownloadReq.newBuilder().setMetadata(file).setSource(source).build();
     connection.getAsyncstub().download(req, createObserver());

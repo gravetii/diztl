@@ -3,6 +3,7 @@ package io.github.gravetii.scene.userdir;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
 import javafx.geometry.Dimension2D;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -13,14 +14,15 @@ public class UserDirsScene extends FxScene {
   private UserDirsSubmitComponent userDirsSubmitComponent;
 
   public UserDirsScene(Stage stage) throws Exception {
-    super(stage);
+    super(stage, new BorderPane());
     this.shareDirsComponent = new ShareDirsComponent(stage, this);
     this.userDirsSubmitComponent = new UserDirsSubmitComponent(stage, shareDirsComponent);
   }
 
   @Override
   protected void build() {
-    this.showCenter(shareDirsComponent).showBottom(userDirsSubmitComponent);
+    root.setCenter(shareDirsComponent.getNode());
+    root.setBottom(userDirsSubmitComponent.getNode());
   }
 
   @Override
