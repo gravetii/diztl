@@ -1,5 +1,6 @@
 package io.github.gravetii.client.handler;
 
+import io.github.gravetii.AppContext;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
@@ -20,7 +21,7 @@ public class DownloadHandler {
     this.file = file;
     this.source = source;
     this.scene = scene;
-    this.result = new DownloadResult(file);
+    this.result = new DownloadResult(file, AppContext.getOutputDir());
   }
 
   public void process(Connection connection) {
@@ -37,7 +38,7 @@ public class DownloadHandler {
       @Override
       public void onNext(Diztl.DownloadChunk value) {
         if (value.getChunk() == 1) {
-          result.setChunks(value.getChunks());
+          result.first(value);
         }
 
         result.next(value.getChunk());

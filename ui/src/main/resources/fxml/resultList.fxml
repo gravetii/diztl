@@ -15,7 +15,7 @@
               <TableColumn fx:id="fileNameTblCol" text="File" />
             <TableColumn fx:id="fileTypeTblCol" minWidth="9.0" text="Type" />
               <TableColumn fx:id="fileSizeTblCol" minWidth="0.0" text="Size" />
-            <TableColumn fx:id="fileDirTblCol" text="Directory" />
+            <TableColumn fx:id="filePathTblCol" text="Path" />
           </columns>
       </TableView>
    </children>
