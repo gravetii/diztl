@@ -10,38 +10,9 @@ public abstract class FxScene {
   protected Stage stage;
   protected BorderPane root;
 
-  protected FxScene(Stage stage) {
+  protected FxScene(Stage stage, BorderPane root) {
     this.stage = stage;
-    this.root = new BorderPane();
-  }
-
-  public BorderPane getRoot() {
-    return this.root;
-  }
-
-  public FxScene showTop(FxComponent component) {
-    this.root.setTop(component.getNode());
-    return this;
-  }
-
-  public FxScene showLeft(FxComponent component) {
-    this.root.setLeft(component.getNode());
-    return this;
-  }
-
-  public FxScene showCenter(FxComponent component) {
-    this.root.setCenter(component.getNode());
-    return this;
-  }
-
-  public FxScene showRight(FxComponent component) {
-    this.root.setRight(component.getNode());
-    return this;
-  }
-
-  public FxScene showBottom(FxComponent component) {
-    this.root.setBottom(component.getNode());
-    return this;
+    this.root = root;
   }
 
   protected abstract void build();

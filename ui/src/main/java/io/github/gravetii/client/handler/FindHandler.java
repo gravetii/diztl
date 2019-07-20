@@ -34,7 +34,7 @@ public class FindHandler {
                       r.getFilesList()
                           .forEach(
                               file -> {
-                                scene.showFileResult(file, r.getNode());
+                                scene.show(file, r.getNode());
                               });
                     });
           } catch (Exception e) {
