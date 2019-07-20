@@ -33,7 +33,7 @@ public class ResultListController implements FxController {
     resultListTbl.setRowFactory(
         callback -> {
           TableRow<FileResult> row = new TableRow<>();
-          this.setContextMenu(row);
+          setContextMenu(row);
           row.setOnMouseClicked(
               event -> {
                 if (event.getClickCount() == 2) {
