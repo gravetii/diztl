@@ -2,9 +2,9 @@ package io.github.gravetii.controller.download;
 
 import io.github.gravetii.client.handler.DownloadResult;
 import io.github.gravetii.controller.FxController;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.ProgressBarTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -31,7 +31,40 @@ public class DownloadResultController implements FxController {
     typeTblCol.setCellValueFactory(new PropertyValueFactory<>("type"));
     progressTblCol.setCellValueFactory(new PropertyValueFactory<>("progress"));
     progressTblCol.setCellFactory(ProgressBarTableCell.forTableColumn());
+    downloadResultTbl.setRowFactory(
+        callback -> {
+          TableRow<DownloadResult> row = new TableRow<>();
+          setContextMenu(row);
+          return row;
+        });
     setColumnWidths();
+    setContextMenu();
+  }
+
+  private void setContextMenu() {
+    ContextMenu menu = new ContextMenu();
+    MenuItem clearMenuItem = new MenuItem("Clear");
+    clearMenuItem.disableProperty().bind(Bindings.isEmpty(downloadResultTbl.getItems()));
+    clearMenuItem.setOnAction(
+        event -> {
+          downloadResultTbl.getItems().clear();
+        });
+
+    menu.getItems().add(clearMenuItem);
+    downloadResultTbl.setContextMenu(menu);
+  }
+
+  private void setContextMenu(TableRow<DownloadResult> row) {
+    ContextMenu menu = new ContextMenu();
+    MenuItem removeMenuItem = new MenuItem("Remove");
+    removeMenuItem.setOnAction(
+        event -> {
+          downloadResultTbl.getItems().remove(row.getItem());
+        });
+
+    menu.getItems().add(removeMenuItem);
+    row.contextMenuProperty()
+        .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
   }
 
   private void setColumnWidths() {
