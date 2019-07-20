@@ -23,13 +23,8 @@ type Writer struct {
 }
 
 // CreateWriter returns an instance of the Writer for the given file metadata.
-func CreateWriter(metadata *diztl.FileMetadata, chunks int32) (*Writer, error) {
+func CreateWriter(metadata *diztl.FileMetadata, chunks int32, out string) (*Writer, error) {
 	fname := metadata.GetName()
-	out, err := dir.GetOutputDir()
-	if err != nil {
-		return nil, err
-	}
-
 	exists, err := checkIfOutFileExists(out, fname)
 	if err != nil {
 		return nil, err

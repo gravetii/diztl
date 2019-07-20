@@ -46,13 +46,14 @@ public class DownloadResultController implements FxController {
         callback -> {
           TableRow<DownloadResult> row = new TableRow<>();
           setContextMenu(row);
-          row.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
-              if (!row.isEmpty()) {
-                open(row.getItem());
-              }
-            }
-          });
+          row.setOnMouseClicked(
+              event -> {
+                if (event.getClickCount() == 2) {
+                  if (!row.isEmpty()) {
+                    open(row.getItem());
+                  }
+                }
+              });
           return row;
         });
     setColumnWidths();

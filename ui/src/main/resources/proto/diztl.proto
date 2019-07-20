@@ -117,7 +117,9 @@ message UploadReq {
 
 message DownloadReq {
     Node source = 1;
-    FileMetadata metadata = 2;
+    FileMetadata file = 2;
+    // the custom output directory, if chosen.
+    string dir = 3;
 }
 
 message DownloadChunk {
