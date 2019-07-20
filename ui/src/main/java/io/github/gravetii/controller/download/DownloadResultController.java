@@ -73,6 +73,31 @@ public class DownloadResultController implements FxController {
     downloadResultTbl.setContextMenu(menu);
   }
 
+  private void setContextMenu(TableRow<DownloadResult> row) {
+    ContextMenu menu = new ContextMenu();
+    MenuItem openMenuItem = new MenuItem("Open");
+    MenuItem showInFolderMenuItem = new MenuItem("Show in folder");
+    MenuItem removeMenuItem = new MenuItem("Remove");
+    openMenuItem.setOnAction(
+        event -> {
+          open(row.getItem());
+        });
+    showInFolderMenuItem.setOnAction(event -> {
+      showInFolder(row.getItem());
+    });
+    removeMenuItem.setOnAction(
+        event -> {
+          downloadResultTbl.getItems().remove(row.getItem());
+        });
+
+    menu.getItems().add(openMenuItem);
+    menu.getItems().add(showInFolderMenuItem);
+    menu.getItems().add(removeMenuItem);
+
+    row.contextMenuProperty()
+        .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
+  }
+
   private void open(DownloadResult result) {
     try {
       Desktop.getDesktop().open(new File(result.getFilepath()));
@@ -81,23 +106,12 @@ public class DownloadResultController implements FxController {
     }
   }
 
-  private void setContextMenu(TableRow<DownloadResult> row) {
-    ContextMenu menu = new ContextMenu();
-    MenuItem openMenuItem = new MenuItem("Open");
-    MenuItem removeMenuItem = new MenuItem("Remove");
-    openMenuItem.setOnAction(
-        event -> {
-          open(row.getItem());
-        });
-    removeMenuItem.setOnAction(
-        event -> {
-          downloadResultTbl.getItems().remove(row.getItem());
-        });
-
-    menu.getItems().add(openMenuItem);
-    menu.getItems().add(removeMenuItem);
-    row.contextMenuProperty()
-        .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
+  private void showInFolder(DownloadResult result) {
+    try {
+      Desktop.getDesktop().open(new File(result.getPath()));
+    } catch (Exception e) {
+      logger.error("Unable to open folder - {}", result.getPath());
+    }
   }
 
   private void setColumnWidths() {
