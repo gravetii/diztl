@@ -25,6 +25,7 @@ public class StartScene extends FxScene {
   @Override
   protected void build() {
     SplitPane pane = (SplitPane) root;
+    pane.setDividerPositions(0.67);
     pane.setOrientation(Orientation.VERTICAL);
     pane.getItems().addAll(searchResultScene.show(), downloadResultScene.show());
   }
