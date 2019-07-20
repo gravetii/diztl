@@ -5,13 +5,12 @@ import com.jfoenix.controls.JFXListView;
 import io.github.gravetii.AppContext;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.userdir.UserDirsScene;
+import io.github.gravetii.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.util.*;
 
 public class ShareDirsController implements FxController {
@@ -37,12 +36,9 @@ public class ShareDirsController implements FxController {
 
   @FXML
   public void addDir(ActionEvent event) {
-    DirectoryChooser chooser = new DirectoryChooser();
-    chooser.setTitle("Choose folder to share...");
-    chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-    File selectedDir = chooser.showDialog(stage);
-    if (selectedDir != null && !dirs.contains(selectedDir.getPath())) {
-      displayDirs(Collections.singletonList(selectedDir.getPath()));
+    String dir = Utils.chooseDir(stage);
+    if (dir != null && !dirs.contains(dir)) {
+      displayDirs(Collections.singletonList(dir));
     }
   }
 

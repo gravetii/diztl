@@ -3,6 +3,7 @@ package io.github.gravetii.controller.start;
 import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.start.StartScene;
+import io.github.gravetii.util.Utils;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -52,18 +53,31 @@ public class ResultListController implements FxController {
   private void setContextMenu(TableRow<FileResult> row) {
     ContextMenu menu = new ContextMenu();
     MenuItem downloadMenuItem = new MenuItem("Download");
+    MenuItem downloadToFolderMenuItem = new MenuItem("Download to...");
     downloadMenuItem.setOnAction(
         event -> {
           download(row.getItem());
         });
+    downloadToFolderMenuItem.setOnAction(
+        event -> {
+          String dir = Utils.chooseDir(stage);
+          if (dir != null) {
+            downloadToFolder(row.getItem(), dir);
+          }
+        });
 
     menu.getItems().add(downloadMenuItem);
+    menu.getItems().add(downloadToFolderMenuItem);
     row.contextMenuProperty()
         .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
   }
 
   private void download(FileResult result) {
     CommunicationClient.get().download(result.getFile(), result.getSource(), parent);
+  }
+
+  private void downloadToFolder(FileResult result, String outputDir) {
+    CommunicationClient.get().download(result.getFile(), result.getSource(), parent, outputDir);
   }
 
   private void setColumnWidths() {

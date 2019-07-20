@@ -1,6 +1,5 @@
 package io.github.gravetii.client.handler;
 
-import io.github.gravetii.AppContext;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
@@ -17,11 +16,12 @@ public class DownloadHandler {
   private StartScene scene;
   private DownloadResult result;
 
-  public DownloadHandler(Diztl.FileMetadata file, Diztl.Node source, StartScene scene) {
+  public DownloadHandler(
+      Diztl.FileMetadata file, Diztl.Node source, StartScene scene, String outputDir) {
     this.file = file;
     this.source = source;
     this.scene = scene;
-    this.result = new DownloadResult(file, AppContext.getOutputDir());
+    this.result = new DownloadResult(file, outputDir);
   }
 
   public void process(Connection connection) {
@@ -29,7 +29,11 @@ public class DownloadHandler {
     ExecutionHandler.submit(result);
     scene.show(result);
     Diztl.DownloadReq req =
-        Diztl.DownloadReq.newBuilder().setMetadata(file).setSource(source).build();
+        Diztl.DownloadReq.newBuilder()
+            .setFile(file)
+            .setSource(source)
+            .setDir(result.getPath())
+            .build();
     connection.getAsyncstub().download(req, createObserver());
   }
 

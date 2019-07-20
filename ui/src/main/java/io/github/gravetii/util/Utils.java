@@ -1,5 +1,10 @@
 package io.github.gravetii.util;
 
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
+
 public class Utils {
   public static String humanReadableByteCount(long bytes) {
     int unit = 1000;
@@ -7,5 +12,17 @@ public class Utils {
     int exp = (int) (Math.log(bytes) / Math.log(unit));
     char pre = "kMGTPE".charAt(exp - 1);
     return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
+  }
+
+  public static String chooseDir(Stage stage) {
+    DirectoryChooser chooser = new DirectoryChooser();
+    chooser.setTitle("Choose folder...");
+    chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+    File dir = chooser.showDialog(stage);
+    if (dir != null) {
+      return dir.getPath();
+    }
+
+    return null;
   }
 }

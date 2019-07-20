@@ -209,7 +209,7 @@ func (s *NodeService) Download(request *diztl.DownloadReq, stream diztl.DiztlSer
 	}
 
 	contract := &diztl.UploadContract{ChunkSize: conf.ChunkSize()}
-	r := &diztl.UploadReq{Source: request.GetSource(), Metadata: request.GetMetadata(), Contract: contract}
+	r := &diztl.UploadReq{Source: request.GetSource(), Metadata: request.GetFile(), Contract: contract}
 	ustream, err := client.Upload(c, r)
 	if err != nil {
 		logger.Errorf("Download failed due to error in sender host - %v\n", err)
@@ -233,7 +233,7 @@ func (s *NodeService) Download(request *diztl.DownloadReq, stream diztl.DiztlSer
 		}
 
 		if s.GetChunk() == 1 {
-			w, err = file.CreateWriter(s.GetMetadata(), s.GetChunks())
+			w, err = file.CreateWriter(s.GetMetadata(), s.GetChunks(), request.GetDir())
 			if err != nil {
 				return err
 			}

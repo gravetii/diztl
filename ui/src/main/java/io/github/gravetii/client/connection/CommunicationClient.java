@@ -1,5 +1,6 @@
 package io.github.gravetii.client.connection;
 
+import io.github.gravetii.AppContext;
 import io.github.gravetii.client.handler.*;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
@@ -61,7 +62,11 @@ public class CommunicationClient {
   }
 
   public void download(FileMetadata file, Node source, StartScene scene) {
-    new DownloadHandler(file, source, scene).process(connection);
+    new DownloadHandler(file, source, scene, AppContext.getOutputDir()).process(connection);
+  }
+
+  public void download(FileMetadata file, Node source, StartScene scene, String outputDir) {
+    new DownloadHandler(file, source, scene, outputDir).process(connection);
   }
 
   public void getUserDirs(boolean share, boolean output) {
