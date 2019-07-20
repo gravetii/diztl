@@ -4,7 +4,7 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
@@ -12,21 +12,21 @@
    <children>
       <JFXListView fx:id="dirsList" focusTraversable="false" prefHeight="180.0" prefWidth="592.0" showTooltip="true">
          <effect>
-            <DropShadow color="WHITE" />
+            <InnerShadow color="#a19e9e" />
          </effect>
          <HBox.margin>
-            <Insets bottom="10.0" left="10.0" top="10.0" />
+            <Insets bottom="10.0" left="30.0" top="10.0" />
          </HBox.margin></JFXListView>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <JFXButton fx:id="addBtn" alignment="CENTER" layoutX="20.0" layoutY="38.0" mnemonicParsing="false" onAction="#addDir" prefWidth="50.0" ripplerFill="#1bd79c" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="addBtn" alignment="CENTER" layoutX="25.0" layoutY="46.0" mnemonicParsing="false" onAction="#addDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="removeBtn" alignment="CENTER" layoutX="19.0" layoutY="100.0" mnemonicParsing="false" onAction="#removeDir" prefWidth="50.0" ripplerFill="#1bd79c" textAlignment="CENTER">
+            <JFXButton fx:id="removeBtn" alignment="CENTER" layoutX="24.0" layoutY="105.0" mnemonicParsing="false" onAction="#removeDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER">
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="30.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                </graphic>
             </JFXButton>
          </children>
