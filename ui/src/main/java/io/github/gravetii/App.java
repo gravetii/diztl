@@ -18,7 +18,7 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    FxScene scene = new StartScene(stage);
+    FxScene scene = new UserDirsScene(stage);
     scene.show();
   }
 
