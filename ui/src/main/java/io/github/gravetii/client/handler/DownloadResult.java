@@ -7,14 +7,16 @@ import org.apache.commons.io.FilenameUtils;
 
 public class DownloadResult extends Task<Void> {
   private Diztl.FileMetadata file;
+  private String path; // the output path of the downloaded file in the host system.
   private int chunks;
 
-  public DownloadResult(Diztl.FileMetadata file) {
+  public DownloadResult(Diztl.FileMetadata file, String path) {
     this.file = file;
+    this.path = path;
   }
 
-  public void setChunks(int chunks) {
-    this.chunks = chunks;
+  public void first(Diztl.DownloadChunk f) {
+    chunks = f.getChunks();
     updateMessage("Downloading...");
   }
 
@@ -28,6 +30,10 @@ public class DownloadResult extends Task<Void> {
 
   public String getType() {
     return FilenameUtils.getExtension(file.getName());
+  }
+
+  public String getPath() {
+    return path;
   }
 
   public void next(int chunk) {

@@ -17,6 +17,7 @@
             <TableColumn fx:id="progressTblCol" text="Progress" />
             <TableColumn fx:id="sizeTblCol" text="Size" />
             <TableColumn fx:id="typeTblCol" text="Type" />
+            <TableColumn fx:id="pathTblCol" text="Path" />
         </columns>
       </TableView>
    </children>

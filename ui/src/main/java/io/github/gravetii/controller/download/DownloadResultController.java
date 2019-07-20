@@ -18,6 +18,7 @@ public class DownloadResultController implements FxController {
   @FXML private TableColumn<DownloadResult, String> sizeTblCol;
   @FXML private TableColumn<DownloadResult, String> typeTblCol;
   @FXML private TableColumn<DownloadResult, String> statusTblCol;
+  @FXML private TableColumn<DownloadResult, String> pathTblCol;
 
   public DownloadResultController(Stage stage) {
     this.stage = stage;
@@ -29,6 +30,7 @@ public class DownloadResultController implements FxController {
     statusTblCol.setCellValueFactory(new PropertyValueFactory<>("message"));
     sizeTblCol.setCellValueFactory(new PropertyValueFactory<>("size"));
     typeTblCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+    pathTblCol.setCellValueFactory(new PropertyValueFactory<>("path"));
     progressTblCol.setCellValueFactory(new PropertyValueFactory<>("progress"));
     progressTblCol.setCellFactory(ProgressBarTableCell.forTableColumn());
     downloadResultTbl.setRowFactory(
@@ -68,11 +70,12 @@ public class DownloadResultController implements FxController {
   }
 
   private void setColumnWidths() {
-    fileNameTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.3));
-    statusTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.2));
+    fileNameTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.2));
+    statusTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.1));
     sizeTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.1));
     typeTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.1));
-    progressTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.3));
+    progressTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.2));
+    pathTblCol.prefWidthProperty().bind(downloadResultTbl.widthProperty().multiply(0.3));
   }
 
   public void show(DownloadResult result) {

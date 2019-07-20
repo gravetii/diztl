@@ -25,7 +25,7 @@ public class FileResult {
     return FilenameUtils.getExtension(file.getName());
   }
 
-  public String getDirectory() {
+  public String getPath() {
     return file.getDir();
   }
 
