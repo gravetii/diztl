@@ -5,14 +5,18 @@ import io.github.gravetii.util.Utils;
 import javafx.concurrent.Task;
 import org.apache.commons.io.FilenameUtils;
 
+import java.nio.file.Paths;
+
 public class DownloadResult extends Task<Void> {
   private Diztl.FileMetadata file;
   private String path; // the output path of the downloaded file in the host system.
   private int chunks;
+  private String filepath;
 
   public DownloadResult(Diztl.FileMetadata file, String path) {
     this.file = file;
     this.path = path;
+    this.filepath = Paths.get(path, file.getName()).toString();
   }
 
   public void first(Diztl.DownloadChunk f) {
@@ -34,6 +38,10 @@ public class DownloadResult extends Task<Void> {
 
   public String getPath() {
     return path;
+  }
+
+  public String getFilepath() {
+    return filepath;
   }
 
   public void next(int chunk) {
