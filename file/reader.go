@@ -19,6 +19,7 @@ import (
 type Reader struct {
 	buf      *bufio.Reader
 	metadata *diztl.FileMetadata
+	chunks   int32
 	contract *diztl.UploadContract
 	f        *os.File
 	chunk    *counter.Counter
@@ -34,9 +35,8 @@ func CreateReader(metadata *diztl.FileMetadata, contract *diztl.UploadContract) 
 	}
 
 	chunks := int32(math.Ceil(float64(metadata.GetSize()) / float64(contract.GetChunkSize())))
-	metadata.Chunks = chunks
 	buf := bufio.NewReader(f)
-	reader := Reader{buf, metadata, contract, f, counter.New(0)}
+	reader := Reader{buf, metadata, chunks, contract, f, counter.New(0)}
 	reader.reset()
 	return &reader, nil
 }
@@ -101,6 +101,7 @@ func (r *Reader) Read() (*diztl.FileChunk, error) {
 	fchunk := diztl.FileChunk{Chunk: c, Data: data}
 	if c == 1 {
 		fchunk.Metadata = r.metadata
+		fchunk.Chunks = r.chunks
 	}
 
 	return &fchunk, nil
