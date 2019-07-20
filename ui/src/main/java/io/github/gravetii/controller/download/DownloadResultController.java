@@ -4,12 +4,21 @@ import io.github.gravetii.client.handler.DownloadResult;
 import io.github.gravetii.controller.FxController;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ProgressBarTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.awt.*;
+import java.io.File;
 
 public class DownloadResultController implements FxController {
+  private static final Logger logger =
+      LoggerFactory.getLogger(DownloadResultController.class.getCanonicalName());
+
   private Stage stage;
 
   @FXML private TableView<DownloadResult> downloadResultTbl;
@@ -58,12 +67,23 @@ public class DownloadResultController implements FxController {
 
   private void setContextMenu(TableRow<DownloadResult> row) {
     ContextMenu menu = new ContextMenu();
+    MenuItem openMenuItem = new MenuItem("Open");
     MenuItem removeMenuItem = new MenuItem("Remove");
+    openMenuItem.setOnAction(
+        event -> {
+          DownloadResult result = row.getItem();
+          try {
+            Desktop.getDesktop().open(new File(result.getFilepath()));
+          } catch (Exception e) {
+            logger.error("Unable to open file - {}", result.getFilepath());
+          }
+        });
     removeMenuItem.setOnAction(
         event -> {
           downloadResultTbl.getItems().remove(row.getItem());
         });
 
+    menu.getItems().add(openMenuItem);
     menu.getItems().add(removeMenuItem);
     row.contextMenuProperty()
         .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
