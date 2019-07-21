@@ -9,29 +9,29 @@
 
 <AnchorPane prefHeight="411.0" prefWidth="699.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="39.0" layoutY="14.0" prefHeight="17.0" prefWidth="133.0" text="Share directories -" />
-      <JFXListView fx:id="shareDirsList" focusTraversable="false" layoutX="39.0" layoutY="48.0" prefHeight="132.0" prefWidth="489.0" showTooltip="true" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="171.0" AnchorPane.topAnchor="48.0">
+      <Label layoutX="39.0" layoutY="21.0" prefHeight="17.0" prefWidth="133.0" text="Share directories -" />
+      <JFXListView fx:id="shareDirsList" focusTraversable="false" layoutX="39.0" layoutY="54.0" prefHeight="167.0" prefWidth="524.0" showTooltip="true" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="54.0">
          <effect>
             <InnerShadow color="#a19e9e" />
          </effect>
       </JFXListView>
-      <AnchorPane layoutX="540.0" layoutY="86.0" prefHeight="92.0" prefWidth="46.0" AnchorPane.bottomAnchor="166.0" AnchorPane.leftAnchor="540.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="86.0">
-         <children>
-            <JFXButton fx:id="addBtn" alignment="CENTER" mnemonicParsing="false" onAction="#addDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="removeBtn" alignment="CENTER" layoutY="53.0" mnemonicParsing="false" onAction="#removeDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-               </graphic>
-            </JFXButton>
-         </children>
-      </AnchorPane>
-      <Label layoutX="43.0" layoutY="293.0" prefHeight="17.0" prefWidth="125.0" text="Output directory -" />
-      <Label fx:id="outputDir" layoutX="39.0" layoutY="280.0" prefHeight="17.0" prefWidth="489.0" AnchorPane.bottomAnchor="35.0" />
-      <JFXButton fx:id="folderBtn" layoutX="540.0" layoutY="275.0" mnemonicParsing="false" onAction="#updateDir" ripplerFill="#1bd79c" AnchorPane.bottomAnchor="30.0">
+      <JFXButton fx:id="addBtn" alignment="CENTER" layoutX="602.0" layoutY="90.0" mnemonicParsing="false" onAction="#addDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="51.0">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="removeBtn" alignment="CENTER" layoutX="602.0" layoutY="147.0" mnemonicParsing="false" onAction="#removeDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER" AnchorPane.rightAnchor="51.0">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+         </graphic>
+      </JFXButton>
+      <Label layoutX="39.0" layoutY="262.0" prefHeight="17.0" prefWidth="125.0" text="Output directory -" />
+      <JFXListView fx:id="outputDir" layoutX="39.0" layoutY="300.0" prefHeight="36.0" prefWidth="476.0">
+         <effect>
+            <InnerShadow color="#a19e9e" />
+         </effect>
+      </JFXListView>
+      <JFXButton fx:id="folderBtn" layoutX="600.0" layoutY="306.0" mnemonicParsing="false" onAction="#updateDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="51.0">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="FOLDER" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </graphic>
