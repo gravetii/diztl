@@ -7,9 +7,9 @@ import javafx.stage.Stage;
 
 public class UserDirsSubmitComponent extends FxComponent<UserDirsSubmitController, AnchorPane> {
   private Stage stage;
-  private ShareDirsComponent ref;
+  private UserDirsComponent ref;
 
-  protected UserDirsSubmitComponent(Stage stage, ShareDirsComponent ref) throws Exception {
+  protected UserDirsSubmitComponent(Stage stage, UserDirsComponent ref) throws Exception {
     super("submitButtons.fxml");
     this.stage = stage;
     this.ref = ref;
