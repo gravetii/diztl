@@ -12,7 +12,7 @@ import (
 // GetShareDirs returns the user-configured share directories on this node.
 func GetShareDirs() ([]string, error) {
 	for _, dir := range conf.ShareDirs() {
-		if err := ensure(dir); err != nil {
+		if err := Ensure(dir); err != nil {
 			return nil, errors.New("Could not ensure share directories exist - " + err.Error())
 		}
 	}
@@ -22,36 +22,26 @@ func GetShareDirs() ([]string, error) {
 
 // GetOutputDir returns the user-configured output directory on this node.
 func GetOutputDir() (string, error) {
-	if err := ensure(conf.OutputDir()); err != nil {
-		return "", errors.New("Could not ensure output directory exists - " + err.Error())
+	if err := Ensure(conf.OutputDir()); err != nil {
+		return "", err
 	}
 
 	return conf.OutputDir(), nil
 }
 
-// GetOutputPath : Returns the user-configured output path for the file with given name
-// or an error if any.
-func GetOutputPath(fname string) (string, error) {
-	outputDir, err := GetOutputDir()
-	if err != nil {
-		return "", err
-	}
-
-	return filepath.Join(outputDir, fname), nil
-}
-
 // GetLogPath returns the path to the logger file or an error if any.
 func GetLogPath(fname string) (string, error) {
-	if err := ensure(conf.AppDir()); err != nil {
-		return "", errors.New("Could not ensure app directory exists - " + err.Error())
+	if err := Ensure(conf.AppDir()); err != nil {
+		return "", err
 	}
 
 	return filepath.Join(conf.AppDir(), fname), nil
 }
 
-func ensure(dir string) error {
+// Ensure checks if the given directory exists in the file-system; creates it if not.
+func Ensure(dir string) error {
 	if err := os.MkdirAll(dir, os.ModePerm); err != nil {
-		return err
+		return errors.New("Couldn't ensure that directory exists - " + err.Error())
 	}
 
 	return nil
