@@ -3,17 +3,18 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="200.0" prefWidth="650.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="300.0" prefWidth="699.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXListView fx:id="dirsList" focusTraversable="false" layoutX="39.0" layoutY="28.0" prefHeight="166.0" prefWidth="489.0" showTooltip="true" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="171.0" AnchorPane.topAnchor="28.0">
+      <JFXListView fx:id="shareDirsList" focusTraversable="false" layoutX="39.0" layoutY="37.0" prefHeight="165.0" prefWidth="489.0" showTooltip="true" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="171.0" AnchorPane.topAnchor="37.0">
          <effect>
             <InnerShadow color="#a19e9e" />
          </effect>
       </JFXListView>
-      <AnchorPane layoutX="540.0" layoutY="86.0" prefHeight="80.0" prefWidth="47.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="540.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="86.0">
+      <AnchorPane layoutX="540.0" layoutY="86.0" prefHeight="92.0" prefWidth="46.0" AnchorPane.bottomAnchor="166.0" AnchorPane.leftAnchor="540.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="86.0">
          <children>
             <JFXButton fx:id="addBtn" alignment="CENTER" mnemonicParsing="false" onAction="#addDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER" textFill="WHITE">
                <graphic>
@@ -27,5 +28,11 @@
             </JFXButton>
          </children>
       </AnchorPane>
+      <Label fx:id="outputDir" layoutX="39.0" layoutY="262.0" prefHeight="17.0" prefWidth="489.0" AnchorPane.bottomAnchor="53.0" />
+      <JFXButton fx:id="folderBtn" layoutX="540.0" layoutY="257.0" mnemonicParsing="false" onAction="#updateDir" ripplerFill="#1bd79c" AnchorPane.bottomAnchor="48.0">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="FOLDER" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

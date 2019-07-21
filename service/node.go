@@ -281,6 +281,7 @@ func (s *NodeService) GetUserDirs(ctx context.Context, request *diztl.UserDirsRe
 func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateUserDirsReq) (*diztl.UpdateUserDirsResp, error) {
 	logger.Infof("Received UpdateUserDirs call: %v\n", request)
 	conf.UpdateShareDirs(request.GetShare())
+	conf.UpdateOutputDir(request.GetOutput())
 	logger.Infof("Finished updating user share dirs\n")
 	resp := diztl.UpdateUserDirsResp{Message: "Finished updating user share dirs"}
 	return &resp, nil
