@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="50.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="90.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <JFXButton fx:id="okBtn" buttonType="RAISED" defaultButton="true" layoutX="109.0" layoutY="9.0" mnemonicParsing="false" onAction="#ok" prefHeight="35.0" prefWidth="106.0" ripplerFill="#1bd79c" styleClass="okBtn" text="OK" textAlignment="CENTER" AnchorPane.topAnchor="4.0">
          <font>

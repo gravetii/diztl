@@ -36,7 +36,7 @@ public class UserDirsScene extends FxScene {
   protected Optional<FxDimensions> preferredDimensions() {
     FxDimensions dimensions =
         new FxDimensions(
-            new Dimension2D(650, 460), new Dimension2D(650, 460), new Dimension2D(650, 460));
+            new Dimension2D(650, 520), new Dimension2D(650, 520), new Dimension2D(650, 520));
     return Optional.of(dimensions);
   }
 }

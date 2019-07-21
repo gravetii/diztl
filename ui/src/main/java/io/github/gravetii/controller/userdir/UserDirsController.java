@@ -21,7 +21,7 @@ public class UserDirsController implements FxController {
   @FXML private JFXListView<Label> shareDirsList;
   @FXML private JFXButton addBtn;
   @FXML private JFXButton removeBtn;
-  @FXML private Label outputDir;
+  @FXML private JFXListView<Label> outputDir;
   @FXML private JFXButton folderBtn;
 
   public UserDirsController(Stage stage, UserDirsScene parent) {
@@ -66,7 +66,8 @@ public class UserDirsController implements FxController {
   }
 
   public void displayOutputDir(String dir) {
-    outputDir.setText(dir);
+    outputDir.getItems().clear();
+    outputDir.getItems().add(new Label(dir));
   }
 
   public List<String> getShareDirs() {
@@ -82,6 +83,6 @@ public class UserDirsController implements FxController {
   }
 
   public String getOutputDir() {
-    return outputDir.getText();
+    return outputDir.getItems().get(0).getText();
   }
 }
