@@ -10,19 +10,19 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public class UserDirsScene extends FxScene {
-  private ShareDirsComponent shareDirsComponent;
+  private UserDirsComponent userDirsComponent;
   private UserDirsSubmitComponent userDirsSubmitComponent;
 
   public UserDirsScene(Stage stage) throws Exception {
     super(stage, new BorderPane());
-    this.shareDirsComponent = new ShareDirsComponent(stage, this);
-    this.userDirsSubmitComponent = new UserDirsSubmitComponent(stage, shareDirsComponent);
+    this.userDirsComponent = new UserDirsComponent(stage, this);
+    this.userDirsSubmitComponent = new UserDirsSubmitComponent(stage, userDirsComponent);
   }
 
   @Override
   public Region build() {
     BorderPane pane = (BorderPane) root;
-    pane.setCenter(shareDirsComponent.getNode());
+    pane.setCenter(userDirsComponent.getNode());
     pane.setBottom(userDirsSubmitComponent.getNode());
     return pane;
   }
@@ -36,7 +36,7 @@ public class UserDirsScene extends FxScene {
   protected Optional<FxDimensions> preferredDimensions() {
     FxDimensions dimensions =
         new FxDimensions(
-            new Dimension2D(620, 460), new Dimension2D(620, 460), new Dimension2D(620, 460));
+            new Dimension2D(650, 460), new Dimension2D(650, 460), new Dimension2D(650, 460));
     return Optional.of(dimensions);
   }
 }

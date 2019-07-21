@@ -7,9 +7,10 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="300.0" prefWidth="699.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="411.0" prefWidth="699.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXListView fx:id="shareDirsList" focusTraversable="false" layoutX="39.0" layoutY="37.0" prefHeight="165.0" prefWidth="489.0" showTooltip="true" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="171.0" AnchorPane.topAnchor="37.0">
+      <Label layoutX="39.0" layoutY="14.0" prefHeight="17.0" prefWidth="133.0" text="Share directories -" />
+      <JFXListView fx:id="shareDirsList" focusTraversable="false" layoutX="39.0" layoutY="48.0" prefHeight="132.0" prefWidth="489.0" showTooltip="true" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="171.0" AnchorPane.topAnchor="48.0">
          <effect>
             <InnerShadow color="#a19e9e" />
          </effect>
@@ -28,8 +29,9 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <Label fx:id="outputDir" layoutX="39.0" layoutY="262.0" prefHeight="17.0" prefWidth="489.0" AnchorPane.bottomAnchor="53.0" />
-      <JFXButton fx:id="folderBtn" layoutX="540.0" layoutY="257.0" mnemonicParsing="false" onAction="#updateDir" ripplerFill="#1bd79c" AnchorPane.bottomAnchor="48.0">
+      <Label layoutX="43.0" layoutY="293.0" prefHeight="17.0" prefWidth="125.0" text="Output directory -" />
+      <Label fx:id="outputDir" layoutX="39.0" layoutY="280.0" prefHeight="17.0" prefWidth="489.0" AnchorPane.bottomAnchor="35.0" />
+      <JFXButton fx:id="folderBtn" layoutX="540.0" layoutY="275.0" mnemonicParsing="false" onAction="#updateDir" ripplerFill="#1bd79c" AnchorPane.bottomAnchor="30.0">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="FOLDER" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </graphic>
