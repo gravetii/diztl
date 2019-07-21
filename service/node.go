@@ -38,11 +38,6 @@ func NewNode() *NodeService {
 // Init performs the necessary initialisation when the service comes up for the first time.
 func (s *NodeService) Init() error {
 	logger.Debugf("Initialising node service...\n")
-	if err := s.Indexer.Index(); err != nil {
-		logger.Errorf("Error while indexing files: %v", err)
-		return err
-	}
-
 	s.nk = keeper.New()
 	s.connectToTracker()
 	s.register()
@@ -275,4 +270,22 @@ func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateU
 	logger.Infof("Finished updating user share dirs\n")
 	resp := diztl.UpdateUserDirsResp{Message: "Finished updating user share dirs"}
 	return &resp, nil
+}
+
+// Index indexes all the files in the shared directories.
+func (s *NodeService) Index(request *diztl.IndexReq, stream diztl.DiztlService_IndexServer) error {
+	logger.Infof("Received Index request: %v\n", request)
+	paths := make(chan string)
+	go func() {
+		for p := range paths {
+			stream.Send(&diztl.IndexResp{Fpath: p})
+		}
+	}()
+
+	if err := s.Indexer.Index(paths); err != nil {
+		logger.Errorf("Error while indexing files: %v", err)
+		return err
+	}
+
+	return nil
 }

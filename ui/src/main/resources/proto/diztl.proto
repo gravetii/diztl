@@ -17,6 +17,8 @@ service DiztlService {
     }
     rpc UpdateUserDirs(UpdateUserDirsReq) returns (UpdateUserDirsResp) {
     }
+    rpc Index(IndexReq) returns (stream IndexResp) {
+    }
 }
 
 service TrackerService {
@@ -164,4 +166,12 @@ message UpdateUserDirsReq {
 
 message UpdateUserDirsResp {
     string message = 1;
+}
+
+message IndexReq {
+
+}
+
+message IndexResp {
+    string fpath = 1;
 }

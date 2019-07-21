@@ -32,7 +32,9 @@ public class UserDirsController implements FxController {
 
   @FXML
   public void initialize() {
-    removeBtn.disableProperty().bind(shareDirsList.getSelectionModel().selectedItemProperty().isNull());
+    removeBtn
+        .disableProperty()
+        .bind(shareDirsList.getSelectionModel().selectedItemProperty().isNull());
     displayShareDirs(AppContext.getShareDirs());
     displayOutputDir(AppContext.getOutputDir());
   }

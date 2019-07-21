@@ -22,6 +22,7 @@ public final class DiztlServiceGrpc {
   private static final int METHODID_DOWNLOAD = 4;
   private static final int METHODID_GET_USER_DIRS = 5;
   private static final int METHODID_UPDATE_USER_DIRS = 6;
+  private static final int METHODID_INDEX = 7;
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<
           io.github.gravetii.gen.Diztl.SearchReq, io.github.gravetii.gen.Diztl.SearchResp>
@@ -45,6 +46,9 @@ public final class DiztlServiceGrpc {
           io.github.gravetii.gen.Diztl.UpdateUserDirsReq,
           io.github.gravetii.gen.Diztl.UpdateUserDirsResp>
       getUpdateUserDirsMethod;
+  private static volatile io.grpc.MethodDescriptor<
+          io.github.gravetii.gen.Diztl.IndexReq, io.github.gravetii.gen.Diztl.IndexResp>
+      getIndexMethod;
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
   private DiztlServiceGrpc() {}
@@ -309,6 +313,43 @@ public final class DiztlServiceGrpc {
     return getUpdateUserDirsMethod;
   }
 
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Index",
+      requestType = io.github.gravetii.gen.Diztl.IndexReq.class,
+      responseType = io.github.gravetii.gen.Diztl.IndexResp.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<
+          io.github.gravetii.gen.Diztl.IndexReq, io.github.gravetii.gen.Diztl.IndexResp>
+      getIndexMethod() {
+    io.grpc.MethodDescriptor<
+            io.github.gravetii.gen.Diztl.IndexReq, io.github.gravetii.gen.Diztl.IndexResp>
+        getIndexMethod;
+    if ((getIndexMethod = DiztlServiceGrpc.getIndexMethod) == null) {
+      synchronized (DiztlServiceGrpc.class) {
+        if ((getIndexMethod = DiztlServiceGrpc.getIndexMethod) == null) {
+          DiztlServiceGrpc.getIndexMethod =
+              getIndexMethod =
+                  io.grpc.MethodDescriptor
+                      .<io.github.gravetii.gen.Diztl.IndexReq,
+                          io.github.gravetii.gen.Diztl.IndexResp>
+                          newBuilder()
+                      .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+                      .setFullMethodName(generateFullMethodName("DiztlService", "Index"))
+                      .setSampledToLocalTracing(true)
+                      .setRequestMarshaller(
+                          io.grpc.protobuf.ProtoUtils.marshaller(
+                              io.github.gravetii.gen.Diztl.IndexReq.getDefaultInstance()))
+                      .setResponseMarshaller(
+                          io.grpc.protobuf.ProtoUtils.marshaller(
+                              io.github.gravetii.gen.Diztl.IndexResp.getDefaultInstance()))
+                      .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Index"))
+                      .build();
+        }
+      }
+    }
+    return getIndexMethod;
+  }
+
   /** Creates a new async stub that supports all call types for the service */
   public static DiztlServiceStub newStub(io.grpc.Channel channel) {
     return new DiztlServiceStub(channel);
@@ -343,6 +384,7 @@ public final class DiztlServiceGrpc {
                       .addMethod(getDownloadMethod())
                       .addMethod(getGetUserDirsMethod())
                       .addMethod(getUpdateUserDirsMethod())
+                      .addMethod(getIndexMethod())
                       .build();
         }
       }
@@ -403,6 +445,13 @@ public final class DiztlServiceGrpc {
       asyncUnimplementedUnaryCall(getUpdateUserDirsMethod(), responseObserver);
     }
 
+    /** */
+    public void index(
+        io.github.gravetii.gen.Diztl.IndexReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.IndexResp> responseObserver) {
+      asyncUnimplementedUnaryCall(getIndexMethod(), responseObserver);
+    }
+
     @java.lang.Override
     public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
@@ -449,6 +498,12 @@ public final class DiztlServiceGrpc {
                       io.github.gravetii.gen.Diztl.UpdateUserDirsReq,
                       io.github.gravetii.gen.Diztl.UpdateUserDirsResp>(
                       this, METHODID_UPDATE_USER_DIRS)))
+          .addMethod(
+              getIndexMethod(),
+              asyncServerStreamingCall(
+                  new MethodHandlers<
+                      io.github.gravetii.gen.Diztl.IndexReq,
+                      io.github.gravetii.gen.Diztl.IndexResp>(this, METHODID_INDEX)))
           .build();
     }
   }
@@ -528,6 +583,14 @@ public final class DiztlServiceGrpc {
           request,
           responseObserver);
     }
+
+    /** */
+    public void index(
+        io.github.gravetii.gen.Diztl.IndexReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.IndexResp> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(getIndexMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /** */
@@ -589,6 +652,12 @@ public final class DiztlServiceGrpc {
     public io.github.gravetii.gen.Diztl.UpdateUserDirsResp updateUserDirs(
         io.github.gravetii.gen.Diztl.UpdateUserDirsReq request) {
       return blockingUnaryCall(getChannel(), getUpdateUserDirsMethod(), getCallOptions(), request);
+    }
+
+    /** */
+    public java.util.Iterator<io.github.gravetii.gen.Diztl.IndexResp> index(
+        io.github.gravetii.gen.Diztl.IndexReq request) {
+      return blockingServerStreamingCall(getChannel(), getIndexMethod(), getCallOptions(), request);
     }
   }
 
@@ -702,6 +771,12 @@ public final class DiztlServiceGrpc {
           serviceImpl.updateUserDirs(
               (io.github.gravetii.gen.Diztl.UpdateUserDirsReq) request,
               (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.UpdateUserDirsResp>)
+                  responseObserver);
+          break;
+        case METHODID_INDEX:
+          serviceImpl.index(
+              (io.github.gravetii.gen.Diztl.IndexReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.IndexResp>)
                   responseObserver);
           break;
         default:
