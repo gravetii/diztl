@@ -29,7 +29,6 @@ type conf struct {
 	Dir           dir                      `yaml:"dir"`
 	Timeout       map[string]time.Duration `yaml:"timeout"`
 	ChunkSize     int32                    `yaml:"chunkSize"`
-	UseWatcher    bool                     `yaml:"useWatcher"`
 	BannerFont    string                   `yaml:"bannerFont"`
 	LogLevel      string                   `yaml:"logLevel"`
 }
@@ -178,11 +177,6 @@ func NodeConnectTimeout() time.Duration {
 // ChunkSize returns the size of each chunk of a file.
 func ChunkSize() int32 {
 	return config.ChunkSize
-}
-
-// UseWatcher is a boolean flag that determines if we should use the file-watcher to watch for new/deleted files
-func UseWatcher() bool {
-	return config.UseWatcher
 }
 
 // BannerFont is the font to use for the welcome banner string that's displayed when a node joins the network.
