@@ -27,8 +27,6 @@ timeout:
 
 chunkSize: 524288 #1024*512
 
-useWatcher: false
-
 # Check the available list of fonts here: https://github.com/gravetii/go-figure/tree/master/fonts.
 bannerFont: "starwars"
 

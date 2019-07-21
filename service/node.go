@@ -30,11 +30,7 @@ type NodeService struct {
 
 // NewNode returns an instance of the Node Service.
 func NewNode() *NodeService {
-	f, err := indexer.NewFileIndexer()
-	if err != nil {
-		logger.Errorf("Error while instantiating node - %v\n", err)
-	}
-
+	f := indexer.NewFileIndexer()
 	s := &NodeService{Indexer: f}
 	return s
 }
@@ -108,12 +104,6 @@ func (s *NodeService) disconnectFromTracker() error {
 
 // OnShutdown defines actions to perform on node shutdown.
 func (s *NodeService) OnShutdown() {
-	if err := s.Indexer.Close(); err != nil {
-		logger.Errorf("Error while closing file watcher: %v\n", err)
-	} else {
-		logger.Infof("Closed file watcher successfully.\n")
-	}
-
 	s.nk.Close()
 	s.disconnectFromTracker()
 	os.Exit(0)
