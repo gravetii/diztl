@@ -13,16 +13,18 @@ import javafx.stage.Stage;
 
 import java.util.*;
 
-public class ShareDirsController implements FxController {
+public class UserDirsController implements FxController {
   private Stage stage;
   private UserDirsScene parent;
   private Set<String> dirs;
 
-  @FXML private JFXListView<Label> dirsList;
+  @FXML private JFXListView<Label> shareDirsList;
   @FXML private JFXButton addBtn;
   @FXML private JFXButton removeBtn;
+  @FXML private Label outputDir;
+  @FXML private JFXButton folderBtn;
 
-  public ShareDirsController(Stage stage, UserDirsScene parent) {
+  public UserDirsController(Stage stage, UserDirsScene parent) {
     this.stage = stage;
     this.parent = parent;
     this.dirs = new HashSet<>();
@@ -30,39 +32,56 @@ public class ShareDirsController implements FxController {
 
   @FXML
   public void initialize() {
-    removeBtn.disableProperty().bind(dirsList.getSelectionModel().selectedItemProperty().isNull());
-    displayDirs(AppContext.getShareDirs());
+    removeBtn.disableProperty().bind(shareDirsList.getSelectionModel().selectedItemProperty().isNull());
+    displayShareDirs(AppContext.getShareDirs());
+    displayOutputDir(AppContext.getOutputDir());
   }
 
   @FXML
   public void addDir(ActionEvent event) {
     String dir = Utils.chooseDir(stage);
     if (dir != null && !dirs.contains(dir)) {
-      displayDirs(Collections.singletonList(dir));
+      displayShareDirs(Collections.singletonList(dir));
     }
   }
 
   @FXML
   public void removeDir(ActionEvent event) {
-    List<Label> selectedItems = dirsList.getSelectionModel().getSelectedItems();
+    List<Label> selectedItems = shareDirsList.getSelectionModel().getSelectedItems();
     if (selectedItems.size() != dirs.size()) {
       selectedItems.forEach(
           item -> {
-            dirsList.getItems().remove(item);
+            shareDirsList.getItems().remove(item);
             dirs.remove(item.getText());
           });
     }
   }
 
-  public void displayDirs(List<String> dirs) {
+  public void displayShareDirs(List<String> dirs) {
     dirs.forEach(
         dir -> {
-          dirsList.getItems().add(new Label(dir));
+          shareDirsList.getItems().add(new Label(dir));
           this.dirs.add(dir);
         });
   }
 
-  public List<String> getFinalDirs() {
+  public void displayOutputDir(String dir) {
+    outputDir.setText(dir);
+  }
+
+  public List<String> getShareDirs() {
     return new ArrayList<>(dirs);
+  }
+
+  @FXML
+  public void updateDir(ActionEvent event) {
+    String dir = Utils.chooseDir(stage);
+    if (dir != null) {
+      displayOutputDir(dir);
+    }
+  }
+
+  public String getOutputDir() {
+    return outputDir.getText();
   }
 }

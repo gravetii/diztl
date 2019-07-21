@@ -12,21 +12,23 @@ import java.util.List;
 
 public class UserDirsSubmitController implements FxController {
   private Stage stage;
-  private ShareDirsController ref;
+  private UserDirsController ref;
 
   @FXML private JFXButton okBtn;
   @FXML private JFXButton cancelBtn;
 
-  public UserDirsSubmitController(Stage stage, ShareDirsController ref) {
+  public UserDirsSubmitController(Stage stage, UserDirsController ref) {
     this.stage = stage;
     this.ref = ref;
   }
 
   @FXML
   public void ok(ActionEvent event) {
-    List<String> shareDirs = this.ref.getFinalDirs();
+    List<String> shareDirs = ref.getShareDirs();
+    String outputDir = ref.getOutputDir();
     AppContext.updateShareDirs(shareDirs);
-    CommunicationClient.get().updateUserDirs(shareDirs, "");
+    AppContext.updateOutputDir(outputDir);
+    CommunicationClient.get().updateUserDirs(shareDirs, outputDir);
     stage.close();
   }
 
