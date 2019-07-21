@@ -76,4 +76,8 @@ public class CommunicationClient {
   public void updateUserDirs(List<String> share, String output) {
     new UpdateUserDirsHandler(share, output).process(connection);
   }
+
+  public void index(StartScene scene) {
+    new FileIndexHandler(scene).process(connection);
+  }
 }

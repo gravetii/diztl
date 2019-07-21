@@ -82,9 +82,10 @@ public class DownloadResultController implements FxController {
         event -> {
           open(row.getItem());
         });
-    showInFolderMenuItem.setOnAction(event -> {
-      showInFolder(row.getItem());
-    });
+    showInFolderMenuItem.setOnAction(
+        event -> {
+          showInFolder(row.getItem());
+        });
     removeMenuItem.setOnAction(
         event -> {
           downloadResultTbl.getItems().remove(row.getItem());

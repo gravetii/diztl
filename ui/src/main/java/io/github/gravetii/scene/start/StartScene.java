@@ -59,4 +59,8 @@ public class StartScene extends FxScene {
   public void show(DownloadResult result) {
     downloadResultScene.show(result);
   }
+
+  public void showFooter(String text) {
+    downloadResultScene.showFooter(text);
+  }
 }

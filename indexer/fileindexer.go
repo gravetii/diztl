@@ -21,9 +21,9 @@ func NewFileIndexer() *FileIndexer {
 
 // Index indexes all the files in the user-configured shared folders,
 // making them available for discovery by peers.
-func (f *FileIndexer) Index() error {
+func (f *FileIndexer) Index(paths chan string) error {
 	logger.Debugf("Started file indexing process.\n")
-	if err := f.dirwalk(); err != nil {
+	if err := f.dirwalk(paths); err != nil {
 		return err
 	}
 
@@ -31,26 +31,32 @@ func (f *FileIndexer) Index() error {
 	return nil
 }
 
-func (f *FileIndexer) dirwalk() error {
+func (f *FileIndexer) dirwalk(paths chan string) error {
 	dirs, err := dir.GetShareDirs()
 	if err != nil {
 		return err
 	}
 
 	for _, dir := range dirs {
-		if err := f.filewalk(dir); err != nil {
+		if err := f.filewalk(dir, paths); err != nil {
 			return err
 		}
 	}
 
+	close(paths)
 	return nil
 }
 
 // Performs a recursive file walk of the given directory path.
-func (f *FileIndexer) filewalk(dir string) error {
+func (f *FileIndexer) filewalk(dir string, paths chan string) error {
 	logger.Debugf("Performing filewalk for dir %s\n", dir)
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
-		return f.add(path, info)
+		if !info.IsDir() {
+			f.add(path, info)
+			paths <- path
+		}
+
+		return nil
 	})
 
 	if err != nil {
@@ -65,12 +71,10 @@ func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
 	return f.index.search(pattern)
 }
 
-func (f *FileIndexer) add(path string, info os.FileInfo) error {
+func (f *FileIndexer) add(path string, info os.FileInfo) {
 	if !info.IsDir() {
 		f.index.addFile(path, info)
 	}
-
-	return nil
 }
 
 func (f *FileIndexer) remove(path string) error {
