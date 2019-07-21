@@ -47,6 +47,10 @@ func CreateWriter(metadata *diztl.FileMetadata, chunks int32, out string) (*Writ
 
 // checks if a file with given name is already present before starting download.
 func checkIfOutFileExists(out string, fname string) (bool, error) {
+	if err := dir.Ensure(out); err != nil {
+		return false, err
+	}
+
 	fpath := filepath.Join(out, fname)
 	_, err := os.Stat(fpath)
 	return !os.IsNotExist(err), nil
@@ -65,6 +69,10 @@ func (obj *Writer) Close() error {
 }
 
 func (obj *Writer) moveToOutputDir() error {
+	if err := dir.Ensure(obj.out); err != nil {
+		return err
+	}
+
 	fpath := filepath.Join(obj.out, obj.metadata.GetName())
 	if err := os.Rename(obj.f.Name(), fpath); err != nil {
 		return err
