@@ -19,6 +19,8 @@ service DiztlService {
     }
     rpc Index(IndexReq) returns (stream IndexResp) {
     }
+    rpc Register(RegisterReq) returns (RegisterResp) {
+    }
 }
 
 service TrackerService {
@@ -70,11 +72,12 @@ message FileChunk {
 }
 
 message RegisterReq {
-    Node node = 1;
+    Node self = 1;
+    Node tracker = 2;
 }
 
 message RegisterResp {
-    Node node = 1;
+    Node self = 1;
 }
 
 message SearchReq {

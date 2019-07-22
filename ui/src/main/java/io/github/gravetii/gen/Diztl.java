@@ -109,44 +109,45 @@ public final class Diztl {
           + "sh\030\005 \001(\0132\t.FileHash\"(\n\010FileHash\022\020\n\010check"
           + "sum\030\001 \001(\014\022\n\n\002ts\030\002 \001(\003\"Y\n\tFileChunk\022\037\n\010me"
           + "tadata\030\001 \001(\0132\r.FileMetadata\022\014\n\004data\030\002 \001("
-          + "\014\022\r\n\005chunk\030\003 \001(\005\022\016\n\006chunks\030\004 \001(\005\"\"\n\013Regi"
-          + "sterReq\022\023\n\004node\030\001 \001(\0132\005.Node\"#\n\014Register"
-          + "Resp\022\023\n\004node\030\001 \001(\0132\005.Node\"4\n\tSearchReq\022\020"
-          + "\n\010filename\030\001 \001(\t\022\025\n\006source\030\002 \001(\0132\005.Node\""
-          + "?\n\nSearchResp\022\034\n\005files\030\001 \003(\0132\r.FileMetad"
-          + "ata\022\023\n\004node\030\002 \001(\0132\005.Node\"\032\n\007FindReq\022\017\n\007p"
-          + "attern\030\001 \001(\t\"*\n\010FindResp\022\036\n\tresponses\030\001 "
-          + "\003(\0132\013.SearchResp\"#\n\016UploadContract\022\021\n\tch"
-          + "unkSize\030\001 \001(\005\"f\n\tUploadReq\022\025\n\006source\030\001 \001"
-          + "(\0132\005.Node\022\037\n\010metadata\030\002 \001(\0132\r.FileMetada"
-          + "ta\022!\n\010contract\030\003 \001(\0132\017.UploadContract\"N\n"
-          + "\013DownloadReq\022\025\n\006source\030\001 \001(\0132\005.Node\022\033\n\004f"
-          + "ile\030\002 \001(\0132\r.FileMetadata\022\013\n\003dir\030\003 \001(\t\".\n"
-          + "\rDownloadChunk\022\016\n\006chunks\030\001 \001(\005\022\r\n\005chunk\030"
-          + "\002 \001(\005\"$\n\rDisconnectReq\022\023\n\004node\030\001 \001(\0132\005.N"
-          + "ode\"!\n\016DisconnectResp\022\017\n\007message\030\001 \001(\t\"5"
-          + "\n\007PingReq\022\025\n\006source\030\001 \001(\0132\005.Node\022\023\n\004dest"
-          + "\030\002 \001(\0132\005.Node\")\n\010PingResp\022\014\n\004code\030\001 \001(\005\022"
-          + "\017\n\007message\030\002 \001(\t\",\n\013UserDirsReq\022\r\n\005share"
-          + "\030\001 \001(\010\022\016\n\006output\030\002 \001(\010\"-\n\014UserDirsResp\022\r"
-          + "\n\005share\030\001 \003(\t\022\016\n\006output\030\002 \001(\t\"2\n\021UpdateU"
-          + "serDirsReq\022\r\n\005share\030\001 \003(\t\022\016\n\006output\030\002 \001("
-          + "\t\"%\n\022UpdateUserDirsResp\022\017\n\007message\030\001 \001(\t"
-          + "\"\n\n\010IndexReq\"\032\n\tIndexResp\022\r\n\005fpath\030\001 \001(\t"
-          + "2\324\002\n\014DiztlService\022#\n\006Search\022\n.SearchReq\032"
-          + "\013.SearchResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.F"
-          + "ileChunk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingRes"
-          + "p\"\000\022\035\n\004Find\022\010.FindReq\032\t.FindResp\"\000\022,\n\010Do"
-          + "wnload\022\014.DownloadReq\032\016.DownloadChunk\"\0000\001"
-          + "\022,\n\013GetUserDirs\022\014.UserDirsReq\032\r.UserDirs"
-          + "Resp\"\000\022;\n\016UpdateUserDirs\022\022.UpdateUserDir"
-          + "sReq\032\023.UpdateUserDirsResp\"\000\022\"\n\005Index\022\t.I"
-          + "ndexReq\032\n.IndexResp\"\0000\0012\223\001\n\016TrackerServi"
-          + "ce\022)\n\010Register\022\014.RegisterReq\032\r.RegisterR"
-          + "esp\"\000\022%\n\006Search\022\n.SearchReq\032\013.SearchResp"
-          + "\"\0000\001\022/\n\nDisconnect\022\016.DisconnectReq\032\017.Dis"
-          + "connectResp\"\000B\030\n\026io.github.gravetii.genb"
-          + "\006proto3"
+          + "\014\022\r\n\005chunk\030\003 \001(\005\022\016\n\006chunks\030\004 \001(\005\":\n\013Regi"
+          + "sterReq\022\023\n\004self\030\001 \001(\0132\005.Node\022\026\n\007tracker\030"
+          + "\002 \001(\0132\005.Node\"#\n\014RegisterResp\022\023\n\004self\030\001 \001"
+          + "(\0132\005.Node\"4\n\tSearchReq\022\020\n\010filename\030\001 \001(\t"
+          + "\022\025\n\006source\030\002 \001(\0132\005.Node\"?\n\nSearchResp\022\034\n"
+          + "\005files\030\001 \003(\0132\r.FileMetadata\022\023\n\004node\030\002 \001("
+          + "\0132\005.Node\"\032\n\007FindReq\022\017\n\007pattern\030\001 \001(\t\"*\n\010"
+          + "FindResp\022\036\n\tresponses\030\001 \003(\0132\013.SearchResp"
+          + "\"#\n\016UploadContract\022\021\n\tchunkSize\030\001 \001(\005\"f\n"
+          + "\tUploadReq\022\025\n\006source\030\001 \001(\0132\005.Node\022\037\n\010met"
+          + "adata\030\002 \001(\0132\r.FileMetadata\022!\n\010contract\030\003"
+          + " \001(\0132\017.UploadContract\"N\n\013DownloadReq\022\025\n\006"
+          + "source\030\001 \001(\0132\005.Node\022\033\n\004file\030\002 \001(\0132\r.File"
+          + "Metadata\022\013\n\003dir\030\003 \001(\t\".\n\rDownloadChunk\022\016"
+          + "\n\006chunks\030\001 \001(\005\022\r\n\005chunk\030\002 \001(\005\"$\n\rDisconn"
+          + "ectReq\022\023\n\004node\030\001 \001(\0132\005.Node\"!\n\016Disconnec"
+          + "tResp\022\017\n\007message\030\001 \001(\t\"5\n\007PingReq\022\025\n\006sou"
+          + "rce\030\001 \001(\0132\005.Node\022\023\n\004dest\030\002 \001(\0132\005.Node\")\n"
+          + "\010PingResp\022\014\n\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t"
+          + "\",\n\013UserDirsReq\022\r\n\005share\030\001 \001(\010\022\016\n\006output"
+          + "\030\002 \001(\010\"-\n\014UserDirsResp\022\r\n\005share\030\001 \003(\t\022\016\n"
+          + "\006output\030\002 \001(\t\"2\n\021UpdateUserDirsReq\022\r\n\005sh"
+          + "are\030\001 \003(\t\022\016\n\006output\030\002 \001(\t\"%\n\022UpdateUserD"
+          + "irsResp\022\017\n\007message\030\001 \001(\t\"\n\n\010IndexReq\"\032\n\t"
+          + "IndexResp\022\r\n\005fpath\030\001 \001(\t2\377\002\n\014DiztlServic"
+          + "e\022#\n\006Search\022\n.SearchReq\032\013.SearchResp\"\000\022$"
+          + "\n\006Upload\022\n.UploadReq\032\n.FileChunk\"\0000\001\022\035\n\004"
+          + "Ping\022\010.PingReq\032\t.PingResp\"\000\022\035\n\004Find\022\010.Fi"
+          + "ndReq\032\t.FindResp\"\000\022,\n\010Download\022\014.Downloa"
+          + "dReq\032\016.DownloadChunk\"\0000\001\022,\n\013GetUserDirs\022"
+          + "\014.UserDirsReq\032\r.UserDirsResp\"\000\022;\n\016Update"
+          + "UserDirs\022\022.UpdateUserDirsReq\032\023.UpdateUse"
+          + "rDirsResp\"\000\022\"\n\005Index\022\t.IndexReq\032\n.IndexR"
+          + "esp\"\0000\001\022)\n\010Register\022\014.RegisterReq\032\r.Regi"
+          + "sterResp\"\0002\223\001\n\016TrackerService\022)\n\010Registe"
+          + "r\022\014.RegisterReq\032\r.RegisterResp\"\000\022%\n\006Sear"
+          + "ch\022\n.SearchReq\032\013.SearchResp\"\0000\001\022/\n\nDisco"
+          + "nnect\022\016.DisconnectReq\032\017.DisconnectResp\"\000"
+          + "B\030\n\026io.github.gravetii.genb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -191,14 +192,14 @@ public final class Diztl {
         new com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
             internal_static_RegisterReq_descriptor,
             new java.lang.String[] {
-              "Node",
+              "Self", "Tracker",
             });
     internal_static_RegisterResp_descriptor = getDescriptor().getMessageTypes().get(5);
     internal_static_RegisterResp_fieldAccessorTable =
         new com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
             internal_static_RegisterResp_descriptor,
             new java.lang.String[] {
-              "Node",
+              "Self",
             });
     internal_static_SearchReq_descriptor = getDescriptor().getMessageTypes().get(6);
     internal_static_SearchReq_fieldAccessorTable =
@@ -584,24 +585,31 @@ public final class Diztl {
       // @@protoc_insertion_point(interface_extends:RegisterReq)
       com.google.protobuf.MessageOrBuilder {
 
-    /** <code>.Node node = 1;</code> */
-    boolean hasNode();
-    /** <code>.Node node = 1;</code> */
-    io.github.gravetii.gen.Diztl.Node getNode();
-    /** <code>.Node node = 1;</code> */
-    io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
+    /** <code>.Node self = 1;</code> */
+    boolean hasSelf();
+    /** <code>.Node self = 1;</code> */
+    io.github.gravetii.gen.Diztl.Node getSelf();
+    /** <code>.Node self = 1;</code> */
+    io.github.gravetii.gen.Diztl.NodeOrBuilder getSelfOrBuilder();
+
+    /** <code>.Node tracker = 2;</code> */
+    boolean hasTracker();
+    /** <code>.Node tracker = 2;</code> */
+    io.github.gravetii.gen.Diztl.Node getTracker();
+    /** <code>.Node tracker = 2;</code> */
+    io.github.gravetii.gen.Diztl.NodeOrBuilder getTrackerOrBuilder();
   }
   public interface RegisterRespOrBuilder
       extends
       // @@protoc_insertion_point(interface_extends:RegisterResp)
       com.google.protobuf.MessageOrBuilder {
 
-    /** <code>.Node node = 1;</code> */
-    boolean hasNode();
-    /** <code>.Node node = 1;</code> */
-    io.github.gravetii.gen.Diztl.Node getNode();
-    /** <code>.Node node = 1;</code> */
-    io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
+    /** <code>.Node self = 1;</code> */
+    boolean hasSelf();
+    /** <code>.Node self = 1;</code> */
+    io.github.gravetii.gen.Diztl.Node getSelf();
+    /** <code>.Node self = 1;</code> */
+    io.github.gravetii.gen.Diztl.NodeOrBuilder getSelfOrBuilder();
   }
   public interface SearchReqOrBuilder
       extends
@@ -4435,7 +4443,8 @@ public final class Diztl {
       implements
       // @@protoc_insertion_point(message_implements:RegisterReq)
       RegisterReqOrBuilder {
-    public static final int NODE_FIELD_NUMBER = 1;
+    public static final int SELF_FIELD_NUMBER = 1;
+    public static final int TRACKER_FIELD_NUMBER = 2;
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:RegisterReq)
     private static final io.github.gravetii.gen.Diztl.RegisterReq DEFAULT_INSTANCE;
@@ -4453,9 +4462,9 @@ public final class Diztl {
       DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.RegisterReq();
     }
 
-    private io.github.gravetii.gen.Diztl.Node node_;
+    private io.github.gravetii.gen.Diztl.Node self_;
+    private io.github.gravetii.gen.Diztl.Node tracker_;
     private byte memoizedIsInitialized = -1;
-
     // Use RegisterReq.newBuilder() to construct.
     private RegisterReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -4490,15 +4499,31 @@ public final class Diztl {
             case 10:
               {
                 io.github.gravetii.gen.Diztl.Node.Builder subBuilder = null;
-                if (node_ != null) {
-                  subBuilder = node_.toBuilder();
+                if (self_ != null) {
+                  subBuilder = self_.toBuilder();
                 }
-                node_ =
+                self_ =
                     input.readMessage(
                         io.github.gravetii.gen.Diztl.Node.parser(), extensionRegistry);
                 if (subBuilder != null) {
-                  subBuilder.mergeFrom(node_);
-                  node_ = subBuilder.buildPartial();
+                  subBuilder.mergeFrom(self_);
+                  self_ = subBuilder.buildPartial();
+                }
+
+                break;
+              }
+            case 18:
+              {
+                io.github.gravetii.gen.Diztl.Node.Builder subBuilder = null;
+                if (tracker_ != null) {
+                  subBuilder = tracker_.toBuilder();
+                }
+                tracker_ =
+                    input.readMessage(
+                        io.github.gravetii.gen.Diztl.Node.parser(), extensionRegistry);
+                if (subBuilder != null) {
+                  subBuilder.mergeFrom(tracker_);
+                  tracker_ = subBuilder.buildPartial();
                 }
 
                 break;
@@ -4620,19 +4645,34 @@ public final class Diztl {
               io.github.gravetii.gen.Diztl.RegisterReq.Builder.class);
     }
 
-    /** <code>.Node node = 1;</code> */
-    public boolean hasNode() {
-      return node_ != null;
+    /** <code>.Node self = 1;</code> */
+    public boolean hasSelf() {
+      return self_ != null;
     }
 
-    /** <code>.Node node = 1;</code> */
-    public io.github.gravetii.gen.Diztl.Node getNode() {
-      return node_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : node_;
+    /** <code>.Node self = 1;</code> */
+    public io.github.gravetii.gen.Diztl.Node getSelf() {
+      return self_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : self_;
     }
 
-    /** <code>.Node node = 1;</code> */
-    public io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder() {
-      return getNode();
+    /** <code>.Node self = 1;</code> */
+    public io.github.gravetii.gen.Diztl.NodeOrBuilder getSelfOrBuilder() {
+      return getSelf();
+    }
+
+    /** <code>.Node tracker = 2;</code> */
+    public boolean hasTracker() {
+      return tracker_ != null;
+    }
+
+    /** <code>.Node tracker = 2;</code> */
+    public io.github.gravetii.gen.Diztl.Node getTracker() {
+      return tracker_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : tracker_;
+    }
+
+    /** <code>.Node tracker = 2;</code> */
+    public io.github.gravetii.gen.Diztl.NodeOrBuilder getTrackerOrBuilder() {
+      return getTracker();
     }
 
     public final boolean isInitialized() {
@@ -4645,8 +4685,11 @@ public final class Diztl {
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
-      if (node_ != null) {
-        output.writeMessage(1, getNode());
+      if (self_ != null) {
+        output.writeMessage(1, getSelf());
+      }
+      if (tracker_ != null) {
+        output.writeMessage(2, getTracker());
       }
       unknownFields.writeTo(output);
     }
@@ -4656,8 +4699,11 @@ public final class Diztl {
       if (size != -1) return size;
 
       size = 0;
-      if (node_ != null) {
-        size += com.google.protobuf.CodedOutputStream.computeMessageSize(1, getNode());
+      if (self_ != null) {
+        size += com.google.protobuf.CodedOutputStream.computeMessageSize(1, getSelf());
+      }
+      if (tracker_ != null) {
+        size += com.google.protobuf.CodedOutputStream.computeMessageSize(2, getTracker());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4676,9 +4722,13 @@ public final class Diztl {
           (io.github.gravetii.gen.Diztl.RegisterReq) obj;
 
       boolean result = true;
-      result = result && (hasNode() == other.hasNode());
-      if (hasNode()) {
-        result = result && getNode().equals(other.getNode());
+      result = result && (hasSelf() == other.hasSelf());
+      if (hasSelf()) {
+        result = result && getSelf().equals(other.getSelf());
+      }
+      result = result && (hasTracker() == other.hasTracker());
+      if (hasTracker()) {
+        result = result && getTracker().equals(other.getTracker());
       }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
@@ -4691,9 +4741,13 @@ public final class Diztl {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasNode()) {
-        hash = (37 * hash) + NODE_FIELD_NUMBER;
-        hash = (53 * hash) + getNode().hashCode();
+      if (hasSelf()) {
+        hash = (37 * hash) + SELF_FIELD_NUMBER;
+        hash = (53 * hash) + getSelf().hashCode();
+      }
+      if (hasTracker()) {
+        hash = (37 * hash) + TRACKER_FIELD_NUMBER;
+        hash = (53 * hash) + getTracker().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -4730,12 +4784,18 @@ public final class Diztl {
         implements
         // @@protoc_insertion_point(builder_implements:RegisterReq)
         io.github.gravetii.gen.Diztl.RegisterReqOrBuilder {
-      private io.github.gravetii.gen.Diztl.Node node_ = null;
+      private io.github.gravetii.gen.Diztl.Node self_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
               io.github.gravetii.gen.Diztl.Node,
               io.github.gravetii.gen.Diztl.Node.Builder,
               io.github.gravetii.gen.Diztl.NodeOrBuilder>
-          nodeBuilder_;
+          selfBuilder_;
+      private io.github.gravetii.gen.Diztl.Node tracker_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+              io.github.gravetii.gen.Diztl.Node,
+              io.github.gravetii.gen.Diztl.Node.Builder,
+              io.github.gravetii.gen.Diztl.NodeOrBuilder>
+          trackerBuilder_;
 
       // Construct using io.github.gravetii.gen.Diztl.RegisterReq.newBuilder()
       private Builder() {
@@ -4765,11 +4825,17 @@ public final class Diztl {
 
       public Builder clear() {
         super.clear();
-        if (nodeBuilder_ == null) {
-          node_ = null;
+        if (selfBuilder_ == null) {
+          self_ = null;
         } else {
-          node_ = null;
-          nodeBuilder_ = null;
+          self_ = null;
+          selfBuilder_ = null;
+        }
+        if (trackerBuilder_ == null) {
+          tracker_ = null;
+        } else {
+          tracker_ = null;
+          trackerBuilder_ = null;
         }
         return this;
       }
@@ -4793,10 +4859,15 @@ public final class Diztl {
       public io.github.gravetii.gen.Diztl.RegisterReq buildPartial() {
         io.github.gravetii.gen.Diztl.RegisterReq result =
             new io.github.gravetii.gen.Diztl.RegisterReq(this);
-        if (nodeBuilder_ == null) {
-          result.node_ = node_;
+        if (selfBuilder_ == null) {
+          result.self_ = self_;
         } else {
-          result.node_ = nodeBuilder_.build();
+          result.self_ = selfBuilder_.build();
+        }
+        if (trackerBuilder_ == null) {
+          result.tracker_ = tracker_;
+        } else {
+          result.tracker_ = trackerBuilder_.build();
         }
         onBuilt();
         return result;
@@ -4842,8 +4913,11 @@ public final class Diztl {
 
       public Builder mergeFrom(io.github.gravetii.gen.Diztl.RegisterReq other) {
         if (other == io.github.gravetii.gen.Diztl.RegisterReq.getDefaultInstance()) return this;
-        if (other.hasNode()) {
-          mergeNode(other.getNode());
+        if (other.hasSelf()) {
+          mergeSelf(other.getSelf());
+        }
+        if (other.hasTracker()) {
+          mergeTracker(other.getTracker());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -4872,101 +4946,212 @@ public final class Diztl {
         return this;
       }
 
-      /** <code>.Node node = 1;</code> */
-      public boolean hasNode() {
-        return nodeBuilder_ != null || node_ != null;
+      /** <code>.Node self = 1;</code> */
+      public boolean hasSelf() {
+        return selfBuilder_ != null || self_ != null;
       }
-      /** <code>.Node node = 1;</code> */
-      public io.github.gravetii.gen.Diztl.Node getNode() {
-        if (nodeBuilder_ == null) {
-          return node_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : node_;
+
+      /** <code>.Node self = 1;</code> */
+      public io.github.gravetii.gen.Diztl.Node getSelf() {
+        if (selfBuilder_ == null) {
+          return self_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : self_;
         } else {
-          return nodeBuilder_.getMessage();
+          return selfBuilder_.getMessage();
         }
       }
-      /** <code>.Node node = 1;</code> */
-      public Builder setNode(io.github.gravetii.gen.Diztl.Node value) {
-        if (nodeBuilder_ == null) {
+
+      /** <code>.Node self = 1;</code> */
+      public Builder setSelf(io.github.gravetii.gen.Diztl.Node value) {
+        if (selfBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          node_ = value;
+          self_ = value;
           onChanged();
         } else {
-          nodeBuilder_.setMessage(value);
+          selfBuilder_.setMessage(value);
         }
 
         return this;
       }
-      /** <code>.Node node = 1;</code> */
-      public Builder setNode(io.github.gravetii.gen.Diztl.Node.Builder builderForValue) {
-        if (nodeBuilder_ == null) {
-          node_ = builderForValue.build();
+
+      /** <code>.Node self = 1;</code> */
+      public Builder setSelf(io.github.gravetii.gen.Diztl.Node.Builder builderForValue) {
+        if (selfBuilder_ == null) {
+          self_ = builderForValue.build();
           onChanged();
         } else {
-          nodeBuilder_.setMessage(builderForValue.build());
+          selfBuilder_.setMessage(builderForValue.build());
         }
 
         return this;
       }
-      /** <code>.Node node = 1;</code> */
-      public Builder mergeNode(io.github.gravetii.gen.Diztl.Node value) {
-        if (nodeBuilder_ == null) {
-          if (node_ != null) {
-            node_ =
-                io.github.gravetii.gen.Diztl.Node.newBuilder(node_).mergeFrom(value).buildPartial();
+
+      /** <code>.Node self = 1;</code> */
+      public Builder mergeSelf(io.github.gravetii.gen.Diztl.Node value) {
+        if (selfBuilder_ == null) {
+          if (self_ != null) {
+            self_ =
+                io.github.gravetii.gen.Diztl.Node.newBuilder(self_).mergeFrom(value).buildPartial();
           } else {
-            node_ = value;
+            self_ = value;
           }
           onChanged();
         } else {
-          nodeBuilder_.mergeFrom(value);
+          selfBuilder_.mergeFrom(value);
         }
 
         return this;
       }
-      /** <code>.Node node = 1;</code> */
-      public Builder clearNode() {
-        if (nodeBuilder_ == null) {
-          node_ = null;
+
+      /** <code>.Node self = 1;</code> */
+      public Builder clearSelf() {
+        if (selfBuilder_ == null) {
+          self_ = null;
           onChanged();
         } else {
-          node_ = null;
-          nodeBuilder_ = null;
+          self_ = null;
+          selfBuilder_ = null;
         }
 
         return this;
       }
-      /** <code>.Node node = 1;</code> */
-      public io.github.gravetii.gen.Diztl.Node.Builder getNodeBuilder() {
+
+      /** <code>.Node self = 1;</code> */
+      public io.github.gravetii.gen.Diztl.Node.Builder getSelfBuilder() {
 
         onChanged();
-        return getNodeFieldBuilder().getBuilder();
+        return getSelfFieldBuilder().getBuilder();
       }
-      /** <code>.Node node = 1;</code> */
-      public io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder() {
-        if (nodeBuilder_ != null) {
-          return nodeBuilder_.getMessageOrBuilder();
+
+      /** <code>.Node self = 1;</code> */
+      public io.github.gravetii.gen.Diztl.NodeOrBuilder getSelfOrBuilder() {
+        if (selfBuilder_ != null) {
+          return selfBuilder_.getMessageOrBuilder();
         } else {
-          return node_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : node_;
+          return self_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : self_;
         }
       }
-      /** <code>.Node node = 1;</code> */
+
+      /** <code>.Node self = 1;</code> */
       private com.google.protobuf.SingleFieldBuilderV3<
               io.github.gravetii.gen.Diztl.Node,
               io.github.gravetii.gen.Diztl.Node.Builder,
               io.github.gravetii.gen.Diztl.NodeOrBuilder>
-          getNodeFieldBuilder() {
-        if (nodeBuilder_ == null) {
-          nodeBuilder_ =
+          getSelfFieldBuilder() {
+        if (selfBuilder_ == null) {
+          selfBuilder_ =
               new com.google.protobuf.SingleFieldBuilderV3<
                   io.github.gravetii.gen.Diztl.Node,
                   io.github.gravetii.gen.Diztl.Node.Builder,
                   io.github.gravetii.gen.Diztl.NodeOrBuilder>(
-                  getNode(), getParentForChildren(), isClean());
-          node_ = null;
+                  getSelf(), getParentForChildren(), isClean());
+          self_ = null;
         }
-        return nodeBuilder_;
+        return selfBuilder_;
+      }
+
+      /** <code>.Node tracker = 2;</code> */
+      public boolean hasTracker() {
+        return trackerBuilder_ != null || tracker_ != null;
+      }
+      /** <code>.Node tracker = 2;</code> */
+      public io.github.gravetii.gen.Diztl.Node getTracker() {
+        if (trackerBuilder_ == null) {
+          return tracker_ == null
+              ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance()
+              : tracker_;
+        } else {
+          return trackerBuilder_.getMessage();
+        }
+      }
+      /** <code>.Node tracker = 2;</code> */
+      public Builder setTracker(io.github.gravetii.gen.Diztl.Node value) {
+        if (trackerBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tracker_ = value;
+          onChanged();
+        } else {
+          trackerBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /** <code>.Node tracker = 2;</code> */
+      public Builder setTracker(io.github.gravetii.gen.Diztl.Node.Builder builderForValue) {
+        if (trackerBuilder_ == null) {
+          tracker_ = builderForValue.build();
+          onChanged();
+        } else {
+          trackerBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /** <code>.Node tracker = 2;</code> */
+      public Builder mergeTracker(io.github.gravetii.gen.Diztl.Node value) {
+        if (trackerBuilder_ == null) {
+          if (tracker_ != null) {
+            tracker_ =
+                io.github.gravetii.gen.Diztl.Node.newBuilder(tracker_)
+                    .mergeFrom(value)
+                    .buildPartial();
+          } else {
+            tracker_ = value;
+          }
+          onChanged();
+        } else {
+          trackerBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /** <code>.Node tracker = 2;</code> */
+      public Builder clearTracker() {
+        if (trackerBuilder_ == null) {
+          tracker_ = null;
+          onChanged();
+        } else {
+          tracker_ = null;
+          trackerBuilder_ = null;
+        }
+
+        return this;
+      }
+      /** <code>.Node tracker = 2;</code> */
+      public io.github.gravetii.gen.Diztl.Node.Builder getTrackerBuilder() {
+
+        onChanged();
+        return getTrackerFieldBuilder().getBuilder();
+      }
+      /** <code>.Node tracker = 2;</code> */
+      public io.github.gravetii.gen.Diztl.NodeOrBuilder getTrackerOrBuilder() {
+        if (trackerBuilder_ != null) {
+          return trackerBuilder_.getMessageOrBuilder();
+        } else {
+          return tracker_ == null
+              ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance()
+              : tracker_;
+        }
+      }
+      /** <code>.Node tracker = 2;</code> */
+      private com.google.protobuf.SingleFieldBuilderV3<
+              io.github.gravetii.gen.Diztl.Node,
+              io.github.gravetii.gen.Diztl.Node.Builder,
+              io.github.gravetii.gen.Diztl.NodeOrBuilder>
+          getTrackerFieldBuilder() {
+        if (trackerBuilder_ == null) {
+          trackerBuilder_ =
+              new com.google.protobuf.SingleFieldBuilderV3<
+                  io.github.gravetii.gen.Diztl.Node,
+                  io.github.gravetii.gen.Diztl.Node.Builder,
+                  io.github.gravetii.gen.Diztl.NodeOrBuilder>(
+                  getTracker(), getParentForChildren(), isClean());
+          tracker_ = null;
+        }
+        return trackerBuilder_;
       }
 
       public final Builder setUnknownFields(
@@ -4988,7 +5173,7 @@ public final class Diztl {
       implements
       // @@protoc_insertion_point(message_implements:RegisterResp)
       RegisterRespOrBuilder {
-    public static final int NODE_FIELD_NUMBER = 1;
+    public static final int SELF_FIELD_NUMBER = 1;
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:RegisterResp)
     private static final io.github.gravetii.gen.Diztl.RegisterResp DEFAULT_INSTANCE;
@@ -5006,7 +5191,7 @@ public final class Diztl {
       DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.RegisterResp();
     }
 
-    private io.github.gravetii.gen.Diztl.Node node_;
+    private io.github.gravetii.gen.Diztl.Node self_;
     private byte memoizedIsInitialized = -1;
 
     // Use RegisterResp.newBuilder() to construct.
@@ -5043,15 +5228,15 @@ public final class Diztl {
             case 10:
               {
                 io.github.gravetii.gen.Diztl.Node.Builder subBuilder = null;
-                if (node_ != null) {
-                  subBuilder = node_.toBuilder();
+                if (self_ != null) {
+                  subBuilder = self_.toBuilder();
                 }
-                node_ =
+                self_ =
                     input.readMessage(
                         io.github.gravetii.gen.Diztl.Node.parser(), extensionRegistry);
                 if (subBuilder != null) {
-                  subBuilder.mergeFrom(node_);
-                  node_ = subBuilder.buildPartial();
+                  subBuilder.mergeFrom(self_);
+                  self_ = subBuilder.buildPartial();
                 }
 
                 break;
@@ -5173,19 +5358,19 @@ public final class Diztl {
               io.github.gravetii.gen.Diztl.RegisterResp.Builder.class);
     }
 
-    /** <code>.Node node = 1;</code> */
-    public boolean hasNode() {
-      return node_ != null;
+    /** <code>.Node self = 1;</code> */
+    public boolean hasSelf() {
+      return self_ != null;
     }
 
-    /** <code>.Node node = 1;</code> */
-    public io.github.gravetii.gen.Diztl.Node getNode() {
-      return node_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : node_;
+    /** <code>.Node self = 1;</code> */
+    public io.github.gravetii.gen.Diztl.Node getSelf() {
+      return self_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : self_;
     }
 
-    /** <code>.Node node = 1;</code> */
-    public io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder() {
-      return getNode();
+    /** <code>.Node self = 1;</code> */
+    public io.github.gravetii.gen.Diztl.NodeOrBuilder getSelfOrBuilder() {
+      return getSelf();
     }
 
     public final boolean isInitialized() {
@@ -5198,8 +5383,8 @@ public final class Diztl {
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
-      if (node_ != null) {
-        output.writeMessage(1, getNode());
+      if (self_ != null) {
+        output.writeMessage(1, getSelf());
       }
       unknownFields.writeTo(output);
     }
@@ -5209,8 +5394,8 @@ public final class Diztl {
       if (size != -1) return size;
 
       size = 0;
-      if (node_ != null) {
-        size += com.google.protobuf.CodedOutputStream.computeMessageSize(1, getNode());
+      if (self_ != null) {
+        size += com.google.protobuf.CodedOutputStream.computeMessageSize(1, getSelf());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5229,9 +5414,9 @@ public final class Diztl {
           (io.github.gravetii.gen.Diztl.RegisterResp) obj;
 
       boolean result = true;
-      result = result && (hasNode() == other.hasNode());
-      if (hasNode()) {
-        result = result && getNode().equals(other.getNode());
+      result = result && (hasSelf() == other.hasSelf());
+      if (hasSelf()) {
+        result = result && getSelf().equals(other.getSelf());
       }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
@@ -5244,9 +5429,9 @@ public final class Diztl {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasNode()) {
-        hash = (37 * hash) + NODE_FIELD_NUMBER;
-        hash = (53 * hash) + getNode().hashCode();
+      if (hasSelf()) {
+        hash = (37 * hash) + SELF_FIELD_NUMBER;
+        hash = (53 * hash) + getSelf().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -5283,12 +5468,12 @@ public final class Diztl {
         implements
         // @@protoc_insertion_point(builder_implements:RegisterResp)
         io.github.gravetii.gen.Diztl.RegisterRespOrBuilder {
-      private io.github.gravetii.gen.Diztl.Node node_ = null;
+      private io.github.gravetii.gen.Diztl.Node self_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
               io.github.gravetii.gen.Diztl.Node,
               io.github.gravetii.gen.Diztl.Node.Builder,
               io.github.gravetii.gen.Diztl.NodeOrBuilder>
-          nodeBuilder_;
+          selfBuilder_;
 
       // Construct using io.github.gravetii.gen.Diztl.RegisterResp.newBuilder()
       private Builder() {
@@ -5318,11 +5503,11 @@ public final class Diztl {
 
       public Builder clear() {
         super.clear();
-        if (nodeBuilder_ == null) {
-          node_ = null;
+        if (selfBuilder_ == null) {
+          self_ = null;
         } else {
-          node_ = null;
-          nodeBuilder_ = null;
+          self_ = null;
+          selfBuilder_ = null;
         }
         return this;
       }
@@ -5346,10 +5531,10 @@ public final class Diztl {
       public io.github.gravetii.gen.Diztl.RegisterResp buildPartial() {
         io.github.gravetii.gen.Diztl.RegisterResp result =
             new io.github.gravetii.gen.Diztl.RegisterResp(this);
-        if (nodeBuilder_ == null) {
-          result.node_ = node_;
+        if (selfBuilder_ == null) {
+          result.self_ = self_;
         } else {
-          result.node_ = nodeBuilder_.build();
+          result.self_ = selfBuilder_.build();
         }
         onBuilt();
         return result;
@@ -5395,8 +5580,8 @@ public final class Diztl {
 
       public Builder mergeFrom(io.github.gravetii.gen.Diztl.RegisterResp other) {
         if (other == io.github.gravetii.gen.Diztl.RegisterResp.getDefaultInstance()) return this;
-        if (other.hasNode()) {
-          mergeNode(other.getNode());
+        if (other.hasSelf()) {
+          mergeSelf(other.getSelf());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5425,101 +5610,101 @@ public final class Diztl {
         return this;
       }
 
-      /** <code>.Node node = 1;</code> */
-      public boolean hasNode() {
-        return nodeBuilder_ != null || node_ != null;
+      /** <code>.Node self = 1;</code> */
+      public boolean hasSelf() {
+        return selfBuilder_ != null || self_ != null;
       }
-      /** <code>.Node node = 1;</code> */
-      public io.github.gravetii.gen.Diztl.Node getNode() {
-        if (nodeBuilder_ == null) {
-          return node_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : node_;
+      /** <code>.Node self = 1;</code> */
+      public io.github.gravetii.gen.Diztl.Node getSelf() {
+        if (selfBuilder_ == null) {
+          return self_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : self_;
         } else {
-          return nodeBuilder_.getMessage();
+          return selfBuilder_.getMessage();
         }
       }
-      /** <code>.Node node = 1;</code> */
-      public Builder setNode(io.github.gravetii.gen.Diztl.Node value) {
-        if (nodeBuilder_ == null) {
+      /** <code>.Node self = 1;</code> */
+      public Builder setSelf(io.github.gravetii.gen.Diztl.Node value) {
+        if (selfBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          node_ = value;
+          self_ = value;
           onChanged();
         } else {
-          nodeBuilder_.setMessage(value);
+          selfBuilder_.setMessage(value);
         }
 
         return this;
       }
-      /** <code>.Node node = 1;</code> */
-      public Builder setNode(io.github.gravetii.gen.Diztl.Node.Builder builderForValue) {
-        if (nodeBuilder_ == null) {
-          node_ = builderForValue.build();
+      /** <code>.Node self = 1;</code> */
+      public Builder setSelf(io.github.gravetii.gen.Diztl.Node.Builder builderForValue) {
+        if (selfBuilder_ == null) {
+          self_ = builderForValue.build();
           onChanged();
         } else {
-          nodeBuilder_.setMessage(builderForValue.build());
+          selfBuilder_.setMessage(builderForValue.build());
         }
 
         return this;
       }
-      /** <code>.Node node = 1;</code> */
-      public Builder mergeNode(io.github.gravetii.gen.Diztl.Node value) {
-        if (nodeBuilder_ == null) {
-          if (node_ != null) {
-            node_ =
-                io.github.gravetii.gen.Diztl.Node.newBuilder(node_).mergeFrom(value).buildPartial();
+      /** <code>.Node self = 1;</code> */
+      public Builder mergeSelf(io.github.gravetii.gen.Diztl.Node value) {
+        if (selfBuilder_ == null) {
+          if (self_ != null) {
+            self_ =
+                io.github.gravetii.gen.Diztl.Node.newBuilder(self_).mergeFrom(value).buildPartial();
           } else {
-            node_ = value;
+            self_ = value;
           }
           onChanged();
         } else {
-          nodeBuilder_.mergeFrom(value);
+          selfBuilder_.mergeFrom(value);
         }
 
         return this;
       }
-      /** <code>.Node node = 1;</code> */
-      public Builder clearNode() {
-        if (nodeBuilder_ == null) {
-          node_ = null;
+      /** <code>.Node self = 1;</code> */
+      public Builder clearSelf() {
+        if (selfBuilder_ == null) {
+          self_ = null;
           onChanged();
         } else {
-          node_ = null;
-          nodeBuilder_ = null;
+          self_ = null;
+          selfBuilder_ = null;
         }
 
         return this;
       }
-      /** <code>.Node node = 1;</code> */
-      public io.github.gravetii.gen.Diztl.Node.Builder getNodeBuilder() {
+      /** <code>.Node self = 1;</code> */
+      public io.github.gravetii.gen.Diztl.Node.Builder getSelfBuilder() {
 
         onChanged();
-        return getNodeFieldBuilder().getBuilder();
+        return getSelfFieldBuilder().getBuilder();
       }
-      /** <code>.Node node = 1;</code> */
-      public io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder() {
-        if (nodeBuilder_ != null) {
-          return nodeBuilder_.getMessageOrBuilder();
+      /** <code>.Node self = 1;</code> */
+      public io.github.gravetii.gen.Diztl.NodeOrBuilder getSelfOrBuilder() {
+        if (selfBuilder_ != null) {
+          return selfBuilder_.getMessageOrBuilder();
         } else {
-          return node_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : node_;
+          return self_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : self_;
         }
       }
-      /** <code>.Node node = 1;</code> */
+      /** <code>.Node self = 1;</code> */
       private com.google.protobuf.SingleFieldBuilderV3<
               io.github.gravetii.gen.Diztl.Node,
               io.github.gravetii.gen.Diztl.Node.Builder,
               io.github.gravetii.gen.Diztl.NodeOrBuilder>
-          getNodeFieldBuilder() {
-        if (nodeBuilder_ == null) {
-          nodeBuilder_ =
+          getSelfFieldBuilder() {
+        if (selfBuilder_ == null) {
+          selfBuilder_ =
               new com.google.protobuf.SingleFieldBuilderV3<
                   io.github.gravetii.gen.Diztl.Node,
                   io.github.gravetii.gen.Diztl.Node.Builder,
                   io.github.gravetii.gen.Diztl.NodeOrBuilder>(
-                  getNode(), getParentForChildren(), isClean());
-          node_ = null;
+                  getSelf(), getParentForChildren(), isClean());
+          self_ = null;
         }
-        return nodeBuilder_;
+        return selfBuilder_;
       }
 
       public final Builder setUnknownFields(

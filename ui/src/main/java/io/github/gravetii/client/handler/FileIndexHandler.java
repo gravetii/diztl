@@ -21,8 +21,7 @@ public class FileIndexHandler {
   }
 
   public void process(Connection connection) {
-    Diztl.IndexReq req = Diztl.IndexReq.newBuilder().build();
-    connection.getAsyncstub().index(req, createObserver());
+    connection.getAsyncstub().index(Diztl.IndexReq.getDefaultInstance(), createObserver());
   }
 
   private void showFooterText(Object... tokens) {

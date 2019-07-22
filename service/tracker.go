@@ -28,9 +28,9 @@ func NewTracker() *TrackerService {
 
 // Register : Every node that joins the network invokes this method on the tracker to register itself.
 func (s *TrackerService) Register(ctx context.Context, req *diztl.RegisterReq) (*diztl.RegisterResp, error) {
-	node := req.GetNode()
+	node := req.GetSelf()
 	s.nk.Register(node)
-	resp := &diztl.RegisterResp{Node: node}
+	resp := &diztl.RegisterResp{Self: node}
 	return resp, nil
 }
 

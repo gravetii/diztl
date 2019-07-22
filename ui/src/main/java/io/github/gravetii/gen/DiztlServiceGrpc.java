@@ -23,6 +23,7 @@ public final class DiztlServiceGrpc {
   private static final int METHODID_GET_USER_DIRS = 5;
   private static final int METHODID_UPDATE_USER_DIRS = 6;
   private static final int METHODID_INDEX = 7;
+  private static final int METHODID_REGISTER = 8;
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<
           io.github.gravetii.gen.Diztl.SearchReq, io.github.gravetii.gen.Diztl.SearchResp>
@@ -49,6 +50,9 @@ public final class DiztlServiceGrpc {
   private static volatile io.grpc.MethodDescriptor<
           io.github.gravetii.gen.Diztl.IndexReq, io.github.gravetii.gen.Diztl.IndexResp>
       getIndexMethod;
+  private static volatile io.grpc.MethodDescriptor<
+          io.github.gravetii.gen.Diztl.RegisterReq, io.github.gravetii.gen.Diztl.RegisterResp>
+      getRegisterMethod;
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
   private DiztlServiceGrpc() {}
@@ -350,6 +354,43 @@ public final class DiztlServiceGrpc {
     return getIndexMethod;
   }
 
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Register",
+      requestType = io.github.gravetii.gen.Diztl.RegisterReq.class,
+      responseType = io.github.gravetii.gen.Diztl.RegisterResp.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<
+          io.github.gravetii.gen.Diztl.RegisterReq, io.github.gravetii.gen.Diztl.RegisterResp>
+      getRegisterMethod() {
+    io.grpc.MethodDescriptor<
+            io.github.gravetii.gen.Diztl.RegisterReq, io.github.gravetii.gen.Diztl.RegisterResp>
+        getRegisterMethod;
+    if ((getRegisterMethod = DiztlServiceGrpc.getRegisterMethod) == null) {
+      synchronized (DiztlServiceGrpc.class) {
+        if ((getRegisterMethod = DiztlServiceGrpc.getRegisterMethod) == null) {
+          DiztlServiceGrpc.getRegisterMethod =
+              getRegisterMethod =
+                  io.grpc.MethodDescriptor
+                      .<io.github.gravetii.gen.Diztl.RegisterReq,
+                          io.github.gravetii.gen.Diztl.RegisterResp>
+                          newBuilder()
+                      .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                      .setFullMethodName(generateFullMethodName("DiztlService", "Register"))
+                      .setSampledToLocalTracing(true)
+                      .setRequestMarshaller(
+                          io.grpc.protobuf.ProtoUtils.marshaller(
+                              io.github.gravetii.gen.Diztl.RegisterReq.getDefaultInstance()))
+                      .setResponseMarshaller(
+                          io.grpc.protobuf.ProtoUtils.marshaller(
+                              io.github.gravetii.gen.Diztl.RegisterResp.getDefaultInstance()))
+                      .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Register"))
+                      .build();
+        }
+      }
+    }
+    return getRegisterMethod;
+  }
+
   /** Creates a new async stub that supports all call types for the service */
   public static DiztlServiceStub newStub(io.grpc.Channel channel) {
     return new DiztlServiceStub(channel);
@@ -385,6 +426,7 @@ public final class DiztlServiceGrpc {
                       .addMethod(getGetUserDirsMethod())
                       .addMethod(getUpdateUserDirsMethod())
                       .addMethod(getIndexMethod())
+                      .addMethod(getRegisterMethod())
                       .build();
         }
       }
@@ -452,6 +494,13 @@ public final class DiztlServiceGrpc {
       asyncUnimplementedUnaryCall(getIndexMethod(), responseObserver);
     }
 
+    /** */
+    public void register(
+        io.github.gravetii.gen.Diztl.RegisterReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.RegisterResp> responseObserver) {
+      asyncUnimplementedUnaryCall(getRegisterMethod(), responseObserver);
+    }
+
     @java.lang.Override
     public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
@@ -504,6 +553,12 @@ public final class DiztlServiceGrpc {
                   new MethodHandlers<
                       io.github.gravetii.gen.Diztl.IndexReq,
                       io.github.gravetii.gen.Diztl.IndexResp>(this, METHODID_INDEX)))
+          .addMethod(
+              getRegisterMethod(),
+              asyncUnaryCall(
+                  new MethodHandlers<
+                      io.github.gravetii.gen.Diztl.RegisterReq,
+                      io.github.gravetii.gen.Diztl.RegisterResp>(this, METHODID_REGISTER)))
           .build();
     }
   }
@@ -591,6 +646,14 @@ public final class DiztlServiceGrpc {
       asyncServerStreamingCall(
           getChannel().newCall(getIndexMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /** */
+    public void register(
+        io.github.gravetii.gen.Diztl.RegisterReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.RegisterResp> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRegisterMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /** */
@@ -659,6 +722,12 @@ public final class DiztlServiceGrpc {
         io.github.gravetii.gen.Diztl.IndexReq request) {
       return blockingServerStreamingCall(getChannel(), getIndexMethod(), getCallOptions(), request);
     }
+
+    /** */
+    public io.github.gravetii.gen.Diztl.RegisterResp register(
+        io.github.gravetii.gen.Diztl.RegisterReq request) {
+      return blockingUnaryCall(getChannel(), getRegisterMethod(), getCallOptions(), request);
+    }
   }
 
   /** */
@@ -711,6 +780,13 @@ public final class DiztlServiceGrpc {
         updateUserDirs(io.github.gravetii.gen.Diztl.UpdateUserDirsReq request) {
       return futureUnaryCall(
           getChannel().newCall(getUpdateUserDirsMethod(), getCallOptions()), request);
+    }
+
+    /** */
+    public com.google.common.util.concurrent.ListenableFuture<
+            io.github.gravetii.gen.Diztl.RegisterResp>
+        register(io.github.gravetii.gen.Diztl.RegisterReq request) {
+      return futureUnaryCall(getChannel().newCall(getRegisterMethod(), getCallOptions()), request);
     }
   }
 
@@ -777,6 +853,12 @@ public final class DiztlServiceGrpc {
           serviceImpl.index(
               (io.github.gravetii.gen.Diztl.IndexReq) request,
               (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.IndexResp>)
+                  responseObserver);
+          break;
+        case METHODID_REGISTER:
+          serviceImpl.register(
+              (io.github.gravetii.gen.Diztl.RegisterReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.RegisterResp>)
                   responseObserver);
           break;
         default:

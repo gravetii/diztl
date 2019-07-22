@@ -38,7 +38,7 @@ public class FindHandler {
                               });
                     });
           } catch (Exception e) {
-            logger.error("Error while finding for pattern:", e);
+            logger.error("Error while finding for pattern -", e);
           }
         },
         ExecutionHandler.get());
