@@ -10,8 +10,6 @@ import io.grpc.ManagedChannelBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.util.List;
 
 public class CommunicationClient {
@@ -20,11 +18,10 @@ public class CommunicationClient {
 
   private static CommunicationClient INSTANCE = null;
   private Connection connection;
-  private String ip;
 
   private CommunicationClient() throws Exception {
-    this.ip = fetchLocalIp();
-    ManagedChannel channel = ManagedChannelBuilder.forAddress(ip, 50051).usePlaintext().build();
+    ManagedChannel channel =
+        ManagedChannelBuilder.forAddress("127.0.0.1", 50051).usePlaintext().build();
     this.connection = new Connection(channel);
     Runtime.getRuntime()
         .addShutdownHook(
@@ -43,18 +40,6 @@ public class CommunicationClient {
 
   public static CommunicationClient get() {
     return INSTANCE;
-  }
-
-  private String fetchLocalIp() throws Exception {
-    try (final Socket socket = new Socket()) {
-      socket.connect(new InetSocketAddress("google.com", 80));
-      ip = socket.getLocalAddress().getHostAddress();
-      logger.info("Got local IP as: {}", ip);
-      return ip;
-    } catch (Exception e) {
-      logger.error("Unable to fetch the host's local IP", e);
-      throw new Exception("Unable to fetch the host's local IP", e);
-    }
   }
 
   public void find(String pattern, StartScene scene) {
