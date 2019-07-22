@@ -21,6 +21,8 @@ service DiztlService {
     }
     rpc Register(RegisterReq) returns (RegisterResp) {
     }
+    rpc Close(CloseReq) returns (CloseResp) {
+    }
 }
 
 service TrackerService {
@@ -177,4 +179,12 @@ message IndexReq {
 
 message IndexResp {
     string fpath = 1;
+}
+
+message CloseReq {
+
+}
+
+message CloseResp {
+    string message = 1;
 }

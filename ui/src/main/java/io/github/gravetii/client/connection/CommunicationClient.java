@@ -2,6 +2,7 @@ package io.github.gravetii.client.connection;
 
 import io.github.gravetii.AppContext;
 import io.github.gravetii.client.handler.*;
+import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
 import io.github.gravetii.scene.start.StartScene;
@@ -19,7 +20,7 @@ public class CommunicationClient {
   private static CommunicationClient INSTANCE = null;
   private Connection connection;
 
-  private CommunicationClient() throws Exception {
+  private CommunicationClient() {
     ManagedChannel channel =
         ManagedChannelBuilder.forAddress("127.0.0.1", 50051).usePlaintext().build();
     this.connection = new Connection(channel);
@@ -27,8 +28,9 @@ public class CommunicationClient {
         .addShutdownHook(
             new Thread(
                 () -> {
-                  ExecutionHandler.shutdown();
+                  close();
                   connection.close();
+                  ExecutionHandler.shutdown();
                 }));
   }
 
@@ -68,5 +70,10 @@ public class CommunicationClient {
 
   public void index(StartScene scene) {
     new FileIndexHandler(scene).process(connection);
+  }
+
+  private void close() {
+    Diztl.CloseResp resp = connection.getStub().close(Diztl.CloseReq.getDefaultInstance());
+    logger.info("Disconnected: {}", resp.getMessage());
   }
 }

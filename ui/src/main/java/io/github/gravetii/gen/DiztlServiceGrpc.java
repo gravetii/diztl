@@ -24,6 +24,7 @@ public final class DiztlServiceGrpc {
   private static final int METHODID_UPDATE_USER_DIRS = 6;
   private static final int METHODID_INDEX = 7;
   private static final int METHODID_REGISTER = 8;
+  private static final int METHODID_CLOSE = 9;
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<
           io.github.gravetii.gen.Diztl.SearchReq, io.github.gravetii.gen.Diztl.SearchResp>
@@ -53,6 +54,9 @@ public final class DiztlServiceGrpc {
   private static volatile io.grpc.MethodDescriptor<
           io.github.gravetii.gen.Diztl.RegisterReq, io.github.gravetii.gen.Diztl.RegisterResp>
       getRegisterMethod;
+  private static volatile io.grpc.MethodDescriptor<
+          io.github.gravetii.gen.Diztl.CloseReq, io.github.gravetii.gen.Diztl.CloseResp>
+      getCloseMethod;
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
   private DiztlServiceGrpc() {}
@@ -391,6 +395,43 @@ public final class DiztlServiceGrpc {
     return getRegisterMethod;
   }
 
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Close",
+      requestType = io.github.gravetii.gen.Diztl.CloseReq.class,
+      responseType = io.github.gravetii.gen.Diztl.CloseResp.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<
+          io.github.gravetii.gen.Diztl.CloseReq, io.github.gravetii.gen.Diztl.CloseResp>
+      getCloseMethod() {
+    io.grpc.MethodDescriptor<
+            io.github.gravetii.gen.Diztl.CloseReq, io.github.gravetii.gen.Diztl.CloseResp>
+        getCloseMethod;
+    if ((getCloseMethod = DiztlServiceGrpc.getCloseMethod) == null) {
+      synchronized (DiztlServiceGrpc.class) {
+        if ((getCloseMethod = DiztlServiceGrpc.getCloseMethod) == null) {
+          DiztlServiceGrpc.getCloseMethod =
+              getCloseMethod =
+                  io.grpc.MethodDescriptor
+                      .<io.github.gravetii.gen.Diztl.CloseReq,
+                          io.github.gravetii.gen.Diztl.CloseResp>
+                          newBuilder()
+                      .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                      .setFullMethodName(generateFullMethodName("DiztlService", "Close"))
+                      .setSampledToLocalTracing(true)
+                      .setRequestMarshaller(
+                          io.grpc.protobuf.ProtoUtils.marshaller(
+                              io.github.gravetii.gen.Diztl.CloseReq.getDefaultInstance()))
+                      .setResponseMarshaller(
+                          io.grpc.protobuf.ProtoUtils.marshaller(
+                              io.github.gravetii.gen.Diztl.CloseResp.getDefaultInstance()))
+                      .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Close"))
+                      .build();
+        }
+      }
+    }
+    return getCloseMethod;
+  }
+
   /** Creates a new async stub that supports all call types for the service */
   public static DiztlServiceStub newStub(io.grpc.Channel channel) {
     return new DiztlServiceStub(channel);
@@ -427,6 +468,7 @@ public final class DiztlServiceGrpc {
                       .addMethod(getUpdateUserDirsMethod())
                       .addMethod(getIndexMethod())
                       .addMethod(getRegisterMethod())
+                      .addMethod(getCloseMethod())
                       .build();
         }
       }
@@ -501,6 +543,13 @@ public final class DiztlServiceGrpc {
       asyncUnimplementedUnaryCall(getRegisterMethod(), responseObserver);
     }
 
+    /** */
+    public void close(
+        io.github.gravetii.gen.Diztl.CloseReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.CloseResp> responseObserver) {
+      asyncUnimplementedUnaryCall(getCloseMethod(), responseObserver);
+    }
+
     @java.lang.Override
     public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
@@ -559,6 +608,12 @@ public final class DiztlServiceGrpc {
                   new MethodHandlers<
                       io.github.gravetii.gen.Diztl.RegisterReq,
                       io.github.gravetii.gen.Diztl.RegisterResp>(this, METHODID_REGISTER)))
+          .addMethod(
+              getCloseMethod(),
+              asyncUnaryCall(
+                  new MethodHandlers<
+                      io.github.gravetii.gen.Diztl.CloseReq,
+                      io.github.gravetii.gen.Diztl.CloseResp>(this, METHODID_CLOSE)))
           .build();
     }
   }
@@ -654,6 +709,14 @@ public final class DiztlServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getRegisterMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /** */
+    public void close(
+        io.github.gravetii.gen.Diztl.CloseReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.CloseResp> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getCloseMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /** */
@@ -728,6 +791,12 @@ public final class DiztlServiceGrpc {
         io.github.gravetii.gen.Diztl.RegisterReq request) {
       return blockingUnaryCall(getChannel(), getRegisterMethod(), getCallOptions(), request);
     }
+
+    /** */
+    public io.github.gravetii.gen.Diztl.CloseResp close(
+        io.github.gravetii.gen.Diztl.CloseReq request) {
+      return blockingUnaryCall(getChannel(), getCloseMethod(), getCallOptions(), request);
+    }
   }
 
   /** */
@@ -787,6 +856,13 @@ public final class DiztlServiceGrpc {
             io.github.gravetii.gen.Diztl.RegisterResp>
         register(io.github.gravetii.gen.Diztl.RegisterReq request) {
       return futureUnaryCall(getChannel().newCall(getRegisterMethod(), getCallOptions()), request);
+    }
+
+    /** */
+    public com.google.common.util.concurrent.ListenableFuture<
+            io.github.gravetii.gen.Diztl.CloseResp>
+        close(io.github.gravetii.gen.Diztl.CloseReq request) {
+      return futureUnaryCall(getChannel().newCall(getCloseMethod(), getCallOptions()), request);
     }
   }
 
@@ -859,6 +935,12 @@ public final class DiztlServiceGrpc {
           serviceImpl.register(
               (io.github.gravetii.gen.Diztl.RegisterReq) request,
               (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.RegisterResp>)
+                  responseObserver);
+          break;
+        case METHODID_CLOSE:
+          serviceImpl.close(
+              (io.github.gravetii.gen.Diztl.CloseReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.CloseResp>)
                   responseObserver);
           break;
         default:

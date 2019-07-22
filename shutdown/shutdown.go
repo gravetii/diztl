@@ -4,6 +4,8 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/gravetii/logger"
 )
 
 var listener = createListener()
@@ -32,4 +34,10 @@ func Listen(c Closeable) {
 // that requires open resources to be closed/invalidated.
 type Closeable interface {
 	OnShutdown()
+}
+
+// SendSignal is called to manually invoke a shutdown of the process.
+func SendSignal() {
+	logger.Infof("Sending SIGINT signal now...")
+	listener <- syscall.SIGINT
 }

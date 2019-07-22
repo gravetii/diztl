@@ -61,7 +61,7 @@ func (s *NodeService) connectToTracker(trackerAddr string) error {
 	return nil
 }
 
-func (s *NodeService) disconnectFromTracker() error {
+func (s *NodeService) disconnect() error {
 	ctx, cancel := context.WithTimeout(context.Background(), conf.DisconnectTimeout())
 	defer cancel()
 	req := diztl.DisconnectReq{Node: s.node}
@@ -78,8 +78,6 @@ func (s *NodeService) disconnectFromTracker() error {
 
 // OnShutdown defines actions to perform on node shutdown.
 func (s *NodeService) OnShutdown() {
-	s.nk.Close()
-	s.disconnectFromTracker()
 	os.Exit(0)
 }
 
@@ -295,4 +293,12 @@ func (s *NodeService) Index(request *diztl.IndexReq, stream diztl.DiztlService_I
 	}
 
 	return nil
+}
+
+// Close closes down the node. This call is invoked by the front-end after receiving an app shutdown signal.
+func (s *NodeService) Close(ctx context.Context, request *diztl.CloseReq) (*diztl.CloseResp, error) {
+	s.nk.Close()
+	s.disconnect()
+	defer shutdown.SendSignal()
+	return &diztl.CloseResp{Message: "Node successfully shutdown"}, nil
 }
