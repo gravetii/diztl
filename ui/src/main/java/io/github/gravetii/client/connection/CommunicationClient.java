@@ -42,6 +42,10 @@ public class CommunicationClient {
     return INSTANCE;
   }
 
+  public void register(String host) {
+    new RegisterHandler(host).process(connection);
+  }
+
   public void find(String pattern, StartScene scene) {
     new FindHandler(scene, pattern).process(connection);
   }

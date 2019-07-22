@@ -18,6 +18,7 @@ public class App extends Application {
   public void start(Stage stage) throws Exception {
     StartScene scene = new StartScene(stage);
     scene.show();
+    CommunicationClient.get().register("127.0.0.1");
     CommunicationClient.get().index(scene);
   }
 

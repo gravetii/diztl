@@ -39,29 +39,8 @@ func NewNode() *NodeService {
 func (s *NodeService) Init() error {
 	logger.Debugf("Initialising node service...\n")
 	s.nk = keeper.New()
-	s.connectToTracker()
-	s.register()
 	shutdown.Listen(s)
 	logger.Debugf("Finished initialising node service.\n")
-	return nil
-}
-
-func (s *NodeService) register() error {
-	ip := addr.LocalIP()
-	node := &diztl.Node{Ip: ip}
-	req := &diztl.RegisterReq{Node: node}
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	defer cancel()
-	t := s.tracker()
-	resp, err := t.Register(ctx, req)
-	if err != nil {
-		logger.Errorf("Error while registering node to tracker - %v\n", err)
-		return err
-	}
-
-	rnode := resp.GetNode()
-	s.node = &diztl.Node{Ip: rnode.GetIp(), Id: rnode.GetId()}
-	logger.Infof("Successfully registered node to tracker: %s, %s\n", rnode.GetIp(), rnode.GetId())
 	return nil
 }
 
@@ -69,8 +48,8 @@ func (s *NodeService) tracker() diztl.TrackerServiceClient {
 	return diztl.NewTrackerServiceClient(s.trackerConn)
 }
 
-func (s *NodeService) connectToTracker() error {
-	conn, err := grpc.Dial(conf.TrackerAddress(), grpc.WithInsecure(),
+func (s *NodeService) connectToTracker(trackerAddr string) error {
+	conn, err := grpc.Dial(trackerAddr, grpc.WithInsecure(),
 		grpc.WithBlock(), grpc.WithTimeout(conf.TrackerConnectTimeout()))
 	if err != nil {
 		logger.Errorf("Couldn't connect to tracker - %v\n", err)
@@ -102,6 +81,34 @@ func (s *NodeService) OnShutdown() {
 	s.nk.Close()
 	s.disconnectFromTracker()
 	os.Exit(0)
+}
+
+// Register registers the node to the tracker provided in the request.
+func (s *NodeService) Register(ctx context.Context, request *diztl.RegisterReq) (*diztl.RegisterResp, error) {
+	logger.Debugf("Received register request: %v\n", request)
+	trackerAddr := request.GetTracker().GetIp() + ":" + conf.TrackerPort()
+	err := s.connectToTracker(trackerAddr)
+	if err != nil {
+		return nil, err
+	}
+
+	// Update address of tracker in config.
+	conf.UpdateTracker(request.GetTracker().GetIp())
+
+	r := &diztl.RegisterReq{Tracker: request.GetTracker(), Self: &diztl.Node{Ip: addr.LocalIP()}}
+	c, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	t := s.tracker()
+	resp, err := t.Register(c, r)
+	if err != nil {
+		logger.Errorf("Error while registering to tracker - %v\n", err)
+		return nil, err
+	}
+
+	self := resp.GetSelf()
+	s.node = &diztl.Node{Ip: self.GetIp(), Id: self.GetId()}
+	logger.Infof("Successfully registered to tracker - %v\n", s.node)
+	return &diztl.RegisterResp{Self: self}, nil
 }
 
 // Search - The tracker invokes the search call on all the nodes when it broadcasts a search request from another node.

@@ -84,6 +84,11 @@ func UpdateOutputDir(value string) {
 	set("dir.output", value)
 }
 
+// UpdateTracker updates the IP address of the tracker in the config file.
+func UpdateTracker(host string) {
+	set("tracker.host", host)
+}
+
 func set(key string, value interface{}) {
 	viper.Set(key, value)
 	viper.WriteConfig()
