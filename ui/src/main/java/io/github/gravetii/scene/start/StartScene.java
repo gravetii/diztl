@@ -56,4 +56,8 @@ public class StartScene extends FxScene {
   public void writeToLog(String text) {
     searchLogScene.writeToLog(text);
   }
+
+  public void writeToErrorLog(String text) {
+    searchLogScene.writeToErrorLog(text);
+  }
 }

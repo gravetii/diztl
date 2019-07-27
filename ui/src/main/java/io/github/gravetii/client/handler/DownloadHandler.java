@@ -3,6 +3,7 @@ package io.github.gravetii.client.handler;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
+import io.github.gravetii.util.Utils;
 import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +53,12 @@ public class DownloadHandler {
       public void onError(Throwable t) {
         logger.error("Error while downloading file - {}", t.getMessage());
         result.error(t);
+        scene.writeToErrorLog(
+            "Error while downloading file "
+                + Utils.getFullFilePath(file)
+                + " - "
+                + t.getMessage()
+                + ".");
       }
 
       @Override

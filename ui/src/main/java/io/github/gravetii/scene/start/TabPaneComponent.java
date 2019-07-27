@@ -23,10 +23,10 @@ public class TabPaneComponent extends FxComponent<TabPaneController, TabPane> {
   }
 
   public void addTab(String title, Node node) {
-    addTab(title, node, true);
+    addTab(title, node, true, true);
   }
 
-  public void addTab(String title, Node node, boolean closable) {
-    getController().addTab(title, node, closable);
+  public void addTab(String title, Node node, boolean closable, boolean active) {
+    getController().addTab(title, node, closable, active);
   }
 }

@@ -3,20 +3,19 @@ package io.github.gravetii.scene.start;
 import io.github.gravetii.controller.start.LogController;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class LogComponent extends FxComponent<LogController, AnchorPane> {
-  private Stage stage;
+  private boolean errorLog;
 
-  protected LogComponent(Stage stage) throws Exception {
+  protected LogComponent(boolean errorLog) {
     super("log.fxml");
-    this.stage = stage;
+    this.errorLog = errorLog;
     create();
   }
 
   @Override
   protected LogController createController() {
-    return new LogController(stage);
+    return new LogController(errorLog);
   }
 
   @Override
