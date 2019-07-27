@@ -14,14 +14,12 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public class StartScene extends FxScene {
-  //  private SearchResultScene searchResultScene;
   private SearchLogScene searchLogScene;
   private DownloadResultScene downloadResultScene;
 
   public StartScene(Stage stage) throws Exception {
     super(stage, new SplitPane());
     searchLogScene = new SearchLogScene(stage, this);
-    //    searchResultScene = new SearchResultScene(stage, this);
     downloadResultScene = new DownloadResultScene(stage);
   }
 
@@ -51,7 +49,7 @@ public class StartScene extends FxScene {
 
   public void show(Diztl.FileMetadata file, Diztl.Node source) {
     FileResult result = new FileResult(file, source);
-    //    searchResultScene.show(result);
+    searchLogScene.show(result);
   }
 
   public void reset() {

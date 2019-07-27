@@ -14,7 +14,6 @@ public class App extends Application {
   private static final Logger logger = LoggerFactory.getLogger(App.class.getCanonicalName());
 
   public static void main(String[] args) {
-    setUserAgentStylesheet(STYLESHEET_CASPIAN);
     launch(args);
   }
 

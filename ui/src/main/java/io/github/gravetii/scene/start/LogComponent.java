@@ -21,9 +21,6 @@ public class LogComponent extends FxComponent<LogController, AnchorPane> {
 
   @Override
   protected AnchorPane createNode() throws Exception {
-    AnchorPane root = loadNode();
-    //    Separator separator = (Separator) root.getChildren().get(0);
-    //    separator.prefHeightProperty().bind(root.heightProperty());
-    return root;
+    return loadNode();
   }
 }
