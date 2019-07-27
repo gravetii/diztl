@@ -9,7 +9,7 @@ public class UserDirsComponent extends FxComponent<UserDirsController, AnchorPan
   private Stage stage;
   private UserDirsScene parent;
 
-  protected UserDirsComponent(Stage stage, UserDirsScene parent) throws Exception {
+  protected UserDirsComponent(Stage stage, UserDirsScene parent) {
     super("userDirs.fxml");
     this.stage = stage;
     this.parent = parent;
@@ -22,7 +22,7 @@ public class UserDirsComponent extends FxComponent<UserDirsController, AnchorPan
   }
 
   @Override
-  protected AnchorPane createNode() throws Exception {
+  protected AnchorPane createNode() {
     return loadNode();
   }
 }

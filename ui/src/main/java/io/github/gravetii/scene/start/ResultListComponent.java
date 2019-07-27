@@ -9,7 +9,7 @@ public class ResultListComponent extends FxComponent<ResultListController, Ancho
   private Stage stage;
   private StartScene scene;
 
-  public ResultListComponent(Stage stage, StartScene scene) throws Exception {
+  public ResultListComponent(Stage stage, StartScene scene) {
     super("resultlist.fxml");
     this.stage = stage;
     this.scene = scene;
@@ -22,7 +22,7 @@ public class ResultListComponent extends FxComponent<ResultListController, Ancho
   }
 
   @Override
-  protected AnchorPane createNode() throws Exception {
+  protected AnchorPane createNode() {
     return this.loadNode();
   }
 }

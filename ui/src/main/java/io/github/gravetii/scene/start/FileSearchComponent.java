@@ -7,7 +7,7 @@ import javafx.scene.layout.AnchorPane;
 public class FileSearchComponent extends FxComponent<FileSearchController, AnchorPane> {
   private StartScene parent;
 
-  public FileSearchComponent(StartScene parent) throws Exception {
+  public FileSearchComponent(StartScene parent) {
     super("filesearch.fxml");
     this.parent = parent;
     this.create();
@@ -19,7 +19,7 @@ public class FileSearchComponent extends FxComponent<FileSearchController, Ancho
   }
 
   @Override
-  protected AnchorPane createNode() throws Exception {
+  protected AnchorPane createNode() {
     return this.loadNode();
   }
 }

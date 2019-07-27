@@ -20,7 +20,7 @@ public class LogComponent extends FxComponent<LogController, AnchorPane> {
   }
 
   @Override
-  protected AnchorPane createNode() throws Exception {
+  protected AnchorPane createNode() {
     return loadNode();
   }
 }

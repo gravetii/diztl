@@ -9,23 +9,27 @@ public abstract class FxComponent<C extends FxController, N extends Node> {
   private N node;
   private String fxml;
 
-  protected FxComponent(String fxml) throws Exception {
+  protected FxComponent(String fxml) {
     this.fxml = fxml;
   }
 
   protected abstract C createController();
 
-  protected abstract N createNode() throws Exception;
+  protected abstract N createNode();
 
-  protected void create() throws Exception {
-    this.controller = this.createController();
-    this.node = this.createNode();
+  protected void create() {
+    this.controller = createController();
+    this.node = createNode();
   }
 
-  protected N loadNode() throws Exception {
-    FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("fxml/" + this.fxml));
-    loader.setController(this.controller);
-    return loader.load();
+  protected N loadNode() {
+    try {
+      FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("fxml/" + this.fxml));
+      loader.setController(this.controller);
+      return loader.load();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public C getController() {
