@@ -1,13 +1,14 @@
 package io.github.gravetii.client.handler;
 
+import io.github.gravetii.AppContext;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
 import io.grpc.stub.StreamObserver;
-import javafx.application.Platform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FileIndexHandler {
@@ -21,20 +22,19 @@ public class FileIndexHandler {
   }
 
   public void process(Connection connection) {
+    List<String> shareDirs = AppContext.getShareDirs();
+    StringBuilder builder = new StringBuilder();
+    builder.append("Proceeding to index files in the following folders -").append("\n");
+    for (int i = 0; i < shareDirs.size(); ++i) {
+      builder.append("\t").append(i + 1).append(". ").append(shareDirs.get(i)).append("\n");
+    }
+
+    logText(builder.toString());
     connection.getAsyncstub().index(Diztl.IndexReq.getDefaultInstance(), createObserver());
   }
 
-  private void showFooterText(Object... tokens) {
-    StringBuilder builder = new StringBuilder();
-    for (Object token : tokens) {
-      builder.append(token).append(" ");
-    }
-
-    builder.append("\n");
-    Platform.runLater(
-        () -> {
-          scene.showFooter(builder.toString());
-        });
+  private void logText(String text) {
+    scene.writeToLog(text);
   }
 
   private StreamObserver<Diztl.IndexResp> createObserver() {
@@ -43,7 +43,7 @@ public class FileIndexHandler {
 
       @Override
       public void onNext(Diztl.IndexResp value) {
-        showFooterText("Finished indexing - ", value.getFpath());
+        // Optionally write the file names to log.
         indexedFilesCount.incrementAndGet();
       }
 
@@ -54,7 +54,7 @@ public class FileIndexHandler {
 
       @Override
       public void onCompleted() {
-        showFooterText("Finished indexing all", indexedFilesCount, "shared files");
+        logText("Finished indexing all " + indexedFilesCount + " shared files.");
       }
     };
   }

@@ -22,7 +22,7 @@ public class ExecutionHandler {
           });
 
   public static void submit(Task<Void> task) {
-    EXECUTOR.execute(task);
+    EXECUTOR.submit(task);
   }
 
   public static ExecutorService get() {

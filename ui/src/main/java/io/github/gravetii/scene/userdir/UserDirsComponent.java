@@ -23,6 +23,6 @@ public class UserDirsComponent extends FxComponent<UserDirsController, AnchorPan
 
   @Override
   protected AnchorPane createNode() throws Exception {
-    return this.loadNode();
+    return loadNode();
   }
 }

@@ -3,6 +3,7 @@ package io.github.gravetii.client.handler;
 import com.google.common.util.concurrent.ListenableFuture;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
+import io.github.gravetii.scene.start.StartScene;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,9 +13,11 @@ public class RegisterHandler {
 
   // the tracker's IP.
   private String host;
+  private StartScene scene;
 
-  public RegisterHandler(String host) {
+  public RegisterHandler(String host, StartScene scene) {
     this.host = host;
+    this.scene = scene;
   }
 
   public void process(Connection connection) {
@@ -28,6 +31,7 @@ public class RegisterHandler {
           try {
             Diztl.RegisterResp resp = f.get();
             logger.info("Register response: {}", resp);
+            scene.writeToLog("Successfully registered to tracker at " + host + "." + "\n");
           } catch (Exception e) {
             logger.error("Error while registering to tracker - ", e);
           }

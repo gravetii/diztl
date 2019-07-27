@@ -9,7 +9,7 @@ public abstract class FxComponent<C extends FxController, N extends Node> {
   private N node;
   private String fxml;
 
-  protected FxComponent(String fxml) {
+  protected FxComponent(String fxml) throws Exception {
     this.fxml = fxml;
   }
 
