@@ -2,8 +2,6 @@ package io.github.gravetii.scene.start;
 
 import io.github.gravetii.controller.start.FileResult;
 import io.github.gravetii.scene.FxScene;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
