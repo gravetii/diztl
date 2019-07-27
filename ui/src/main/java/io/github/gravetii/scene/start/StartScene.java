@@ -14,12 +14,14 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public class StartScene extends FxScene {
-  private SearchResultScene searchResultScene;
+  //  private SearchResultScene searchResultScene;
+  private SearchLogScene searchLogScene;
   private DownloadResultScene downloadResultScene;
 
   public StartScene(Stage stage) throws Exception {
     super(stage, new SplitPane());
-    searchResultScene = new SearchResultScene(stage, this);
+    searchLogScene = new SearchLogScene(stage, this);
+    //    searchResultScene = new SearchResultScene(stage, this);
     downloadResultScene = new DownloadResultScene(stage);
   }
 
@@ -28,7 +30,7 @@ public class StartScene extends FxScene {
     SplitPane pane = (SplitPane) root;
     pane.setDividerPositions(0.67);
     pane.setOrientation(Orientation.VERTICAL);
-    pane.getItems().addAll(searchResultScene.build(), downloadResultScene.build());
+    pane.getItems().addAll(searchLogScene.build(), downloadResultScene.build());
     return pane;
   }
 
@@ -49,18 +51,18 @@ public class StartScene extends FxScene {
 
   public void show(Diztl.FileMetadata file, Diztl.Node source) {
     FileResult result = new FileResult(file, source);
-    searchResultScene.show(result);
+    //    searchResultScene.show(result);
   }
 
   public void reset() {
-    searchResultScene.reset();
+    //    searchResultScene.reset();
   }
 
   public void show(DownloadResult result) {
     downloadResultScene.show(result);
   }
 
-  public void showFooter(String text) {
-    downloadResultScene.showFooter(text);
+  public void writeToLog(String text) {
+    searchLogScene.writeToLog(text);
   }
 }

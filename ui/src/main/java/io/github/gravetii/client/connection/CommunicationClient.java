@@ -2,7 +2,6 @@ package io.github.gravetii.client.connection;
 
 import io.github.gravetii.AppContext;
 import io.github.gravetii.client.handler.*;
-import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
 import io.github.gravetii.scene.start.StartScene;
@@ -17,7 +16,7 @@ public class CommunicationClient {
   private static final Logger logger =
       LoggerFactory.getLogger(CommunicationClient.class.getCanonicalName());
 
-  private static CommunicationClient INSTANCE = null;
+  private static volatile CommunicationClient INSTANCE = null;
   private Connection connection;
 
   private CommunicationClient() {
@@ -28,24 +27,25 @@ public class CommunicationClient {
         .addShutdownHook(
             new Thread(
                 () -> {
-                  close();
                   connection.close();
                   ExecutionHandler.shutdown();
                 }));
   }
 
-  public static void init() throws Exception {
-    logger.info("Initializing communication client.");
-    INSTANCE = new CommunicationClient();
-    INSTANCE.getUserDirs(true, true);
-  }
-
   public static CommunicationClient get() {
+    if (INSTANCE == null) {
+      synchronized (CommunicationClient.class) {
+        if (INSTANCE == null) {
+          INSTANCE = new CommunicationClient();
+        }
+      }
+    }
+
     return INSTANCE;
   }
 
-  public void register(String host) {
-    new RegisterHandler(host).process(connection);
+  public void register(String host, StartScene scene) {
+    new RegisterHandler(host, scene).process(connection);
   }
 
   public void find(String pattern, StartScene scene) {
@@ -69,11 +69,7 @@ public class CommunicationClient {
   }
 
   public void index(StartScene scene) {
+    getUserDirs(true, true);
     new FileIndexHandler(scene).process(connection);
-  }
-
-  private void close() {
-    Diztl.CloseResp resp = connection.getStub().close(Diztl.CloseReq.getDefaultInstance());
-    logger.info("Disconnected: {}", resp.getMessage());
   }
 }
