@@ -43,7 +43,7 @@ public class FileIndexHandler {
 
       @Override
       public void onNext(Diztl.IndexResp value) {
-        // Optionally write the file names to log.
+        logText("Finished indexing " + value.getFpath());
         indexedFilesCount.incrementAndGet();
       }
 
