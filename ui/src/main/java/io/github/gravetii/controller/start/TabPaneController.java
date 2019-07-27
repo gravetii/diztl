@@ -16,7 +16,9 @@ public class TabPaneController implements FxController {
     this.stage = stage;
   }
 
-  public void addTab(String title, Node node) {
-    tabPane.getTabs().add(new Tab(title, node));
+  public void addTab(String title, Node node, boolean closable) {
+    Tab tab = new Tab(title, node);
+    tab.setClosable(closable);
+    tabPane.getTabs().add(tab);
   }
 }

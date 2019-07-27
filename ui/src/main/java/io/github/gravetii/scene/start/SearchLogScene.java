@@ -2,6 +2,8 @@ package io.github.gravetii.scene.start;
 
 import io.github.gravetii.controller.start.FileResult;
 import io.github.gravetii.scene.FxScene;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
@@ -24,7 +26,7 @@ public class SearchLogScene extends FxScene {
   public Region build() {
     BorderPane pane = (BorderPane) root;
     pane.setLeft(fileSearchComponent.getNode());
-    tabPaneComponent.addTab("log", logComponent.getNode());
+    tabPaneComponent.addTab("log", logComponent.getNode(), false);
     tabPaneComponent.addTab("Search", resultListComponent.getNode());
     pane.setCenter(tabPaneComponent.getNode());
     return pane;
