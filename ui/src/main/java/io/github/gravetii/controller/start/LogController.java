@@ -3,21 +3,26 @@ package io.github.gravetii.controller.start;
 import io.github.gravetii.controller.FxController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
-import javafx.stage.Stage;
 
 public class LogController implements FxController {
-  private Stage stage;
-
+  private boolean errorLog;
   @FXML private TextArea logArea;
-  @FXML private Separator separator;
 
-  public LogController(Stage stage) {
-    this.stage = stage;
+  public LogController(boolean errorLog) {
+    this.errorLog = errorLog;
   }
 
-  public void writeToLog(String text) {
+  @FXML
+  public void initialize() {
+    if (errorLog) {
+      logArea.setId("errorLog");
+    } else {
+      logArea.setText("Welcome to Diztl.\n\nPlease wait while we set things up for you...\n\n");
+    }
+  }
+
+  public void write(String text) {
     Platform.runLater(() -> logArea.appendText(text + "\n"));
   }
 }

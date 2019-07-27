@@ -9,10 +9,12 @@ import javafx.scene.control.TabPane;
 public class TabPaneController implements FxController {
   @FXML private TabPane tabPane;
 
-  public void addTab(String title, Node node, boolean closable) {
+  public void addTab(String title, Node node, boolean closable, boolean active) {
     Tab tab = new Tab(title, node);
     tab.setClosable(closable);
     tabPane.getTabs().add(tab);
-    tabPane.getSelectionModel().select(tab);
+    if (active) {
+      tabPane.getSelectionModel().select(tab);
+    }
   }
 }

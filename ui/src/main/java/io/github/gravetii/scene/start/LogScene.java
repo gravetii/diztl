@@ -12,9 +12,9 @@ import java.util.Optional;
 public class LogScene extends FxScene {
   private LogComponent logComponent;
 
-  public LogScene(Stage stage) throws Exception {
+  public LogScene(Stage stage) {
     super(stage, new BorderPane());
-    this.logComponent = new LogComponent(stage);
+    this.logComponent = new LogComponent(true);
   }
 
   @Override
@@ -40,6 +40,6 @@ public class LogScene extends FxScene {
   }
 
   public void showLog(String text) {
-    logComponent.getController().writeToLog(text);
+    logComponent.getController().write(text);
   }
 }

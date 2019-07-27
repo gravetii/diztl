@@ -5,8 +5,6 @@ import io.github.gravetii.util.Utils;
 import javafx.concurrent.Task;
 import org.apache.commons.io.FilenameUtils;
 
-import java.nio.file.Paths;
-
 public class DownloadResult extends Task<Void> {
   private Diztl.FileMetadata file;
   private String path; // the output path of the downloaded file in the host system.
@@ -16,7 +14,7 @@ public class DownloadResult extends Task<Void> {
   public DownloadResult(Diztl.FileMetadata file, String path) {
     this.file = file;
     this.path = path;
-    this.filepath = Paths.get(path, file.getName()).toString();
+    this.filepath = Utils.getFullFilePath(file);
   }
 
   public void first(Diztl.DownloadChunk f) {

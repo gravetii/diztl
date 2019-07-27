@@ -1,9 +1,11 @@
 package io.github.gravetii.util;
 
+import io.github.gravetii.gen.Diztl;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 public class Utils {
   public static String humanReadableByteCount(long bytes) {
@@ -24,5 +26,9 @@ public class Utils {
     }
 
     return null;
+  }
+
+  public static String getFullFilePath(Diztl.FileMetadata file) {
+    return Paths.get(file.getDir(), file.getName()).toString();
   }
 }

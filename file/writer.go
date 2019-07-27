@@ -31,7 +31,7 @@ func CreateWriter(metadata *diztl.FileMetadata, chunks int32, out string) (*Writ
 	}
 
 	if exists {
-		return nil, errors.New("A file with given name already exists in output folder")
+		return nil, errors.New("A file with the given name already exists in the output folder")
 	}
 
 	f, err := ioutil.TempFile("", fname)

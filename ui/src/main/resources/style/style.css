@@ -111,3 +111,7 @@
 .tab:selected {
     -fx-background-color: -fx-inner-border, -fx-body-color;
 }
+
+#errorLog {
+    -fx-text-fill: #D8000C;
+}
