@@ -1,23 +1,22 @@
 package io.github.gravetii.scene.start;
 
-import io.github.gravetii.controller.start.FileResult;
 import io.github.gravetii.scene.FxScene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public class SearchLogScene extends FxScene {
+  private StartScene parent;
   private FileSearchComponent fileSearchComponent;
   private LogComponent logComponent;
-  private ResultListComponent resultListComponent;
   private TabPaneComponent tabPaneComponent;
 
   protected SearchLogScene(Stage stage, StartScene parent) throws Exception {
     super(stage, new BorderPane());
+    this.parent = parent;
     fileSearchComponent = new FileSearchComponent(parent);
     logComponent = new LogComponent(stage);
-    resultListComponent = new ResultListComponent(stage, parent);
-    tabPaneComponent = new TabPaneComponent(stage);
+    tabPaneComponent = new TabPaneComponent();
   }
 
   @Override
@@ -25,7 +24,6 @@ public class SearchLogScene extends FxScene {
     BorderPane pane = (BorderPane) root;
     pane.setLeft(fileSearchComponent.getNode());
     tabPaneComponent.addTab("log", logComponent.getNode(), false);
-    tabPaneComponent.addTab("Search", resultListComponent.getNode());
     pane.setCenter(tabPaneComponent.getNode());
     return pane;
   }
@@ -39,7 +37,9 @@ public class SearchLogScene extends FxScene {
     logComponent.getController().writeToLog(text);
   }
 
-  public void show(FileResult result) {
-    resultListComponent.getController().show(result);
+  public ResultListComponent addNewSearchTab(String searchTerm) {
+    ResultListComponent component = new ResultListComponent(stage, parent);
+    tabPaneComponent.addTab("Search - " + searchTerm, component.getNode());
+    return component;
   }
 }

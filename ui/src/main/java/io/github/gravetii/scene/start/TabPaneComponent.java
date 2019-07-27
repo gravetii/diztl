@@ -4,24 +4,21 @@ import io.github.gravetii.controller.start.TabPaneController;
 import io.github.gravetii.scene.FxComponent;
 import javafx.scene.Node;
 import javafx.scene.control.TabPane;
-import javafx.stage.Stage;
 
 public class TabPaneComponent extends FxComponent<TabPaneController, TabPane> {
-  private Stage stage;
 
-  protected TabPaneComponent(Stage stage) throws Exception {
+  protected TabPaneComponent() {
     super("tabs.fxml");
-    this.stage = stage;
     create();
   }
 
   @Override
   protected TabPaneController createController() {
-    return new TabPaneController(stage);
+    return new TabPaneController();
   }
 
   @Override
-  protected TabPane createNode() throws Exception {
+  protected TabPane createNode() {
     return loadNode();
   }
 

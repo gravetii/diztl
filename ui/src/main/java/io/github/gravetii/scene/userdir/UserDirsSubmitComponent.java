@@ -9,7 +9,7 @@ public class UserDirsSubmitComponent extends FxComponent<UserDirsSubmitControlle
   private Stage stage;
   private UserDirsComponent ref;
 
-  protected UserDirsSubmitComponent(Stage stage, UserDirsComponent ref) throws Exception {
+  protected UserDirsSubmitComponent(Stage stage, UserDirsComponent ref) {
     super("submitButtons.fxml");
     this.stage = stage;
     this.ref = ref;
@@ -22,7 +22,7 @@ public class UserDirsSubmitComponent extends FxComponent<UserDirsSubmitControlle
   }
 
   @Override
-  protected AnchorPane createNode() throws Exception {
+  protected AnchorPane createNode() {
     return this.loadNode();
   }
 }

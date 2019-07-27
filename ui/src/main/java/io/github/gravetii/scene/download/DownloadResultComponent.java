@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class DownloadResultComponent extends FxComponent<DownloadResultController, AnchorPane> {
   private Stage stage;
 
-  public DownloadResultComponent(Stage stage) throws Exception {
+  public DownloadResultComponent(Stage stage) {
     super("downloadResult.fxml");
     this.stage = stage;
     this.create();
@@ -20,7 +20,7 @@ public class DownloadResultComponent extends FxComponent<DownloadResultControlle
   }
 
   @Override
-  protected AnchorPane createNode() throws Exception {
+  protected AnchorPane createNode() {
     return this.loadNode();
   }
 }

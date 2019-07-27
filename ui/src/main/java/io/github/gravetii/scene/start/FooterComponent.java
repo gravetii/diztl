@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class FooterComponent extends FxComponent<FooterController, ToolBar> {
   private Stage stage;
 
-  protected FooterComponent(Stage stage) throws Exception {
+  protected FooterComponent(Stage stage) {
     super("footer.fxml");
     this.stage = stage;
     this.create();
@@ -20,7 +20,7 @@ public class FooterComponent extends FxComponent<FooterController, ToolBar> {
   }
 
   @Override
-  protected ToolBar createNode() throws Exception {
+  protected ToolBar createNode() {
     return this.loadNode();
   }
 }

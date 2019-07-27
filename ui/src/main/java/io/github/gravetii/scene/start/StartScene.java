@@ -1,8 +1,6 @@
 package io.github.gravetii.scene.start;
 
 import io.github.gravetii.client.handler.DownloadResult;
-import io.github.gravetii.controller.start.FileResult;
-import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
 import javafx.geometry.Dimension2D;
@@ -21,6 +19,10 @@ public class StartScene extends FxScene {
     super(stage, new SplitPane());
     searchLogScene = new SearchLogScene(stage, this);
     downloadResultScene = new DownloadResultScene(stage);
+  }
+
+  public ResultListComponent addNewSearchTab(String searchTerm) {
+    return searchLogScene.addNewSearchTab(searchTerm);
   }
 
   @Override
@@ -45,15 +47,6 @@ public class StartScene extends FxScene {
             new Dimension2D(1100, 820),
             new Dimension2D(Double.MAX_VALUE, Double.MAX_VALUE));
     return Optional.of(dimensions);
-  }
-
-  public void show(Diztl.FileMetadata file, Diztl.Node source) {
-    FileResult result = new FileResult(file, source);
-    searchLogScene.show(result);
-  }
-
-  public void reset() {
-    //    searchResultScene.reset();
   }
 
   public void show(DownloadResult result) {
