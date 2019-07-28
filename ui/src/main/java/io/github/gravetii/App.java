@@ -2,6 +2,7 @@ package io.github.gravetii;
 
 import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.client.handler.ExecutionHandler;
+import io.github.gravetii.scene.configuration.ConfigureTrackerScene;
 import io.github.gravetii.scene.start.StartScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -19,9 +20,9 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    StartScene scene = new StartScene(stage);
+    ConfigureTrackerScene scene = new ConfigureTrackerScene(stage);
     scene.show();
-    this.bootstrap(scene);
+    //this.bootstrap(scene);
   }
 
   private void bootstrap(StartScene scene) {
