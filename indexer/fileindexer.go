@@ -71,6 +71,11 @@ func (f *FileIndexer) Search(pattern string) []*diztl.FileMetadata {
 	return f.index.search(pattern)
 }
 
+// Find finds a file in the index by its path.
+func (f *FileIndexer) Find(path string) *diztl.FileMetadata {
+	return f.index.find(path)
+}
+
 func (f *FileIndexer) add(path string, info os.FileInfo) {
 	if !info.IsDir() {
 		f.index.addFile(path, info)
