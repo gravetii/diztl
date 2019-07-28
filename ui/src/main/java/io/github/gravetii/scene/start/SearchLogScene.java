@@ -5,6 +5,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+/**
+ * This class is responsible for laying out the file-search and log
+ * components of the start scene. This scene is typically present in
+ * the top portion of the split pane of the start scene.
+ */
 public class SearchLogScene extends FxScene {
   private StartScene parent;
   private FileSearchComponent fileSearchComponent;
