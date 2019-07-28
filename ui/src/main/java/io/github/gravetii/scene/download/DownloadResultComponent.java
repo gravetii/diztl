@@ -11,7 +11,7 @@ public class DownloadResultComponent extends FxComponent<DownloadResultControlle
   public DownloadResultComponent(Stage stage) {
     super("downloadResult.fxml");
     this.stage = stage;
-    this.create();
+    create();
   }
 
   @Override

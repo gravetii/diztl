@@ -13,7 +13,7 @@ public class UserDirsScene extends FxScene {
   private UserDirsComponent userDirsComponent;
   private UserDirsSubmitComponent userDirsSubmitComponent;
 
-  public UserDirsScene(Stage stage) throws Exception {
+  public UserDirsScene(Stage stage) {
     super(stage, new BorderPane());
     this.userDirsComponent = new UserDirsComponent(stage, this);
     this.userDirsSubmitComponent = new UserDirsSubmitComponent(stage, userDirsComponent);

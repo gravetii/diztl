@@ -13,7 +13,7 @@ public class UserDirsComponent extends FxComponent<UserDirsController, AnchorPan
     super("userDirs.fxml");
     this.stage = stage;
     this.parent = parent;
-    this.create();
+    create();
   }
 
   @Override
