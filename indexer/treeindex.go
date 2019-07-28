@@ -58,6 +58,20 @@ func (t *TreeIndex) addFile(path string, info os.FileInfo) {
 	logger.Debugf("Added %d. %s, %x\n", t.counter.Value(), path, hash.Checksum)
 }
 
+func (t *TreeIndex) find(path string) *diztl.FileMetadata {
+	tokens := dir.Split(path)
+	parent := t.root
+	for _, token := range tokens {
+		if node, exists := parent.children[token]; exists {
+			parent = node
+		} else {
+			return nil
+		}
+	}
+
+	return parent.file
+}
+
 func (t *TreeIndex) addPath(path string, token string, parent *TreeNode,
 	info os.FileInfo, hash *diztl.FileHash, isDir bool) *TreeNode {
 
