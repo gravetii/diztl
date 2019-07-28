@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="63.0" prefWidth="328.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="32.0" layoutY="22.0" prefHeight="21.0" prefWidth="103.0" text="Tracker IP: " />
+      <JFXTextField fx:id="ipBox" layoutX="147.0" layoutY="14.0" />
+   </children>
+</AnchorPane>

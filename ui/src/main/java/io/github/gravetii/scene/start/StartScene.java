@@ -3,6 +3,7 @@ package io.github.gravetii.scene.start;
 import io.github.gravetii.client.handler.DownloadResult;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
+import io.github.gravetii.scene.download.DownloadResultScene;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Orientation;
 import javafx.scene.control.SplitPane;
