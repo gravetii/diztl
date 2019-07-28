@@ -12,15 +12,15 @@ import javafx.stage.Stage;
  */
 public class SearchLogScene extends FxScene {
   private StartScene parent;
-  private FileSearchComponent fileSearchComponent;
+  private FileSearchScene fileSearchScene;
   private LogComponent logComponent;
   private LogComponent errorLogComponent;
   private TabPaneComponent tabPaneComponent;
 
-  protected SearchLogScene(Stage stage, StartScene parent) {
+  public SearchLogScene(Stage stage, StartScene parent) {
     super(stage, new BorderPane());
     this.parent = parent;
-    fileSearchComponent = new FileSearchComponent(parent);
+    fileSearchScene = new FileSearchScene(stage, parent);
     logComponent = new LogComponent(false);
     errorLogComponent = new LogComponent(true);
     tabPaneComponent = new TabPaneComponent();
@@ -29,7 +29,7 @@ public class SearchLogScene extends FxScene {
   @Override
   public Region build() {
     BorderPane pane = (BorderPane) root;
-    pane.setLeft(fileSearchComponent.getNode());
+    pane.setLeft(fileSearchScene.build());
     tabPaneComponent.addTab("log", logComponent.getNode(), false, true);
     tabPaneComponent.addTab("error log", errorLogComponent.getNode(), false, false);
     pane.setCenter(tabPaneComponent.getNode());

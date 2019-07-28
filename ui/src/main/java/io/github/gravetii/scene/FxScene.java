@@ -24,15 +24,15 @@ public abstract class FxScene {
   }
 
   private void setDimensions() {
-    this.preferredDimensions().ifPresent(dimensions -> dimensions.setFor(this.stage));
+    preferredDimensions().ifPresent(dimensions -> dimensions.setFor(stage));
   }
 
   public void show() {
     build();
     Scene scene = new Scene(root);
-    this.stage.setScene(scene);
-    this.stage.setTitle(title());
-    this.setDimensions();
-    this.stage.show();
+    stage.setScene(scene);
+    stage.setTitle(title());
+    setDimensions();
+    stage.show();
   }
 }

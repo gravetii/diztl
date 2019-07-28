@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="50.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ButtonBar layoutX="12.0" layoutY="11.0">
+         <buttons>
+            <JFXButton fx:id="configureDirsBtn" mnemonicParsing="false" onAction="#configureDirs" prefWidth="10.0">
+               <graphic>
+                  <FontAwesomeIconView glyphName="FOLDER_OPEN" size="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="configureTrackerBtn" mnemonicParsing="false" onAction="#configureTracker" prefWidth="10.0">
+               <graphic>
+                  <FontAwesomeIconView glyphName="DESKTOP" size="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+               </graphic>
+            </JFXButton>
+            <JFXButton minWidth="26.0" mnemonicParsing="false" prefHeight="31.0">
+               <graphic>
+                  <FontAwesomeIconView glyphName="ROCKET" size="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+               </graphic>
+            </JFXButton>
+         </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
