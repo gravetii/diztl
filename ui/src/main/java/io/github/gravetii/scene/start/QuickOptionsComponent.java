@@ -5,14 +5,17 @@ import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.AnchorPane;
 
 public class QuickOptionsComponent extends FxComponent<QuickOptionsController, AnchorPane> {
-  public QuickOptionsComponent() {
+  private StartScene parent;
+
+  public QuickOptionsComponent(StartScene parent) {
     super("quickOptions.fxml");
+    this.parent = parent;
     create();
   }
 
   @Override
   protected QuickOptionsController createController() {
-    return new QuickOptionsController();
+    return new QuickOptionsController(parent);
   }
 
   @Override

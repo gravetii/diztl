@@ -17,6 +17,8 @@ service DiztlService {
     }
     rpc UpdateUserDirs(UpdateUserDirsReq) returns (UpdateUserDirsResp) {
     }
+    rpc UpdateTracker(UpdateTrackerReq) returns (UpdateTrackerResp) {
+    }
     rpc Index(IndexReq) returns (stream IndexResp) {
     }
     rpc Register(RegisterReq) returns (RegisterResp) {
@@ -75,11 +77,11 @@ message FileChunk {
 
 message RegisterReq {
     Node self = 1;
-    Node tracker = 2;
 }
 
 message RegisterResp {
     Node self = 1;
+    Node tracker = 2;
 }
 
 message SearchReq {
@@ -171,6 +173,14 @@ message UpdateUserDirsReq {
 
 message UpdateUserDirsResp {
     string message = 1;
+}
+
+message UpdateTrackerReq {
+    Node tracker = 1;
+}
+
+message UpdateTrackerResp {
+    int32 code = 1;
 }
 
 message IndexReq {

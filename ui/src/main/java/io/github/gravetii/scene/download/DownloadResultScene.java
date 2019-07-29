@@ -7,9 +7,8 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 /**
- * This class is responsible for laying out the download results view
- * of the start scene. This is where the current and past downloads
- * are shown in the bottom portion of the split pane.
+ * This class is responsible for laying out the download results view of the start scene. This is
+ * where the current and past downloads are shown in the bottom portion of the split pane.
  */
 public class DownloadResultScene extends FxScene {
   private DownloadResultComponent downloadResultComponent;

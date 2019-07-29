@@ -8,8 +8,9 @@ import java.util.List;
 public class AppContext {
   private static final Logger logger = LoggerFactory.getLogger(AppContext.class.getCanonicalName());
 
-  public static List<String> shareDirs;
-  public static String outputDir;
+  private static List<String> shareDirs;
+  private static String outputDir;
+  private static String tracker;
 
   public static void updateShareDirs(List<String> dirs) {
     shareDirs = dirs;
@@ -25,5 +26,13 @@ public class AppContext {
 
   public static String getOutputDir() {
     return outputDir;
+  }
+
+  public static void updateTracker(String host) {
+    tracker = host;
+  }
+
+  public static String getTracker() {
+    return tracker;
   }
 }

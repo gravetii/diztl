@@ -132,7 +132,12 @@ func AppDir() string {
 	return dir
 }
 
-// TrackerPort returns the port of the tracker service.
+// TrackerHost returns the host of the tracker.
+func TrackerHost() string {
+	return config.Tracker["host"]
+}
+
+// TrackerPort returns the port of the tracker.
 func TrackerPort() string {
 	return config.Tracker["port"]
 }

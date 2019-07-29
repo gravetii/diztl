@@ -30,7 +30,7 @@ public class App extends Application {
             .submit(
                 () -> {
                   CommunicationClient.get().index(scene);
-                  CommunicationClient.get().register("127.0.0.1", scene);
+                  CommunicationClient.get().register(scene);
                 });
   }
 }
