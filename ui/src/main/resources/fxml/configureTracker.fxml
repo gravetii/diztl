@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="63.0" prefWidth="328.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="124.0" prefWidth="328.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="32.0" layoutY="22.0" prefHeight="21.0" prefWidth="103.0" text="Tracker IP: " />
-      <JFXTextField fx:id="ipBox" layoutX="147.0" layoutY="14.0" />
+      <Label layoutX="38.0" layoutY="22.0" prefHeight="21.0" prefWidth="77.0" text="Tracker IP: " />
+      <JFXTextField fx:id="ipBox" alignment="CENTER" focusTraversable="false" layoutX="138.0" layoutY="14.0" prefHeight="27.0" prefWidth="136.0" />
+      <JFXButton buttonType="RAISED" layoutX="88.0" layoutY="72.0" mnemonicParsing="false" onAction="#ok" prefHeight="27.0" prefWidth="61.0" ripplerFill="#1bd79c" styleClass="okBtn" stylesheets="@../style/style.css" text="OK" />
+      <JFXButton buttonType="RAISED" layoutX="188.0" layoutY="72.0" mnemonicParsing="false" onAction="#cancel" prefHeight="27.0" prefWidth="84.0" ripplerFill="#1bd79c" styleClass="cancelBtn" text="Cancel" />
    </children>
 </AnchorPane>

@@ -54,7 +54,7 @@ public class FileIndexHandler {
 
       @Override
       public void onCompleted() {
-        logText("Finished indexing all " + indexedFilesCount + " shared files.");
+        logText("Finished indexing all " + indexedFilesCount + " shared files.\n");
       }
     };
   }

@@ -2,6 +2,7 @@ package io.github.gravetii.scene.configuration;
 
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
+import io.github.gravetii.scene.start.StartScene;
 import javafx.geometry.Dimension2D;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
@@ -11,12 +12,14 @@ import java.util.Optional;
 
 public class ConfigureTrackerScene extends FxScene {
   private Stage stage;
+  private StartScene scene;
   private ConfigureTrackerComponent component;
 
-  public ConfigureTrackerScene(Stage stage) {
+  public ConfigureTrackerScene(Stage stage, StartScene scene) {
     super(stage, new BorderPane());
-    component = new ConfigureTrackerComponent();
+    component = new ConfigureTrackerComponent(stage, scene);
   }
+
   @Override
   public Region build() {
     BorderPane pane = (BorderPane) root;
@@ -30,8 +33,9 @@ public class ConfigureTrackerScene extends FxScene {
   }
 
   protected Optional<FxDimensions> preferredDimensions() {
-    FxDimensions dimensions = new FxDimensions(new Dimension2D(350, 100),
-            new Dimension2D(350, 100), new Dimension2D(350, 100));
+    FxDimensions dimensions =
+        new FxDimensions(
+            new Dimension2D(350, 150), new Dimension2D(350, 150), new Dimension2D(350, 150));
     return Optional.of(dimensions);
   }
 }

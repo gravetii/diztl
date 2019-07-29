@@ -44,8 +44,8 @@ public class CommunicationClient {
     return INSTANCE;
   }
 
-  public void register(String host, StartScene scene) {
-    new RegisterHandler(host, scene).process(connection);
+  public void register(StartScene scene) {
+    new RegisterHandler(scene).process(connection);
   }
 
   public void find(String pattern, StartScene scene) {
@@ -66,6 +66,10 @@ public class CommunicationClient {
 
   public void updateUserDirs(List<String> share, String output) {
     new UpdateUserDirsHandler(share, output).process(connection);
+  }
+
+  public void updateTracker(String host, StartScene scene) {
+    new UpdateTrackerHandler(host, scene).process(connection);
   }
 
   public void index(StartScene scene) {

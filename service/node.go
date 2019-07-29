@@ -7,7 +7,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/gravetii/diztl/addr"
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/keeper"
@@ -84,29 +83,32 @@ func (s *NodeService) OnShutdown() {
 // Register registers the node to the tracker provided in the request.
 func (s *NodeService) Register(ctx context.Context, request *diztl.RegisterReq) (*diztl.RegisterResp, error) {
 	logger.Debugf("Received register request: %v\n", request)
-	trackerAddr := request.GetTracker().GetIp() + ":" + conf.TrackerPort()
-	err := s.connectToTracker(trackerAddr)
+	err := s.connectToTracker(conf.TrackerAddress())
 	if err != nil {
 		return nil, err
 	}
 
-	// Update address of tracker in config.
-	conf.UpdateTracker(request.GetTracker().GetIp())
-
-	r := &diztl.RegisterReq{Tracker: request.GetTracker(), Self: &diztl.Node{Ip: addr.LocalIP()}}
 	c, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	t := s.tracker()
-	resp, err := t.Register(c, r)
+	resp, err := t.Register(c, request)
 	if err != nil {
 		logger.Errorf("Error while registering to tracker - %v\n", err)
 		return nil, err
 	}
 
 	self := resp.GetSelf()
+	tracker := &diztl.Node{Ip: conf.TrackerHost()}
 	s.node = &diztl.Node{Ip: self.GetIp(), Id: self.GetId()}
 	logger.Infof("Successfully registered to tracker - %v\n", s.node)
-	return &diztl.RegisterResp{Self: self}, nil
+	return &diztl.RegisterResp{Self: self, Tracker: tracker}, nil
+}
+
+// UpdateTracker updates the details of the tracker in config.
+func (s *NodeService) UpdateTracker(ctx context.Context, request *diztl.UpdateTrackerReq) (*diztl.UpdateTrackerResp, error) {
+	logger.Debugf("Received update tracker request: %v\n", request)
+	conf.UpdateTracker(request.GetTracker().GetIp())
+	return &diztl.UpdateTrackerResp{Code: 1}, nil
 }
 
 // Search - The tracker invokes the search call on all the nodes when it broadcasts a search request from another node.
@@ -267,7 +269,7 @@ func (s *NodeService) GetUserDirs(ctx context.Context, request *diztl.UserDirsRe
 	return &resp, nil
 }
 
-// UpdateUserDirs updates the user directories.
+// UpdateUserDirs updates the user directories in config.
 func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateUserDirsReq) (*diztl.UpdateUserDirsResp, error) {
 	logger.Infof("Received UpdateUserDirs call: %v\n", request)
 	conf.UpdateShareDirs(request.GetShare())

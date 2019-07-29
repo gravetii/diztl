@@ -14,7 +14,7 @@ public class FileSearchScene extends FxScene {
     super(stage, new BorderPane());
     this.parent = parent;
     fileSearchComponent = new FileSearchComponent(parent);
-    quickOptionsComponent = new QuickOptionsComponent();
+    quickOptionsComponent = new QuickOptionsComponent(parent);
   }
 
   @Override
