@@ -39,10 +39,10 @@ public class FileSearchController implements FxController {
 
   @FXML
   public void search() {
-    String in = searchBox.getText();
-    if (!in.isEmpty()) {
-      logger.debug("Searching for pattern: {}", in);
-      CommunicationClient.get().find(in, parent);
+    String query = searchBox.getText();
+    if (!query.isEmpty()) {
+      logger.debug("Searching for pattern: {}", query);
+      CommunicationClient.get().find(query, parent);
     }
   }
 }

@@ -48,9 +48,9 @@ public class SearchLogScene extends FxScene {
     errorLogComponent.getController().write(text);
   }
 
-  public ResultListComponent addNewSearchTab(String searchTerm) {
+  public ResultListComponent addNewSearchTab(String query) {
     ResultListComponent component = new ResultListComponent(stage, parent);
-    tabPaneComponent.addTab("Search - " + searchTerm, component.getNode());
+    tabPaneComponent.addTab("search - " + query, component.getNode());
     return component;
   }
 }

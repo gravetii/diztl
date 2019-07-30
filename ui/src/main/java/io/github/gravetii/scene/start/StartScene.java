@@ -22,8 +22,8 @@ public class StartScene extends FxScene {
     downloadResultScene = new DownloadResultScene(stage);
   }
 
-  public ResultListComponent addNewSearchTab(String searchTerm) {
-    return searchLogScene.addNewSearchTab(searchTerm);
+  public ResultListComponent addNewSearchTab(String query) {
+    return searchLogScene.addNewSearchTab(query);
   }
 
   @Override
