@@ -2,23 +2,24 @@ package io.github.gravetii.scene.userdir;
 
 import io.github.gravetii.controller.userdir.UserDirsController;
 import io.github.gravetii.scene.FxComponent;
+import io.github.gravetii.scene.start.StartScene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class UserDirsComponent extends FxComponent<UserDirsController, AnchorPane> {
   private Stage stage;
-  private UserDirsScene parent;
+  private StartScene scene;
 
-  protected UserDirsComponent(Stage stage, UserDirsScene parent) {
+  protected UserDirsComponent(Stage stage, StartScene scene) {
     super("userDirs.fxml");
     this.stage = stage;
-    this.parent = parent;
+    this.scene = scene;
     create();
   }
 
   @Override
   protected UserDirsController createController() {
-    return new UserDirsController(stage, parent);
+    return new UserDirsController(stage, scene);
   }
 
   @Override
