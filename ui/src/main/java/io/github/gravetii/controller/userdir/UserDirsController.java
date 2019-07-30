@@ -17,7 +17,9 @@ import java.util.*;
 public class UserDirsController implements FxController {
   private Stage stage;
   private StartScene scene;
-  private Set<String> dirs;
+  private Set<String> dirs = new HashSet<>();
+  private boolean shareChanged = false;
+  private boolean outputChanged = false;
 
   @FXML private JFXListView<Label> shareDirsList;
   @FXML private JFXButton addBtn;
@@ -28,7 +30,6 @@ public class UserDirsController implements FxController {
   public UserDirsController(Stage stage, StartScene scene) {
     this.stage = stage;
     this.scene = scene;
-    this.dirs = new HashSet<>();
   }
 
   @FXML
@@ -45,6 +46,7 @@ public class UserDirsController implements FxController {
     String dir = Utils.chooseDir(stage);
     if (dir != null && !dirs.contains(dir)) {
       displayShareDirs(Collections.singletonList(dir));
+      shareChanged = true;
     }
   }
 
@@ -57,6 +59,7 @@ public class UserDirsController implements FxController {
             shareDirsList.getItems().remove(item);
             dirs.remove(item.getText());
           });
+      shareChanged = true;
     }
   }
 
@@ -78,15 +81,25 @@ public class UserDirsController implements FxController {
     String dir = Utils.chooseDir(stage);
     if (dir != null) {
       displayOutputDir(dir);
+      outputChanged = true;
     }
   }
 
   @FXML
   public void ok(ActionEvent event) {
-    List<String> share = new ArrayList<>(dirs);
-    String out = outputDir.getItems().get(0).getText();
-    AppContext.updateShareDirs(share);
-    AppContext.updateOutputDir(out);
+    List<String> share = new ArrayList<>();
+    String out = "";
+
+    if (shareChanged) {
+      share.addAll(dirs);
+      AppContext.updateShareDirs(share);
+    }
+
+    if (outputChanged) {
+      out = outputDir.getItems().get(0).getText();
+      AppContext.updateOutputDir(out);
+    }
+
     CommunicationClient.get().updateUserDirs(share, out, scene);
     stage.close();
   }

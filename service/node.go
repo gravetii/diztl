@@ -43,6 +43,11 @@ func (s *NodeService) Init() error {
 	return nil
 }
 
+func (s *NodeService) clearIndex() {
+	logger.Debugf("Clearing current file index.\n")
+	s.Indexer = indexer.NewFileIndexer()
+}
+
 func (s *NodeService) tracker() diztl.TrackerServiceClient {
 	return diztl.NewTrackerServiceClient(s.trackerConn)
 }
@@ -272,8 +277,14 @@ func (s *NodeService) GetUserDirs(ctx context.Context, request *diztl.UserDirsRe
 // UpdateUserDirs updates the user directories in config.
 func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateUserDirsReq) (*diztl.UpdateUserDirsResp, error) {
 	logger.Infof("Received UpdateUserDirs call: %v\n", request)
-	conf.UpdateShareDirs(request.GetShare())
-	conf.UpdateOutputDir(request.GetOutput())
+	if len(request.GetShare()) > 0 {
+		conf.UpdateShareDirs(request.GetShare())
+	}
+
+	if request.GetOutput() != "" {
+		conf.UpdateOutputDir(request.GetOutput())
+	}
+
 	logger.Infof("Finished updating user share dirs\n")
 	resp := diztl.UpdateUserDirsResp{Message: "Finished updating user share dirs"}
 	return &resp, nil
@@ -282,6 +293,8 @@ func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateU
 // Index indexes all the files in the shared directories.
 func (s *NodeService) Index(request *diztl.IndexReq, stream diztl.DiztlService_IndexServer) error {
 	logger.Infof("Received Index request: %v\n", request)
+	s.clearIndex()
+
 	paths := make(chan string)
 	go func() {
 		for p := range paths {

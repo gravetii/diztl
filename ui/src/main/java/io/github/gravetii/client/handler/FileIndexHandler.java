@@ -24,7 +24,7 @@ public class FileIndexHandler {
   public void process(Connection connection) {
     List<String> shareDirs = AppContext.getShareDirs();
     StringBuilder builder = new StringBuilder();
-    builder.append("Proceeding to index files in the following folders -").append("\n");
+    builder.append("Indexing files in the following folders -").append("\n");
     for (int i = 0; i < shareDirs.size(); ++i) {
       builder.append("\t").append(i + 1).append(". ").append(shareDirs.get(i)).append("\n");
     }
