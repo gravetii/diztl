@@ -1,6 +1,7 @@
 package io.github.gravetii.client.handler;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
@@ -31,8 +32,13 @@ public class UpdateUserDirsHandler {
     f.addListener(
         () -> {
           try {
-            logger.info(f.get().getMessage());
-            scene.writeToLog("Updated user directories, now proceeding to re-index files.\n");
+            if (!output.equals("")) {
+              scene.writeToLog("Updated downloads directory to " + output + ".\n");
+            }
+            if (!share.isEmpty()) {
+              scene.writeToLog("Updated share folders, re-indexing files now...\n");
+              CommunicationClient.get().index(scene);
+            }
           } catch (Exception e) {
             logger.error("Error while updating user dirs:", e);
           }
