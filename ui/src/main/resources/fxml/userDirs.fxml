@@ -7,34 +7,36 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="411.0" prefWidth="699.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="495.0" prefWidth="650.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="39.0" layoutY="21.0" prefHeight="17.0" prefWidth="133.0" text="Share directories -" />
-      <JFXListView fx:id="shareDirsList" focusTraversable="false" layoutX="39.0" layoutY="54.0" prefHeight="167.0" prefWidth="524.0" showTooltip="true" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="54.0">
+      <JFXListView fx:id="shareDirsList" focusTraversable="false" layoutX="39.0" layoutY="54.0" prefHeight="177.0" prefWidth="475.0" showTooltip="true" AnchorPane.bottomAnchor="264.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="54.0">
          <effect>
             <InnerShadow color="#a19e9e" />
          </effect>
       </JFXListView>
-      <JFXButton fx:id="addBtn" alignment="CENTER" layoutX="602.0" layoutY="90.0" mnemonicParsing="false" onAction="#addDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="51.0">
+      <JFXButton fx:id="addBtn" alignment="CENTER" layoutX="553.0" layoutY="101.0" mnemonicParsing="false" onAction="#addDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="51.0">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="removeBtn" alignment="CENTER" layoutX="602.0" layoutY="147.0" mnemonicParsing="false" onAction="#removeDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER" AnchorPane.rightAnchor="51.0">
+      <JFXButton fx:id="removeBtn" alignment="CENTER" layoutX="553.0" layoutY="156.0" mnemonicParsing="false" onAction="#removeDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" textAlignment="CENTER" AnchorPane.rightAnchor="51.0">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </graphic>
       </JFXButton>
-      <Label layoutX="39.0" layoutY="262.0" prefHeight="17.0" prefWidth="125.0" text="Output directory -" />
-      <JFXListView fx:id="outputDir" layoutX="39.0" layoutY="300.0" prefHeight="36.0" prefWidth="476.0">
+      <Label layoutX="43.0" layoutY="293.0" prefHeight="17.0" prefWidth="125.0" text="Output directory -" />
+      <JFXListView fx:id="outputDir" layoutX="39.0" layoutY="329.0" prefHeight="36.0" prefWidth="476.0" AnchorPane.topAnchor="329.0">
          <effect>
             <InnerShadow color="#a19e9e" />
          </effect>
       </JFXListView>
-      <JFXButton fx:id="folderBtn" layoutX="600.0" layoutY="306.0" mnemonicParsing="false" onAction="#updateDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="51.0">
+      <JFXButton fx:id="folderBtn" layoutX="551.0" layoutY="333.0" mnemonicParsing="false" onAction="#updateDir" prefHeight="20.0" prefWidth="20.0" ripplerFill="#1bd79c" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="333.0">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="FOLDER" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </graphic>
       </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="154.0" layoutY="425.0" mnemonicParsing="false" onAction="#ok" prefHeight="36.0" prefWidth="99.0" styleClass="okBtn" text="OK" />
+      <JFXButton buttonType="RAISED" layoutX="375.0" layoutY="425.0" mnemonicParsing="false" onAction="#cancel" prefHeight="36.0" prefWidth="99.0" styleClass="cancelBtn" text="Cancel" />
    </children>
 </AnchorPane>

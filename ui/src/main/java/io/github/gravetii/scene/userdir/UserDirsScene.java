@@ -11,19 +11,16 @@ import java.util.Optional;
 
 public class UserDirsScene extends FxScene {
   private UserDirsComponent userDirsComponent;
-  private UserDirsSubmitComponent userDirsSubmitComponent;
 
   public UserDirsScene(Stage stage) {
     super(stage, new BorderPane());
     this.userDirsComponent = new UserDirsComponent(stage, this);
-    this.userDirsSubmitComponent = new UserDirsSubmitComponent(stage, userDirsComponent);
   }
 
   @Override
   public Region build() {
     BorderPane pane = (BorderPane) root;
     pane.setCenter(userDirsComponent.getNode());
-    pane.setBottom(userDirsSubmitComponent.getNode());
     return pane;
   }
 
