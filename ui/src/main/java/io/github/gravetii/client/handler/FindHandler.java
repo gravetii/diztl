@@ -14,17 +14,17 @@ public class FindHandler {
       LoggerFactory.getLogger(FindHandler.class.getCanonicalName());
 
   private StartScene scene;
-  private String pattern;
+  private String query;
 
-  public FindHandler(StartScene scene, String pattern) {
+  public FindHandler(StartScene scene, String query) {
     this.scene = scene;
-    this.pattern = pattern;
+    this.query = query;
   }
 
   public void process(Connection connection) {
-    ResultListComponent resultListComponent = scene.addNewSearchTab(pattern);
-    Diztl.FindReq req = Diztl.FindReq.newBuilder().setPattern(pattern).build();
-    logger.info("Searching for pattern - {}", pattern);
+    ResultListComponent resultListComponent = scene.addNewSearchTab(query);
+    Diztl.FindReq req = Diztl.FindReq.newBuilder().setPattern(query).build();
+    logger.info("Searching for pattern - {}", query);
     ListenableFuture<Diztl.FindResp> f = connection.getFutureStub().find(req);
     f.addListener(
         () -> {

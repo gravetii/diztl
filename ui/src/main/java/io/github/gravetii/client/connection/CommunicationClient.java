@@ -48,8 +48,8 @@ public class CommunicationClient {
     new RegisterHandler(scene).process(connection);
   }
 
-  public void find(String pattern, StartScene scene) {
-    new FindHandler(scene, pattern).process(connection);
+  public void find(String query, StartScene scene) {
+    new FindHandler(scene, query).process(connection);
   }
 
   public void download(FileMetadata file, Node source, StartScene scene) {
