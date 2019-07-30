@@ -2,6 +2,7 @@ package io.github.gravetii.scene.userdir;
 
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
+import io.github.gravetii.scene.start.StartScene;
 import javafx.geometry.Dimension2D;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
@@ -12,9 +13,9 @@ import java.util.Optional;
 public class UserDirsScene extends FxScene {
   private UserDirsComponent userDirsComponent;
 
-  public UserDirsScene(Stage stage) {
+  public UserDirsScene(Stage stage, StartScene scene) {
     super(stage, new BorderPane());
-    this.userDirsComponent = new UserDirsComponent(stage, this);
+    this.userDirsComponent = new UserDirsComponent(stage, scene);
   }
 
   @Override

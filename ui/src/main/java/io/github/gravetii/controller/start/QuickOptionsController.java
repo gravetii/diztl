@@ -35,7 +35,7 @@ public class QuickOptionsController implements FxController {
   @FXML
   private void configureDirs(ActionEvent event) {
     Stage stage = newModalWindow();
-    UserDirsScene scene = new UserDirsScene(stage);
+    UserDirsScene scene = new UserDirsScene(stage, parent);
     scene.show();
   }
 

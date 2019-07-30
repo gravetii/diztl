@@ -5,7 +5,7 @@ import com.jfoenix.controls.JFXListView;
 import io.github.gravetii.AppContext;
 import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
-import io.github.gravetii.scene.userdir.UserDirsScene;
+import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +16,7 @@ import java.util.*;
 
 public class UserDirsController implements FxController {
   private Stage stage;
-  private UserDirsScene parent;
+  private StartScene scene;
   private Set<String> dirs;
 
   @FXML private JFXListView<Label> shareDirsList;
@@ -25,9 +25,9 @@ public class UserDirsController implements FxController {
   @FXML private JFXListView<Label> outputDir;
   @FXML private JFXButton folderBtn;
 
-  public UserDirsController(Stage stage, UserDirsScene parent) {
+  public UserDirsController(Stage stage, StartScene scene) {
     this.stage = stage;
-    this.parent = parent;
+    this.scene = scene;
     this.dirs = new HashSet<>();
   }
 
@@ -87,7 +87,7 @@ public class UserDirsController implements FxController {
     String out = outputDir.getItems().get(0).getText();
     AppContext.updateShareDirs(share);
     AppContext.updateOutputDir(out);
-    CommunicationClient.get().updateUserDirs(share, out);
+    CommunicationClient.get().updateUserDirs(share, out, scene);
     stage.close();
   }
 
