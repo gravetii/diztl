@@ -256,19 +256,14 @@ func (s *NodeService) Download(request *diztl.DownloadReq, stream diztl.DiztlSer
 func (s *NodeService) GetUserDirs(ctx context.Context, request *diztl.UserDirsReq) (*diztl.UserDirsResp, error) {
 	logger.Infof("Received GetUserDirs call: %v\n", request)
 	resp := diztl.UserDirsResp{}
-
-	if request.GetShare() {
-		shareDirs, err := dir.GetShareDirs()
-		if err == nil {
-			resp.Share = shareDirs
-		}
+	shareDirs, err := dir.GetShareDirs()
+	if err == nil {
+		resp.Share = shareDirs
 	}
 
-	if request.GetOutput() {
-		outputDir, err := dir.GetOutputDir()
-		if err == nil {
-			resp.Output = outputDir
-		}
+	outputDir, err := dir.GetOutputDir()
+	if err == nil {
+		resp.Output = outputDir
 	}
 
 	return &resp, nil

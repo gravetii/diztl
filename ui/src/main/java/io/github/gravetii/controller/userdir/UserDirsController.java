@@ -37,7 +37,7 @@ public class UserDirsController implements FxController {
     removeBtn
         .disableProperty()
         .bind(shareDirsList.getSelectionModel().selectedItemProperty().isNull());
-    UserDirs dirs = CommunicationClient.get().getUserDirs(true, true);
+    UserDirs dirs = CommunicationClient.get().getUserDirs();
     displayShareDirs(dirs.getShareDirs());
     displayOutputDir(dirs.getOutputDir());
   }
