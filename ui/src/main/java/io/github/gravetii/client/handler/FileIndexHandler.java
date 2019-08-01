@@ -26,7 +26,12 @@ public class FileIndexHandler {
     StringBuilder builder = new StringBuilder();
     builder.append("Indexing files in the following folders -").append("\n");
     for (int i = 0; i < dirs.getShareDirs().size(); ++i) {
-      builder.append("\t").append(i + 1).append(". ").append(dirs.getShareDirs().get(i)).append("\n");
+      builder
+          .append("\t")
+          .append(i + 1)
+          .append(". ")
+          .append(dirs.getShareDirs().get(i))
+          .append("\n");
     }
 
     logText(builder.toString());
