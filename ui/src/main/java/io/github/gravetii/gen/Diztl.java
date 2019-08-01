@@ -16058,6 +16058,975 @@ public final class Diztl {
 
   }
 
+  public interface GetTrackerReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetTrackerReq)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code GetTrackerReq}
+   */
+  public  static final class GetTrackerReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetTrackerReq)
+      GetTrackerReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetTrackerReq.newBuilder() to construct.
+    private GetTrackerReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetTrackerReq() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetTrackerReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return io.github.gravetii.gen.Diztl.internal_static_GetTrackerReq_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return io.github.gravetii.gen.Diztl.internal_static_GetTrackerReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.github.gravetii.gen.Diztl.GetTrackerReq.class, io.github.gravetii.gen.Diztl.GetTrackerReq.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof io.github.gravetii.gen.Diztl.GetTrackerReq)) {
+        return super.equals(obj);
+      }
+      io.github.gravetii.gen.Diztl.GetTrackerReq other = (io.github.gravetii.gen.Diztl.GetTrackerReq) obj;
+
+      boolean result = true;
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(io.github.gravetii.gen.Diztl.GetTrackerReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code GetTrackerReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetTrackerReq)
+        io.github.gravetii.gen.Diztl.GetTrackerReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return io.github.gravetii.gen.Diztl.internal_static_GetTrackerReq_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return io.github.gravetii.gen.Diztl.internal_static_GetTrackerReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                io.github.gravetii.gen.Diztl.GetTrackerReq.class, io.github.gravetii.gen.Diztl.GetTrackerReq.Builder.class);
+      }
+
+      // Construct using io.github.gravetii.gen.Diztl.GetTrackerReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return io.github.gravetii.gen.Diztl.internal_static_GetTrackerReq_descriptor;
+      }
+
+      public io.github.gravetii.gen.Diztl.GetTrackerReq getDefaultInstanceForType() {
+        return io.github.gravetii.gen.Diztl.GetTrackerReq.getDefaultInstance();
+      }
+
+      public io.github.gravetii.gen.Diztl.GetTrackerReq build() {
+        io.github.gravetii.gen.Diztl.GetTrackerReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public io.github.gravetii.gen.Diztl.GetTrackerReq buildPartial() {
+        io.github.gravetii.gen.Diztl.GetTrackerReq result = new io.github.gravetii.gen.Diztl.GetTrackerReq(this);
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof io.github.gravetii.gen.Diztl.GetTrackerReq) {
+          return mergeFrom((io.github.gravetii.gen.Diztl.GetTrackerReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(io.github.gravetii.gen.Diztl.GetTrackerReq other) {
+        if (other == io.github.gravetii.gen.Diztl.GetTrackerReq.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        io.github.gravetii.gen.Diztl.GetTrackerReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (io.github.gravetii.gen.Diztl.GetTrackerReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetTrackerReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetTrackerReq)
+    private static final io.github.gravetii.gen.Diztl.GetTrackerReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.GetTrackerReq();
+    }
+
+    public static io.github.gravetii.gen.Diztl.GetTrackerReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetTrackerReq>
+        PARSER = new com.google.protobuf.AbstractParser<GetTrackerReq>() {
+      public GetTrackerReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetTrackerReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetTrackerReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetTrackerReq> getParserForType() {
+      return PARSER;
+    }
+
+    public io.github.gravetii.gen.Diztl.GetTrackerReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GetTrackerRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GetTrackerResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.Node tracker = 1;</code>
+     */
+    boolean hasTracker();
+    /**
+     * <code>.Node tracker = 1;</code>
+     */
+    io.github.gravetii.gen.Diztl.Node getTracker();
+    /**
+     * <code>.Node tracker = 1;</code>
+     */
+    io.github.gravetii.gen.Diztl.NodeOrBuilder getTrackerOrBuilder();
+  }
+  /**
+   * Protobuf type {@code GetTrackerResp}
+   */
+  public  static final class GetTrackerResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GetTrackerResp)
+      GetTrackerRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use GetTrackerResp.newBuilder() to construct.
+    private GetTrackerResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GetTrackerResp() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private GetTrackerResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              io.github.gravetii.gen.Diztl.Node.Builder subBuilder = null;
+              if (tracker_ != null) {
+                subBuilder = tracker_.toBuilder();
+              }
+              tracker_ = input.readMessage(io.github.gravetii.gen.Diztl.Node.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(tracker_);
+                tracker_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return io.github.gravetii.gen.Diztl.internal_static_GetTrackerResp_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return io.github.gravetii.gen.Diztl.internal_static_GetTrackerResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.github.gravetii.gen.Diztl.GetTrackerResp.class, io.github.gravetii.gen.Diztl.GetTrackerResp.Builder.class);
+    }
+
+    public static final int TRACKER_FIELD_NUMBER = 1;
+    private io.github.gravetii.gen.Diztl.Node tracker_;
+    /**
+     * <code>.Node tracker = 1;</code>
+     */
+    public boolean hasTracker() {
+      return tracker_ != null;
+    }
+    /**
+     * <code>.Node tracker = 1;</code>
+     */
+    public io.github.gravetii.gen.Diztl.Node getTracker() {
+      return tracker_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : tracker_;
+    }
+    /**
+     * <code>.Node tracker = 1;</code>
+     */
+    public io.github.gravetii.gen.Diztl.NodeOrBuilder getTrackerOrBuilder() {
+      return getTracker();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (tracker_ != null) {
+        output.writeMessage(1, getTracker());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (tracker_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getTracker());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof io.github.gravetii.gen.Diztl.GetTrackerResp)) {
+        return super.equals(obj);
+      }
+      io.github.gravetii.gen.Diztl.GetTrackerResp other = (io.github.gravetii.gen.Diztl.GetTrackerResp) obj;
+
+      boolean result = true;
+      result = result && (hasTracker() == other.hasTracker());
+      if (hasTracker()) {
+        result = result && getTracker()
+            .equals(other.getTracker());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasTracker()) {
+        hash = (37 * hash) + TRACKER_FIELD_NUMBER;
+        hash = (53 * hash) + getTracker().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(io.github.gravetii.gen.Diztl.GetTrackerResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code GetTrackerResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GetTrackerResp)
+        io.github.gravetii.gen.Diztl.GetTrackerRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return io.github.gravetii.gen.Diztl.internal_static_GetTrackerResp_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return io.github.gravetii.gen.Diztl.internal_static_GetTrackerResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                io.github.gravetii.gen.Diztl.GetTrackerResp.class, io.github.gravetii.gen.Diztl.GetTrackerResp.Builder.class);
+      }
+
+      // Construct using io.github.gravetii.gen.Diztl.GetTrackerResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (trackerBuilder_ == null) {
+          tracker_ = null;
+        } else {
+          tracker_ = null;
+          trackerBuilder_ = null;
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return io.github.gravetii.gen.Diztl.internal_static_GetTrackerResp_descriptor;
+      }
+
+      public io.github.gravetii.gen.Diztl.GetTrackerResp getDefaultInstanceForType() {
+        return io.github.gravetii.gen.Diztl.GetTrackerResp.getDefaultInstance();
+      }
+
+      public io.github.gravetii.gen.Diztl.GetTrackerResp build() {
+        io.github.gravetii.gen.Diztl.GetTrackerResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public io.github.gravetii.gen.Diztl.GetTrackerResp buildPartial() {
+        io.github.gravetii.gen.Diztl.GetTrackerResp result = new io.github.gravetii.gen.Diztl.GetTrackerResp(this);
+        if (trackerBuilder_ == null) {
+          result.tracker_ = tracker_;
+        } else {
+          result.tracker_ = trackerBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof io.github.gravetii.gen.Diztl.GetTrackerResp) {
+          return mergeFrom((io.github.gravetii.gen.Diztl.GetTrackerResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(io.github.gravetii.gen.Diztl.GetTrackerResp other) {
+        if (other == io.github.gravetii.gen.Diztl.GetTrackerResp.getDefaultInstance()) return this;
+        if (other.hasTracker()) {
+          mergeTracker(other.getTracker());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        io.github.gravetii.gen.Diztl.GetTrackerResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (io.github.gravetii.gen.Diztl.GetTrackerResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private io.github.gravetii.gen.Diztl.Node tracker_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.github.gravetii.gen.Diztl.Node, io.github.gravetii.gen.Diztl.Node.Builder, io.github.gravetii.gen.Diztl.NodeOrBuilder> trackerBuilder_;
+      /**
+       * <code>.Node tracker = 1;</code>
+       */
+      public boolean hasTracker() {
+        return trackerBuilder_ != null || tracker_ != null;
+      }
+      /**
+       * <code>.Node tracker = 1;</code>
+       */
+      public io.github.gravetii.gen.Diztl.Node getTracker() {
+        if (trackerBuilder_ == null) {
+          return tracker_ == null ? io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : tracker_;
+        } else {
+          return trackerBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Node tracker = 1;</code>
+       */
+      public Builder setTracker(io.github.gravetii.gen.Diztl.Node value) {
+        if (trackerBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tracker_ = value;
+          onChanged();
+        } else {
+          trackerBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Node tracker = 1;</code>
+       */
+      public Builder setTracker(
+          io.github.gravetii.gen.Diztl.Node.Builder builderForValue) {
+        if (trackerBuilder_ == null) {
+          tracker_ = builderForValue.build();
+          onChanged();
+        } else {
+          trackerBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Node tracker = 1;</code>
+       */
+      public Builder mergeTracker(io.github.gravetii.gen.Diztl.Node value) {
+        if (trackerBuilder_ == null) {
+          if (tracker_ != null) {
+            tracker_ =
+              io.github.gravetii.gen.Diztl.Node.newBuilder(tracker_).mergeFrom(value).buildPartial();
+          } else {
+            tracker_ = value;
+          }
+          onChanged();
+        } else {
+          trackerBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Node tracker = 1;</code>
+       */
+      public Builder clearTracker() {
+        if (trackerBuilder_ == null) {
+          tracker_ = null;
+          onChanged();
+        } else {
+          tracker_ = null;
+          trackerBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Node tracker = 1;</code>
+       */
+      public io.github.gravetii.gen.Diztl.Node.Builder getTrackerBuilder() {
+        
+        onChanged();
+        return getTrackerFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Node tracker = 1;</code>
+       */
+      public io.github.gravetii.gen.Diztl.NodeOrBuilder getTrackerOrBuilder() {
+        if (trackerBuilder_ != null) {
+          return trackerBuilder_.getMessageOrBuilder();
+        } else {
+          return tracker_ == null ?
+              io.github.gravetii.gen.Diztl.Node.getDefaultInstance() : tracker_;
+        }
+      }
+      /**
+       * <code>.Node tracker = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.github.gravetii.gen.Diztl.Node, io.github.gravetii.gen.Diztl.Node.Builder, io.github.gravetii.gen.Diztl.NodeOrBuilder> 
+          getTrackerFieldBuilder() {
+        if (trackerBuilder_ == null) {
+          trackerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              io.github.gravetii.gen.Diztl.Node, io.github.gravetii.gen.Diztl.Node.Builder, io.github.gravetii.gen.Diztl.NodeOrBuilder>(
+                  getTracker(),
+                  getParentForChildren(),
+                  isClean());
+          tracker_ = null;
+        }
+        return trackerBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GetTrackerResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:GetTrackerResp)
+    private static final io.github.gravetii.gen.Diztl.GetTrackerResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.GetTrackerResp();
+    }
+
+    public static io.github.gravetii.gen.Diztl.GetTrackerResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GetTrackerResp>
+        PARSER = new com.google.protobuf.AbstractParser<GetTrackerResp>() {
+      public GetTrackerResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new GetTrackerResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GetTrackerResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GetTrackerResp> getParserForType() {
+      return PARSER;
+    }
+
+    public io.github.gravetii.gen.Diztl.GetTrackerResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface UpdateTrackerReqOrBuilder extends
       // @@protoc_insertion_point(interface_extends:UpdateTrackerReq)
       com.google.protobuf.MessageOrBuilder {
@@ -19026,6 +19995,16 @@ public final class Diztl {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_UpdateUserDirsResp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetTrackerReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetTrackerReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GetTrackerResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GetTrackerResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_UpdateTrackerReq_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -19093,28 +20072,30 @@ public final class Diztl {
       "\030\002 \001(\010\"-\n\014UserDirsResp\022\r\n\005share\030\001 \003(\t\022\016\n" +
       "\006output\030\002 \001(\t\"2\n\021UpdateUserDirsReq\022\r\n\005sh" +
       "are\030\001 \003(\t\022\016\n\006output\030\002 \001(\t\"%\n\022UpdateUserD" +
-      "irsResp\022\017\n\007message\030\001 \001(\t\"*\n\020UpdateTracke" +
-      "rReq\022\026\n\007tracker\030\001 \001(\0132\005.Node\"!\n\021UpdateTr" +
-      "ackerResp\022\014\n\004code\030\001 \001(\005\"\n\n\010IndexReq\"\032\n\tI" +
-      "ndexResp\022\r\n\005fpath\030\001 \001(\t\"\n\n\010CloseReq\"\034\n\tC" +
-      "loseResp\022\017\n\007message\030\001 \001(\t2\333\003\n\014DiztlServi" +
-      "ce\022#\n\006Search\022\n.SearchReq\032\013.SearchResp\"\000\022" +
-      "$\n\006Upload\022\n.UploadReq\032\n.FileChunk\"\0000\001\022\035\n" +
-      "\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035\n\004Find\022\010.F" +
-      "indReq\032\t.FindResp\"\000\022,\n\010Download\022\014.Downlo" +
-      "adReq\032\016.DownloadChunk\"\0000\001\022,\n\013GetUserDirs" +
-      "\022\014.UserDirsReq\032\r.UserDirsResp\"\000\022;\n\016Updat" +
-      "eUserDirs\022\022.UpdateUserDirsReq\032\023.UpdateUs" +
-      "erDirsResp\"\000\0228\n\rUpdateTracker\022\021.UpdateTr" +
-      "ackerReq\032\022.UpdateTrackerResp\"\000\022\"\n\005Index\022" +
-      "\t.IndexReq\032\n.IndexResp\"\0000\001\022)\n\010Register\022\014" +
-      ".RegisterReq\032\r.RegisterResp\"\000\022 \n\005Close\022\t" +
-      ".CloseReq\032\n.CloseResp\"\0002\223\001\n\016TrackerServi" +
-      "ce\022)\n\010Register\022\014.RegisterReq\032\r.RegisterR" +
-      "esp\"\000\022%\n\006Search\022\n.SearchReq\032\013.SearchResp" +
-      "\"\0000\001\022/\n\nDisconnect\022\016.DisconnectReq\032\017.Dis" +
-      "connectResp\"\000B\030\n\026io.github.gravetii.genb" +
-      "\006proto3"
+      "irsResp\022\017\n\007message\030\001 \001(\t\"\017\n\rGetTrackerRe" +
+      "q\"(\n\016GetTrackerResp\022\026\n\007tracker\030\001 \001(\0132\005.N" +
+      "ode\"*\n\020UpdateTrackerReq\022\026\n\007tracker\030\001 \001(\013" +
+      "2\005.Node\"!\n\021UpdateTrackerResp\022\014\n\004code\030\001 \001" +
+      "(\005\"\n\n\010IndexReq\"\032\n\tIndexResp\022\r\n\005fpath\030\001 \001" +
+      "(\t\"\n\n\010CloseReq\"\034\n\tCloseResp\022\017\n\007message\030\001" +
+      " \001(\t2\214\004\n\014DiztlService\022#\n\006Search\022\n.Search" +
+      "Req\032\013.SearchResp\"\000\022$\n\006Upload\022\n.UploadReq" +
+      "\032\n.FileChunk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.Pin" +
+      "gResp\"\000\022\035\n\004Find\022\010.FindReq\032\t.FindResp\"\000\022," +
+      "\n\010Download\022\014.DownloadReq\032\016.DownloadChunk" +
+      "\"\0000\001\022,\n\013GetUserDirs\022\014.UserDirsReq\032\r.User" +
+      "DirsResp\"\000\022;\n\016UpdateUserDirs\022\022.UpdateUse" +
+      "rDirsReq\032\023.UpdateUserDirsResp\"\000\022/\n\nGetTr" +
+      "acker\022\016.GetTrackerReq\032\017.GetTrackerResp\"\000" +
+      "\0228\n\rUpdateTracker\022\021.UpdateTrackerReq\032\022.U" +
+      "pdateTrackerResp\"\000\022\"\n\005Index\022\t.IndexReq\032\n" +
+      ".IndexResp\"\0000\001\022)\n\010Register\022\014.RegisterReq" +
+      "\032\r.RegisterResp\"\000\022 \n\005Close\022\t.CloseReq\032\n." +
+      "CloseResp\"\0002\223\001\n\016TrackerService\022)\n\010Regist" +
+      "er\022\014.RegisterReq\032\r.RegisterResp\"\000\022%\n\006Sea" +
+      "rch\022\n.SearchReq\032\013.SearchResp\"\0000\001\022/\n\nDisc" +
+      "onnect\022\016.DisconnectReq\032\017.DisconnectResp\"" +
+      "\000B\030\n\026io.github.gravetii.genb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -19260,38 +20241,50 @@ public final class Diztl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateUserDirsResp_descriptor,
         new java.lang.String[] { "Message", });
-    internal_static_UpdateTrackerReq_descriptor =
+    internal_static_GetTrackerReq_descriptor =
       getDescriptor().getMessageTypes().get(22);
+    internal_static_GetTrackerReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetTrackerReq_descriptor,
+        new java.lang.String[] { });
+    internal_static_GetTrackerResp_descriptor =
+      getDescriptor().getMessageTypes().get(23);
+    internal_static_GetTrackerResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GetTrackerResp_descriptor,
+        new java.lang.String[] { "Tracker", });
+    internal_static_UpdateTrackerReq_descriptor =
+      getDescriptor().getMessageTypes().get(24);
     internal_static_UpdateTrackerReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateTrackerReq_descriptor,
         new java.lang.String[] { "Tracker", });
     internal_static_UpdateTrackerResp_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_UpdateTrackerResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateTrackerResp_descriptor,
         new java.lang.String[] { "Code", });
     internal_static_IndexReq_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_IndexReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_IndexReq_descriptor,
         new java.lang.String[] { });
     internal_static_IndexResp_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_IndexResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_IndexResp_descriptor,
         new java.lang.String[] { "Fpath", });
     internal_static_CloseReq_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_CloseReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CloseReq_descriptor,
         new java.lang.String[] { });
     internal_static_CloseResp_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_CloseResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CloseResp_descriptor,

@@ -290,6 +290,13 @@ func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateU
 	return &resp, nil
 }
 
+// GetTracker returns the tracker host.
+func (s *NodeService) GetTracker(ctx context.Context, request *diztl.GetTrackerReq) (*diztl.GetTrackerResp, error) {
+	logger.Infof("Got GetTracker call: %v\n", request)
+	n := &diztl.Node{Ip: conf.TrackerHost()}
+	return &diztl.GetTrackerResp{Tracker: n}, nil
+}
+
 // Index indexes all the files in the shared directories.
 func (s *NodeService) Index(request *diztl.IndexReq, stream diztl.DiztlService_IndexServer) error {
 	logger.Infof("Received Index request: %v\n", request)
