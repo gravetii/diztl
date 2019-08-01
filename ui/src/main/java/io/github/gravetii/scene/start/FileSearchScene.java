@@ -6,15 +6,13 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public class FileSearchScene extends FxScene {
-  private StartScene parent;
   private FileSearchComponent fileSearchComponent;
   private QuickOptionsComponent quickOptionsComponent;
 
   protected FileSearchScene(Stage stage, StartScene parent) {
     super(stage, new BorderPane());
-    this.parent = parent;
     fileSearchComponent = new FileSearchComponent(parent);
-    quickOptionsComponent = new QuickOptionsComponent(parent);
+    quickOptionsComponent = new QuickOptionsComponent(stage, parent);
   }
 
   @Override
