@@ -45,7 +45,8 @@ public class CommunicationClient {
   }
 
   public void register(StartScene scene) {
-    new RegisterHandler(scene).process(connection);
+    String tracker = CommunicationClient.get().getTracker();
+    new RegisterHandler(tracker, scene).process(connection);
   }
 
   public void find(String query, StartScene scene) {

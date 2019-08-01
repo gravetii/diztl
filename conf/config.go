@@ -142,12 +142,6 @@ func TrackerPort() string {
 	return config.Tracker["port"]
 }
 
-// TrackerAddress : The address of the tracker.
-func TrackerAddress() string {
-	addr := config.Tracker["host"] + ":" + config.Tracker["port"]
-	return addr
-}
-
 // NodePort returns the port exposed by each Node for communication with the other nodes
 // and the tracker.
 func NodePort() string {

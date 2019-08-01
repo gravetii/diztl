@@ -21,8 +21,7 @@ public class UpdateTrackerHandler {
   }
 
   public void process(Connection connection) {
-    Diztl.Node tracker = Diztl.Node.newBuilder().setIp(host).build();
-    Diztl.UpdateTrackerReq req = Diztl.UpdateTrackerReq.newBuilder().setTracker(tracker).build();
+    Diztl.UpdateTrackerReq req = Diztl.UpdateTrackerReq.newBuilder().setTracker(host).build();
     ListenableFuture<Diztl.UpdateTrackerResp> f = connection.getFutureStub().updateTracker(req);
     f.addListener(
         () -> {
