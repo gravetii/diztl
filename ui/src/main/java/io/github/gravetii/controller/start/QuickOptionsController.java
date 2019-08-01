@@ -16,17 +16,20 @@ public class QuickOptionsController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(QuickOptionsController.class.getCanonicalName());
 
+  private Stage stage;
   private StartScene parent;
 
   @FXML private Button configureDirsBtn;
   @FXML private Button configureTrackerBtn;
 
-  public QuickOptionsController(StartScene parent) {
+  public QuickOptionsController(Stage stage, StartScene parent) {
+    this.stage = stage;
     this.parent = parent;
   }
 
   private Stage newModalWindow() {
     Stage stage = new Stage();
+    stage.initOwner(this.stage);
     stage.setResizable(false);
     stage.initModality(Modality.APPLICATION_MODAL);
     return stage;
