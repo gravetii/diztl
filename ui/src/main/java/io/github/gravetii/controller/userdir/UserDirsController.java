@@ -2,9 +2,9 @@ package io.github.gravetii.controller.userdir;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import io.github.gravetii.AppContext;
 import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
+import io.github.gravetii.pojo.UserDirs;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.Utils;
 import javafx.event.ActionEvent;
@@ -37,8 +37,9 @@ public class UserDirsController implements FxController {
     removeBtn
         .disableProperty()
         .bind(shareDirsList.getSelectionModel().selectedItemProperty().isNull());
-    displayShareDirs(AppContext.getShareDirs());
-    displayOutputDir(AppContext.getOutputDir());
+    UserDirs dirs = CommunicationClient.get().getUserDirs(true, true);
+    displayShareDirs(dirs.getShareDirs());
+    displayOutputDir(dirs.getOutputDir());
   }
 
   @FXML
@@ -87,19 +88,8 @@ public class UserDirsController implements FxController {
 
   @FXML
   public void ok(ActionEvent event) {
-    List<String> share = new ArrayList<>();
-    String out = "";
-
-    if (shareChanged) {
-      share.addAll(dirs);
-      AppContext.updateShareDirs(share);
-    }
-
-    if (outputChanged) {
-      out = outputDir.getItems().get(0).getText();
-      AppContext.updateOutputDir(out);
-    }
-
+    List<String> share = shareChanged ? new ArrayList<>(dirs) : Collections.emptyList();
+    String out = outputChanged ? outputDir.getItems().get(0).getText() : "";
     CommunicationClient.get().updateUserDirs(share, out, scene);
     stage.close();
   }

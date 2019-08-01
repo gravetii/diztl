@@ -1,9 +1,9 @@
 package io.github.gravetii.client.connection;
 
-import io.github.gravetii.AppContext;
 import io.github.gravetii.client.handler.*;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
+import io.github.gravetii.pojo.UserDirs;
 import io.github.gravetii.scene.start.StartScene;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -53,15 +53,16 @@ public class CommunicationClient {
   }
 
   public void download(FileMetadata file, Node source, StartScene scene) {
-    new DownloadHandler(file, source, scene, AppContext.getOutputDir()).process(connection);
+    UserDirs dirs = CommunicationClient.get().getUserDirs(true, true);
+    new DownloadHandler(file, source, scene, dirs.getOutputDir()).process(connection);
   }
 
   public void download(FileMetadata file, Node source, StartScene scene, String outputDir) {
     new DownloadHandler(file, source, scene, outputDir).process(connection);
   }
 
-  public void getUserDirs(boolean share, boolean output) {
-    new UserDirsHandler(share, output).process(connection);
+  public UserDirs getUserDirs(boolean share, boolean output) {
+    return new UserDirsHandler(share, output).process(connection);
   }
 
   public void updateUserDirs(List<String> share, String output, StartScene scene) {
@@ -73,7 +74,7 @@ public class CommunicationClient {
   }
 
   public void index(StartScene scene) {
-    getUserDirs(true, true);
-    new FileIndexHandler(scene).process(connection);
+    UserDirs dirs = getUserDirs(true, true);
+    new FileIndexHandler(scene, dirs).process(connection);
   }
 }
