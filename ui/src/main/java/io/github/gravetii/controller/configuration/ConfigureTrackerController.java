@@ -21,12 +21,6 @@ public class ConfigureTrackerController implements FxController {
 
   @FXML
   private void initialize() {
-    ipBox.setOnKeyPressed(
-        event -> {
-          if (event.getCode() == KeyCode.ENTER) {
-            ok();
-          }
-        });
     String tracker = CommunicationClient.get().getTracker();
     ipBox.setText(tracker);
   }

@@ -1,6 +1,7 @@
 package io.github.gravetii.util;
 
 import io.github.gravetii.gen.Diztl;
+import javafx.scene.layout.Region;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -8,6 +9,8 @@ import java.io.File;
 import java.nio.file.Paths;
 
 public class Utils {
+  private static final String GLOBAL_STYLESHEET = ClassLoader.getSystemResource("style/style.css").toExternalForm();
+
   public static String humanReadableByteCount(long bytes) {
     int unit = 1000;
     if (bytes < unit) return bytes + " B";
@@ -30,5 +33,9 @@ public class Utils {
 
   public static String getFullFilePath(Diztl.FileMetadata file) {
     return Paths.get(file.getDir(), file.getName()).toString();
+  }
+
+  public static void addGlobalStylesheet(Region region) {
+    region.getStylesheets().add(GLOBAL_STYLESHEET);
   }
 }
