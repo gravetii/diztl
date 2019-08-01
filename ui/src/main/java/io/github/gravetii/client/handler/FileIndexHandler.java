@@ -1,14 +1,13 @@
 package io.github.gravetii.client.handler;
 
-import io.github.gravetii.AppContext;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
+import io.github.gravetii.pojo.UserDirs;
 import io.github.gravetii.scene.start.StartScene;
 import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FileIndexHandler {
@@ -16,17 +15,18 @@ public class FileIndexHandler {
       LoggerFactory.getLogger(FileIndexHandler.class.getCanonicalName());
 
   private StartScene scene;
+  private UserDirs dirs;
 
-  public FileIndexHandler(StartScene scene) {
+  public FileIndexHandler(StartScene scene, UserDirs dirs) {
     this.scene = scene;
+    this.dirs = dirs;
   }
 
   public void process(Connection connection) {
-    List<String> shareDirs = AppContext.getShareDirs();
     StringBuilder builder = new StringBuilder();
     builder.append("Indexing files in the following folders -").append("\n");
-    for (int i = 0; i < shareDirs.size(); ++i) {
-      builder.append("\t").append(i + 1).append(". ").append(shareDirs.get(i)).append("\n");
+    for (int i = 0; i < dirs.getShareDirs().size(); ++i) {
+      builder.append("\t").append(i + 1).append(". ").append(dirs.getShareDirs().get(i)).append("\n");
     }
 
     logText(builder.toString());
