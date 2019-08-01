@@ -33,7 +33,7 @@ public class App extends Application {
 
   private static boolean exitCheck(Stage stage) {
     Alert alert =
-            new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.NO, ButtonType.YES);
+        new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.NO, ButtonType.YES);
     alert.setHeaderText("");
     alert.setTitle("Really Exit?");
     alert.initOwner(stage);
@@ -43,11 +43,12 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    stage.setOnCloseRequest(event -> {
-      if (!close(stage)) {
-        event.consume();
-      }
-    });
+    stage.setOnCloseRequest(
+        event -> {
+          if (!close(stage)) {
+            event.consume();
+          }
+        });
 
     StartScene scene = new StartScene(stage);
     scene.show();
