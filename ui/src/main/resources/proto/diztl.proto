@@ -78,12 +78,13 @@ message FileChunk {
 }
 
 message RegisterReq {
+    // Register self to the tracker.
     Node self = 1;
+    string tracker = 2;
 }
 
 message RegisterResp {
-    Node self = 1;
-    Node tracker = 2;
+    Node node = 1;
 }
 
 message SearchReq {
@@ -179,11 +180,11 @@ message GetTrackerReq {
 }
 
 message GetTrackerResp {
-    Node tracker = 1;
+    string tracker = 1;
 }
 
 message UpdateTrackerReq {
-    Node tracker = 1;
+    string tracker = 1;
 }
 
 message UpdateTrackerResp {

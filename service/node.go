@@ -89,7 +89,7 @@ func (s *NodeService) OnShutdown() {
 // Register registers the node to the tracker provided in the request.
 func (s *NodeService) Register(ctx context.Context, request *diztl.RegisterReq) (*diztl.RegisterResp, error) {
 	logger.Debugf("Received register request: %v\n", request)
-	err := s.connectToTracker(conf.TrackerAddress())
+	err := s.connectToTracker(request.GetTracker() + ":" + conf.TrackerPort())
 	if err != nil {
 		return nil, err
 	}
@@ -104,17 +104,16 @@ func (s *NodeService) Register(ctx context.Context, request *diztl.RegisterReq) 
 		return nil, err
 	}
 
-	self := resp.GetSelf()
-	tracker := &diztl.Node{Ip: conf.TrackerHost()}
-	s.node = &diztl.Node{Ip: self.GetIp(), Id: self.GetId()}
+	n := resp.GetNode()
+	s.node = &diztl.Node{Ip: n.GetIp(), Id: n.GetId()}
 	logger.Infof("Successfully registered to tracker - %v\n", s.node)
-	return &diztl.RegisterResp{Self: self, Tracker: tracker}, nil
+	return &diztl.RegisterResp{Node: n}, nil
 }
 
 // UpdateTracker updates the details of the tracker in config.
 func (s *NodeService) UpdateTracker(ctx context.Context, request *diztl.UpdateTrackerReq) (*diztl.UpdateTrackerResp, error) {
 	logger.Debugf("Received update tracker request: %v\n", request)
-	conf.UpdateTracker(request.GetTracker().GetIp())
+	conf.UpdateTracker(request.GetTracker())
 	return &diztl.UpdateTrackerResp{Code: 1}, nil
 }
 
@@ -290,8 +289,7 @@ func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateU
 // GetTracker returns the tracker host.
 func (s *NodeService) GetTracker(ctx context.Context, request *diztl.GetTrackerReq) (*diztl.GetTrackerResp, error) {
 	logger.Infof("Got GetTracker call: %v\n", request)
-	n := &diztl.Node{Ip: conf.TrackerHost()}
-	return &diztl.GetTrackerResp{Tracker: n}, nil
+	return &diztl.GetTrackerResp{Tracker: conf.TrackerHost()}, nil
 }
 
 // Index indexes all the files in the shared directories.

@@ -30,7 +30,7 @@ func NewTracker() *TrackerService {
 func (s *TrackerService) Register(ctx context.Context, req *diztl.RegisterReq) (*diztl.RegisterResp, error) {
 	node := req.GetSelf()
 	s.nk.Register(node)
-	resp := &diztl.RegisterResp{Self: node}
+	resp := &diztl.RegisterResp{Node: node}
 	return resp, nil
 }
 
