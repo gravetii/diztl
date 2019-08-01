@@ -48,4 +48,12 @@ public class FileResult {
   public boolean empty() {
     return file == null;
   }
+
+  @Override
+  public String toString() {
+    return "FileResult{" +
+            "file=" + file +
+            ", source=" + source +
+            '}';
+  }
 }
