@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/gravetii/diztl/addr"
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/keeper"
@@ -93,6 +94,7 @@ func (s *NodeService) Register(ctx context.Context, request *diztl.RegisterReq) 
 		return nil, err
 	}
 
+	request.Self = &diztl.Node{Ip: addr.LocalIP()}
 	c, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	t := s.tracker()
