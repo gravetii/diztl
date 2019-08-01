@@ -3,9 +3,9 @@ package io.github.gravetii.controller.configuration;
 import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.start.StartScene;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 public class ConfigureTrackerController implements FxController {
@@ -21,11 +21,18 @@ public class ConfigureTrackerController implements FxController {
 
   @FXML
   private void initialize() {
+    ipBox.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            ok();
+          }
+        });
     String tracker = CommunicationClient.get().getTracker();
     ipBox.setText(tracker);
   }
 
-  public void ok(ActionEvent event) {
+  @FXML
+  public void ok() {
     String ip = ipBox.getText();
     if (!ip.isEmpty()) {
       CommunicationClient.get().updateTracker(ip, scene);
@@ -34,7 +41,8 @@ public class ConfigureTrackerController implements FxController {
     stage.close();
   }
 
-  public void cancel(ActionEvent event) {
+  @FXML
+  public void cancel() {
     stage.close();
   }
 }

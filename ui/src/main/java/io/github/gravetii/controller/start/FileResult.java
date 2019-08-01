@@ -51,9 +51,6 @@ public class FileResult {
 
   @Override
   public String toString() {
-    return "FileResult{" +
-            "file=" + file +
-            ", source=" + source +
-            '}';
+    return "FileResult{" + "file=" + file + ", source=" + source + '}';
   }
 }
