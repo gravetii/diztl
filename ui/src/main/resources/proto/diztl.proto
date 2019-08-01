@@ -17,6 +17,8 @@ service DiztlService {
     }
     rpc UpdateUserDirs(UpdateUserDirsReq) returns (UpdateUserDirsResp) {
     }
+    rpc GetTracker(GetTrackerReq) returns (GetTrackerResp) {
+    }
     rpc UpdateTracker(UpdateTrackerReq) returns (UpdateTrackerResp) {
     }
     rpc Index(IndexReq) returns (stream IndexResp) {
@@ -175,6 +177,13 @@ message UpdateUserDirsResp {
     string message = 1;
 }
 
+message GetTrackerReq {
+}
+
+message GetTrackerResp {
+    Node tracker = 1;
+}
+
 message UpdateTrackerReq {
     Node tracker = 1;
 }
@@ -184,7 +193,6 @@ message UpdateTrackerResp {
 }
 
 message IndexReq {
-
 }
 
 message IndexResp {
@@ -192,7 +200,6 @@ message IndexResp {
 }
 
 message CloseReq {
-
 }
 
 message CloseResp {

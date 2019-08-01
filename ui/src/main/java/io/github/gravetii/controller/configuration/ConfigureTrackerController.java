@@ -1,6 +1,5 @@
 package io.github.gravetii.controller.configuration;
 
-import io.github.gravetii.AppContext;
 import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.start.StartScene;
@@ -22,7 +21,8 @@ public class ConfigureTrackerController implements FxController {
 
   @FXML
   private void initialize() {
-    ipBox.setText(AppContext.getTracker());
+    String tracker = CommunicationClient.get().getTracker();
+    ipBox.setText(tracker);
   }
 
   public void ok(ActionEvent event) {

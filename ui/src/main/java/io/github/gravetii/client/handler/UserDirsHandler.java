@@ -1,6 +1,5 @@
 package io.github.gravetii.client.handler;
 
-import io.github.gravetii.AppContext;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.pojo.UserDirs;

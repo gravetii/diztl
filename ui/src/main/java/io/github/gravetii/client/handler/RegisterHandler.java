@@ -1,7 +1,6 @@
 package io.github.gravetii.client.handler;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import io.github.gravetii.AppContext;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
@@ -26,8 +25,7 @@ public class RegisterHandler {
         () -> {
           try {
             Diztl.RegisterResp resp = f.get();
-            logger.info("Register response: {}", resp);
-            AppContext.updateTracker(resp.getTracker().getIp());
+            logger.info("Successfully registered to tracker at {}.", resp.getTracker().getIp());
             scene.writeToLog(
                 "Successfully registered to tracker at " + resp.getTracker().getIp() + "." + "\n");
           } catch (Exception e) {

@@ -69,6 +69,10 @@ public class CommunicationClient {
     new UpdateUserDirsHandler(share, output, scene).process(connection);
   }
 
+  public String getTracker() {
+    return new GetTrackerHandler().process(connection);
+  }
+
   public void updateTracker(String host, StartScene scene) {
     new UpdateTrackerHandler(host, scene).process(connection);
   }
