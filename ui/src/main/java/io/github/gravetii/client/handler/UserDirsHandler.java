@@ -10,18 +10,9 @@ public class UserDirsHandler {
   private static final Logger logger =
       LoggerFactory.getLogger(UserDirsHandler.class.getCanonicalName());
 
-  private boolean share;
-  private boolean output;
-
-  public UserDirsHandler(boolean share, boolean output) {
-    this.share = share;
-    this.output = output;
-  }
-
   public UserDirs process(Connection connection) {
-    Diztl.UserDirsReq req =
-        Diztl.UserDirsReq.newBuilder().setShare(share).setOutput(output).build();
-    logger.info("Fetching user dirs - share: {}, output: {}", share, output);
+    Diztl.UserDirsReq req = Diztl.UserDirsReq.getDefaultInstance();
+    logger.info("Fetching user dirs...");
     Diztl.UserDirsResp resp = connection.getStub().getUserDirs(req);
     return new UserDirs(resp.getShareList(), resp.getOutput());
   }

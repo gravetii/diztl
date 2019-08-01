@@ -53,7 +53,7 @@ public class CommunicationClient {
   }
 
   public void download(FileMetadata file, Node source, StartScene scene) {
-    UserDirs dirs = CommunicationClient.get().getUserDirs(true, true);
+    UserDirs dirs = CommunicationClient.get().getUserDirs();
     new DownloadHandler(file, source, scene, dirs.getOutputDir()).process(connection);
   }
 
@@ -61,8 +61,8 @@ public class CommunicationClient {
     new DownloadHandler(file, source, scene, outputDir).process(connection);
   }
 
-  public UserDirs getUserDirs(boolean share, boolean output) {
-    return new UserDirsHandler(share, output).process(connection);
+  public UserDirs getUserDirs() {
+    return new UserDirsHandler().process(connection);
   }
 
   public void updateUserDirs(List<String> share, String output, StartScene scene) {
@@ -78,7 +78,7 @@ public class CommunicationClient {
   }
 
   public void index(StartScene scene) {
-    UserDirs dirs = getUserDirs(true, true);
+    UserDirs dirs = getUserDirs();
     new FileIndexHandler(scene, dirs).process(connection);
   }
 }

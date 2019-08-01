@@ -159,8 +159,6 @@ message PingResp {
 }
 
 message UserDirsReq {
-    bool share = 1;
-    bool output = 2;
 }
 
 message UserDirsResp {
