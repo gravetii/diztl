@@ -59,6 +59,7 @@
 .jfx-button {
     -fx-background-color: #018786;
     -fx-text-fill: #ffffff;
+    -jfx-button-type: RAISED;
 }
 
 .jfx-button:hover {
@@ -69,9 +70,13 @@
     -fx-background-color: fx-background;
 }
 
-.cancelBtn {
+#cancelBtn {
     -fx-background-color: #ffffff;
     -fx-text-fill: #018786;
+}
+
+#btnBar {
+    -fx-padding: 0 10 10 0;
 }
 
 .progress-bar .bar {

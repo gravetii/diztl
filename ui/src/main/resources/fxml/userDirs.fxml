@@ -36,7 +36,7 @@
             <FontAwesomeIconView fill="WHITE" glyphName="FOLDER" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="154.0" layoutY="425.0" mnemonicParsing="false" onAction="#ok" prefHeight="36.0" prefWidth="99.0" styleClass="okBtn" text="OK" />
-      <JFXButton buttonType="RAISED" layoutX="375.0" layoutY="425.0" mnemonicParsing="false" onAction="#cancel" prefHeight="36.0" prefWidth="99.0" styleClass="cancelBtn" text="Cancel" />
+      <JFXButton id="okBtn" buttonType="RAISED" defaultButton="true" layoutX="154.0" layoutY="425.0" mnemonicParsing="false" onAction="#ok" prefHeight="36.0" prefWidth="99.0" text="OK" />
+      <JFXButton id="cancelBtn" buttonType="RAISED" cancelButton="true" layoutX="375.0" layoutY="425.0" mnemonicParsing="false" onAction="#cancel" prefHeight="36.0" prefWidth="99.0" text="Cancel" />
    </children>
 </AnchorPane>
