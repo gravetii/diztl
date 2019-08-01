@@ -1,9 +1,7 @@
 package io.github.gravetii.client.handler;
 
-import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.client.connection.Connection;
 import io.github.gravetii.gen.Diztl;
-import io.github.gravetii.pojo.UserDirs;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.Utils;
 import io.grpc.stub.StreamObserver;
@@ -19,7 +17,8 @@ public class DownloadHandler {
   private StartScene scene;
   private DownloadResult result;
 
-  public DownloadHandler(Diztl.FileMetadata file, Diztl.Node source, StartScene scene, String outputDir) {
+  public DownloadHandler(
+      Diztl.FileMetadata file, Diztl.Node source, StartScene scene, String outputDir) {
     this.file = file;
     this.source = source;
     this.scene = scene;
