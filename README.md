@@ -1,5 +1,5 @@
 <p align="center">
-<img src="images/diztl_icon.png" width="450" height="400" alt="Diztl Icon" />
+<img src="static/icon.png" width="450" height="400" alt="Diztl Icon" />
 </p>
 
 # DIZTL
@@ -9,17 +9,21 @@
 <a href="https://goreportcard.com/report/github.com/gravetii/diztl"><img src="https://goreportcard.com/badge/github.com/gravetii/diztl" alt="Go Report" /></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
 <a href="https://www.paypal.me/sandeepdasika"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="Donate" /></a>
+<a href="https://gitter.im/diztl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"><img src="https://badges.gitter.im/diztl/community.svg" alt="Chat on Gitter" /></a>
 <a href="http://hits.dwyl.io/gravetii/diztl"><img src="http://hits.dwyl.io/gravetii/diztl.svg" alt="HitCount"/></a>
 <a href="https://saythanks.io/to/gravetii"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="Say Thanks!" /></a>
 </p>
 
-<p align="center">
-<img src="images/sc1.png" width="800" height="230" alt="Screenshot 1" />
-</p>
 A peer-to-peer file discovery and sharing tool for LANs written in Go!
 
 ## Getting started
-```go get -u github.com/gravetii/diztl```
+The diztl project is written in Go with the frontend implementation in Java using JavaFX. To get started, run the following commands:
+```
+go get -v github.com/gravetii/diztl/tracker
+go get -v github.com/gravetii/diztl/node
+```
+
+Diztl requires Java 8 to be installed on the host machine for the UI to work.
 
 ## Configuration steps
 
@@ -32,8 +36,7 @@ In the root folder of the project:
 - `go run tracker/main.go`: This runs the tracker node on the localhost.
 - Specify the local IP address of the `Tracker` in the `config.yml` file to allow `Node`s to connect to it.
 - `go run node/main.go`: Run this anywhere on any machine in the network to fire up a `Node`.
-
-Once the `Node` starts up without any errors, you will be able to search for files that have been shared by other peers in the same network.
+- Fire up the UI (for this, currently, you'll have to build the code located in the `ui` folder and run it) and discover/share/download files in your network.
 
 ## Implementation
 Diztl consists of two main components:
@@ -48,20 +51,24 @@ When the `Node` first starts up, it indexes all the files to be shared in the de
 
 For the formats of different request-response structures, take a look at the `diztl/diztl.proto` file which contains the protobuf specifications as well as the gRPC service definitions.
 
+The node UI is implemented in Java using JavaFX which communicates with the node's gRPC server to facilitate user actions.
+
 ## Built With
 - gRPC: The project uses [gRPC](https://grpc.io/docs/) as its communication protocol along with protocol buffers as the data-interchange format.
+- JFoenix: [JFoenix](https://github.com/jfoenixadmin/JFoenix) is the material design library for JavaFX.
+- schollz/logger: The project uses a fork of [schollz/logger](https://github.com/schollz/logger) to log important messages for debugging requirements.
 
-- fsnotify: The project makes use of [fsnotify](https://github.com/fsnotify/fsnotify) to detect file-system changes and indexes them dynamically, thus making them avaiable for search across the entire network in real-time.
+## Screenshots
 
-
-Edit [May 30, 2019]: Watching on file-system changes is currently disabled through config because of [this](https://github.com/gravetii/diztl/issues/7) issue. This means new files added to shared folders aren't immediately available for discovery to other peers without node restart.
+![Startup](static/screenshots/startup.png)
+![Configure tracker](static/screenshots/configure_tracker.png)
+![Configure user folders](static/screenshots/configure_user_folders.png)
+![File search](static/screenshots/file_search.png)
+![Downloading files](static/screenshots/download.png)
+![Exit](static/screenshots/exit.png)
 
 ## Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to the project.
-
-## Gitter
-You can join the `diztl` community on Gitter to understand more about the project. 
-[![Gitter](https://badges.gitter.im/diztl/community.svg)](https://gitter.im/diztl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Authors
 - Sandeep Dasika
