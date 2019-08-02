@@ -130,7 +130,7 @@ message UploadReq {
 message DownloadReq {
     Node source = 1;
     FileMetadata file = 2;
-    // the custom output directory, if chosen.
+    // the custom downloads directory, if chosen.
     string dir = 3;
 }
 
@@ -164,12 +164,12 @@ message UserDirsReq {
 
 message UserDirsResp {
     repeated string share = 1;
-    string output = 2;
+    string downloads = 2;
 }
 
 message UpdateUserDirsReq {
     repeated string share = 1;
-    string output = 2;
+    string downloads = 2;
 }
 
 message UpdateUserDirsResp {

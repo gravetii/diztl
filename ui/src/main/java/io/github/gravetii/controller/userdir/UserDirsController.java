@@ -19,12 +19,12 @@ public class UserDirsController implements FxController {
   private StartScene scene;
   private Set<String> dirs = new HashSet<>();
   private boolean shareChanged = false;
-  private boolean outputChanged = false;
+  private boolean downloadsChanged = false;
 
   @FXML private JFXListView<Label> shareDirsList;
   @FXML private JFXButton addBtn;
   @FXML private JFXButton removeBtn;
-  @FXML private JFXListView<Label> outputDir;
+  @FXML private JFXListView<Label> downloadsDir;
   @FXML private JFXButton folderBtn;
 
   public UserDirsController(Stage stage, StartScene scene) {
@@ -39,7 +39,7 @@ public class UserDirsController implements FxController {
         .bind(shareDirsList.getSelectionModel().selectedItemProperty().isNull());
     UserDirs dirs = CommunicationClient.get().getUserDirs();
     displayShareDirs(dirs.getShareDirs());
-    displayOutputDir(dirs.getOutputDir());
+    displayDownloadsDir(dirs.getDownloadsDir());
   }
 
   @FXML
@@ -72,24 +72,24 @@ public class UserDirsController implements FxController {
         });
   }
 
-  public void displayOutputDir(String dir) {
-    outputDir.getItems().clear();
-    outputDir.getItems().add(new Label(dir));
+  public void displayDownloadsDir(String dir) {
+    downloadsDir.getItems().clear();
+    downloadsDir.getItems().add(new Label(dir));
   }
 
   @FXML
   public void updateDir(ActionEvent event) {
     String dir = Utils.chooseDir(stage);
     if (dir != null) {
-      displayOutputDir(dir);
-      outputChanged = true;
+      displayDownloadsDir(dir);
+      downloadsChanged = true;
     }
   }
 
   @FXML
   public void ok(ActionEvent event) {
     List<String> share = shareChanged ? new ArrayList<>(dirs) : Collections.emptyList();
-    String out = outputChanged ? outputDir.getItems().get(0).getText() : "";
+    String out = downloadsChanged ? downloadsDir.getItems().get(0).getText() : "";
     CommunicationClient.get().updateUserDirs(share, out, scene);
     stage.close();
   }

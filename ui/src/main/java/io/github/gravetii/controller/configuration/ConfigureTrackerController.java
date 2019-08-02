@@ -5,7 +5,6 @@ import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.start.StartScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 public class ConfigureTrackerController implements FxController {

@@ -4,18 +4,18 @@ import java.util.List;
 
 public class UserDirs {
   private List<String> shareDirs;
-  private String outputDir;
+  private String downloadsDir;
 
-  public UserDirs(List<String> shareDirs, String outputDir) {
+  public UserDirs(List<String> shareDirs, String downloadsDir) {
     this.shareDirs = shareDirs;
-    this.outputDir = outputDir;
+    this.downloadsDir = downloadsDir;
   }
 
   public List<String> getShareDirs() {
     return shareDirs;
   }
 
-  public String getOutputDir() {
-    return outputDir;
+  public String getDownloadsDir() {
+    return downloadsDir;
   }
 }

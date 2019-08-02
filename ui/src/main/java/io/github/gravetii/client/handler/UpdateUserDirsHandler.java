@@ -15,25 +15,25 @@ public class UpdateUserDirsHandler {
       LoggerFactory.getLogger(UpdateUserDirsHandler.class.getCanonicalName());
 
   private List<String> share;
-  private String output;
+  private String downloads;
   private StartScene scene;
 
-  public UpdateUserDirsHandler(List<String> share, String output, StartScene scene) {
+  public UpdateUserDirsHandler(List<String> share, String downloads, StartScene scene) {
     this.share = share;
-    this.output = output;
+    this.downloads = downloads;
     this.scene = scene;
   }
 
   public void process(Connection connection) {
     Diztl.UpdateUserDirsReq req =
-        Diztl.UpdateUserDirsReq.newBuilder().addAllShare(share).setOutput(output).build();
-    logger.info("Updating user dirs - share: {}, output: {}", share, output);
+        Diztl.UpdateUserDirsReq.newBuilder().addAllShare(share).setDownloads(downloads).build();
+    logger.info("Updating user dirs - share: {}, downloads: {}", share, downloads);
     ListenableFuture<Diztl.UpdateUserDirsResp> f = connection.getFutureStub().updateUserDirs(req);
     f.addListener(
         () -> {
           try {
-            if (!output.equals("")) {
-              scene.writeToLog("Updated downloads directory to " + output + ".\n");
+            if (!downloads.equals("")) {
+              scene.writeToLog("Updated downloads directory to " + downloads + ".\n");
             }
             if (!share.isEmpty()) {
               scene.writeToLog("Updated share folders, re-indexing files now...\n");

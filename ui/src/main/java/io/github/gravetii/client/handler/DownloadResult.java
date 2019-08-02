@@ -7,7 +7,7 @@ import org.apache.commons.io.FilenameUtils;
 
 public class DownloadResult extends Task<Void> {
   private Diztl.FileMetadata file;
-  private String path; // the output path of the downloaded file in the host system.
+  private String path;
   private int chunks;
   private String filepath;
 

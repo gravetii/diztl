@@ -20,13 +20,13 @@ func GetShareDirs() ([]string, error) {
 	return conf.ShareDirs(), nil
 }
 
-// GetOutputDir returns the user-configured output directory on this node.
-func GetOutputDir() (string, error) {
-	if err := Ensure(conf.OutputDir()); err != nil {
+// GetDownloadsDir returns the user-configured downloads directory on this node.
+func GetDownloadsDir() (string, error) {
+	if err := Ensure(conf.DownloadsDir()); err != nil {
 		return "", err
 	}
 
-	return conf.OutputDir(), nil
+	return conf.DownloadsDir(), nil
 }
 
 // GetLogPath returns the path to the logger file or an error if any.

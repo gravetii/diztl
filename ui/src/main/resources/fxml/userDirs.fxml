@@ -25,8 +25,8 @@
             <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15.0" strokeType="OUTSIDE" strokeWidth="0.0" />
          </graphic>
       </JFXButton>
-      <Label layoutX="43.0" layoutY="293.0" prefHeight="17.0" prefWidth="125.0" text="Output directory -" />
-      <JFXListView fx:id="outputDir" layoutX="39.0" layoutY="329.0" prefHeight="36.0" prefWidth="476.0" AnchorPane.topAnchor="329.0">
+      <Label layoutX="43.0" layoutY="293.0" prefHeight="17.0" prefWidth="154.0" text="Downloads directory -" />
+      <JFXListView fx:id="downloadsDir" layoutX="39.0" layoutY="329.0" prefHeight="36.0" prefWidth="476.0" AnchorPane.topAnchor="329.0">
          <effect>
             <InnerShadow color="#a19e9e" />
          </effect>
