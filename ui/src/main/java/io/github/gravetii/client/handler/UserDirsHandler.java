@@ -14,6 +14,6 @@ public class UserDirsHandler {
     Diztl.UserDirsReq req = Diztl.UserDirsReq.getDefaultInstance();
     logger.info("Fetching user dirs...");
     Diztl.UserDirsResp resp = connection.getStub().getUserDirs(req);
-    return new UserDirs(resp.getShareList(), resp.getOutput());
+    return new UserDirs(resp.getShareList(), resp.getDownloads());
   }
 }

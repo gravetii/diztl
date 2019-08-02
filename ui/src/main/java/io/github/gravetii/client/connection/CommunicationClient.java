@@ -55,19 +55,19 @@ public class CommunicationClient {
 
   public void download(FileMetadata file, Node source, StartScene scene) {
     UserDirs dirs = CommunicationClient.get().getUserDirs();
-    new DownloadHandler(file, source, scene, dirs.getOutputDir()).process(connection);
+    new DownloadHandler(file, source, scene, dirs.getDownloadsDir()).process(connection);
   }
 
-  public void download(FileMetadata file, Node source, StartScene scene, String outputDir) {
-    new DownloadHandler(file, source, scene, outputDir).process(connection);
+  public void download(FileMetadata file, Node source, StartScene scene, String downloadsDir) {
+    new DownloadHandler(file, source, scene, downloadsDir).process(connection);
   }
 
   public UserDirs getUserDirs() {
     return new UserDirsHandler().process(connection);
   }
 
-  public void updateUserDirs(List<String> share, String output, StartScene scene) {
-    new UpdateUserDirsHandler(share, output, scene).process(connection);
+  public void updateUserDirs(List<String> share, String downloads, StartScene scene) {
+    new UpdateUserDirsHandler(share, downloads, scene).process(connection);
   }
 
   public String getTracker() {

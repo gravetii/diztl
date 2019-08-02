@@ -76,8 +76,8 @@ public class ResultListController implements FxController {
     CommunicationClient.get().download(result.getFile(), result.getSource(), parent);
   }
 
-  private void downloadToFolder(FileResult result, String outputDir) {
-    CommunicationClient.get().download(result.getFile(), result.getSource(), parent, outputDir);
+  private void downloadToFolder(FileResult result, String downloadsDir) {
+    CommunicationClient.get().download(result.getFile(), result.getSource(), parent, downloadsDir);
   }
 
   private void setColumnWidths() {

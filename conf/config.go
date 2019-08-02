@@ -13,13 +13,13 @@ import (
 var rootdir, _ = os.UserHomeDir()
 
 var shareDirDefault = filepath.Join(rootdir, "Documents", "diztl", "share")
-var outputDirDefault = filepath.Join(shareDirDefault, "output")
+var downloadsDirDefault = filepath.Join(shareDirDefault, "downloads")
 var appDirDefault = filepath.Join(rootdir, "Library", "Logs", "diztl")
 
 type dir struct {
-	Share  []string `yaml:"share"`
-	Output string   `yaml:"output"`
-	App    string   `yaml:"app"`
+	Share     []string `yaml:"share"`
+	Downloads string   `yaml:"downloads"`
+	App       string   `yaml:"app"`
 }
 
 type conf struct {
@@ -79,9 +79,9 @@ func UpdateShareDirs(value []string) {
 	set("dir.share", value)
 }
 
-// UpdateOutputDir sets the output directory in the config file to the given value.
-func UpdateOutputDir(value string) {
-	set("dir.output", value)
+// UpdateDownloadsDir sets the downlods directory in the config file to the given value.
+func UpdateDownloadsDir(value string) {
+	set("dir.downloads", value)
 }
 
 // UpdateTracker updates the IP address of the tracker in the config file.
@@ -110,12 +110,12 @@ func ShareDirs() []string {
 	return dirs
 }
 
-// OutputDir returns the output directory on this node where the downloaded files are placed.
-func OutputDir() string {
-	dir := config.Dir.Output
+// DownloadsDir returns the downloads directory on this node where the downloaded files are placed.
+func DownloadsDir() string {
+	dir := config.Dir.Downloads
 	if dir == "" {
-		dir = outputDirDefault
-		config.Dir.Output = dir
+		dir = downloadsDirDefault
+		config.Dir.Downloads = dir
 	}
 
 	return dir

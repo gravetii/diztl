@@ -18,11 +18,11 @@ public class DownloadHandler {
   private DownloadResult result;
 
   public DownloadHandler(
-      Diztl.FileMetadata file, Diztl.Node source, StartScene scene, String outputDir) {
+      Diztl.FileMetadata file, Diztl.Node source, StartScene scene, String downloadsDir) {
     this.file = file;
     this.source = source;
     this.scene = scene;
-    this.result = new DownloadResult(file, outputDir);
+    this.result = new DownloadResult(file, downloadsDir);
   }
 
   public void process(Connection connection) {

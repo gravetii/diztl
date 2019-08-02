@@ -262,9 +262,9 @@ func (s *NodeService) GetUserDirs(ctx context.Context, request *diztl.UserDirsRe
 		resp.Share = shareDirs
 	}
 
-	outputDir, err := dir.GetOutputDir()
+	downloadsDir, err := dir.GetDownloadsDir()
 	if err == nil {
-		resp.Output = outputDir
+		resp.Downloads = downloadsDir
 	}
 
 	return &resp, nil
@@ -277,8 +277,8 @@ func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateU
 		conf.UpdateShareDirs(request.GetShare())
 	}
 
-	if request.GetOutput() != "" {
-		conf.UpdateOutputDir(request.GetOutput())
+	if request.GetDownloads() != "" {
+		conf.UpdateDownloadsDir(request.GetDownloads())
 	}
 
 	logger.Infof("Finished updating user share dirs\n")
