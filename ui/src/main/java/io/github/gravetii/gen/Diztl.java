@@ -4767,6 +4767,19 @@ public final class Diztl {
      * <code>.Node source = 2;</code>
      */
     io.github.gravetii.gen.Diztl.NodeOrBuilder getSourceOrBuilder();
+
+    /**
+     * <code>.FileConstraint constraint = 3;</code>
+     */
+    boolean hasConstraint();
+    /**
+     * <code>.FileConstraint constraint = 3;</code>
+     */
+    io.github.gravetii.gen.Diztl.FileConstraint getConstraint();
+    /**
+     * <code>.FileConstraint constraint = 3;</code>
+     */
+    io.github.gravetii.gen.Diztl.FileConstraintOrBuilder getConstraintOrBuilder();
   }
   /**
    * Protobuf type {@code SearchReq}
@@ -4830,6 +4843,19 @@ public final class Diztl {
               if (subBuilder != null) {
                 subBuilder.mergeFrom(source_);
                 source_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 26: {
+              io.github.gravetii.gen.Diztl.FileConstraint.Builder subBuilder = null;
+              if (constraint_ != null) {
+                subBuilder = constraint_.toBuilder();
+              }
+              constraint_ = input.readMessage(io.github.gravetii.gen.Diztl.FileConstraint.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(constraint_);
+                constraint_ = subBuilder.buildPartial();
               }
 
               break;
@@ -4933,6 +4959,27 @@ public final class Diztl {
       return getSource();
     }
 
+    public static final int CONSTRAINT_FIELD_NUMBER = 3;
+    private io.github.gravetii.gen.Diztl.FileConstraint constraint_;
+    /**
+     * <code>.FileConstraint constraint = 3;</code>
+     */
+    public boolean hasConstraint() {
+      return constraint_ != null;
+    }
+    /**
+     * <code>.FileConstraint constraint = 3;</code>
+     */
+    public io.github.gravetii.gen.Diztl.FileConstraint getConstraint() {
+      return constraint_ == null ? io.github.gravetii.gen.Diztl.FileConstraint.getDefaultInstance() : constraint_;
+    }
+    /**
+     * <code>.FileConstraint constraint = 3;</code>
+     */
+    public io.github.gravetii.gen.Diztl.FileConstraintOrBuilder getConstraintOrBuilder() {
+      return getConstraint();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -4951,6 +4998,9 @@ public final class Diztl {
       if (source_ != null) {
         output.writeMessage(2, getSource());
       }
+      if (constraint_ != null) {
+        output.writeMessage(3, getConstraint());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -4965,6 +5015,10 @@ public final class Diztl {
       if (source_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getSource());
+      }
+      if (constraint_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getConstraint());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4989,6 +5043,11 @@ public final class Diztl {
         result = result && getSource()
             .equals(other.getSource());
       }
+      result = result && (hasConstraint() == other.hasConstraint());
+      if (hasConstraint()) {
+        result = result && getConstraint()
+            .equals(other.getConstraint());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -5005,6 +5064,10 @@ public final class Diztl {
       if (hasSource()) {
         hash = (37 * hash) + SOURCE_FIELD_NUMBER;
         hash = (53 * hash) + getSource().hashCode();
+      }
+      if (hasConstraint()) {
+        hash = (37 * hash) + CONSTRAINT_FIELD_NUMBER;
+        hash = (53 * hash) + getConstraint().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -5143,6 +5206,12 @@ public final class Diztl {
           source_ = null;
           sourceBuilder_ = null;
         }
+        if (constraintBuilder_ == null) {
+          constraint_ = null;
+        } else {
+          constraint_ = null;
+          constraintBuilder_ = null;
+        }
         return this;
       }
 
@@ -5170,6 +5239,11 @@ public final class Diztl {
           result.source_ = source_;
         } else {
           result.source_ = sourceBuilder_.build();
+        }
+        if (constraintBuilder_ == null) {
+          result.constraint_ = constraint_;
+        } else {
+          result.constraint_ = constraintBuilder_.build();
         }
         onBuilt();
         return result;
@@ -5218,6 +5292,9 @@ public final class Diztl {
         }
         if (other.hasSource()) {
           mergeSource(other.getSource());
+        }
+        if (other.hasConstraint()) {
+          mergeConstraint(other.getConstraint());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5486,6 +5563,123 @@ public final class Diztl {
           source_ = null;
         }
         return sourceBuilder_;
+      }
+
+      private io.github.gravetii.gen.Diztl.FileConstraint constraint_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.github.gravetii.gen.Diztl.FileConstraint, io.github.gravetii.gen.Diztl.FileConstraint.Builder, io.github.gravetii.gen.Diztl.FileConstraintOrBuilder> constraintBuilder_;
+      /**
+       * <code>.FileConstraint constraint = 3;</code>
+       */
+      public boolean hasConstraint() {
+        return constraintBuilder_ != null || constraint_ != null;
+      }
+      /**
+       * <code>.FileConstraint constraint = 3;</code>
+       */
+      public io.github.gravetii.gen.Diztl.FileConstraint getConstraint() {
+        if (constraintBuilder_ == null) {
+          return constraint_ == null ? io.github.gravetii.gen.Diztl.FileConstraint.getDefaultInstance() : constraint_;
+        } else {
+          return constraintBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.FileConstraint constraint = 3;</code>
+       */
+      public Builder setConstraint(io.github.gravetii.gen.Diztl.FileConstraint value) {
+        if (constraintBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          constraint_ = value;
+          onChanged();
+        } else {
+          constraintBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.FileConstraint constraint = 3;</code>
+       */
+      public Builder setConstraint(
+          io.github.gravetii.gen.Diztl.FileConstraint.Builder builderForValue) {
+        if (constraintBuilder_ == null) {
+          constraint_ = builderForValue.build();
+          onChanged();
+        } else {
+          constraintBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.FileConstraint constraint = 3;</code>
+       */
+      public Builder mergeConstraint(io.github.gravetii.gen.Diztl.FileConstraint value) {
+        if (constraintBuilder_ == null) {
+          if (constraint_ != null) {
+            constraint_ =
+              io.github.gravetii.gen.Diztl.FileConstraint.newBuilder(constraint_).mergeFrom(value).buildPartial();
+          } else {
+            constraint_ = value;
+          }
+          onChanged();
+        } else {
+          constraintBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.FileConstraint constraint = 3;</code>
+       */
+      public Builder clearConstraint() {
+        if (constraintBuilder_ == null) {
+          constraint_ = null;
+          onChanged();
+        } else {
+          constraint_ = null;
+          constraintBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.FileConstraint constraint = 3;</code>
+       */
+      public io.github.gravetii.gen.Diztl.FileConstraint.Builder getConstraintBuilder() {
+        
+        onChanged();
+        return getConstraintFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.FileConstraint constraint = 3;</code>
+       */
+      public io.github.gravetii.gen.Diztl.FileConstraintOrBuilder getConstraintOrBuilder() {
+        if (constraintBuilder_ != null) {
+          return constraintBuilder_.getMessageOrBuilder();
+        } else {
+          return constraint_ == null ?
+              io.github.gravetii.gen.Diztl.FileConstraint.getDefaultInstance() : constraint_;
+        }
+      }
+      /**
+       * <code>.FileConstraint constraint = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.github.gravetii.gen.Diztl.FileConstraint, io.github.gravetii.gen.Diztl.FileConstraint.Builder, io.github.gravetii.gen.Diztl.FileConstraintOrBuilder> 
+          getConstraintFieldBuilder() {
+        if (constraintBuilder_ == null) {
+          constraintBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              io.github.gravetii.gen.Diztl.FileConstraint, io.github.gravetii.gen.Diztl.FileConstraint.Builder, io.github.gravetii.gen.Diztl.FileConstraintOrBuilder>(
+                  getConstraint(),
+                  getParentForChildren(),
+                  isClean());
+          constraint_ = null;
+        }
+        return constraintBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -6703,6 +6897,19 @@ public final class Diztl {
      */
     com.google.protobuf.ByteString
         getQueryBytes();
+
+    /**
+     * <code>.FileConstraint constraint = 2;</code>
+     */
+    boolean hasConstraint();
+    /**
+     * <code>.FileConstraint constraint = 2;</code>
+     */
+    io.github.gravetii.gen.Diztl.FileConstraint getConstraint();
+    /**
+     * <code>.FileConstraint constraint = 2;</code>
+     */
+    io.github.gravetii.gen.Diztl.FileConstraintOrBuilder getConstraintOrBuilder();
   }
   /**
    * Protobuf type {@code FindReq}
@@ -6755,6 +6962,19 @@ public final class Diztl {
               java.lang.String s = input.readStringRequireUtf8();
 
               query_ = s;
+              break;
+            }
+            case 18: {
+              io.github.gravetii.gen.Diztl.FileConstraint.Builder subBuilder = null;
+              if (constraint_ != null) {
+                subBuilder = constraint_.toBuilder();
+              }
+              constraint_ = input.readMessage(io.github.gravetii.gen.Diztl.FileConstraint.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(constraint_);
+                constraint_ = subBuilder.buildPartial();
+              }
+
               break;
             }
           }
@@ -6815,6 +7035,27 @@ public final class Diztl {
       }
     }
 
+    public static final int CONSTRAINT_FIELD_NUMBER = 2;
+    private io.github.gravetii.gen.Diztl.FileConstraint constraint_;
+    /**
+     * <code>.FileConstraint constraint = 2;</code>
+     */
+    public boolean hasConstraint() {
+      return constraint_ != null;
+    }
+    /**
+     * <code>.FileConstraint constraint = 2;</code>
+     */
+    public io.github.gravetii.gen.Diztl.FileConstraint getConstraint() {
+      return constraint_ == null ? io.github.gravetii.gen.Diztl.FileConstraint.getDefaultInstance() : constraint_;
+    }
+    /**
+     * <code>.FileConstraint constraint = 2;</code>
+     */
+    public io.github.gravetii.gen.Diztl.FileConstraintOrBuilder getConstraintOrBuilder() {
+      return getConstraint();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -6830,6 +7071,9 @@ public final class Diztl {
       if (!getQueryBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, query_);
       }
+      if (constraint_ != null) {
+        output.writeMessage(2, getConstraint());
+      }
       unknownFields.writeTo(output);
     }
 
@@ -6840,6 +7084,10 @@ public final class Diztl {
       size = 0;
       if (!getQueryBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, query_);
+      }
+      if (constraint_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getConstraint());
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -6859,6 +7107,11 @@ public final class Diztl {
       boolean result = true;
       result = result && getQuery()
           .equals(other.getQuery());
+      result = result && (hasConstraint() == other.hasConstraint());
+      if (hasConstraint()) {
+        result = result && getConstraint()
+            .equals(other.getConstraint());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -6872,6 +7125,10 @@ public final class Diztl {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + QUERY_FIELD_NUMBER;
       hash = (53 * hash) + getQuery().hashCode();
+      if (hasConstraint()) {
+        hash = (37 * hash) + CONSTRAINT_FIELD_NUMBER;
+        hash = (53 * hash) + getConstraint().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -7003,6 +7260,12 @@ public final class Diztl {
         super.clear();
         query_ = "";
 
+        if (constraintBuilder_ == null) {
+          constraint_ = null;
+        } else {
+          constraint_ = null;
+          constraintBuilder_ = null;
+        }
         return this;
       }
 
@@ -7026,6 +7289,11 @@ public final class Diztl {
       public io.github.gravetii.gen.Diztl.FindReq buildPartial() {
         io.github.gravetii.gen.Diztl.FindReq result = new io.github.gravetii.gen.Diztl.FindReq(this);
         result.query_ = query_;
+        if (constraintBuilder_ == null) {
+          result.constraint_ = constraint_;
+        } else {
+          result.constraint_ = constraintBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -7070,6 +7338,9 @@ public final class Diztl {
         if (!other.getQuery().isEmpty()) {
           query_ = other.query_;
           onChanged();
+        }
+        if (other.hasConstraint()) {
+          mergeConstraint(other.getConstraint());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -7165,6 +7436,123 @@ public final class Diztl {
         query_ = value;
         onChanged();
         return this;
+      }
+
+      private io.github.gravetii.gen.Diztl.FileConstraint constraint_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.github.gravetii.gen.Diztl.FileConstraint, io.github.gravetii.gen.Diztl.FileConstraint.Builder, io.github.gravetii.gen.Diztl.FileConstraintOrBuilder> constraintBuilder_;
+      /**
+       * <code>.FileConstraint constraint = 2;</code>
+       */
+      public boolean hasConstraint() {
+        return constraintBuilder_ != null || constraint_ != null;
+      }
+      /**
+       * <code>.FileConstraint constraint = 2;</code>
+       */
+      public io.github.gravetii.gen.Diztl.FileConstraint getConstraint() {
+        if (constraintBuilder_ == null) {
+          return constraint_ == null ? io.github.gravetii.gen.Diztl.FileConstraint.getDefaultInstance() : constraint_;
+        } else {
+          return constraintBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.FileConstraint constraint = 2;</code>
+       */
+      public Builder setConstraint(io.github.gravetii.gen.Diztl.FileConstraint value) {
+        if (constraintBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          constraint_ = value;
+          onChanged();
+        } else {
+          constraintBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.FileConstraint constraint = 2;</code>
+       */
+      public Builder setConstraint(
+          io.github.gravetii.gen.Diztl.FileConstraint.Builder builderForValue) {
+        if (constraintBuilder_ == null) {
+          constraint_ = builderForValue.build();
+          onChanged();
+        } else {
+          constraintBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.FileConstraint constraint = 2;</code>
+       */
+      public Builder mergeConstraint(io.github.gravetii.gen.Diztl.FileConstraint value) {
+        if (constraintBuilder_ == null) {
+          if (constraint_ != null) {
+            constraint_ =
+              io.github.gravetii.gen.Diztl.FileConstraint.newBuilder(constraint_).mergeFrom(value).buildPartial();
+          } else {
+            constraint_ = value;
+          }
+          onChanged();
+        } else {
+          constraintBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.FileConstraint constraint = 2;</code>
+       */
+      public Builder clearConstraint() {
+        if (constraintBuilder_ == null) {
+          constraint_ = null;
+          onChanged();
+        } else {
+          constraint_ = null;
+          constraintBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.FileConstraint constraint = 2;</code>
+       */
+      public io.github.gravetii.gen.Diztl.FileConstraint.Builder getConstraintBuilder() {
+        
+        onChanged();
+        return getConstraintFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.FileConstraint constraint = 2;</code>
+       */
+      public io.github.gravetii.gen.Diztl.FileConstraintOrBuilder getConstraintOrBuilder() {
+        if (constraintBuilder_ != null) {
+          return constraintBuilder_.getMessageOrBuilder();
+        } else {
+          return constraint_ == null ?
+              io.github.gravetii.gen.Diztl.FileConstraint.getDefaultInstance() : constraint_;
+        }
+      }
+      /**
+       * <code>.FileConstraint constraint = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.github.gravetii.gen.Diztl.FileConstraint, io.github.gravetii.gen.Diztl.FileConstraint.Builder, io.github.gravetii.gen.Diztl.FileConstraintOrBuilder> 
+          getConstraintFieldBuilder() {
+        if (constraintBuilder_ == null) {
+          constraintBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              io.github.gravetii.gen.Diztl.FileConstraint, io.github.gravetii.gen.Diztl.FileConstraint.Builder, io.github.gravetii.gen.Diztl.FileConstraintOrBuilder>(
+                  getConstraint(),
+                  getParentForChildren(),
+                  isClean());
+          constraint_ = null;
+        }
+        return constraintBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -19651,9 +20039,8 @@ public final class Diztl {
     /**
      * <pre>
      * key indicates the nature of the value.
-     * 0 - Any (disregard the constraint)
-     * 1 - at least
-     * 2 - less than
+     * 0 - at least
+     * 1 - less than
      * </pre>
      *
      * <code>int32 key = 1;</code>
@@ -19756,9 +20143,8 @@ public final class Diztl {
     /**
      * <pre>
      * key indicates the nature of the value.
-     * 0 - Any (disregard the constraint)
-     * 1 - at least
-     * 2 - less than
+     * 0 - at least
+     * 1 - less than
      * </pre>
      *
      * <code>int32 key = 1;</code>
@@ -20085,9 +20471,8 @@ public final class Diztl {
       /**
        * <pre>
        * key indicates the nature of the value.
-       * 0 - Any (disregard the constraint)
-       * 1 - at least
-       * 2 - less than
+       * 0 - at least
+       * 1 - less than
        * </pre>
        *
        * <code>int32 key = 1;</code>
@@ -20098,9 +20483,8 @@ public final class Diztl {
       /**
        * <pre>
        * key indicates the nature of the value.
-       * 0 - Any (disregard the constraint)
-       * 1 - at least
-       * 2 - less than
+       * 0 - at least
+       * 1 - less than
        * </pre>
        *
        * <code>int32 key = 1;</code>
@@ -20114,9 +20498,8 @@ public final class Diztl {
       /**
        * <pre>
        * key indicates the nature of the value.
-       * 0 - Any (disregard the constraint)
-       * 1 - at least
-       * 2 - less than
+       * 0 - at least
+       * 1 - less than
        * </pre>
        *
        * <code>int32 key = 1;</code>
@@ -21679,53 +22062,55 @@ public final class Diztl {
       "\014\022\r\n\005chunk\030\003 \001(\005\022\016\n\006chunks\030\004 \001(\005\"3\n\013Regi" +
       "sterReq\022\023\n\004self\030\001 \001(\0132\005.Node\022\017\n\007tracker\030" +
       "\002 \001(\t\"#\n\014RegisterResp\022\023\n\004node\030\001 \001(\0132\005.No" +
-      "de\"1\n\tSearchReq\022\r\n\005query\030\001 \001(\t\022\025\n\006source" +
-      "\030\002 \001(\0132\005.Node\"?\n\nSearchResp\022\034\n\005files\030\001 \003" +
-      "(\0132\r.FileMetadata\022\023\n\004node\030\002 \001(\0132\005.Node\"\030" +
-      "\n\007FindReq\022\r\n\005query\030\001 \001(\t\"*\n\010FindResp\022\036\n\t" +
-      "responses\030\001 \003(\0132\013.SearchResp\"#\n\016UploadCo" +
-      "ntract\022\021\n\tchunkSize\030\001 \001(\005\"f\n\tUploadReq\022\025" +
-      "\n\006source\030\001 \001(\0132\005.Node\022\037\n\010metadata\030\002 \001(\0132" +
-      "\r.FileMetadata\022!\n\010contract\030\003 \001(\0132\017.Uploa" +
-      "dContract\"N\n\013DownloadReq\022\025\n\006source\030\001 \001(\013" +
-      "2\005.Node\022\033\n\004file\030\002 \001(\0132\r.FileMetadata\022\013\n\003" +
-      "dir\030\003 \001(\t\".\n\rDownloadChunk\022\016\n\006chunks\030\001 \001" +
-      "(\005\022\r\n\005chunk\030\002 \001(\005\"$\n\rDisconnectReq\022\023\n\004no" +
-      "de\030\001 \001(\0132\005.Node\"!\n\016DisconnectResp\022\017\n\007mes" +
-      "sage\030\001 \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001(\0132\005." +
-      "Node\022\023\n\004dest\030\002 \001(\0132\005.Node\")\n\010PingResp\022\014\n" +
-      "\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\"\r\n\013UserDirs" +
-      "Req\"0\n\014UserDirsResp\022\r\n\005share\030\001 \003(\t\022\021\n\tdo" +
-      "wnloads\030\002 \001(\t\"5\n\021UpdateUserDirsReq\022\r\n\005sh" +
-      "are\030\001 \003(\t\022\021\n\tdownloads\030\002 \001(\t\"%\n\022UpdateUs" +
-      "erDirsResp\022\017\n\007message\030\001 \001(\t\"\017\n\rGetTracke" +
-      "rReq\"!\n\016GetTrackerResp\022\017\n\007tracker\030\001 \001(\t\"" +
-      "#\n\020UpdateTrackerReq\022\017\n\007tracker\030\001 \001(\t\"!\n\021" +
-      "UpdateTrackerResp\022\014\n\004code\030\001 \001(\005\"\n\n\010Index" +
-      "Req\"\032\n\tIndexResp\022\r\n\005fpath\030\001 \001(\t\"\n\n\010Close" +
-      "Req\"\034\n\tCloseResp\022\017\n\007message\030\001 \001(\t\",\n\016Siz" +
-      "eConstraint\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003\"" +
-      "\036\n\016TypeConstraint\022\014\n\004type\030\001 \001(\005\"P\n\016FileC" +
-      "onstraint\022\036\n\005csize\030\001 \001(\0132\017.SizeConstrain" +
-      "t\022\036\n\005ctype\030\002 \001(\0132\017.TypeConstraint2\214\004\n\014Di" +
-      "ztlService\022#\n\006Search\022\n.SearchReq\032\013.Searc" +
-      "hResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.FileChun" +
-      "k\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035\n\004" +
-      "Find\022\010.FindReq\032\t.FindResp\"\000\022,\n\010Download\022" +
-      "\014.DownloadReq\032\016.DownloadChunk\"\0000\001\022,\n\013Get" +
-      "UserDirs\022\014.UserDirsReq\032\r.UserDirsResp\"\000\022" +
-      ";\n\016UpdateUserDirs\022\022.UpdateUserDirsReq\032\023." +
-      "UpdateUserDirsResp\"\000\022/\n\nGetTracker\022\016.Get" +
-      "TrackerReq\032\017.GetTrackerResp\"\000\0228\n\rUpdateT" +
-      "racker\022\021.UpdateTrackerReq\032\022.UpdateTracke" +
-      "rResp\"\000\022\"\n\005Index\022\t.IndexReq\032\n.IndexResp\"" +
-      "\0000\001\022)\n\010Register\022\014.RegisterReq\032\r.Register" +
-      "Resp\"\000\022 \n\005Close\022\t.CloseReq\032\n.CloseResp\"\000" +
-      "2\223\001\n\016TrackerService\022)\n\010Register\022\014.Regist" +
-      "erReq\032\r.RegisterResp\"\000\022%\n\006Search\022\n.Searc" +
-      "hReq\032\013.SearchResp\"\0000\001\022/\n\nDisconnect\022\016.Di" +
-      "sconnectReq\032\017.DisconnectResp\"\000B\030\n\026io.git" +
-      "hub.gravetii.genb\006proto3"
+      "de\"V\n\tSearchReq\022\r\n\005query\030\001 \001(\t\022\025\n\006source" +
+      "\030\002 \001(\0132\005.Node\022#\n\nconstraint\030\003 \001(\0132\017.File" +
+      "Constraint\"?\n\nSearchResp\022\034\n\005files\030\001 \003(\0132" +
+      "\r.FileMetadata\022\023\n\004node\030\002 \001(\0132\005.Node\"=\n\007F" +
+      "indReq\022\r\n\005query\030\001 \001(\t\022#\n\nconstraint\030\002 \001(" +
+      "\0132\017.FileConstraint\"*\n\010FindResp\022\036\n\trespon" +
+      "ses\030\001 \003(\0132\013.SearchResp\"#\n\016UploadContract" +
+      "\022\021\n\tchunkSize\030\001 \001(\005\"f\n\tUploadReq\022\025\n\006sour" +
+      "ce\030\001 \001(\0132\005.Node\022\037\n\010metadata\030\002 \001(\0132\r.File" +
+      "Metadata\022!\n\010contract\030\003 \001(\0132\017.UploadContr" +
+      "act\"N\n\013DownloadReq\022\025\n\006source\030\001 \001(\0132\005.Nod" +
+      "e\022\033\n\004file\030\002 \001(\0132\r.FileMetadata\022\013\n\003dir\030\003 " +
+      "\001(\t\".\n\rDownloadChunk\022\016\n\006chunks\030\001 \001(\005\022\r\n\005" +
+      "chunk\030\002 \001(\005\"$\n\rDisconnectReq\022\023\n\004node\030\001 \001" +
+      "(\0132\005.Node\"!\n\016DisconnectResp\022\017\n\007message\030\001" +
+      " \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001(\0132\005.Node\022\023" +
+      "\n\004dest\030\002 \001(\0132\005.Node\")\n\010PingResp\022\014\n\004code\030" +
+      "\001 \001(\005\022\017\n\007message\030\002 \001(\t\"\r\n\013UserDirsReq\"0\n" +
+      "\014UserDirsResp\022\r\n\005share\030\001 \003(\t\022\021\n\tdownload" +
+      "s\030\002 \001(\t\"5\n\021UpdateUserDirsReq\022\r\n\005share\030\001 " +
+      "\003(\t\022\021\n\tdownloads\030\002 \001(\t\"%\n\022UpdateUserDirs" +
+      "Resp\022\017\n\007message\030\001 \001(\t\"\017\n\rGetTrackerReq\"!" +
+      "\n\016GetTrackerResp\022\017\n\007tracker\030\001 \001(\t\"#\n\020Upd" +
+      "ateTrackerReq\022\017\n\007tracker\030\001 \001(\t\"!\n\021Update" +
+      "TrackerResp\022\014\n\004code\030\001 \001(\005\"\n\n\010IndexReq\"\032\n" +
+      "\tIndexResp\022\r\n\005fpath\030\001 \001(\t\"\n\n\010CloseReq\"\034\n" +
+      "\tCloseResp\022\017\n\007message\030\001 \001(\t\",\n\016SizeConst" +
+      "raint\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003\"\036\n\016Typ" +
+      "eConstraint\022\014\n\004type\030\001 \001(\005\"P\n\016FileConstra" +
+      "int\022\036\n\005csize\030\001 \001(\0132\017.SizeConstraint\022\036\n\005c" +
+      "type\030\002 \001(\0132\017.TypeConstraint2\214\004\n\014DiztlSer" +
+      "vice\022#\n\006Search\022\n.SearchReq\032\013.SearchResp\"" +
+      "\000\022$\n\006Upload\022\n.UploadReq\032\n.FileChunk\"\0000\001\022" +
+      "\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035\n\004Find\022\010" +
+      ".FindReq\032\t.FindResp\"\000\022,\n\010Download\022\014.Down" +
+      "loadReq\032\016.DownloadChunk\"\0000\001\022,\n\013GetUserDi" +
+      "rs\022\014.UserDirsReq\032\r.UserDirsResp\"\000\022;\n\016Upd" +
+      "ateUserDirs\022\022.UpdateUserDirsReq\032\023.Update" +
+      "UserDirsResp\"\000\022/\n\nGetTracker\022\016.GetTracke" +
+      "rReq\032\017.GetTrackerResp\"\000\0228\n\rUpdateTracker" +
+      "\022\021.UpdateTrackerReq\032\022.UpdateTrackerResp\"" +
+      "\000\022\"\n\005Index\022\t.IndexReq\032\n.IndexResp\"\0000\001\022)\n" +
+      "\010Register\022\014.RegisterReq\032\r.RegisterResp\"\000" +
+      "\022 \n\005Close\022\t.CloseReq\032\n.CloseResp\"\0002\223\001\n\016T" +
+      "rackerService\022)\n\010Register\022\014.RegisterReq\032" +
+      "\r.RegisterResp\"\000\022%\n\006Search\022\n.SearchReq\032\013" +
+      ".SearchResp\"\0000\001\022/\n\nDisconnect\022\016.Disconne" +
+      "ctReq\032\017.DisconnectResp\"\000B\030\n\026io.github.gr" +
+      "avetii.genb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -21780,7 +22165,7 @@ public final class Diztl {
     internal_static_SearchReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchReq_descriptor,
-        new java.lang.String[] { "Query", "Source", });
+        new java.lang.String[] { "Query", "Source", "Constraint", });
     internal_static_SearchResp_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_SearchResp_fieldAccessorTable = new
@@ -21792,7 +22177,7 @@ public final class Diztl {
     internal_static_FindReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_FindReq_descriptor,
-        new java.lang.String[] { "Query", });
+        new java.lang.String[] { "Query", "Constraint", });
     internal_static_FindResp_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_FindResp_fieldAccessorTable = new

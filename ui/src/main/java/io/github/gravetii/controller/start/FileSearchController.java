@@ -4,7 +4,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
+import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.start.StartScene;
+import io.github.gravetii.util.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -59,14 +61,13 @@ public class FileSearchController implements FxController {
     sizeUnit.getItems().add("kB");
     sizeUnit.getItems().add("MB");
     sizeUnit.getItems().add("GB");
-    sizeUnit.getItems().add("TB");
     sizeUnit.setValue("MB");
     sizeUnit.getSelectionModel().select(1);
   }
 
   private void populateFileTypes() {
     fileType.getItems().add("Any");
-    fileType.getItems().add("video (.mp4, .mov, .mkv, .webm, .flv)");
+    fileType.getItems().add("video (.mp4, .mkv, .mpeg, .mov, .webm, .flv)");
     fileType.getItems().add("image (.png, .jpg, .ico, .gif)");
     fileType.getItems().add("audio (.mp3, .wav)");
     fileType.getItems().add("document (.txt, .pdf, .ppt, .doc, .xls, .csv)");
@@ -79,8 +80,16 @@ public class FileSearchController implements FxController {
   public void search() {
     String query = searchBox.getText();
     if (!query.isEmpty()) {
+      double sz = Double.parseDouble(sizeValue.getText());
+      String unit = sizeUnit.getSelectionModel().getSelectedItem();
+      long bytes = Utils.getByteCount(sz, unit);
+      int key = sizeKey.getSelectionModel().getSelectedIndex();
+      Diztl.SizeConstraint size = Diztl.SizeConstraint.newBuilder().setKey(key).setValue(bytes).build();
+      int ftype = fileType.getSelectionModel().getSelectedIndex();
+      Diztl.TypeConstraint type = Diztl.TypeConstraint.newBuilder().setType(ftype).build();
+      Diztl.FileConstraint constraint = Diztl.FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
       logger.debug("Searching for pattern: {}", query);
-      CommunicationClient.get().find(query, parent);
+      CommunicationClient.get().find(query, constraint, parent);
     }
   }
 }
