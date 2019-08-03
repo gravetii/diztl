@@ -6,6 +6,9 @@ import io.github.gravetii.client.connection.CommunicationClient;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.start.StartScene;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -22,6 +25,10 @@ public class FileSearchController implements FxController {
   @FXML private JFXTextField searchBox;
   @FXML private JFXButton searchBtn;
   @FXML private HBox hboxCtnr;
+  @FXML private ComboBox<String> sizeKey;
+  @FXML private TextField sizeValue;
+  @FXML private ComboBox<String> sizeUnit;
+  @FXML private ComboBox<String> fileType;
 
   public FileSearchController(StartScene parent) {
     this.parent = parent;
@@ -35,6 +42,37 @@ public class FileSearchController implements FxController {
             search();
           }
         });
+
+    populateSizeKeys();
+    populateSizeUnits();
+    populateFileTypes();
+    sizeValue.setText("0");
+  }
+
+  private void populateSizeKeys() {
+    sizeKey.getItems().add("At least");
+    sizeKey.getItems().add("Less than");
+    sizeKey.getSelectionModel().select(0);
+  }
+
+  private void populateSizeUnits() {
+    sizeUnit.getItems().add("kB");
+    sizeUnit.getItems().add("MB");
+    sizeUnit.getItems().add("GB");
+    sizeUnit.getItems().add("TB");
+    sizeUnit.setValue("MB");
+    sizeUnit.getSelectionModel().select(1);
+  }
+
+  private void populateFileTypes() {
+    fileType.getItems().add("Any");
+    fileType.getItems().add("video (.mp4, .mov, .mkv, .webm, .flv)");
+    fileType.getItems().add("image (.png, .jpg, .ico, .gif)");
+    fileType.getItems().add("audio (.mp3, .wav)");
+    fileType.getItems().add("document (.txt, .pdf, .ppt, .doc, .xls, .csv)");
+    fileType.getItems().add("compressed (.zip, .gz, .7z, .rar)");
+    fileType.getItems().add("executable (.exe, .dmg)");
+    fileType.getSelectionModel().select(0);
   }
 
   @FXML
