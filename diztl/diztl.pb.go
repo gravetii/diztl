@@ -1428,12 +1428,12 @@ func (m *SizeConstraint) GetValue() int64 {
 type TypeConstraint struct {
 	// type indicates the file type.
 	// 0 - Any (disregard the constraint)
-	// 1 - video - mp4, mpeg, mov, mkv, webm, flv
+	// 1 - video - mp4, mkv, mpeg, mov, webm, flv
 	// 2 - image - png, jpg, jpeg, ico, gif
 	// 3 - audio - mp3, wav, ogg
 	// 4 - document - txt, pdf, ppt, doc, xls, csv
 	// 5 - compressed - zip, gz, rar, 7z
-	// 6 - executable - exe, dmg
+	// 6 - executable - exe, dmg, sh
 	Type                 int32    `protobuf:"varint,1,opt,name=type,proto3" json:"type,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

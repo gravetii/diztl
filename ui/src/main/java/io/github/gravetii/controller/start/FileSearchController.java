@@ -9,7 +9,6 @@ import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
@@ -72,7 +71,7 @@ public class FileSearchController implements FxController {
     fileType.getItems().add("audio (.mp3, .wav)");
     fileType.getItems().add("document (.txt, .pdf, .ppt, .doc, .xls, .csv)");
     fileType.getItems().add("compressed (.zip, .gz, .7z, .rar)");
-    fileType.getItems().add("executable (.exe, .dmg)");
+    fileType.getItems().add("executable (.exe, .dmg, .sh)");
     fileType.getSelectionModel().select(0);
   }
 
@@ -84,10 +83,12 @@ public class FileSearchController implements FxController {
       String unit = sizeUnit.getSelectionModel().getSelectedItem();
       long bytes = Utils.getByteCount(sz, unit);
       int key = sizeKey.getSelectionModel().getSelectedIndex();
-      Diztl.SizeConstraint size = Diztl.SizeConstraint.newBuilder().setKey(key).setValue(bytes).build();
+      Diztl.SizeConstraint size =
+          Diztl.SizeConstraint.newBuilder().setKey(key).setValue(bytes).build();
       int ftype = fileType.getSelectionModel().getSelectedIndex();
       Diztl.TypeConstraint type = Diztl.TypeConstraint.newBuilder().setType(ftype).build();
-      Diztl.FileConstraint constraint = Diztl.FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
+      Diztl.FileConstraint constraint =
+          Diztl.FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
       logger.debug("Searching for pattern: {}", query);
       CommunicationClient.get().find(query, constraint, parent);
     }

@@ -20605,12 +20605,12 @@ public final class Diztl {
      * <pre>
      * type indicates the file type.
      * 0 - Any (disregard the constraint)
-     * 1 - video - mp4, mpeg, mov, mkv, webm, flv
+     * 1 - video - mp4, mkv, mpeg, mov, webm, flv
      * 2 - image - png, jpg, jpeg, ico, gif
      * 3 - audio - mp3, wav, ogg
      * 4 - document - txt, pdf, ppt, doc, xls, csv
      * 5 - compressed - zip, gz, rar, 7z
-     * 6 - executable - exe, dmg
+     * 6 - executable - exe, dmg, sh
      * </pre>
      *
      * <code>int32 type = 1;</code>
@@ -20699,12 +20699,12 @@ public final class Diztl {
      * <pre>
      * type indicates the file type.
      * 0 - Any (disregard the constraint)
-     * 1 - video - mp4, mpeg, mov, mkv, webm, flv
+     * 1 - video - mp4, mkv, mpeg, mov, webm, flv
      * 2 - image - png, jpg, jpeg, ico, gif
      * 3 - audio - mp3, wav, ogg
      * 4 - document - txt, pdf, ppt, doc, xls, csv
      * 5 - compressed - zip, gz, rar, 7z
-     * 6 - executable - exe, dmg
+     * 6 - executable - exe, dmg, sh
      * </pre>
      *
      * <code>int32 type = 1;</code>
@@ -21001,12 +21001,12 @@ public final class Diztl {
        * <pre>
        * type indicates the file type.
        * 0 - Any (disregard the constraint)
-       * 1 - video - mp4, mpeg, mov, mkv, webm, flv
+       * 1 - video - mp4, mkv, mpeg, mov, webm, flv
        * 2 - image - png, jpg, jpeg, ico, gif
        * 3 - audio - mp3, wav, ogg
        * 4 - document - txt, pdf, ppt, doc, xls, csv
        * 5 - compressed - zip, gz, rar, 7z
-       * 6 - executable - exe, dmg
+       * 6 - executable - exe, dmg, sh
        * </pre>
        *
        * <code>int32 type = 1;</code>
@@ -21018,12 +21018,12 @@ public final class Diztl {
        * <pre>
        * type indicates the file type.
        * 0 - Any (disregard the constraint)
-       * 1 - video - mp4, mpeg, mov, mkv, webm, flv
+       * 1 - video - mp4, mkv, mpeg, mov, webm, flv
        * 2 - image - png, jpg, jpeg, ico, gif
        * 3 - audio - mp3, wav, ogg
        * 4 - document - txt, pdf, ppt, doc, xls, csv
        * 5 - compressed - zip, gz, rar, 7z
-       * 6 - executable - exe, dmg
+       * 6 - executable - exe, dmg, sh
        * </pre>
        *
        * <code>int32 type = 1;</code>
@@ -21038,12 +21038,12 @@ public final class Diztl {
        * <pre>
        * type indicates the file type.
        * 0 - Any (disregard the constraint)
-       * 1 - video - mp4, mpeg, mov, mkv, webm, flv
+       * 1 - video - mp4, mkv, mpeg, mov, webm, flv
        * 2 - image - png, jpg, jpeg, ico, gif
        * 3 - audio - mp3, wav, ogg
        * 4 - document - txt, pdf, ppt, doc, xls, csv
        * 5 - compressed - zip, gz, rar, 7z
-       * 6 - executable - exe, dmg
+       * 6 - executable - exe, dmg, sh
        * </pre>
        *
        * <code>int32 type = 1;</code>
