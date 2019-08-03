@@ -89,7 +89,6 @@ public class FileSearchController implements FxController {
       Diztl.TypeConstraint type = Diztl.TypeConstraint.newBuilder().setType(ftype).build();
       Diztl.FileConstraint constraint =
           Diztl.FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
-      logger.debug("Searching for pattern: {}", query);
       CommunicationClient.get().find(query, constraint, parent);
     }
   }

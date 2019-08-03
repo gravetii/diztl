@@ -94,7 +94,11 @@
             <artifactId>grpc-all</artifactId>
             <version>1.18.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.lalyos</groupId>
+            <artifactId>jfiglet</artifactId>
+            <version>0.0.8</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>
             <groupId>commons-io</groupId>
