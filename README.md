@@ -56,7 +56,6 @@ The node UI is implemented in Java using JavaFX which communicates with the node
 ## Built With
 - gRPC: The project uses [gRPC](https://grpc.io/docs/) as its communication protocol along with protocol buffers as the data-interchange format.
 - JFoenix: [JFoenix](https://github.com/jfoenixadmin/JFoenix) is the material design library for JavaFX.
-- schollz/logger: The project uses a fork of [schollz/logger](https://github.com/schollz/logger) to log important messages for debugging requirements.
 
 ## Screenshots
 
