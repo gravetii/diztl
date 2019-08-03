@@ -4730,18 +4730,18 @@ public final class Diztl {
      * The filename to search for.
      * </pre>
      *
-     * <code>string filename = 1;</code>
+     * <code>string query = 1;</code>
      */
-    java.lang.String getFilename();
+    java.lang.String getQuery();
     /**
      * <pre>
      * The filename to search for.
      * </pre>
      *
-     * <code>string filename = 1;</code>
+     * <code>string query = 1;</code>
      */
     com.google.protobuf.ByteString
-        getFilenameBytes();
+        getQueryBytes();
 
     /**
      * <pre>
@@ -4781,7 +4781,7 @@ public final class Diztl {
       super(builder);
     }
     private SearchReq() {
-      filename_ = "";
+      query_ = "";
     }
 
     @java.lang.Override
@@ -4818,7 +4818,7 @@ public final class Diztl {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              filename_ = s;
+              query_ = s;
               break;
             }
             case 18: {
@@ -4858,24 +4858,24 @@ public final class Diztl {
               io.github.gravetii.gen.Diztl.SearchReq.class, io.github.gravetii.gen.Diztl.SearchReq.Builder.class);
     }
 
-    public static final int FILENAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object filename_;
+    public static final int QUERY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object query_;
     /**
      * <pre>
      * The filename to search for.
      * </pre>
      *
-     * <code>string filename = 1;</code>
+     * <code>string query = 1;</code>
      */
-    public java.lang.String getFilename() {
-      java.lang.Object ref = filename_;
+    public java.lang.String getQuery() {
+      java.lang.Object ref = query_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        filename_ = s;
+        query_ = s;
         return s;
       }
     }
@@ -4884,16 +4884,16 @@ public final class Diztl {
      * The filename to search for.
      * </pre>
      *
-     * <code>string filename = 1;</code>
+     * <code>string query = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getFilenameBytes() {
-      java.lang.Object ref = filename_;
+        getQueryBytes() {
+      java.lang.Object ref = query_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        filename_ = b;
+        query_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -4945,8 +4945,8 @@ public final class Diztl {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getFilenameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, filename_);
+      if (!getQueryBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, query_);
       }
       if (source_ != null) {
         output.writeMessage(2, getSource());
@@ -4959,8 +4959,8 @@ public final class Diztl {
       if (size != -1) return size;
 
       size = 0;
-      if (!getFilenameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, filename_);
+      if (!getQueryBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, query_);
       }
       if (source_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -4982,8 +4982,8 @@ public final class Diztl {
       io.github.gravetii.gen.Diztl.SearchReq other = (io.github.gravetii.gen.Diztl.SearchReq) obj;
 
       boolean result = true;
-      result = result && getFilename()
-          .equals(other.getFilename());
+      result = result && getQuery()
+          .equals(other.getQuery());
       result = result && (hasSource() == other.hasSource());
       if (hasSource()) {
         result = result && getSource()
@@ -5000,8 +5000,8 @@ public final class Diztl {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + FILENAME_FIELD_NUMBER;
-      hash = (53 * hash) + getFilename().hashCode();
+      hash = (37 * hash) + QUERY_FIELD_NUMBER;
+      hash = (53 * hash) + getQuery().hashCode();
       if (hasSource()) {
         hash = (37 * hash) + SOURCE_FIELD_NUMBER;
         hash = (53 * hash) + getSource().hashCode();
@@ -5135,7 +5135,7 @@ public final class Diztl {
       }
       public Builder clear() {
         super.clear();
-        filename_ = "";
+        query_ = "";
 
         if (sourceBuilder_ == null) {
           source_ = null;
@@ -5165,7 +5165,7 @@ public final class Diztl {
 
       public io.github.gravetii.gen.Diztl.SearchReq buildPartial() {
         io.github.gravetii.gen.Diztl.SearchReq result = new io.github.gravetii.gen.Diztl.SearchReq(this);
-        result.filename_ = filename_;
+        result.query_ = query_;
         if (sourceBuilder_ == null) {
           result.source_ = source_;
         } else {
@@ -5212,8 +5212,8 @@ public final class Diztl {
 
       public Builder mergeFrom(io.github.gravetii.gen.Diztl.SearchReq other) {
         if (other == io.github.gravetii.gen.Diztl.SearchReq.getDefaultInstance()) return this;
-        if (!other.getFilename().isEmpty()) {
-          filename_ = other.filename_;
+        if (!other.getQuery().isEmpty()) {
+          query_ = other.query_;
           onChanged();
         }
         if (other.hasSource()) {
@@ -5246,21 +5246,21 @@ public final class Diztl {
         return this;
       }
 
-      private java.lang.Object filename_ = "";
+      private java.lang.Object query_ = "";
       /**
        * <pre>
        * The filename to search for.
        * </pre>
        *
-       * <code>string filename = 1;</code>
+       * <code>string query = 1;</code>
        */
-      public java.lang.String getFilename() {
-        java.lang.Object ref = filename_;
+      public java.lang.String getQuery() {
+        java.lang.Object ref = query_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          filename_ = s;
+          query_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -5271,16 +5271,16 @@ public final class Diztl {
        * The filename to search for.
        * </pre>
        *
-       * <code>string filename = 1;</code>
+       * <code>string query = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getFilenameBytes() {
-        java.lang.Object ref = filename_;
+          getQueryBytes() {
+        java.lang.Object ref = query_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          filename_ = b;
+          query_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
@@ -5291,15 +5291,15 @@ public final class Diztl {
        * The filename to search for.
        * </pre>
        *
-       * <code>string filename = 1;</code>
+       * <code>string query = 1;</code>
        */
-      public Builder setFilename(
+      public Builder setQuery(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        filename_ = value;
+        query_ = value;
         onChanged();
         return this;
       }
@@ -5308,11 +5308,11 @@ public final class Diztl {
        * The filename to search for.
        * </pre>
        *
-       * <code>string filename = 1;</code>
+       * <code>string query = 1;</code>
        */
-      public Builder clearFilename() {
+      public Builder clearQuery() {
         
-        filename_ = getDefaultInstance().getFilename();
+        query_ = getDefaultInstance().getQuery();
         onChanged();
         return this;
       }
@@ -5321,16 +5321,16 @@ public final class Diztl {
        * The filename to search for.
        * </pre>
        *
-       * <code>string filename = 1;</code>
+       * <code>string query = 1;</code>
        */
-      public Builder setFilenameBytes(
+      public Builder setQueryBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        filename_ = value;
+        query_ = value;
         onChanged();
         return this;
       }
@@ -6695,14 +6695,14 @@ public final class Diztl {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string pattern = 1;</code>
+     * <code>string query = 1;</code>
      */
-    java.lang.String getPattern();
+    java.lang.String getQuery();
     /**
-     * <code>string pattern = 1;</code>
+     * <code>string query = 1;</code>
      */
     com.google.protobuf.ByteString
-        getPatternBytes();
+        getQueryBytes();
   }
   /**
    * Protobuf type {@code FindReq}
@@ -6717,7 +6717,7 @@ public final class Diztl {
       super(builder);
     }
     private FindReq() {
-      pattern_ = "";
+      query_ = "";
     }
 
     @java.lang.Override
@@ -6754,7 +6754,7 @@ public final class Diztl {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              pattern_ = s;
+              query_ = s;
               break;
             }
           }
@@ -6781,34 +6781,34 @@ public final class Diztl {
               io.github.gravetii.gen.Diztl.FindReq.class, io.github.gravetii.gen.Diztl.FindReq.Builder.class);
     }
 
-    public static final int PATTERN_FIELD_NUMBER = 1;
-    private volatile java.lang.Object pattern_;
+    public static final int QUERY_FIELD_NUMBER = 1;
+    private volatile java.lang.Object query_;
     /**
-     * <code>string pattern = 1;</code>
+     * <code>string query = 1;</code>
      */
-    public java.lang.String getPattern() {
-      java.lang.Object ref = pattern_;
+    public java.lang.String getQuery() {
+      java.lang.Object ref = query_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        pattern_ = s;
+        query_ = s;
         return s;
       }
     }
     /**
-     * <code>string pattern = 1;</code>
+     * <code>string query = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getPatternBytes() {
-      java.lang.Object ref = pattern_;
+        getQueryBytes() {
+      java.lang.Object ref = query_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        pattern_ = b;
+        query_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -6827,8 +6827,8 @@ public final class Diztl {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPatternBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, pattern_);
+      if (!getQueryBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, query_);
       }
       unknownFields.writeTo(output);
     }
@@ -6838,8 +6838,8 @@ public final class Diztl {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPatternBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, pattern_);
+      if (!getQueryBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, query_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -6857,8 +6857,8 @@ public final class Diztl {
       io.github.gravetii.gen.Diztl.FindReq other = (io.github.gravetii.gen.Diztl.FindReq) obj;
 
       boolean result = true;
-      result = result && getPattern()
-          .equals(other.getPattern());
+      result = result && getQuery()
+          .equals(other.getQuery());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -6870,8 +6870,8 @@ public final class Diztl {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + PATTERN_FIELD_NUMBER;
-      hash = (53 * hash) + getPattern().hashCode();
+      hash = (37 * hash) + QUERY_FIELD_NUMBER;
+      hash = (53 * hash) + getQuery().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -7001,7 +7001,7 @@ public final class Diztl {
       }
       public Builder clear() {
         super.clear();
-        pattern_ = "";
+        query_ = "";
 
         return this;
       }
@@ -7025,7 +7025,7 @@ public final class Diztl {
 
       public io.github.gravetii.gen.Diztl.FindReq buildPartial() {
         io.github.gravetii.gen.Diztl.FindReq result = new io.github.gravetii.gen.Diztl.FindReq(this);
-        result.pattern_ = pattern_;
+        result.query_ = query_;
         onBuilt();
         return result;
       }
@@ -7067,8 +7067,8 @@ public final class Diztl {
 
       public Builder mergeFrom(io.github.gravetii.gen.Diztl.FindReq other) {
         if (other == io.github.gravetii.gen.Diztl.FindReq.getDefaultInstance()) return this;
-        if (!other.getPattern().isEmpty()) {
-          pattern_ = other.pattern_;
+        if (!other.getQuery().isEmpty()) {
+          query_ = other.query_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -7098,71 +7098,71 @@ public final class Diztl {
         return this;
       }
 
-      private java.lang.Object pattern_ = "";
+      private java.lang.Object query_ = "";
       /**
-       * <code>string pattern = 1;</code>
+       * <code>string query = 1;</code>
        */
-      public java.lang.String getPattern() {
-        java.lang.Object ref = pattern_;
+      public java.lang.String getQuery() {
+        java.lang.Object ref = query_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          pattern_ = s;
+          query_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string pattern = 1;</code>
+       * <code>string query = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getPatternBytes() {
-        java.lang.Object ref = pattern_;
+          getQueryBytes() {
+        java.lang.Object ref = query_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          pattern_ = b;
+          query_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string pattern = 1;</code>
+       * <code>string query = 1;</code>
        */
-      public Builder setPattern(
+      public Builder setQuery(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        pattern_ = value;
+        query_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string pattern = 1;</code>
+       * <code>string query = 1;</code>
        */
-      public Builder clearPattern() {
+      public Builder clearQuery() {
         
-        pattern_ = getDefaultInstance().getPattern();
+        query_ = getDefaultInstance().getQuery();
         onChanged();
         return this;
       }
       /**
-       * <code>string pattern = 1;</code>
+       * <code>string query = 1;</code>
        */
-      public Builder setPatternBytes(
+      public Builder setQueryBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        pattern_ = value;
+        query_ = value;
         onChanged();
         return this;
       }
@@ -19652,8 +19652,8 @@ public final class Diztl {
      * <pre>
      * key indicates the nature of the value.
      * 0 - Any (disregard the constraint)
-     * 1 - less than
-     * 2 - at least
+     * 1 - at least
+     * 2 - less than
      * </pre>
      *
      * <code>int32 key = 1;</code>
@@ -19757,8 +19757,8 @@ public final class Diztl {
      * <pre>
      * key indicates the nature of the value.
      * 0 - Any (disregard the constraint)
-     * 1 - less than
-     * 2 - at least
+     * 1 - at least
+     * 2 - less than
      * </pre>
      *
      * <code>int32 key = 1;</code>
@@ -20086,8 +20086,8 @@ public final class Diztl {
        * <pre>
        * key indicates the nature of the value.
        * 0 - Any (disregard the constraint)
-       * 1 - less than
-       * 2 - at least
+       * 1 - at least
+       * 2 - less than
        * </pre>
        *
        * <code>int32 key = 1;</code>
@@ -20099,8 +20099,8 @@ public final class Diztl {
        * <pre>
        * key indicates the nature of the value.
        * 0 - Any (disregard the constraint)
-       * 1 - less than
-       * 2 - at least
+       * 1 - at least
+       * 2 - less than
        * </pre>
        *
        * <code>int32 key = 1;</code>
@@ -20115,8 +20115,8 @@ public final class Diztl {
        * <pre>
        * key indicates the nature of the value.
        * 0 - Any (disregard the constraint)
-       * 1 - less than
-       * 2 - at least
+       * 1 - at least
+       * 2 - less than
        * </pre>
        *
        * <code>int32 key = 1;</code>
@@ -20226,8 +20226,8 @@ public final class Diztl {
      * 2 - image - png, jpg, jpeg, ico, gif
      * 3 - audio - mp3, wav, ogg
      * 4 - document - txt, pdf, ppt, doc, xls, csv
-     * 5 - executable - exe, dmg
-     * 6 - compressed - zip, gz, rar, 7z
+     * 5 - compressed - zip, gz, rar, 7z
+     * 6 - executable - exe, dmg
      * </pre>
      *
      * <code>int32 type = 1;</code>
@@ -20320,8 +20320,8 @@ public final class Diztl {
      * 2 - image - png, jpg, jpeg, ico, gif
      * 3 - audio - mp3, wav, ogg
      * 4 - document - txt, pdf, ppt, doc, xls, csv
-     * 5 - executable - exe, dmg
-     * 6 - compressed - zip, gz, rar, 7z
+     * 5 - compressed - zip, gz, rar, 7z
+     * 6 - executable - exe, dmg
      * </pre>
      *
      * <code>int32 type = 1;</code>
@@ -20622,8 +20622,8 @@ public final class Diztl {
        * 2 - image - png, jpg, jpeg, ico, gif
        * 3 - audio - mp3, wav, ogg
        * 4 - document - txt, pdf, ppt, doc, xls, csv
-       * 5 - executable - exe, dmg
-       * 6 - compressed - zip, gz, rar, 7z
+       * 5 - compressed - zip, gz, rar, 7z
+       * 6 - executable - exe, dmg
        * </pre>
        *
        * <code>int32 type = 1;</code>
@@ -20639,8 +20639,8 @@ public final class Diztl {
        * 2 - image - png, jpg, jpeg, ico, gif
        * 3 - audio - mp3, wav, ogg
        * 4 - document - txt, pdf, ppt, doc, xls, csv
-       * 5 - executable - exe, dmg
-       * 6 - compressed - zip, gz, rar, 7z
+       * 5 - compressed - zip, gz, rar, 7z
+       * 6 - executable - exe, dmg
        * </pre>
        *
        * <code>int32 type = 1;</code>
@@ -20659,8 +20659,8 @@ public final class Diztl {
        * 2 - image - png, jpg, jpeg, ico, gif
        * 3 - audio - mp3, wav, ogg
        * 4 - document - txt, pdf, ppt, doc, xls, csv
-       * 5 - executable - exe, dmg
-       * 6 - compressed - zip, gz, rar, 7z
+       * 5 - compressed - zip, gz, rar, 7z
+       * 6 - executable - exe, dmg
        * </pre>
        *
        * <code>int32 type = 1;</code>
@@ -21679,53 +21679,53 @@ public final class Diztl {
       "\014\022\r\n\005chunk\030\003 \001(\005\022\016\n\006chunks\030\004 \001(\005\"3\n\013Regi" +
       "sterReq\022\023\n\004self\030\001 \001(\0132\005.Node\022\017\n\007tracker\030" +
       "\002 \001(\t\"#\n\014RegisterResp\022\023\n\004node\030\001 \001(\0132\005.No" +
-      "de\"4\n\tSearchReq\022\020\n\010filename\030\001 \001(\t\022\025\n\006sou" +
-      "rce\030\002 \001(\0132\005.Node\"?\n\nSearchResp\022\034\n\005files\030" +
-      "\001 \003(\0132\r.FileMetadata\022\023\n\004node\030\002 \001(\0132\005.Nod" +
-      "e\"\032\n\007FindReq\022\017\n\007pattern\030\001 \001(\t\"*\n\010FindRes" +
-      "p\022\036\n\tresponses\030\001 \003(\0132\013.SearchResp\"#\n\016Upl" +
-      "oadContract\022\021\n\tchunkSize\030\001 \001(\005\"f\n\tUpload" +
-      "Req\022\025\n\006source\030\001 \001(\0132\005.Node\022\037\n\010metadata\030\002" +
-      " \001(\0132\r.FileMetadata\022!\n\010contract\030\003 \001(\0132\017." +
-      "UploadContract\"N\n\013DownloadReq\022\025\n\006source\030" +
-      "\001 \001(\0132\005.Node\022\033\n\004file\030\002 \001(\0132\r.FileMetadat" +
-      "a\022\013\n\003dir\030\003 \001(\t\".\n\rDownloadChunk\022\016\n\006chunk" +
-      "s\030\001 \001(\005\022\r\n\005chunk\030\002 \001(\005\"$\n\rDisconnectReq\022" +
-      "\023\n\004node\030\001 \001(\0132\005.Node\"!\n\016DisconnectResp\022\017" +
-      "\n\007message\030\001 \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001" +
-      "(\0132\005.Node\022\023\n\004dest\030\002 \001(\0132\005.Node\")\n\010PingRe" +
-      "sp\022\014\n\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\"\r\n\013Use" +
-      "rDirsReq\"0\n\014UserDirsResp\022\r\n\005share\030\001 \003(\t\022" +
-      "\021\n\tdownloads\030\002 \001(\t\"5\n\021UpdateUserDirsReq\022" +
-      "\r\n\005share\030\001 \003(\t\022\021\n\tdownloads\030\002 \001(\t\"%\n\022Upd" +
-      "ateUserDirsResp\022\017\n\007message\030\001 \001(\t\"\017\n\rGetT" +
-      "rackerReq\"!\n\016GetTrackerResp\022\017\n\007tracker\030\001" +
-      " \001(\t\"#\n\020UpdateTrackerReq\022\017\n\007tracker\030\001 \001(" +
-      "\t\"!\n\021UpdateTrackerResp\022\014\n\004code\030\001 \001(\005\"\n\n\010" +
-      "IndexReq\"\032\n\tIndexResp\022\r\n\005fpath\030\001 \001(\t\"\n\n\010" +
-      "CloseReq\"\034\n\tCloseResp\022\017\n\007message\030\001 \001(\t\"," +
-      "\n\016SizeConstraint\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002" +
-      " \001(\003\"\036\n\016TypeConstraint\022\014\n\004type\030\001 \001(\005\"P\n\016" +
-      "FileConstraint\022\036\n\005csize\030\001 \001(\0132\017.SizeCons" +
-      "traint\022\036\n\005ctype\030\002 \001(\0132\017.TypeConstraint2\214" +
-      "\004\n\014DiztlService\022#\n\006Search\022\n.SearchReq\032\013." +
-      "SearchResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.Fil" +
-      "eChunk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"" +
-      "\000\022\035\n\004Find\022\010.FindReq\032\t.FindResp\"\000\022,\n\010Down" +
-      "load\022\014.DownloadReq\032\016.DownloadChunk\"\0000\001\022," +
-      "\n\013GetUserDirs\022\014.UserDirsReq\032\r.UserDirsRe" +
-      "sp\"\000\022;\n\016UpdateUserDirs\022\022.UpdateUserDirsR" +
-      "eq\032\023.UpdateUserDirsResp\"\000\022/\n\nGetTracker\022" +
-      "\016.GetTrackerReq\032\017.GetTrackerResp\"\000\0228\n\rUp" +
-      "dateTracker\022\021.UpdateTrackerReq\032\022.UpdateT" +
-      "rackerResp\"\000\022\"\n\005Index\022\t.IndexReq\032\n.Index" +
-      "Resp\"\0000\001\022)\n\010Register\022\014.RegisterReq\032\r.Reg" +
-      "isterResp\"\000\022 \n\005Close\022\t.CloseReq\032\n.CloseR" +
-      "esp\"\0002\223\001\n\016TrackerService\022)\n\010Register\022\014.R" +
-      "egisterReq\032\r.RegisterResp\"\000\022%\n\006Search\022\n." +
-      "SearchReq\032\013.SearchResp\"\0000\001\022/\n\nDisconnect" +
-      "\022\016.DisconnectReq\032\017.DisconnectResp\"\000B\030\n\026i" +
-      "o.github.gravetii.genb\006proto3"
+      "de\"1\n\tSearchReq\022\r\n\005query\030\001 \001(\t\022\025\n\006source" +
+      "\030\002 \001(\0132\005.Node\"?\n\nSearchResp\022\034\n\005files\030\001 \003" +
+      "(\0132\r.FileMetadata\022\023\n\004node\030\002 \001(\0132\005.Node\"\030" +
+      "\n\007FindReq\022\r\n\005query\030\001 \001(\t\"*\n\010FindResp\022\036\n\t" +
+      "responses\030\001 \003(\0132\013.SearchResp\"#\n\016UploadCo" +
+      "ntract\022\021\n\tchunkSize\030\001 \001(\005\"f\n\tUploadReq\022\025" +
+      "\n\006source\030\001 \001(\0132\005.Node\022\037\n\010metadata\030\002 \001(\0132" +
+      "\r.FileMetadata\022!\n\010contract\030\003 \001(\0132\017.Uploa" +
+      "dContract\"N\n\013DownloadReq\022\025\n\006source\030\001 \001(\013" +
+      "2\005.Node\022\033\n\004file\030\002 \001(\0132\r.FileMetadata\022\013\n\003" +
+      "dir\030\003 \001(\t\".\n\rDownloadChunk\022\016\n\006chunks\030\001 \001" +
+      "(\005\022\r\n\005chunk\030\002 \001(\005\"$\n\rDisconnectReq\022\023\n\004no" +
+      "de\030\001 \001(\0132\005.Node\"!\n\016DisconnectResp\022\017\n\007mes" +
+      "sage\030\001 \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001(\0132\005." +
+      "Node\022\023\n\004dest\030\002 \001(\0132\005.Node\")\n\010PingResp\022\014\n" +
+      "\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\"\r\n\013UserDirs" +
+      "Req\"0\n\014UserDirsResp\022\r\n\005share\030\001 \003(\t\022\021\n\tdo" +
+      "wnloads\030\002 \001(\t\"5\n\021UpdateUserDirsReq\022\r\n\005sh" +
+      "are\030\001 \003(\t\022\021\n\tdownloads\030\002 \001(\t\"%\n\022UpdateUs" +
+      "erDirsResp\022\017\n\007message\030\001 \001(\t\"\017\n\rGetTracke" +
+      "rReq\"!\n\016GetTrackerResp\022\017\n\007tracker\030\001 \001(\t\"" +
+      "#\n\020UpdateTrackerReq\022\017\n\007tracker\030\001 \001(\t\"!\n\021" +
+      "UpdateTrackerResp\022\014\n\004code\030\001 \001(\005\"\n\n\010Index" +
+      "Req\"\032\n\tIndexResp\022\r\n\005fpath\030\001 \001(\t\"\n\n\010Close" +
+      "Req\"\034\n\tCloseResp\022\017\n\007message\030\001 \001(\t\",\n\016Siz" +
+      "eConstraint\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003\"" +
+      "\036\n\016TypeConstraint\022\014\n\004type\030\001 \001(\005\"P\n\016FileC" +
+      "onstraint\022\036\n\005csize\030\001 \001(\0132\017.SizeConstrain" +
+      "t\022\036\n\005ctype\030\002 \001(\0132\017.TypeConstraint2\214\004\n\014Di" +
+      "ztlService\022#\n\006Search\022\n.SearchReq\032\013.Searc" +
+      "hResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.FileChun" +
+      "k\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035\n\004" +
+      "Find\022\010.FindReq\032\t.FindResp\"\000\022,\n\010Download\022" +
+      "\014.DownloadReq\032\016.DownloadChunk\"\0000\001\022,\n\013Get" +
+      "UserDirs\022\014.UserDirsReq\032\r.UserDirsResp\"\000\022" +
+      ";\n\016UpdateUserDirs\022\022.UpdateUserDirsReq\032\023." +
+      "UpdateUserDirsResp\"\000\022/\n\nGetTracker\022\016.Get" +
+      "TrackerReq\032\017.GetTrackerResp\"\000\0228\n\rUpdateT" +
+      "racker\022\021.UpdateTrackerReq\032\022.UpdateTracke" +
+      "rResp\"\000\022\"\n\005Index\022\t.IndexReq\032\n.IndexResp\"" +
+      "\0000\001\022)\n\010Register\022\014.RegisterReq\032\r.Register" +
+      "Resp\"\000\022 \n\005Close\022\t.CloseReq\032\n.CloseResp\"\000" +
+      "2\223\001\n\016TrackerService\022)\n\010Register\022\014.Regist" +
+      "erReq\032\r.RegisterResp\"\000\022%\n\006Search\022\n.Searc" +
+      "hReq\032\013.SearchResp\"\0000\001\022/\n\nDisconnect\022\016.Di" +
+      "sconnectReq\032\017.DisconnectResp\"\000B\030\n\026io.git" +
+      "hub.gravetii.genb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -21780,7 +21780,7 @@ public final class Diztl {
     internal_static_SearchReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchReq_descriptor,
-        new java.lang.String[] { "Filename", "Source", });
+        new java.lang.String[] { "Query", "Source", });
     internal_static_SearchResp_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_SearchResp_fieldAccessorTable = new
@@ -21792,7 +21792,7 @@ public final class Diztl {
     internal_static_FindReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_FindReq_descriptor,
-        new java.lang.String[] { "Pattern", });
+        new java.lang.String[] { "Query", });
     internal_static_FindResp_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_FindResp_fieldAccessorTable = new

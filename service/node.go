@@ -119,8 +119,8 @@ func (s *NodeService) UpdateTracker(ctx context.Context, request *diztl.UpdateTr
 
 // Search - The tracker invokes the search call on all the nodes when it broadcasts a search request from another node.
 func (s *NodeService) Search(ctx context.Context, request *diztl.SearchReq) (*diztl.SearchResp, error) {
-	logger.Debugf("Received search request for %s from %v\n", request.GetFilename(), request.GetSource())
-	files := s.Indexer.Search(request.GetFilename())
+	logger.Debugf("Received search request for %s from %v\n", request.GetQuery(), request.GetSource())
+	files := s.Indexer.Search(request.GetQuery())
 	response := diztl.SearchResp{Files: files, Node: s.node}
 	return &response, nil
 }
@@ -166,12 +166,12 @@ func (s *NodeService) Ping(ctx context.Context, request *diztl.PingReq) (*diztl.
 	return &diztl.PingResp{Code: 1, Message: "online"}, nil
 }
 
-// Find finds for files in the network whose name has the given pattern string.
+// Find finds for files in the network whose name has the given query string.
 func (s *NodeService) Find(ctx context.Context, request *diztl.FindReq) (*diztl.FindResp, error) {
 	logger.Infof("Received find call: %v\n", request)
 	results := []*diztl.SearchResp{}
-	logger.Debugf("Searching for pattern: %s\n", request.GetPattern())
-	r := diztl.SearchReq{Filename: request.GetPattern(), Source: s.node}
+	logger.Debugf("Searching for query: %s\n", request.GetQuery())
+	r := diztl.SearchReq{Query: request.GetQuery(), Source: s.node}
 	c, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
 	defer cancel()
 	t := s.tracker()

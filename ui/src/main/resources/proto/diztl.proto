@@ -89,7 +89,7 @@ message RegisterResp {
 
 message SearchReq {
     // The filename to search for.
-    string filename = 1;
+    string query = 1;
     // The origin node of this request.
     Node source = 2;
 }
@@ -103,7 +103,7 @@ message SearchResp {
 }
 
 message FindReq {
-    string pattern = 1;
+    string query = 1;
 }
 
 message FindResp {
@@ -208,8 +208,8 @@ message CloseResp {
 message SizeConstraint {
     // key indicates the nature of the value.
     // 0 - Any (disregard the constraint)
-    // 1 - less than
-    // 2 - at least
+    // 1 - at least
+    // 2 - less than
     int32 key = 1;
     // the size value in bytes.
     int64 value = 2;
