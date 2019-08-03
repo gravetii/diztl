@@ -25,7 +25,8 @@ public class FindHandler {
 
   public void process(Connection connection) {
     ResultListComponent resultListComponent = scene.addNewSearchTab(query);
-    Diztl.FindReq req = Diztl.FindReq.newBuilder().setQuery(query).setConstraint(constraint).build();
+    Diztl.FindReq req =
+        Diztl.FindReq.newBuilder().setQuery(query).setConstraint(constraint).build();
     logger.info("Searching for pattern - {}", query);
     ListenableFuture<Diztl.FindResp> f = connection.getFutureStub().find(req);
     f.addListener(

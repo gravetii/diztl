@@ -171,7 +171,7 @@ func matchesType(ext string, typeValue int32) bool {
 	} else if typeValue == 5 {
 		return ext == ".zip" || ext == ".gz" || ext == ".rar" || ext == ".7z"
 	} else if typeValue == 6 {
-		return ext == ".exe" || ext == ".dmg"
+		return ext == ".exe" || ext == ".dmg" || ext == ".sh"
 	}
 
 	return true

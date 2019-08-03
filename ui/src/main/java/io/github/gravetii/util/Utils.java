@@ -9,7 +9,8 @@ import java.io.File;
 import java.nio.file.Paths;
 
 public class Utils {
-  private static final String GLOBAL_STYLESHEET = ClassLoader.getSystemResource("style/style.css").toExternalForm();
+  private static final String GLOBAL_STYLESHEET =
+      ClassLoader.getSystemResource("style/style.css").toExternalForm();
 
   public static String humanReadableByteCount(long bytes) {
     int unit = 1000;
@@ -22,9 +23,9 @@ public class Utils {
   public static Long getByteCount(double value, String unit) {
     long multiplier = 1000000;
     if (unit.equals("kB")) {
-      multiplier = multiplier/1000;
+      multiplier = multiplier / 1000;
     } else if (unit.equals("GB")) {
-      multiplier = multiplier*1000;
+      multiplier = multiplier * 1000;
     }
 
     return (long) (value * multiplier);
