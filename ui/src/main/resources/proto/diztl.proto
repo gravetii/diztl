@@ -222,8 +222,8 @@ message TypeConstraint {
     // 2 - image - png, jpg, jpeg, ico, gif
     // 3 - audio - mp3, wav, ogg
     // 4 - document - txt, pdf, ppt, doc, xls, csv
-    // 5 - executable - exe, dmg
-    // 6 - compressed - zip, gz, rar, 7z
+    // 5 - compressed - zip, gz, rar, 7z
+    // 6 - executable - exe, dmg
     int32 type = 1;
 }
 
