@@ -120,7 +120,7 @@ func (s *NodeService) UpdateTracker(ctx context.Context, request *diztl.UpdateTr
 // Search - The tracker invokes the search call on all the nodes when it broadcasts a search request from another node.
 func (s *NodeService) Search(ctx context.Context, request *diztl.SearchReq) (*diztl.SearchResp, error) {
 	logger.Debugf("Received search request for %s from %v\n", request.GetQuery(), request.GetSource())
-	files := s.Indexer.Search(request.GetQuery())
+	files := s.Indexer.Search(request.GetQuery(), request.GetConstraint())
 	response := diztl.SearchResp{Files: files, Node: s.node}
 	return &response, nil
 }
@@ -171,7 +171,7 @@ func (s *NodeService) Find(ctx context.Context, request *diztl.FindReq) (*diztl.
 	logger.Infof("Received find call: %v\n", request)
 	results := []*diztl.SearchResp{}
 	logger.Debugf("Searching for query: %s\n", request.GetQuery())
-	r := diztl.SearchReq{Query: request.GetQuery(), Source: s.node}
+	r := diztl.SearchReq{Query: request.GetQuery(), Constraint: request.GetConstraint(), Source: s.node}
 	c, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
 	defer cancel()
 	t := s.tracker()

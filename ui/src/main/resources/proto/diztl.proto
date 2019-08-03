@@ -92,6 +92,7 @@ message SearchReq {
     string query = 1;
     // The origin node of this request.
     Node source = 2;
+    FileConstraint constraint = 3;
 }
 
 message SearchResp {
@@ -104,6 +105,7 @@ message SearchResp {
 
 message FindReq {
     string query = 1;
+    FileConstraint constraint = 2;
 }
 
 message FindResp {
@@ -207,9 +209,8 @@ message CloseResp {
 
 message SizeConstraint {
     // key indicates the nature of the value.
-    // 0 - Any (disregard the constraint)
-    // 1 - at least
-    // 2 - less than
+    // 0 - at least
+    // 1 - less than
     int32 key = 1;
     // the size value in bytes.
     int64 value = 2;

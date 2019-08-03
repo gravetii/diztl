@@ -126,20 +126,66 @@ func (t *TreeIndex) validate() error {
 	return nil
 }
 
-func (t *TreeIndex) search(pattern string) []*diztl.FileMetadata {
-	return traverse(t.root, pattern)
+func (t *TreeIndex) search(query string, constraint *diztl.FileConstraint) []*diztl.FileMetadata {
+	return traverse(t.root, query, constraint)
 }
 
-func traverse(root *TreeNode, pattern string) []*diztl.FileMetadata {
+func satisfiesConstraints(file *diztl.FileMetadata, query string, constraint *diztl.FileConstraint) bool {
+	path := dir.GetFilePath(file)
+	if !strings.Contains(strings.ToLower(path), strings.ToLower(query)) {
+		return false
+	}
+
+	ext := filepath.Ext(path)
+	typeValue := constraint.GetCtype().GetType()
+	if !matchesType(ext, typeValue) {
+		return false
+	}
+
+	key := constraint.GetCsize().GetKey()
+	value := constraint.GetCsize().GetValue()
+	if key == 0 {
+		if file.GetSize() < value {
+			return false
+		}
+	} else if key == 1 {
+		if file.GetSize() >= value {
+			return false
+		}
+	}
+
+	return true
+}
+
+func matchesType(ext string, typeValue int32) bool {
+	if typeValue == 0 {
+		return true
+	} else if typeValue == 1 {
+		return ext == ".mp4" || ext == ".mkv" || ext == ".mpeg" || ext == ".mov" || ext == ".webm" || ext == ".flv"
+	} else if typeValue == 2 {
+		return ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".ico" || ext == ".gif"
+	} else if typeValue == 3 {
+		return ext == ".mp3" || ext == ".wav" || ext == ".ogg"
+	} else if typeValue == 4 {
+		return ext == ".txt" || ext == ".pdf" || ext == ".ppt" || ext == ".doc" || ext == ".xls" || ext == ".csv"
+	} else if typeValue == 5 {
+		return ext == ".zip" || ext == ".gz" || ext == ".rar" || ext == ".7z"
+	} else if typeValue == 6 {
+		return ext == ".exe" || ext == ".dmg"
+	}
+
+	return true
+}
+
+func traverse(root *TreeNode, query string, constraint *diztl.FileConstraint) []*diztl.FileMetadata {
 	res := []*diztl.FileMetadata{}
 	for _, treenode := range root.children {
 		if !treenode.isDir {
-			path := dir.GetFilePath(treenode.file)
-			if strings.Contains(strings.ToLower(path), strings.ToLower(pattern)) {
+			if satisfiesConstraints(treenode.file, query, constraint) {
 				res = append(res, treenode.file)
 			}
 		} else {
-			res = append(res, traverse(treenode, pattern)...)
+			res = append(res, traverse(treenode, query, constraint)...)
 		}
 	}
 

@@ -1,6 +1,7 @@
 package io.github.gravetii.client.connection;
 
 import io.github.gravetii.client.handler.*;
+import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.gen.Diztl.FileMetadata;
 import io.github.gravetii.gen.Diztl.Node;
 import io.github.gravetii.pojo.UserDirs;
@@ -49,8 +50,8 @@ public class CommunicationClient {
     new RegisterHandler(tracker, scene).process(connection);
   }
 
-  public void find(String query, StartScene scene) {
-    new FindHandler(scene, query).process(connection);
+  public void find(String query, Diztl.FileConstraint constraint, StartScene scene) {
+    new FindHandler(scene, query, constraint).process(connection);
   }
 
   public void download(FileMetadata file, Node source, StartScene scene) {

@@ -19,6 +19,17 @@ public class Utils {
     return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
   }
 
+  public static Long getByteCount(double value, String unit) {
+    long multiplier = 1000000;
+    if (unit.equals("kB")) {
+      multiplier = multiplier/1000;
+    } else if (unit.equals("GB")) {
+      multiplier = multiplier*1000;
+    }
+
+    return (long) (value * multiplier);
+  }
+
   public static String chooseDir(Stage stage) {
     DirectoryChooser chooser = new DirectoryChooser();
     chooser.setTitle("Choose folder...");
