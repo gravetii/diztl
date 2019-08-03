@@ -29,7 +29,7 @@ public class LogController implements FxController {
 
   private void setContextMenu() {
     ContextMenu menu = new ContextMenu();
-    MenuItem clearMenuItem = new MenuItem("Clear");
+    MenuItem clearMenuItem = new MenuItem("Clear All");
     clearMenuItem.setOnAction(
         event -> {
           logArea.clear();
