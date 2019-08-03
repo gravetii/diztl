@@ -62,7 +62,7 @@ public class DownloadResultController implements FxController {
 
   private void setContextMenu() {
     ContextMenu menu = new ContextMenu();
-    MenuItem clearMenuItem = new MenuItem("Clear");
+    MenuItem clearMenuItem = new MenuItem("Clear All");
     clearMenuItem.disableProperty().bind(Bindings.isEmpty(downloadResultTbl.getItems()));
     clearMenuItem.setOnAction(
         event -> {
