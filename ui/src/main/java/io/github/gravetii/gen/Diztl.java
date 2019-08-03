@@ -19644,6 +19644,1858 @@ public final class Diztl {
 
   }
 
+  public interface SizeConstraintOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:SizeConstraint)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * key indicates the nature of the value.
+     * 0 - Any (disregard the constraint)
+     * 1 - less than
+     * 2 - at least
+     * </pre>
+     *
+     * <code>int32 key = 1;</code>
+     */
+    int getKey();
+
+    /**
+     * <pre>
+     * the size value in bytes.
+     * </pre>
+     *
+     * <code>int64 value = 2;</code>
+     */
+    long getValue();
+  }
+  /**
+   * Protobuf type {@code SizeConstraint}
+   */
+  public  static final class SizeConstraint extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:SizeConstraint)
+      SizeConstraintOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SizeConstraint.newBuilder() to construct.
+    private SizeConstraint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SizeConstraint() {
+      key_ = 0;
+      value_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SizeConstraint(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              key_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              value_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return io.github.gravetii.gen.Diztl.internal_static_SizeConstraint_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return io.github.gravetii.gen.Diztl.internal_static_SizeConstraint_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.github.gravetii.gen.Diztl.SizeConstraint.class, io.github.gravetii.gen.Diztl.SizeConstraint.Builder.class);
+    }
+
+    public static final int KEY_FIELD_NUMBER = 1;
+    private int key_;
+    /**
+     * <pre>
+     * key indicates the nature of the value.
+     * 0 - Any (disregard the constraint)
+     * 1 - less than
+     * 2 - at least
+     * </pre>
+     *
+     * <code>int32 key = 1;</code>
+     */
+    public int getKey() {
+      return key_;
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private long value_;
+    /**
+     * <pre>
+     * the size value in bytes.
+     * </pre>
+     *
+     * <code>int64 value = 2;</code>
+     */
+    public long getValue() {
+      return value_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (key_ != 0) {
+        output.writeInt32(1, key_);
+      }
+      if (value_ != 0L) {
+        output.writeInt64(2, value_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (key_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, key_);
+      }
+      if (value_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, value_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof io.github.gravetii.gen.Diztl.SizeConstraint)) {
+        return super.equals(obj);
+      }
+      io.github.gravetii.gen.Diztl.SizeConstraint other = (io.github.gravetii.gen.Diztl.SizeConstraint) obj;
+
+      boolean result = true;
+      result = result && (getKey()
+          == other.getKey());
+      result = result && (getValue()
+          == other.getValue());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getKey();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getValue());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.SizeConstraint parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(io.github.gravetii.gen.Diztl.SizeConstraint prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code SizeConstraint}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:SizeConstraint)
+        io.github.gravetii.gen.Diztl.SizeConstraintOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return io.github.gravetii.gen.Diztl.internal_static_SizeConstraint_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return io.github.gravetii.gen.Diztl.internal_static_SizeConstraint_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                io.github.gravetii.gen.Diztl.SizeConstraint.class, io.github.gravetii.gen.Diztl.SizeConstraint.Builder.class);
+      }
+
+      // Construct using io.github.gravetii.gen.Diztl.SizeConstraint.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        key_ = 0;
+
+        value_ = 0L;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return io.github.gravetii.gen.Diztl.internal_static_SizeConstraint_descriptor;
+      }
+
+      public io.github.gravetii.gen.Diztl.SizeConstraint getDefaultInstanceForType() {
+        return io.github.gravetii.gen.Diztl.SizeConstraint.getDefaultInstance();
+      }
+
+      public io.github.gravetii.gen.Diztl.SizeConstraint build() {
+        io.github.gravetii.gen.Diztl.SizeConstraint result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public io.github.gravetii.gen.Diztl.SizeConstraint buildPartial() {
+        io.github.gravetii.gen.Diztl.SizeConstraint result = new io.github.gravetii.gen.Diztl.SizeConstraint(this);
+        result.key_ = key_;
+        result.value_ = value_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof io.github.gravetii.gen.Diztl.SizeConstraint) {
+          return mergeFrom((io.github.gravetii.gen.Diztl.SizeConstraint)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(io.github.gravetii.gen.Diztl.SizeConstraint other) {
+        if (other == io.github.gravetii.gen.Diztl.SizeConstraint.getDefaultInstance()) return this;
+        if (other.getKey() != 0) {
+          setKey(other.getKey());
+        }
+        if (other.getValue() != 0L) {
+          setValue(other.getValue());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        io.github.gravetii.gen.Diztl.SizeConstraint parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (io.github.gravetii.gen.Diztl.SizeConstraint) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int key_ ;
+      /**
+       * <pre>
+       * key indicates the nature of the value.
+       * 0 - Any (disregard the constraint)
+       * 1 - less than
+       * 2 - at least
+       * </pre>
+       *
+       * <code>int32 key = 1;</code>
+       */
+      public int getKey() {
+        return key_;
+      }
+      /**
+       * <pre>
+       * key indicates the nature of the value.
+       * 0 - Any (disregard the constraint)
+       * 1 - less than
+       * 2 - at least
+       * </pre>
+       *
+       * <code>int32 key = 1;</code>
+       */
+      public Builder setKey(int value) {
+        
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * key indicates the nature of the value.
+       * 0 - Any (disregard the constraint)
+       * 1 - less than
+       * 2 - at least
+       * </pre>
+       *
+       * <code>int32 key = 1;</code>
+       */
+      public Builder clearKey() {
+        
+        key_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long value_ ;
+      /**
+       * <pre>
+       * the size value in bytes.
+       * </pre>
+       *
+       * <code>int64 value = 2;</code>
+       */
+      public long getValue() {
+        return value_;
+      }
+      /**
+       * <pre>
+       * the size value in bytes.
+       * </pre>
+       *
+       * <code>int64 value = 2;</code>
+       */
+      public Builder setValue(long value) {
+        
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * the size value in bytes.
+       * </pre>
+       *
+       * <code>int64 value = 2;</code>
+       */
+      public Builder clearValue() {
+        
+        value_ = 0L;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:SizeConstraint)
+    }
+
+    // @@protoc_insertion_point(class_scope:SizeConstraint)
+    private static final io.github.gravetii.gen.Diztl.SizeConstraint DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.SizeConstraint();
+    }
+
+    public static io.github.gravetii.gen.Diztl.SizeConstraint getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SizeConstraint>
+        PARSER = new com.google.protobuf.AbstractParser<SizeConstraint>() {
+      public SizeConstraint parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SizeConstraint(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SizeConstraint> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SizeConstraint> getParserForType() {
+      return PARSER;
+    }
+
+    public io.github.gravetii.gen.Diztl.SizeConstraint getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TypeConstraintOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TypeConstraint)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * type indicates the file type.
+     * 0 - Any (disregard the constraint)
+     * 1 - video - mp4, mpeg, mov, mkv, webm, flv
+     * 2 - image - png, jpg, jpeg, ico, gif
+     * 3 - audio - mp3, wav, ogg
+     * 4 - document - txt, pdf, ppt, doc, xls, csv
+     * 5 - executable - exe, dmg
+     * 6 - compressed - zip, gz, rar, 7z
+     * </pre>
+     *
+     * <code>int32 type = 1;</code>
+     */
+    int getType();
+  }
+  /**
+   * Protobuf type {@code TypeConstraint}
+   */
+  public  static final class TypeConstraint extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:TypeConstraint)
+      TypeConstraintOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TypeConstraint.newBuilder() to construct.
+    private TypeConstraint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TypeConstraint() {
+      type_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TypeConstraint(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              type_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return io.github.gravetii.gen.Diztl.internal_static_TypeConstraint_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return io.github.gravetii.gen.Diztl.internal_static_TypeConstraint_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.github.gravetii.gen.Diztl.TypeConstraint.class, io.github.gravetii.gen.Diztl.TypeConstraint.Builder.class);
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_;
+    /**
+     * <pre>
+     * type indicates the file type.
+     * 0 - Any (disregard the constraint)
+     * 1 - video - mp4, mpeg, mov, mkv, webm, flv
+     * 2 - image - png, jpg, jpeg, ico, gif
+     * 3 - audio - mp3, wav, ogg
+     * 4 - document - txt, pdf, ppt, doc, xls, csv
+     * 5 - executable - exe, dmg
+     * 6 - compressed - zip, gz, rar, 7z
+     * </pre>
+     *
+     * <code>int32 type = 1;</code>
+     */
+    public int getType() {
+      return type_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (type_ != 0) {
+        output.writeInt32(1, type_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, type_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof io.github.gravetii.gen.Diztl.TypeConstraint)) {
+        return super.equals(obj);
+      }
+      io.github.gravetii.gen.Diztl.TypeConstraint other = (io.github.gravetii.gen.Diztl.TypeConstraint) obj;
+
+      boolean result = true;
+      result = result && (getType()
+          == other.getType());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.TypeConstraint parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(io.github.gravetii.gen.Diztl.TypeConstraint prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code TypeConstraint}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:TypeConstraint)
+        io.github.gravetii.gen.Diztl.TypeConstraintOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return io.github.gravetii.gen.Diztl.internal_static_TypeConstraint_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return io.github.gravetii.gen.Diztl.internal_static_TypeConstraint_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                io.github.gravetii.gen.Diztl.TypeConstraint.class, io.github.gravetii.gen.Diztl.TypeConstraint.Builder.class);
+      }
+
+      // Construct using io.github.gravetii.gen.Diztl.TypeConstraint.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        type_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return io.github.gravetii.gen.Diztl.internal_static_TypeConstraint_descriptor;
+      }
+
+      public io.github.gravetii.gen.Diztl.TypeConstraint getDefaultInstanceForType() {
+        return io.github.gravetii.gen.Diztl.TypeConstraint.getDefaultInstance();
+      }
+
+      public io.github.gravetii.gen.Diztl.TypeConstraint build() {
+        io.github.gravetii.gen.Diztl.TypeConstraint result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public io.github.gravetii.gen.Diztl.TypeConstraint buildPartial() {
+        io.github.gravetii.gen.Diztl.TypeConstraint result = new io.github.gravetii.gen.Diztl.TypeConstraint(this);
+        result.type_ = type_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof io.github.gravetii.gen.Diztl.TypeConstraint) {
+          return mergeFrom((io.github.gravetii.gen.Diztl.TypeConstraint)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(io.github.gravetii.gen.Diztl.TypeConstraint other) {
+        if (other == io.github.gravetii.gen.Diztl.TypeConstraint.getDefaultInstance()) return this;
+        if (other.getType() != 0) {
+          setType(other.getType());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        io.github.gravetii.gen.Diztl.TypeConstraint parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (io.github.gravetii.gen.Diztl.TypeConstraint) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int type_ ;
+      /**
+       * <pre>
+       * type indicates the file type.
+       * 0 - Any (disregard the constraint)
+       * 1 - video - mp4, mpeg, mov, mkv, webm, flv
+       * 2 - image - png, jpg, jpeg, ico, gif
+       * 3 - audio - mp3, wav, ogg
+       * 4 - document - txt, pdf, ppt, doc, xls, csv
+       * 5 - executable - exe, dmg
+       * 6 - compressed - zip, gz, rar, 7z
+       * </pre>
+       *
+       * <code>int32 type = 1;</code>
+       */
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <pre>
+       * type indicates the file type.
+       * 0 - Any (disregard the constraint)
+       * 1 - video - mp4, mpeg, mov, mkv, webm, flv
+       * 2 - image - png, jpg, jpeg, ico, gif
+       * 3 - audio - mp3, wav, ogg
+       * 4 - document - txt, pdf, ppt, doc, xls, csv
+       * 5 - executable - exe, dmg
+       * 6 - compressed - zip, gz, rar, 7z
+       * </pre>
+       *
+       * <code>int32 type = 1;</code>
+       */
+      public Builder setType(int value) {
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * type indicates the file type.
+       * 0 - Any (disregard the constraint)
+       * 1 - video - mp4, mpeg, mov, mkv, webm, flv
+       * 2 - image - png, jpg, jpeg, ico, gif
+       * 3 - audio - mp3, wav, ogg
+       * 4 - document - txt, pdf, ppt, doc, xls, csv
+       * 5 - executable - exe, dmg
+       * 6 - compressed - zip, gz, rar, 7z
+       * </pre>
+       *
+       * <code>int32 type = 1;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:TypeConstraint)
+    }
+
+    // @@protoc_insertion_point(class_scope:TypeConstraint)
+    private static final io.github.gravetii.gen.Diztl.TypeConstraint DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.TypeConstraint();
+    }
+
+    public static io.github.gravetii.gen.Diztl.TypeConstraint getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TypeConstraint>
+        PARSER = new com.google.protobuf.AbstractParser<TypeConstraint>() {
+      public TypeConstraint parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TypeConstraint(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TypeConstraint> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TypeConstraint> getParserForType() {
+      return PARSER;
+    }
+
+    public io.github.gravetii.gen.Diztl.TypeConstraint getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface FileConstraintOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:FileConstraint)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.SizeConstraint csize = 1;</code>
+     */
+    boolean hasCsize();
+    /**
+     * <code>.SizeConstraint csize = 1;</code>
+     */
+    io.github.gravetii.gen.Diztl.SizeConstraint getCsize();
+    /**
+     * <code>.SizeConstraint csize = 1;</code>
+     */
+    io.github.gravetii.gen.Diztl.SizeConstraintOrBuilder getCsizeOrBuilder();
+
+    /**
+     * <code>.TypeConstraint ctype = 2;</code>
+     */
+    boolean hasCtype();
+    /**
+     * <code>.TypeConstraint ctype = 2;</code>
+     */
+    io.github.gravetii.gen.Diztl.TypeConstraint getCtype();
+    /**
+     * <code>.TypeConstraint ctype = 2;</code>
+     */
+    io.github.gravetii.gen.Diztl.TypeConstraintOrBuilder getCtypeOrBuilder();
+  }
+  /**
+   * Protobuf type {@code FileConstraint}
+   */
+  public  static final class FileConstraint extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:FileConstraint)
+      FileConstraintOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use FileConstraint.newBuilder() to construct.
+    private FileConstraint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private FileConstraint() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private FileConstraint(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              io.github.gravetii.gen.Diztl.SizeConstraint.Builder subBuilder = null;
+              if (csize_ != null) {
+                subBuilder = csize_.toBuilder();
+              }
+              csize_ = input.readMessage(io.github.gravetii.gen.Diztl.SizeConstraint.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(csize_);
+                csize_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+              io.github.gravetii.gen.Diztl.TypeConstraint.Builder subBuilder = null;
+              if (ctype_ != null) {
+                subBuilder = ctype_.toBuilder();
+              }
+              ctype_ = input.readMessage(io.github.gravetii.gen.Diztl.TypeConstraint.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(ctype_);
+                ctype_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return io.github.gravetii.gen.Diztl.internal_static_FileConstraint_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return io.github.gravetii.gen.Diztl.internal_static_FileConstraint_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.github.gravetii.gen.Diztl.FileConstraint.class, io.github.gravetii.gen.Diztl.FileConstraint.Builder.class);
+    }
+
+    public static final int CSIZE_FIELD_NUMBER = 1;
+    private io.github.gravetii.gen.Diztl.SizeConstraint csize_;
+    /**
+     * <code>.SizeConstraint csize = 1;</code>
+     */
+    public boolean hasCsize() {
+      return csize_ != null;
+    }
+    /**
+     * <code>.SizeConstraint csize = 1;</code>
+     */
+    public io.github.gravetii.gen.Diztl.SizeConstraint getCsize() {
+      return csize_ == null ? io.github.gravetii.gen.Diztl.SizeConstraint.getDefaultInstance() : csize_;
+    }
+    /**
+     * <code>.SizeConstraint csize = 1;</code>
+     */
+    public io.github.gravetii.gen.Diztl.SizeConstraintOrBuilder getCsizeOrBuilder() {
+      return getCsize();
+    }
+
+    public static final int CTYPE_FIELD_NUMBER = 2;
+    private io.github.gravetii.gen.Diztl.TypeConstraint ctype_;
+    /**
+     * <code>.TypeConstraint ctype = 2;</code>
+     */
+    public boolean hasCtype() {
+      return ctype_ != null;
+    }
+    /**
+     * <code>.TypeConstraint ctype = 2;</code>
+     */
+    public io.github.gravetii.gen.Diztl.TypeConstraint getCtype() {
+      return ctype_ == null ? io.github.gravetii.gen.Diztl.TypeConstraint.getDefaultInstance() : ctype_;
+    }
+    /**
+     * <code>.TypeConstraint ctype = 2;</code>
+     */
+    public io.github.gravetii.gen.Diztl.TypeConstraintOrBuilder getCtypeOrBuilder() {
+      return getCtype();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (csize_ != null) {
+        output.writeMessage(1, getCsize());
+      }
+      if (ctype_ != null) {
+        output.writeMessage(2, getCtype());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (csize_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getCsize());
+      }
+      if (ctype_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getCtype());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof io.github.gravetii.gen.Diztl.FileConstraint)) {
+        return super.equals(obj);
+      }
+      io.github.gravetii.gen.Diztl.FileConstraint other = (io.github.gravetii.gen.Diztl.FileConstraint) obj;
+
+      boolean result = true;
+      result = result && (hasCsize() == other.hasCsize());
+      if (hasCsize()) {
+        result = result && getCsize()
+            .equals(other.getCsize());
+      }
+      result = result && (hasCtype() == other.hasCtype());
+      if (hasCtype()) {
+        result = result && getCtype()
+            .equals(other.getCtype());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasCsize()) {
+        hash = (37 * hash) + CSIZE_FIELD_NUMBER;
+        hash = (53 * hash) + getCsize().hashCode();
+      }
+      if (hasCtype()) {
+        hash = (37 * hash) + CTYPE_FIELD_NUMBER;
+        hash = (53 * hash) + getCtype().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.github.gravetii.gen.Diztl.FileConstraint parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(io.github.gravetii.gen.Diztl.FileConstraint prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code FileConstraint}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:FileConstraint)
+        io.github.gravetii.gen.Diztl.FileConstraintOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return io.github.gravetii.gen.Diztl.internal_static_FileConstraint_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return io.github.gravetii.gen.Diztl.internal_static_FileConstraint_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                io.github.gravetii.gen.Diztl.FileConstraint.class, io.github.gravetii.gen.Diztl.FileConstraint.Builder.class);
+      }
+
+      // Construct using io.github.gravetii.gen.Diztl.FileConstraint.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        if (csizeBuilder_ == null) {
+          csize_ = null;
+        } else {
+          csize_ = null;
+          csizeBuilder_ = null;
+        }
+        if (ctypeBuilder_ == null) {
+          ctype_ = null;
+        } else {
+          ctype_ = null;
+          ctypeBuilder_ = null;
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return io.github.gravetii.gen.Diztl.internal_static_FileConstraint_descriptor;
+      }
+
+      public io.github.gravetii.gen.Diztl.FileConstraint getDefaultInstanceForType() {
+        return io.github.gravetii.gen.Diztl.FileConstraint.getDefaultInstance();
+      }
+
+      public io.github.gravetii.gen.Diztl.FileConstraint build() {
+        io.github.gravetii.gen.Diztl.FileConstraint result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public io.github.gravetii.gen.Diztl.FileConstraint buildPartial() {
+        io.github.gravetii.gen.Diztl.FileConstraint result = new io.github.gravetii.gen.Diztl.FileConstraint(this);
+        if (csizeBuilder_ == null) {
+          result.csize_ = csize_;
+        } else {
+          result.csize_ = csizeBuilder_.build();
+        }
+        if (ctypeBuilder_ == null) {
+          result.ctype_ = ctype_;
+        } else {
+          result.ctype_ = ctypeBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof io.github.gravetii.gen.Diztl.FileConstraint) {
+          return mergeFrom((io.github.gravetii.gen.Diztl.FileConstraint)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(io.github.gravetii.gen.Diztl.FileConstraint other) {
+        if (other == io.github.gravetii.gen.Diztl.FileConstraint.getDefaultInstance()) return this;
+        if (other.hasCsize()) {
+          mergeCsize(other.getCsize());
+        }
+        if (other.hasCtype()) {
+          mergeCtype(other.getCtype());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        io.github.gravetii.gen.Diztl.FileConstraint parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (io.github.gravetii.gen.Diztl.FileConstraint) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private io.github.gravetii.gen.Diztl.SizeConstraint csize_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.github.gravetii.gen.Diztl.SizeConstraint, io.github.gravetii.gen.Diztl.SizeConstraint.Builder, io.github.gravetii.gen.Diztl.SizeConstraintOrBuilder> csizeBuilder_;
+      /**
+       * <code>.SizeConstraint csize = 1;</code>
+       */
+      public boolean hasCsize() {
+        return csizeBuilder_ != null || csize_ != null;
+      }
+      /**
+       * <code>.SizeConstraint csize = 1;</code>
+       */
+      public io.github.gravetii.gen.Diztl.SizeConstraint getCsize() {
+        if (csizeBuilder_ == null) {
+          return csize_ == null ? io.github.gravetii.gen.Diztl.SizeConstraint.getDefaultInstance() : csize_;
+        } else {
+          return csizeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.SizeConstraint csize = 1;</code>
+       */
+      public Builder setCsize(io.github.gravetii.gen.Diztl.SizeConstraint value) {
+        if (csizeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          csize_ = value;
+          onChanged();
+        } else {
+          csizeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SizeConstraint csize = 1;</code>
+       */
+      public Builder setCsize(
+          io.github.gravetii.gen.Diztl.SizeConstraint.Builder builderForValue) {
+        if (csizeBuilder_ == null) {
+          csize_ = builderForValue.build();
+          onChanged();
+        } else {
+          csizeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SizeConstraint csize = 1;</code>
+       */
+      public Builder mergeCsize(io.github.gravetii.gen.Diztl.SizeConstraint value) {
+        if (csizeBuilder_ == null) {
+          if (csize_ != null) {
+            csize_ =
+              io.github.gravetii.gen.Diztl.SizeConstraint.newBuilder(csize_).mergeFrom(value).buildPartial();
+          } else {
+            csize_ = value;
+          }
+          onChanged();
+        } else {
+          csizeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SizeConstraint csize = 1;</code>
+       */
+      public Builder clearCsize() {
+        if (csizeBuilder_ == null) {
+          csize_ = null;
+          onChanged();
+        } else {
+          csize_ = null;
+          csizeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SizeConstraint csize = 1;</code>
+       */
+      public io.github.gravetii.gen.Diztl.SizeConstraint.Builder getCsizeBuilder() {
+        
+        onChanged();
+        return getCsizeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.SizeConstraint csize = 1;</code>
+       */
+      public io.github.gravetii.gen.Diztl.SizeConstraintOrBuilder getCsizeOrBuilder() {
+        if (csizeBuilder_ != null) {
+          return csizeBuilder_.getMessageOrBuilder();
+        } else {
+          return csize_ == null ?
+              io.github.gravetii.gen.Diztl.SizeConstraint.getDefaultInstance() : csize_;
+        }
+      }
+      /**
+       * <code>.SizeConstraint csize = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.github.gravetii.gen.Diztl.SizeConstraint, io.github.gravetii.gen.Diztl.SizeConstraint.Builder, io.github.gravetii.gen.Diztl.SizeConstraintOrBuilder> 
+          getCsizeFieldBuilder() {
+        if (csizeBuilder_ == null) {
+          csizeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              io.github.gravetii.gen.Diztl.SizeConstraint, io.github.gravetii.gen.Diztl.SizeConstraint.Builder, io.github.gravetii.gen.Diztl.SizeConstraintOrBuilder>(
+                  getCsize(),
+                  getParentForChildren(),
+                  isClean());
+          csize_ = null;
+        }
+        return csizeBuilder_;
+      }
+
+      private io.github.gravetii.gen.Diztl.TypeConstraint ctype_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.github.gravetii.gen.Diztl.TypeConstraint, io.github.gravetii.gen.Diztl.TypeConstraint.Builder, io.github.gravetii.gen.Diztl.TypeConstraintOrBuilder> ctypeBuilder_;
+      /**
+       * <code>.TypeConstraint ctype = 2;</code>
+       */
+      public boolean hasCtype() {
+        return ctypeBuilder_ != null || ctype_ != null;
+      }
+      /**
+       * <code>.TypeConstraint ctype = 2;</code>
+       */
+      public io.github.gravetii.gen.Diztl.TypeConstraint getCtype() {
+        if (ctypeBuilder_ == null) {
+          return ctype_ == null ? io.github.gravetii.gen.Diztl.TypeConstraint.getDefaultInstance() : ctype_;
+        } else {
+          return ctypeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.TypeConstraint ctype = 2;</code>
+       */
+      public Builder setCtype(io.github.gravetii.gen.Diztl.TypeConstraint value) {
+        if (ctypeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ctype_ = value;
+          onChanged();
+        } else {
+          ctypeBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.TypeConstraint ctype = 2;</code>
+       */
+      public Builder setCtype(
+          io.github.gravetii.gen.Diztl.TypeConstraint.Builder builderForValue) {
+        if (ctypeBuilder_ == null) {
+          ctype_ = builderForValue.build();
+          onChanged();
+        } else {
+          ctypeBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.TypeConstraint ctype = 2;</code>
+       */
+      public Builder mergeCtype(io.github.gravetii.gen.Diztl.TypeConstraint value) {
+        if (ctypeBuilder_ == null) {
+          if (ctype_ != null) {
+            ctype_ =
+              io.github.gravetii.gen.Diztl.TypeConstraint.newBuilder(ctype_).mergeFrom(value).buildPartial();
+          } else {
+            ctype_ = value;
+          }
+          onChanged();
+        } else {
+          ctypeBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.TypeConstraint ctype = 2;</code>
+       */
+      public Builder clearCtype() {
+        if (ctypeBuilder_ == null) {
+          ctype_ = null;
+          onChanged();
+        } else {
+          ctype_ = null;
+          ctypeBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.TypeConstraint ctype = 2;</code>
+       */
+      public io.github.gravetii.gen.Diztl.TypeConstraint.Builder getCtypeBuilder() {
+        
+        onChanged();
+        return getCtypeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.TypeConstraint ctype = 2;</code>
+       */
+      public io.github.gravetii.gen.Diztl.TypeConstraintOrBuilder getCtypeOrBuilder() {
+        if (ctypeBuilder_ != null) {
+          return ctypeBuilder_.getMessageOrBuilder();
+        } else {
+          return ctype_ == null ?
+              io.github.gravetii.gen.Diztl.TypeConstraint.getDefaultInstance() : ctype_;
+        }
+      }
+      /**
+       * <code>.TypeConstraint ctype = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          io.github.gravetii.gen.Diztl.TypeConstraint, io.github.gravetii.gen.Diztl.TypeConstraint.Builder, io.github.gravetii.gen.Diztl.TypeConstraintOrBuilder> 
+          getCtypeFieldBuilder() {
+        if (ctypeBuilder_ == null) {
+          ctypeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              io.github.gravetii.gen.Diztl.TypeConstraint, io.github.gravetii.gen.Diztl.TypeConstraint.Builder, io.github.gravetii.gen.Diztl.TypeConstraintOrBuilder>(
+                  getCtype(),
+                  getParentForChildren(),
+                  isClean());
+          ctype_ = null;
+        }
+        return ctypeBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:FileConstraint)
+    }
+
+    // @@protoc_insertion_point(class_scope:FileConstraint)
+    private static final io.github.gravetii.gen.Diztl.FileConstraint DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new io.github.gravetii.gen.Diztl.FileConstraint();
+    }
+
+    public static io.github.gravetii.gen.Diztl.FileConstraint getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<FileConstraint>
+        PARSER = new com.google.protobuf.AbstractParser<FileConstraint>() {
+      public FileConstraint parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new FileConstraint(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<FileConstraint> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<FileConstraint> getParserForType() {
+      return PARSER;
+    }
+
+    public io.github.gravetii.gen.Diztl.FileConstraint getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Node_descriptor;
   private static final 
@@ -19794,6 +21646,21 @@ public final class Diztl {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_CloseResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_SizeConstraint_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_SizeConstraint_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TypeConstraint_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TypeConstraint_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_FileConstraint_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_FileConstraint_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -19836,7 +21703,11 @@ public final class Diztl {
       " \001(\t\"#\n\020UpdateTrackerReq\022\017\n\007tracker\030\001 \001(" +
       "\t\"!\n\021UpdateTrackerResp\022\014\n\004code\030\001 \001(\005\"\n\n\010" +
       "IndexReq\"\032\n\tIndexResp\022\r\n\005fpath\030\001 \001(\t\"\n\n\010" +
-      "CloseReq\"\034\n\tCloseResp\022\017\n\007message\030\001 \001(\t2\214" +
+      "CloseReq\"\034\n\tCloseResp\022\017\n\007message\030\001 \001(\t\"," +
+      "\n\016SizeConstraint\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002" +
+      " \001(\003\"\036\n\016TypeConstraint\022\014\n\004type\030\001 \001(\005\"P\n\016" +
+      "FileConstraint\022\036\n\005csize\030\001 \001(\0132\017.SizeCons" +
+      "traint\022\036\n\005ctype\030\002 \001(\0132\017.TypeConstraint2\214" +
       "\004\n\014DiztlService\022#\n\006Search\022\n.SearchReq\032\013." +
       "SearchResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.Fil" +
       "eChunk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"" +
@@ -20048,6 +21919,24 @@ public final class Diztl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CloseResp_descriptor,
         new java.lang.String[] { "Message", });
+    internal_static_SizeConstraint_descriptor =
+      getDescriptor().getMessageTypes().get(30);
+    internal_static_SizeConstraint_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_SizeConstraint_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_TypeConstraint_descriptor =
+      getDescriptor().getMessageTypes().get(31);
+    internal_static_TypeConstraint_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TypeConstraint_descriptor,
+        new java.lang.String[] { "Type", });
+    internal_static_FileConstraint_descriptor =
+      getDescriptor().getMessageTypes().get(32);
+    internal_static_FileConstraint_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_FileConstraint_descriptor,
+        new java.lang.String[] { "Csize", "Ctype", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

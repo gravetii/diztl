@@ -204,3 +204,30 @@ message CloseReq {
 message CloseResp {
     string message = 1;
 }
+
+message SizeConstraint {
+    // key indicates the nature of the value.
+    // 0 - Any (disregard the constraint)
+    // 1 - less than
+    // 2 - at least
+    int32 key = 1;
+    // the size value in bytes.
+    int64 value = 2;
+}
+
+message TypeConstraint {
+    // type indicates the file type.
+    // 0 - Any (disregard the constraint)
+    // 1 - video - mp4, mpeg, mov, mkv, webm, flv
+    // 2 - image - png, jpg, jpeg, ico, gif
+    // 3 - audio - mp3, wav, ogg
+    // 4 - document - txt, pdf, ppt, doc, xls, csv
+    // 5 - executable - exe, dmg
+    // 6 - compressed - zip, gz, rar, 7z
+    int32 type = 1;
+}
+
+message FileConstraint {
+    SizeConstraint csize = 1;
+    TypeConstraint ctype = 2;
+}
