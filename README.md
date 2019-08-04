@@ -63,6 +63,7 @@ The node UI is implemented in Java using JavaFX which communicates with the node
 ![Configure user folders](static/screenshots/configure_user_folders.png)
 ![File search](static/screenshots/file_search.png)
 ![Downloading files](static/screenshots/download.png)
+![Options](static/screenshots/options.png)
 ![Exit](static/screenshots/exit.png)
 
 ## Contributing
@@ -73,7 +74,7 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details
+MIT
 
 ---
 
