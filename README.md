@@ -19,8 +19,7 @@ A peer-to-peer file discovery and sharing tool for LANs written in Go!
 ## Getting started
 The diztl project is written in Go with the frontend implementation in Java using JavaFX. To get started, run the following commands:
 ```
-go get -v github.com/gravetii/diztl/tracker
-go get -v github.com/gravetii/diztl/node
+go get -v github.com/gravetii/diztl/...
 ```
 
 Diztl requires Java 8 to be installed on the host machine for the UI to work.
