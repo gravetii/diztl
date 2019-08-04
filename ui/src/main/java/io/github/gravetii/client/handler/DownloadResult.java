@@ -54,6 +54,11 @@ public class DownloadResult extends Task<Void> {
     updateMessage("Completed");
   }
 
+  public boolean isDone() {
+    String msg = getMessage();
+    return "Completed".equals(msg);
+  }
+
   @Override
   protected Void call() {
     updateProgress(0, 0);

@@ -100,18 +100,22 @@ public class DownloadResultController implements FxController {
   }
 
   private void open(DownloadResult result) {
-    try {
-      Desktop.getDesktop().open(new File(result.getFilepath()));
-    } catch (Exception e) {
-      logger.error("Unable to open file - {}", result.getFilepath());
+    if (result.isDone()) {
+      try {
+        Desktop.getDesktop().open(new File(result.getFilepath()));
+      } catch (Exception e) {
+        logger.error("Unable to open file - {}", result.getFilepath());
+      }
     }
   }
 
   private void showInFolder(DownloadResult result) {
-    try {
-      Desktop.getDesktop().open(new File(result.getPath()));
-    } catch (Exception e) {
-      logger.error("Unable to open folder - {}", result.getPath());
+    if (result.isDone()) {
+      try {
+        Desktop.getDesktop().open(new File(result.getPath()));
+      } catch (Exception e) {
+        logger.error("Unable to open folder - {}", result.getPath());
+      }
     }
   }
 
