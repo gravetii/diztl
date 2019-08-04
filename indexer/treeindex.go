@@ -1,7 +1,6 @@
 package indexer
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -9,6 +8,7 @@ import (
 
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/file"
+	"github.com/pkg/errors"
 
 	"github.com/gravetii/diztl/dir"
 

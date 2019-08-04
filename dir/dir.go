@@ -1,19 +1,19 @@
 package dir
 
 import (
-	"errors"
 	"os"
 	"path/filepath"
 
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/diztl"
+	"github.com/pkg/errors"
 )
 
 // GetShareDirs returns the user-configured share directories on this node.
 func GetShareDirs() ([]string, error) {
 	for _, dir := range conf.ShareDirs() {
 		if err := Ensure(dir); err != nil {
-			return nil, errors.New("Could not ensure share directories exist - " + err.Error())
+			return nil, errors.Wrap(err, "Couldn't ensure share directories exist")
 		}
 	}
 
@@ -41,7 +41,7 @@ func GetLogPath(fname string) (string, error) {
 // Ensure checks if the given directory exists in the file-system; creates it if not.
 func Ensure(dir string) error {
 	if err := os.MkdirAll(dir, os.ModePerm); err != nil {
-		return errors.New("Couldn't ensure that directory exists - " + err.Error())
+		return errors.Wrap(err, "Couldn't ensure directory exists")
 	}
 
 	return nil

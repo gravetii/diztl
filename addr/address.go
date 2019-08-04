@@ -1,12 +1,12 @@
 package addr
 
 import (
-	"errors"
 	"net"
 
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/logger"
+	"github.com/pkg/errors"
 )
 
 var ip string
@@ -17,7 +17,7 @@ func Find() error {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
 		logger.Errorf("Could not fetch host's local ip - %v\n", err)
-		return errors.New("Could not fetch host's local ip - " + err.Error())
+		return errors.Wrap(err, "Couldn't fetch the host's local IP address")
 	}
 
 	defer conn.Close()

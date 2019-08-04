@@ -2,7 +2,6 @@ package file
 
 import (
 	"bufio"
-	"errors"
 	"io"
 	"io/ioutil"
 	"math"
@@ -10,6 +9,7 @@ import (
 
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
+	"github.com/pkg/errors"
 
 	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/logger"
@@ -59,7 +59,7 @@ func copyToTempDir(metadata *diztl.FileMetadata) (*os.File, error) {
 	out, err := ioutil.TempFile("", fname)
 	if err != nil {
 		logger.Errorf("Unable to create temp file for upload: %s - %v\n", src, err)
-		return nil, errors.New("Could not create temp file for upload - " + err.Error())
+		return nil, errors.Wrap(err, "Couldn't create temp file for upload")
 	}
 
 	logger.Debugf("Created temp file for upload from %s - %s\n", src, out.Name())
@@ -67,7 +67,7 @@ func copyToTempDir(metadata *diztl.FileMetadata) (*os.File, error) {
 	_, err = io.Copy(out, in)
 	if err != nil {
 		logger.Errorf("Error while copying source file to temp dir: %s - %v\n", out.Name(), err)
-		return nil, errors.New("Could not copy source file to temp dir - " + err.Error())
+		return nil, errors.Wrap(err, "Couldn't copy source file to temp dir")
 	}
 
 	logger.Debugf("Copied source file %s to temp dir %s\n", src, out.Name())

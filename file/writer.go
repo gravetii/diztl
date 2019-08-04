@@ -3,7 +3,6 @@ package file
 import (
 	"bufio"
 	"bytes"
-	"errors"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -11,6 +10,7 @@ import (
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/logger"
+	"github.com/pkg/errors"
 )
 
 // Writer - the file writer.
@@ -37,7 +37,7 @@ func CreateWriter(metadata *diztl.FileMetadata, chunks int32, out string) (*Writ
 	f, err := ioutil.TempFile("", fname)
 	if err != nil {
 		logger.Errorf("Unable to create temp file for download: %s - %v\n", dir.GetFilePath(metadata), err)
-		return nil, errors.New("Could not create temp file for download - " + err.Error())
+		return nil, errors.Wrap(err, "Couldn't create temp file for download")
 	}
 
 	logger.Debugf("Created temp file for download from %s - %s\n", dir.GetFilePath(metadata), f.Name())
