@@ -22,10 +22,10 @@ import (
 
 // NodeService implements the node server interface definition.
 type NodeService struct {
-	node        *diztl.Node
-	Indexer     *indexer.FileIndexer
-	trackerConn *grpc.ClientConn
-	nk          *keeper.NodeKeeper
+	node    *diztl.Node
+	Indexer *indexer.FileIndexer
+	t       diztl.TrackerServiceClient
+	nk      *keeper.NodeKeeper
 }
 
 // NewNode returns an instance of the Node Service.
@@ -49,10 +49,6 @@ func (s *NodeService) clearIndex() {
 	s.Indexer = indexer.NewFileIndexer()
 }
 
-func (s *NodeService) tracker() diztl.TrackerServiceClient {
-	return diztl.NewTrackerServiceClient(s.trackerConn)
-}
-
 func (s *NodeService) connectToTracker(trackerAddr string) error {
 	conn, err := grpc.Dial(trackerAddr, grpc.WithInsecure(),
 		grpc.WithBlock(), grpc.WithTimeout(conf.TrackerConnectTimeout()))
@@ -61,7 +57,7 @@ func (s *NodeService) connectToTracker(trackerAddr string) error {
 		return err
 	}
 
-	s.trackerConn = conn
+	s.t = diztl.NewTrackerServiceClient(conn)
 	logger.Debugf("Successfully connected to tracker...\n")
 	return nil
 }
@@ -70,8 +66,7 @@ func (s *NodeService) disconnect() error {
 	ctx, cancel := context.WithTimeout(context.Background(), conf.DisconnectTimeout())
 	defer cancel()
 	req := diztl.DisconnectReq{Node: s.node}
-	t := s.tracker()
-	_, err := t.Disconnect(ctx, &req)
+	_, err := s.t.Disconnect(ctx, &req)
 	if err != nil {
 		logger.Errorf("Error while disconnecting node from tracker - %v\n", err)
 		return err
@@ -97,8 +92,7 @@ func (s *NodeService) Register(ctx context.Context, request *diztl.RegisterReq) 
 	request.Self = &diztl.Node{Ip: addr.LocalIP()}
 	c, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	t := s.tracker()
-	resp, err := t.Register(c, request)
+	resp, err := s.t.Register(c, request)
 	if err != nil {
 		logger.Errorf("Error while registering to tracker - %v\n", err)
 		return nil, err
@@ -174,8 +168,7 @@ func (s *NodeService) Find(ctx context.Context, request *diztl.FindReq) (*diztl.
 	r := diztl.SearchReq{Query: request.GetQuery(), Constraint: request.GetConstraint(), Source: s.node}
 	c, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
 	defer cancel()
-	t := s.tracker()
-	stream, err := t.Search(c, &r)
+	stream, err := s.t.Search(c, &r)
 	if err != nil {
 		return nil, err
 	}
