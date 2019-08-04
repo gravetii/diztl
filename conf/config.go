@@ -29,7 +29,6 @@ type conf struct {
 	Dir           dir                      `yaml:"dir"`
 	Timeout       map[string]time.Duration `yaml:"timeout"`
 	ChunkSize     int32                    `yaml:"chunkSize"`
-	BannerFont    string                   `yaml:"bannerFont"`
 	LogLevel      string                   `yaml:"logLevel"`
 }
 
@@ -181,11 +180,6 @@ func NodeConnectTimeout() time.Duration {
 // ChunkSize returns the size of each chunk of a file.
 func ChunkSize() int32 {
 	return config.ChunkSize
-}
-
-// BannerFont is the font to use for the welcome banner string that's displayed when a node joins the network.
-func BannerFont() string {
-	return config.BannerFont
 }
 
 // LogLevel is the level for the app-wide logger.

@@ -10,7 +10,6 @@ import (
 
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/diztl"
-	"github.com/gravetii/go-figure"
 	"google.golang.org/grpc"
 
 	"github.com/gravetii/diztl/service"
@@ -32,16 +31,10 @@ func main() {
 	diztl.RegisterDiztlServiceServer(s, node)
 	node.Init()
 	logger.Infof("Node %s is now up...\n", addr.LocalIP())
-	displayBanner()
+	fmt.Printf("You are now online!\n")
 	serr := s.Serve(lis)
 	if serr != nil {
 		logger.Errorf("Failed to serve - %v\n", err)
 		return
 	}
-}
-
-func displayBanner() {
-	figure := figure.NewFigure("DIZTL", conf.BannerFont(), true)
-	figure.Print()
-	fmt.Printf("\n\nYou are now online!\n\n")
 }
