@@ -77,18 +77,5 @@ func (f *FileIndexer) Find(path string) *diztl.FileMetadata {
 }
 
 func (f *FileIndexer) add(path string, info os.FileInfo) {
-	if !info.IsDir() {
-		f.index.addFile(path, info)
-	}
-}
-
-func (f *FileIndexer) remove(path string) error {
-	// No need to remove path from watcher, fsnotify does it by default.
-	// So, just remove the path from the index.
-	err := f.index.removePath(path)
-	if err != nil {
-		logger.Errorf("Error while removing path from index - %s: %v\n", path, err)
-	}
-
-	return err
+	f.index.addFile(path, info)
 }
