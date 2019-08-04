@@ -91,31 +91,6 @@ func (t *TreeIndex) addPath(path string, token string, parent *TreeNode,
 	return &treenode
 }
 
-func (t *TreeIndex) removePath(path string) error {
-	tokens := dir.Split(path)
-	fpath := ""
-	node := t.root
-	parent := node.parent
-	for _, token := range tokens {
-		fpath = filepath.Join(fpath, token)
-		node = node.children[token]
-		if node == nil {
-			return errors.New("Invalid path to remove")
-		}
-
-		parent = node.parent
-		if parent == nil {
-			return errors.New("Invalid path to remove")
-		}
-	}
-
-	token := tokens[len(tokens)-1]
-	delete(parent.children, token)
-	t.counter.DecrBy1()
-	logger.Debugf("Removed %s\n", path)
-	return nil
-}
-
 func (t *TreeIndex) validate() error {
 	minFiles := conf.MinIndexFiles()
 	if t.counter.Value() < minFiles {
