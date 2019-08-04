@@ -1,13 +1,13 @@
 package startup
 
 import (
-	"errors"
 	"os"
 
 	"github.com/gravetii/diztl/addr"
 	"github.com/gravetii/diztl/conf"
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/logger"
+	"github.com/pkg/errors"
 )
 
 const (
@@ -41,7 +41,7 @@ func loadLogger() error {
 	f, err := os.OpenFile(fpath,
 		os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
-		return errors.New("Could not open log file - " + err.Error())
+		return errors.Wrap(err, "Couldn't open log file")
 	}
 
 	logger.SetLevel(conf.LogLevel())

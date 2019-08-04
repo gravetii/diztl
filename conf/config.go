@@ -1,13 +1,13 @@
 package conf
 
 import (
-	"errors"
 	"os"
 	"path/filepath"
 	"time"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/gravetii/viper"
+	"github.com/pkg/errors"
 )
 
 var rootdir, _ = os.UserHomeDir()
@@ -59,7 +59,7 @@ func load() error {
 	config = &conf{}
 	err = viper.Unmarshal(config)
 	if err != nil {
-		return errors.New("Unable to unmarshall config into struct - " + err.Error())
+		return errors.Wrap(err, "Unable to unmarshall config to struct")
 	}
 
 	return nil

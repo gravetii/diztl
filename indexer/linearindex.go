@@ -1,7 +1,6 @@
 package indexer
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -11,6 +10,7 @@ import (
 	"github.com/gravetii/diztl/counter"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/logger"
+	"github.com/pkg/errors"
 )
 
 // Index : Represents a file-index.
