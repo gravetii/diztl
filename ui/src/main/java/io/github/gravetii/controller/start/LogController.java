@@ -2,7 +2,6 @@ package io.github.gravetii.controller.start;
 
 import com.github.lalyos.jfiglet.FigletFont;
 import io.github.gravetii.controller.FxController;
-import io.github.gravetii.scene.start.StartScene;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -12,10 +11,9 @@ import javafx.scene.control.TextArea;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 public class LogController implements FxController {
-  private static final Logger logger = LoggerFactory.getLogger(LogController.class.getCanonicalName());
+  private static final Logger logger =
+      LoggerFactory.getLogger(LogController.class.getCanonicalName());
 
   private boolean errorLog;
   @FXML private TextArea logArea;

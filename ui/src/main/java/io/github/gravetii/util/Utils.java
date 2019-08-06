@@ -1,8 +1,6 @@
 package io.github.gravetii.util;
 
-import com.jfoenix.animation.alert.JFXAlertAnimation;
 import com.jfoenix.controls.JFXAlert;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialogLayout;
 import io.github.gravetii.gen.Diztl;
 import javafx.scene.control.Button;
@@ -59,7 +57,8 @@ public class Utils {
     region.getStylesheets().add(GLOBAL_STYLESHEET);
   }
 
-  public static JFXAlert<Void> booleanAlert(Stage stage, String heading, boolean overlayClose, Button yes, Button no) {
+  public static JFXAlert<Void> booleanAlert(
+      Stage stage, String heading, boolean overlayClose, Button yes, Button no) {
     JFXDialogLayout layout = new JFXDialogLayout();
     Utils.addGlobalStylesheet(layout);
     layout.setHeading(new Label(heading));
