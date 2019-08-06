@@ -5,12 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.Tooltip;
 
 public class TabPaneController implements FxController {
   @FXML private TabPane tabPane;
 
   public void addTab(String title, Node node, boolean closable, boolean active) {
     Tab tab = new Tab(title, node);
+    tab.setTooltip(new Tooltip(title));
     tab.setClosable(closable);
     tabPane.getTabs().add(tab);
     if (active) {
