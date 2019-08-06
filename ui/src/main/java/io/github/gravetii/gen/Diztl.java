@@ -21897,17 +21897,14 @@ public final class Diztl {
     io.github.gravetii.gen.Diztl.NodeOrBuilder getNodeOrBuilder();
 
     /**
-     * <code>.FileMetadata file = 2;</code>
+     * <code>string dir = 2;</code>
      */
-    boolean hasFile();
+    java.lang.String getDir();
     /**
-     * <code>.FileMetadata file = 2;</code>
+     * <code>string dir = 2;</code>
      */
-    io.github.gravetii.gen.Diztl.FileMetadata getFile();
-    /**
-     * <code>.FileMetadata file = 2;</code>
-     */
-    io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getFileOrBuilder();
+    com.google.protobuf.ByteString
+        getDirBytes();
   }
   /**
    * Protobuf type {@code FetchFileListReq}
@@ -21922,6 +21919,7 @@ public final class Diztl {
       super(builder);
     }
     private FetchFileListReq() {
+      dir_ = "";
     }
 
     @java.lang.Override
@@ -21969,16 +21967,9 @@ public final class Diztl {
               break;
             }
             case 18: {
-              io.github.gravetii.gen.Diztl.FileMetadata.Builder subBuilder = null;
-              if (file_ != null) {
-                subBuilder = file_.toBuilder();
-              }
-              file_ = input.readMessage(io.github.gravetii.gen.Diztl.FileMetadata.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(file_);
-                file_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              dir_ = s;
               break;
             }
           }
@@ -22026,25 +22017,38 @@ public final class Diztl {
       return getNode();
     }
 
-    public static final int FILE_FIELD_NUMBER = 2;
-    private io.github.gravetii.gen.Diztl.FileMetadata file_;
+    public static final int DIR_FIELD_NUMBER = 2;
+    private volatile java.lang.Object dir_;
     /**
-     * <code>.FileMetadata file = 2;</code>
+     * <code>string dir = 2;</code>
      */
-    public boolean hasFile() {
-      return file_ != null;
+    public java.lang.String getDir() {
+      java.lang.Object ref = dir_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        dir_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.FileMetadata file = 2;</code>
+     * <code>string dir = 2;</code>
      */
-    public io.github.gravetii.gen.Diztl.FileMetadata getFile() {
-      return file_ == null ? io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance() : file_;
-    }
-    /**
-     * <code>.FileMetadata file = 2;</code>
-     */
-    public io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getFileOrBuilder() {
-      return getFile();
+    public com.google.protobuf.ByteString
+        getDirBytes() {
+      java.lang.Object ref = dir_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        dir_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -22062,8 +22066,8 @@ public final class Diztl {
       if (node_ != null) {
         output.writeMessage(1, getNode());
       }
-      if (file_ != null) {
-        output.writeMessage(2, getFile());
+      if (!getDirBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, dir_);
       }
       unknownFields.writeTo(output);
     }
@@ -22077,9 +22081,8 @@ public final class Diztl {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getNode());
       }
-      if (file_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getFile());
+      if (!getDirBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, dir_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -22102,11 +22105,8 @@ public final class Diztl {
         result = result && getNode()
             .equals(other.getNode());
       }
-      result = result && (hasFile() == other.hasFile());
-      if (hasFile()) {
-        result = result && getFile()
-            .equals(other.getFile());
-      }
+      result = result && getDir()
+          .equals(other.getDir());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -22122,10 +22122,8 @@ public final class Diztl {
         hash = (37 * hash) + NODE_FIELD_NUMBER;
         hash = (53 * hash) + getNode().hashCode();
       }
-      if (hasFile()) {
-        hash = (37 * hash) + FILE_FIELD_NUMBER;
-        hash = (53 * hash) + getFile().hashCode();
-      }
+      hash = (37 * hash) + DIR_FIELD_NUMBER;
+      hash = (53 * hash) + getDir().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -22261,12 +22259,8 @@ public final class Diztl {
           node_ = null;
           nodeBuilder_ = null;
         }
-        if (fileBuilder_ == null) {
-          file_ = null;
-        } else {
-          file_ = null;
-          fileBuilder_ = null;
-        }
+        dir_ = "";
+
         return this;
       }
 
@@ -22294,11 +22288,7 @@ public final class Diztl {
         } else {
           result.node_ = nodeBuilder_.build();
         }
-        if (fileBuilder_ == null) {
-          result.file_ = file_;
-        } else {
-          result.file_ = fileBuilder_.build();
-        }
+        result.dir_ = dir_;
         onBuilt();
         return result;
       }
@@ -22343,8 +22333,9 @@ public final class Diztl {
         if (other.hasNode()) {
           mergeNode(other.getNode());
         }
-        if (other.hasFile()) {
-          mergeFile(other.getFile());
+        if (!other.getDir().isEmpty()) {
+          dir_ = other.dir_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -22490,121 +22481,73 @@ public final class Diztl {
         return nodeBuilder_;
       }
 
-      private io.github.gravetii.gen.Diztl.FileMetadata file_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.github.gravetii.gen.Diztl.FileMetadata, io.github.gravetii.gen.Diztl.FileMetadata.Builder, io.github.gravetii.gen.Diztl.FileMetadataOrBuilder> fileBuilder_;
+      private java.lang.Object dir_ = "";
       /**
-       * <code>.FileMetadata file = 2;</code>
+       * <code>string dir = 2;</code>
        */
-      public boolean hasFile() {
-        return fileBuilder_ != null || file_ != null;
-      }
-      /**
-       * <code>.FileMetadata file = 2;</code>
-       */
-      public io.github.gravetii.gen.Diztl.FileMetadata getFile() {
-        if (fileBuilder_ == null) {
-          return file_ == null ? io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance() : file_;
+      public java.lang.String getDir() {
+        java.lang.Object ref = dir_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          dir_ = s;
+          return s;
         } else {
-          return fileBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>.FileMetadata file = 2;</code>
+       * <code>string dir = 2;</code>
        */
-      public Builder setFile(io.github.gravetii.gen.Diztl.FileMetadata value) {
-        if (fileBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          file_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getDirBytes() {
+        java.lang.Object ref = dir_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          dir_ = b;
+          return b;
         } else {
-          fileBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>.FileMetadata file = 2;</code>
+       * <code>string dir = 2;</code>
        */
-      public Builder setFile(
-          io.github.gravetii.gen.Diztl.FileMetadata.Builder builderForValue) {
-        if (fileBuilder_ == null) {
-          file_ = builderForValue.build();
-          onChanged();
-        } else {
-          fileBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.FileMetadata file = 2;</code>
-       */
-      public Builder mergeFile(io.github.gravetii.gen.Diztl.FileMetadata value) {
-        if (fileBuilder_ == null) {
-          if (file_ != null) {
-            file_ =
-              io.github.gravetii.gen.Diztl.FileMetadata.newBuilder(file_).mergeFrom(value).buildPartial();
-          } else {
-            file_ = value;
-          }
-          onChanged();
-        } else {
-          fileBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.FileMetadata file = 2;</code>
-       */
-      public Builder clearFile() {
-        if (fileBuilder_ == null) {
-          file_ = null;
-          onChanged();
-        } else {
-          file_ = null;
-          fileBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.FileMetadata file = 2;</code>
-       */
-      public io.github.gravetii.gen.Diztl.FileMetadata.Builder getFileBuilder() {
-        
+      public Builder setDir(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        dir_ = value;
         onChanged();
-        return getFileFieldBuilder().getBuilder();
+        return this;
       }
       /**
-       * <code>.FileMetadata file = 2;</code>
+       * <code>string dir = 2;</code>
        */
-      public io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getFileOrBuilder() {
-        if (fileBuilder_ != null) {
-          return fileBuilder_.getMessageOrBuilder();
-        } else {
-          return file_ == null ?
-              io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance() : file_;
-        }
+      public Builder clearDir() {
+        
+        dir_ = getDefaultInstance().getDir();
+        onChanged();
+        return this;
       }
       /**
-       * <code>.FileMetadata file = 2;</code>
+       * <code>string dir = 2;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.github.gravetii.gen.Diztl.FileMetadata, io.github.gravetii.gen.Diztl.FileMetadata.Builder, io.github.gravetii.gen.Diztl.FileMetadataOrBuilder> 
-          getFileFieldBuilder() {
-        if (fileBuilder_ == null) {
-          fileBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              io.github.gravetii.gen.Diztl.FileMetadata, io.github.gravetii.gen.Diztl.FileMetadata.Builder, io.github.gravetii.gen.Diztl.FileMetadataOrBuilder>(
-                  getFile(),
-                  getParentForChildren(),
-                  isClean());
-          file_ = null;
-        }
-        return fileBuilder_;
+      public Builder setDirBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        dir_ = value;
+        onChanged();
+        return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -23417,17 +23360,14 @@ public final class Diztl {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.FileMetadata file = 1;</code>
+     * <code>string dir = 1;</code>
      */
-    boolean hasFile();
+    java.lang.String getDir();
     /**
-     * <code>.FileMetadata file = 1;</code>
+     * <code>string dir = 1;</code>
      */
-    io.github.gravetii.gen.Diztl.FileMetadata getFile();
-    /**
-     * <code>.FileMetadata file = 1;</code>
-     */
-    io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getFileOrBuilder();
+    com.google.protobuf.ByteString
+        getDirBytes();
 
     /**
      * <code>.Node source = 2;</code>
@@ -23455,6 +23395,7 @@ public final class Diztl {
       super(builder);
     }
     private GetFileListReq() {
+      dir_ = "";
     }
 
     @java.lang.Override
@@ -23489,16 +23430,9 @@ public final class Diztl {
               break;
             }
             case 10: {
-              io.github.gravetii.gen.Diztl.FileMetadata.Builder subBuilder = null;
-              if (file_ != null) {
-                subBuilder = file_.toBuilder();
-              }
-              file_ = input.readMessage(io.github.gravetii.gen.Diztl.FileMetadata.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(file_);
-                file_ = subBuilder.buildPartial();
-              }
+              java.lang.String s = input.readStringRequireUtf8();
 
+              dir_ = s;
               break;
             }
             case 18: {
@@ -23538,25 +23472,38 @@ public final class Diztl {
               io.github.gravetii.gen.Diztl.GetFileListReq.class, io.github.gravetii.gen.Diztl.GetFileListReq.Builder.class);
     }
 
-    public static final int FILE_FIELD_NUMBER = 1;
-    private io.github.gravetii.gen.Diztl.FileMetadata file_;
+    public static final int DIR_FIELD_NUMBER = 1;
+    private volatile java.lang.Object dir_;
     /**
-     * <code>.FileMetadata file = 1;</code>
+     * <code>string dir = 1;</code>
      */
-    public boolean hasFile() {
-      return file_ != null;
+    public java.lang.String getDir() {
+      java.lang.Object ref = dir_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        dir_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.FileMetadata file = 1;</code>
+     * <code>string dir = 1;</code>
      */
-    public io.github.gravetii.gen.Diztl.FileMetadata getFile() {
-      return file_ == null ? io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance() : file_;
-    }
-    /**
-     * <code>.FileMetadata file = 1;</code>
-     */
-    public io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getFileOrBuilder() {
-      return getFile();
+    public com.google.protobuf.ByteString
+        getDirBytes() {
+      java.lang.Object ref = dir_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        dir_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int SOURCE_FIELD_NUMBER = 2;
@@ -23592,8 +23539,8 @@ public final class Diztl {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (file_ != null) {
-        output.writeMessage(1, getFile());
+      if (!getDirBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, dir_);
       }
       if (source_ != null) {
         output.writeMessage(2, getSource());
@@ -23606,9 +23553,8 @@ public final class Diztl {
       if (size != -1) return size;
 
       size = 0;
-      if (file_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getFile());
+      if (!getDirBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, dir_);
       }
       if (source_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -23630,11 +23576,8 @@ public final class Diztl {
       io.github.gravetii.gen.Diztl.GetFileListReq other = (io.github.gravetii.gen.Diztl.GetFileListReq) obj;
 
       boolean result = true;
-      result = result && (hasFile() == other.hasFile());
-      if (hasFile()) {
-        result = result && getFile()
-            .equals(other.getFile());
-      }
+      result = result && getDir()
+          .equals(other.getDir());
       result = result && (hasSource() == other.hasSource());
       if (hasSource()) {
         result = result && getSource()
@@ -23651,10 +23594,8 @@ public final class Diztl {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasFile()) {
-        hash = (37 * hash) + FILE_FIELD_NUMBER;
-        hash = (53 * hash) + getFile().hashCode();
-      }
+      hash = (37 * hash) + DIR_FIELD_NUMBER;
+      hash = (53 * hash) + getDir().hashCode();
       if (hasSource()) {
         hash = (37 * hash) + SOURCE_FIELD_NUMBER;
         hash = (53 * hash) + getSource().hashCode();
@@ -23788,12 +23729,8 @@ public final class Diztl {
       }
       public Builder clear() {
         super.clear();
-        if (fileBuilder_ == null) {
-          file_ = null;
-        } else {
-          file_ = null;
-          fileBuilder_ = null;
-        }
+        dir_ = "";
+
         if (sourceBuilder_ == null) {
           source_ = null;
         } else {
@@ -23822,11 +23759,7 @@ public final class Diztl {
 
       public io.github.gravetii.gen.Diztl.GetFileListReq buildPartial() {
         io.github.gravetii.gen.Diztl.GetFileListReq result = new io.github.gravetii.gen.Diztl.GetFileListReq(this);
-        if (fileBuilder_ == null) {
-          result.file_ = file_;
-        } else {
-          result.file_ = fileBuilder_.build();
-        }
+        result.dir_ = dir_;
         if (sourceBuilder_ == null) {
           result.source_ = source_;
         } else {
@@ -23873,8 +23806,9 @@ public final class Diztl {
 
       public Builder mergeFrom(io.github.gravetii.gen.Diztl.GetFileListReq other) {
         if (other == io.github.gravetii.gen.Diztl.GetFileListReq.getDefaultInstance()) return this;
-        if (other.hasFile()) {
-          mergeFile(other.getFile());
+        if (!other.getDir().isEmpty()) {
+          dir_ = other.dir_;
+          onChanged();
         }
         if (other.hasSource()) {
           mergeSource(other.getSource());
@@ -23906,121 +23840,73 @@ public final class Diztl {
         return this;
       }
 
-      private io.github.gravetii.gen.Diztl.FileMetadata file_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.github.gravetii.gen.Diztl.FileMetadata, io.github.gravetii.gen.Diztl.FileMetadata.Builder, io.github.gravetii.gen.Diztl.FileMetadataOrBuilder> fileBuilder_;
+      private java.lang.Object dir_ = "";
       /**
-       * <code>.FileMetadata file = 1;</code>
+       * <code>string dir = 1;</code>
        */
-      public boolean hasFile() {
-        return fileBuilder_ != null || file_ != null;
-      }
-      /**
-       * <code>.FileMetadata file = 1;</code>
-       */
-      public io.github.gravetii.gen.Diztl.FileMetadata getFile() {
-        if (fileBuilder_ == null) {
-          return file_ == null ? io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance() : file_;
+      public java.lang.String getDir() {
+        java.lang.Object ref = dir_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          dir_ = s;
+          return s;
         } else {
-          return fileBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>.FileMetadata file = 1;</code>
+       * <code>string dir = 1;</code>
        */
-      public Builder setFile(io.github.gravetii.gen.Diztl.FileMetadata value) {
-        if (fileBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          file_ = value;
-          onChanged();
+      public com.google.protobuf.ByteString
+          getDirBytes() {
+        java.lang.Object ref = dir_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          dir_ = b;
+          return b;
         } else {
-          fileBuilder_.setMessage(value);
+          return (com.google.protobuf.ByteString) ref;
         }
-
-        return this;
       }
       /**
-       * <code>.FileMetadata file = 1;</code>
+       * <code>string dir = 1;</code>
        */
-      public Builder setFile(
-          io.github.gravetii.gen.Diztl.FileMetadata.Builder builderForValue) {
-        if (fileBuilder_ == null) {
-          file_ = builderForValue.build();
-          onChanged();
-        } else {
-          fileBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.FileMetadata file = 1;</code>
-       */
-      public Builder mergeFile(io.github.gravetii.gen.Diztl.FileMetadata value) {
-        if (fileBuilder_ == null) {
-          if (file_ != null) {
-            file_ =
-              io.github.gravetii.gen.Diztl.FileMetadata.newBuilder(file_).mergeFrom(value).buildPartial();
-          } else {
-            file_ = value;
-          }
-          onChanged();
-        } else {
-          fileBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.FileMetadata file = 1;</code>
-       */
-      public Builder clearFile() {
-        if (fileBuilder_ == null) {
-          file_ = null;
-          onChanged();
-        } else {
-          file_ = null;
-          fileBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.FileMetadata file = 1;</code>
-       */
-      public io.github.gravetii.gen.Diztl.FileMetadata.Builder getFileBuilder() {
-        
+      public Builder setDir(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        dir_ = value;
         onChanged();
-        return getFileFieldBuilder().getBuilder();
+        return this;
       }
       /**
-       * <code>.FileMetadata file = 1;</code>
+       * <code>string dir = 1;</code>
        */
-      public io.github.gravetii.gen.Diztl.FileMetadataOrBuilder getFileOrBuilder() {
-        if (fileBuilder_ != null) {
-          return fileBuilder_.getMessageOrBuilder();
-        } else {
-          return file_ == null ?
-              io.github.gravetii.gen.Diztl.FileMetadata.getDefaultInstance() : file_;
-        }
+      public Builder clearDir() {
+        
+        dir_ = getDefaultInstance().getDir();
+        onChanged();
+        return this;
       }
       /**
-       * <code>.FileMetadata file = 1;</code>
+       * <code>string dir = 1;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          io.github.gravetii.gen.Diztl.FileMetadata, io.github.gravetii.gen.Diztl.FileMetadata.Builder, io.github.gravetii.gen.Diztl.FileMetadataOrBuilder> 
-          getFileFieldBuilder() {
-        if (fileBuilder_ == null) {
-          fileBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              io.github.gravetii.gen.Diztl.FileMetadata, io.github.gravetii.gen.Diztl.FileMetadata.Builder, io.github.gravetii.gen.Diztl.FileMetadataOrBuilder>(
-                  getFile(),
-                  getParentForChildren(),
-                  isClean());
-          file_ = null;
-        }
-        return fileBuilder_;
+      public Builder setDirBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        dir_ = value;
+        onChanged();
+        return this;
       }
 
       private io.github.gravetii.gen.Diztl.Node source_ = null;
@@ -25178,34 +25064,33 @@ public final class Diztl {
       "raint\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003\"\036\n\016Typ" +
       "eConstraint\022\014\n\004type\030\001 \001(\005\"P\n\016FileConstra" +
       "int\022\036\n\005csize\030\001 \001(\0132\017.SizeConstraint\022\036\n\005c" +
-      "type\030\002 \001(\0132\017.TypeConstraint\"D\n\020FetchFile" +
-      "ListReq\022\023\n\004node\030\001 \001(\0132\005.Node\022\033\n\004file\030\002 \001" +
-      "(\0132\r.FileMetadata\"1\n\021FetchFileListResp\022\034" +
-      "\n\005files\030\001 \003(\0132\r.FileMetadata\"D\n\016GetFileL" +
-      "istReq\022\033\n\004file\030\001 \001(\0132\r.FileMetadata\022\025\n\006s" +
-      "ource\030\002 \001(\0132\005.Node\"/\n\017GetFileListResp\022\034\n" +
-      "\005files\030\001 \003(\0132\r.FileMetadata2\372\004\n\014DiztlSer" +
-      "vice\022#\n\006Search\022\n.SearchReq\032\013.SearchResp\"" +
-      "\000\022$\n\006Upload\022\n.UploadReq\032\n.FileChunk\"\0000\001\022" +
-      "\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035\n\004Find\022\010" +
-      ".FindReq\032\t.FindResp\"\000\022,\n\010Download\022\014.Down" +
-      "loadReq\032\016.DownloadChunk\"\0000\001\022,\n\013GetUserDi" +
-      "rs\022\014.UserDirsReq\032\r.UserDirsResp\"\000\022;\n\016Upd" +
-      "ateUserDirs\022\022.UpdateUserDirsReq\032\023.Update" +
-      "UserDirsResp\"\000\022/\n\nGetTracker\022\016.GetTracke" +
-      "rReq\032\017.GetTrackerResp\"\000\0228\n\rUpdateTracker" +
-      "\022\021.UpdateTrackerReq\032\022.UpdateTrackerResp\"" +
-      "\000\022\"\n\005Index\022\t.IndexReq\032\n.IndexResp\"\0000\001\022)\n" +
-      "\010Register\022\014.RegisterReq\032\r.RegisterResp\"\000" +
-      "\0228\n\rFetchFileList\022\021.FetchFileListReq\032\022.F" +
-      "etchFileListResp\"\000\0222\n\013GetFileList\022\017.GetF" +
-      "ileListReq\032\020.GetFileListResp\"\000\022 \n\005Close\022" +
-      "\t.CloseReq\032\n.CloseResp\"\0002\223\001\n\016TrackerServ" +
-      "ice\022)\n\010Register\022\014.RegisterReq\032\r.Register" +
-      "Resp\"\000\022%\n\006Search\022\n.SearchReq\032\013.SearchRes" +
-      "p\"\0000\001\022/\n\nDisconnect\022\016.DisconnectReq\032\017.Di" +
-      "sconnectResp\"\000B\030\n\026io.github.gravetii.gen" +
-      "b\006proto3"
+      "type\030\002 \001(\0132\017.TypeConstraint\"4\n\020FetchFile" +
+      "ListReq\022\023\n\004node\030\001 \001(\0132\005.Node\022\013\n\003dir\030\002 \001(" +
+      "\t\"1\n\021FetchFileListResp\022\034\n\005files\030\001 \003(\0132\r." +
+      "FileMetadata\"4\n\016GetFileListReq\022\013\n\003dir\030\001 " +
+      "\001(\t\022\025\n\006source\030\002 \001(\0132\005.Node\"/\n\017GetFileLis" +
+      "tResp\022\034\n\005files\030\001 \003(\0132\r.FileMetadata2\372\004\n\014" +
+      "DiztlService\022#\n\006Search\022\n.SearchReq\032\013.Sea" +
+      "rchResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.FileCh" +
+      "unk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035" +
+      "\n\004Find\022\010.FindReq\032\t.FindResp\"\000\022,\n\010Downloa" +
+      "d\022\014.DownloadReq\032\016.DownloadChunk\"\0000\001\022,\n\013G" +
+      "etUserDirs\022\014.UserDirsReq\032\r.UserDirsResp\"" +
+      "\000\022;\n\016UpdateUserDirs\022\022.UpdateUserDirsReq\032" +
+      "\023.UpdateUserDirsResp\"\000\022/\n\nGetTracker\022\016.G" +
+      "etTrackerReq\032\017.GetTrackerResp\"\000\0228\n\rUpdat" +
+      "eTracker\022\021.UpdateTrackerReq\032\022.UpdateTrac" +
+      "kerResp\"\000\022\"\n\005Index\022\t.IndexReq\032\n.IndexRes" +
+      "p\"\0000\001\022)\n\010Register\022\014.RegisterReq\032\r.Regist" +
+      "erResp\"\000\0228\n\rFetchFileList\022\021.FetchFileLis" +
+      "tReq\032\022.FetchFileListResp\"\000\0222\n\013GetFileLis" +
+      "t\022\017.GetFileListReq\032\020.GetFileListResp\"\000\022 " +
+      "\n\005Close\022\t.CloseReq\032\n.CloseResp\"\0002\223\001\n\016Tra" +
+      "ckerService\022)\n\010Register\022\014.RegisterReq\032\r." +
+      "RegisterResp\"\000\022%\n\006Search\022\n.SearchReq\032\013.S" +
+      "earchResp\"\0000\001\022/\n\nDisconnect\022\016.Disconnect" +
+      "Req\032\017.DisconnectResp\"\000B\030\n\026io.github.grav" +
+      "etii.genb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -25422,7 +25307,7 @@ public final class Diztl {
     internal_static_FetchFileListReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_FetchFileListReq_descriptor,
-        new java.lang.String[] { "Node", "File", });
+        new java.lang.String[] { "Node", "Dir", });
     internal_static_FetchFileListResp_descriptor =
       getDescriptor().getMessageTypes().get(34);
     internal_static_FetchFileListResp_fieldAccessorTable = new
@@ -25434,7 +25319,7 @@ public final class Diztl {
     internal_static_GetFileListReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GetFileListReq_descriptor,
-        new java.lang.String[] { "File", "Source", });
+        new java.lang.String[] { "Dir", "Source", });
     internal_static_GetFileListResp_descriptor =
       getDescriptor().getMessageTypes().get(36);
     internal_static_GetFileListResp_fieldAccessorTable = new

@@ -239,7 +239,7 @@ message FileConstraint {
 
 message FetchFileListReq {
     Node node = 1;
-    FileMetadata file = 2;
+    string dir = 2;
 }
 
 message FetchFileListResp {
@@ -247,7 +247,7 @@ message FetchFileListResp {
 }
 
 message GetFileListReq {
-    FileMetadata file = 1;
+    string dir = 1;
     Node source = 2;
 }
 

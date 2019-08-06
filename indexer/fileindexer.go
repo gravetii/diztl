@@ -81,6 +81,6 @@ func (f *FileIndexer) add(path string, info os.FileInfo) {
 }
 
 // GetFileList returns all the indexed files in the parent folder of the given file.
-func (f *FileIndexer) GetFileList(file *diztl.FileMetadata) []*diztl.FileMetadata {
-	return f.index.getFileList(file.GetDir())
+func (f *FileIndexer) GetFileList(dir string) []*diztl.FileMetadata {
+	return f.index.getFileList(dir)
 }
