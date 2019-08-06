@@ -52,29 +52,40 @@ public class ResultListController implements FxController {
     setColumnWidths();
   }
 
-  private void setContextMenu(TableRow<FileResult> row) {
-    ContextMenu menu = new ContextMenu();
-    MenuItem downloadMenuItem = new MenuItem("Download");
-    MenuItem downloadToFolderMenuItem = new MenuItem("Download to...");
-    MenuItem getFileListMenuItem = new MenuItem("Browse file list");
-    downloadMenuItem.setOnAction(
-        event -> {
-          download(row.getItem());
-        });
-    downloadToFolderMenuItem.setOnAction(
-        event -> {
-          String dir = Utils.chooseDir(stage);
-          if (dir != null) {
-            downloadToFolder(row.getItem(), dir);
-          }
-        });
-    getFileListMenuItem.setOnAction(event -> {
+  private void addDownloadMenuItem(TableRow<FileResult> row, ContextMenu menu) {
+    MenuItem menuItem = new MenuItem("Download");
+    menuItem.setOnAction(
+            event -> {
+              download(row.getItem());
+            });
+    menu.getItems().add(menuItem);
+  }
+
+  private void addDowloadToFolderMenuItem(TableRow<FileResult> row, ContextMenu menu) {
+    MenuItem downlodToFolder = new MenuItem("Download to...");
+    downlodToFolder.setOnAction(
+            event -> {
+              String dir = Utils.chooseDir(stage);
+              if (dir != null) {
+                downloadToFolder(row.getItem(), dir);
+              }
+            });
+    menu.getItems().add(downlodToFolder);
+  }
+
+  private void addBrowseFileListMenuItem(TableRow<FileResult> row, ContextMenu menu) {
+    MenuItem browseFileList = new MenuItem("Browse file list");
+    browseFileList.setOnAction(event -> {
       CommunicationClient.get().getFileList(scene, row.getItem().getSource(), row.getItem().getFile());
     });
+    menu.getItems().add(browseFileList);
+  }
 
-    menu.getItems().add(downloadMenuItem);
-    menu.getItems().add(downloadToFolderMenuItem);
-    menu.getItems().add(getFileListMenuItem);
+  private void setContextMenu(TableRow<FileResult> row) {
+    ContextMenu menu = new ContextMenu();
+    addDownloadMenuItem(row, menu);
+    addDowloadToFolderMenuItem(row, menu);
+    addBrowseFileListMenuItem(row, menu);
     row.contextMenuProperty()
         .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
   }
