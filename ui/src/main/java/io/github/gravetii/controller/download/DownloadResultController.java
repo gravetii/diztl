@@ -131,8 +131,4 @@ public class DownloadResultController implements FxController {
   public void show(DownloadResult result) {
     downloadResultTbl.getItems().add(result);
   }
-
-  public void reset() {
-    downloadResultTbl.getItems().clear();
-  }
 }
