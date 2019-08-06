@@ -315,7 +315,7 @@ func (s *NodeService) FetchFileList(ctx context.Context, request *diztl.FetchFil
 		return nil, err
 	}
 
-	r := &diztl.GetFileListReq{Source: s.node, File: request.GetFile()}
+	r := &diztl.GetFileListReq{Source: s.node, Dir: request.GetDir()}
 	resp, err := client.GetFileList(c, r)
 	if err != nil {
 		logger.Errorf("Couldn't fetch file list from node %v - %v", request.GetNode(), err)
@@ -327,8 +327,8 @@ func (s *NodeService) FetchFileList(ctx context.Context, request *diztl.FetchFil
 
 // GetFileList returns all the indexed files in the parent folder of the given file.
 func (s *NodeService) GetFileList(ctx context.Context, request *diztl.GetFileListReq) (*diztl.GetFileListResp, error) {
-	logger.Infof("Got GetFileList call from %s for file %v\n", request.GetSource(), dir.GetFilePath(request.GetFile()))
-	files := s.Indexer.GetFileList(request.GetFile())
+	logger.Infof("Got GetFileList call from %s for dir %v\n", request.GetSource(), request.GetDir())
+	files := s.Indexer.GetFileList(request.GetDir())
 	return &diztl.GetFileListResp{Files: files}, nil
 }
 

@@ -37,7 +37,7 @@ public class DownloadFileListHandler {
   }
 
   public void process(Connection connection) {
-    Diztl.FetchFileListReq req = Diztl.FetchFileListReq.newBuilder().setFile(file).setNode(node).build();
+    Diztl.FetchFileListReq req = Diztl.FetchFileListReq.newBuilder().setDir(file.getDir()).setNode(node).build();
     ListenableFuture<Diztl.FetchFileListResp> f = connection.getFutureStub().fetchFileList(req);
     String downloadsDir = getDownloadsFolder();
     f.addListener(() -> {
