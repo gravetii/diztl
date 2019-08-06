@@ -24,7 +24,7 @@ public class FindHandler {
   }
 
   public void process(Connection connection) {
-    ResultListComponent resultListComponent = scene.addNewSearchTab(query);
+    ResultListComponent component = scene.addNewSearchTab(query);
     Diztl.FindReq req =
         Diztl.FindReq.newBuilder().setQuery(query).setConstraint(constraint).build();
     logger.info("Searching for pattern - {}", query);
@@ -39,7 +39,7 @@ public class FindHandler {
                       r.getFilesList()
                           .forEach(
                               file -> {
-                                resultListComponent
+                                component
                                     .getController()
                                     .show(new FileResult(file, r.getNode()));
                               });

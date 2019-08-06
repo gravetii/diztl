@@ -1,6 +1,7 @@
 package io.github.gravetii.scene.start;
 
 import io.github.gravetii.client.handler.DownloadResult;
+import io.github.gravetii.gen.Diztl;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
 import io.github.gravetii.scene.download.DownloadResultScene;
@@ -24,6 +25,10 @@ public class StartScene extends FxScene {
 
   public ResultListComponent addNewSearchTab(String query) {
     return searchLogScene.addNewSearchTab(query);
+  }
+
+  public ResultListComponent addNewFileListTab(Diztl.FileMetadata file) {
+    return searchLogScene.addNewFileListTab(file);
   }
 
   @Override

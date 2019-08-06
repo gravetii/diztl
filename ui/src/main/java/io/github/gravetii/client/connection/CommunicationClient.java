@@ -84,7 +84,7 @@ public class CommunicationClient {
     new FileIndexHandler(scene, dirs).process(connection);
   }
 
-  public List<FileMetadata> getFileList(Diztl.Node node, Diztl.FileMetadata file) {
-    return new GetFileListHandler(node, file).process(connection);
+  public void getFileList(StartScene scene, Diztl.Node node, Diztl.FileMetadata file) {
+    new GetFileListHandler(scene, node, file).process(connection);
   }
 }

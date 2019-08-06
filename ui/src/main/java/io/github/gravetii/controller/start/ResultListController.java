@@ -10,9 +10,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 public class ResultListController implements FxController {
   private Stage stage;
-  private StartScene parent;
+  private StartScene scene;
 
   @FXML private TableView<FileResult> resultListTbl;
   @FXML private TableColumn<FileResult, String> fileNameTblCol;
@@ -20,9 +22,9 @@ public class ResultListController implements FxController {
   @FXML private TableColumn<FileResult, String> fileTypeTblCol;
   @FXML private TableColumn<FileResult, String> filePathTblCol;
 
-  public ResultListController(Stage stage, StartScene parent) {
+  public ResultListController(Stage stage, StartScene scene) {
     this.stage = stage;
-    this.parent = parent;
+    this.scene = scene;
   }
 
   @FXML
@@ -54,7 +56,7 @@ public class ResultListController implements FxController {
     ContextMenu menu = new ContextMenu();
     MenuItem downloadMenuItem = new MenuItem("Download");
     MenuItem downloadToFolderMenuItem = new MenuItem("Download to...");
-    MenuItem getFileListMenuItem = new MenuItem("Get file list");
+    MenuItem getFileListMenuItem = new MenuItem("Browse file list");
     downloadMenuItem.setOnAction(
         event -> {
           download(row.getItem());
@@ -67,7 +69,7 @@ public class ResultListController implements FxController {
           }
         });
     getFileListMenuItem.setOnAction(event -> {
-      CommunicationClient.get().getFileList(row.getItem().getSource(), row.getItem().getFile());
+      CommunicationClient.get().getFileList(scene, row.getItem().getSource(), row.getItem().getFile());
     });
 
     menu.getItems().add(downloadMenuItem);
@@ -78,11 +80,11 @@ public class ResultListController implements FxController {
   }
 
   private void download(FileResult result) {
-    CommunicationClient.get().download(result.getFile(), result.getSource(), parent);
+    CommunicationClient.get().download(result.getFile(), result.getSource(), scene);
   }
 
   private void downloadToFolder(FileResult result, String downloadsDir) {
-    CommunicationClient.get().download(result.getFile(), result.getSource(), parent, downloadsDir);
+    CommunicationClient.get().download(result.getFile(), result.getSource(), scene, downloadsDir);
   }
 
   private void setColumnWidths() {
@@ -94,9 +96,5 @@ public class ResultListController implements FxController {
 
   public void show(FileResult result) {
     resultListTbl.getItems().add(result);
-  }
-
-  public void reset() {
-    resultListTbl.getItems().clear();
   }
 }
