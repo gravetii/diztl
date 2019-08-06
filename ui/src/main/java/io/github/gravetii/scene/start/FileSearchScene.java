@@ -9,10 +9,10 @@ public class FileSearchScene extends FxScene {
   private FileSearchComponent fileSearchComponent;
   private QuickOptionsComponent quickOptionsComponent;
 
-  protected FileSearchScene(Stage stage, StartScene parent) {
+  protected FileSearchScene(Stage stage, StartScene scene) {
     super(stage, new BorderPane());
-    fileSearchComponent = new FileSearchComponent(parent);
-    quickOptionsComponent = new QuickOptionsComponent(stage, parent);
+    fileSearchComponent = new FileSearchComponent(scene);
+    quickOptionsComponent = new QuickOptionsComponent(stage, scene);
   }
 
   @Override

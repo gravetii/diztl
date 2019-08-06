@@ -16,10 +16,10 @@ public class SearchLogScene extends FxScene {
   private LogComponent errorLogComponent;
   private TabPaneComponent tabPaneComponent;
 
-  public SearchLogScene(Stage stage, StartScene parent) {
+  public SearchLogScene(Stage stage, StartScene scene) {
     super(stage, new BorderPane());
-    this.parent = parent;
-    fileSearchScene = new FileSearchScene(stage, parent);
+    this.parent = scene;
+    fileSearchScene = new FileSearchScene(stage, scene);
     logComponent = new LogComponent(false);
     errorLogComponent = new LogComponent(true);
     tabPaneComponent = new TabPaneComponent();

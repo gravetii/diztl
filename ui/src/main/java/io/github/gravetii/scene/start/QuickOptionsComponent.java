@@ -7,18 +7,18 @@ import javafx.stage.Stage;
 
 public class QuickOptionsComponent extends FxComponent<QuickOptionsController, AnchorPane> {
   private Stage stage;
-  private StartScene parent;
+  private StartScene scene;
 
-  public QuickOptionsComponent(Stage stage, StartScene parent) {
+  public QuickOptionsComponent(Stage stage, StartScene scene) {
     super("quickOptions.fxml");
     this.stage = stage;
-    this.parent = parent;
+    this.scene = scene;
     create();
   }
 
   @Override
   protected QuickOptionsController createController() {
-    return new QuickOptionsController(stage, parent);
+    return new QuickOptionsController(stage, scene);
   }
 
   @Override
