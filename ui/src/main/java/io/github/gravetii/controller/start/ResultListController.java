@@ -81,11 +81,20 @@ public class ResultListController implements FxController {
     menu.getItems().add(browseFileList);
   }
 
+  private void addDownloadFileListMenuItem(TableRow<FileResult> row, ContextMenu menu) {
+    MenuItem downloadFileList = new MenuItem("Download file list");
+    downloadFileList.setOnAction(event -> {
+      CommunicationClient.get().downloadFileList(scene, row.getItem().getSource(), row.getItem().getFile());
+    });
+    menu.getItems().add(downloadFileList);
+  }
+
   private void setContextMenu(TableRow<FileResult> row) {
     ContextMenu menu = new ContextMenu();
     addDownloadMenuItem(row, menu);
     addDowloadToFolderMenuItem(row, menu);
     addBrowseFileListMenuItem(row, menu);
+    addDownloadFileListMenuItem(row, menu);
     row.contextMenuProperty()
         .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
   }
