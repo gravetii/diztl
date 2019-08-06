@@ -37,7 +37,7 @@ public class QuickOptionsController implements FxController {
   @FXML
   private void initialize() {
     configureDirsBtn.setTooltip(new Tooltip("Configure your share and download folders"));
-    configureTrackerBtn.setTooltip(new Tooltip("Configure tracker address"));
+    configureTrackerBtn.setTooltip(new Tooltip("Configure tracker"));
     indexFilesBtn.setTooltip(new Tooltip("Index your share files"));
   }
 

@@ -120,7 +120,7 @@ func (t *TreeIndex) getFileListInternal(node *TreeNode) []*diztl.FileMetadata {
 		if !n.isDir {
 			files = append(files, n.file)
 		} else {
-			files = append(t.getFileListInternal(n))
+			files = append(files, t.getFileListInternal(n)...)
 		}
 	}
 
