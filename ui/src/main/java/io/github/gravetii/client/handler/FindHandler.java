@@ -39,9 +39,7 @@ public class FindHandler {
                       r.getFilesList()
                           .forEach(
                               file -> {
-                                component
-                                    .getController()
-                                    .show(new FileResult(file, r.getNode()));
+                                component.getController().show(new FileResult(file, r.getNode()));
                               });
                     });
           } catch (Exception e) {

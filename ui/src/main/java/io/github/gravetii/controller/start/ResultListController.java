@@ -10,8 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.util.List;
-
 public class ResultListController implements FxController {
   private Stage stage;
   private StartScene scene;
@@ -55,37 +53,41 @@ public class ResultListController implements FxController {
   private void addDownloadMenuItem(TableRow<FileResult> row, ContextMenu menu) {
     MenuItem menuItem = new MenuItem("Download");
     menuItem.setOnAction(
-            event -> {
-              download(row.getItem());
-            });
+        event -> {
+          download(row.getItem());
+        });
     menu.getItems().add(menuItem);
   }
 
   private void addDowloadToFolderMenuItem(TableRow<FileResult> row, ContextMenu menu) {
     MenuItem downlodToFolder = new MenuItem("Download to...");
     downlodToFolder.setOnAction(
-            event -> {
-              String dir = Utils.chooseDir(stage);
-              if (dir != null) {
-                downloadToFolder(row.getItem(), dir);
-              }
-            });
+        event -> {
+          String dir = Utils.chooseDir(stage);
+          if (dir != null) {
+            downloadToFolder(row.getItem(), dir);
+          }
+        });
     menu.getItems().add(downlodToFolder);
   }
 
   private void addBrowseFileListMenuItem(TableRow<FileResult> row, ContextMenu menu) {
     MenuItem browseFileList = new MenuItem("Browse file list");
-    browseFileList.setOnAction(event -> {
-      CommunicationClient.get().getFileList(scene, row.getItem().getSource(), row.getItem().getFile());
-    });
+    browseFileList.setOnAction(
+        event -> {
+          CommunicationClient.get()
+              .getFileList(scene, row.getItem().getSource(), row.getItem().getFile());
+        });
     menu.getItems().add(browseFileList);
   }
 
   private void addDownloadFileListMenuItem(TableRow<FileResult> row, ContextMenu menu) {
     MenuItem downloadFileList = new MenuItem("Download file list");
-    downloadFileList.setOnAction(event -> {
-      CommunicationClient.get().downloadFileList(scene, row.getItem().getSource(), row.getItem().getFile());
-    });
+    downloadFileList.setOnAction(
+        event -> {
+          CommunicationClient.get()
+              .downloadFileList(scene, row.getItem().getSource(), row.getItem().getFile());
+        });
     menu.getItems().add(downloadFileList);
   }
 

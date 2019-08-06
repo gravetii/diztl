@@ -78,10 +78,11 @@ public class QuickOptionsController implements FxController {
             true,
             yes,
             no);
-    yes.setOnAction(e -> {
-      index();
-      alert.close();
-    });
+    yes.setOnAction(
+        e -> {
+          index();
+          alert.close();
+        });
     alert.setAnimation(JFXAlertAnimation.TOP_ANIMATION);
     alert.show();
   }

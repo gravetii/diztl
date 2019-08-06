@@ -10,7 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GetFileListHandler {
-  private static final Logger logger = LoggerFactory.getLogger(GetFileListHandler.class.getCanonicalName());
+  private static final Logger logger =
+      LoggerFactory.getLogger(GetFileListHandler.class.getCanonicalName());
 
   private StartScene scene;
   private Diztl.Node node;
@@ -24,19 +25,22 @@ public class GetFileListHandler {
 
   public void process(Connection connection) {
     ResultListComponent component = scene.addNewFileListTab(file);
-    Diztl.FetchFileListReq req = Diztl.FetchFileListReq.newBuilder().setDir(file.getDir()).setNode(node).build();
+    Diztl.FetchFileListReq req =
+        Diztl.FetchFileListReq.newBuilder().setDir(file.getDir()).setNode(node).build();
     ListenableFuture<Diztl.FetchFileListResp> f = connection.getFutureStub().fetchFileList(req);
-    f.addListener(() -> {
-      try {
-        Diztl.FetchFileListResp resp = f.get();
-        resp.getFilesList().forEach(
-                r -> {
-                  component.getController().show(new FileResult(r, node));
-                }
-        );
-      } catch (Exception e) {
-        logger.error("Error while getting file list from node {} -", node.getIp(), e);
-      }
-    }, ExecutionHandler.get());
+    f.addListener(
+        () -> {
+          try {
+            Diztl.FetchFileListResp resp = f.get();
+            resp.getFilesList()
+                .forEach(
+                    r -> {
+                      component.getController().show(new FileResult(r, node));
+                    });
+          } catch (Exception e) {
+            logger.error("Error while getting file list from node {} -", node.getIp(), e);
+          }
+        },
+        ExecutionHandler.get());
   }
 }
