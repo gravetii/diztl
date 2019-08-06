@@ -1,8 +1,16 @@
 package io.github.gravetii.util;
 
+import com.jfoenix.animation.alert.JFXAlertAnimation;
+import com.jfoenix.controls.JFXAlert;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialogLayout;
 import io.github.gravetii.gen.Diztl;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -49,5 +57,26 @@ public class Utils {
 
   public static void addGlobalStylesheet(Region region) {
     region.getStylesheets().add(GLOBAL_STYLESHEET);
+  }
+
+  public static JFXAlert<Void> booleanAlert(Stage stage, String heading, boolean overlayClose, Button yes, Button no) {
+    JFXDialogLayout layout = new JFXDialogLayout();
+    Utils.addGlobalStylesheet(layout);
+    layout.setHeading(new Label(heading));
+    JFXAlert<Void> alert = new JFXAlert<>(stage);
+    alert.setOverlayClose(overlayClose);
+    yes.setId("okBtn");
+    yes.setDefaultButton(true);
+    no.setId("cancelBtn");
+    no.setCancelButton(true);
+    no.setOnAction(event -> alert.close());
+    ButtonBar bar = new ButtonBar();
+    bar.getButtons().add(yes);
+    bar.getButtons().add(no);
+    bar.setId("btnBar");
+    layout.setActions(bar);
+    alert.setContent(layout);
+    alert.initModality(Modality.APPLICATION_MODAL);
+    return alert;
   }
 }

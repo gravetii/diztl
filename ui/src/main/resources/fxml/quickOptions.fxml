@@ -19,9 +19,9 @@
                   <FontAwesomeIconView glyphName="DESKTOP" size="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                </graphic>
             </JFXButton>
-            <JFXButton minWidth="26.0" mnemonicParsing="false" prefHeight="31.0">
+            <JFXButton fx:id="indexFilesBtn" minWidth="26.0" mnemonicParsing="false" onAction="#indexFiles" prefHeight="31.0">
                <graphic>
-                  <FontAwesomeIconView glyphName="ROCKET" size="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <FontAwesomeIconView glyphName="REFRESH" size="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                </graphic>
             </JFXButton>
          </buttons>

@@ -16,7 +16,7 @@ public class StartScene extends FxScene {
   private SearchLogScene searchLogScene;
   private DownloadResultScene downloadResultScene;
 
-  public StartScene(Stage stage) throws Exception {
+  public StartScene(Stage stage) {
     super(stage, new SplitPane());
     searchLogScene = new SearchLogScene(stage, this);
     downloadResultScene = new DownloadResultScene(stage);
