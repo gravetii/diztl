@@ -12,6 +12,7 @@ import (
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/keeper"
 	"github.com/gravetii/diztl/shutdown"
+	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 
 	"github.com/gravetii/diztl/diztl"
@@ -298,11 +299,37 @@ func (s *NodeService) Index(request *diztl.IndexReq, stream diztl.DiztlService_I
 	}()
 
 	if err := s.Indexer.Index(paths); err != nil {
-		logger.Errorf("Error while indexing files: %v", err)
+		logger.Errorf("Error while indexing files: %v\n", err)
 		return err
 	}
 
 	return nil
+}
+
+// FetchFileList is invoked by the frontend to fetch the file list for the given file from another node.
+func (s *NodeService) FetchFileList(ctx context.Context, request *diztl.FetchFileListReq) (*diztl.FetchFileListResp, error) {
+	c, cancel := context.WithTimeout(context.Background(), 4*time.Second)
+	defer cancel()
+	client, err := s.nk.GetConnection(request.GetNode())
+	if err != nil {
+		return nil, err
+	}
+
+	r := &diztl.GetFileListReq{Source: s.node, File: request.GetFile()}
+	resp, err := client.GetFileList(c, r)
+	if err != nil {
+		logger.Errorf("Couldn't fetch file list from node %v - %v", request.GetNode(), err)
+		return nil, errors.Wrap(err, "Couldn't fetch file list from node")
+	}
+
+	return &diztl.FetchFileListResp{Files: resp.GetFiles()}, nil
+}
+
+// GetFileList returns all the indexed files in the parent folder of the given file.
+func (s *NodeService) GetFileList(ctx context.Context, request *diztl.GetFileListReq) (*diztl.GetFileListResp, error) {
+	logger.Infof("Got GetFileList call from %s for file %v\n", request.GetSource(), dir.GetFilePath(request.GetFile()))
+	files := s.Indexer.GetFileList(request.GetFile())
+	return &diztl.GetFileListResp{Files: files}, nil
 }
 
 // Close closes down the node. This call is invoked by the front-end after receiving an app shutdown signal.

@@ -25,6 +25,10 @@ service DiztlService {
     }
     rpc Register(RegisterReq) returns (RegisterResp) {
     }
+    rpc FetchFileList(FetchFileListReq) returns (FetchFileListResp) {
+    }
+    rpc GetFileList(GetFileListReq) returns (GetFileListResp) {
+    }
     rpc Close(CloseReq) returns (CloseResp) {
     }
 }
@@ -231,4 +235,22 @@ message TypeConstraint {
 message FileConstraint {
     SizeConstraint csize = 1;
     TypeConstraint ctype = 2;
+}
+
+message FetchFileListReq {
+    Node node = 1;
+    FileMetadata file = 2;
+}
+
+message FetchFileListResp {
+    repeated FileMetadata files = 1;
+}
+
+message GetFileListReq {
+    FileMetadata file = 1;
+    Node source = 2;
+}
+
+message GetFileListResp {
+    repeated FileMetadata files = 1;
 }

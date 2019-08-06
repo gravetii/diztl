@@ -101,6 +101,32 @@ func (t *TreeIndex) validate() error {
 	return nil
 }
 
+func (t *TreeIndex) getFileList(path string) []*diztl.FileMetadata {
+	tokens := dir.Split(path)
+	parent := t.root
+	for _, token := range tokens {
+		if node, exists := parent.children[token]; exists {
+			parent = node
+		}
+	}
+
+	files := t.getFileListInternal(parent)
+	return files
+}
+
+func (t *TreeIndex) getFileListInternal(node *TreeNode) []*diztl.FileMetadata {
+	var files []*diztl.FileMetadata
+	for _, n := range node.children {
+		if !n.isDir {
+			files = append(files, n.file)
+		} else {
+			files = append(t.getFileListInternal(n))
+		}
+	}
+
+	return files
+}
+
 func (t *TreeIndex) search(query string, constraint *diztl.FileConstraint) []*diztl.FileMetadata {
 	return traverse(t.root, query, constraint)
 }

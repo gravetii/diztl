@@ -54,6 +54,7 @@ public class ResultListController implements FxController {
     ContextMenu menu = new ContextMenu();
     MenuItem downloadMenuItem = new MenuItem("Download");
     MenuItem downloadToFolderMenuItem = new MenuItem("Download to...");
+    MenuItem getFileListMenuItem = new MenuItem("Get file list");
     downloadMenuItem.setOnAction(
         event -> {
           download(row.getItem());
@@ -65,9 +66,13 @@ public class ResultListController implements FxController {
             downloadToFolder(row.getItem(), dir);
           }
         });
+    getFileListMenuItem.setOnAction(event -> {
+      CommunicationClient.get().getFileList(row.getItem().getSource(), row.getItem().getFile());
+    });
 
     menu.getItems().add(downloadMenuItem);
     menu.getItems().add(downloadToFolderMenuItem);
+    menu.getItems().add(getFileListMenuItem);
     row.contextMenuProperty()
         .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
   }
