@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"os"
 	"time"
 
 	"github.com/gravetii/diztl/addr"
@@ -27,12 +26,13 @@ type NodeService struct {
 	Indexer *indexer.FileIndexer
 	t       diztl.TrackerServiceClient
 	nk      *keeper.NodeKeeper
+	m       *grpc.Server
 }
 
 // NewNode returns an instance of the Node Service.
-func NewNode() *NodeService {
+func NewNode(m *grpc.Server) *NodeService {
 	f := indexer.NewFileIndexer()
-	s := &NodeService{Indexer: f}
+	s := &NodeService{Indexer: f, m: m}
 	return s
 }
 
@@ -75,11 +75,6 @@ func (s *NodeService) disconnect() error {
 
 	fmt.Println("\nBye!")
 	return nil
-}
-
-// OnShutdown defines actions to perform on node shutdown.
-func (s *NodeService) OnShutdown() {
-	os.Exit(0)
 }
 
 // Register registers the node to the tracker provided in the request.
@@ -334,8 +329,13 @@ func (s *NodeService) GetFileList(ctx context.Context, request *diztl.GetFileLis
 
 // Close closes down the node. This call is invoked by the front-end after receiving an app shutdown signal.
 func (s *NodeService) Close(ctx context.Context, request *diztl.CloseReq) (*diztl.CloseResp, error) {
-	s.nk.Close()
-	s.disconnect()
 	defer shutdown.SendSignal()
 	return &diztl.CloseResp{Message: "Node successfully shutdown"}, nil
+}
+
+// OnShutdown defines actions to perform on node shutdown.
+func (s *NodeService) OnShutdown() {
+	s.nk.Close()
+	s.disconnect()
+	s.m.GracefulStop()
 }

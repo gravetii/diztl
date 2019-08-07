@@ -2,9 +2,9 @@ package service
 
 import (
 	"context"
-	"os"
 
 	"github.com/gravetii/diztl/conf"
+	"google.golang.org/grpc"
 
 	"github.com/gravetii/diztl/shutdown"
 
@@ -16,12 +16,13 @@ import (
 // TrackerService : Implements the tracker server interface definition.
 type TrackerService struct {
 	nk *keeper.NodeKeeper
+	m  *grpc.Server
 }
 
 // NewTracker : Returns an instance of the Tracker Service.
-func NewTracker() *TrackerService {
+func NewTracker(m *grpc.Server) *TrackerService {
 	nk := keeper.New()
-	tracker := &TrackerService{nk: nk}
+	tracker := &TrackerService{nk, m}
 	shutdown.Listen(tracker)
 	return tracker
 }
@@ -85,6 +86,5 @@ func (s *TrackerService) ask(request *diztl.SearchReq, node *diztl.Node, resp ch
 // OnShutdown : Actions to perform on shutdown.
 func (s *TrackerService) OnShutdown() {
 	s.nk.Close()
-	logger.Infof("Tracker shut down successfully.\n")
-	os.Exit(0)
+	s.m.GracefulStop()
 }

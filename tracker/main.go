@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net"
 
 	"github.com/gravetii/diztl/addr"
@@ -23,13 +24,14 @@ func main() {
 
 	s := grpc.NewServer()
 	ip := addr.LocalIP()
-	diztl.RegisterTrackerServiceServer(s, service.NewTracker())
+	diztl.RegisterTrackerServiceServer(s, service.NewTracker(s))
 	logger.Infof("Tracker is up and running - %s:%s\n", ip, conf.TrackerPort())
+	fmt.Printf("Tracker is running on %s:%s\n", ip, conf.TrackerPort())
 	serr := s.Serve(lis)
 	if serr != nil {
 		logger.Errorf("Failed to serve: %v\n", err)
 		return
 	}
 
-	logger.Infof("Shutting down tracker server.\n")
+	logger.Infof("Tracker server successfully shut down.\n")
 }
