@@ -15,6 +15,9 @@
 
 A peer-to-peer file discovery and sharing tool for LANs written in Go!
 
+<a href="https://www.youtube.com/watch?feature=player_embedded&v=yqFLtRULkmY"><img src="http://img.youtube.com/vi/yqFLtRULkmY/2.jpg" alt="Diztl video" width="650" height="380" /></a>
+
+
 ## Getting started
 The diztl project is written in Go with the frontend implementation in Java using JavaFX. To get started, run the following commands:
 ```
