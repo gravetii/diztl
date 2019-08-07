@@ -27,7 +27,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	node := service.NewNode()
+	node := service.NewNode(s)
 	diztl.RegisterDiztlServiceServer(s, node)
 	node.Init()
 	logger.Infof("Node %s is now up...\n", addr.LocalIP())
@@ -37,4 +37,6 @@ func main() {
 		logger.Errorf("Failed to serve - %v\n", err)
 		return
 	}
+
+	logger.Infof("Node successfully shut down.\n")
 }
