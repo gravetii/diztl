@@ -85,6 +85,7 @@ func (obj *Writer) verifyChecksum() bool {
 	c := obj.metadata.Hash.Checksum
 	hash, err := Hash(obj.f.Name())
 	if err != nil {
+		logger.Errorf("Couldn't verify file's checksum: %s - %v\n", obj.f.Name(), err)
 		return false
 	}
 
