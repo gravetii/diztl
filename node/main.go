@@ -57,7 +57,7 @@ func startUI() {
 	widgets.QApplication_Exec()
 }
 
-func main() {
+func startServer() {
 	// Execute the initial startup steps
 	startup.Execute()
 
@@ -80,4 +80,8 @@ func main() {
 	}
 
 	logger.Infof("Node successfully shut down.\n")
+}
+
+func main() {
+	startServer()
 }
