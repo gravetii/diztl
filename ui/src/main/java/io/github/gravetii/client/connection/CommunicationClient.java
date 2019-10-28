@@ -11,8 +11,6 @@ import io.grpc.ManagedChannelBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
 public class CommunicationClient {
   private static final Logger logger =
       LoggerFactory.getLogger(CommunicationClient.class.getCanonicalName());
@@ -67,21 +65,12 @@ public class CommunicationClient {
     return new UserDirsHandler().process(connection);
   }
 
-  public void updateUserDirs(List<String> share, String downloads, StartScene scene) {
-    new UpdateUserDirsHandler(share, downloads, scene).process(connection);
-  }
-
   public String getTracker() {
     return new GetTrackerHandler().process(connection);
   }
 
   public void updateTracker(String host, StartScene scene) {
     new UpdateTrackerHandler(host, scene).process(connection);
-  }
-
-  public void index(StartScene scene) {
-    UserDirs dirs = getUserDirs();
-    new FileIndexHandler(scene, dirs).process(connection);
   }
 
   public void getFileList(StartScene scene, Diztl.Node node, FileMetadata file) {

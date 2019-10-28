@@ -22,11 +22,14 @@ const (
 	configFile = "node-config.yml"
 )
 
+var node *service.NodeService
+
 // QmlBridge to pass data back and forth with the frontend.
 type QmlBridge struct {
 	core.QObject
 	_ func()            `constructor:"init"`
 	_ func(term string) `slot:"search"`
+	_ func()            `slot:"index"`
 }
 
 func (qmlBridge *QmlBridge) init() {
@@ -37,7 +40,11 @@ func (qmlBridge *QmlBridge) configure() {
 	// connect the search slot whenever the user searches
 	// for files with a query term.
 	qmlBridge.ConnectSearch(func(term string) {
-		fmt.Println("Searching for string: ", term)
+		fmt.Println("Searching for string:", term)
+	})
+
+	qmlBridge.ConnectIndex(func() {
+		go node.Index()
 	})
 }
 
@@ -69,7 +76,7 @@ func startServer() {
 	}
 
 	s := grpc.NewServer()
-	node := service.NewNode(s)
+	node = service.NewNode(s)
 	diztl.RegisterDiztlServiceServer(s, node)
 	node.Init()
 	logger.Infof("Node %s is now up...\n", addr.LocalIP())

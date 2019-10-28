@@ -51,7 +51,6 @@ public class App extends Application {
         ExecutionHandler.get()
             .submit(
                 () -> {
-                  CommunicationClient.get().index(scene);
                   CommunicationClient.get().register(scene);
                 });
   }

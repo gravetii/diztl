@@ -21,8 +21,6 @@ service DiztlService {
     }
     rpc UpdateTracker(UpdateTrackerReq) returns (UpdateTrackerResp) {
     }
-    rpc Index(IndexReq) returns (stream IndexResp) {
-    }
     rpc Register(RegisterReq) returns (RegisterResp) {
     }
     rpc FetchFileList(FetchFileListReq) returns (FetchFileListResp) {
@@ -195,13 +193,6 @@ message UpdateTrackerReq {
 
 message UpdateTrackerResp {
     int32 code = 1;
-}
-
-message IndexReq {
-}
-
-message IndexResp {
-    string fpath = 1;
 }
 
 message CloseReq {

@@ -8,12 +8,20 @@ Rectangle {
     border.color: "#D3D3D3"
     border.width: 1
     TextArea {
+        id: logTextArea
         readOnly: true
         textMargin: 10, 10, 10, 10
-        text: "Welcome to diztl!"
+        text: "Welcome to diztl!\n\n"
         selectByMouse: true
         color: "#000000"
         background: null
         selectionColor: "steelblue"
     }
+
+    Component.onCompleted: onComplete()
+    function onComplete() {
+        qmlBridge.index()
+        logTextArea.append("Finished indexing all shared files\n")
+    }
+
 }

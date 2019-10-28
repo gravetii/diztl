@@ -63,10 +63,6 @@ public class QuickOptionsController implements FxController {
     scene.show();
   }
 
-  private void index() {
-    CommunicationClient.get().index(scene);
-  }
-
   @FXML
   private void indexFiles(ActionEvent event) {
     JFXButton yes = new JFXButton("Yes");
@@ -80,7 +76,7 @@ public class QuickOptionsController implements FxController {
             no);
     yes.setOnAction(
         e -> {
-          index();
+          logger.debug("Removed call to index here...");
           alert.close();
         });
     alert.setAnimation(JFXAlertAnimation.TOP_ANIMATION);

@@ -315,38 +315,6 @@ public final class DiztlServiceGrpc {
      return getUpdateTrackerMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.IndexReq,
-      io.github.gravetii.gen.Diztl.IndexResp> getIndexMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "Index",
-      requestType = io.github.gravetii.gen.Diztl.IndexReq.class,
-      responseType = io.github.gravetii.gen.Diztl.IndexResp.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.IndexReq,
-      io.github.gravetii.gen.Diztl.IndexResp> getIndexMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.IndexReq, io.github.gravetii.gen.Diztl.IndexResp> getIndexMethod;
-    if ((getIndexMethod = DiztlServiceGrpc.getIndexMethod) == null) {
-      synchronized (DiztlServiceGrpc.class) {
-        if ((getIndexMethod = DiztlServiceGrpc.getIndexMethod) == null) {
-          DiztlServiceGrpc.getIndexMethod = getIndexMethod = 
-              io.grpc.MethodDescriptor.<io.github.gravetii.gen.Diztl.IndexReq, io.github.gravetii.gen.Diztl.IndexResp>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "DiztlService", "Index"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.gen.Diztl.IndexReq.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.gen.Diztl.IndexResp.getDefaultInstance()))
-                  .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Index"))
-                  .build();
-          }
-        }
-     }
-     return getIndexMethod;
-  }
-
   private static volatile io.grpc.MethodDescriptor<io.github.gravetii.gen.Diztl.RegisterReq,
       io.github.gravetii.gen.Diztl.RegisterResp> getRegisterMethod;
 
@@ -567,13 +535,6 @@ public final class DiztlServiceGrpc {
 
     /**
      */
-    public void index(io.github.gravetii.gen.Diztl.IndexReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.IndexResp> responseObserver) {
-      asyncUnimplementedUnaryCall(getIndexMethod(), responseObserver);
-    }
-
-    /**
-     */
     public void register(io.github.gravetii.gen.Diztl.RegisterReq request,
         io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.RegisterResp> responseObserver) {
       asyncUnimplementedUnaryCall(getRegisterMethod(), responseObserver);
@@ -665,13 +626,6 @@ public final class DiztlServiceGrpc {
                 io.github.gravetii.gen.Diztl.UpdateTrackerReq,
                 io.github.gravetii.gen.Diztl.UpdateTrackerResp>(
                   this, METHODID_UPDATE_TRACKER)))
-          .addMethod(
-            getIndexMethod(),
-            asyncServerStreamingCall(
-              new MethodHandlers<
-                io.github.gravetii.gen.Diztl.IndexReq,
-                io.github.gravetii.gen.Diztl.IndexResp>(
-                  this, METHODID_INDEX)))
           .addMethod(
             getRegisterMethod(),
             asyncUnaryCall(
@@ -796,14 +750,6 @@ public final class DiztlServiceGrpc {
 
     /**
      */
-    public void index(io.github.gravetii.gen.Diztl.IndexReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.IndexResp> responseObserver) {
-      asyncServerStreamingCall(
-          getChannel().newCall(getIndexMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
     public void register(io.github.gravetii.gen.Diztl.RegisterReq request,
         io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.RegisterResp> responseObserver) {
       asyncUnaryCall(
@@ -916,14 +862,6 @@ public final class DiztlServiceGrpc {
     public io.github.gravetii.gen.Diztl.UpdateTrackerResp updateTracker(io.github.gravetii.gen.Diztl.UpdateTrackerReq request) {
       return blockingUnaryCall(
           getChannel(), getUpdateTrackerMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public java.util.Iterator<io.github.gravetii.gen.Diztl.IndexResp> index(
-        io.github.gravetii.gen.Diztl.IndexReq request) {
-      return blockingServerStreamingCall(
-          getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1071,11 +1009,10 @@ public final class DiztlServiceGrpc {
   private static final int METHODID_UPDATE_USER_DIRS = 6;
   private static final int METHODID_GET_TRACKER = 7;
   private static final int METHODID_UPDATE_TRACKER = 8;
-  private static final int METHODID_INDEX = 9;
-  private static final int METHODID_REGISTER = 10;
-  private static final int METHODID_FETCH_FILE_LIST = 11;
-  private static final int METHODID_GET_FILE_LIST = 12;
-  private static final int METHODID_CLOSE = 13;
+  private static final int METHODID_REGISTER = 9;
+  private static final int METHODID_FETCH_FILE_LIST = 10;
+  private static final int METHODID_GET_FILE_LIST = 11;
+  private static final int METHODID_CLOSE = 12;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1129,10 +1066,6 @@ public final class DiztlServiceGrpc {
         case METHODID_UPDATE_TRACKER:
           serviceImpl.updateTracker((io.github.gravetii.gen.Diztl.UpdateTrackerReq) request,
               (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.UpdateTrackerResp>) responseObserver);
-          break;
-        case METHODID_INDEX:
-          serviceImpl.index((io.github.gravetii.gen.Diztl.IndexReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.gen.Diztl.IndexResp>) responseObserver);
           break;
         case METHODID_REGISTER:
           serviceImpl.register((io.github.gravetii.gen.Diztl.RegisterReq) request,
@@ -1220,7 +1153,6 @@ public final class DiztlServiceGrpc {
               .addMethod(getUpdateUserDirsMethod())
               .addMethod(getGetTrackerMethod())
               .addMethod(getUpdateTrackerMethod())
-              .addMethod(getIndexMethod())
               .addMethod(getRegisterMethod())
               .addMethod(getFetchFileListMethod())
               .addMethod(getGetFileListMethod())

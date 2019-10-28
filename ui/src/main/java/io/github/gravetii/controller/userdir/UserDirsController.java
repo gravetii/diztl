@@ -11,10 +11,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public class UserDirsController implements FxController {
+  private static final Logger logger = LoggerFactory.getLogger(UserDirsController.class.getCanonicalName());
+
   private Stage stage;
   private StartScene scene;
   private Set<String> dirs = new HashSet<>();
@@ -90,7 +94,7 @@ public class UserDirsController implements FxController {
   public void ok(ActionEvent event) {
     List<String> share = shareChanged ? new ArrayList<>(dirs) : Collections.emptyList();
     String out = downloadsChanged ? downloadsDir.getItems().get(0).getText() : "";
-    CommunicationClient.get().updateUserDirs(share, out, scene);
+    logger.debug("Removed call to updateUserDirs here in CommunicationClient...");
     stage.close();
   }
 

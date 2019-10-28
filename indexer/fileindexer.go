@@ -21,9 +21,9 @@ func NewFileIndexer() *FileIndexer {
 
 // Index indexes all the files in the user-configured shared folders,
 // making them available for discovery by peers.
-func (f *FileIndexer) Index(paths chan string) error {
+func (f *FileIndexer) Index() error {
 	logger.Debugf("Started file indexing process.\n")
-	if err := f.dirwalk(paths); err != nil {
+	if err := f.dirwalk(); err != nil {
 		return err
 	}
 
@@ -31,29 +31,28 @@ func (f *FileIndexer) Index(paths chan string) error {
 	return nil
 }
 
-func (f *FileIndexer) dirwalk(paths chan string) error {
+func (f *FileIndexer) dirwalk() error {
 	dirs, err := dir.GetShareDirs()
 	if err != nil {
 		return err
 	}
 
 	for _, dir := range dirs {
-		if err := f.filewalk(dir, paths); err != nil {
+		if err := f.filewalk(dir); err != nil {
 			return err
 		}
 	}
 
-	close(paths)
 	return nil
 }
 
 // Performs a recursive file walk of the given directory path.
-func (f *FileIndexer) filewalk(dir string, paths chan string) error {
+func (f *FileIndexer) filewalk(dir string) error {
 	logger.Debugf("Performing filewalk for dir %s\n", dir)
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if !info.IsDir() {
 			f.add(path, info)
-			paths <- path
+			logger.Infof("Finished indexing file path: %s\n", path)
 		}
 
 		return nil
