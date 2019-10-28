@@ -83,5 +83,7 @@ func startServer() {
 }
 
 func main() {
-	startServer()
+	go startServer()
+	// Start the UI in the main thread because...event handling.
+	startUI()
 }
