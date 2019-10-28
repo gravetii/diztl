@@ -34,13 +34,9 @@ type conf struct {
 
 var config *conf
 
-func init() {
-	// Set the config file for viper.
-	viper.SetConfigFile("config.yml")
-}
-
-// Load loads the app-wide configuration or returns an error if any.
-func Load() error {
+// Load loads the specified configuration file, returning an error if any.
+func Load(fpath string) error {
+	viper.SetConfigFile(fpath)
 	err := load()
 	if err != nil {
 		return err

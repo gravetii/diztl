@@ -13,7 +13,15 @@ import (
 	"google.golang.org/grpc"
 )
 
+const (
+	configFile = "tracker-config.yml"
+)
+
 func main() {
+	if err := conf.Load(configFile); err != nil {
+		panic(err)
+	}
+
 	// Execute the initial startup steps
 	startup.Execute()
 

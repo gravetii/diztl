@@ -2,12 +2,24 @@ package main
 
 import (
 	"fmt"
+	"net"
 	"os"
 
+	"github.com/gravetii/diztl/addr"
+	"github.com/gravetii/diztl/conf"
+	"github.com/gravetii/diztl/diztl"
+	"github.com/gravetii/diztl/service"
+	"github.com/gravetii/diztl/startup"
+	"github.com/gravetii/logger"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/quick"
 	"github.com/therecipe/qt/quickcontrols2"
 	"github.com/therecipe/qt/widgets"
+	"google.golang.org/grpc"
+)
+
+const (
+	configFile = "node-config.yml"
 )
 
 // QmlBridge to pass data back and forth with the frontend.
@@ -46,33 +58,36 @@ func startUI() {
 	widgets.QApplication_Exec()
 }
 
-// func startServer() {
-// 	// Execute the initial startup steps
-// 	startup.Execute()
+func startServer() {
+	// Execute the initial startup steps
+	startup.Execute()
 
-// 	lis, err := net.Listen("tcp", ":"+conf.NodePort())
-// 	if err != nil {
-// 		logger.Errorf("Unable to start node - %v\n", err)
-// 		return
-// 	}
+	lis, err := net.Listen("tcp", ":"+conf.NodePort())
+	if err != nil {
+		logger.Errorf("Unable to start node - %v\n", err)
+		return
+	}
 
-// 	s := grpc.NewServer()
-// 	node := service.NewNode(s)
-// 	diztl.RegisterDiztlServiceServer(s, node)
-// 	node.Init()
-// 	logger.Infof("Node %s is now up...\n", addr.LocalIP())
-// 	fmt.Printf("You are now online!\n")
-// 	serr := s.Serve(lis)
-// 	if serr != nil {
-// 		logger.Errorf("Failed to serve - %v\n", err)
-// 		return
-// 	}
+	s := grpc.NewServer()
+	node := service.NewNode(s)
+	diztl.RegisterDiztlServiceServer(s, node)
+	node.Init()
+	logger.Infof("Node %s is now up...\n", addr.LocalIP())
+	fmt.Printf("You are now online!\n")
+	serr := s.Serve(lis)
+	if serr != nil {
+		logger.Errorf("Failed to serve - %v\n", err)
+		return
+	}
 
-// 	logger.Infof("Node successfully shut down.\n")
-// }
+	logger.Infof("Node successfully shut down.\n")
+}
 
 func main() {
-	// go startServer()
-	// Start the UI in the main thread because...event handling.
+	if err := conf.Load(configFile); err != nil {
+		panic(err)
+	}
+
+	go startServer()
 	startUI()
 }

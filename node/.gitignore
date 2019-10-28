@@ -1,3 +1,5 @@
 deploy/
 moc*.*
 rcc*.*
+
+node-config.yml

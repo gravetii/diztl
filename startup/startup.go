@@ -16,11 +16,6 @@ const (
 
 // Execute runs common startup steps for trackers and nodes.
 func Execute() {
-	// Load configuration.
-	if err := conf.Load(); err != nil {
-		panic(err)
-	}
-
 	// Initialize the logger.
 	if err := loadLogger(); err != nil {
 		panic(err)
