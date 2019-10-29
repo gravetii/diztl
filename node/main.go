@@ -24,7 +24,7 @@ const (
 
 var node *service.NodeService
 
-// QmlBridge to pass data back and forth with the frontend.
+// QmlBridge to pass data back and forth to the frontend.
 type QmlBridge struct {
 	core.QObject
 	// QmlBridge constructor
@@ -38,6 +38,7 @@ type QmlBridge struct {
 	// signals
 	_ func(fpath string) `signal:"FileIndexed"`
 	_ func()             `signal:"IndexComplete"`
+	_ func(addr string)  `signal:"registerToTrackerComplete"`
 }
 
 func (qmlBridge *QmlBridge) init() {
@@ -62,7 +63,9 @@ func (qmlBridge *QmlBridge) init() {
 	// connect the registerToTracker slot to register node to the tracker.
 	qmlBridge.ConnectRegisterToTracker(func() {
 		fmt.Println("Registering node to tracker...")
-		node.Register()
+		// todo: handle error here...
+		addr, _ := node.Register()
+		qmlBridge.RegisterToTrackerComplete(addr)
 	})
 
 	// connect the search slot whenever the user searches

@@ -77,10 +77,10 @@ func (s *NodeService) disconnect() error {
 }
 
 // Register registers the node to the tracker specified in the configuration.
-func (s *NodeService) Register() error {
+func (s *NodeService) Register() (string, error) {
 	tracker := conf.TrackerHost() + ":" + conf.TrackerPort()
 	if err := s.connectToTracker(tracker); err != nil {
-		return err
+		return "", err
 	}
 
 	request := &diztl.RegisterReq{Self: &diztl.Node{Ip: addr.LocalIP()}}
@@ -89,13 +89,13 @@ func (s *NodeService) Register() error {
 	resp, err := s.t.Register(c, request)
 	if err != nil {
 		logger.Errorf("Error while registering to tracker - %v\n", err)
-		return err
+		return "", err
 	}
 
 	n := resp.GetNode()
 	s.node = &diztl.Node{Ip: n.GetIp(), Id: n.GetId()}
 	logger.Infof("Successfully registered to tracker - %v\n", s.node)
-	return nil
+	return conf.TrackerHost(), nil
 }
 
 // Search - The tracker invokes the search call on all the nodes when it broadcasts a search request from another node.

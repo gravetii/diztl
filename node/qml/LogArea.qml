@@ -50,8 +50,11 @@ Rectangle {
             addText("Finished indexing file - " + fpath)
         }
         onIndexComplete: {
-            addText("Finished indexing all shared files.")
+            addTextn("Finished indexing all shared files.")
             qmlBridge.registerToTracker()
+        }
+        onRegisterToTrackerComplete: {
+            addTextn("Successfully registered to tracker at " + addr)
         }
     }
 
