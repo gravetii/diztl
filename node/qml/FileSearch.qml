@@ -20,8 +20,15 @@ Rectangle {
                 color: "#000000"
                 selectionColor: "steelblue"
                 selectByMouse: true
+                Keys.onReturnPressed: {
+                    searchBtn.search()
+                }
+                Keys.onEnterPressed: {
+                    searchBtn.search()
+                }
             }
             Button {
+                id: searchBtn
                 width: 80
                 height: 45
                 text: "Go!"
