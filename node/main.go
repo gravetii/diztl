@@ -24,57 +24,6 @@ const (
 
 var node *service.NodeService
 
-// QmlBridge to pass data back and forth to the frontend.
-type QmlBridge struct {
-	core.QObject
-	// QmlBridge constructor
-	_ func() `constructor:"init"`
-
-	// slots
-	_ func()            `slot:"index"`
-	_ func()            `slot:"registerToTracker"`
-	_ func(term string) `slot:"search"`
-
-	// signals
-	_ func(fpath string) `signal:"FileIndexed"`
-	_ func()             `signal:"IndexComplete"`
-	_ func(addr string)  `signal:"registerToTrackerComplete"`
-}
-
-func (qmlBridge *QmlBridge) init() {
-	logger.Infof("Initializing QmlBridge...")
-
-	// connect the index slot to index all the shared files.
-	qmlBridge.ConnectIndex(func() {
-		paths := make(chan string)
-		go func() {
-			for p := range paths {
-				// Notify frontend when a file is indexed.
-				qmlBridge.FileIndexed(p)
-			}
-
-			// Notify frontend when all shared files have been indexed.
-			qmlBridge.IndexComplete()
-		}()
-
-		go node.Index(paths)
-	})
-
-	// connect the registerToTracker slot to register node to the tracker.
-	qmlBridge.ConnectRegisterToTracker(func() {
-		fmt.Println("Registering node to tracker...")
-		// todo: handle error here...
-		addr, _ := node.Register()
-		qmlBridge.RegisterToTrackerComplete(addr)
-	})
-
-	// connect the search slot whenever the user searches
-	// for files with a query term.
-	qmlBridge.ConnectSearch(func(term string) {
-		fmt.Println("Searching for string:", term)
-	})
-}
-
 // Start the diztl UI.
 func startUI() {
 	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
@@ -85,6 +34,7 @@ func startUI() {
 	view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
 	view.SetTitle("Diztl")
 	var qmlBridge = NewQmlBridge(nil)
+	qmlBridge.configure(node)
 	view.RootContext().SetContextProperty("qmlBridge", qmlBridge)
 	view.SetSource(core.NewQUrl3("./qml/main.qml", 0))
 	view.Show()
