@@ -5,6 +5,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
 TabView {
+    id: mainTabView
     tabPosition: Qt.BottomEdge
     style: TabViewStyle {
         tabOverlap: 1
@@ -34,14 +35,6 @@ TabView {
         title: "log"
         LogArea {
             id: logArea
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-        }
-    }
-    Tab {
-        id: resultListTab
-        title: "Result list"
-        ResultList {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
