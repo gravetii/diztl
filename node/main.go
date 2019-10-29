@@ -27,9 +27,15 @@ var node *service.NodeService
 // QmlBridge to pass data back and forth with the frontend.
 type QmlBridge struct {
 	core.QObject
-	_ func()            `constructor:"init"`
+	// QmlBridge constructor
+	_ func() `constructor:"init"`
+
+	// slots
 	_ func(term string) `slot:"search"`
 	_ func()            `slot:"index"`
+
+	// signals
+	_ func(fpath string) `signal:"indexComplete"`
 }
 
 func (qmlBridge *QmlBridge) init() {
@@ -44,7 +50,13 @@ func (qmlBridge *QmlBridge) configure() {
 	})
 
 	qmlBridge.ConnectIndex(func() {
-		go node.Index()
+		paths := make(chan string)
+		go func() {
+			for p := range paths {
+				qmlBridge.IndexComplete(p)
+			}
+		}()
+		go node.Index(paths)
 	})
 }
 

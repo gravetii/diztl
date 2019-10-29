@@ -282,10 +282,10 @@ func (s *NodeService) GetTracker(ctx context.Context, request *diztl.GetTrackerR
 }
 
 // Index indexes all the files in the shared directories.
-func (s *NodeService) Index() error {
+func (s *NodeService) Index(paths chan string) error {
 	logger.Infof("Indexing shared files...\n")
 	s.clearIndex()
-	if err := s.Indexer.Index(); err != nil {
+	if err := s.Indexer.Index(paths); err != nil {
 		logger.Errorf("Error while indexing files: %v\n", err)
 		return err
 	}

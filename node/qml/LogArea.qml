@@ -10,6 +10,8 @@ Rectangle {
     TextArea {
         id: logTextArea
         readOnly: true
+        font.family: "Arial"
+        font.pixelSize: 13
         textMargin: 10, 10, 10, 10
         text: "Welcome to diztl!\n\n"
         selectByMouse: true
@@ -18,10 +20,35 @@ Rectangle {
         selectionColor: "steelblue"
     }
 
+    Flickable {
+        anchors.fill: parent
+        TextArea.flickable: logTextArea
+        ScrollBar.vertical: ScrollBar {}
+        ScrollBar.horizontal: ScrollBar {}
+    }
+
     Component.onCompleted: onComplete()
     function onComplete() {
         qmlBridge.index()
-        logTextArea.append("Finished indexing all shared files\n")
+    }
+
+    function addText(text) {
+        logTextArea.append(text)
+    }
+
+    function addTextn(text) {
+        logTextArea.append(text + "\n")
+    }
+    
+    function addTextnn(text) {
+        logTextArea.append(text + "\n\n")
+    }
+
+    Connections {
+        target: qmlBridge
+        onIndexComplete: {
+            addText("Finished indexing file - " + fpath)
+        }
     }
 
 }
