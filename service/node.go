@@ -99,13 +99,6 @@ func (s *NodeService) Register() error {
 	return nil
 }
 
-// UpdateTracker updates the details of the tracker in config.
-func (s *NodeService) UpdateTracker(ctx context.Context, request *diztl.UpdateTrackerReq) (*diztl.UpdateTrackerResp, error) {
-	logger.Debugf("Received update tracker request: %v\n", request)
-	conf.UpdateTracker(request.GetTracker())
-	return &diztl.UpdateTrackerResp{Code: 1}, nil
-}
-
 // Search - The tracker invokes the search call on all the nodes when it broadcasts a search request from another node.
 func (s *NodeService) Search(ctx context.Context, request *diztl.SearchReq) (*diztl.SearchResp, error) {
 	logger.Debugf("Received search request for %s from %v\n", request.GetQuery(), request.GetSource())
@@ -272,12 +265,6 @@ func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateU
 	logger.Infof("Finished updating user share dirs\n")
 	resp := diztl.UpdateUserDirsResp{Message: "Finished updating user share dirs"}
 	return &resp, nil
-}
-
-// GetTracker returns the tracker host.
-func (s *NodeService) GetTracker(ctx context.Context, request *diztl.GetTrackerReq) (*diztl.GetTrackerResp, error) {
-	logger.Infof("Got GetTracker call: %v\n", request)
-	return &diztl.GetTrackerResp{Tracker: conf.TrackerHost()}, nil
 }
 
 // Index indexes all the files in the shared directories.

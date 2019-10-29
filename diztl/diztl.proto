@@ -17,10 +17,6 @@ service DiztlService {
     }
     rpc UpdateUserDirs(UpdateUserDirsReq) returns (UpdateUserDirsResp) {
     }
-    rpc GetTracker(GetTrackerReq) returns (GetTrackerResp) {
-    }
-    rpc UpdateTracker(UpdateTrackerReq) returns (UpdateTrackerResp) {
-    }
     rpc FetchFileList(FetchFileListReq) returns (FetchFileListResp) {
     }
     rpc GetFileList(GetFileListReq) returns (GetFileListResp) {
@@ -176,21 +172,6 @@ message UpdateUserDirsReq {
 
 message UpdateUserDirsResp {
     string message = 1;
-}
-
-message GetTrackerReq {
-}
-
-message GetTrackerResp {
-    string tracker = 1;
-}
-
-message UpdateTrackerReq {
-    string tracker = 1;
-}
-
-message UpdateTrackerResp {
-    int32 code = 1;
 }
 
 message CloseReq {
