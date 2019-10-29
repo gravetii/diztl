@@ -35,27 +35,32 @@ type QmlBridge struct {
 	_ func()            `slot:"index"`
 
 	// signals
-	_ func(fpath string) `signal:"indexComplete"`
+	_ func(fpath string) `signal:"FileIndexed"`
+	_ func()             `signal:"IndexComplete"`
 }
 
 func (qmlBridge *QmlBridge) init() {
-	fmt.Println("Initializing QmlBridge...")
-}
+	logger.Infof("Initializing QmlBridge...")
 
-func (qmlBridge *QmlBridge) configure() {
 	// connect the search slot whenever the user searches
 	// for files with a query term.
 	qmlBridge.ConnectSearch(func(term string) {
 		fmt.Println("Searching for string:", term)
 	})
 
+	// connect the index slot to index all the shared files.
 	qmlBridge.ConnectIndex(func() {
 		paths := make(chan string)
 		go func() {
 			for p := range paths {
-				qmlBridge.IndexComplete(p)
+				// Notify frontend when a file is indexed.
+				qmlBridge.FileIndexed(p)
 			}
+
+			// Notify frontend when indexing completes.
+			qmlBridge.IndexComplete()
 		}()
+
 		go node.Index(paths)
 	})
 }
@@ -66,11 +71,10 @@ func startUI() {
 	widgets.NewQApplication(len(os.Args), os.Args)
 	quickcontrols2.QQuickStyle_SetStyle("Material")
 	view := quick.NewQQuickView(nil)
-	view.SetMinimumSize(core.NewQSize2(600, 300))
+	view.SetMinimumSize(core.NewQSize2(650, 400))
 	view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
 	view.SetTitle("Diztl")
 	var qmlBridge = NewQmlBridge(nil)
-	qmlBridge.configure()
 	view.RootContext().SetContextProperty("qmlBridge", qmlBridge)
 	view.SetSource(core.NewQUrl3("./qml/main.qml", 0))
 	view.Show()
@@ -78,9 +82,6 @@ func startUI() {
 }
 
 func startServer() {
-	// Execute the initial startup steps
-	startup.Execute()
-
 	lis, err := net.Listen("tcp", ":"+conf.NodePort())
 	if err != nil {
 		logger.Errorf("Unable to start node - %v\n", err)
@@ -107,6 +108,7 @@ func main() {
 		panic(err)
 	}
 
+	startup.Execute()
 	go startServer()
 	startUI()
 }

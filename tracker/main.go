@@ -22,7 +22,6 @@ func main() {
 		panic(err)
 	}
 
-	// Execute the initial startup steps
 	startup.Execute()
 
 	lis, err := net.Listen("tcp", ":"+conf.TrackerPort())

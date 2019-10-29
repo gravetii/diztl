@@ -39,15 +39,18 @@ Rectangle {
     function addTextn(text) {
         logTextArea.append(text + "\n")
     }
-    
-    function addTextnn(text) {
-        logTextArea.append(text + "\n\n")
+
+    function addnText(text) {
+        logTextArea.append("\n" + text)
     }
 
     Connections {
         target: qmlBridge
-        onIndexComplete: {
+        onFileIndexed: {
             addText("Finished indexing file - " + fpath)
+        }
+        onIndexComplete: {
+            addText("Finished indexing all shared files.")
         }
     }
 

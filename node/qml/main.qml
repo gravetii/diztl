@@ -4,8 +4,8 @@ import QtGraphicalEffects 1.12
 import QtQuick.Controls 2.12
 
 Rectangle {
-  width: 1200
-  height: 750
+  width: 1500
+  height: 900
   id:root
   RowLayout {
     anchors.fill: parent
