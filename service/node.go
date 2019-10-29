@@ -11,7 +11,6 @@ import (
 	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/keeper"
 	"github.com/gravetii/diztl/shutdown"
-	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 
 	"github.com/gravetii/diztl/diztl"
@@ -234,39 +233,6 @@ func (s *NodeService) Download(request *diztl.DownloadReq, stream diztl.DiztlSer
 	return nil
 }
 
-// GetUserDirs returns the configured user directories.
-func (s *NodeService) GetUserDirs(ctx context.Context, request *diztl.UserDirsReq) (*diztl.UserDirsResp, error) {
-	logger.Infof("Received GetUserDirs call: %v\n", request)
-	resp := diztl.UserDirsResp{}
-	shareDirs, err := dir.GetShareDirs()
-	if err == nil {
-		resp.Share = shareDirs
-	}
-
-	downloadsDir, err := dir.GetDownloadsDir()
-	if err == nil {
-		resp.Downloads = downloadsDir
-	}
-
-	return &resp, nil
-}
-
-// UpdateUserDirs updates the user directories in config.
-func (s *NodeService) UpdateUserDirs(ctx context.Context, request *diztl.UpdateUserDirsReq) (*diztl.UpdateUserDirsResp, error) {
-	logger.Infof("Received UpdateUserDirs call: %v\n", request)
-	if len(request.GetShare()) > 0 {
-		conf.UpdateShareDirs(request.GetShare())
-	}
-
-	if request.GetDownloads() != "" {
-		conf.UpdateDownloadsDir(request.GetDownloads())
-	}
-
-	logger.Infof("Finished updating user share dirs\n")
-	resp := diztl.UpdateUserDirsResp{Message: "Finished updating user share dirs"}
-	return &resp, nil
-}
-
 // Index indexes all the files in the shared directories.
 func (s *NodeService) Index(paths chan string) error {
 	logger.Infof("Indexing shared files...\n")
@@ -277,32 +243,6 @@ func (s *NodeService) Index(paths chan string) error {
 	}
 
 	return nil
-}
-
-// FetchFileList is invoked by the frontend to fetch the file list for the given file from another node.
-func (s *NodeService) FetchFileList(ctx context.Context, request *diztl.FetchFileListReq) (*diztl.FetchFileListResp, error) {
-	c, cancel := context.WithTimeout(context.Background(), 4*time.Second)
-	defer cancel()
-	client, err := s.nk.GetConnection(request.GetNode())
-	if err != nil {
-		return nil, err
-	}
-
-	r := &diztl.GetFileListReq{Source: s.node, Dir: request.GetDir()}
-	resp, err := client.GetFileList(c, r)
-	if err != nil {
-		logger.Errorf("Couldn't fetch file list from node %v - %v", request.GetNode(), err)
-		return nil, errors.Wrap(err, "Couldn't fetch file list from node")
-	}
-
-	return &diztl.FetchFileListResp{Files: resp.GetFiles()}, nil
-}
-
-// GetFileList returns all the indexed files in the parent folder of the given file.
-func (s *NodeService) GetFileList(ctx context.Context, request *diztl.GetFileListReq) (*diztl.GetFileListResp, error) {
-	logger.Infof("Got GetFileList call from %s for dir %v\n", request.GetSource(), request.GetDir())
-	files := s.Indexer.GetFileList(request.GetDir())
-	return &diztl.GetFileListResp{Files: files}, nil
 }
 
 // Close closes down the node. This call is invoked by the front-end after receiving an app shutdown signal.

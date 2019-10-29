@@ -13,14 +13,6 @@ service DiztlService {
     }
     rpc Download (DownloadReq) returns (stream DownloadChunk) {
     }
-    rpc GetUserDirs(UserDirsReq) returns (UserDirsResp) {
-    }
-    rpc UpdateUserDirs(UpdateUserDirsReq) returns (UpdateUserDirsResp) {
-    }
-    rpc FetchFileList(FetchFileListReq) returns (FetchFileListResp) {
-    }
-    rpc GetFileList(GetFileListReq) returns (GetFileListResp) {
-    }
     rpc Close(CloseReq) returns (CloseResp) {
     }
 }
