@@ -3,8 +3,6 @@ package io.github.gravetii;
 import com.jfoenix.animation.alert.JFXAlertAnimation;
 import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXButton;
-import io.github.gravetii.client.connection.CommunicationClient;
-import io.github.gravetii.client.handler.ExecutionHandler;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.Utils;
 import javafx.application.Application;
@@ -12,8 +10,6 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.concurrent.Future;
 
 public class App extends Application {
   private static final Logger logger = LoggerFactory.getLogger(App.class.getCanonicalName());
@@ -43,15 +39,5 @@ public class App extends Application {
 
     StartScene scene = new StartScene(stage);
     scene.show();
-    this.bootstrap(scene);
-  }
-
-  private void bootstrap(StartScene scene) {
-    Future f =
-        ExecutionHandler.get()
-            .submit(
-                () -> {
-                  CommunicationClient.get().register(scene);
-                });
   }
 }

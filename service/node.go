@@ -77,27 +77,26 @@ func (s *NodeService) disconnect() error {
 	return nil
 }
 
-// Register registers the node to the tracker provided in the request.
-func (s *NodeService) Register(ctx context.Context, request *diztl.RegisterReq) (*diztl.RegisterResp, error) {
-	logger.Debugf("Received register request: %v\n", request)
-	err := s.connectToTracker(request.GetTracker() + ":" + conf.TrackerPort())
-	if err != nil {
-		return nil, err
+// Register registers the node to the tracker specified in the configuration.
+func (s *NodeService) Register() error {
+	tracker := conf.TrackerHost() + ":" + conf.TrackerPort()
+	if err := s.connectToTracker(tracker); err != nil {
+		return err
 	}
 
-	request.Self = &diztl.Node{Ip: addr.LocalIP()}
+	request := &diztl.RegisterReq{Self: &diztl.Node{Ip: addr.LocalIP()}}
 	c, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	resp, err := s.t.Register(c, request)
 	if err != nil {
 		logger.Errorf("Error while registering to tracker - %v\n", err)
-		return nil, err
+		return err
 	}
 
 	n := resp.GetNode()
 	s.node = &diztl.Node{Ip: n.GetIp(), Id: n.GetId()}
 	logger.Infof("Successfully registered to tracker - %v\n", s.node)
-	return &diztl.RegisterResp{Node: n}, nil
+	return nil
 }
 
 // UpdateTracker updates the details of the tracker in config.

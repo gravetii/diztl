@@ -43,11 +43,6 @@ public class CommunicationClient {
     return INSTANCE;
   }
 
-  public void register(StartScene scene) {
-    String tracker = CommunicationClient.get().getTracker();
-    new RegisterHandler(tracker, scene).process(connection);
-  }
-
   public void find(String query, Diztl.FileConstraint constraint, StartScene scene) {
     new FindHandler(scene, query, constraint).process(connection);
   }

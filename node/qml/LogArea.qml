@@ -51,6 +51,7 @@ Rectangle {
         }
         onIndexComplete: {
             addText("Finished indexing all shared files.")
+            qmlBridge.registerToTracker()
         }
     }
 

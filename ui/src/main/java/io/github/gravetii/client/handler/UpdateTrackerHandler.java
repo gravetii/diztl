@@ -28,7 +28,7 @@ public class UpdateTrackerHandler {
           try {
             Diztl.UpdateTrackerResp resp = f.get();
             logger.info("Response code from updating tracker - {}", resp.getCode());
-            CommunicationClient.get().register(scene);
+            logger.info("Register call removed here...");
           } catch (Exception e) {
             logger.error("Error while updating tracker -", e);
           }

@@ -31,8 +31,9 @@ type QmlBridge struct {
 	_ func() `constructor:"init"`
 
 	// slots
-	_ func(term string) `slot:"search"`
 	_ func()            `slot:"index"`
+	_ func()            `slot:"registerToTracker"`
+	_ func(term string) `slot:"search"`
 
 	// signals
 	_ func(fpath string) `signal:"FileIndexed"`
@@ -41,12 +42,6 @@ type QmlBridge struct {
 
 func (qmlBridge *QmlBridge) init() {
 	logger.Infof("Initializing QmlBridge...")
-
-	// connect the search slot whenever the user searches
-	// for files with a query term.
-	qmlBridge.ConnectSearch(func(term string) {
-		fmt.Println("Searching for string:", term)
-	})
 
 	// connect the index slot to index all the shared files.
 	qmlBridge.ConnectIndex(func() {
@@ -57,11 +52,23 @@ func (qmlBridge *QmlBridge) init() {
 				qmlBridge.FileIndexed(p)
 			}
 
-			// Notify frontend when indexing completes.
+			// Notify frontend when all shared files have been indexed.
 			qmlBridge.IndexComplete()
 		}()
 
 		go node.Index(paths)
+	})
+
+	// connect the registerToTracker slot to register node to the tracker.
+	qmlBridge.ConnectRegisterToTracker(func() {
+		fmt.Println("Registering node to tracker...")
+		node.Register()
+	})
+
+	// connect the search slot whenever the user searches
+	// for files with a query term.
+	qmlBridge.ConnectSearch(func(term string) {
+		fmt.Println("Searching for string:", term)
 	})
 }
 

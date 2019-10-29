@@ -21,8 +21,6 @@ service DiztlService {
     }
     rpc UpdateTracker(UpdateTrackerReq) returns (UpdateTrackerResp) {
     }
-    rpc Register(RegisterReq) returns (RegisterResp) {
-    }
     rpc FetchFileList(FetchFileListReq) returns (FetchFileListResp) {
     }
     rpc GetFileList(GetFileListReq) returns (GetFileListResp) {

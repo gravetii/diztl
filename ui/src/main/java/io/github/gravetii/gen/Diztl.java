@@ -24146,7 +24146,7 @@ public final class Diztl {
       "\t\"1\n\021FetchFileListResp\022\034\n\005files\030\001 \003(\0132\r." +
       "FileMetadata\"4\n\016GetFileListReq\022\013\n\003dir\030\001 " +
       "\001(\t\022\025\n\006source\030\002 \001(\0132\005.Node\"/\n\017GetFileLis" +
-      "tResp\022\034\n\005files\030\001 \003(\0132\r.FileMetadata2\326\004\n\014" +
+      "tResp\022\034\n\005files\030\001 \003(\0132\r.FileMetadata2\253\004\n\014" +
       "DiztlService\022#\n\006Search\022\n.SearchReq\032\013.Sea" +
       "rchResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.FileCh" +
       "unk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035" +
@@ -24157,16 +24157,15 @@ public final class Diztl {
       "\023.UpdateUserDirsResp\"\000\022/\n\nGetTracker\022\016.G" +
       "etTrackerReq\032\017.GetTrackerResp\"\000\0228\n\rUpdat" +
       "eTracker\022\021.UpdateTrackerReq\032\022.UpdateTrac" +
-      "kerResp\"\000\022)\n\010Register\022\014.RegisterReq\032\r.Re" +
-      "gisterResp\"\000\0228\n\rFetchFileList\022\021.FetchFil" +
-      "eListReq\032\022.FetchFileListResp\"\000\0222\n\013GetFil" +
-      "eList\022\017.GetFileListReq\032\020.GetFileListResp" +
-      "\"\000\022 \n\005Close\022\t.CloseReq\032\n.CloseResp\"\0002\223\001\n" +
-      "\016TrackerService\022)\n\010Register\022\014.RegisterRe" +
-      "q\032\r.RegisterResp\"\000\022%\n\006Search\022\n.SearchReq" +
-      "\032\013.SearchResp\"\0000\001\022/\n\nDisconnect\022\016.Discon" +
-      "nectReq\032\017.DisconnectResp\"\000B\030\n\026io.github." +
-      "gravetii.genb\006proto3"
+      "kerResp\"\000\0228\n\rFetchFileList\022\021.FetchFileLi" +
+      "stReq\032\022.FetchFileListResp\"\000\0222\n\013GetFileLi" +
+      "st\022\017.GetFileListReq\032\020.GetFileListResp\"\000\022" +
+      " \n\005Close\022\t.CloseReq\032\n.CloseResp\"\0002\223\001\n\016Tr" +
+      "ackerService\022)\n\010Register\022\014.RegisterReq\032\r" +
+      ".RegisterResp\"\000\022%\n\006Search\022\n.SearchReq\032\013." +
+      "SearchResp\"\0000\001\022/\n\nDisconnect\022\016.Disconnec" +
+      "tReq\032\017.DisconnectResp\"\000B\030\n\026io.github.gra" +
+      "vetii.genb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
