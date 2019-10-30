@@ -98,7 +98,7 @@ func (s *NodeService) Register() (string, error) {
 	return conf.TrackerHost(), nil
 }
 
-// Find is invoked by the frontend when the user searches for
+// Find is invoked by the frontend when the user searches for a
 // particular query string.
 func (s *NodeService) Find(term string, constraint *diztl.SearchConstraint) ([]*diztl.SearchResp, error) {
 	req := diztl.SearchReq{Query: term, Source: s.node, Constraint: constraint}
@@ -122,7 +122,6 @@ func (s *NodeService) Find(term string, constraint *diztl.SearchConstraint) ([]*
 			break
 		}
 
-		fmt.Println("Got file: ", resp.GetFiles()[0])
 		result = append(result, resp)
 	}
 

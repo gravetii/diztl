@@ -72,10 +72,22 @@ Rectangle {
             }
         }
 
-        model: ResultListDataModel {}
+        model: ListModel {
+            id: resultListModel
+        }
+
         onDoubleClicked: {
             const element = model.get(row)
             console.log("Downloading file ", element.file, "of size", element.size)
         }
     }
+
+    Connections {
+        target: qmlBridge
+        onAddFileResult: {
+            console.log("Adding", file, ftype)
+            resultListModel.append({"file": file, "type": ftype, "size": fsize, "path": path})
+        }
+    }
 }
+

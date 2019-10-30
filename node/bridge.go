@@ -1,6 +1,10 @@
 package main
 
 import (
+	"fmt"
+	"path/filepath"
+
+	"github.com/gravetii/diztl/dir"
 	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/service"
 	"github.com/gravetii/logger"
@@ -16,15 +20,15 @@ type QmlBridge struct {
 	_ func() `constructor:"init"`
 
 	// slots
-	_ func() `slot:"index"`
-	_ func() `slot:"registerToTracker"`
-	_ func(term string, sizeKeyIndex int, size string,
-		sizeUnitIndex int, fileTypeIndex int) `slot:"search"`
+	_ func()                                                                                 `slot:"index"`
+	_ func()                                                                                 `slot:"registerToTracker"`
+	_ func(term string, sizeKeyIndex int, size string, sizeUnitIndex int, fileTypeIndex int) `slot:"search"`
 
 	// signals
-	_ func(fpath string) `signal:"FileIndexed"`
-	_ func()             `signal:"IndexComplete"`
-	_ func(addr string)  `signal:"registerToTrackerComplete"`
+	_ func(fpath string)                                         `signal:"FileIndexed"`
+	_ func()                                                     `signal:"IndexComplete"`
+	_ func(addr string)                                          `signal:"registerToTrackerComplete"`
+	_ func(file string, ftype string, fsize string, path string) `signal:"addFileResult"`
 }
 
 func (qmlBridge *QmlBridge) init() {
@@ -63,6 +67,27 @@ func (qmlBridge *QmlBridge) configure(n *service.NodeService) {
 		s := &diztl.SizeConstraint{Key: int32(sizeKeyIndex), Value: size, Unit: int32(sizeUnitIndex)}
 		t := &diztl.TypeConstraint{Type: int32(fileTypeIndex)}
 		constraint := &diztl.SearchConstraint{S: s, T: t}
-		n.Find(term, constraint)
+
+		// todo: error handling.
+		result, _ := n.Find(term, constraint)
+		for _, r := range result {
+			for _, f := range r.GetFiles() {
+				fmt.Println("Got file to add:", f)
+				qmlBridge.AddFileResult(f.GetName(), filepath.Ext(f.GetName()), humanReadableByteCount(f.GetSize()), dir.GetFilePath(f))
+			}
+		}
 	})
+}
+
+func humanReadableByteCount(b int64) string {
+	const unit = 1000
+	if b < unit {
+		return fmt.Sprintf("%d B", b)
+	}
+	div, exp := int64(unit), 0
+	for n := b / unit; n >= unit; n /= unit {
+		div *= unit
+		exp++
+	}
+	return fmt.Sprintf("%.1f %cB", float64(b)/float64(div), "kMGTPE"[exp])
 }

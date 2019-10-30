@@ -39,4 +39,12 @@ TabView {
             Layout.fillWidth: true
         }
     }
+    Tab {
+        title: "Result list"
+        ResultList {
+            id: resultList
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
+    }
 }
