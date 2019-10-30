@@ -98,6 +98,36 @@ func (s *NodeService) Register() (string, error) {
 	return conf.TrackerHost(), nil
 }
 
+// Find is invoked by the frontend when the user searches for
+// particular query string.
+func (s *NodeService) Find(term string) ([]*diztl.SearchResp, error) {
+	req := diztl.SearchReq{Query: term, Source: s.node}
+	result := []*diztl.SearchResp{}
+	logger.Debugf("Searching for query: %s\n", req.GetQuery())
+	r := diztl.SearchReq{Query: req.GetQuery(), Constraint: req.GetConstraint(), Source: s.node}
+	c, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
+	defer cancel()
+	stream, err := s.t.Search(c, &r)
+	if err != nil {
+		return nil, err
+	}
+
+	for {
+		resp, err := stream.Recv()
+		if err != nil {
+			if err != io.EOF {
+				logger.Errorf("Error while reading search response from tracker\n: %v", err)
+			}
+
+			break
+		}
+
+		result = append(result, resp)
+	}
+
+	return result, nil
+}
+
 // Search - The tracker invokes the search call on all the nodes when it broadcasts a search request from another node.
 func (s *NodeService) Search(ctx context.Context, request *diztl.SearchReq) (*diztl.SearchResp, error) {
 	logger.Debugf("Received search request for %s from %v\n", request.GetQuery(), request.GetSource())
@@ -145,35 +175,6 @@ func (s *NodeService) Upload(request *diztl.UploadReq, stream diztl.DiztlService
 func (s *NodeService) Ping(ctx context.Context, request *diztl.PingReq) (*diztl.PingResp, error) {
 	logger.Infof("Received ping from %v\n", request.GetSource())
 	return &diztl.PingResp{Code: 1, Message: "online"}, nil
-}
-
-// Find finds for files in the network whose name has the given query string.
-func (s *NodeService) Find(ctx context.Context, request *diztl.FindReq) (*diztl.FindResp, error) {
-	logger.Infof("Received find call: %v\n", request)
-	results := []*diztl.SearchResp{}
-	logger.Debugf("Searching for query: %s\n", request.GetQuery())
-	r := diztl.SearchReq{Query: request.GetQuery(), Constraint: request.GetConstraint(), Source: s.node}
-	c, cancel := context.WithTimeout(context.Background(), conf.SearchTimeout())
-	defer cancel()
-	stream, err := s.t.Search(c, &r)
-	if err != nil {
-		return nil, err
-	}
-
-	for {
-		resp, err := stream.Recv()
-		if err != nil {
-			if err != io.EOF {
-				logger.Errorf("Error while reading search response from tracker\n: %v", err)
-			}
-
-			break
-		}
-
-		results = append(results, resp)
-	}
-
-	return &diztl.FindResp{Responses: results}, nil
 }
 
 // Download downloads a file.

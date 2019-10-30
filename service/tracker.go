@@ -35,7 +35,7 @@ func (s *TrackerService) Register(ctx context.Context, req *diztl.RegisterReq) (
 	return resp, nil
 }
 
-// Search : Invoked by a search request by any node.
+// Search is invoked by a search request by any node.
 func (s *TrackerService) Search(req *diztl.SearchReq, stream diztl.TrackerService_SearchServer) error {
 	logger.Debugf("Received search request from node %s: %v\n", req.GetSource().GetIp(), *req)
 	resp := make(chan *diztl.SearchResp)

@@ -61,5 +61,6 @@ func (qmlBridge *QmlBridge) configure(n *service.NodeService) {
 	// for files with a query term.
 	qmlBridge.ConnectSearch(func(term string) {
 		fmt.Println("Searching for string:", term)
+		n.Find(term)
 	})
 }

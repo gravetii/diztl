@@ -9,8 +9,6 @@ service DiztlService {
     }
     rpc Ping (PingReq) returns (PingResp) {
     }
-    rpc Find (FindReq) returns (FindResp) {
-    }
     rpc Download (DownloadReq) returns (stream DownloadChunk) {
     }
     rpc Close(CloseReq) returns (CloseResp) {
@@ -89,15 +87,6 @@ message SearchResp {
     repeated FileMetadata files = 1;
     // The node to which the files belong.
     Node node = 2;
-}
-
-message FindReq {
-    string query = 1;
-    FileConstraint constraint = 2;
-}
-
-message FindResp {
-    repeated SearchResp responses = 1;
 }
 
 message UploadContract {
