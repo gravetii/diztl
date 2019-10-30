@@ -78,7 +78,7 @@ message SearchReq {
     string query = 1;
     // The origin node of this request.
     Node source = 2;
-    FileConstraint constraint = 3;
+    SearchConstraint constraint = 3;
 }
 
 message SearchResp {
@@ -167,8 +167,13 @@ message SizeConstraint {
     // 0 - at least
     // 1 - less than
     int32 key = 1;
-    // the size value in bytes.
-    int64 value = 2;
+    // the numerical value of the size as a string
+    string value = 2;
+    // the size unit
+    // 0 - kB
+    // 1 - MB
+    // 2 - GB
+    int32 unit = 3;
 }
 
 message TypeConstraint {
@@ -183,9 +188,9 @@ message TypeConstraint {
     int32 type = 1;
 }
 
-message FileConstraint {
-    SizeConstraint csize = 1;
-    TypeConstraint ctype = 2;
+message SearchConstraint {
+    SizeConstraint s = 1;
+    TypeConstraint t = 2;
 }
 
 message FetchFileListReq {

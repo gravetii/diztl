@@ -100,8 +100,8 @@ func (s *NodeService) Register() (string, error) {
 
 // Find is invoked by the frontend when the user searches for
 // particular query string.
-func (s *NodeService) Find(term string) ([]*diztl.SearchResp, error) {
-	req := diztl.SearchReq{Query: term, Source: s.node}
+func (s *NodeService) Find(term string, constraint *diztl.SearchConstraint) ([]*diztl.SearchResp, error) {
+	req := diztl.SearchReq{Query: term, Source: s.node, Constraint: constraint}
 	result := []*diztl.SearchResp{}
 	logger.Debugf("Searching for query: %s\n", req.GetQuery())
 	r := diztl.SearchReq{Query: req.GetQuery(), Constraint: req.GetConstraint(), Source: s.node}
@@ -122,6 +122,7 @@ func (s *NodeService) Find(term string) ([]*diztl.SearchResp, error) {
 			break
 		}
 
+		fmt.Println("Got file: ", resp.GetFiles()[0])
 		result = append(result, resp)
 	}
 

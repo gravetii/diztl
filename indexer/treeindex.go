@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/gravetii/diztl/conf"
@@ -127,30 +128,30 @@ func (t *TreeIndex) getFileListInternal(node *TreeNode) []*diztl.FileMetadata {
 	return files
 }
 
-func (t *TreeIndex) search(query string, constraint *diztl.FileConstraint) []*diztl.FileMetadata {
+func (t *TreeIndex) search(query string, constraint *diztl.SearchConstraint) []*diztl.FileMetadata {
 	return traverse(t.root, query, constraint)
 }
 
-func satisfiesConstraints(file *diztl.FileMetadata, query string, constraint *diztl.FileConstraint) bool {
+func satisfiesConstraints(file *diztl.FileMetadata, query string, constraint *diztl.SearchConstraint) bool {
 	path := dir.GetFilePath(file)
 	if !strings.Contains(strings.ToLower(path), strings.ToLower(query)) {
 		return false
 	}
 
 	ext := filepath.Ext(path)
-	typeValue := constraint.GetCtype().GetType()
+	typeValue := constraint.GetT().GetType()
 	if !matchesType(ext, typeValue) {
 		return false
 	}
 
-	key := constraint.GetCsize().GetKey()
-	value := constraint.GetCsize().GetValue()
+	key := constraint.GetS().GetKey()
+	size := getByteCount(constraint.GetS().GetValue(), constraint.GetS().GetUnit())
 	if key == 0 {
-		if file.GetSize() < value {
+		if file.GetSize() < size {
 			return false
 		}
 	} else if key == 1 {
-		if file.GetSize() >= value {
+		if file.GetSize() >= size {
 			return false
 		}
 	}
@@ -178,7 +179,25 @@ func matchesType(ext string, typeValue int32) bool {
 	return true
 }
 
-func traverse(root *TreeNode, query string, constraint *diztl.FileConstraint) []*diztl.FileMetadata {
+// getByteCount returns the number of bytes calculated from the
+// textual representation of file size.
+func getByteCount(size string, unitIndex int32) int64 {
+	// unitIndex:
+	// 0 - kB
+	// 1 - MB
+	// 2 - GB
+	value, _ := strconv.ParseFloat(size, 64)
+	var multiplier float64 = 1000000
+	if unitIndex == 0 {
+		multiplier /= 1000
+	} else if unitIndex == 2 {
+		multiplier *= 1000
+	}
+
+	return (int64)(value * multiplier)
+}
+
+func traverse(root *TreeNode, query string, constraint *diztl.SearchConstraint) []*diztl.FileMetadata {
 	res := []*diztl.FileMetadata{}
 	for _, treenode := range root.children {
 		if !treenode.isDir {

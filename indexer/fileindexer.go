@@ -68,7 +68,7 @@ func (f *FileIndexer) filewalk(dir string, paths chan string) error {
 }
 
 // Search searches for a given pattern in the names of the indexed files and returns files that match.
-func (f *FileIndexer) Search(pattern string, constraint *diztl.FileConstraint) []*diztl.FileMetadata {
+func (f *FileIndexer) Search(pattern string, constraint *diztl.SearchConstraint) []*diztl.FileMetadata {
 	return f.index.search(pattern, constraint)
 }
 

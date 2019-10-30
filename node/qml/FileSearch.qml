@@ -36,7 +36,12 @@ Rectangle {
                 function search() {
                     var text = searchBox.text.trim()
                     if (text != "") {
-                        qmlBridge.search(text)
+                        qmlBridge.search(text,
+                        fileSizeKey.currentIndex,
+                        fileSizeValue.text.trim(),
+                        fileSizeUnit.currentIndex,
+                        fileType.currentIndex
+                        )
                     } else {
                         searchBox.text = ""
                     }
@@ -48,18 +53,22 @@ Rectangle {
             x: 10
             spacing: 10
             ComboBox {
+                id: fileSizeKey
                 currentIndex: 0
                 width: 120
                 height: 50
                 model: ["At least", "Less than"]
             }
             TextField {
+                id: fileSizeValue
                 width: 80
                 height: 50
                 text: "0"
+                maximumLength: 4
                 horizontalAlignment: TextInput.AlignHCenter
             }
             ComboBox {
+                id: fileSizeUnit
                 currentIndex: 1
                 width: 80
                 height: 50
@@ -71,6 +80,7 @@ Rectangle {
             x: 10
             spacing: 10
             ComboBox {
+                id: fileType
                 currentIndex: 0
                 width: 300
                 height: 50

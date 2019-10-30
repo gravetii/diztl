@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-
+	"github.com/gravetii/diztl/diztl"
 	"github.com/gravetii/diztl/service"
 	"github.com/gravetii/logger"
 	"github.com/therecipe/qt/core"
@@ -17,9 +16,10 @@ type QmlBridge struct {
 	_ func() `constructor:"init"`
 
 	// slots
-	_ func()            `slot:"index"`
-	_ func()            `slot:"registerToTracker"`
-	_ func(term string) `slot:"search"`
+	_ func() `slot:"index"`
+	_ func() `slot:"registerToTracker"`
+	_ func(term string, sizeKeyIndex int, size string,
+		sizeUnitIndex int, fileTypeIndex int) `slot:"search"`
 
 	// signals
 	_ func(fpath string) `signal:"FileIndexed"`
@@ -51,7 +51,6 @@ func (qmlBridge *QmlBridge) configure(n *service.NodeService) {
 
 	// Connect the registerToTracker slot to register node to the tracker.
 	qmlBridge.ConnectRegisterToTracker(func() {
-		fmt.Println("Registering node to tracker...")
 		// todo: handle error here...
 		addr, _ := qmlBridge.n.Register()
 		qmlBridge.RegisterToTrackerComplete(addr)
@@ -59,8 +58,11 @@ func (qmlBridge *QmlBridge) configure(n *service.NodeService) {
 
 	// Connect the search slot whenever the user searches
 	// for files with a query term.
-	qmlBridge.ConnectSearch(func(term string) {
-		fmt.Println("Searching for string:", term)
-		n.Find(term)
+	qmlBridge.ConnectSearch(func(term string, sizeKeyIndex int, size string,
+		sizeUnitIndex int, fileTypeIndex int) {
+		s := &diztl.SizeConstraint{Key: int32(sizeKeyIndex), Value: size, Unit: int32(sizeUnitIndex)}
+		t := &diztl.TypeConstraint{Type: int32(fileTypeIndex)}
+		constraint := &diztl.SearchConstraint{S: s, T: t}
+		n.Find(term, constraint)
 	})
 }
