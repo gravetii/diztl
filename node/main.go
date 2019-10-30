@@ -22,7 +22,7 @@ const (
 	configFile = "node-config.yml"
 )
 
-var node *service.NodeService
+var c = make(chan *service.NodeService)
 
 // Start the diztl UI.
 func startUI() {
@@ -34,7 +34,7 @@ func startUI() {
 	view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
 	view.SetTitle("Diztl")
 	var qmlBridge = NewQmlBridge(nil)
-	qmlBridge.configure(node)
+	qmlBridge.configure(<-c)
 	view.RootContext().SetContextProperty("qmlBridge", qmlBridge)
 	view.SetSource(core.NewQUrl3("./qml/main.qml", 0))
 	view.Show()
@@ -49,9 +49,20 @@ func startServer() {
 	}
 
 	s := grpc.NewServer()
-	node = service.NewNode(s)
-	diztl.RegisterDiztlServiceServer(s, node)
-	node.Init()
+	n := service.NewNode(s)
+	diztl.RegisterDiztlServiceServer(s, n)
+	n.Init()
+	// Use the channel to share the node instance with the
+	// main goroutine that starts the UI.
+	c <- n
+
+	// Note that it's not necessary to close the channel in this case.
+	// It is only necessary to close a channel if the receiver is
+	// looking for a close. Closing the channel is a control sign on
+	// the channel indicating that no more data flows.
+	// When an unclosed channel is no more used, it's garbage collected.
+	close(c)
+
 	logger.Infof("Node %s is now up...\n", addr.LocalIP())
 	fmt.Printf("You are now online!\n")
 	serr := s.Serve(lis)
