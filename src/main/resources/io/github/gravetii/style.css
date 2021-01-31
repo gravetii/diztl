@@ -1,0 +1,133 @@
+.table-view {
+    -fx-focus-traversable: false;
+}
+
+.table-view:focused {
+    -fx-background-color: -fx-table-cell-border-color, -fx-background;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #FFFFFF;
+}
+
+.table-view .column-header-background .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #0d47a1;
+}
+
+.table-view .table-column {
+    -fx-alignment: center-left;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #78bba1;
+    -fx-table-cell-border-color: #78bba1;
+}
+
+#anchorPane {
+    -fx-border-color: #D3D3D3;
+    -fx-border-width: 0 0 0 1px;
+}
+
+.table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.jfx-list-cell:selected {
+    -fx-background-color: #1bd79c;
+}
+
+.list-cell {
+    -fx-background-insets: 0.0;
+}
+
+.jfx-list-cell .jfx-rippler {
+    -fx-rippler-fill: BLUE;
+}
+
+.list-view {
+    -fx-background-insets: 0;
+    -fx-cell-vertical-margin: 0;
+    -fx-vertical-gap: 10px;
+}
+
+.button {
+    -fx-background-color: #018786;
+    -fx-text-fill: #ffffff;
+    -jfx-button-type: RAISED;
+}
+
+.button:hover {
+    -fx-cursor: HAND;
+}
+
+.button:selected {
+    -fx-background-color: fx-background;
+}
+
+#cancelBtn {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #018786;
+}
+
+#btnBar {
+    -fx-padding: 0 10 10 0;
+}
+
+.progress-bar .bar {
+    -fx-background-color: #2196F3;
+    -fx-background-insets: 0, 1, 2;
+    -fx-padding: 0.6em;
+}
+
+.text-area {
+    -fx-font-family: "Courier New";
+    -fx-font-size: 14px;
+    -fx-focus-color: #FFFFFF;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area:focused .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area:focused {
+    -fx-highlight-fill: #7ECFFF;
+}
+
+.jfx-tab-pane .tab-header-area .tab-selected-line {
+    -fx-background-color: #FFFFFF;
+}
+
+.jfx-tab-pane .tab-header-area .jfx-rippler {
+    -jfx-rippler-fill: #FFFFFF;
+}
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #36474F;
+}
+
+.jfx-tab-pane .tab
+{
+    -fx-padding:0 0 0 40;
+}
+
+.tab-label {
+    -fx-font-size: 14px;
+}
+
+.jfx-tab-pane {
+    -fx-tab-max-width: 100px;
+}
+
+#errorLog {
+    -fx-text-fill: #D8000C;
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="parentCtnr" prefHeight="259.0" prefWidth="350.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox fx:id="hboxCtnr" layoutX="15.0" prefHeight="41.0" prefWidth="350.0" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <TextField fx:id="searchBox" prefHeight="34.0" prefWidth="290.0" promptText="Search...">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></TextField>
+            <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="34.0" prefWidth="115.0">
+               <text>Search</text>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutY="76.0" prefHeight="34.0" prefWidth="265.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="80.0">
+         <children>
+            <ComboBox fx:id="sizeKey" prefHeight="27.0" prefWidth="178.0" />
+            <TextField fx:id="sizeValue" alignment="CENTER" prefHeight="27.0" prefWidth="64.0">
+               <padding>
+                  <Insets left="4.0" />
+               </padding></TextField>
+            <ComboBox fx:id="sizeUnit" prefHeight="27.0" prefWidth="171.0" visibleRowCount="14">
+               <padding>
+                  <Insets left="4.0" />
+               </padding></ComboBox>
+         </children>
+      </HBox>
+      <HBox layoutX="5.0" layoutY="130.0" prefHeight="34.0" prefWidth="265.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="148.0">
+         <children>
+            <ComboBox fx:id="fileType" prefHeight="27.0" prefWidth="401.0" />
+         </children></HBox>
+   </children>
+</AnchorPane>

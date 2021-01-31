@@ -1,10 +1,12 @@
 ./config.yml
 
-ui/*.iml
-ui/.idea/
-ui/target/
-ui/out/
+*.iml
+.idea/
+target/
+out/
 
-ui/.classpath
-ui/.project
-ui/.settings/
+classpath
+project
+settings/
+
+.DS_Store

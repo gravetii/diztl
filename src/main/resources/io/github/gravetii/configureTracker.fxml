@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="124.0" prefWidth="328.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="38.0" layoutY="22.0" prefHeight="21.0" prefWidth="77.0" text="Tracker IP: " />
+      <TextField fx:id="ipBox" alignment="CENTER" focusTraversable="false" layoutX="138.0" layoutY="14.0" prefHeight="27.0" prefWidth="136.0" />
+      <Button id="okBtn" defaultButton="true" layoutX="88.0" layoutY="72.0" mnemonicParsing="false" onAction="#ok" prefHeight="27.0" prefWidth="61.0" stylesheets="@style.css" text="OK" />
+      <Button id="cancelBtn" cancelButton="true" layoutX="188.0" layoutY="72.0" mnemonicParsing="false" onAction="#cancel" prefHeight="27.0" prefWidth="84.0" styleClass="cancelBtn" text="Cancel" />
+   </children>
+</AnchorPane>

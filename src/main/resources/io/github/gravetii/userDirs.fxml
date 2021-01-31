@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="495.0" prefWidth="650.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="39.0" layoutY="21.0" prefHeight="17.0" prefWidth="133.0" text="Share directories -" />
+      <ListView fx:id="shareDirsList" focusTraversable="false" layoutX="39.0" layoutY="54.0" prefHeight="177.0" prefWidth="475.0" AnchorPane.bottomAnchor="264.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="54.0">
+         <effect>
+            <InnerShadow color="#a19e9e" />
+         </effect>
+      </ListView>
+      <Button fx:id="addBtn" alignment="CENTER" layoutX="553.0" layoutY="101.0" mnemonicParsing="false" onAction="#addDir" prefHeight="20.0" prefWidth="20.0" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="51.0">
+         <text>Add</text>
+      </Button>
+      <Button fx:id="removeBtn" alignment="CENTER" layoutX="553.0" layoutY="156.0" mnemonicParsing="false" onAction="#removeDir" prefHeight="20.0" prefWidth="20.0" textAlignment="CENTER" AnchorPane.rightAnchor="51.0">
+         <text>Remove</text>
+      </Button>
+      <Label layoutX="43.0" layoutY="293.0" prefHeight="17.0" prefWidth="154.0" text="Downloads directory -" />
+      <ListView fx:id="downloadsDir" layoutX="39.0" layoutY="329.0" prefHeight="36.0" prefWidth="476.0" AnchorPane.topAnchor="329.0">
+         <effect>
+            <InnerShadow color="#a19e9e" />
+         </effect>
+      </ListView>
+      <Button fx:id="folderBtn" layoutX="551.0" layoutY="333.0" mnemonicParsing="false" onAction="#updateDir" prefHeight="20.0" prefWidth="20.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="333.0">
+      </Button>
+      <Button id="okBtn" defaultButton="true" layoutX="154.0" layoutY="425.0" mnemonicParsing="false" onAction="#ok" prefHeight="36.0" prefWidth="99.0" text="OK" />
+      <Button id="cancelBtn" cancelButton="true" layoutX="375.0" layoutY="425.0" mnemonicParsing="false" onAction="#cancel" prefHeight="36.0" prefWidth="99.0" text="Cancel" />
+   </children>
+</AnchorPane>

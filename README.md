@@ -5,39 +5,15 @@
 # DIZTL
 
 <p align="center">
-<a href="https://godoc.org/github.com/gravetii/diztl"><img src="https://godoc.org/github.com/gravetii/diztl?status.svg" alt="GoDoc Reference" /></a>
-<a href="https://goreportcard.com/report/github.com/gravetii/diztl"><img src="https://goreportcard.com/badge/github.com/gravetii/diztl" alt="Go Report" /></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
 <a href="https://www.paypal.me/sandeepdasika"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="Donate" /></a>
 <a href="https://gitter.im/diztl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"><img src="https://badges.gitter.im/diztl/community.svg" alt="Chat on Gitter" /></a>
 <a href="https://saythanks.io/to/gravetii"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="Say Thanks!" /></a>
 </p>
 
-A peer-to-peer file discovery and sharing tool for LANs written in Go!
+A peer-to-peer file discovery and sharing tool for LANs!
 
-<a href="https://www.youtube.com/watch?feature=player_embedded&v=yqFLtRULkmY"><img src="http://img.youtube.com/vi/yqFLtRULkmY/2.jpg" alt="Diztl video" width="650" height="380" /></a>
-
-
-## Getting started
-The diztl project is written in Go with the frontend implementation in Java using JavaFX. To get started, run the following commands:
-```
-go get -v github.com/gravetii/diztl/...
-```
-
-Diztl requires Java 8 to be installed on the host machine for the UI to work.
-
-## Configuration steps
-
-- Make a copy of the `config-template.yml` which is a bare-bones configuration file for diztl, and name it `config.yml` - `cp config-template.yml config.yml`. The `config.yml` file is the actual config file required for diztl to work. If you want to make any changes to the configuration, this is the file you want to edit. Note that this file is untracked in the repo (unlike the `config-template.yml`) which ensures that changes specific to your environment aren't reflected publicly. If any changes are to be reflected publicly, they need to go into the `config-template.yml` file.
-- Optionally, you can also add the `config.yml` entry in your `.git/info/exclude` file so that git doesn't prompt you to add it to the stage all the time.
-
-## Running diztl
-
-In the root folder of the project:
-- `go run tracker/main.go`: This runs the tracker node on the localhost.
-- Specify the local IP address of the `Tracker` in the `config.yml` file to allow `Node`s to connect to it.
-- `go run node/main.go`: Run this anywhere on any machine in the network to fire up a `Node`.
-- Fire up the UI (for this, currently, you'll have to build the code located in the `ui` folder and run it) and discover/share/download files in your network.
+The diztl project is written in completely in Java with the frontend implemented using JavaFX.
 
 ## Implementation
 Diztl consists of two main components:
@@ -56,17 +32,6 @@ The node UI is implemented in Java using JavaFX which communicates with the node
 
 ## Built With
 - gRPC: The project uses [gRPC](https://grpc.io/docs/) as its communication protocol along with protocol buffers as the data-interchange format.
-- JFoenix: [JFoenix](https://github.com/jfoenixadmin/JFoenix) is the material design library for JavaFX.
-
-## Screenshots
-
-![Startup](static/screenshots/startup.png)
-![Configure tracker](static/screenshots/configure_tracker.png)
-![Configure user folders](static/screenshots/configure_user_folders.png)
-![File search](static/screenshots/file_search.png)
-![Downloading files](static/screenshots/download.png)
-![Options](static/screenshots/options.png)
-![Exit](static/screenshots/exit.png)
 
 ## Contributing
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to the project.
