@@ -24,9 +24,8 @@ public class LogController implements FxController {
 
   @FXML
   public void initialize() throws Exception {
-    if (errorLog) {
-      logArea.setId("errorLog");
-    } else {
+    if (errorLog) logArea.setId("errorLog");
+    else {
       String message = FigletFont.convertOneLine("DIZTL");
       logArea.appendText(message);
       logArea.appendText("\n\nPlease wait while we set things up for you...\n\n");
@@ -38,11 +37,7 @@ public class LogController implements FxController {
   private void setContextMenu() {
     ContextMenu menu = new ContextMenu();
     MenuItem clearMenuItem = new MenuItem("Clear All");
-    clearMenuItem.setOnAction(
-        event -> {
-          logArea.clear();
-        });
-
+    clearMenuItem.setOnAction(event -> logArea.clear());
     clearMenuItem.disableProperty().bind(Bindings.isEmpty(logArea.textProperty()));
     menu.getItems().add(clearMenuItem);
     logArea.setContextMenu(menu);

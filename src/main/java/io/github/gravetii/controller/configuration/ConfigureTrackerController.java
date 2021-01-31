@@ -5,12 +5,13 @@ import io.github.gravetii.scene.start.StartScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConfigureTrackerController implements FxController {
 
-  private static final Logger logger = Logger.getLogger(ConfigureTrackerController.class.getCanonicalName());
+  private static final Logger logger =
+      LoggerFactory.getLogger(ConfigureTrackerController.class.getCanonicalName());
 
   private final Stage stage;
   private final StartScene scene;

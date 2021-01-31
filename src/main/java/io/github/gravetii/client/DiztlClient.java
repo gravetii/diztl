@@ -7,12 +7,14 @@ import io.github.gravetii.grpc.Diztl.RegisterReq;
 import io.github.gravetii.grpc.Diztl.RegisterResp;
 import io.github.gravetii.keeper.KeeperService;
 import io.github.gravetii.keeper.TrackerConnection;
-import io.github.gravetii.node.DiztlUtils;
 import io.github.gravetii.scene.start.StartScene;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
 
 public class DiztlClient {
 
@@ -32,8 +34,16 @@ public class DiztlClient {
     connection = new TrackerConnection(channel);
   }
 
+  private static String getMyIP() throws Exception {
+    Socket socket = new Socket();
+    socket.connect(new InetSocketAddress("google.com", 80));
+    String ip = socket.getLocalAddress().getHostAddress();
+    logger.info("Local IP - {}", ip);
+    return ip;
+  }
+
   public static ListenableFuture<RegisterResp> register() throws Exception {
-    String ip = DiztlUtils.getMyIP();
+    String ip = getMyIP();
     Node self = Node.newBuilder().setIp(ip).build();
     RegisterReq request = RegisterReq.newBuilder().setSelf(self).build();
     return connection.futureStub.register(request);

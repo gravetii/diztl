@@ -1,19 +1,21 @@
 package io.github.gravetii.indexer;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /** Indexes all the files present in the given directories, making them available for search. */
 public class FileIndexer {
 
-  private static final Logger logger = Logger.getLogger(FileIndexer.class.getCanonicalName());
+  private static final Logger logger =
+      LoggerFactory.getLogger(FileIndexer.class.getCanonicalName());
 
   private final List<String> dirs;
   private final List<IndexedFile> indexedFiles;
@@ -38,7 +40,7 @@ public class FileIndexer {
             IndexedFile file = new IndexedFile(x, "a");
             result.add(file);
           } catch (Exception e) {
-            logger.severe("Error while generating checksum for file - " + x);
+            logger.error("Error while generating checksum for file {}", x);
           }
         });
 

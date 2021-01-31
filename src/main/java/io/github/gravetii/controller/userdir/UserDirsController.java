@@ -9,14 +9,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
-import java.util.logging.Logger;
 
 public class UserDirsController implements FxController {
 
   private static final Logger logger =
-      Logger.getLogger(UserDirsController.class.getCanonicalName());
+      LoggerFactory.getLogger(UserDirsController.class.getCanonicalName());
 
   private final Stage stage;
   private final StartScene scene;
