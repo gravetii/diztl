@@ -1,6 +1,7 @@
 package io.github.gravetii.node;
 
 import com.google.protobuf.ByteString;
+import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.grpc.Diztl;
 import io.github.gravetii.grpc.DiztlServiceGrpc;
 import io.github.gravetii.indexer.FileIndexer;
@@ -43,9 +44,8 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
                         .build())
             .collect(Collectors.toList());
 
-    // todo - fix this
-    Diztl.Node node = Diztl.Node.newBuilder().setIp("127.0.0.1").build();
-    Diztl.SearchResp resp = Diztl.SearchResp.newBuilder().addAllFiles(files).setNode(node).build();
+    Diztl.SearchResp resp =
+        Diztl.SearchResp.newBuilder().addAllFiles(files).setNode(DiztlClient.node).build();
     responseObserver.onNext(resp);
     responseObserver.onCompleted();
   }
