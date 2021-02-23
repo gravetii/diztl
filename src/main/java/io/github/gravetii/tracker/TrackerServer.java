@@ -1,5 +1,8 @@
 package io.github.gravetii.tracker;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import io.github.gravetii.keeper.NodeKeeper;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import org.slf4j.Logger;
@@ -15,10 +18,14 @@ public class TrackerServer {
 
   private static final int port = 50036;
 
+  private static Injector injector;
+
   private Server server;
 
   private void start() throws IOException {
-    this.server = ServerBuilder.forPort(port).addService(new TrackerServiceImpl()).build().start();
+    NodeKeeper keeper = injector.getInstance(NodeKeeper.class);
+    ServerBuilder<?> builder = ServerBuilder.forPort(port).addService(new TrackerServiceImpl(keeper));
+    this.server = builder.build().start();
     logger.info("Tracker server started on {}", port);
     Runtime.getRuntime()
         .addShutdownHook(
@@ -35,6 +42,7 @@ public class TrackerServer {
   }
 
   public static void main(String[] args) throws Exception {
+    TrackerServer.injector = Guice.createInjector(new TrackerModule());
     TrackerServer tracker = new TrackerServer();
     tracker.start();
     tracker.blockUntilShutdown();

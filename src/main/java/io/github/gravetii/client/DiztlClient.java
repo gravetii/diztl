@@ -3,7 +3,6 @@ package io.github.gravetii.client;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.github.gravetii.grpc.*;
-import io.github.gravetii.keeper.KeeperService;
 import io.github.gravetii.keeper.NodeKeeper;
 import io.github.gravetii.keeper.TrackerConnection;
 import io.github.gravetii.store.DBService;
