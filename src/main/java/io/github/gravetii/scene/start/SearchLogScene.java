@@ -1,5 +1,6 @@
 package io.github.gravetii.scene.start;
 
+import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.grpc.FileMetadata;
 import io.github.gravetii.scene.FxScene;
 import javafx.scene.layout.BorderPane;
@@ -9,16 +10,18 @@ import javafx.scene.layout.BorderPane;
  * This scene is typically present in the top portion of the split pane of the start scene.
  */
 public class SearchLogScene extends FxScene {
+  private final DiztlClient client;
   private final StartScene parent;
   private final FileSearchScene fileSearchScene;
   private final LogComponent logComponent = new LogComponent(false);
   private final LogComponent errorLogComponent = new LogComponent(true);
   private final TabPaneComponent tabPaneComponent = new TabPaneComponent();
 
-  public SearchLogScene(StartScene scene) {
+  public SearchLogScene(DiztlClient client, StartScene scene) {
     super(new BorderPane());
+    this.client = client;
     this.parent = scene;
-    fileSearchScene = new FileSearchScene(scene);
+    fileSearchScene = new FileSearchScene(client, scene);
     this.build();
   }
 
@@ -44,13 +47,13 @@ public class SearchLogScene extends FxScene {
   }
 
   public ResultListComponent addNewSearchTab(String query) {
-    ResultListComponent component = new ResultListComponent(parent);
+    ResultListComponent component = new ResultListComponent(client, parent);
     tabPaneComponent.addTab("search - " + query, component.getNode());
     return component;
   }
 
   public ResultListComponent addNewFileListTab(FileMetadata file) {
-    ResultListComponent component = new ResultListComponent(parent);
+    ResultListComponent component = new ResultListComponent(client, parent);
     tabPaneComponent.addTab("file list - " + file.getName(), component.getNode());
     return component;
   }

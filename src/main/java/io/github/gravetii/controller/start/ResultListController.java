@@ -29,6 +29,7 @@ public class ResultListController implements FxController {
 
   private static final String DOWNLOAD_FOLDER = "/Users/s0d01bw/Documents/diztl_downloads";
 
+  private final DiztlClient client;
   private final StartScene scene;
 
   @FXML private TableView<FileResult> resultListTbl;
@@ -37,7 +38,8 @@ public class ResultListController implements FxController {
   @FXML private TableColumn<FileResult, String> fileTypeTblCol;
   @FXML private TableColumn<FileResult, String> filePathTblCol;
 
-  public ResultListController(StartScene scene) {
+  public ResultListController(DiztlClient client, StartScene scene) {
+    this.client = client;
     this.scene = scene;
   }
 
@@ -124,7 +126,7 @@ public class ResultListController implements FxController {
   }
 
   private void download(FileResult result) {
-    DiztlClient.download(result.getFile(), result.getSource(), newObserver(result.getFile()));
+    client.download(result.getFile(), result.getSource(), newObserver(result.getFile()));
   }
 
   private void setColumnWidths() {

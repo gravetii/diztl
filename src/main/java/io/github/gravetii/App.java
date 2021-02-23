@@ -1,10 +1,8 @@
 package io.github.gravetii;
 
-import com.google.common.util.concurrent.ListenableFuture;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import io.github.gravetii.client.DiztlClient;
-import io.github.gravetii.grpc.RegisterResp;
 import io.github.gravetii.node.DiztlServiceImpl;
 import io.github.gravetii.scene.FxScene;
 import io.github.gravetii.scene.start.StartScene;
@@ -27,6 +25,8 @@ public class App extends Application {
 
   private static final Logger logger = LoggerFactory.getLogger(App.class.getCanonicalName());
 
+  private static Injector injector;
+
   private Server server;
 
   public static void display(Stage stage, FxScene scene) {
@@ -38,7 +38,6 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    Injector injector = Guice.createInjector(new StartupModule());
     stage.setOnCloseRequest(
         event -> {
           DiztlExecutorService.close();
@@ -51,7 +50,7 @@ public class App extends Application {
           }
         });
 
-    StartScene scene = injector.getInstance(StartScene.class);
+    StartScene scene = App.injector.getInstance(StartScene.class);
     App.display(stage, scene);
 
     new Thread(
@@ -67,26 +66,13 @@ public class App extends Application {
         .start();
 
     scene.index();
-    registerToTracker(scene);
-  }
-
-  private void registerToTracker(StartScene scene) throws Exception {
-    ListenableFuture<RegisterResp> registerResp = DiztlClient.register();
-    registerResp.addListener(
-        () -> {
-          try {
-            DiztlClient.node = registerResp.get().getNode();
-            scene.writeToLog("Successfully register to tracker.");
-          } catch (Throwable throwable) {
-            scene.writeToErrorLog("Couldn't register to tracker.");
-            logger.error("Error while registering to tracker", throwable);
-          }
-        },
-        DiztlExecutorService.executor);
   }
 
   private void startServer() throws IOException {
-    this.server = ServerBuilder.forPort(50035).addService(new DiztlServiceImpl()).build().start();
+    DiztlClient client = App.injector.getInstance(DiztlClient.class);
+    ServerBuilder<?> builder =
+        ServerBuilder.forPort(50035).addService(new DiztlServiceImpl(client));
+    this.server = builder.build().start();
   }
 
   private static Parent loadFXML(String fxml) throws IOException {
@@ -96,6 +82,7 @@ public class App extends Application {
 
   public static void main(String[] args) {
     logger.info("Launching application...");
+    App.injector = Guice.createInjector(new StartupModule());
     launch();
   }
 }

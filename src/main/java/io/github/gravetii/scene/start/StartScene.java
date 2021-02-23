@@ -1,5 +1,8 @@
 package io.github.gravetii.scene.start;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.grpc.FileMetadata;
 import io.github.gravetii.indexer.FileIndexer;
 import io.github.gravetii.indexer.IndexedFile;
@@ -17,15 +20,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@Singleton
 public class StartScene extends FxScene {
+
   private final SearchLogScene searchLogScene;
   private final DownloadResultScene downloadResultScene;
-
   private final FileIndexer indexer;
 
-  public StartScene() {
+  @Inject
+  public StartScene(DiztlClient client) {
     super(new SplitPane());
-    searchLogScene = new SearchLogScene(this);
+    searchLogScene = new SearchLogScene(client, this);
     downloadResultScene = new DownloadResultScene();
     List<String> shareDirs = Collections.singletonList("/Users/s0d01bw/Documents");
     indexer = new FileIndexer(shareDirs);

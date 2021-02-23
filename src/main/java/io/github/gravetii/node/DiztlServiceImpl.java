@@ -26,6 +26,12 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
 
   private static final int BUFFER_SIZE = 1024 * 1024;
 
+  private final DiztlClient client;
+
+  public DiztlServiceImpl(DiztlClient client) {
+    this.client = client;
+  }
+
   @Override
   public void search(SearchReq request, StreamObserver<SearchResp> responseObserver) {
     FileIndexer indexer = new FileIndexer(Collections.singletonList("/Users/s0d01bw/Documents/"));
@@ -43,7 +49,7 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
                         .build())
             .collect(Collectors.toList());
 
-    SearchResp resp = SearchResp.newBuilder().addAllFiles(files).setNode(DiztlClient.node).build();
+    SearchResp resp = SearchResp.newBuilder().addAllFiles(files).setNode(client.getSelf()).build();
     responseObserver.onNext(resp);
     responseObserver.onCompleted();
   }

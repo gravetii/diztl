@@ -24,6 +24,7 @@ public class FileSearchController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(FileSearchController.class.getCanonicalName());
 
+  private final DiztlClient client;
   private final StartScene parent;
 
   @FXML private AnchorPane parentCtnr;
@@ -35,7 +36,8 @@ public class FileSearchController implements FxController {
   @FXML private ComboBox<String> sizeUnit;
   @FXML private ComboBox<String> fileType;
 
-  public FileSearchController(StartScene parent) {
+  public FileSearchController(DiztlClient client, StartScene parent) {
+    this.client = client;
     this.parent = parent;
   }
 
@@ -111,7 +113,7 @@ public class FileSearchController implements FxController {
       int ftype = fileType.getSelectionModel().getSelectedIndex();
       TypeConstraint type = TypeConstraint.newBuilder().setType(ftype).build();
       FileConstraint constraint = FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
-      DiztlClient.search(query, constraint, newObserver(query));
+      client.search(query, constraint, newObserver(query));
     }
   }
 }
