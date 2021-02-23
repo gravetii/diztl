@@ -1,6 +1,8 @@
 package io.github.gravetii;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.grpc.RegisterResp;
 import io.github.gravetii.node.DiztlServiceImpl;
@@ -27,6 +29,7 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
+    Injector injector = Guice.createInjector(new StartupModule(stage));
     stage.setOnCloseRequest(
         event -> {
           DiztlExecutorService.close();
@@ -39,8 +42,9 @@ public class App extends Application {
           }
         });
 
-    StartScene scene = new StartScene(stage);
+    StartScene scene = injector.getInstance(StartScene.class);
     scene.show();
+
     new Thread(
             () -> {
               try {
