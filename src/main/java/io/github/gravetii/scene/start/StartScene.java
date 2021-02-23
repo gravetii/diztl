@@ -1,6 +1,6 @@
 package io.github.gravetii.scene.start;
 
-import io.github.gravetii.grpc.Diztl;
+import io.github.gravetii.grpc.FileMetadata;
 import io.github.gravetii.indexer.FileIndexer;
 import io.github.gravetii.indexer.IndexedFile;
 import io.github.gravetii.model.DownloadResult;
@@ -37,7 +37,7 @@ public class StartScene extends FxScene {
     return searchLogScene.addNewSearchTab(query);
   }
 
-  public ResultListComponent addNewFileListTab(Diztl.FileMetadata file) {
+  public ResultListComponent addNewFileListTab(FileMetadata file) {
     return searchLogScene.addNewFileListTab(file);
   }
 

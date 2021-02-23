@@ -2,7 +2,9 @@ package io.github.gravetii.controller.start;
 
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.controller.FxController;
-import io.github.gravetii.grpc.Diztl;
+import io.github.gravetii.grpc.FileConstraint;
+import io.github.gravetii.grpc.SizeConstraint;
+import io.github.gravetii.grpc.TypeConstraint;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.Utils;
 import javafx.fxml.FXML;
@@ -82,12 +84,10 @@ public class FileSearchController implements FxController {
       String unit = sizeUnit.getSelectionModel().getSelectedItem();
       long bytes = Utils.getByteCount(sz, unit);
       int key = sizeKey.getSelectionModel().getSelectedIndex();
-      Diztl.SizeConstraint size =
-          Diztl.SizeConstraint.newBuilder().setKey(key).setValue(bytes).build();
+      SizeConstraint size = SizeConstraint.newBuilder().setKey(key).setValue(bytes).build();
       int ftype = fileType.getSelectionModel().getSelectedIndex();
-      Diztl.TypeConstraint type = Diztl.TypeConstraint.newBuilder().setType(ftype).build();
-      Diztl.FileConstraint constraint =
-          Diztl.FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
+      TypeConstraint type = TypeConstraint.newBuilder().setType(ftype).build();
+      FileConstraint constraint = FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
       DiztlClient.search(query, constraint, parent);
     }
   }

@@ -1,10 +1,7 @@
 package io.github.gravetii.client;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import io.github.gravetii.grpc.Diztl;
-import io.github.gravetii.grpc.Diztl.Node;
-import io.github.gravetii.grpc.Diztl.RegisterReq;
-import io.github.gravetii.grpc.Diztl.RegisterResp;
+import io.github.gravetii.grpc.*;
 import io.github.gravetii.keeper.KeeperService;
 import io.github.gravetii.keeper.TrackerConnection;
 import io.github.gravetii.scene.start.StartScene;
@@ -49,23 +46,18 @@ public class DiztlClient {
     return connection.futureStub.register(request);
   }
 
-  public static void search(String query, Diztl.FileConstraint constraint, StartScene scene) {
-    Diztl.SearchReq request =
-        Diztl.SearchReq.newBuilder()
-            .setSource(node)
-            .setQuery(query)
-            .setConstraint(constraint)
-            .build();
+  public static void search(String query, FileConstraint constraint, StartScene scene) {
+    SearchReq request =
+        SearchReq.newBuilder().setSource(node).setQuery(query).setConstraint(constraint).build();
 
     logger.info("Searching for pattern - {}", query);
     SearchService service = new SearchService(query, constraint, scene);
     connection.asyncStub.search(request, service.newObserver());
   }
 
-  public static void download(Diztl.FileMetadata file, Diztl.Node source, StartScene scene) {
+  public static void download(FileMetadata file, Node source, StartScene scene) {
     DownloadService service = new DownloadService(file, source, scene);
-    Diztl.UploadReq request =
-        Diztl.UploadReq.newBuilder().setSource(node).setMetadata(file).build();
+    UploadReq request = UploadReq.newBuilder().setSource(node).setMetadata(file).build();
     KeeperService.get().getOrCreate(source).asyncStub.upload(request, service.newObserver());
   }
 }

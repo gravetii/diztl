@@ -27,29 +27,29 @@ public final class TrackerServiceGrpc {
   public static final String SERVICE_NAME = "TrackerService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.RegisterReq,
-      io.github.gravetii.grpc.Diztl.RegisterResp> getRegisterMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.RegisterReq,
+      io.github.gravetii.grpc.RegisterResp> getRegisterMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Register",
-      requestType = io.github.gravetii.grpc.Diztl.RegisterReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.RegisterResp.class,
+      requestType = io.github.gravetii.grpc.RegisterReq.class,
+      responseType = io.github.gravetii.grpc.RegisterResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.RegisterReq,
-      io.github.gravetii.grpc.Diztl.RegisterResp> getRegisterMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.RegisterReq, io.github.gravetii.grpc.Diztl.RegisterResp> getRegisterMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.RegisterReq,
+      io.github.gravetii.grpc.RegisterResp> getRegisterMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.RegisterReq, io.github.gravetii.grpc.RegisterResp> getRegisterMethod;
     if ((getRegisterMethod = TrackerServiceGrpc.getRegisterMethod) == null) {
       synchronized (TrackerServiceGrpc.class) {
         if ((getRegisterMethod = TrackerServiceGrpc.getRegisterMethod) == null) {
           TrackerServiceGrpc.getRegisterMethod = getRegisterMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.RegisterReq, io.github.gravetii.grpc.Diztl.RegisterResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.RegisterReq, io.github.gravetii.grpc.RegisterResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Register"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.RegisterReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.RegisterReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.RegisterResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.RegisterResp.getDefaultInstance()))
               .setSchemaDescriptor(new TrackerServiceMethodDescriptorSupplier("Register"))
               .build();
         }
@@ -58,29 +58,29 @@ public final class TrackerServiceGrpc {
     return getRegisterMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.SearchReq,
-      io.github.gravetii.grpc.Diztl.SearchResp> getSearchMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.SearchReq,
+      io.github.gravetii.grpc.SearchResp> getSearchMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Search",
-      requestType = io.github.gravetii.grpc.Diztl.SearchReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.SearchResp.class,
+      requestType = io.github.gravetii.grpc.SearchReq.class,
+      responseType = io.github.gravetii.grpc.SearchResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.SearchReq,
-      io.github.gravetii.grpc.Diztl.SearchResp> getSearchMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.SearchReq, io.github.gravetii.grpc.Diztl.SearchResp> getSearchMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.SearchReq,
+      io.github.gravetii.grpc.SearchResp> getSearchMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.SearchReq, io.github.gravetii.grpc.SearchResp> getSearchMethod;
     if ((getSearchMethod = TrackerServiceGrpc.getSearchMethod) == null) {
       synchronized (TrackerServiceGrpc.class) {
         if ((getSearchMethod = TrackerServiceGrpc.getSearchMethod) == null) {
           TrackerServiceGrpc.getSearchMethod = getSearchMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.SearchReq, io.github.gravetii.grpc.Diztl.SearchResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.SearchReq, io.github.gravetii.grpc.SearchResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Search"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.SearchReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.SearchReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.SearchResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.SearchResp.getDefaultInstance()))
               .setSchemaDescriptor(new TrackerServiceMethodDescriptorSupplier("Search"))
               .build();
         }
@@ -89,29 +89,29 @@ public final class TrackerServiceGrpc {
     return getSearchMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.DisconnectReq,
-      io.github.gravetii.grpc.Diztl.DisconnectResp> getDisconnectMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.DisconnectReq,
+      io.github.gravetii.grpc.DisconnectResp> getDisconnectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Disconnect",
-      requestType = io.github.gravetii.grpc.Diztl.DisconnectReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.DisconnectResp.class,
+      requestType = io.github.gravetii.grpc.DisconnectReq.class,
+      responseType = io.github.gravetii.grpc.DisconnectResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.DisconnectReq,
-      io.github.gravetii.grpc.Diztl.DisconnectResp> getDisconnectMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.DisconnectReq, io.github.gravetii.grpc.Diztl.DisconnectResp> getDisconnectMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.DisconnectReq,
+      io.github.gravetii.grpc.DisconnectResp> getDisconnectMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.DisconnectReq, io.github.gravetii.grpc.DisconnectResp> getDisconnectMethod;
     if ((getDisconnectMethod = TrackerServiceGrpc.getDisconnectMethod) == null) {
       synchronized (TrackerServiceGrpc.class) {
         if ((getDisconnectMethod = TrackerServiceGrpc.getDisconnectMethod) == null) {
           TrackerServiceGrpc.getDisconnectMethod = getDisconnectMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.DisconnectReq, io.github.gravetii.grpc.Diztl.DisconnectResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.DisconnectReq, io.github.gravetii.grpc.DisconnectResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Disconnect"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.DisconnectReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.DisconnectReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.DisconnectResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.DisconnectResp.getDefaultInstance()))
               .setSchemaDescriptor(new TrackerServiceMethodDescriptorSupplier("Disconnect"))
               .build();
         }
@@ -170,22 +170,22 @@ public final class TrackerServiceGrpc {
 
     /**
      */
-    public void register(io.github.gravetii.grpc.Diztl.RegisterReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.RegisterResp> responseObserver) {
+    public void register(io.github.gravetii.grpc.RegisterReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.RegisterResp> responseObserver) {
       asyncUnimplementedUnaryCall(getRegisterMethod(), responseObserver);
     }
 
     /**
      */
-    public void search(io.github.gravetii.grpc.Diztl.SearchReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.SearchResp> responseObserver) {
+    public void search(io.github.gravetii.grpc.SearchReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.SearchResp> responseObserver) {
       asyncUnimplementedUnaryCall(getSearchMethod(), responseObserver);
     }
 
     /**
      */
-    public void disconnect(io.github.gravetii.grpc.Diztl.DisconnectReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.DisconnectResp> responseObserver) {
+    public void disconnect(io.github.gravetii.grpc.DisconnectReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.DisconnectResp> responseObserver) {
       asyncUnimplementedUnaryCall(getDisconnectMethod(), responseObserver);
     }
 
@@ -195,22 +195,22 @@ public final class TrackerServiceGrpc {
             getRegisterMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.RegisterReq,
-                io.github.gravetii.grpc.Diztl.RegisterResp>(
+                io.github.gravetii.grpc.RegisterReq,
+                io.github.gravetii.grpc.RegisterResp>(
                   this, METHODID_REGISTER)))
           .addMethod(
             getSearchMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.SearchReq,
-                io.github.gravetii.grpc.Diztl.SearchResp>(
+                io.github.gravetii.grpc.SearchReq,
+                io.github.gravetii.grpc.SearchResp>(
                   this, METHODID_SEARCH)))
           .addMethod(
             getDisconnectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.DisconnectReq,
-                io.github.gravetii.grpc.Diztl.DisconnectResp>(
+                io.github.gravetii.grpc.DisconnectReq,
+                io.github.gravetii.grpc.DisconnectResp>(
                   this, METHODID_DISCONNECT)))
           .build();
     }
@@ -232,24 +232,24 @@ public final class TrackerServiceGrpc {
 
     /**
      */
-    public void register(io.github.gravetii.grpc.Diztl.RegisterReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.RegisterResp> responseObserver) {
+    public void register(io.github.gravetii.grpc.RegisterReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.RegisterResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getRegisterMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void search(io.github.gravetii.grpc.Diztl.SearchReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.SearchResp> responseObserver) {
+    public void search(io.github.gravetii.grpc.SearchReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.SearchResp> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getSearchMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void disconnect(io.github.gravetii.grpc.Diztl.DisconnectReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.DisconnectResp> responseObserver) {
+    public void disconnect(io.github.gravetii.grpc.DisconnectReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.DisconnectResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getDisconnectMethod(), getCallOptions()), request, responseObserver);
     }
@@ -271,22 +271,22 @@ public final class TrackerServiceGrpc {
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.RegisterResp register(io.github.gravetii.grpc.Diztl.RegisterReq request) {
+    public io.github.gravetii.grpc.RegisterResp register(io.github.gravetii.grpc.RegisterReq request) {
       return blockingUnaryCall(
           getChannel(), getRegisterMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<io.github.gravetii.grpc.Diztl.SearchResp> search(
-        io.github.gravetii.grpc.Diztl.SearchReq request) {
+    public java.util.Iterator<io.github.gravetii.grpc.SearchResp> search(
+        io.github.gravetii.grpc.SearchReq request) {
       return blockingServerStreamingCall(
           getChannel(), getSearchMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.DisconnectResp disconnect(io.github.gravetii.grpc.Diztl.DisconnectReq request) {
+    public io.github.gravetii.grpc.DisconnectResp disconnect(io.github.gravetii.grpc.DisconnectReq request) {
       return blockingUnaryCall(
           getChannel(), getDisconnectMethod(), getCallOptions(), request);
     }
@@ -308,16 +308,16 @@ public final class TrackerServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.RegisterResp> register(
-        io.github.gravetii.grpc.Diztl.RegisterReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.RegisterResp> register(
+        io.github.gravetii.grpc.RegisterReq request) {
       return futureUnaryCall(
           getChannel().newCall(getRegisterMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.DisconnectResp> disconnect(
-        io.github.gravetii.grpc.Diztl.DisconnectReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.DisconnectResp> disconnect(
+        io.github.gravetii.grpc.DisconnectReq request) {
       return futureUnaryCall(
           getChannel().newCall(getDisconnectMethod(), getCallOptions()), request);
     }
@@ -345,16 +345,16 @@ public final class TrackerServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_REGISTER:
-          serviceImpl.register((io.github.gravetii.grpc.Diztl.RegisterReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.RegisterResp>) responseObserver);
+          serviceImpl.register((io.github.gravetii.grpc.RegisterReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.RegisterResp>) responseObserver);
           break;
         case METHODID_SEARCH:
-          serviceImpl.search((io.github.gravetii.grpc.Diztl.SearchReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.SearchResp>) responseObserver);
+          serviceImpl.search((io.github.gravetii.grpc.SearchReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.SearchResp>) responseObserver);
           break;
         case METHODID_DISCONNECT:
-          serviceImpl.disconnect((io.github.gravetii.grpc.Diztl.DisconnectReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.DisconnectResp>) responseObserver);
+          serviceImpl.disconnect((io.github.gravetii.grpc.DisconnectReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.DisconnectResp>) responseObserver);
           break;
         default:
           throw new AssertionError();

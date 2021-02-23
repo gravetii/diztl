@@ -1,7 +1,8 @@
 package io.github.gravetii.client;
 
 import io.github.gravetii.controller.start.FileResult;
-import io.github.gravetii.grpc.Diztl;
+import io.github.gravetii.grpc.FileConstraint;
+import io.github.gravetii.grpc.SearchResp;
 import io.github.gravetii.scene.start.ResultListComponent;
 import io.github.gravetii.scene.start.StartScene;
 import io.grpc.stub.StreamObserver;
@@ -14,20 +15,20 @@ public class SearchService {
       LoggerFactory.getLogger(SearchService.class.getCanonicalName());
 
   private final String query;
-  private final Diztl.FileConstraint constraint;
+  private final FileConstraint constraint;
   private final StartScene scene;
 
-  public SearchService(String query, Diztl.FileConstraint constraint, StartScene scene) {
+  public SearchService(String query, FileConstraint constraint, StartScene scene) {
     this.query = query;
     this.constraint = constraint;
     this.scene = scene;
   }
 
-  public StreamObserver<Diztl.SearchResp> newObserver() {
+  public StreamObserver<SearchResp> newObserver() {
     ResultListComponent component = scene.addNewSearchTab(query);
     return new StreamObserver<>() {
       @Override
-      public void onNext(Diztl.SearchResp resp) {
+      public void onNext(SearchResp resp) {
         logger.info("Adding files to show - {}", resp.getFilesList());
         resp.getFilesList().forEach(file -> component.show(new FileResult(file, resp.getNode())));
       }

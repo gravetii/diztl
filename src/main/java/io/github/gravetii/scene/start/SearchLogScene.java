@@ -1,6 +1,6 @@
 package io.github.gravetii.scene.start;
 
-import io.github.gravetii.grpc.Diztl;
+import io.github.gravetii.grpc.FileMetadata;
 import io.github.gravetii.scene.FxScene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
@@ -55,7 +55,7 @@ public class SearchLogScene extends FxScene {
     return component;
   }
 
-  public ResultListComponent addNewFileListTab(Diztl.FileMetadata file) {
+  public ResultListComponent addNewFileListTab(FileMetadata file) {
     ResultListComponent component = new ResultListComponent(stage, parent);
     tabPaneComponent.addTab("file list - " + file.getName(), component.getNode());
     return component;

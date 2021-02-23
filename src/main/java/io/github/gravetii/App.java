@@ -2,7 +2,7 @@ package io.github.gravetii;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import io.github.gravetii.client.DiztlClient;
-import io.github.gravetii.grpc.Diztl;
+import io.github.gravetii.grpc.RegisterResp;
 import io.github.gravetii.node.DiztlServiceImpl;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.DiztlExecutorService;
@@ -58,7 +58,7 @@ public class App extends Application {
   }
 
   private void registerToTracker(StartScene scene) throws Exception {
-    ListenableFuture<Diztl.RegisterResp> registerResp = DiztlClient.register();
+    ListenableFuture<RegisterResp> registerResp = DiztlClient.register();
     registerResp.addListener(
         () -> {
           try {

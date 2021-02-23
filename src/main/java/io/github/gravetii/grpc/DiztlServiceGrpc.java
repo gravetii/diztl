@@ -27,29 +27,29 @@ public final class DiztlServiceGrpc {
   public static final String SERVICE_NAME = "DiztlService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.SearchReq,
-      io.github.gravetii.grpc.Diztl.SearchResp> getSearchMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.SearchReq,
+      io.github.gravetii.grpc.SearchResp> getSearchMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Search",
-      requestType = io.github.gravetii.grpc.Diztl.SearchReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.SearchResp.class,
+      requestType = io.github.gravetii.grpc.SearchReq.class,
+      responseType = io.github.gravetii.grpc.SearchResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.SearchReq,
-      io.github.gravetii.grpc.Diztl.SearchResp> getSearchMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.SearchReq, io.github.gravetii.grpc.Diztl.SearchResp> getSearchMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.SearchReq,
+      io.github.gravetii.grpc.SearchResp> getSearchMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.SearchReq, io.github.gravetii.grpc.SearchResp> getSearchMethod;
     if ((getSearchMethod = DiztlServiceGrpc.getSearchMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getSearchMethod = DiztlServiceGrpc.getSearchMethod) == null) {
           DiztlServiceGrpc.getSearchMethod = getSearchMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.SearchReq, io.github.gravetii.grpc.Diztl.SearchResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.SearchReq, io.github.gravetii.grpc.SearchResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Search"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.SearchReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.SearchReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.SearchResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.SearchResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Search"))
               .build();
         }
@@ -58,29 +58,29 @@ public final class DiztlServiceGrpc {
     return getSearchMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UploadReq,
-      io.github.gravetii.grpc.Diztl.FileChunk> getUploadMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.UploadReq,
+      io.github.gravetii.grpc.FileChunk> getUploadMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Upload",
-      requestType = io.github.gravetii.grpc.Diztl.UploadReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.FileChunk.class,
+      requestType = io.github.gravetii.grpc.UploadReq.class,
+      responseType = io.github.gravetii.grpc.FileChunk.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UploadReq,
-      io.github.gravetii.grpc.Diztl.FileChunk> getUploadMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UploadReq, io.github.gravetii.grpc.Diztl.FileChunk> getUploadMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.UploadReq,
+      io.github.gravetii.grpc.FileChunk> getUploadMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.UploadReq, io.github.gravetii.grpc.FileChunk> getUploadMethod;
     if ((getUploadMethod = DiztlServiceGrpc.getUploadMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getUploadMethod = DiztlServiceGrpc.getUploadMethod) == null) {
           DiztlServiceGrpc.getUploadMethod = getUploadMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.UploadReq, io.github.gravetii.grpc.Diztl.FileChunk>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.UploadReq, io.github.gravetii.grpc.FileChunk>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Upload"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.UploadReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.UploadReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.FileChunk.getDefaultInstance()))
+                  io.github.gravetii.grpc.FileChunk.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Upload"))
               .build();
         }
@@ -89,29 +89,29 @@ public final class DiztlServiceGrpc {
     return getUploadMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.PingReq,
-      io.github.gravetii.grpc.Diztl.PingResp> getPingMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.PingReq,
+      io.github.gravetii.grpc.PingResp> getPingMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Ping",
-      requestType = io.github.gravetii.grpc.Diztl.PingReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.PingResp.class,
+      requestType = io.github.gravetii.grpc.PingReq.class,
+      responseType = io.github.gravetii.grpc.PingResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.PingReq,
-      io.github.gravetii.grpc.Diztl.PingResp> getPingMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.PingReq, io.github.gravetii.grpc.Diztl.PingResp> getPingMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.PingReq,
+      io.github.gravetii.grpc.PingResp> getPingMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.PingReq, io.github.gravetii.grpc.PingResp> getPingMethod;
     if ((getPingMethod = DiztlServiceGrpc.getPingMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getPingMethod = DiztlServiceGrpc.getPingMethod) == null) {
           DiztlServiceGrpc.getPingMethod = getPingMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.PingReq, io.github.gravetii.grpc.Diztl.PingResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.PingReq, io.github.gravetii.grpc.PingResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Ping"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.PingReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.PingReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.PingResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.PingResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Ping"))
               .build();
         }
@@ -120,29 +120,29 @@ public final class DiztlServiceGrpc {
     return getPingMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.FindReq,
-      io.github.gravetii.grpc.Diztl.FindResp> getFindMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.FindReq,
+      io.github.gravetii.grpc.FindResp> getFindMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Find",
-      requestType = io.github.gravetii.grpc.Diztl.FindReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.FindResp.class,
+      requestType = io.github.gravetii.grpc.FindReq.class,
+      responseType = io.github.gravetii.grpc.FindResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.FindReq,
-      io.github.gravetii.grpc.Diztl.FindResp> getFindMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.FindReq, io.github.gravetii.grpc.Diztl.FindResp> getFindMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.FindReq,
+      io.github.gravetii.grpc.FindResp> getFindMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.FindReq, io.github.gravetii.grpc.FindResp> getFindMethod;
     if ((getFindMethod = DiztlServiceGrpc.getFindMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getFindMethod = DiztlServiceGrpc.getFindMethod) == null) {
           DiztlServiceGrpc.getFindMethod = getFindMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.FindReq, io.github.gravetii.grpc.Diztl.FindResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.FindReq, io.github.gravetii.grpc.FindResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Find"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.FindReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.FindReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.FindResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.FindResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Find"))
               .build();
         }
@@ -151,29 +151,29 @@ public final class DiztlServiceGrpc {
     return getFindMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.DownloadReq,
-      io.github.gravetii.grpc.Diztl.DownloadChunk> getDownloadMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.DownloadReq,
+      io.github.gravetii.grpc.DownloadChunk> getDownloadMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Download",
-      requestType = io.github.gravetii.grpc.Diztl.DownloadReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.DownloadChunk.class,
+      requestType = io.github.gravetii.grpc.DownloadReq.class,
+      responseType = io.github.gravetii.grpc.DownloadChunk.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.DownloadReq,
-      io.github.gravetii.grpc.Diztl.DownloadChunk> getDownloadMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.DownloadReq, io.github.gravetii.grpc.Diztl.DownloadChunk> getDownloadMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.DownloadReq,
+      io.github.gravetii.grpc.DownloadChunk> getDownloadMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.DownloadReq, io.github.gravetii.grpc.DownloadChunk> getDownloadMethod;
     if ((getDownloadMethod = DiztlServiceGrpc.getDownloadMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getDownloadMethod = DiztlServiceGrpc.getDownloadMethod) == null) {
           DiztlServiceGrpc.getDownloadMethod = getDownloadMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.DownloadReq, io.github.gravetii.grpc.Diztl.DownloadChunk>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.DownloadReq, io.github.gravetii.grpc.DownloadChunk>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Download"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.DownloadReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.DownloadReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.DownloadChunk.getDefaultInstance()))
+                  io.github.gravetii.grpc.DownloadChunk.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Download"))
               .build();
         }
@@ -182,29 +182,29 @@ public final class DiztlServiceGrpc {
     return getDownloadMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UserDirsReq,
-      io.github.gravetii.grpc.Diztl.UserDirsResp> getGetUserDirsMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.UserDirsReq,
+      io.github.gravetii.grpc.UserDirsResp> getGetUserDirsMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "GetUserDirs",
-      requestType = io.github.gravetii.grpc.Diztl.UserDirsReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.UserDirsResp.class,
+      requestType = io.github.gravetii.grpc.UserDirsReq.class,
+      responseType = io.github.gravetii.grpc.UserDirsResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UserDirsReq,
-      io.github.gravetii.grpc.Diztl.UserDirsResp> getGetUserDirsMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UserDirsReq, io.github.gravetii.grpc.Diztl.UserDirsResp> getGetUserDirsMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.UserDirsReq,
+      io.github.gravetii.grpc.UserDirsResp> getGetUserDirsMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.UserDirsReq, io.github.gravetii.grpc.UserDirsResp> getGetUserDirsMethod;
     if ((getGetUserDirsMethod = DiztlServiceGrpc.getGetUserDirsMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getGetUserDirsMethod = DiztlServiceGrpc.getGetUserDirsMethod) == null) {
           DiztlServiceGrpc.getGetUserDirsMethod = getGetUserDirsMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.UserDirsReq, io.github.gravetii.grpc.Diztl.UserDirsResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.UserDirsReq, io.github.gravetii.grpc.UserDirsResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetUserDirs"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.UserDirsReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.UserDirsReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.UserDirsResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.UserDirsResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("GetUserDirs"))
               .build();
         }
@@ -213,29 +213,29 @@ public final class DiztlServiceGrpc {
     return getGetUserDirsMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UpdateUserDirsReq,
-      io.github.gravetii.grpc.Diztl.UpdateUserDirsResp> getUpdateUserDirsMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.UpdateUserDirsReq,
+      io.github.gravetii.grpc.UpdateUserDirsResp> getUpdateUserDirsMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "UpdateUserDirs",
-      requestType = io.github.gravetii.grpc.Diztl.UpdateUserDirsReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.UpdateUserDirsResp.class,
+      requestType = io.github.gravetii.grpc.UpdateUserDirsReq.class,
+      responseType = io.github.gravetii.grpc.UpdateUserDirsResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UpdateUserDirsReq,
-      io.github.gravetii.grpc.Diztl.UpdateUserDirsResp> getUpdateUserDirsMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UpdateUserDirsReq, io.github.gravetii.grpc.Diztl.UpdateUserDirsResp> getUpdateUserDirsMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.UpdateUserDirsReq,
+      io.github.gravetii.grpc.UpdateUserDirsResp> getUpdateUserDirsMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.UpdateUserDirsReq, io.github.gravetii.grpc.UpdateUserDirsResp> getUpdateUserDirsMethod;
     if ((getUpdateUserDirsMethod = DiztlServiceGrpc.getUpdateUserDirsMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getUpdateUserDirsMethod = DiztlServiceGrpc.getUpdateUserDirsMethod) == null) {
           DiztlServiceGrpc.getUpdateUserDirsMethod = getUpdateUserDirsMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.UpdateUserDirsReq, io.github.gravetii.grpc.Diztl.UpdateUserDirsResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.UpdateUserDirsReq, io.github.gravetii.grpc.UpdateUserDirsResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateUserDirs"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.UpdateUserDirsReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.UpdateUserDirsReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.UpdateUserDirsResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.UpdateUserDirsResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("UpdateUserDirs"))
               .build();
         }
@@ -244,29 +244,29 @@ public final class DiztlServiceGrpc {
     return getUpdateUserDirsMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.GetTrackerReq,
-      io.github.gravetii.grpc.Diztl.GetTrackerResp> getGetTrackerMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.GetTrackerReq,
+      io.github.gravetii.grpc.GetTrackerResp> getGetTrackerMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "GetTracker",
-      requestType = io.github.gravetii.grpc.Diztl.GetTrackerReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.GetTrackerResp.class,
+      requestType = io.github.gravetii.grpc.GetTrackerReq.class,
+      responseType = io.github.gravetii.grpc.GetTrackerResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.GetTrackerReq,
-      io.github.gravetii.grpc.Diztl.GetTrackerResp> getGetTrackerMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.GetTrackerReq, io.github.gravetii.grpc.Diztl.GetTrackerResp> getGetTrackerMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.GetTrackerReq,
+      io.github.gravetii.grpc.GetTrackerResp> getGetTrackerMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.GetTrackerReq, io.github.gravetii.grpc.GetTrackerResp> getGetTrackerMethod;
     if ((getGetTrackerMethod = DiztlServiceGrpc.getGetTrackerMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getGetTrackerMethod = DiztlServiceGrpc.getGetTrackerMethod) == null) {
           DiztlServiceGrpc.getGetTrackerMethod = getGetTrackerMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.GetTrackerReq, io.github.gravetii.grpc.Diztl.GetTrackerResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.GetTrackerReq, io.github.gravetii.grpc.GetTrackerResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetTracker"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.GetTrackerReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.GetTrackerReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.GetTrackerResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.GetTrackerResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("GetTracker"))
               .build();
         }
@@ -275,29 +275,29 @@ public final class DiztlServiceGrpc {
     return getGetTrackerMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UpdateTrackerReq,
-      io.github.gravetii.grpc.Diztl.UpdateTrackerResp> getUpdateTrackerMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.UpdateTrackerReq,
+      io.github.gravetii.grpc.UpdateTrackerResp> getUpdateTrackerMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "UpdateTracker",
-      requestType = io.github.gravetii.grpc.Diztl.UpdateTrackerReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.UpdateTrackerResp.class,
+      requestType = io.github.gravetii.grpc.UpdateTrackerReq.class,
+      responseType = io.github.gravetii.grpc.UpdateTrackerResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UpdateTrackerReq,
-      io.github.gravetii.grpc.Diztl.UpdateTrackerResp> getUpdateTrackerMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.UpdateTrackerReq, io.github.gravetii.grpc.Diztl.UpdateTrackerResp> getUpdateTrackerMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.UpdateTrackerReq,
+      io.github.gravetii.grpc.UpdateTrackerResp> getUpdateTrackerMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.UpdateTrackerReq, io.github.gravetii.grpc.UpdateTrackerResp> getUpdateTrackerMethod;
     if ((getUpdateTrackerMethod = DiztlServiceGrpc.getUpdateTrackerMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getUpdateTrackerMethod = DiztlServiceGrpc.getUpdateTrackerMethod) == null) {
           DiztlServiceGrpc.getUpdateTrackerMethod = getUpdateTrackerMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.UpdateTrackerReq, io.github.gravetii.grpc.Diztl.UpdateTrackerResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.UpdateTrackerReq, io.github.gravetii.grpc.UpdateTrackerResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateTracker"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.UpdateTrackerReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.UpdateTrackerReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.UpdateTrackerResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.UpdateTrackerResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("UpdateTracker"))
               .build();
         }
@@ -306,29 +306,29 @@ public final class DiztlServiceGrpc {
     return getUpdateTrackerMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.IndexReq,
-      io.github.gravetii.grpc.Diztl.IndexResp> getIndexMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.IndexReq,
+      io.github.gravetii.grpc.IndexResp> getIndexMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Index",
-      requestType = io.github.gravetii.grpc.Diztl.IndexReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.IndexResp.class,
+      requestType = io.github.gravetii.grpc.IndexReq.class,
+      responseType = io.github.gravetii.grpc.IndexResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.IndexReq,
-      io.github.gravetii.grpc.Diztl.IndexResp> getIndexMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.IndexReq, io.github.gravetii.grpc.Diztl.IndexResp> getIndexMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.IndexReq,
+      io.github.gravetii.grpc.IndexResp> getIndexMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.IndexReq, io.github.gravetii.grpc.IndexResp> getIndexMethod;
     if ((getIndexMethod = DiztlServiceGrpc.getIndexMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getIndexMethod = DiztlServiceGrpc.getIndexMethod) == null) {
           DiztlServiceGrpc.getIndexMethod = getIndexMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.IndexReq, io.github.gravetii.grpc.Diztl.IndexResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.IndexReq, io.github.gravetii.grpc.IndexResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Index"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.IndexReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.IndexReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.IndexResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.IndexResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Index"))
               .build();
         }
@@ -337,29 +337,29 @@ public final class DiztlServiceGrpc {
     return getIndexMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.RegisterReq,
-      io.github.gravetii.grpc.Diztl.RegisterResp> getRegisterMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.RegisterReq,
+      io.github.gravetii.grpc.RegisterResp> getRegisterMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Register",
-      requestType = io.github.gravetii.grpc.Diztl.RegisterReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.RegisterResp.class,
+      requestType = io.github.gravetii.grpc.RegisterReq.class,
+      responseType = io.github.gravetii.grpc.RegisterResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.RegisterReq,
-      io.github.gravetii.grpc.Diztl.RegisterResp> getRegisterMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.RegisterReq, io.github.gravetii.grpc.Diztl.RegisterResp> getRegisterMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.RegisterReq,
+      io.github.gravetii.grpc.RegisterResp> getRegisterMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.RegisterReq, io.github.gravetii.grpc.RegisterResp> getRegisterMethod;
     if ((getRegisterMethod = DiztlServiceGrpc.getRegisterMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getRegisterMethod = DiztlServiceGrpc.getRegisterMethod) == null) {
           DiztlServiceGrpc.getRegisterMethod = getRegisterMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.RegisterReq, io.github.gravetii.grpc.Diztl.RegisterResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.RegisterReq, io.github.gravetii.grpc.RegisterResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Register"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.RegisterReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.RegisterReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.RegisterResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.RegisterResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Register"))
               .build();
         }
@@ -368,29 +368,29 @@ public final class DiztlServiceGrpc {
     return getRegisterMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.FetchFileListReq,
-      io.github.gravetii.grpc.Diztl.FetchFileListResp> getFetchFileListMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.FetchFileListReq,
+      io.github.gravetii.grpc.FetchFileListResp> getFetchFileListMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "FetchFileList",
-      requestType = io.github.gravetii.grpc.Diztl.FetchFileListReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.FetchFileListResp.class,
+      requestType = io.github.gravetii.grpc.FetchFileListReq.class,
+      responseType = io.github.gravetii.grpc.FetchFileListResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.FetchFileListReq,
-      io.github.gravetii.grpc.Diztl.FetchFileListResp> getFetchFileListMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.FetchFileListReq, io.github.gravetii.grpc.Diztl.FetchFileListResp> getFetchFileListMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.FetchFileListReq,
+      io.github.gravetii.grpc.FetchFileListResp> getFetchFileListMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.FetchFileListReq, io.github.gravetii.grpc.FetchFileListResp> getFetchFileListMethod;
     if ((getFetchFileListMethod = DiztlServiceGrpc.getFetchFileListMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getFetchFileListMethod = DiztlServiceGrpc.getFetchFileListMethod) == null) {
           DiztlServiceGrpc.getFetchFileListMethod = getFetchFileListMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.FetchFileListReq, io.github.gravetii.grpc.Diztl.FetchFileListResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.FetchFileListReq, io.github.gravetii.grpc.FetchFileListResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "FetchFileList"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.FetchFileListReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.FetchFileListReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.FetchFileListResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.FetchFileListResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("FetchFileList"))
               .build();
         }
@@ -399,29 +399,29 @@ public final class DiztlServiceGrpc {
     return getFetchFileListMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.GetFileListReq,
-      io.github.gravetii.grpc.Diztl.GetFileListResp> getGetFileListMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.GetFileListReq,
+      io.github.gravetii.grpc.GetFileListResp> getGetFileListMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "GetFileList",
-      requestType = io.github.gravetii.grpc.Diztl.GetFileListReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.GetFileListResp.class,
+      requestType = io.github.gravetii.grpc.GetFileListReq.class,
+      responseType = io.github.gravetii.grpc.GetFileListResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.GetFileListReq,
-      io.github.gravetii.grpc.Diztl.GetFileListResp> getGetFileListMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.GetFileListReq, io.github.gravetii.grpc.Diztl.GetFileListResp> getGetFileListMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.GetFileListReq,
+      io.github.gravetii.grpc.GetFileListResp> getGetFileListMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.GetFileListReq, io.github.gravetii.grpc.GetFileListResp> getGetFileListMethod;
     if ((getGetFileListMethod = DiztlServiceGrpc.getGetFileListMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getGetFileListMethod = DiztlServiceGrpc.getGetFileListMethod) == null) {
           DiztlServiceGrpc.getGetFileListMethod = getGetFileListMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.GetFileListReq, io.github.gravetii.grpc.Diztl.GetFileListResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.GetFileListReq, io.github.gravetii.grpc.GetFileListResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetFileList"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.GetFileListReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.GetFileListReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.GetFileListResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.GetFileListResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("GetFileList"))
               .build();
         }
@@ -430,29 +430,29 @@ public final class DiztlServiceGrpc {
     return getGetFileListMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.CloseReq,
-      io.github.gravetii.grpc.Diztl.CloseResp> getCloseMethod;
+  private static volatile io.grpc.MethodDescriptor<io.github.gravetii.grpc.CloseReq,
+      io.github.gravetii.grpc.CloseResp> getCloseMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Close",
-      requestType = io.github.gravetii.grpc.Diztl.CloseReq.class,
-      responseType = io.github.gravetii.grpc.Diztl.CloseResp.class,
+      requestType = io.github.gravetii.grpc.CloseReq.class,
+      responseType = io.github.gravetii.grpc.CloseResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.CloseReq,
-      io.github.gravetii.grpc.Diztl.CloseResp> getCloseMethod() {
-    io.grpc.MethodDescriptor<io.github.gravetii.grpc.Diztl.CloseReq, io.github.gravetii.grpc.Diztl.CloseResp> getCloseMethod;
+  public static io.grpc.MethodDescriptor<io.github.gravetii.grpc.CloseReq,
+      io.github.gravetii.grpc.CloseResp> getCloseMethod() {
+    io.grpc.MethodDescriptor<io.github.gravetii.grpc.CloseReq, io.github.gravetii.grpc.CloseResp> getCloseMethod;
     if ((getCloseMethod = DiztlServiceGrpc.getCloseMethod) == null) {
       synchronized (DiztlServiceGrpc.class) {
         if ((getCloseMethod = DiztlServiceGrpc.getCloseMethod) == null) {
           DiztlServiceGrpc.getCloseMethod = getCloseMethod =
-              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.Diztl.CloseReq, io.github.gravetii.grpc.Diztl.CloseResp>newBuilder()
+              io.grpc.MethodDescriptor.<io.github.gravetii.grpc.CloseReq, io.github.gravetii.grpc.CloseResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Close"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.CloseReq.getDefaultInstance()))
+                  io.github.gravetii.grpc.CloseReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.github.gravetii.grpc.Diztl.CloseResp.getDefaultInstance()))
+                  io.github.gravetii.grpc.CloseResp.getDefaultInstance()))
               .setSchemaDescriptor(new DiztlServiceMethodDescriptorSupplier("Close"))
               .build();
         }
@@ -511,99 +511,99 @@ public final class DiztlServiceGrpc {
 
     /**
      */
-    public void search(io.github.gravetii.grpc.Diztl.SearchReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.SearchResp> responseObserver) {
+    public void search(io.github.gravetii.grpc.SearchReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.SearchResp> responseObserver) {
       asyncUnimplementedUnaryCall(getSearchMethod(), responseObserver);
     }
 
     /**
      */
-    public void upload(io.github.gravetii.grpc.Diztl.UploadReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.FileChunk> responseObserver) {
+    public void upload(io.github.gravetii.grpc.UploadReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.FileChunk> responseObserver) {
       asyncUnimplementedUnaryCall(getUploadMethod(), responseObserver);
     }
 
     /**
      */
-    public void ping(io.github.gravetii.grpc.Diztl.PingReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.PingResp> responseObserver) {
+    public void ping(io.github.gravetii.grpc.PingReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.PingResp> responseObserver) {
       asyncUnimplementedUnaryCall(getPingMethod(), responseObserver);
     }
 
     /**
      */
-    public void find(io.github.gravetii.grpc.Diztl.FindReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.FindResp> responseObserver) {
+    public void find(io.github.gravetii.grpc.FindReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.FindResp> responseObserver) {
       asyncUnimplementedUnaryCall(getFindMethod(), responseObserver);
     }
 
     /**
      */
-    public void download(io.github.gravetii.grpc.Diztl.DownloadReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.DownloadChunk> responseObserver) {
+    public void download(io.github.gravetii.grpc.DownloadReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.DownloadChunk> responseObserver) {
       asyncUnimplementedUnaryCall(getDownloadMethod(), responseObserver);
     }
 
     /**
      */
-    public void getUserDirs(io.github.gravetii.grpc.Diztl.UserDirsReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.UserDirsResp> responseObserver) {
+    public void getUserDirs(io.github.gravetii.grpc.UserDirsReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.UserDirsResp> responseObserver) {
       asyncUnimplementedUnaryCall(getGetUserDirsMethod(), responseObserver);
     }
 
     /**
      */
-    public void updateUserDirs(io.github.gravetii.grpc.Diztl.UpdateUserDirsReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.UpdateUserDirsResp> responseObserver) {
+    public void updateUserDirs(io.github.gravetii.grpc.UpdateUserDirsReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.UpdateUserDirsResp> responseObserver) {
       asyncUnimplementedUnaryCall(getUpdateUserDirsMethod(), responseObserver);
     }
 
     /**
      */
-    public void getTracker(io.github.gravetii.grpc.Diztl.GetTrackerReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.GetTrackerResp> responseObserver) {
+    public void getTracker(io.github.gravetii.grpc.GetTrackerReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.GetTrackerResp> responseObserver) {
       asyncUnimplementedUnaryCall(getGetTrackerMethod(), responseObserver);
     }
 
     /**
      */
-    public void updateTracker(io.github.gravetii.grpc.Diztl.UpdateTrackerReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.UpdateTrackerResp> responseObserver) {
+    public void updateTracker(io.github.gravetii.grpc.UpdateTrackerReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.UpdateTrackerResp> responseObserver) {
       asyncUnimplementedUnaryCall(getUpdateTrackerMethod(), responseObserver);
     }
 
     /**
      */
-    public void index(io.github.gravetii.grpc.Diztl.IndexReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.IndexResp> responseObserver) {
+    public void index(io.github.gravetii.grpc.IndexReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.IndexResp> responseObserver) {
       asyncUnimplementedUnaryCall(getIndexMethod(), responseObserver);
     }
 
     /**
      */
-    public void register(io.github.gravetii.grpc.Diztl.RegisterReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.RegisterResp> responseObserver) {
+    public void register(io.github.gravetii.grpc.RegisterReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.RegisterResp> responseObserver) {
       asyncUnimplementedUnaryCall(getRegisterMethod(), responseObserver);
     }
 
     /**
      */
-    public void fetchFileList(io.github.gravetii.grpc.Diztl.FetchFileListReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.FetchFileListResp> responseObserver) {
+    public void fetchFileList(io.github.gravetii.grpc.FetchFileListReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.FetchFileListResp> responseObserver) {
       asyncUnimplementedUnaryCall(getFetchFileListMethod(), responseObserver);
     }
 
     /**
      */
-    public void getFileList(io.github.gravetii.grpc.Diztl.GetFileListReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.GetFileListResp> responseObserver) {
+    public void getFileList(io.github.gravetii.grpc.GetFileListReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.GetFileListResp> responseObserver) {
       asyncUnimplementedUnaryCall(getGetFileListMethod(), responseObserver);
     }
 
     /**
      */
-    public void close(io.github.gravetii.grpc.Diztl.CloseReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.CloseResp> responseObserver) {
+    public void close(io.github.gravetii.grpc.CloseReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.CloseResp> responseObserver) {
       asyncUnimplementedUnaryCall(getCloseMethod(), responseObserver);
     }
 
@@ -613,99 +613,99 @@ public final class DiztlServiceGrpc {
             getSearchMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.SearchReq,
-                io.github.gravetii.grpc.Diztl.SearchResp>(
+                io.github.gravetii.grpc.SearchReq,
+                io.github.gravetii.grpc.SearchResp>(
                   this, METHODID_SEARCH)))
           .addMethod(
             getUploadMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.UploadReq,
-                io.github.gravetii.grpc.Diztl.FileChunk>(
+                io.github.gravetii.grpc.UploadReq,
+                io.github.gravetii.grpc.FileChunk>(
                   this, METHODID_UPLOAD)))
           .addMethod(
             getPingMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.PingReq,
-                io.github.gravetii.grpc.Diztl.PingResp>(
+                io.github.gravetii.grpc.PingReq,
+                io.github.gravetii.grpc.PingResp>(
                   this, METHODID_PING)))
           .addMethod(
             getFindMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.FindReq,
-                io.github.gravetii.grpc.Diztl.FindResp>(
+                io.github.gravetii.grpc.FindReq,
+                io.github.gravetii.grpc.FindResp>(
                   this, METHODID_FIND)))
           .addMethod(
             getDownloadMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.DownloadReq,
-                io.github.gravetii.grpc.Diztl.DownloadChunk>(
+                io.github.gravetii.grpc.DownloadReq,
+                io.github.gravetii.grpc.DownloadChunk>(
                   this, METHODID_DOWNLOAD)))
           .addMethod(
             getGetUserDirsMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.UserDirsReq,
-                io.github.gravetii.grpc.Diztl.UserDirsResp>(
+                io.github.gravetii.grpc.UserDirsReq,
+                io.github.gravetii.grpc.UserDirsResp>(
                   this, METHODID_GET_USER_DIRS)))
           .addMethod(
             getUpdateUserDirsMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.UpdateUserDirsReq,
-                io.github.gravetii.grpc.Diztl.UpdateUserDirsResp>(
+                io.github.gravetii.grpc.UpdateUserDirsReq,
+                io.github.gravetii.grpc.UpdateUserDirsResp>(
                   this, METHODID_UPDATE_USER_DIRS)))
           .addMethod(
             getGetTrackerMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.GetTrackerReq,
-                io.github.gravetii.grpc.Diztl.GetTrackerResp>(
+                io.github.gravetii.grpc.GetTrackerReq,
+                io.github.gravetii.grpc.GetTrackerResp>(
                   this, METHODID_GET_TRACKER)))
           .addMethod(
             getUpdateTrackerMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.UpdateTrackerReq,
-                io.github.gravetii.grpc.Diztl.UpdateTrackerResp>(
+                io.github.gravetii.grpc.UpdateTrackerReq,
+                io.github.gravetii.grpc.UpdateTrackerResp>(
                   this, METHODID_UPDATE_TRACKER)))
           .addMethod(
             getIndexMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.IndexReq,
-                io.github.gravetii.grpc.Diztl.IndexResp>(
+                io.github.gravetii.grpc.IndexReq,
+                io.github.gravetii.grpc.IndexResp>(
                   this, METHODID_INDEX)))
           .addMethod(
             getRegisterMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.RegisterReq,
-                io.github.gravetii.grpc.Diztl.RegisterResp>(
+                io.github.gravetii.grpc.RegisterReq,
+                io.github.gravetii.grpc.RegisterResp>(
                   this, METHODID_REGISTER)))
           .addMethod(
             getFetchFileListMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.FetchFileListReq,
-                io.github.gravetii.grpc.Diztl.FetchFileListResp>(
+                io.github.gravetii.grpc.FetchFileListReq,
+                io.github.gravetii.grpc.FetchFileListResp>(
                   this, METHODID_FETCH_FILE_LIST)))
           .addMethod(
             getGetFileListMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.GetFileListReq,
-                io.github.gravetii.grpc.Diztl.GetFileListResp>(
+                io.github.gravetii.grpc.GetFileListReq,
+                io.github.gravetii.grpc.GetFileListResp>(
                   this, METHODID_GET_FILE_LIST)))
           .addMethod(
             getCloseMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.github.gravetii.grpc.Diztl.CloseReq,
-                io.github.gravetii.grpc.Diztl.CloseResp>(
+                io.github.gravetii.grpc.CloseReq,
+                io.github.gravetii.grpc.CloseResp>(
                   this, METHODID_CLOSE)))
           .build();
     }
@@ -727,112 +727,112 @@ public final class DiztlServiceGrpc {
 
     /**
      */
-    public void search(io.github.gravetii.grpc.Diztl.SearchReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.SearchResp> responseObserver) {
+    public void search(io.github.gravetii.grpc.SearchReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.SearchResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getSearchMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void upload(io.github.gravetii.grpc.Diztl.UploadReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.FileChunk> responseObserver) {
+    public void upload(io.github.gravetii.grpc.UploadReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.FileChunk> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getUploadMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void ping(io.github.gravetii.grpc.Diztl.PingReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.PingResp> responseObserver) {
+    public void ping(io.github.gravetii.grpc.PingReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.PingResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getPingMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void find(io.github.gravetii.grpc.Diztl.FindReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.FindResp> responseObserver) {
+    public void find(io.github.gravetii.grpc.FindReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.FindResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getFindMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void download(io.github.gravetii.grpc.Diztl.DownloadReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.DownloadChunk> responseObserver) {
+    public void download(io.github.gravetii.grpc.DownloadReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.DownloadChunk> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getDownloadMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void getUserDirs(io.github.gravetii.grpc.Diztl.UserDirsReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.UserDirsResp> responseObserver) {
+    public void getUserDirs(io.github.gravetii.grpc.UserDirsReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.UserDirsResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getGetUserDirsMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void updateUserDirs(io.github.gravetii.grpc.Diztl.UpdateUserDirsReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.UpdateUserDirsResp> responseObserver) {
+    public void updateUserDirs(io.github.gravetii.grpc.UpdateUserDirsReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.UpdateUserDirsResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getUpdateUserDirsMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void getTracker(io.github.gravetii.grpc.Diztl.GetTrackerReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.GetTrackerResp> responseObserver) {
+    public void getTracker(io.github.gravetii.grpc.GetTrackerReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.GetTrackerResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getGetTrackerMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void updateTracker(io.github.gravetii.grpc.Diztl.UpdateTrackerReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.UpdateTrackerResp> responseObserver) {
+    public void updateTracker(io.github.gravetii.grpc.UpdateTrackerReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.UpdateTrackerResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getUpdateTrackerMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void index(io.github.gravetii.grpc.Diztl.IndexReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.IndexResp> responseObserver) {
+    public void index(io.github.gravetii.grpc.IndexReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.IndexResp> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getIndexMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void register(io.github.gravetii.grpc.Diztl.RegisterReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.RegisterResp> responseObserver) {
+    public void register(io.github.gravetii.grpc.RegisterReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.RegisterResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getRegisterMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void fetchFileList(io.github.gravetii.grpc.Diztl.FetchFileListReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.FetchFileListResp> responseObserver) {
+    public void fetchFileList(io.github.gravetii.grpc.FetchFileListReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.FetchFileListResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getFetchFileListMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void getFileList(io.github.gravetii.grpc.Diztl.GetFileListReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.GetFileListResp> responseObserver) {
+    public void getFileList(io.github.gravetii.grpc.GetFileListReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.GetFileListResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getGetFileListMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void close(io.github.gravetii.grpc.Diztl.CloseReq request,
-        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.CloseResp> responseObserver) {
+    public void close(io.github.gravetii.grpc.CloseReq request,
+        io.grpc.stub.StreamObserver<io.github.gravetii.grpc.CloseResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getCloseMethod(), getCallOptions()), request, responseObserver);
     }
@@ -854,101 +854,101 @@ public final class DiztlServiceGrpc {
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.SearchResp search(io.github.gravetii.grpc.Diztl.SearchReq request) {
+    public io.github.gravetii.grpc.SearchResp search(io.github.gravetii.grpc.SearchReq request) {
       return blockingUnaryCall(
           getChannel(), getSearchMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<io.github.gravetii.grpc.Diztl.FileChunk> upload(
-        io.github.gravetii.grpc.Diztl.UploadReq request) {
+    public java.util.Iterator<io.github.gravetii.grpc.FileChunk> upload(
+        io.github.gravetii.grpc.UploadReq request) {
       return blockingServerStreamingCall(
           getChannel(), getUploadMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.PingResp ping(io.github.gravetii.grpc.Diztl.PingReq request) {
+    public io.github.gravetii.grpc.PingResp ping(io.github.gravetii.grpc.PingReq request) {
       return blockingUnaryCall(
           getChannel(), getPingMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.FindResp find(io.github.gravetii.grpc.Diztl.FindReq request) {
+    public io.github.gravetii.grpc.FindResp find(io.github.gravetii.grpc.FindReq request) {
       return blockingUnaryCall(
           getChannel(), getFindMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<io.github.gravetii.grpc.Diztl.DownloadChunk> download(
-        io.github.gravetii.grpc.Diztl.DownloadReq request) {
+    public java.util.Iterator<io.github.gravetii.grpc.DownloadChunk> download(
+        io.github.gravetii.grpc.DownloadReq request) {
       return blockingServerStreamingCall(
           getChannel(), getDownloadMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.UserDirsResp getUserDirs(io.github.gravetii.grpc.Diztl.UserDirsReq request) {
+    public io.github.gravetii.grpc.UserDirsResp getUserDirs(io.github.gravetii.grpc.UserDirsReq request) {
       return blockingUnaryCall(
           getChannel(), getGetUserDirsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.UpdateUserDirsResp updateUserDirs(io.github.gravetii.grpc.Diztl.UpdateUserDirsReq request) {
+    public io.github.gravetii.grpc.UpdateUserDirsResp updateUserDirs(io.github.gravetii.grpc.UpdateUserDirsReq request) {
       return blockingUnaryCall(
           getChannel(), getUpdateUserDirsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.GetTrackerResp getTracker(io.github.gravetii.grpc.Diztl.GetTrackerReq request) {
+    public io.github.gravetii.grpc.GetTrackerResp getTracker(io.github.gravetii.grpc.GetTrackerReq request) {
       return blockingUnaryCall(
           getChannel(), getGetTrackerMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.UpdateTrackerResp updateTracker(io.github.gravetii.grpc.Diztl.UpdateTrackerReq request) {
+    public io.github.gravetii.grpc.UpdateTrackerResp updateTracker(io.github.gravetii.grpc.UpdateTrackerReq request) {
       return blockingUnaryCall(
           getChannel(), getUpdateTrackerMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<io.github.gravetii.grpc.Diztl.IndexResp> index(
-        io.github.gravetii.grpc.Diztl.IndexReq request) {
+    public java.util.Iterator<io.github.gravetii.grpc.IndexResp> index(
+        io.github.gravetii.grpc.IndexReq request) {
       return blockingServerStreamingCall(
           getChannel(), getIndexMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.RegisterResp register(io.github.gravetii.grpc.Diztl.RegisterReq request) {
+    public io.github.gravetii.grpc.RegisterResp register(io.github.gravetii.grpc.RegisterReq request) {
       return blockingUnaryCall(
           getChannel(), getRegisterMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.FetchFileListResp fetchFileList(io.github.gravetii.grpc.Diztl.FetchFileListReq request) {
+    public io.github.gravetii.grpc.FetchFileListResp fetchFileList(io.github.gravetii.grpc.FetchFileListReq request) {
       return blockingUnaryCall(
           getChannel(), getFetchFileListMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.GetFileListResp getFileList(io.github.gravetii.grpc.Diztl.GetFileListReq request) {
+    public io.github.gravetii.grpc.GetFileListResp getFileList(io.github.gravetii.grpc.GetFileListReq request) {
       return blockingUnaryCall(
           getChannel(), getGetFileListMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.github.gravetii.grpc.Diztl.CloseResp close(io.github.gravetii.grpc.Diztl.CloseReq request) {
+    public io.github.gravetii.grpc.CloseResp close(io.github.gravetii.grpc.CloseReq request) {
       return blockingUnaryCall(
           getChannel(), getCloseMethod(), getCallOptions(), request);
     }
@@ -970,88 +970,88 @@ public final class DiztlServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.SearchResp> search(
-        io.github.gravetii.grpc.Diztl.SearchReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.SearchResp> search(
+        io.github.gravetii.grpc.SearchReq request) {
       return futureUnaryCall(
           getChannel().newCall(getSearchMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.PingResp> ping(
-        io.github.gravetii.grpc.Diztl.PingReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.PingResp> ping(
+        io.github.gravetii.grpc.PingReq request) {
       return futureUnaryCall(
           getChannel().newCall(getPingMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.FindResp> find(
-        io.github.gravetii.grpc.Diztl.FindReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.FindResp> find(
+        io.github.gravetii.grpc.FindReq request) {
       return futureUnaryCall(
           getChannel().newCall(getFindMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.UserDirsResp> getUserDirs(
-        io.github.gravetii.grpc.Diztl.UserDirsReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.UserDirsResp> getUserDirs(
+        io.github.gravetii.grpc.UserDirsReq request) {
       return futureUnaryCall(
           getChannel().newCall(getGetUserDirsMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.UpdateUserDirsResp> updateUserDirs(
-        io.github.gravetii.grpc.Diztl.UpdateUserDirsReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.UpdateUserDirsResp> updateUserDirs(
+        io.github.gravetii.grpc.UpdateUserDirsReq request) {
       return futureUnaryCall(
           getChannel().newCall(getUpdateUserDirsMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.GetTrackerResp> getTracker(
-        io.github.gravetii.grpc.Diztl.GetTrackerReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.GetTrackerResp> getTracker(
+        io.github.gravetii.grpc.GetTrackerReq request) {
       return futureUnaryCall(
           getChannel().newCall(getGetTrackerMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.UpdateTrackerResp> updateTracker(
-        io.github.gravetii.grpc.Diztl.UpdateTrackerReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.UpdateTrackerResp> updateTracker(
+        io.github.gravetii.grpc.UpdateTrackerReq request) {
       return futureUnaryCall(
           getChannel().newCall(getUpdateTrackerMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.RegisterResp> register(
-        io.github.gravetii.grpc.Diztl.RegisterReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.RegisterResp> register(
+        io.github.gravetii.grpc.RegisterReq request) {
       return futureUnaryCall(
           getChannel().newCall(getRegisterMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.FetchFileListResp> fetchFileList(
-        io.github.gravetii.grpc.Diztl.FetchFileListReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.FetchFileListResp> fetchFileList(
+        io.github.gravetii.grpc.FetchFileListReq request) {
       return futureUnaryCall(
           getChannel().newCall(getFetchFileListMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.GetFileListResp> getFileList(
-        io.github.gravetii.grpc.Diztl.GetFileListReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.GetFileListResp> getFileList(
+        io.github.gravetii.grpc.GetFileListReq request) {
       return futureUnaryCall(
           getChannel().newCall(getGetFileListMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.Diztl.CloseResp> close(
-        io.github.gravetii.grpc.Diztl.CloseReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.github.gravetii.grpc.CloseResp> close(
+        io.github.gravetii.grpc.CloseReq request) {
       return futureUnaryCall(
           getChannel().newCall(getCloseMethod(), getCallOptions()), request);
     }
@@ -1090,60 +1090,60 @@ public final class DiztlServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_SEARCH:
-          serviceImpl.search((io.github.gravetii.grpc.Diztl.SearchReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.SearchResp>) responseObserver);
+          serviceImpl.search((io.github.gravetii.grpc.SearchReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.SearchResp>) responseObserver);
           break;
         case METHODID_UPLOAD:
-          serviceImpl.upload((io.github.gravetii.grpc.Diztl.UploadReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.FileChunk>) responseObserver);
+          serviceImpl.upload((io.github.gravetii.grpc.UploadReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.FileChunk>) responseObserver);
           break;
         case METHODID_PING:
-          serviceImpl.ping((io.github.gravetii.grpc.Diztl.PingReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.PingResp>) responseObserver);
+          serviceImpl.ping((io.github.gravetii.grpc.PingReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.PingResp>) responseObserver);
           break;
         case METHODID_FIND:
-          serviceImpl.find((io.github.gravetii.grpc.Diztl.FindReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.FindResp>) responseObserver);
+          serviceImpl.find((io.github.gravetii.grpc.FindReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.FindResp>) responseObserver);
           break;
         case METHODID_DOWNLOAD:
-          serviceImpl.download((io.github.gravetii.grpc.Diztl.DownloadReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.DownloadChunk>) responseObserver);
+          serviceImpl.download((io.github.gravetii.grpc.DownloadReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.DownloadChunk>) responseObserver);
           break;
         case METHODID_GET_USER_DIRS:
-          serviceImpl.getUserDirs((io.github.gravetii.grpc.Diztl.UserDirsReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.UserDirsResp>) responseObserver);
+          serviceImpl.getUserDirs((io.github.gravetii.grpc.UserDirsReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.UserDirsResp>) responseObserver);
           break;
         case METHODID_UPDATE_USER_DIRS:
-          serviceImpl.updateUserDirs((io.github.gravetii.grpc.Diztl.UpdateUserDirsReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.UpdateUserDirsResp>) responseObserver);
+          serviceImpl.updateUserDirs((io.github.gravetii.grpc.UpdateUserDirsReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.UpdateUserDirsResp>) responseObserver);
           break;
         case METHODID_GET_TRACKER:
-          serviceImpl.getTracker((io.github.gravetii.grpc.Diztl.GetTrackerReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.GetTrackerResp>) responseObserver);
+          serviceImpl.getTracker((io.github.gravetii.grpc.GetTrackerReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.GetTrackerResp>) responseObserver);
           break;
         case METHODID_UPDATE_TRACKER:
-          serviceImpl.updateTracker((io.github.gravetii.grpc.Diztl.UpdateTrackerReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.UpdateTrackerResp>) responseObserver);
+          serviceImpl.updateTracker((io.github.gravetii.grpc.UpdateTrackerReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.UpdateTrackerResp>) responseObserver);
           break;
         case METHODID_INDEX:
-          serviceImpl.index((io.github.gravetii.grpc.Diztl.IndexReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.IndexResp>) responseObserver);
+          serviceImpl.index((io.github.gravetii.grpc.IndexReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.IndexResp>) responseObserver);
           break;
         case METHODID_REGISTER:
-          serviceImpl.register((io.github.gravetii.grpc.Diztl.RegisterReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.RegisterResp>) responseObserver);
+          serviceImpl.register((io.github.gravetii.grpc.RegisterReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.RegisterResp>) responseObserver);
           break;
         case METHODID_FETCH_FILE_LIST:
-          serviceImpl.fetchFileList((io.github.gravetii.grpc.Diztl.FetchFileListReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.FetchFileListResp>) responseObserver);
+          serviceImpl.fetchFileList((io.github.gravetii.grpc.FetchFileListReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.FetchFileListResp>) responseObserver);
           break;
         case METHODID_GET_FILE_LIST:
-          serviceImpl.getFileList((io.github.gravetii.grpc.Diztl.GetFileListReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.GetFileListResp>) responseObserver);
+          serviceImpl.getFileList((io.github.gravetii.grpc.GetFileListReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.GetFileListResp>) responseObserver);
           break;
         case METHODID_CLOSE:
-          serviceImpl.close((io.github.gravetii.grpc.Diztl.CloseReq) request,
-              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.Diztl.CloseResp>) responseObserver);
+          serviceImpl.close((io.github.gravetii.grpc.CloseReq) request,
+              (io.grpc.stub.StreamObserver<io.github.gravetii.grpc.CloseResp>) responseObserver);
           break;
         default:
           throw new AssertionError();

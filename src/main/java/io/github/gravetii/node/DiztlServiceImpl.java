@@ -2,8 +2,7 @@ package io.github.gravetii.node;
 
 import com.google.protobuf.ByteString;
 import io.github.gravetii.client.DiztlClient;
-import io.github.gravetii.grpc.Diztl;
-import io.github.gravetii.grpc.DiztlServiceGrpc;
+import io.github.gravetii.grpc.*;
 import io.github.gravetii.indexer.FileIndexer;
 import io.grpc.stub.StreamObserver;
 import org.apache.commons.io.FileUtils;
@@ -28,30 +27,29 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
   private static final int BUFFER_SIZE = 1024 * 1024;
 
   @Override
-  public void search(Diztl.SearchReq request, StreamObserver<Diztl.SearchResp> responseObserver) {
+  public void search(SearchReq request, StreamObserver<SearchResp> responseObserver) {
     FileIndexer indexer = new FileIndexer(Collections.singletonList("/Users/s0d01bw/Documents/"));
     indexer.index();
-    List<Diztl.FileMetadata> files =
+    List<FileMetadata> files =
         indexer.search(request.getQuery()).stream()
             .map(
                 x ->
-                    Diztl.FileMetadata.newBuilder()
+                    FileMetadata.newBuilder()
                         .setDir(x.getDir())
                         .setName(x.getName())
                         .setId(1)
                         .setSize(x.getSize())
-                        .setHash(Diztl.FileHash.newBuilder().build())
+                        .setHash(FileHash.newBuilder().build())
                         .build())
             .collect(Collectors.toList());
 
-    Diztl.SearchResp resp =
-        Diztl.SearchResp.newBuilder().addAllFiles(files).setNode(DiztlClient.node).build();
+    SearchResp resp = SearchResp.newBuilder().addAllFiles(files).setNode(DiztlClient.node).build();
     responseObserver.onNext(resp);
     responseObserver.onCompleted();
   }
 
   @Override
-  public void upload(Diztl.UploadReq request, StreamObserver<Diztl.FileChunk> responseObserver) {
+  public void upload(UploadReq request, StreamObserver<FileChunk> responseObserver) {
     logger.debug("Received upload request from node {}", request.getSource().getIp());
     String dir = request.getMetadata().getDir();
     String name = request.getMetadata().getName();
@@ -71,8 +69,8 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
       int b;
       while ((b = stream.read(buffer)) > 0) {
         ByteString data = ByteString.copyFrom(buffer, 0, b);
-        Diztl.FileChunk c =
-            Diztl.FileChunk.newBuilder()
+        FileChunk c =
+            FileChunk.newBuilder()
                 .setChunk(chunk++)
                 .setData(data)
                 .setMetadata(request.getMetadata())

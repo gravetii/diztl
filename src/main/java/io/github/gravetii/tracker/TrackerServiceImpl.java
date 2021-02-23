@@ -1,7 +1,6 @@
 package io.github.gravetii.tracker;
 
-import io.github.gravetii.grpc.Diztl.*;
-import io.github.gravetii.grpc.TrackerServiceGrpc;
+import io.github.gravetii.grpc.*;
 import io.github.gravetii.keeper.KeeperService;
 import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;

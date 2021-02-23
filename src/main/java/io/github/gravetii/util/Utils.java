@@ -1,7 +1,7 @@
 package io.github.gravetii.util;
 
 import io.github.gravetii.App;
-import io.github.gravetii.grpc.Diztl;
+import io.github.gravetii.grpc.FileMetadata;
 import javafx.scene.layout.Region;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -41,7 +41,7 @@ public class Utils {
     return dir != null ? dir.getPath() : null;
   }
 
-  public static Path getFilePath(Diztl.FileMetadata file) {
+  public static Path getFilePath(FileMetadata file) {
     return Paths.get(file.getDir(), file.getName());
   }
 

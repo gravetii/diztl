@@ -1,15 +1,17 @@
 package io.github.gravetii.controller.start;
 
 import io.github.gravetii.grpc.Diztl;
+import io.github.gravetii.grpc.FileMetadata;
+import io.github.gravetii.grpc.Node;
 import io.github.gravetii.util.Utils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class FileResult {
-  private Diztl.FileMetadata file;
-  private Diztl.Node source;
+  private FileMetadata file;
+  private Node source;
 
-  public FileResult(Diztl.FileMetadata file, Diztl.Node source) {
+  public FileResult(FileMetadata file, Node source) {
     this.file = file;
     this.source = source;
   }
@@ -30,19 +32,19 @@ public class FileResult {
     return file.getDir();
   }
 
-  public Diztl.FileMetadata getFile() {
+  public FileMetadata getFile() {
     return file;
   }
 
-  public void setFile(Diztl.FileMetadata file) {
+  public void setFile(FileMetadata file) {
     this.file = file;
   }
 
-  public Diztl.Node getSource() {
+  public Node getSource() {
     return source;
   }
 
-  public void setSource(Diztl.Node source) {
+  public void setSource(Node source) {
     this.source = source;
   }
 
