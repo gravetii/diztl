@@ -38,7 +38,7 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    Injector injector = Guice.createInjector(new StartupModule(stage));
+    Injector injector = Guice.createInjector(new StartupModule());
     stage.setOnCloseRequest(
         event -> {
           DiztlExecutorService.close();

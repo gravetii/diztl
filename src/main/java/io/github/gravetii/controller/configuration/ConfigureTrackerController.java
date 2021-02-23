@@ -1,10 +1,10 @@
 package io.github.gravetii.controller.configuration;
 
 import io.github.gravetii.controller.FxController;
-import io.github.gravetii.scene.start.StartScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,14 +13,9 @@ public class ConfigureTrackerController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(ConfigureTrackerController.class.getCanonicalName());
 
-  private final Stage stage;
-  private final StartScene scene;
-
   @FXML private TextField ipBox;
 
-  public ConfigureTrackerController(Stage stage, StartScene scene) {
-    this.stage = stage;
-    this.scene = scene;
+  public ConfigureTrackerController() {
   }
 
   @FXML
@@ -33,13 +28,21 @@ public class ConfigureTrackerController implements FxController {
   @FXML
   public void ok() {
     String ip = ipBox.getText();
-    // todo update ip in config here...
     logger.info("Updated tracker config...");
-    stage.close();
+    // todo update ip in config here...
+    close();
   }
 
   @FXML
   public void cancel() {
-    stage.close();
+    close();
+  }
+
+  private void close() {
+    Window window = ipBox.getScene().getWindow();
+    if (window instanceof Stage) {
+      Stage stage = (Stage) window;
+      stage.close();
+    }
   }
 }

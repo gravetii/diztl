@@ -3,8 +3,6 @@ package io.github.gravetii.scene.start;
 import io.github.gravetii.grpc.FileMetadata;
 import io.github.gravetii.scene.FxScene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 
 /**
  * This class is responsible for laying out the file-search and log components of the start scene.
@@ -17,10 +15,10 @@ public class SearchLogScene extends FxScene {
   private final LogComponent errorLogComponent;
   private final TabPaneComponent tabPaneComponent;
 
-  public SearchLogScene(Stage stage, StartScene scene) {
-    super(stage, new BorderPane());
+  public SearchLogScene(StartScene scene) {
+    super(new BorderPane());
     this.parent = scene;
-    fileSearchScene = new FileSearchScene(stage, scene);
+    fileSearchScene = new FileSearchScene(scene);
     logComponent = new LogComponent(false);
     errorLogComponent = new LogComponent(true);
     tabPaneComponent = new TabPaneComponent();
@@ -49,13 +47,13 @@ public class SearchLogScene extends FxScene {
   }
 
   public ResultListComponent addNewSearchTab(String query) {
-    ResultListComponent component = new ResultListComponent(stage, parent);
+    ResultListComponent component = new ResultListComponent(parent);
     tabPaneComponent.addTab("search - " + query, component.getNode());
     return component;
   }
 
   public ResultListComponent addNewFileListTab(FileMetadata file) {
-    ResultListComponent component = new ResultListComponent(stage, parent);
+    ResultListComponent component = new ResultListComponent(parent);
     tabPaneComponent.addTab("file list - " + file.getName(), component.getNode());
     return component;
   }

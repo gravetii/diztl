@@ -2,20 +2,16 @@ package io.github.gravetii.scene.configuration;
 
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
-import io.github.gravetii.scene.start.StartScene;
 import javafx.geometry.Dimension2D;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.util.Optional;
 
 public class ConfigureTrackerScene extends FxScene {
-  private Stage stage;
-  private StartScene scene;
 
-  public ConfigureTrackerScene(Stage stage, StartScene scene) {
-    super(stage, new BorderPane());
-    ConfigureTrackerComponent component = new ConfigureTrackerComponent(stage, scene);
+  public ConfigureTrackerScene() {
+    super(new BorderPane());
+    ConfigureTrackerComponent component = new ConfigureTrackerComponent();
     BorderPane pane = (BorderPane) root;
     pane.setCenter(component.getNode());
   }

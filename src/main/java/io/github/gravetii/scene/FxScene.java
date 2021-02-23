@@ -1,16 +1,13 @@
 package io.github.gravetii.scene;
 
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 
 import java.util.Optional;
 
 public abstract class FxScene {
-  public final Stage stage;
   public final Region root;
 
-  protected FxScene(Stage stage, Region root) {
-    this.stage = stage;
+  protected FxScene(Region root) {
     this.root = root;
   }
 

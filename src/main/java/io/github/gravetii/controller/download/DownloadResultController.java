@@ -8,7 +8,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ProgressBarTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +18,6 @@ public class DownloadResultController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(DownloadResultController.class.getCanonicalName());
 
-  private final Stage stage;
-
   @FXML private TableView<DownloadResult> downloadResultTbl;
   @FXML private TableColumn<DownloadResult, String> fileNameTblCol;
   @FXML private TableColumn<DownloadResult, Double> progressTblCol;
@@ -29,9 +26,7 @@ public class DownloadResultController implements FxController {
   @FXML private TableColumn<DownloadResult, String> statusTblCol;
   @FXML private TableColumn<DownloadResult, String> pathTblCol;
 
-  public DownloadResultController(Stage stage) {
-    this.stage = stage;
-  }
+  public DownloadResultController() {}
 
   @FXML
   public void initialize() {

@@ -2,18 +2,16 @@ package io.github.gravetii.scene.userdir;
 
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
-import io.github.gravetii.scene.start.StartScene;
 import javafx.geometry.Dimension2D;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.util.Optional;
 
 public class UserDirsScene extends FxScene {
 
-  public UserDirsScene(Stage stage, StartScene scene) {
-    super(stage, new BorderPane());
-    UserDirsComponent component = new UserDirsComponent(stage, scene);
+  public UserDirsScene() {
+    super(new BorderPane());
+    UserDirsComponent component = new UserDirsComponent();
     BorderPane pane = (BorderPane) root;
     pane.setCenter(component.getNode());
   }

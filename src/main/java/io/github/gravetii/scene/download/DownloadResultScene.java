@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 public class DownloadResultScene extends FxScene {
   private final DownloadResultComponent component;
 
-  public DownloadResultScene(Stage stage) {
-    super(stage, new BorderPane());
-    component = new DownloadResultComponent(stage);
+  public DownloadResultScene() {
+    super(new BorderPane());
+    component = new DownloadResultComponent();
     BorderPane pane = (BorderPane) root;
     pane.setCenter(component.getNode());
   }

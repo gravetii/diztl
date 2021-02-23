@@ -12,8 +12,6 @@ import javafx.concurrent.Task;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Orientation;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,10 +23,10 @@ public class StartScene extends FxScene {
 
   private final FileIndexer indexer;
 
-  public StartScene(Stage stage) {
-    super(stage, new SplitPane());
-    searchLogScene = new SearchLogScene(stage, this);
-    downloadResultScene = new DownloadResultScene(stage);
+  public StartScene() {
+    super(new SplitPane());
+    searchLogScene = new SearchLogScene(this);
+    downloadResultScene = new DownloadResultScene();
     List<String> shareDirs = Collections.singletonList("/Users/s0d01bw/Documents");
     indexer = new FileIndexer(shareDirs);
     this.build();

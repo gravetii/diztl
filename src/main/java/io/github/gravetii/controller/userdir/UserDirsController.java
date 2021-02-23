@@ -1,7 +1,6 @@
 package io.github.gravetii.controller.userdir;
 
 import io.github.gravetii.controller.FxController;
-import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +19,6 @@ public class UserDirsController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(UserDirsController.class.getCanonicalName());
 
-  private final Stage stage;
-  private final StartScene scene;
   private final Set<String> dirs = new HashSet<>();
   private boolean shareChanged = false;
   private boolean downloadsChanged = false;
@@ -31,10 +29,7 @@ public class UserDirsController implements FxController {
   @FXML private ListView<Label> downloadsDir;
   @FXML private Button folderBtn;
 
-  public UserDirsController(Stage stage, StartScene scene) {
-    this.stage = stage;
-    this.scene = scene;
-  }
+  public UserDirsController() {}
 
   @FXML
   public void initialize() {
@@ -53,7 +48,8 @@ public class UserDirsController implements FxController {
   }
 
   @FXML
-  public void addDir(ActionEvent event) {
+  public void addDir(ActionEvent e) {
+    Stage stage = (Stage) shareDirsList.getScene().getWindow();
     String dir = Utils.chooseDir(stage);
     if (dir != null && !dirs.contains(dir)) {
       displayShareDirs(Collections.singletonList(dir));
@@ -70,6 +66,7 @@ public class UserDirsController implements FxController {
             shareDirsList.getItems().remove(item);
             dirs.remove(item.getText());
           });
+
       shareChanged = true;
     }
   }
@@ -89,6 +86,7 @@ public class UserDirsController implements FxController {
 
   @FXML
   public void updateDir(ActionEvent event) {
+    Stage stage = (Stage) shareDirsList.getScene().getWindow();
     String dir = Utils.chooseDir(stage);
     if (dir != null) {
       displayDownloadsDir(dir);
@@ -104,11 +102,19 @@ public class UserDirsController implements FxController {
     //    CommunicationClient.get().updateUserDirs(share, out, scene);
 
     logger.info("Update user dirs here...");
-    stage.close();
+    close();
   }
 
   @FXML
   public void cancel(ActionEvent event) {
-    stage.close();
+    close();
+  }
+
+  private void close() {
+    Window window = shareDirsList.getScene().getWindow();
+    if (window instanceof Stage) {
+      Stage stage = (Stage) window;
+      stage.close();
+    }
   }
 }

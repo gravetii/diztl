@@ -1,14 +1,12 @@
 package io.github.gravetii.controller.start;
 
 import io.github.gravetii.client.DiztlClient;
-import io.github.gravetii.client.DownloadService;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.start.StartScene;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +15,6 @@ public class ResultListController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(ResultListController.class.getCanonicalName());
 
-  private final Stage stage;
   private final StartScene scene;
 
   @FXML private TableView<FileResult> resultListTbl;
@@ -26,8 +23,7 @@ public class ResultListController implements FxController {
   @FXML private TableColumn<FileResult, String> fileTypeTblCol;
   @FXML private TableColumn<FileResult, String> filePathTblCol;
 
-  public ResultListController(Stage stage, StartScene scene) {
-    this.stage = stage;
+  public ResultListController(StartScene scene) {
     this.scene = scene;
   }
 
@@ -79,5 +75,4 @@ public class ResultListController implements FxController {
   public void show(FileResult result) {
     resultListTbl.getItems().add(result);
   }
-
 }
