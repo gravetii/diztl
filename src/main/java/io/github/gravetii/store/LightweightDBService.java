@@ -1,6 +1,8 @@
 package io.github.gravetii.store;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,10 +12,14 @@ import java.util.stream.Collectors;
 
 public class LightweightDBService implements DBService {
 
+  private static final Logger logger =
+      LoggerFactory.getLogger(LightweightDBService.class.getCanonicalName());
+
   private static final String SHARE_DIRS_KEY = "user_share_dirs";
   private static final String TRACKER_ADDR_KEY = "tracker";
 
-  private static final Preferences prefs = Preferences.userNodeForPackage(LightweightDBService.class);
+  private static final Preferences prefs =
+      Preferences.userNodeForPackage(LightweightDBService.class);
 
   public void saveShareDirs(List<String> dirs) {
     StringBuilder value = new StringBuilder();
@@ -27,7 +33,7 @@ public class LightweightDBService implements DBService {
   }
 
   public List<String> getShareDirs() {
-    String value = prefs.get(SHARE_DIRS_KEY, "");
+    String value = prefs.get(SHARE_DIRS_KEY, "/Users/s0d01bw/Documents$");
     if (StringUtils.isEmpty(value)) return Collections.emptyList();
     return Arrays.stream(value.split("\\$"))
         .filter(StringUtils::isNotEmpty)
@@ -40,5 +46,13 @@ public class LightweightDBService implements DBService {
 
   public String getTrackerAddress() {
     return prefs.get(TRACKER_ADDR_KEY, "127.0.0.1:50036");
+  }
+
+  public static void close() {
+    try {
+      prefs.flush();
+    } catch (Throwable throwable) {
+      logger.warn("Error while flushing store", throwable);
+    }
   }
 }
