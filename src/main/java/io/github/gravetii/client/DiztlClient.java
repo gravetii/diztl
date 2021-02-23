@@ -2,8 +2,8 @@ package io.github.gravetii.client;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import io.github.gravetii.grpc.*;
+import io.github.gravetii.keeper.KeeperService;
 import io.github.gravetii.keeper.TrackerConnection;
-import io.github.gravetii.scene.start.StartScene;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -54,8 +54,8 @@ public class DiztlClient {
     connection.asyncStub.search(request, observer);
   }
 
-  public static void download(FileMetadata file, Node source, StartScene scene) {
-    DownloadService service = new DownloadService(scene);
-    service.download(file, node, source);
+  public static void download(FileMetadata file, Node source, StreamObserver<FileChunk> observer) {
+    UploadReq request = UploadReq.newBuilder().setSource(node).setMetadata(file).build();
+    KeeperService.get().getOrCreate(source).asyncStub.upload(request, observer);
   }
 }

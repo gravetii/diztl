@@ -1,12 +1,9 @@
 package io.github.gravetii.client;
 
 import com.google.inject.Inject;
-import io.github.gravetii.grpc.FileConstraint;
 import io.github.gravetii.grpc.Node;
 import io.github.gravetii.grpc.RegisterReq;
-import io.github.gravetii.grpc.SearchReq;
 import io.github.gravetii.keeper.TrackerConnection;
-import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.store.DBService;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -52,13 +49,5 @@ public class TrackerClient {
     Node self = Node.newBuilder().setIp(ip).build();
     RegisterReq request = RegisterReq.newBuilder().setSelf(self).build();
     return connection.blockingStub.register(request).getNode();
-  }
-
-  public void search(String query, FileConstraint constraint, StartScene scene) {
-    SearchReq request =
-        SearchReq.newBuilder().setSource(node).setQuery(query).setConstraint(constraint).build();
-    logger.info("Searching for pattern - {}", query);
-    SearchService service = new SearchService(query, constraint, scene);
-    connection.asyncStub.search(request, service.newObserver());
   }
 }
