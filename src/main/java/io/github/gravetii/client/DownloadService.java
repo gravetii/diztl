@@ -3,6 +3,8 @@ package io.github.gravetii.client;
 import io.github.gravetii.grpc.FileChunk;
 import io.github.gravetii.grpc.FileMetadata;
 import io.github.gravetii.grpc.Node;
+import io.github.gravetii.grpc.UploadReq;
+import io.github.gravetii.keeper.KeeperService;
 import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.DiztlExecutorService;
@@ -24,17 +26,18 @@ public class DownloadService {
 
   private static final String DOWNLOAD_FOLDER = "/Users/s0d01bw/Documents/diztl_downloads";
 
-  private final FileMetadata file;
-  private final Node source;
   private final StartScene scene;
 
-  public DownloadService(FileMetadata file, Node source, StartScene scene) {
-    this.file = file;
-    this.source = source;
+  public DownloadService(StartScene scene) {
     this.scene = scene;
   }
 
-  public StreamObserver<FileChunk> newObserver() {
+  public void download(FileMetadata file, Node source, Node dest) {
+    UploadReq request = UploadReq.newBuilder().setSource(source).setMetadata(file).build();
+    KeeperService.get().getOrCreate(dest).asyncStub.upload(request, newObserver(file));
+  }
+
+  private StreamObserver<FileChunk> newObserver(FileMetadata file) {
     DownloadResult result = new DownloadResult(file, DOWNLOAD_FOLDER);
     DiztlExecutorService.execute(result);
     scene.show(result);
@@ -66,7 +69,6 @@ public class DownloadService {
 
       @Override
       public void onError(Throwable throwable) {
-        logger.error("Error while downloading file {} from node {}", file, source, throwable);
         result.onError(throwable);
       }
 

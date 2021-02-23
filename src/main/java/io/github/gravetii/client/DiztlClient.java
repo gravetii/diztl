@@ -56,8 +56,7 @@ public class DiztlClient {
   }
 
   public static void download(FileMetadata file, Node source, StartScene scene) {
-    DownloadService service = new DownloadService(file, source, scene);
-    UploadReq request = UploadReq.newBuilder().setSource(node).setMetadata(file).build();
-    KeeperService.get().getOrCreate(source).asyncStub.upload(request, service.newObserver());
+    DownloadService service = new DownloadService(scene);
+    service.download(file, node, source);
   }
 }
