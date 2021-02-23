@@ -126,7 +126,8 @@ public class ResultListController implements FxController {
   }
 
   private void download(FileResult result) {
-    client.download(result.getFile(), result.getSource(), newObserver(result.getFile()));
+    FileMetadata file = result.getFile();
+    client.download(file, result.getSource(), this.newObserver(file));
   }
 
   private void setColumnWidths() {

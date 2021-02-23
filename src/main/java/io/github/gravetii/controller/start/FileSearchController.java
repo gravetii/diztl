@@ -113,7 +113,7 @@ public class FileSearchController implements FxController {
       int ftype = fileType.getSelectionModel().getSelectedIndex();
       TypeConstraint type = TypeConstraint.newBuilder().setType(ftype).build();
       FileConstraint constraint = FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
-      client.search(query, constraint, newObserver(query));
+      client.search(query, constraint, this.newObserver(query));
     }
   }
 }
