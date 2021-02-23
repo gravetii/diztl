@@ -3,7 +3,6 @@ package io.github.gravetii.scene.download;
 import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.FxScene;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 /**
  * This class is responsible for laying out the download results view of the start scene. This is

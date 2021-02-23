@@ -11,17 +11,14 @@ import javafx.scene.layout.BorderPane;
 public class SearchLogScene extends FxScene {
   private final StartScene parent;
   private final FileSearchScene fileSearchScene;
-  private final LogComponent logComponent;
-  private final LogComponent errorLogComponent;
-  private final TabPaneComponent tabPaneComponent;
+  private final LogComponent logComponent = new LogComponent(false);
+  private final LogComponent errorLogComponent = new LogComponent(true);
+  private final TabPaneComponent tabPaneComponent = new TabPaneComponent();
 
   public SearchLogScene(StartScene scene) {
     super(new BorderPane());
     this.parent = scene;
     fileSearchScene = new FileSearchScene(scene);
-    logComponent = new LogComponent(false);
-    errorLogComponent = new LogComponent(true);
-    tabPaneComponent = new TabPaneComponent();
     this.build();
   }
 
