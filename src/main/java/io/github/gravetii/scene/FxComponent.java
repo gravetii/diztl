@@ -6,9 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 
 public abstract class FxComponent<C extends FxController, N extends Node> {
+  private final String fxml;
   private C controller;
   private N node;
-  private String fxml;
 
   protected FxComponent(String fxml) {
     this.fxml = fxml;
@@ -26,7 +26,6 @@ public abstract class FxComponent<C extends FxController, N extends Node> {
   protected N loadNode() {
     try {
       FXMLLoader loader = new FXMLLoader(App.class.getResource(this.fxml));
-//      FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("/fxml/" + this.fxml));
       loader.setController(this.controller);
       return loader.load();
     } catch (Exception e) {
