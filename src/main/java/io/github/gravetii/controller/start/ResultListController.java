@@ -109,13 +109,17 @@ public class ResultListController implements FxController {
 
       @Override
       public void onError(Throwable throwable) {
-        result.onError(throwable);
+        try {
+          stream.close();
+          result.onError(throwable);
+        } catch (IOException e) {
+          logger.error("Error while closing output file", e);
+        }
       }
 
       @Override
       public void onCompleted() {
         try {
-          stream.flush();
           stream.close();
           result.onComplete();
         } catch (IOException e) {
