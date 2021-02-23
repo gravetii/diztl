@@ -1,28 +1,33 @@
 package io.github.gravetii.indexer;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import io.github.gravetii.store.DBService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-/** Indexes all the files present in the given directories, making them available for search. */
+@Singleton
 public class FileIndexer {
 
   private static final Logger logger =
       LoggerFactory.getLogger(FileIndexer.class.getCanonicalName());
 
-  private final List<String> dirs;
-  private final List<IndexedFile> indexedFiles;
+  private final DBService dbService;
+  private final List<IndexedFile> files = new ArrayList<>();
 
-  public FileIndexer(List<String> dirs) {
-    this.dirs = dirs;
-    this.indexedFiles = new ArrayList<>();
+  @Inject
+  public FileIndexer(DBService dbService) {
+    this.dbService = dbService;
   }
 
   /**
@@ -36,8 +41,8 @@ public class FileIndexer {
     itr.forEachRemaining(
         x -> {
           try {
-            //            String checksum = DigestUtils.sha1Hex(new FileInputStream(x));
-            IndexedFile file = new IndexedFile(x, "a");
+            String checksum = DigestUtils.sha1Hex(new FileInputStream(x));
+            IndexedFile file = new IndexedFile(x, checksum);
             result.add(file);
           } catch (Exception e) {
             logger.error("Error while generating checksum for file {}", x);
@@ -47,14 +52,15 @@ public class FileIndexer {
     return result;
   }
 
-  /** Indexes all the files present in the supplied list of directories. */
   public List<IndexedFile> index() {
-    dirs.forEach(x -> indexedFiles.addAll(this.fileWalk(x)));
-    return indexedFiles;
+    List<String> dirs = dbService.getShareDirs();
+    files.clear();
+    dirs.forEach(x -> files.addAll(this.fileWalk(x)));
+    return files;
   }
 
   public List<IndexedFile> search(String query) {
-    return indexedFiles.stream()
+    return files.stream()
         .filter(
             x ->
                 Pattern.compile(Pattern.quote(query), Pattern.CASE_INSENSITIVE)

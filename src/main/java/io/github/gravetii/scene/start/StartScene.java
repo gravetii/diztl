@@ -16,7 +16,6 @@ import javafx.geometry.Dimension2D;
 import javafx.geometry.Orientation;
 import javafx.scene.control.SplitPane;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,12 +27,11 @@ public class StartScene extends FxScene {
   private final FileIndexer indexer;
 
   @Inject
-  public StartScene(DiztlClient client) {
+  public StartScene(DiztlClient client, FileIndexer indexer) {
     super(new SplitPane());
+    this.indexer = indexer;
     searchLogScene = new SearchLogScene(client, this);
     downloadResultScene = new DownloadResultScene();
-    List<String> shareDirs = Collections.singletonList("/Users/s0d01bw/Documents");
-    indexer = new FileIndexer(shareDirs);
     this.build();
   }
 

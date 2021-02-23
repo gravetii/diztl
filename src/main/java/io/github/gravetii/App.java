@@ -3,6 +3,7 @@ package io.github.gravetii;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.indexer.FileIndexer;
 import io.github.gravetii.node.DiztlServiceImpl;
 import io.github.gravetii.scene.FxScene;
 import io.github.gravetii.scene.start.StartScene;
@@ -10,8 +11,6 @@ import io.github.gravetii.util.DiztlExecutorService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -70,14 +69,10 @@ public class App extends Application {
 
   private void startServer() throws IOException {
     DiztlClient client = App.injector.getInstance(DiztlClient.class);
+    FileIndexer indexer = App.injector.getInstance(FileIndexer.class);
     ServerBuilder<?> builder =
-        ServerBuilder.forPort(50035).addService(new DiztlServiceImpl(client));
+        ServerBuilder.forPort(50035).addService(new DiztlServiceImpl(client, indexer));
     this.server = builder.build().start();
-  }
-
-  private static Parent loadFXML(String fxml) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-    return fxmlLoader.load();
   }
 
   public static void main(String[] args) {

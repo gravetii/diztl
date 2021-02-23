@@ -24,7 +24,8 @@ public class TrackerServer {
 
   private void start() throws IOException {
     NodeKeeper keeper = injector.getInstance(NodeKeeper.class);
-    ServerBuilder<?> builder = ServerBuilder.forPort(port).addService(new TrackerServiceImpl(keeper));
+    ServerBuilder<?> builder =
+        ServerBuilder.forPort(port).addService(new TrackerServiceImpl(keeper));
     this.server = builder.build().start();
     logger.info("Tracker server started on {}", port);
     Runtime.getRuntime()

@@ -15,7 +15,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,15 +26,15 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
   private static final int BUFFER_SIZE = 1024 * 1024;
 
   private final DiztlClient client;
+  private final FileIndexer indexer;
 
-  public DiztlServiceImpl(DiztlClient client) {
+  public DiztlServiceImpl(DiztlClient client, FileIndexer indexer) {
     this.client = client;
+    this.indexer = indexer;
   }
 
   @Override
   public void search(SearchReq request, StreamObserver<SearchResp> responseObserver) {
-    FileIndexer indexer = new FileIndexer(Collections.singletonList("/Users/s0d01bw/Documents/"));
-    indexer.index();
     List<FileMetadata> files =
         indexer.search(request.getQuery()).stream()
             .map(
