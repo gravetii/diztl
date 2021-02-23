@@ -18,8 +18,15 @@ public class LightweightDBService implements DBService {
   private static final String SHARE_DIRS_KEY = "user_share_dirs";
   private static final String TRACKER_ADDR_KEY = "tracker";
 
-  private static final Preferences prefs =
-      Preferences.userNodeForPackage(LightweightDBService.class);
+  private final Preferences prefs = Preferences.userNodeForPackage(LightweightDBService.class);
+
+  private void flush() {
+    try {
+      prefs.flush();
+    } catch (Throwable throwable) {
+      logger.warn("Error while flushing store", throwable);
+    }
+  }
 
   public void saveShareDirs(List<String> dirs) {
     StringBuilder value = new StringBuilder();
@@ -30,6 +37,7 @@ public class LightweightDBService implements DBService {
         });
 
     prefs.put(SHARE_DIRS_KEY, value.toString());
+    this.flush();
   }
 
   public List<String> getShareDirs() {
@@ -42,17 +50,14 @@ public class LightweightDBService implements DBService {
 
   public void saveTrackerAddress(String address) {
     prefs.put(TRACKER_ADDR_KEY, address);
+    this.flush();
   }
 
   public String getTrackerAddress() {
     return prefs.get(TRACKER_ADDR_KEY, "127.0.0.1:50036");
   }
 
-  public static void close() {
-    try {
-      prefs.flush();
-    } catch (Throwable throwable) {
-      logger.warn("Error while flushing store", throwable);
-    }
+  public void close() {
+    this.flush();
   }
 }
