@@ -31,6 +31,7 @@ public class StartScene extends FxScene {
     downloadResultScene = new DownloadResultScene(stage);
     List<String> shareDirs = Collections.singletonList("/Users/s0d01bw/Documents");
     indexer = new FileIndexer(shareDirs);
+    this.build();
   }
 
   public ResultListComponent addNewSearchTab(String query) {
@@ -41,13 +42,11 @@ public class StartScene extends FxScene {
     return searchLogScene.addNewFileListTab(file);
   }
 
-  @Override
-  public Region build() {
+  private void build() {
     SplitPane pane = (SplitPane) root;
     pane.setDividerPositions(0.70);
     pane.setOrientation(Orientation.VERTICAL);
-    pane.getItems().addAll(searchLogScene.build(), downloadResultScene.build());
-    return pane;
+    pane.getItems().addAll(searchLogScene.root, downloadResultScene.root);
   }
 
   @Override

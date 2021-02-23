@@ -24,16 +24,15 @@ public class SearchLogScene extends FxScene {
     logComponent = new LogComponent(false);
     errorLogComponent = new LogComponent(true);
     tabPaneComponent = new TabPaneComponent();
+    this.build();
   }
 
-  @Override
-  public Region build() {
+  private void build() {
     BorderPane pane = (BorderPane) root;
-    pane.setLeft(fileSearchScene.build());
+    pane.setLeft(fileSearchScene.root);
     tabPaneComponent.addTab("log", logComponent.getNode(), false, true);
     tabPaneComponent.addTab("error log", errorLogComponent.getNode(), false, false);
     pane.setCenter(tabPaneComponent.getNode());
-    return pane;
   }
 
   @Override

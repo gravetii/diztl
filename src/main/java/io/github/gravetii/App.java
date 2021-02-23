@@ -6,6 +6,7 @@ import com.google.inject.Injector;
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.grpc.RegisterResp;
 import io.github.gravetii.node.DiztlServiceImpl;
+import io.github.gravetii.scene.FxScene;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.DiztlExecutorService;
 import io.grpc.Server;
@@ -14,7 +15,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +28,13 @@ public class App extends Application {
   private static final Logger logger = LoggerFactory.getLogger(App.class.getCanonicalName());
 
   private Server server;
+
+  public static void display(Stage stage, FxScene scene) {
+    stage.setScene(new Scene(scene.root));
+    stage.setTitle(scene.title());
+    scene.preferredDimensions().ifPresent(x -> x.setFor(stage));
+    stage.show();
+  }
 
   @Override
   public void start(Stage stage) throws Exception {
@@ -45,10 +52,7 @@ public class App extends Application {
         });
 
     StartScene scene = injector.getInstance(StartScene.class);
-    stage.setScene(new Scene(scene.build()));
-    stage.setTitle(scene.title());
-    scene.preferredDimensions().ifPresent(x -> x.setFor(stage));
-    stage.show();
+    App.display(stage, scene);
 
     new Thread(
             () -> {

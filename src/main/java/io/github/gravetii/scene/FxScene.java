@@ -6,15 +6,13 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public abstract class FxScene {
-  protected Stage stage;
-  protected Region root;
+  public final Stage stage;
+  public final Region root;
 
   protected FxScene(Stage stage, Region root) {
     this.stage = stage;
     this.root = root;
   }
-
-  public abstract Region build();
 
   public abstract String title();
 
