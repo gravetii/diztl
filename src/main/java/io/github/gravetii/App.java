@@ -63,8 +63,6 @@ public class App extends Application {
               }
             })
         .start();
-
-    scene.index();
   }
 
   private void startServer() throws IOException {

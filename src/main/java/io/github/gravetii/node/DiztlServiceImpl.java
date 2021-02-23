@@ -31,6 +31,7 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
   public DiztlServiceImpl(DiztlClient client, FileIndexer indexer) {
     this.client = client;
     this.indexer = indexer;
+    this.indexer.index();
   }
 
   @Override
