@@ -1,6 +1,5 @@
 package io.github.gravetii.scene;
 
-import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -17,22 +16,9 @@ public abstract class FxScene {
 
   public abstract Region build();
 
-  protected abstract String title();
+  public abstract String title();
 
-  protected Optional<FxDimensions> preferredDimensions() {
+  public Optional<FxDimensions> preferredDimensions() {
     return Optional.empty();
-  }
-
-  private void setDimensions() {
-    preferredDimensions().ifPresent(dimensions -> dimensions.setFor(stage));
-  }
-
-  public void show() {
-    build();
-    Scene scene = new Scene(root);
-    stage.setScene(scene);
-    stage.setTitle(title());
-    setDimensions();
-    stage.show();
   }
 }

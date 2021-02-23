@@ -37,7 +37,7 @@ public class SearchLogScene extends FxScene {
   }
 
   @Override
-  protected String title() {
+  public String title() {
     return "Diztl";
   }
 

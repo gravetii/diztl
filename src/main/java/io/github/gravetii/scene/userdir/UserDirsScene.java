@@ -26,12 +26,12 @@ public class UserDirsScene extends FxScene {
   }
 
   @Override
-  protected String title() {
+  public String title() {
     return "Configure user folders";
   }
 
   @Override
-  protected Optional<FxDimensions> preferredDimensions() {
+  public Optional<FxDimensions> preferredDimensions() {
     FxDimensions dimensions =
         new FxDimensions(
             new Dimension2D(650, 520), new Dimension2D(650, 520), new Dimension2D(650, 520));

@@ -26,7 +26,7 @@ public class DownloadResultScene extends FxScene {
   }
 
   @Override
-  protected String title() {
+  public String title() {
     return "Downloads";
   }
 

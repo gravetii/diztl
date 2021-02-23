@@ -51,12 +51,12 @@ public class StartScene extends FxScene {
   }
 
   @Override
-  protected String title() {
+  public String title() {
     return "Diztl";
   }
 
   @Override
-  protected Optional<FxDimensions> preferredDimensions() {
+  public Optional<FxDimensions> preferredDimensions() {
     FxDimensions dimensions =
         new FxDimensions(
             new Dimension2D(Double.MAX_VALUE, Double.MAX_VALUE),

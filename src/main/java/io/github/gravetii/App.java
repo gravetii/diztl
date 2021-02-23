@@ -13,6 +13,8 @@ import io.grpc.ServerBuilder;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +45,10 @@ public class App extends Application {
         });
 
     StartScene scene = injector.getInstance(StartScene.class);
-    scene.show();
+    stage.setScene(new Scene(scene.build()));
+    stage.setTitle(scene.title());
+    scene.preferredDimensions().ifPresent(x -> x.setFor(stage));
+    stage.show();
 
     new Thread(
             () -> {

@@ -28,11 +28,11 @@ public class ConfigureTrackerScene extends FxScene {
   }
 
   @Override
-  protected String title() {
+  public String title() {
     return "Configure tracker";
   }
 
-  protected Optional<FxDimensions> preferredDimensions() {
+  public Optional<FxDimensions> preferredDimensions() {
     FxDimensions dimensions =
         new FxDimensions(
             new Dimension2D(350, 150), new Dimension2D(350, 150), new Dimension2D(350, 150));
