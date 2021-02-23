@@ -2,11 +2,11 @@ package io.github.gravetii.client;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import io.github.gravetii.grpc.*;
-import io.github.gravetii.keeper.KeeperService;
 import io.github.gravetii.keeper.TrackerConnection;
 import io.github.gravetii.scene.start.StartScene;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,13 +46,12 @@ public class DiztlClient {
     return connection.futureStub.register(request);
   }
 
-  public static void search(String query, FileConstraint constraint, StartScene scene) {
+  public static void search(
+      String query, FileConstraint constraint, StreamObserver<SearchResp> observer) {
     SearchReq request =
         SearchReq.newBuilder().setSource(node).setQuery(query).setConstraint(constraint).build();
-
     logger.info("Searching for pattern - {}", query);
-    SearchService service = new SearchService(query, constraint, scene);
-    connection.asyncStub.search(request, service.newObserver());
+    connection.asyncStub.search(request, observer);
   }
 
   public static void download(FileMetadata file, Node source, StartScene scene) {
