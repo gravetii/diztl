@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.github.gravetii.grpc.*;
 import io.github.gravetii.keeper.KeeperService;
+import io.github.gravetii.keeper.NodeKeeper;
 import io.github.gravetii.keeper.TrackerConnection;
 import io.github.gravetii.store.DBService;
 import io.grpc.ManagedChannel;
@@ -21,11 +22,13 @@ public class DiztlClient {
   private static final Logger logger =
       LoggerFactory.getLogger(DiztlClient.class.getCanonicalName());
 
+  private final NodeKeeper keeper;
   private final TrackerConnection connection;
   private final Node node;
 
   @Inject
-  public DiztlClient(DBService dbService) {
+  public DiztlClient(DBService dbService, NodeKeeper keeper) {
+    this.keeper = keeper;
     ManagedChannelBuilder<?> builder =
         ManagedChannelBuilder.forTarget(dbService.getTrackerAddress());
     ManagedChannel channel = builder.usePlaintext().build();
@@ -65,6 +68,6 @@ public class DiztlClient {
 
   public void download(FileMetadata file, Node source, StreamObserver<FileChunk> observer) {
     UploadReq request = UploadReq.newBuilder().setSource(node).setMetadata(file).build();
-    KeeperService.get().getOrCreate(source).asyncStub.upload(request, observer);
+    keeper.getOrCreate(source).asyncStub.upload(request, observer);
   }
 }
