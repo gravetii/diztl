@@ -8,6 +8,7 @@ import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.store.DBService;
 import io.github.gravetii.util.DiztlExecutorService;
+import io.github.gravetii.util.Utils;
 import io.grpc.stub.StreamObserver;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -27,8 +28,6 @@ public class ResultListController implements FxController {
 
   private static final Logger logger =
       LoggerFactory.getLogger(ResultListController.class.getCanonicalName());
-
-  private static final String DOWNLOAD_FOLDER = "/Users/s0d01bw/Documents/diztl_downloads";
 
   private final DiztlClient client;
   private final DBService dbService;
@@ -73,15 +72,27 @@ public class ResultListController implements FxController {
     menu.getItems().add(menuItem);
   }
 
+  private void addDownloadToFolderMenuItem(TableRow<FileResult> row, ContextMenu menu) {
+    MenuItem menuItem = new MenuItem("Download to folder");
+    menuItem.setOnAction(
+        e -> {
+          String dir = Utils.chooseDir(scene.getWindow());
+          if (dir != null) downloadToFolder(row.getItem(), dir);
+        });
+
+    menu.getItems().add(menuItem);
+  }
+
   private void setContextMenu(TableRow<FileResult> row) {
     ContextMenu menu = new ContextMenu();
     addDownloadMenuItem(row, menu);
+    addDownloadToFolderMenuItem(row, menu);
     row.contextMenuProperty()
         .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
   }
 
-  private StreamObserver<FileChunk> newObserver(FileMetadata file) {
-    DownloadResult result = new DownloadResult(file, dbService.getDownloadDir());
+  private StreamObserver<FileChunk> newObserver(FileMetadata file, String outputDir) {
+    DownloadResult result = new DownloadResult(file, outputDir);
     scene.show(result);
     DiztlExecutorService.execute(result);
     return new StreamObserver<>() {
@@ -91,7 +102,7 @@ public class ResultListController implements FxController {
       public void onNext(FileChunk chunk) {
         byte[] data = chunk.getData().toByteArray();
         if (chunk.getChunk() == 1) {
-          final Path out = Paths.get(dbService.getDownloadDir(), chunk.getMetadata().getName());
+          final Path out = Paths.get(outputDir, chunk.getMetadata().getName());
           try {
             stream = new BufferedOutputStream(new FileOutputStream(out.toString()));
             result.first(chunk);
@@ -132,9 +143,13 @@ public class ResultListController implements FxController {
     };
   }
 
-  private void download(FileResult result) {
+  private void downloadToFolder(FileResult result, String dir) {
     FileMetadata file = result.getFile();
-    client.download(file, result.getSource(), this.newObserver(file));
+    client.download(file, result.getSource(), this.newObserver(file, dir));
+  }
+
+  private void download(FileResult result) {
+    this.downloadToFolder(result, dbService.getDownloadDir());
   }
 
   private void setColumnWidths() {
