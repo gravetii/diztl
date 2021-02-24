@@ -8,6 +8,10 @@ public interface DBService {
 
   Set<String> getShareDirs();
 
+  void saveDownloadsDir(String dir);
+
+  String getDownloadDir();
+
   void saveTrackerAddress(String address);
 
   String getTrackerAddress();

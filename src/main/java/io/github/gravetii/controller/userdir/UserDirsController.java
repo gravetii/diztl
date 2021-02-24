@@ -46,8 +46,9 @@ public class UserDirsController implements FxController {
         .bind(shareDirsList.getSelectionModel().selectedItemProperty().isNull());
 
     Set<String> shareDirs = dbService.getShareDirs();
+    String downloadsDir = dbService.getDownloadDir();
     displayShareDirs(shareDirs);
-    displayDownloadsDir("Dummy download directory");
+    displayDownloadsDir(downloadsDir);
   }
 
   @FXML
@@ -89,7 +90,7 @@ public class UserDirsController implements FxController {
 
   @FXML
   public void updateDir(ActionEvent event) {
-    Stage stage = (Stage) shareDirsList.getScene().getWindow();
+    Stage stage = (Stage) downloadsDir.getScene().getWindow();
     String dir = Utils.chooseDir(stage);
     if (dir != null) {
       displayDownloadsDir(dir);
@@ -100,6 +101,11 @@ public class UserDirsController implements FxController {
   @FXML
   public void ok(ActionEvent event) {
     if (shareDirsUpdated) dbService.saveShareDirs(dirs);
+    if (downloadsDirUpdated) {
+      String dir = downloadsDir.getItems().get(0).getText();
+      dbService.saveDownloadsDir(dir);
+    }
+
     close();
   }
 

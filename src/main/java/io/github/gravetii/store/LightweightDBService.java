@@ -19,6 +19,7 @@ public class LightweightDBService implements DBService {
       LoggerFactory.getLogger(LightweightDBService.class.getCanonicalName());
 
   private static final String SHARE_DIRS_KEY = "user_share_dirs";
+  private static final String DOWNLOADS_DIR_KEY = "downloads_dir";
   private static final String TRACKER_ADDR_KEY = "tracker";
 
   private final Preferences prefs = Preferences.userNodeForPackage(App.class);
@@ -39,18 +40,27 @@ public class LightweightDBService implements DBService {
           value.append('$');
         });
 
-    logger.info("Share dirs to write to DB - {}", value.toString());
     prefs.put(SHARE_DIRS_KEY, value.toString());
     this.flush();
   }
 
   public Set<String> getShareDirs() {
     String value = prefs.get(SHARE_DIRS_KEY, "");
-    logger.info("Share dirs from db - {}", value);
     if (StringUtils.isEmpty(value)) return Collections.emptySet();
     return Arrays.stream(value.split("\\$"))
         .filter(StringUtils::isNotEmpty)
         .collect(Collectors.toSet());
+  }
+
+  @Override
+  public void saveDownloadsDir(String dir) {
+    prefs.put(DOWNLOADS_DIR_KEY, dir);
+    this.flush();
+  }
+
+  @Override
+  public String getDownloadDir() {
+    return prefs.get(DOWNLOADS_DIR_KEY, "/Users/s0d01bw/Downloads");
   }
 
   public void saveTrackerAddress(String address) {

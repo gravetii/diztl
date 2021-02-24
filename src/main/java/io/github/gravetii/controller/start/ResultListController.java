@@ -6,6 +6,7 @@ import io.github.gravetii.grpc.FileChunk;
 import io.github.gravetii.grpc.FileMetadata;
 import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.start.StartScene;
+import io.github.gravetii.store.DBService;
 import io.github.gravetii.util.DiztlExecutorService;
 import io.grpc.stub.StreamObserver;
 import javafx.beans.binding.Bindings;
@@ -30,6 +31,7 @@ public class ResultListController implements FxController {
   private static final String DOWNLOAD_FOLDER = "/Users/s0d01bw/Documents/diztl_downloads";
 
   private final DiztlClient client;
+  private final DBService dbService;
   private final StartScene scene;
 
   @FXML private TableView<FileResult> resultListTbl;
@@ -38,8 +40,9 @@ public class ResultListController implements FxController {
   @FXML private TableColumn<FileResult, String> fileTypeTblCol;
   @FXML private TableColumn<FileResult, String> filePathTblCol;
 
-  public ResultListController(DiztlClient client, StartScene scene) {
+  public ResultListController(DiztlClient client, DBService dbService, StartScene scene) {
     this.client = client;
+    this.dbService = dbService;
     this.scene = scene;
   }
 
@@ -78,7 +81,7 @@ public class ResultListController implements FxController {
   }
 
   private StreamObserver<FileChunk> newObserver(FileMetadata file) {
-    DownloadResult result = new DownloadResult(file, DOWNLOAD_FOLDER);
+    DownloadResult result = new DownloadResult(file, dbService.getDownloadDir());
     scene.show(result);
     DiztlExecutorService.execute(result);
     return new StreamObserver<>() {
@@ -88,7 +91,7 @@ public class ResultListController implements FxController {
       public void onNext(FileChunk chunk) {
         byte[] data = chunk.getData().toByteArray();
         if (chunk.getChunk() == 1) {
-          final Path out = Paths.get(DOWNLOAD_FOLDER, chunk.getMetadata().getName());
+          final Path out = Paths.get(dbService.getDownloadDir(), chunk.getMetadata().getName());
           try {
             stream = new BufferedOutputStream(new FileOutputStream(out.toString()));
             result.first(chunk);
