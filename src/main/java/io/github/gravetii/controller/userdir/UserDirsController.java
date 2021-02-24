@@ -2,7 +2,7 @@ package io.github.gravetii.controller.userdir;
 
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.store.DBService;
-import io.github.gravetii.util.Utils;
+import io.github.gravetii.util.FxUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,7 +54,7 @@ public class UserDirsController implements FxController {
   @FXML
   public void addDir(ActionEvent e) {
     Stage stage = (Stage) shareDirsList.getScene().getWindow();
-    String dir = Utils.chooseDir(stage);
+    String dir = FxUtils.chooseDir(stage);
     if (dir != null && !dirs.contains(dir)) {
       displayShareDirs(Collections.singleton(dir));
       shareDirsUpdated = true;
@@ -91,7 +91,7 @@ public class UserDirsController implements FxController {
   @FXML
   public void updateDir(ActionEvent event) {
     Stage stage = (Stage) downloadsDir.getScene().getWindow();
-    String dir = Utils.chooseDir(stage);
+    String dir = FxUtils.chooseDir(stage);
     if (dir != null) {
       displayDownloadsDir(dir);
       downloadsDirUpdated = true;

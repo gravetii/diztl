@@ -7,7 +7,7 @@ import io.github.gravetii.indexer.FileIndexer;
 import io.github.gravetii.node.DiztlServiceImpl;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.DiztlExecutorService;
-import io.github.gravetii.util.Utils;
+import io.github.gravetii.util.FxUtils;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import javafx.application.Application;
@@ -42,7 +42,7 @@ public class App extends Application {
         });
 
     StartScene scene = App.injector.getInstance(StartScene.class);
-    Utils.display(stage, scene);
+    FxUtils.display(stage, scene);
 
     new Thread(
             () -> {

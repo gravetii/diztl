@@ -5,7 +5,7 @@ import io.github.gravetii.scene.configuration.ConfigureTrackerScene;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.scene.userdir.UserDirsScene;
 import io.github.gravetii.store.DBService;
-import io.github.gravetii.util.Utils;
+import io.github.gravetii.util.FxUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -49,13 +49,13 @@ public class QuickOptionsController implements FxController {
   public void configureDirs(ActionEvent e) {
     Stage stage = newModalWindow();
     UserDirsScene scene = new UserDirsScene(dbService);
-    Utils.display(stage, scene);
+    FxUtils.display(stage, scene);
   }
 
   @FXML
   public void configureTracker(ActionEvent e) {
     Stage stage = newModalWindow();
     ConfigureTrackerScene scene = new ConfigureTrackerScene(dbService);
-    Utils.display(stage, scene);
+    FxUtils.display(stage, scene);
   }
 }

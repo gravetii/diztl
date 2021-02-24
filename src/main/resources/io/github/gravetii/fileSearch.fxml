@@ -6,13 +6,13 @@
 
 <AnchorPane fx:id="parentCtnr" prefHeight="259.0" prefWidth="350.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox fx:id="hboxCtnr" layoutX="15.0" prefHeight="41.0" prefWidth="350.0" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <HBox fx:id="hboxCtnr" layoutX="15.0" prefHeight="41.0" prefWidth="350.0" spacing="3.0" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
-            <TextField fx:id="searchBox" prefHeight="34.0" prefWidth="290.0" promptText="Search...">
+            <TextField fx:id="searchBox" prefHeight="32.0" prefWidth="290.0" promptText="Search...">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></TextField>
-            <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="34.0" prefWidth="115.0">
+            <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="32.0" prefWidth="115.0">
                <text>Search</text>
             </Button>
          </children>

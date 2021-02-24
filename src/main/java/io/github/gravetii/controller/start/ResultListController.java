@@ -8,7 +8,7 @@ import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.store.DBService;
 import io.github.gravetii.util.DiztlExecutorService;
-import io.github.gravetii.util.Utils;
+import io.github.gravetii.util.FxUtils;
 import io.grpc.stub.StreamObserver;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
@@ -76,7 +76,7 @@ public class ResultListController implements FxController {
     MenuItem menuItem = new MenuItem("Download to folder");
     menuItem.setOnAction(
         e -> {
-          String dir = Utils.chooseDir(scene.getWindow());
+          String dir = FxUtils.chooseDir(scene.getWindow());
           if (dir != null) downloadToFolder(row.getItem(), dir);
         });
 
