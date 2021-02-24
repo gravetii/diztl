@@ -45,7 +45,7 @@ public class LightweightDBService implements DBService {
   }
 
   public Set<String> getShareDirs() {
-    String value = prefs.get(SHARE_DIRS_KEY, "/Users/s0d01bw/Documents$");
+    String value = prefs.get(SHARE_DIRS_KEY, "");
     logger.info("Share dirs from db - {}", value);
     if (StringUtils.isEmpty(value)) return Collections.emptySet();
     return Arrays.stream(value.split("\\$"))
