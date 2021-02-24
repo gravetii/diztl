@@ -6,7 +6,7 @@
 <AnchorPane prefHeight="124.0" prefWidth="328.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="41.0" layoutY="22.0" prefHeight="21.0" prefWidth="101.0" text="Tracker  address " />
-      <TextField fx:id="ipBox" alignment="CENTER" focusTraversable="false" layoutX="145.0" layoutY="18.0" prefHeight="27.0" prefWidth="136.0" />
+      <TextField fx:id="addrBox" alignment="CENTER" focusTraversable="false" layoutX="145.0" layoutY="18.0" prefHeight="27.0" prefWidth="136.0" />
       <Button id="okBtn" defaultButton="true" layoutX="88.0" layoutY="72.0" mnemonicParsing="false" onAction="#ok" prefHeight="27.0" prefWidth="61.0" stylesheets="@style.css" text="OK" />
       <Button id="cancelBtn" cancelButton="true" layoutX="188.0" layoutY="72.0" mnemonicParsing="false" onAction="#cancel" prefHeight="27.0" prefWidth="84.0" styleClass="cancelBtn" text="Cancel" />
    </children>

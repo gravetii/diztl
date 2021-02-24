@@ -16,7 +16,7 @@ public class ConfigureTrackerController implements FxController {
 
   private final DBService dbService;
 
-  @FXML private TextField ipBox;
+  @FXML private TextField addrBox;
 
   public ConfigureTrackerController(DBService dbService) {
     this.dbService = dbService;
@@ -25,12 +25,12 @@ public class ConfigureTrackerController implements FxController {
   @FXML
   private void initialize() {
     String tracker = dbService.getTrackerAddress();
-    ipBox.setText(tracker);
+    addrBox.setText(tracker);
   }
 
   @FXML
   public void ok() {
-    String tracker = ipBox.getText();
+    String tracker = addrBox.getText();
     dbService.saveTrackerAddress(tracker);
     close();
   }
@@ -41,7 +41,7 @@ public class ConfigureTrackerController implements FxController {
   }
 
   private void close() {
-    Window window = ipBox.getScene().getWindow();
+    Window window = addrBox.getScene().getWindow();
     if (window instanceof Stage) {
       Stage stage = (Stage) window;
       stage.close();

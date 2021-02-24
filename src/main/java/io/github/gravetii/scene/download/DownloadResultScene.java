@@ -6,7 +6,7 @@ import javafx.scene.layout.BorderPane;
 
 /**
  * This class is responsible for laying out the download results view of the start scene. This is
- * where the current and past downloads are shown in the bottom portion of the split pane.
+ * where the past and current downloads are shown in the bottom portion of the split pane.
  */
 public class DownloadResultScene extends FxScene {
   private final DownloadResultComponent component;
