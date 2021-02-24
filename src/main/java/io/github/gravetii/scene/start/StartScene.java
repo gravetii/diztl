@@ -11,6 +11,7 @@ import io.github.gravetii.scene.download.DownloadResultScene;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Orientation;
 import javafx.scene.control.SplitPane;
+import javafx.stage.Stage;
 
 import java.util.Optional;
 
@@ -68,5 +69,9 @@ public class StartScene extends FxScene {
 
   public void writeToErrorLog(String text) {
     searchLogScene.writeToErrorLog(text);
+  }
+
+  public Stage getWindow() {
+    return (Stage) root.getScene().getWindow();
   }
 }

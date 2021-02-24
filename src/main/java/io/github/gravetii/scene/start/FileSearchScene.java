@@ -8,9 +8,11 @@ public class FileSearchScene extends FxScene {
 
   protected FileSearchScene(DiztlClient client, StartScene scene) {
     super(new BorderPane());
-    FileSearchComponent component = new FileSearchComponent(client, scene);
+    FileSearchComponent fileSearchComponent = new FileSearchComponent(client, scene);
+    QuickOptionsComponent quickOptionsComponent = new QuickOptionsComponent(scene);
     BorderPane pane = (BorderPane) root;
-    pane.setCenter(component.getNode());
+    pane.setCenter(fileSearchComponent.getNode());
+    pane.setBottom(quickOptionsComponent.getNode());
   }
 
   @Override

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="259.0" prefWidth="350.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ButtonBar layoutX="35.0" layoutY="130.0" prefHeight="41.0" prefWidth="260.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="55.0">
+        <buttons>
+          <Button fx:id="configureDirsBtn" mnemonicParsing="false" onAction="#configureDirs" text="Configure dirs" />
+            <Button fx:id="configureTrackerBtn" mnemonicParsing="false" onAction="#configureTracker" text="Configure tracker" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>

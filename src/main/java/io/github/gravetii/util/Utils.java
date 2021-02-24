@@ -2,6 +2,8 @@ package io.github.gravetii.util;
 
 import io.github.gravetii.App;
 import io.github.gravetii.grpc.FileMetadata;
+import io.github.gravetii.scene.FxScene;
+import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -47,5 +49,12 @@ public class Utils {
 
   public static void addGlobalStylesheet(Region region) {
     region.getStylesheets().add(GLOBAL_STYLESHEET);
+  }
+
+  public static void display(Stage stage, FxScene scene) {
+    stage.setScene(new Scene(scene.root));
+    stage.setTitle(scene.title());
+    scene.preferredDimensions().ifPresent(x -> x.setFor(stage));
+    stage.show();
   }
 }

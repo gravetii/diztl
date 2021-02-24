@@ -12,7 +12,6 @@ import javafx.scene.layout.BorderPane;
 public class SearchLogScene extends FxScene {
   private final DiztlClient client;
   private final StartScene parent;
-  private final FileSearchScene fileSearchScene;
   private final LogComponent logComponent = new LogComponent(false);
   private final LogComponent errorLogComponent = new LogComponent(true);
   private final TabPaneComponent tabPaneComponent = new TabPaneComponent();
@@ -21,11 +20,7 @@ public class SearchLogScene extends FxScene {
     super(new BorderPane());
     this.client = client;
     this.parent = scene;
-    fileSearchScene = new FileSearchScene(client, scene);
-    this.build();
-  }
-
-  private void build() {
+    FileSearchScene fileSearchScene = new FileSearchScene(client, scene);
     BorderPane pane = (BorderPane) root;
     pane.setLeft(fileSearchScene.root);
     tabPaneComponent.addTab("log", logComponent.getNode(), false, true);
