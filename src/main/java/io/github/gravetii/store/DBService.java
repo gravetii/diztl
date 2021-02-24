@@ -1,13 +1,14 @@
 package io.github.gravetii.store;
 
-import java.util.List;
+import java.util.Set;
 
 public interface DBService {
 
-  void saveShareDirs(List<String> dirs);
-  List<String> getShareDirs();
+  void saveShareDirs(Set<String> dirs);
+
+  Set<String> getShareDirs();
 
   void saveTrackerAddress(String address);
-  String getTrackerAddress();
 
+  String getTrackerAddress();
 }

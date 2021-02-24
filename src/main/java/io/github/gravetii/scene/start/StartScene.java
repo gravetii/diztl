@@ -8,6 +8,7 @@ import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
 import io.github.gravetii.scene.download.DownloadResultScene;
+import io.github.gravetii.store.DBService;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Orientation;
 import javafx.scene.control.SplitPane;
@@ -22,9 +23,9 @@ public class StartScene extends FxScene {
   private final DownloadResultScene downloadResultScene;
 
   @Inject
-  public StartScene(DiztlClient client) {
+  public StartScene(DiztlClient client, DBService dbService) {
     super(new SplitPane());
-    searchLogScene = new SearchLogScene(client, this);
+    searchLogScene = new SearchLogScene(client, dbService, this);
     downloadResultScene = new DownloadResultScene();
     this.build();
   }

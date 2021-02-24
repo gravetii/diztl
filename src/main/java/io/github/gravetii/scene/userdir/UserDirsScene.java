@@ -2,6 +2,7 @@ package io.github.gravetii.scene.userdir;
 
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
+import io.github.gravetii.store.DBService;
 import javafx.geometry.Dimension2D;
 import javafx.scene.layout.BorderPane;
 
@@ -9,9 +10,9 @@ import java.util.Optional;
 
 public class UserDirsScene extends FxScene {
 
-  public UserDirsScene() {
+  public UserDirsScene(DBService dbService) {
     super(new BorderPane());
-    UserDirsComponent component = new UserDirsComponent();
+    UserDirsComponent component = new UserDirsComponent(dbService);
     BorderPane pane = (BorderPane) root;
     pane.setCenter(component.getNode());
   }

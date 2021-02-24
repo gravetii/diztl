@@ -1,6 +1,7 @@
 package io.github.gravetii.controller.userdir;
 
 import io.github.gravetii.controller.FxController;
+import io.github.gravetii.store.DBService;
 import io.github.gravetii.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,16 +13,21 @@ import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class UserDirsController implements FxController {
 
   private static final Logger logger =
       LoggerFactory.getLogger(UserDirsController.class.getCanonicalName());
 
+  private final DBService dbService;
+
   private final Set<String> dirs = new HashSet<>();
-  private boolean shareChanged = false;
-  private boolean downloadsChanged = false;
+  private boolean shareDirsUpdated = false;
+  private boolean downloadsDirUpdated = false;
 
   @FXML private ListView<Label> shareDirsList;
   @FXML private Button addBtn;
@@ -29,22 +35,19 @@ public class UserDirsController implements FxController {
   @FXML private ListView<Label> downloadsDir;
   @FXML private Button folderBtn;
 
-  public UserDirsController() {}
+  public UserDirsController(DBService dbService) {
+    this.dbService = dbService;
+  }
 
   @FXML
   public void initialize() {
     removeBtn
         .disableProperty()
         .bind(shareDirsList.getSelectionModel().selectedItemProperty().isNull());
-    // todo get shared dirs here...
 
-    //    UserDirs dirs = CommunicationClient.get().getUserDirs();
-
-    List<String> shareDirs = new ArrayList<>();
-    shareDirs.add("dummy share dir 1");
-    shareDirs.add("dummy share dir 2");
+    Set<String> shareDirs = dbService.getShareDirs();
     displayShareDirs(shareDirs);
-    displayDownloadsDir("dummy download dirs");
+    displayDownloadsDir("Dummy download directory");
   }
 
   @FXML
@@ -52,8 +55,8 @@ public class UserDirsController implements FxController {
     Stage stage = (Stage) shareDirsList.getScene().getWindow();
     String dir = Utils.chooseDir(stage);
     if (dir != null && !dirs.contains(dir)) {
-      displayShareDirs(Collections.singletonList(dir));
-      shareChanged = true;
+      displayShareDirs(Collections.singleton(dir));
+      shareDirsUpdated = true;
     }
   }
 
@@ -62,20 +65,20 @@ public class UserDirsController implements FxController {
     List<Label> selectedItems = shareDirsList.getSelectionModel().getSelectedItems();
     if (selectedItems.size() != dirs.size()) {
       selectedItems.forEach(
-          item -> {
-            shareDirsList.getItems().remove(item);
-            dirs.remove(item.getText());
+          x -> {
+            shareDirsList.getItems().remove(x);
+            dirs.remove(x.getText());
           });
 
-      shareChanged = true;
+      shareDirsUpdated = true;
     }
   }
 
-  public void displayShareDirs(List<String> dirs) {
+  public void displayShareDirs(Set<String> dirs) {
     dirs.forEach(
-        dir -> {
-          shareDirsList.getItems().add(new Label(dir));
-          this.dirs.add(dir);
+        x -> {
+          shareDirsList.getItems().add(new Label(x));
+          this.dirs.add(x);
         });
   }
 
@@ -90,18 +93,13 @@ public class UserDirsController implements FxController {
     String dir = Utils.chooseDir(stage);
     if (dir != null) {
       displayDownloadsDir(dir);
-      downloadsChanged = true;
+      downloadsDirUpdated = true;
     }
   }
 
   @FXML
   public void ok(ActionEvent event) {
-    List<String> share = shareChanged ? new ArrayList<>(dirs) : Collections.emptyList();
-    String out = downloadsChanged ? downloadsDir.getItems().get(0).getText() : "";
-    // todo: Update user dirs here...
-    //    CommunicationClient.get().updateUserDirs(share, out, scene);
-
-    logger.info("Update user dirs here...");
+    if (shareDirsUpdated) dbService.saveShareDirs(dirs);
     close();
   }
 

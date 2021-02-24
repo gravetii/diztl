@@ -1,15 +1,18 @@
 package io.github.gravetii.store;
 
+import com.google.inject.Singleton;
+import io.github.gravetii.App;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 import java.util.prefs.Preferences;
 import java.util.stream.Collectors;
 
+@Singleton
 public class LightweightDBService implements DBService {
 
   private static final Logger logger =
@@ -18,7 +21,7 @@ public class LightweightDBService implements DBService {
   private static final String SHARE_DIRS_KEY = "user_share_dirs";
   private static final String TRACKER_ADDR_KEY = "tracker";
 
-  private final Preferences prefs = Preferences.userNodeForPackage(LightweightDBService.class);
+  private final Preferences prefs = Preferences.userNodeForPackage(App.class);
 
   private void flush() {
     try {
@@ -28,7 +31,7 @@ public class LightweightDBService implements DBService {
     }
   }
 
-  public void saveShareDirs(List<String> dirs) {
+  public void saveShareDirs(Set<String> dirs) {
     StringBuilder value = new StringBuilder();
     dirs.forEach(
         x -> {
@@ -36,16 +39,18 @@ public class LightweightDBService implements DBService {
           value.append('$');
         });
 
+    logger.info("Share dirs to write to DB - {}", value.toString());
     prefs.put(SHARE_DIRS_KEY, value.toString());
     this.flush();
   }
 
-  public List<String> getShareDirs() {
+  public Set<String> getShareDirs() {
     String value = prefs.get(SHARE_DIRS_KEY, "/Users/s0d01bw/Documents$");
-    if (StringUtils.isEmpty(value)) return Collections.emptyList();
+    logger.info("Share dirs from db - {}", value);
+    if (StringUtils.isEmpty(value)) return Collections.emptySet();
     return Arrays.stream(value.split("\\$"))
         .filter(StringUtils::isNotEmpty)
-        .collect(Collectors.toList());
+        .collect(Collectors.toSet());
   }
 
   public void saveTrackerAddress(String address) {

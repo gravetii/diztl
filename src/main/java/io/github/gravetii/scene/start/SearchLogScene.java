@@ -3,6 +3,7 @@ package io.github.gravetii.scene.start;
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.grpc.FileMetadata;
 import io.github.gravetii.scene.FxScene;
+import io.github.gravetii.store.DBService;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -16,11 +17,11 @@ public class SearchLogScene extends FxScene {
   private final LogComponent errorLogComponent = new LogComponent(true);
   private final TabPaneComponent tabPaneComponent = new TabPaneComponent();
 
-  public SearchLogScene(DiztlClient client, StartScene scene) {
+  public SearchLogScene(DiztlClient client, DBService dbService, StartScene scene) {
     super(new BorderPane());
     this.client = client;
     this.parent = scene;
-    FileSearchScene fileSearchScene = new FileSearchScene(client, scene);
+    FileSearchScene fileSearchScene = new FileSearchScene(client, dbService, scene);
     BorderPane pane = (BorderPane) root;
     pane.setLeft(fileSearchScene.root);
     tabPaneComponent.addTab("log", logComponent.getNode(), false, true);

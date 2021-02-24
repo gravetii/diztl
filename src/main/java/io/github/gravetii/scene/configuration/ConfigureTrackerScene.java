@@ -2,6 +2,7 @@ package io.github.gravetii.scene.configuration;
 
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
+import io.github.gravetii.store.DBService;
 import javafx.geometry.Dimension2D;
 import javafx.scene.layout.BorderPane;
 
@@ -9,9 +10,9 @@ import java.util.Optional;
 
 public class ConfigureTrackerScene extends FxScene {
 
-  public ConfigureTrackerScene() {
+  public ConfigureTrackerScene(DBService dbService) {
     super(new BorderPane());
-    ConfigureTrackerComponent component = new ConfigureTrackerComponent();
+    ConfigureTrackerComponent component = new ConfigureTrackerComponent(dbService);
     BorderPane pane = (BorderPane) root;
     pane.setCenter(component.getNode());
   }

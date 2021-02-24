@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -56,7 +57,7 @@ public class FileIndexer {
   }
 
   public List<IndexedFile> index() {
-    List<String> dirs = dbService.getShareDirs();
+    Set<String> dirs = dbService.getShareDirs();
     files.clear();
     dirs.forEach(x -> files.addAll(this.fileWalk(x)));
     scene.writeToLog("Finished indexing all " + files.size() + " shared files!");

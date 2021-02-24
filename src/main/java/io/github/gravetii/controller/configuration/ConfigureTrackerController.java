@@ -1,6 +1,7 @@
 package io.github.gravetii.controller.configuration;
 
 import io.github.gravetii.controller.FxController;
+import io.github.gravetii.store.DBService;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -13,23 +14,24 @@ public class ConfigureTrackerController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(ConfigureTrackerController.class.getCanonicalName());
 
+  private final DBService dbService;
+
   @FXML private TextField ipBox;
 
-  public ConfigureTrackerController() {
+  public ConfigureTrackerController(DBService dbService) {
+    this.dbService = dbService;
   }
 
   @FXML
   private void initialize() {
-    // todo
-    String tracker = "127.0.0.1:50036";
+    String tracker = dbService.getTrackerAddress();
     ipBox.setText(tracker);
   }
 
   @FXML
   public void ok() {
-    String ip = ipBox.getText();
-    logger.info("Updated tracker config...");
-    // todo update ip in config here...
+    String tracker = ipBox.getText();
+    dbService.saveTrackerAddress(tracker);
     close();
   }
 
