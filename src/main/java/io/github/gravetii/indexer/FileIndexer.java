@@ -2,7 +2,6 @@ package io.github.gravetii.indexer;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.store.DBService;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -23,14 +22,12 @@ public class FileIndexer {
       LoggerFactory.getLogger(FileIndexer.class.getCanonicalName());
 
   private final DBService dbService;
-  private final StartScene scene;
 
   private final List<IndexedFile> files = new ArrayList<>();
 
   @Inject
-  public FileIndexer(DBService dbService, StartScene scene) {
+  public FileIndexer(DBService dbService) {
     this.dbService = dbService;
-    this.scene = scene;
   }
 
   /**
@@ -46,7 +43,6 @@ public class FileIndexer {
           try {
             //            String checksum = DigestUtils.sha1Hex(new FileInputStream(x));
             IndexedFile file = new IndexedFile(x, "a");
-            scene.writeToLog("Finished indexing file - " + file.getPath());
             result.add(file);
           } catch (Exception e) {
             logger.error("Error while generating checksum for file {}", x);
@@ -60,7 +56,6 @@ public class FileIndexer {
     Set<String> dirs = dbService.getShareDirs();
     files.clear();
     dirs.forEach(x -> files.addAll(this.fileWalk(x)));
-    scene.writeToLog("Finished indexing all " + files.size() + " shared files!");
     return files;
   }
 
