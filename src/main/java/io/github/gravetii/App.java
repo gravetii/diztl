@@ -59,7 +59,7 @@ public class App extends Application {
     String tracker = dbService.getTrackerAddress();
     try {
       client.register();
-      scene.writeToLog("Connected to tracker at " + tracker);
+      scene.writeToLog("Connected to tracker at " + "[" + tracker + "]");
     } catch (Exception e) {
       scene.writeToLog("Unable to connect to tracker at " + tracker);
       logger.error("Error while connecting to tracker {}", tracker, e);

@@ -42,8 +42,8 @@ public class DownloadResultController implements FxController {
           TableRow<DownloadResult> row = new TableRow<>();
           setContextMenu(row);
           row.setOnMouseClicked(
-              event -> {
-                if (event.getClickCount() == 2) {
+              e -> {
+                if (e.getClickCount() == 2) {
                   if (!row.isEmpty()) {
                     open(row.getItem());
                   }
@@ -58,25 +58,25 @@ public class DownloadResultController implements FxController {
   private void addClearMenuItem(ContextMenu menu) {
     MenuItem clearMenuItem = new MenuItem("Clear All");
     clearMenuItem.disableProperty().bind(Bindings.isEmpty(downloadResultTbl.getItems()));
-    clearMenuItem.setOnAction(event -> downloadResultTbl.getItems().clear());
+    clearMenuItem.setOnAction(e -> downloadResultTbl.getItems().clear());
     menu.getItems().add(clearMenuItem);
   }
 
   private void addOpenMenuItem(TableRow<DownloadResult> row, ContextMenu menu) {
     MenuItem openMenuItem = new MenuItem("Open");
-    openMenuItem.setOnAction(event -> open(row.getItem()));
+    openMenuItem.setOnAction(e -> open(row.getItem()));
     menu.getItems().add(openMenuItem);
   }
 
   private void addShowInFolderMenuItem(TableRow<DownloadResult> row, ContextMenu menu) {
     MenuItem showInFolderMenuItem = new MenuItem("Show in folder");
-    showInFolderMenuItem.setOnAction(event -> showInFolder(row.getItem()));
+    showInFolderMenuItem.setOnAction(e -> showInFolder(row.getItem()));
     menu.getItems().add(showInFolderMenuItem);
   }
 
   private void addRemoveMenuItem(TableRow<DownloadResult> row, ContextMenu menu) {
     MenuItem removeMenuItem = new MenuItem("Remove");
-    removeMenuItem.setOnAction(event -> downloadResultTbl.getItems().remove(row.getItem()));
+    removeMenuItem.setOnAction(e -> downloadResultTbl.getItems().remove(row.getItem()));
     menu.getItems().add(removeMenuItem);
   }
 

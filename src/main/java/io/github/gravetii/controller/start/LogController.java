@@ -11,9 +11,14 @@ import javafx.scene.control.TextArea;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class LogController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(LogController.class.getCanonicalName());
+
+  private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
 
   @FXML private TextArea logArea;
 
@@ -30,13 +35,15 @@ public class LogController implements FxController {
   private void setContextMenu() {
     ContextMenu menu = new ContextMenu();
     MenuItem clearMenuItem = new MenuItem("Clear All");
-    clearMenuItem.setOnAction(event -> logArea.clear());
+    clearMenuItem.setOnAction(e -> logArea.clear());
     clearMenuItem.disableProperty().bind(Bindings.isEmpty(logArea.textProperty()));
     menu.getItems().add(clearMenuItem);
     logArea.setContextMenu(menu);
   }
 
   public void write(String text) {
-    Platform.runLater(() -> logArea.appendText(text + "\n"));
+    String timestamp = FORMAT.format(Calendar.getInstance().getTime());
+    Platform.runLater(
+        () -> logArea.appendText("[" + timestamp + "] " + text + System.lineSeparator()));
   }
 }

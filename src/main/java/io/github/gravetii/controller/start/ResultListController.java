@@ -57,8 +57,8 @@ public class ResultListController implements FxController {
           TableRow<FileResult> row = new TableRow<>();
           setContextMenu(row);
           row.setOnMouseClicked(
-              event -> {
-                if (event.getClickCount() == 2 && !row.isEmpty()) download(row.getItem());
+              e -> {
+                if (e.getClickCount() == 2 && !row.isEmpty()) download(row.getItem());
               });
 
           return row;
@@ -69,7 +69,7 @@ public class ResultListController implements FxController {
 
   private void addDownloadMenuItem(TableRow<FileResult> row, ContextMenu menu) {
     MenuItem menuItem = new MenuItem("Download");
-    menuItem.setOnAction(event -> download(row.getItem()));
+    menuItem.setOnAction(e -> download(row.getItem()));
     menu.getItems().add(menuItem);
   }
 

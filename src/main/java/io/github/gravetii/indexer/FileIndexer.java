@@ -3,7 +3,6 @@ package io.github.gravetii.indexer;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.github.gravetii.store.DBService;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,8 +43,8 @@ public class FileIndexer {
         x -> {
           try {
             FileInputStream stream = new FileInputStream(x);
-            String checksum = DigestUtils.sha1Hex(stream);
-            IndexedFile file = new IndexedFile(x, checksum);
+            //            String checksum = DigestUtils.sha1Hex(stream);
+            IndexedFile file = new IndexedFile(x, "");
             stream.close();
             result.add(file);
           } catch (Exception e) {
