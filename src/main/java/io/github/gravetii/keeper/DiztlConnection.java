@@ -8,13 +8,21 @@ import io.grpc.ManagedChannel;
 
 public class DiztlConnection {
 
-  public final DiztlServiceBlockingStub blockingStub;
-  public final DiztlServiceFutureStub futureStub;
-  public final DiztlServiceStub asyncStub;
+  private final ManagedChannel channel;
 
   public DiztlConnection(ManagedChannel channel) {
-    this.blockingStub = DiztlServiceGrpc.newBlockingStub(channel);
-    this.futureStub = DiztlServiceGrpc.newFutureStub(channel);
-    this.asyncStub = DiztlServiceGrpc.newStub(channel);
+    this.channel = channel;
+  }
+
+  public DiztlServiceBlockingStub newBlockingStub() {
+    return DiztlServiceGrpc.newBlockingStub(channel);
+  }
+
+  public DiztlServiceFutureStub newFutureStub() {
+    return DiztlServiceGrpc.newFutureStub(channel);
+  }
+
+  public DiztlServiceStub newAsyncStub() {
+    return DiztlServiceGrpc.newStub(channel);
   }
 }

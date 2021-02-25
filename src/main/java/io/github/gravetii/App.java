@@ -96,7 +96,7 @@ public class App extends Application {
         server.shutdownNow();
         logger.info("diztl server terminated...");
       } catch (InterruptedException e) {
-        logger.error("Thread interrupted while waiting server termination", e);
+        logger.error("Thread interrupted while awaiting diztl server termination", e);
       }
     }
   }

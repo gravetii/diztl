@@ -1,6 +1,7 @@
 package io.github.gravetii.controller.start;
 
 import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.client.NodeNotConnectedException;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.grpc.FileConstraint;
 import io.github.gravetii.grpc.SearchResp;
@@ -113,7 +114,11 @@ public class FileSearchController implements FxController {
       int ftype = fileType.getSelectionModel().getSelectedIndex();
       TypeConstraint type = TypeConstraint.newBuilder().setType(ftype).build();
       FileConstraint constraint = FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
-      client.search(query, constraint, this.newObserver(query));
+      try {
+        client.search(query, constraint, this.newObserver(query));
+      } catch (NodeNotConnectedException e) {
+        parent.writeConnectionErrorToLog();
+      }
     }
   }
 }

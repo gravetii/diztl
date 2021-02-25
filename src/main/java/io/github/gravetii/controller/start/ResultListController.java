@@ -1,6 +1,7 @@
 package io.github.gravetii.controller.start;
 
 import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.client.NodeNotConnectedException;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.grpc.FileChunk;
 import io.github.gravetii.grpc.FileMetadata;
@@ -145,7 +146,11 @@ public class ResultListController implements FxController {
 
   private void downloadToFolder(FileResult result, String dir) {
     FileMetadata file = result.getFile();
-    client.download(file, result.getSource(), this.newObserver(file, dir));
+    try {
+      client.download(file, result.getSource(), this.newObserver(file, dir));
+    } catch (NodeNotConnectedException e) {
+      scene.writeConnectionErrorToLog();
+    }
   }
 
   private void download(FileResult result) {

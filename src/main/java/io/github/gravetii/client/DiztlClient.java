@@ -25,24 +25,15 @@ public class DiztlClient {
   private final DBService dbService;
   private final NodeKeeper keeper;
 
+  /** the connection to tracker */
   private TrackerConnection connection;
 
-  private Node node;
+  private volatile Node node;
 
   @Inject
   public DiztlClient(DBService dbService, NodeKeeper keeper) {
     this.dbService = dbService;
     this.keeper = keeper;
-  }
-
-  /**
-   * Connect to the tracker
-   */
-  private void connect() {
-    ManagedChannelBuilder<?> builder =
-            ManagedChannelBuilder.forTarget(dbService.getTrackerAddress());
-    ManagedChannel channel = builder.usePlaintext().build();
-    this.connection = new TrackerConnection(channel);
   }
 
   private static String getMyIP() {
@@ -57,30 +48,65 @@ public class DiztlClient {
     }
   }
 
-  public void register() {
+  /** Connect to the tracker */
+  private void connect() {
+    // terminate the current connection
+    if (connection != null) connection.close();
+    ManagedChannelBuilder<?> builder =
+        ManagedChannelBuilder.forTarget(dbService.getTrackerAddress());
+    ManagedChannel channel = builder.usePlaintext().build();
+    connection = new TrackerConnection(channel);
+    logger.info("Connected to tracker - 1");
+  }
+
+  public synchronized void register() {
     this.node = null;
     this.connect();
     String ip = getMyIP();
     Node self = Node.newBuilder().setIp(ip).build();
     RegisterReq request = RegisterReq.newBuilder().setSelf(self).build();
-    RegisterResp response =
-        connection.blockingStub.withDeadlineAfter(3, TimeUnit.SECONDS).register(request);
-    this.node = response.getNode();
+    this.node =
+        connection
+            .newBlockingStub()
+            .withDeadlineAfter(3, TimeUnit.SECONDS)
+            .register(request)
+            .getNode();
   }
 
   public Node getSelf() {
     return node;
   }
 
-  public void search(String query, FileConstraint constraint, StreamObserver<SearchResp> observer) {
-    SearchReq request =
-        SearchReq.newBuilder().setSource(node).setQuery(query).setConstraint(constraint).build();
-    logger.info("Searching for pattern - {}", query);
-    connection.asyncStub.search(request, observer);
+  private void checkConnectionState() throws NodeNotConnectedException {
+    // ideally, this should never happen
+    if (node == null) {
+      synchronized (this) {
+        if (node == null) {
+          logger.warn("node isn't registered, trying to register now...");
+          try {
+            this.register();
+          } catch (Exception e) {
+            throw new NodeNotConnectedException(e);
+          }
+        }
+      }
+    }
+
+    if (node == null) throw new NodeNotConnectedException();
   }
 
-  public void download(FileMetadata file, Node source, StreamObserver<FileChunk> observer) {
+  public void search(String query, FileConstraint constraint, StreamObserver<SearchResp> observer)
+      throws NodeNotConnectedException {
+    checkConnectionState();
+    SearchReq request =
+        SearchReq.newBuilder().setSource(node).setQuery(query).setConstraint(constraint).build();
+    connection.newAsyncStub().search(request, observer);
+  }
+
+  public void download(FileMetadata file, Node source, StreamObserver<FileChunk> observer)
+      throws NodeNotConnectedException {
+    checkConnectionState();
     UploadReq request = UploadReq.newBuilder().setSource(node).setMetadata(file).build();
-    keeper.getOrCreate(source).asyncStub.upload(request, observer);
+    keeper.getOrCreate(source).newAsyncStub().upload(request, observer);
   }
 }

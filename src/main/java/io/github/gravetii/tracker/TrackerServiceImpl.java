@@ -32,7 +32,7 @@ public class TrackerServiceImpl extends TrackerServiceGrpc.TrackerServiceImplBas
         .nodes()
         .forEach(
             (node, conn) -> {
-              SearchResp response = conn.blockingStub.search(request);
+              SearchResp response = conn.newBlockingStub().search(request);
               logger.info("Search response - {}", response);
               observer.onNext(response);
             });
