@@ -127,7 +127,3 @@
 .jfx-tab-pane {
     -fx-tab-max-width: 100px;
 }
-
-#errorLog {
-    -fx-text-fill: #D8000C;
-}

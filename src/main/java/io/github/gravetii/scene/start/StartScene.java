@@ -68,10 +68,6 @@ public class StartScene extends FxScene {
     searchLogScene.writeToLog(text);
   }
 
-  public void writeToErrorLog(String text) {
-    searchLogScene.writeToErrorLog(text);
-  }
-
   public void writeConnectionErrorToLog() {
     writeToLog("You seem to be disconnected, recheck your tracker configuration!");
   }

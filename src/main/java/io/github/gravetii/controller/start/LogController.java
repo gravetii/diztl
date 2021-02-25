@@ -15,22 +15,15 @@ public class LogController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(LogController.class.getCanonicalName());
 
-  private final boolean errorLog;
   @FXML private TextArea logArea;
 
-  public LogController(boolean errorLog) {
-    this.errorLog = errorLog;
-  }
+  public LogController() {}
 
   @FXML
   public void initialize() throws Exception {
-    if (errorLog) logArea.setId("errorLog");
-    else {
-      String message = FigletFont.convertOneLine("DIZTL");
-      logArea.appendText(message);
-      logArea.appendText("\n\nPlease wait while we set things up for you...\n\n");
-    }
-
+    String message = FigletFont.convertOneLine("DIZTL");
+    logArea.appendText(message);
+    logArea.appendText("\n\nPlease wait while we set things up for you...\n\n");
     setContextMenu();
   }
 

@@ -14,8 +14,7 @@ public class SearchLogScene extends FxScene {
   private final DiztlClient client;
   private final DBService dbService;
   private final StartScene parent;
-  private final LogComponent logComponent = new LogComponent(false);
-  private final LogComponent errorLogComponent = new LogComponent(true);
+  private final LogComponent logComponent = new LogComponent();
   private final TabPaneComponent tabPaneComponent = new TabPaneComponent();
 
   public SearchLogScene(DiztlClient client, DBService dbService, StartScene scene) {
@@ -27,7 +26,6 @@ public class SearchLogScene extends FxScene {
     BorderPane pane = (BorderPane) root;
     pane.setLeft(fileSearchScene.root);
     tabPaneComponent.addTab("log", logComponent.getNode(), false, true);
-    tabPaneComponent.addTab("error log", errorLogComponent.getNode(), false, false);
     pane.setCenter(tabPaneComponent.getNode());
   }
 
@@ -36,12 +34,8 @@ public class SearchLogScene extends FxScene {
     return "Diztl";
   }
 
-  public synchronized void writeToLog(String text) {
+  public void writeToLog(String text) {
     logComponent.getController().write(text);
-  }
-
-  public synchronized void writeToErrorLog(String text) {
-    errorLogComponent.getController().write(text);
   }
 
   public ResultListComponent addNewSearchTab(String query) {

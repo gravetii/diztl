@@ -5,17 +5,14 @@ import io.github.gravetii.scene.FxComponent;
 import javafx.scene.layout.AnchorPane;
 
 public class LogComponent extends FxComponent<LogController, AnchorPane> {
-  private final boolean errorLog;
-
-  protected LogComponent(boolean errorLog) {
+  protected LogComponent() {
     super("log.fxml");
-    this.errorLog = errorLog;
     create();
   }
 
   @Override
   protected LogController createController() {
-    return new LogController(errorLog);
+    return new LogController();
   }
 
   @Override
