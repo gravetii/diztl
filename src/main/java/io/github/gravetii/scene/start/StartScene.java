@@ -64,11 +64,11 @@ public class StartScene extends FxScene {
     downloadResultScene.show(result);
   }
 
-  public synchronized void writeToLog(String text) {
+  public void writeToLog(String text) {
     searchLogScene.writeToLog(text);
   }
 
-  public synchronized void writeToErrorLog(String text) {
+  public void writeToErrorLog(String text) {
     searchLogScene.writeToErrorLog(text);
   }
 
