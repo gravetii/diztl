@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.grpc.FileMetadata;
-import io.github.gravetii.indexer.FileIndexer;
 import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
@@ -20,15 +19,12 @@ import java.util.Optional;
 @Singleton
 public class StartScene extends FxScene {
 
-  private final FileIndexer indexer;
-
   private final SearchLogScene searchLogScene;
   private final DownloadResultScene downloadResultScene;
 
   @Inject
-  public StartScene(DiztlClient client, DBService dbService, FileIndexer indexer) {
+  public StartScene(DiztlClient client, DBService dbService) {
     super(new SplitPane());
-    this.indexer = indexer;
     searchLogScene = new SearchLogScene(client, dbService, this);
     downloadResultScene = new DownloadResultScene();
     this.build();
