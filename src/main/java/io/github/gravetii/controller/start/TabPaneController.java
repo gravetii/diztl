@@ -15,8 +15,6 @@ public class TabPaneController implements FxController {
     tab.setTooltip(new Tooltip(title));
     tab.setClosable(closable);
     tabPane.getTabs().add(tab);
-    if (active) {
-      tabPane.getSelectionModel().select(tab);
-    }
+    if (active) tabPane.getSelectionModel().select(tab);
   }
 }
