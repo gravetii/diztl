@@ -56,7 +56,6 @@ public class DiztlClient {
         ManagedChannelBuilder.forTarget(dbService.getTrackerAddress());
     ManagedChannel channel = builder.usePlaintext().build();
     connection = new TrackerConnection(channel);
-    logger.info("Connected to tracker - 1");
   }
 
   public synchronized void register() {

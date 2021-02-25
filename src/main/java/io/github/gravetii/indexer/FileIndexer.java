@@ -3,11 +3,13 @@ package io.github.gravetii.indexer;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import io.github.gravetii.store.DBService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -41,8 +43,10 @@ public class FileIndexer {
     itr.forEachRemaining(
         x -> {
           try {
-            //            String checksum = DigestUtils.sha1Hex(new FileInputStream(x));
-            IndexedFile file = new IndexedFile(x, "a");
+            FileInputStream stream = new FileInputStream(x);
+            String checksum = DigestUtils.sha1Hex(stream);
+            IndexedFile file = new IndexedFile(x, checksum);
+            stream.close();
             result.add(file);
           } catch (Exception e) {
             logger.error("Error while generating checksum for file {}", x);

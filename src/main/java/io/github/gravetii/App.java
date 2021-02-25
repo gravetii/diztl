@@ -71,6 +71,7 @@ public class App extends Application {
         new Task<>() {
           @Override
           protected Integer call() {
+            scene.writeToLog("Indexing your files...hang tight!");
             List<IndexedFile> files = indexer.index();
             scene.writeToLog("Finished indexing all " + files.size() + " shared files.");
             return files.size();
