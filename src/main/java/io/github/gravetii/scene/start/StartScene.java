@@ -5,20 +5,16 @@ import com.google.inject.Singleton;
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.grpc.FileMetadata;
 import io.github.gravetii.indexer.FileIndexer;
-import io.github.gravetii.indexer.IndexedFile;
 import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
 import io.github.gravetii.scene.download.DownloadResultScene;
 import io.github.gravetii.store.DBService;
-import io.github.gravetii.util.DiztlExecutorService;
-import javafx.concurrent.Task;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Orientation;
 import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
 
-import java.util.List;
 import java.util.Optional;
 
 @Singleton
@@ -78,19 +74,6 @@ public class StartScene extends FxScene {
 
   public synchronized void writeToErrorLog(String text) {
     searchLogScene.writeToErrorLog(text);
-  }
-
-  public void index() {
-    Task<Integer> task = new Task<>() {
-      @Override
-      protected Integer call() {
-        List<IndexedFile> files = indexer.index();
-        writeToLog("Finished indexing all " + files.size() + " shared files.");
-        return files.size();
-      }
-    };
-
-    DiztlExecutorService.execute(task);
   }
 
   public Stage getWindow() {

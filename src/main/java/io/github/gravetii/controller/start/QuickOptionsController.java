@@ -23,7 +23,7 @@ public class QuickOptionsController implements FxController {
 
   private final DiztlClient client;
   private final DBService dbService;
-  private final StartScene scene;
+  private final StartScene parent;
 
   @FXML private Button configureDirsBtn;
   @FXML private Button configureTrackerBtn;
@@ -31,7 +31,7 @@ public class QuickOptionsController implements FxController {
   public QuickOptionsController(DiztlClient client, DBService dbService, StartScene scene) {
     this.client = client;
     this.dbService = dbService;
-    this.scene = scene;
+    this.parent = scene;
   }
 
   @FXML
@@ -42,7 +42,7 @@ public class QuickOptionsController implements FxController {
 
   private Stage newModalWindow() {
     Stage stage = new Stage();
-    stage.initOwner(scene.getWindow());
+    stage.initOwner(parent.getWindow());
     stage.setResizable(false);
     stage.initModality(Modality.APPLICATION_MODAL);
     return stage;
@@ -58,7 +58,7 @@ public class QuickOptionsController implements FxController {
   @FXML
   public void configureTracker(ActionEvent e) {
     Stage stage = newModalWindow();
-    ConfigureTrackerScene scene = new ConfigureTrackerScene(client, dbService);
+    ConfigureTrackerScene scene = new ConfigureTrackerScene(client, dbService, parent);
     FxUtils.display(stage, scene);
   }
 }

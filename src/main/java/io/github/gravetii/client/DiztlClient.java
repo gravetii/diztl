@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 
 @Singleton
 public class DiztlClient {
@@ -21,18 +22,27 @@ public class DiztlClient {
   private static final Logger logger =
       LoggerFactory.getLogger(DiztlClient.class.getCanonicalName());
 
+  private final DBService dbService;
   private final NodeKeeper keeper;
-  private final TrackerConnection connection;
-  private final Node node;
+
+  private TrackerConnection connection;
+
+  private Node node;
 
   @Inject
   public DiztlClient(DBService dbService, NodeKeeper keeper) {
+    this.dbService = dbService;
     this.keeper = keeper;
+  }
+
+  /**
+   * Connect to the tracker
+   */
+  private void connect() {
     ManagedChannelBuilder<?> builder =
-        ManagedChannelBuilder.forTarget(dbService.getTrackerAddress());
+            ManagedChannelBuilder.forTarget(dbService.getTrackerAddress());
     ManagedChannel channel = builder.usePlaintext().build();
     this.connection = new TrackerConnection(channel);
-    this.node = register();
   }
 
   private static String getMyIP() {
@@ -47,11 +57,15 @@ public class DiztlClient {
     }
   }
 
-  private Node register() {
+  public void register() {
+    this.node = null;
+    this.connect();
     String ip = getMyIP();
     Node self = Node.newBuilder().setIp(ip).build();
     RegisterReq request = RegisterReq.newBuilder().setSelf(self).build();
-    return connection.blockingStub.register(request).getNode();
+    RegisterResp response =
+        connection.blockingStub.withDeadlineAfter(3, TimeUnit.SECONDS).register(request);
+    this.node = response.getNode();
   }
 
   public Node getSelf() {
