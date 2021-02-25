@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,20 +19,25 @@ public class ConfigureTrackerController implements FxController {
 
   @FXML private TextField addrBox;
 
+  private String initialValue;
+
   public ConfigureTrackerController(DBService dbService) {
     this.dbService = dbService;
   }
 
   @FXML
   private void initialize() {
-    String tracker = dbService.getTrackerAddress();
-    addrBox.setText(tracker);
+    this.initialValue = dbService.getTrackerAddress();
+    addrBox.setText(initialValue);
   }
 
   @FXML
   public void ok() {
     String tracker = addrBox.getText();
-    dbService.saveTrackerAddress(tracker);
+    if (StringUtils.isNotEmpty(tracker) && !this.initialValue.equals(tracker)) {
+      dbService.saveTrackerAddress(tracker);
+    }
+
     close();
   }
 
