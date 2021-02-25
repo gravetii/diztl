@@ -1,5 +1,6 @@
 package io.github.gravetii.controller.start;
 
+import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.scene.configuration.ConfigureTrackerScene;
 import io.github.gravetii.scene.start.StartScene;
@@ -20,13 +21,15 @@ public class QuickOptionsController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(QuickOptionsController.class.getCanonicalName());
 
+  private final DiztlClient client;
   private final DBService dbService;
   private final StartScene scene;
 
   @FXML private Button configureDirsBtn;
   @FXML private Button configureTrackerBtn;
 
-  public QuickOptionsController(DBService dbService, StartScene scene) {
+  public QuickOptionsController(DiztlClient client, DBService dbService, StartScene scene) {
+    this.client = client;
     this.dbService = dbService;
     this.scene = scene;
   }
@@ -55,7 +58,7 @@ public class QuickOptionsController implements FxController {
   @FXML
   public void configureTracker(ActionEvent e) {
     Stage stage = newModalWindow();
-    ConfigureTrackerScene scene = new ConfigureTrackerScene(dbService);
+    ConfigureTrackerScene scene = new ConfigureTrackerScene(client, dbService);
     FxUtils.display(stage, scene);
   }
 }

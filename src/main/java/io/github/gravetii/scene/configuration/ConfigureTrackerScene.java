@@ -1,5 +1,6 @@
 package io.github.gravetii.scene.configuration;
 
+import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.scene.FxDimensions;
 import io.github.gravetii.scene.FxScene;
 import io.github.gravetii.store.DBService;
@@ -10,9 +11,9 @@ import java.util.Optional;
 
 public class ConfigureTrackerScene extends FxScene {
 
-  public ConfigureTrackerScene(DBService dbService) {
+  public ConfigureTrackerScene(DiztlClient client, DBService dbService) {
     super(new BorderPane());
-    ConfigureTrackerComponent component = new ConfigureTrackerComponent(dbService);
+    ConfigureTrackerComponent component = new ConfigureTrackerComponent(client, dbService);
     BorderPane pane = (BorderPane) root;
     pane.setCenter(component.getNode());
   }

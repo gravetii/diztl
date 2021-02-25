@@ -1,5 +1,6 @@
 package io.github.gravetii.controller.configuration;
 
+import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.store.DBService;
 import javafx.fxml.FXML;
@@ -15,13 +16,15 @@ public class ConfigureTrackerController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(ConfigureTrackerController.class.getCanonicalName());
 
+  private final DiztlClient client;
   private final DBService dbService;
 
   @FXML private TextField addrBox;
 
   private String initialValue;
 
-  public ConfigureTrackerController(DBService dbService) {
+  public ConfigureTrackerController(DiztlClient client, DBService dbService) {
+    this.client = client;
     this.dbService = dbService;
   }
 
