@@ -26,6 +26,7 @@ public class App extends Application {
 
   private static final Injector injector = Guice.createInjector(new StartupModule());
 
+  private DiztlClient client;
   private DiztlServer server;
 
   @Override
@@ -35,13 +36,13 @@ public class App extends Application {
     DiztlServiceImpl service = injector.getInstance(DiztlServiceImpl.class);
     this.register();
     this.index();
+    client = injector.getInstance(DiztlClient.class);
     server = new DiztlServer(service);
     server.start();
   }
 
   private void register() {
     StartScene scene = injector.getInstance(StartScene.class);
-    DiztlClient client = injector.getInstance(DiztlClient.class);
     DBService service = injector.getInstance(DBService.class);
     String tracker = service.getTrackerAddress();
     try {
@@ -73,6 +74,7 @@ public class App extends Application {
   @Override
   public void stop() {
     DiztlExecutorService.close();
+    if (client != null) client.close();
     if (server != null) server.stop();
   }
 

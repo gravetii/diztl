@@ -50,4 +50,8 @@ public class NodeKeeper {
   public Map<Node, DiztlConnection> nodes() {
     return this.connections;
   }
+
+  public void close() {
+    connections.forEach((x, y) -> y.close());
+  }
 }

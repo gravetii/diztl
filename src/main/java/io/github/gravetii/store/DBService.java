@@ -15,4 +15,6 @@ public interface DBService {
   void saveTrackerAddress(String address);
 
   String getTrackerAddress();
+
+  void close();
 }

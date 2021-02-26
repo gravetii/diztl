@@ -63,15 +63,18 @@ public class LightweightDBService implements DBService {
     return prefs.get(DOWNLOADS_DIR_KEY, "/Users/s0d01bw/Downloads");
   }
 
+  @Override
   public void saveTrackerAddress(String address) {
     prefs.put(TRACKER_ADDR_KEY, address);
     this.flush();
   }
 
+  @Override
   public String getTrackerAddress() {
     return prefs.get(TRACKER_ADDR_KEY, "127.0.0.1:50036");
   }
 
+  @Override
   public void close() {
     this.flush();
   }

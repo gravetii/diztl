@@ -108,4 +108,13 @@ public class DiztlClient {
     UploadReq request = UploadReq.newBuilder().setSource(node).setMetadata(file).build();
     keeper.getOrCreate(source).newAsyncStub().upload(request, observer);
   }
+
+  public void close() {
+    // close the DB service
+    dbService.close();
+    // close all the connections with peers
+    keeper.close();
+    // close the connection with the tracker
+    connection.close();
+  }
 }
