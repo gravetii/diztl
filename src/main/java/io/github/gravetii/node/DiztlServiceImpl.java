@@ -1,5 +1,7 @@
 package io.github.gravetii.node;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.google.protobuf.ByteString;
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.grpc.*;
@@ -18,6 +20,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Singleton
 public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
 
   private static final Logger logger =
@@ -28,6 +31,7 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
   private final DiztlClient client;
   private final FileIndexer indexer;
 
+  @Inject
   public DiztlServiceImpl(DiztlClient client, FileIndexer indexer) {
     this.client = client;
     this.indexer = indexer;
