@@ -1,15 +1,12 @@
 package io.github.gravetii.controller.start;
 
 import io.github.gravetii.client.DiztlClient;
-import io.github.gravetii.client.NodeNotConnectedException;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.grpc.FileChunk;
-import io.github.gravetii.grpc.FileMetadata;
-import io.github.gravetii.model.DownloadRequest;
 import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.start.StartScene;
+import io.github.gravetii.service.DownloadService;
 import io.github.gravetii.store.DBService;
-import io.github.gravetii.util.DiztlExecutorService;
 import io.github.gravetii.util.FxUtils;
 import io.grpc.stub.StreamObserver;
 import javafx.beans.binding.Bindings;
@@ -31,9 +28,9 @@ public class ResultListController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(ResultListController.class.getCanonicalName());
 
-  private final DiztlClient client;
-  private final DBService dbService;
+  private final DBService store;
   private final StartScene scene;
+  private final DownloadService service;
 
   @FXML private TableView<FileResult> resultListTbl;
   @FXML private TableColumn<FileResult, String> fileNameTblCol;
@@ -41,10 +38,10 @@ public class ResultListController implements FxController {
   @FXML private TableColumn<FileResult, String> fileTypeTblCol;
   @FXML private TableColumn<FileResult, String> filePathTblCol;
 
-  public ResultListController(DiztlClient client, DBService dbService, StartScene scene) {
-    this.client = client;
-    this.dbService = dbService;
+  public ResultListController(DiztlClient client, DBService store, StartScene scene) {
+    this.store = store;
     this.scene = scene;
+    this.service = new DownloadService(client, scene);
   }
 
   @FXML
@@ -59,7 +56,8 @@ public class ResultListController implements FxController {
           setContextMenu(row);
           row.setOnMouseClicked(
               e -> {
-                if (e.getClickCount() == 2 && !row.isEmpty()) download(row.getItem());
+                if (e.getClickCount() == 2 && !row.isEmpty())
+                  service.download(row.getItem(), store.getDownloadDir());
               });
 
           return row;
@@ -70,7 +68,7 @@ public class ResultListController implements FxController {
 
   private void addDownloadMenuItem(TableRow<FileResult> row, ContextMenu menu) {
     MenuItem menuItem = new MenuItem("Download");
-    menuItem.setOnAction(e -> download(row.getItem()));
+    menuItem.setOnAction(e -> service.download(row.getItem(), store.getDownloadDir()));
     menu.getItems().add(menuItem);
   }
 
@@ -79,7 +77,7 @@ public class ResultListController implements FxController {
     menuItem.setOnAction(
         e -> {
           String dir = FxUtils.chooseDir(scene.getWindow());
-          if (dir != null) downloadToFolder(row.getItem(), dir);
+          if (dir != null) service.download(row.getItem(), dir);
         });
 
     menu.getItems().add(menuItem);
@@ -141,27 +139,6 @@ public class ResultListController implements FxController {
         }
       }
     };
-  }
-
-  /** Download the file to the given directory. */
-  private void downloadToFolder(FileResult result, String dir) {
-    FileMetadata file = result.getFile();
-    DownloadResult download = new DownloadResult(file, dir);
-    scene.show(download);
-    DiztlExecutorService.execute(download);
-    try {
-      StreamObserver<FileChunk> observer = newObserver(download, dir);
-      DownloadRequest request = new DownloadRequest(file, result.getSource(), observer);
-      client.download(request);
-    } catch (NodeNotConnectedException e) {
-      download.onError(e);
-      scene.writeConnectionErrorToLog();
-    }
-  }
-
-  /** Download the file to the configured downloads folder. */
-  private void download(FileResult result) {
-    this.downloadToFolder(result, dbService.getDownloadDir());
   }
 
   private void setColumnWidths() {
