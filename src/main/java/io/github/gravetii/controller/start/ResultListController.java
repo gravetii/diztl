@@ -92,10 +92,7 @@ public class ResultListController implements FxController {
         .bind(Bindings.when(row.emptyProperty()).then((ContextMenu) null).otherwise(menu));
   }
 
-  private StreamObserver<FileChunk> newObserver(FileMetadata file, String outputDir) {
-    DownloadResult result = new DownloadResult(file, outputDir);
-    scene.show(result);
-    DiztlExecutorService.execute(result);
+  private StreamObserver<FileChunk> newObserver(DownloadResult result, String outputDir) {
     return new StreamObserver<>() {
       BufferedOutputStream stream = null;
 
@@ -144,15 +141,21 @@ public class ResultListController implements FxController {
     };
   }
 
+  /** Download the file to the given directory. */
   private void downloadToFolder(FileResult result, String dir) {
     FileMetadata file = result.getFile();
+    DownloadResult download = new DownloadResult(file, dir);
+    scene.show(download);
+    DiztlExecutorService.execute(download);
     try {
-      client.download(file, result.getSource(), this.newObserver(file, dir));
+      client.download(file, result.getSource(), newObserver(download, dir));
     } catch (NodeNotConnectedException e) {
+      download.onError(e);
       scene.writeConnectionErrorToLog();
     }
   }
 
+  /** Download the file to the configured downloads folder. */
   private void download(FileResult result) {
     this.downloadToFolder(result, dbService.getDownloadDir());
   }

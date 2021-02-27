@@ -24,21 +24,26 @@ public class App extends Application {
 
   private static final Logger logger = LoggerFactory.getLogger(App.class.getCanonicalName());
 
-  private static final Injector injector = Guice.createInjector(new StartupModule());
+  private static Injector injector;
 
   private DiztlClient client;
   private DiztlServer server;
+
+  @Override
+  public void init() {
+    injector = Guice.createInjector(new StartupModule());
+  }
 
   @Override
   public void start(Stage stage) throws Exception {
     StartScene scene = injector.getInstance(StartScene.class);
     FxUtils.display(stage, scene);
     DiztlServiceImpl service = injector.getInstance(DiztlServiceImpl.class);
-    this.register();
-    this.index();
-    client = injector.getInstance(DiztlClient.class);
-    server = new DiztlServer(service);
-    server.start();
+    this.client = injector.getInstance(DiztlClient.class);
+    register();
+    index();
+    this.server = new DiztlServer(service);
+    this.server.start();
   }
 
   private void register() {

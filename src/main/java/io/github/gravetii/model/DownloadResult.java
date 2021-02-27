@@ -5,8 +5,14 @@ import io.github.gravetii.grpc.FileMetadata;
 import io.github.gravetii.util.Utils;
 import javafx.concurrent.Task;
 import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DownloadResult extends Task<Void> {
+
+  private static final Logger logger =
+      LoggerFactory.getLogger(DownloadResult.class.getCanonicalName());
+
   private final FileMetadata file;
   private final String path;
   private final String filepath;
@@ -17,6 +23,7 @@ public class DownloadResult extends Task<Void> {
     this.file = file;
     this.path = path;
     this.filepath = Utils.getFilePath(file).toString();
+    updateMessage("Connecting...");
   }
 
   public void first(FileChunk f) {
@@ -64,7 +71,6 @@ public class DownloadResult extends Task<Void> {
   @Override
   protected Void call() {
     updateProgress(0, 0);
-    updateMessage("Connecting...");
     return null;
   }
 }
