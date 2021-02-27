@@ -7,18 +7,18 @@ import javafx.scene.layout.AnchorPane;
 
 public class FileSearchComponent extends FxComponent<FileSearchController, AnchorPane> {
   private final DiztlClient client;
-  private final StartScene parent;
+  private final StartScene scene;
 
-  public FileSearchComponent(DiztlClient client, StartScene parent) {
+  public FileSearchComponent(DiztlClient client, StartScene scene) {
     super("filesearch.fxml");
     this.client = client;
-    this.parent = parent;
+    this.scene = scene;
     this.create();
   }
 
   @Override
   protected FileSearchController createController() {
-    return new FileSearchController(client, parent);
+    return new FileSearchController(client, scene);
   }
 
   @Override

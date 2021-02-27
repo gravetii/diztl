@@ -7,6 +7,7 @@ import io.github.gravetii.grpc.FileConstraint;
 import io.github.gravetii.grpc.SearchResp;
 import io.github.gravetii.grpc.SizeConstraint;
 import io.github.gravetii.grpc.TypeConstraint;
+import io.github.gravetii.model.SearchRequest;
 import io.github.gravetii.scene.start.ResultListComponent;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.Utils;
@@ -26,7 +27,7 @@ public class FileSearchController implements FxController {
       LoggerFactory.getLogger(FileSearchController.class.getCanonicalName());
 
   private final DiztlClient client;
-  private final StartScene parent;
+  private final StartScene scene;
 
   @FXML private AnchorPane parentCtnr;
   @FXML private TextField searchBox;
@@ -37,9 +38,9 @@ public class FileSearchController implements FxController {
   @FXML private ComboBox<String> sizeUnit;
   @FXML private ComboBox<String> fileType;
 
-  public FileSearchController(DiztlClient client, StartScene parent) {
+  public FileSearchController(DiztlClient client, StartScene scene) {
     this.client = client;
-    this.parent = parent;
+    this.scene = scene;
   }
 
   @FXML
@@ -81,7 +82,7 @@ public class FileSearchController implements FxController {
   }
 
   private StreamObserver<SearchResp> newObserver(String query) {
-    ResultListComponent component = parent.addNewSearchTab(query);
+    ResultListComponent component = scene.addNewSearchTab(query);
     return new StreamObserver<>() {
       @Override
       public void onNext(SearchResp resp) {
@@ -113,9 +114,10 @@ public class FileSearchController implements FxController {
       TypeConstraint type = TypeConstraint.newBuilder().setType(ftype).build();
       FileConstraint constraint = FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
       try {
-        client.search(query, constraint, this.newObserver(query));
+        SearchRequest request = new SearchRequest(query, constraint, newObserver(query));
+        client.search(request);
       } catch (NodeNotConnectedException e) {
-        parent.writeConnectionErrorToLog();
+        scene.writeConnectionErrorToLog();
       }
     }
   }

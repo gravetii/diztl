@@ -6,6 +6,7 @@ import io.github.gravetii.grpc.*;
 import io.github.gravetii.keeper.NodeKeeper;
 import io.github.gravetii.keeper.TrackerConnection;
 import io.github.gravetii.model.DownloadRequest;
+import io.github.gravetii.model.SearchRequest;
 import io.github.gravetii.store.DBService;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -59,6 +60,10 @@ public class DiztlClient {
     connection = new TrackerConnection(channel);
   }
 
+  public Node getSelf() {
+    return node;
+  }
+
   public synchronized void register() {
     this.node = null;
     this.connect();
@@ -71,10 +76,6 @@ public class DiztlClient {
             .withDeadlineAfter(3, TimeUnit.SECONDS)
             .register(request)
             .getNode();
-  }
-
-  public Node getSelf() {
-    return node;
   }
 
   private void checkConnectionState() throws NodeNotConnectedException {
@@ -119,18 +120,22 @@ public class DiztlClient {
             });
   }
 
-  public void search(String query, FileConstraint constraint, StreamObserver<SearchResp> observer)
-      throws NodeNotConnectedException {
+  public void search(SearchRequest request) throws NodeNotConnectedException {
     checkConnectionState();
-    SearchReq request =
-        SearchReq.newBuilder().setSource(node).setQuery(query).setConstraint(constraint).build();
-    connection.newAsyncStub().search(request, observer);
+    SearchReq req =
+        SearchReq.newBuilder()
+            .setSource(node)
+            .setQuery(request.getQuery())
+            .setConstraint(request.getConstraint())
+            .build();
+
+    connection.newAsyncStub().search(req, request.getObserver());
   }
 
-  public void download(DownloadRequest req) throws NodeNotConnectedException {
+  public void download(DownloadRequest request) throws NodeNotConnectedException {
     checkConnectionState();
-    UploadReq request = UploadReq.newBuilder().setSource(node).setMetadata(req.getFile()).build();
-    keeper.getOrCreate(req.getNode()).newAsyncStub().upload(request, req.getObserver());
+    UploadReq req = UploadReq.newBuilder().setSource(node).setMetadata(request.getFile()).build();
+    keeper.getOrCreate(request.getNode()).newAsyncStub().upload(req, request.getObserver());
   }
 
   public void close() throws NodeNotConnectedException {

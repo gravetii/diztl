@@ -10,19 +10,19 @@ public class QuickOptionsComponent extends FxComponent<QuickOptionsController, A
 
   private final DiztlClient client;
   private final DBService dbService;
-  private final StartScene parent;
+  private final StartScene scene;
 
-  public QuickOptionsComponent(DiztlClient client, DBService dbService, StartScene parent) {
+  public QuickOptionsComponent(DiztlClient client, DBService dbService, StartScene scene) {
     super("quickOptions.fxml");
     this.client = client;
     this.dbService = dbService;
-    this.parent = parent;
+    this.scene = scene;
     this.create();
   }
 
   @Override
   protected QuickOptionsController createController() {
-    return new QuickOptionsController(client, dbService, parent);
+    return new QuickOptionsController(client, dbService, scene);
   }
 
   @Override

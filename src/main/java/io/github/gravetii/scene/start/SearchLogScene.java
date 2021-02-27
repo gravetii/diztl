@@ -13,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 public class SearchLogScene extends FxScene {
   private final DiztlClient client;
   private final DBService dbService;
-  private final StartScene parent;
+  private final StartScene scene;
   private final LogComponent logComponent = new LogComponent();
   private final TabPaneComponent tabPaneComponent = new TabPaneComponent();
 
@@ -21,7 +21,7 @@ public class SearchLogScene extends FxScene {
     super(new BorderPane());
     this.client = client;
     this.dbService = dbService;
-    this.parent = scene;
+    this.scene = scene;
     FileSearchScene fileSearchScene = new FileSearchScene(client, dbService, scene);
     BorderPane pane = (BorderPane) root;
     pane.setLeft(fileSearchScene.root);
@@ -39,13 +39,13 @@ public class SearchLogScene extends FxScene {
   }
 
   public ResultListComponent addNewSearchTab(String query) {
-    ResultListComponent component = new ResultListComponent(client, dbService, parent);
+    ResultListComponent component = new ResultListComponent(client, dbService, scene);
     tabPaneComponent.addTab("search - " + query, component.getNode());
     return component;
   }
 
   public ResultListComponent addNewFileListTab(FileMetadata file) {
-    ResultListComponent component = new ResultListComponent(client, dbService, parent);
+    ResultListComponent component = new ResultListComponent(client, dbService, scene);
     tabPaneComponent.addTab("file list - " + file.getName(), component.getNode());
     return component;
   }
