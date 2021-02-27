@@ -5,6 +5,7 @@ import io.github.gravetii.client.NodeNotConnectedException;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.grpc.FileChunk;
 import io.github.gravetii.grpc.FileMetadata;
+import io.github.gravetii.model.DownloadRequest;
 import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.store.DBService;
@@ -148,7 +149,9 @@ public class ResultListController implements FxController {
     scene.show(download);
     DiztlExecutorService.execute(download);
     try {
-      client.download(file, result.getSource(), newObserver(download, dir));
+      StreamObserver<FileChunk> observer = newObserver(download, dir);
+      DownloadRequest request = new DownloadRequest(file, result.getSource(), observer);
+      client.download(request);
     } catch (NodeNotConnectedException e) {
       download.onError(e);
       scene.writeConnectionErrorToLog();

@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import io.github.gravetii.grpc.*;
 import io.github.gravetii.keeper.NodeKeeper;
 import io.github.gravetii.keeper.TrackerConnection;
+import io.github.gravetii.model.DownloadRequest;
 import io.github.gravetii.store.DBService;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -126,11 +127,10 @@ public class DiztlClient {
     connection.newAsyncStub().search(request, observer);
   }
 
-  public void download(FileMetadata file, Node source, StreamObserver<FileChunk> observer)
-      throws NodeNotConnectedException {
+  public void download(DownloadRequest req) throws NodeNotConnectedException {
     checkConnectionState();
-    UploadReq request = UploadReq.newBuilder().setSource(node).setMetadata(file).build();
-    keeper.getOrCreate(source).newAsyncStub().upload(request, observer);
+    UploadReq request = UploadReq.newBuilder().setSource(node).setMetadata(req.getFile()).build();
+    keeper.getOrCreate(req.getNode()).newAsyncStub().upload(request, req.getObserver());
   }
 
   public void close() throws NodeNotConnectedException {
