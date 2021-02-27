@@ -40,7 +40,7 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
   @Override
   public void search(SearchReq request, StreamObserver<SearchResp> responseObserver) {
     List<FileMetadata> files =
-        indexer.search(request.getQuery()).stream()
+        indexer.search(request.getQuery(), request.getConstraint()).stream()
             .map(
                 x ->
                     FileMetadata.newBuilder()

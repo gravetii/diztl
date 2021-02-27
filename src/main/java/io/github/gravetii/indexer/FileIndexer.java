@@ -2,6 +2,7 @@ package io.github.gravetii.indexer;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import io.github.gravetii.grpc.FileConstraint;
 import io.github.gravetii.store.DBService;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Singleton
@@ -62,13 +62,11 @@ public class FileIndexer {
     return files;
   }
 
-  public List<IndexedFile> search(String query) {
+  public List<IndexedFile> search(String query, FileConstraint constraint) {
+    FileMatcher matcher = new FileMatcher(query, constraint);
     return files.stream()
-        .filter(
-            x ->
-                Pattern.compile(Pattern.quote(query), Pattern.CASE_INSENSITIVE)
-                    .matcher(x.getPath())
-                    .find())
+        .filter(matcher::matchesQuery)
+        .filter(matcher::matchesConstraint)
         .collect(Collectors.toList());
   }
 }

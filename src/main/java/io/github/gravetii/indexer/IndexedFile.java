@@ -1,6 +1,7 @@
 package io.github.gravetii.indexer;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 
@@ -8,11 +9,22 @@ public class IndexedFile {
 
   private final File file;
   private final String checksum;
-  private final long modifiedTs = System.currentTimeMillis();
+  private final String path;
+  private final String name;
+  private final String dir;
+  private final long size;
+  private final String ext;
+  private final FileType type;
 
   public IndexedFile(File file, String checksum) {
     this.file = file;
     this.checksum = checksum;
+    this.path = file.getPath();
+    this.name = file.getName();
+    this.dir = file.getParent();
+    this.size = FileUtils.sizeOf(file);
+    this.ext = FilenameUtils.getExtension(file.getName());
+    this.type = FileType.get(ext);
   }
 
   public File getFile() {
@@ -23,24 +35,28 @@ public class IndexedFile {
     return checksum;
   }
 
-  public long getModifiedTs() {
-    return modifiedTs;
-  }
-
   public String getPath() {
-    return file.getPath();
+    return path;
   }
 
   public String getName() {
-    return file.getName();
+    return name;
   }
 
   public String getDir() {
-    return file.getParent();
+    return dir;
   }
 
   public long getSize() {
-    return FileUtils.sizeOf(file);
+    return size;
+  }
+
+  public String getExt() {
+    return ext;
+  }
+
+  public FileType getType() {
+    return type;
   }
 
   @Override
@@ -51,8 +67,22 @@ public class IndexedFile {
         + ", checksum='"
         + checksum
         + '\''
-        + ", modifiedTs="
-        + modifiedTs
+        + ", path='"
+        + path
+        + '\''
+        + ", name='"
+        + name
+        + '\''
+        + ", dir='"
+        + dir
+        + '\''
+        + ", size="
+        + size
+        + ", ext='"
+        + ext
+        + '\''
+        + ", type="
+        + type
         + '}';
   }
 }
