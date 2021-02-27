@@ -123,8 +123,9 @@ public class ResultListController implements FxController {
       @Override
       public void onError(Throwable throwable) {
         try {
-          stream.close();
           result.onError(throwable);
+          logger.error("Error while downloading file {}", result.getFilepath(), throwable);
+          if (stream != null) stream.close();
         } catch (IOException e) {
           logger.error("Error while closing output file", e);
         }
