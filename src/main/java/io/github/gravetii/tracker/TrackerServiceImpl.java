@@ -1,5 +1,6 @@
 package io.github.gravetii.tracker;
 
+import io.github.gravetii.client.NodeNotConnectedException;
 import io.github.gravetii.grpc.*;
 import io.github.gravetii.keeper.NodeKeeper;
 import io.grpc.stub.StreamObserver;
@@ -18,11 +19,11 @@ public class TrackerServiceImpl extends TrackerServiceGrpc.TrackerServiceImplBas
   }
 
   @Override
-  public void register(RegisterReq request, StreamObserver<RegisterResp> responseObserver) {
+  public void register(RegisterReq request, StreamObserver<RegisterResp> observer) {
     Node node = keeper.register(request.getSelf());
     RegisterResp response = RegisterResp.newBuilder().setNode(node).build();
-    responseObserver.onNext(response);
-    responseObserver.onCompleted();
+    observer.onNext(response);
+    observer.onCompleted();
   }
 
   @Override
@@ -38,5 +39,18 @@ public class TrackerServiceImpl extends TrackerServiceGrpc.TrackerServiceImplBas
             });
 
     observer.onCompleted();
+  }
+
+  @Override
+  public void disconnect(DisconnectReq request, StreamObserver<DisconnectResp> observer) {
+    logger.info("Received disconnect request from {}", request.getNode().getIp());
+    if (!keeper.disconnect(request.getNode())) {
+      observer.onError(new NodeNotConnectedException());
+    } else {
+      String msg = "You have disconnected from the network";
+      DisconnectResp response = DisconnectResp.newBuilder().setMessage(msg).build();
+      observer.onNext(response);
+      observer.onCompleted();
+    }
   }
 }

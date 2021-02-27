@@ -94,6 +94,30 @@ public class DiztlClient {
     if (node == null) throw new NodeNotConnectedException();
   }
 
+  /** Disconnect from the tracker */
+  private void disconnect() throws NodeNotConnectedException {
+    checkConnectionState();
+    DisconnectReq request = DisconnectReq.newBuilder().setNode(node).build();
+    connection
+        .newAsyncStub()
+        .disconnect(
+            request,
+            new StreamObserver<>() {
+              @Override
+              public void onNext(DisconnectResp response) {}
+
+              @Override
+              public void onError(Throwable throwable) {
+                logger.error("Error while disconnecting from the tracker", throwable);
+              }
+
+              @Override
+              public void onCompleted() {
+                logger.info("Disconnected from the tracker");
+              }
+            });
+  }
+
   public void search(String query, FileConstraint constraint, StreamObserver<SearchResp> observer)
       throws NodeNotConnectedException {
     checkConnectionState();
@@ -109,12 +133,10 @@ public class DiztlClient {
     keeper.getOrCreate(source).newAsyncStub().upload(request, observer);
   }
 
-  public void close() {
-    // close the DB service
+  public void close() throws NodeNotConnectedException {
     dbService.close();
-    // close all the connections with peers
     keeper.close();
-    // close the connection with the tracker
+    disconnect();
     connection.close();
   }
 }

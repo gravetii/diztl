@@ -3,6 +3,7 @@ package io.github.gravetii;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import io.github.gravetii.client.DiztlClient;
+import io.github.gravetii.client.NodeNotConnectedException;
 import io.github.gravetii.indexer.FileIndexer;
 import io.github.gravetii.indexer.IndexedFile;
 import io.github.gravetii.node.DiztlServer;
@@ -78,9 +79,13 @@ public class App extends Application {
 
   @Override
   public void stop() {
-    DiztlExecutorService.close();
-    if (client != null) client.close();
-    if (server != null) server.stop();
+    try {
+      DiztlExecutorService.close();
+      if (client != null) client.close();
+      if (server != null) server.stop();
+    } catch (NodeNotConnectedException e) {
+      logger.error("Error while shutting down", e);
+    }
   }
 
   public static void main(String[] args) {

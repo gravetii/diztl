@@ -44,7 +44,12 @@ public class NodeKeeper {
 
   public boolean disconnect(Node node) {
     DiztlConnection connection = connections.remove(node);
-    return connection != null;
+    if (connection != null) {
+      connection.close();
+      return true;
+    }
+
+    return false;
   }
 
   public Map<Node, DiztlConnection> nodes() {
