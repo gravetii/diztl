@@ -134,7 +134,15 @@ public class DiztlClient {
 
   public void download(DownloadRequest request) throws NodeNotConnectedException {
     checkConnectionState();
-    UploadReq req = UploadReq.newBuilder().setSource(node).setMetadata(request.getFile()).build();
+    int chunkSize = dbService.getBufferSize();
+    UploadContract contract = UploadContract.newBuilder().setChunkSize(chunkSize).build();
+    UploadReq req =
+        UploadReq.newBuilder()
+            .setSource(node)
+            .setMetadata(request.getFile())
+            .setContract(contract)
+            .build();
+
     keeper.getOrCreate(request.getNode()).newAsyncStub().upload(req, request.getObserver());
   }
 

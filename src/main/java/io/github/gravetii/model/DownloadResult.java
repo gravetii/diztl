@@ -26,8 +26,8 @@ public class DownloadResult extends Task<Void> {
     updateMessage("Connecting...");
   }
 
-  public void first(FileChunk f) {
-    chunks = f.getChunks();
+  public void first(int chunks) {
+    this.chunks = chunks;
     updateMessage("Downloading...");
   }
 

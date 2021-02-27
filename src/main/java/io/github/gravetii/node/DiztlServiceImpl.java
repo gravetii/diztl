@@ -60,32 +60,24 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
   @Override
   public void upload(UploadReq request, StreamObserver<FileChunk> responseObserver) {
     logger.debug("Received upload request from node {}", request.getSource().getIp());
-    String dir = request.getMetadata().getDir();
-    String name = request.getMetadata().getName();
-    Path path = Paths.get(dir, name);
+    Path path = Paths.get(request.getMetadata().getDir(), request.getMetadata().getName());
     File file = new File(path.toString());
-    if (!file.exists()) {
-      logger.warn("File not found - {}", file);
-      return;
-    }
-
+    if (!file.exists()) return;
     BufferedInputStream stream = null;
+    int chunkSize = request.getContract().getChunkSize();
+    int chunks = Math.max((int) (FileUtils.sizeOf(file) / chunkSize), 1);
 
     try {
       stream = new BufferedInputStream(new FileInputStream(file));
-      byte[] buffer = new byte[BUFFER_SIZE];
+      byte[] buffer = new byte[chunkSize];
       int chunk = 1;
       int b;
       while ((b = stream.read(buffer)) > 0) {
         ByteString data = ByteString.copyFrom(buffer, 0, b);
-        FileChunk c =
-            FileChunk.newBuilder()
-                .setChunk(chunk++)
-                .setData(data)
-                .setMetadata(request.getMetadata())
-                .setChunks(Math.max((int) (FileUtils.sizeOf(file) / BUFFER_SIZE), 1))
-                .build();
-        responseObserver.onNext(c);
+        FileChunk.Builder builder = FileChunk.newBuilder().setChunk(chunk).setData(data);
+        if (chunk == 1) builder.setMetadata(request.getMetadata()).setChunks(chunks);
+        responseObserver.onNext(builder.build());
+        chunk += 1;
       }
       responseObserver.onCompleted();
     } catch (Exception e) {

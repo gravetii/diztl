@@ -44,7 +44,7 @@ public class DownloadService {
           final Path out = Paths.get(outputDir, chunk.getMetadata().getName());
           try {
             stream = new BufferedOutputStream(new FileOutputStream(out.toString()));
-            result.first(chunk);
+            result.first(chunk.getChunks());
           } catch (FileNotFoundException e) {
             logger.error("Error while creating output file {}", out, e);
             result.onError(e);

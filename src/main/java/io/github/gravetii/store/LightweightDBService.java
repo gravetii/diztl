@@ -83,7 +83,7 @@ public class LightweightDBService implements DBService {
 
   @Override
   public int getBufferSize() {
-    return prefs.getInt(BUFFER_SIZE_KEY, 1024 * 1024);
+    return prefs.getInt(BUFFER_SIZE_KEY, 512 * 512);
   }
 
   @Override
