@@ -16,5 +16,9 @@ public interface DBService {
 
   String getTrackerAddress();
 
+  void saveBufferSize(int sz);
+
+  int getBufferSize();
+
   void close();
 }

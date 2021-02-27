@@ -21,6 +21,7 @@ public class LightweightDBService implements DBService {
   private static final String SHARE_DIRS_KEY = "user_share_dirs";
   private static final String DOWNLOADS_DIR_KEY = "downloads_dir";
   private static final String TRACKER_ADDR_KEY = "tracker";
+  private static final String BUFFER_SIZE_KEY = "buf_size";
 
   private final Preferences prefs = Preferences.userNodeForPackage(App.class);
 
@@ -72,6 +73,17 @@ public class LightweightDBService implements DBService {
   @Override
   public String getTrackerAddress() {
     return prefs.get(TRACKER_ADDR_KEY, "127.0.0.1:50036");
+  }
+
+  @Override
+  public void saveBufferSize(int sz) {
+    prefs.putInt(BUFFER_SIZE_KEY, sz);
+    this.flush();
+  }
+
+  @Override
+  public int getBufferSize() {
+    return prefs.getInt(BUFFER_SIZE_KEY, 1024 * 1024);
   }
 
   @Override
