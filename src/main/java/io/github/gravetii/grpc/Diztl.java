@@ -55,16 +55,6 @@ public final class Diztl {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_SearchResp_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_FindReq_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_FindReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_FindResp_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_FindResp_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_UploadContract_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -74,16 +64,6 @@ public final class Diztl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_UploadReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_DownloadReq_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_DownloadReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_DownloadChunk_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_DownloadChunk_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_DisconnectReq_descriptor;
   static final 
@@ -105,66 +85,6 @@ public final class Diztl {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_PingResp_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UserDirsReq_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UserDirsReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UserDirsResp_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UserDirsResp_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateUserDirsReq_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateUserDirsReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateUserDirsResp_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateUserDirsResp_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_GetTrackerReq_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_GetTrackerReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_GetTrackerResp_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_GetTrackerResp_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateTrackerReq_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateTrackerReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_UpdateTrackerResp_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_UpdateTrackerResp_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_IndexReq_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_IndexReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_IndexResp_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_IndexResp_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_CloseReq_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_CloseReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_CloseResp_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_CloseResp_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_SizeConstraint_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -179,26 +99,6 @@ public final class Diztl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_FileConstraint_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_FetchFileListReq_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_FetchFileListReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_FetchFileListResp_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_FetchFileListResp_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_GetFileListReq_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_GetFileListReq_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_GetFileListResp_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_GetFileListResp_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -220,60 +120,27 @@ public final class Diztl {
       "de\"V\n\tSearchReq\022\r\n\005query\030\001 \001(\t\022\025\n\006source" +
       "\030\002 \001(\0132\005.Node\022#\n\nconstraint\030\003 \001(\0132\017.File" +
       "Constraint\"?\n\nSearchResp\022\034\n\005files\030\001 \003(\0132" +
-      "\r.FileMetadata\022\023\n\004node\030\002 \001(\0132\005.Node\"=\n\007F" +
-      "indReq\022\r\n\005query\030\001 \001(\t\022#\n\nconstraint\030\002 \001(" +
-      "\0132\017.FileConstraint\"*\n\010FindResp\022\036\n\trespon" +
-      "ses\030\001 \003(\0132\013.SearchResp\"#\n\016UploadContract" +
-      "\022\021\n\tchunkSize\030\001 \001(\005\"f\n\tUploadReq\022\025\n\006sour" +
-      "ce\030\001 \001(\0132\005.Node\022\037\n\010metadata\030\002 \001(\0132\r.File" +
-      "Metadata\022!\n\010contract\030\003 \001(\0132\017.UploadContr" +
-      "act\"N\n\013DownloadReq\022\025\n\006source\030\001 \001(\0132\005.Nod" +
-      "e\022\033\n\004file\030\002 \001(\0132\r.FileMetadata\022\013\n\003dir\030\003 " +
-      "\001(\t\".\n\rDownloadChunk\022\016\n\006chunks\030\001 \001(\005\022\r\n\005" +
-      "chunk\030\002 \001(\005\"$\n\rDisconnectReq\022\023\n\004node\030\001 \001" +
-      "(\0132\005.Node\"!\n\016DisconnectResp\022\017\n\007message\030\001" +
-      " \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001(\0132\005.Node\022\023" +
-      "\n\004dest\030\002 \001(\0132\005.Node\")\n\010PingResp\022\014\n\004code\030" +
-      "\001 \001(\005\022\017\n\007message\030\002 \001(\t\"\r\n\013UserDirsReq\"0\n" +
-      "\014UserDirsResp\022\r\n\005share\030\001 \003(\t\022\021\n\tdownload" +
-      "s\030\002 \001(\t\"5\n\021UpdateUserDirsReq\022\r\n\005share\030\001 " +
-      "\003(\t\022\021\n\tdownloads\030\002 \001(\t\"%\n\022UpdateUserDirs" +
-      "Resp\022\017\n\007message\030\001 \001(\t\"\017\n\rGetTrackerReq\"!" +
-      "\n\016GetTrackerResp\022\017\n\007tracker\030\001 \001(\t\"#\n\020Upd" +
-      "ateTrackerReq\022\017\n\007tracker\030\001 \001(\t\"!\n\021Update" +
-      "TrackerResp\022\014\n\004code\030\001 \001(\005\"\n\n\010IndexReq\"\032\n" +
-      "\tIndexResp\022\r\n\005fpath\030\001 \001(\t\"\n\n\010CloseReq\"\034\n" +
-      "\tCloseResp\022\017\n\007message\030\001 \001(\t\",\n\016SizeConst" +
+      "\r.FileMetadata\022\023\n\004node\030\002 \001(\0132\005.Node\"#\n\016U" +
+      "ploadContract\022\021\n\tchunkSize\030\001 \001(\005\"f\n\tUplo" +
+      "adReq\022\025\n\006source\030\001 \001(\0132\005.Node\022\037\n\010metadata" +
+      "\030\002 \001(\0132\r.FileMetadata\022!\n\010contract\030\003 \001(\0132" +
+      "\017.UploadContract\"$\n\rDisconnectReq\022\023\n\004nod" +
+      "e\030\001 \001(\0132\005.Node\"!\n\016DisconnectResp\022\017\n\007mess" +
+      "age\030\001 \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001(\0132\005.N" +
+      "ode\022\023\n\004dest\030\002 \001(\0132\005.Node\")\n\010PingResp\022\014\n\004" +
+      "code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\",\n\016SizeConst" +
       "raint\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003\"\036\n\016Typ" +
       "eConstraint\022\014\n\004type\030\001 \001(\005\"P\n\016FileConstra" +
       "int\022\036\n\005csize\030\001 \001(\0132\017.SizeConstraint\022\036\n\005c" +
-      "type\030\002 \001(\0132\017.TypeConstraint\"4\n\020FetchFile" +
-      "ListReq\022\023\n\004node\030\001 \001(\0132\005.Node\022\013\n\003dir\030\002 \001(" +
-      "\t\"1\n\021FetchFileListResp\022\034\n\005files\030\001 \003(\0132\r." +
-      "FileMetadata\"4\n\016GetFileListReq\022\013\n\003dir\030\001 " +
-      "\001(\t\022\025\n\006source\030\002 \001(\0132\005.Node\"/\n\017GetFileLis" +
-      "tResp\022\034\n\005files\030\001 \003(\0132\r.FileMetadata2\372\004\n\014" +
-      "DiztlService\022#\n\006Search\022\n.SearchReq\032\013.Sea" +
-      "rchResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.FileCh" +
-      "unk\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\000\022\035" +
-      "\n\004Find\022\010.FindReq\032\t.FindResp\"\000\022,\n\010Downloa" +
-      "d\022\014.DownloadReq\032\016.DownloadChunk\"\0000\001\022,\n\013G" +
-      "etUserDirs\022\014.UserDirsReq\032\r.UserDirsResp\"" +
-      "\000\022;\n\016UpdateUserDirs\022\022.UpdateUserDirsReq\032" +
-      "\023.UpdateUserDirsResp\"\000\022/\n\nGetTracker\022\016.G" +
-      "etTrackerReq\032\017.GetTrackerResp\"\000\0228\n\rUpdat" +
-      "eTracker\022\021.UpdateTrackerReq\032\022.UpdateTrac" +
-      "kerResp\"\000\022\"\n\005Index\022\t.IndexReq\032\n.IndexRes" +
-      "p\"\0000\001\022)\n\010Register\022\014.RegisterReq\032\r.Regist" +
-      "erResp\"\000\0228\n\rFetchFileList\022\021.FetchFileLis" +
-      "tReq\032\022.FetchFileListResp\"\000\0222\n\013GetFileLis" +
-      "t\022\017.GetFileListReq\032\020.GetFileListResp\"\000\022 " +
-      "\n\005Close\022\t.CloseReq\032\n.CloseResp\"\0002\223\001\n\016Tra" +
-      "ckerService\022)\n\010Register\022\014.RegisterReq\032\r." +
-      "RegisterResp\"\000\022%\n\006Search\022\n.SearchReq\032\013.S" +
-      "earchResp\"\0000\001\022/\n\nDisconnect\022\016.Disconnect" +
-      "Req\032\017.DisconnectResp\"\000B\033\n\027io.github.grav" +
-      "etii.grpcP\001b\006proto3"
+      "type\030\002 \001(\0132\017.TypeConstraint2x\n\014DiztlServ" +
+      "ice\022#\n\006Search\022\n.SearchReq\032\013.SearchResp\"\000" +
+      "\022$\n\006Upload\022\n.UploadReq\032\n.FileChunk\"\0000\001\022\035" +
+      "\n\004Ping\022\010.PingReq\032\t.PingResp\"\0002\223\001\n\016Tracke" +
+      "rService\022)\n\010Register\022\014.RegisterReq\032\r.Reg" +
+      "isterResp\"\000\022%\n\006Search\022\n.SearchReq\032\013.Sear" +
+      "chResp\"\0000\001\022/\n\nDisconnect\022\016.DisconnectReq" +
+      "\032\017.DisconnectResp\"\000B\033\n\027io.github.graveti" +
+      "i.grpcP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -335,180 +202,60 @@ public final class Diztl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchResp_descriptor,
         new java.lang.String[] { "Files", "Node", });
-    internal_static_FindReq_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_FindReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_FindReq_descriptor,
-        new java.lang.String[] { "Query", "Constraint", });
-    internal_static_FindResp_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_FindResp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_FindResp_descriptor,
-        new java.lang.String[] { "Responses", });
     internal_static_UploadContract_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_UploadContract_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UploadContract_descriptor,
         new java.lang.String[] { "ChunkSize", });
     internal_static_UploadReq_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_UploadReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UploadReq_descriptor,
         new java.lang.String[] { "Source", "Metadata", "Contract", });
-    internal_static_DownloadReq_descriptor =
-      getDescriptor().getMessageTypes().get(12);
-    internal_static_DownloadReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_DownloadReq_descriptor,
-        new java.lang.String[] { "Source", "File", "Dir", });
-    internal_static_DownloadChunk_descriptor =
-      getDescriptor().getMessageTypes().get(13);
-    internal_static_DownloadChunk_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_DownloadChunk_descriptor,
-        new java.lang.String[] { "Chunks", "Chunk", });
     internal_static_DisconnectReq_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_DisconnectReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_DisconnectReq_descriptor,
         new java.lang.String[] { "Node", });
     internal_static_DisconnectResp_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_DisconnectResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_DisconnectResp_descriptor,
         new java.lang.String[] { "Message", });
     internal_static_PingReq_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_PingReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PingReq_descriptor,
         new java.lang.String[] { "Source", "Dest", });
     internal_static_PingResp_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_PingResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PingResp_descriptor,
         new java.lang.String[] { "Code", "Message", });
-    internal_static_UserDirsReq_descriptor =
-      getDescriptor().getMessageTypes().get(18);
-    internal_static_UserDirsReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UserDirsReq_descriptor,
-        new java.lang.String[] { });
-    internal_static_UserDirsResp_descriptor =
-      getDescriptor().getMessageTypes().get(19);
-    internal_static_UserDirsResp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UserDirsResp_descriptor,
-        new java.lang.String[] { "Share", "Downloads", });
-    internal_static_UpdateUserDirsReq_descriptor =
-      getDescriptor().getMessageTypes().get(20);
-    internal_static_UpdateUserDirsReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateUserDirsReq_descriptor,
-        new java.lang.String[] { "Share", "Downloads", });
-    internal_static_UpdateUserDirsResp_descriptor =
-      getDescriptor().getMessageTypes().get(21);
-    internal_static_UpdateUserDirsResp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateUserDirsResp_descriptor,
-        new java.lang.String[] { "Message", });
-    internal_static_GetTrackerReq_descriptor =
-      getDescriptor().getMessageTypes().get(22);
-    internal_static_GetTrackerReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_GetTrackerReq_descriptor,
-        new java.lang.String[] { });
-    internal_static_GetTrackerResp_descriptor =
-      getDescriptor().getMessageTypes().get(23);
-    internal_static_GetTrackerResp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_GetTrackerResp_descriptor,
-        new java.lang.String[] { "Tracker", });
-    internal_static_UpdateTrackerReq_descriptor =
-      getDescriptor().getMessageTypes().get(24);
-    internal_static_UpdateTrackerReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateTrackerReq_descriptor,
-        new java.lang.String[] { "Tracker", });
-    internal_static_UpdateTrackerResp_descriptor =
-      getDescriptor().getMessageTypes().get(25);
-    internal_static_UpdateTrackerResp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_UpdateTrackerResp_descriptor,
-        new java.lang.String[] { "Code", });
-    internal_static_IndexReq_descriptor =
-      getDescriptor().getMessageTypes().get(26);
-    internal_static_IndexReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_IndexReq_descriptor,
-        new java.lang.String[] { });
-    internal_static_IndexResp_descriptor =
-      getDescriptor().getMessageTypes().get(27);
-    internal_static_IndexResp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_IndexResp_descriptor,
-        new java.lang.String[] { "Fpath", });
-    internal_static_CloseReq_descriptor =
-      getDescriptor().getMessageTypes().get(28);
-    internal_static_CloseReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_CloseReq_descriptor,
-        new java.lang.String[] { });
-    internal_static_CloseResp_descriptor =
-      getDescriptor().getMessageTypes().get(29);
-    internal_static_CloseResp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_CloseResp_descriptor,
-        new java.lang.String[] { "Message", });
     internal_static_SizeConstraint_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_SizeConstraint_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SizeConstraint_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_TypeConstraint_descriptor =
-      getDescriptor().getMessageTypes().get(31);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_TypeConstraint_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TypeConstraint_descriptor,
         new java.lang.String[] { "Type", });
     internal_static_FileConstraint_descriptor =
-      getDescriptor().getMessageTypes().get(32);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_FileConstraint_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_FileConstraint_descriptor,
         new java.lang.String[] { "Csize", "Ctype", });
-    internal_static_FetchFileListReq_descriptor =
-      getDescriptor().getMessageTypes().get(33);
-    internal_static_FetchFileListReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_FetchFileListReq_descriptor,
-        new java.lang.String[] { "Node", "Dir", });
-    internal_static_FetchFileListResp_descriptor =
-      getDescriptor().getMessageTypes().get(34);
-    internal_static_FetchFileListResp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_FetchFileListResp_descriptor,
-        new java.lang.String[] { "Files", });
-    internal_static_GetFileListReq_descriptor =
-      getDescriptor().getMessageTypes().get(35);
-    internal_static_GetFileListReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_GetFileListReq_descriptor,
-        new java.lang.String[] { "Dir", "Source", });
-    internal_static_GetFileListResp_descriptor =
-      getDescriptor().getMessageTypes().get(36);
-    internal_static_GetFileListResp_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_GetFileListResp_descriptor,
-        new java.lang.String[] { "Files", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
