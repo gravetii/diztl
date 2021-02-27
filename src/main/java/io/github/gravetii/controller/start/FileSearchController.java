@@ -1,17 +1,13 @@
 package io.github.gravetii.controller.start;
 
 import io.github.gravetii.client.DiztlClient;
-import io.github.gravetii.client.NodeNotConnectedException;
 import io.github.gravetii.controller.FxController;
 import io.github.gravetii.grpc.FileConstraint;
-import io.github.gravetii.grpc.SearchResp;
 import io.github.gravetii.grpc.SizeConstraint;
 import io.github.gravetii.grpc.TypeConstraint;
-import io.github.gravetii.model.SearchRequest;
-import io.github.gravetii.scene.start.ResultListComponent;
 import io.github.gravetii.scene.start.StartScene;
+import io.github.gravetii.service.SearchService;
 import io.github.gravetii.util.Utils;
-import io.grpc.stub.StreamObserver;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -26,8 +22,7 @@ public class FileSearchController implements FxController {
   private static final Logger logger =
       LoggerFactory.getLogger(FileSearchController.class.getCanonicalName());
 
-  private final DiztlClient client;
-  private final StartScene scene;
+  private final SearchService service;
 
   @FXML private AnchorPane parentCtnr;
   @FXML private TextField searchBox;
@@ -39,8 +34,7 @@ public class FileSearchController implements FxController {
   @FXML private ComboBox<String> fileType;
 
   public FileSearchController(DiztlClient client, StartScene scene) {
-    this.client = client;
-    this.scene = scene;
+    this.service = new SearchService(client, scene);
   }
 
   @FXML
@@ -81,26 +75,6 @@ public class FileSearchController implements FxController {
     fileType.getSelectionModel().select(0);
   }
 
-  private StreamObserver<SearchResp> newObserver(String query) {
-    ResultListComponent component = scene.addNewSearchTab(query);
-    return new StreamObserver<>() {
-      @Override
-      public void onNext(SearchResp resp) {
-        resp.getFilesList().forEach(file -> component.show(new FileResult(file, resp.getNode())));
-      }
-
-      @Override
-      public void onError(Throwable throwable) {
-        logger.error("File search error", throwable);
-      }
-
-      @Override
-      public void onCompleted() {
-        logger.info("Search completed");
-      }
-    };
-  }
-
   @FXML
   public void search() {
     String query = searchBox.getText();
@@ -113,12 +87,7 @@ public class FileSearchController implements FxController {
       int ftype = fileType.getSelectionModel().getSelectedIndex();
       TypeConstraint type = TypeConstraint.newBuilder().setType(ftype).build();
       FileConstraint constraint = FileConstraint.newBuilder().setCsize(size).setCtype(type).build();
-      try {
-        SearchRequest request = new SearchRequest(query, constraint, newObserver(query));
-        client.search(request);
-      } catch (NodeNotConnectedException e) {
-        scene.writeConnectionErrorToLog();
-      }
+      service.search(query, constraint);
     }
   }
 }
