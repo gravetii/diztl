@@ -58,11 +58,15 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
   }
 
   @Override
-  public void upload(UploadReq request, StreamObserver<FileChunk> responseObserver) {
+  public void upload(UploadReq request, StreamObserver<FileChunk> observer) {
     logger.debug("Received upload request from node {}", request.getSource().getIp());
     Path path = Paths.get(request.getMetadata().getDir(), request.getMetadata().getName());
     File file = new File(path.toString());
-    if (!file.exists()) return;
+    if (!file.exists()) {
+      observer.onError(new Exception("File doesn't exist"));
+      return;
+    }
+
     BufferedInputStream stream = null;
     int chunkSize = request.getContract().getChunkSize();
     int chunks = Math.max((int) (FileUtils.sizeOf(file) / chunkSize), 1);
@@ -76,12 +80,12 @@ public class DiztlServiceImpl extends DiztlServiceGrpc.DiztlServiceImplBase {
         ByteString data = ByteString.copyFrom(buffer, 0, b);
         FileChunk.Builder builder = FileChunk.newBuilder().setChunk(chunk).setData(data);
         if (chunk == 1) builder.setMetadata(request.getMetadata()).setChunks(chunks);
-        responseObserver.onNext(builder.build());
+        observer.onNext(builder.build());
         chunk += 1;
       }
-      responseObserver.onCompleted();
+      observer.onCompleted();
     } catch (Exception e) {
-      responseObserver.onError(new Exception("Error while uploading file", e));
+      observer.onError(new Exception("Error while uploading file", e));
     } finally {
       if (stream != null) {
         try {
