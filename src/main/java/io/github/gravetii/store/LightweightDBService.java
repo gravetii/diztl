@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
@@ -61,7 +62,8 @@ public class LightweightDBService implements DBService {
 
   @Override
   public String getDownloadDir() {
-    return prefs.get(DOWNLOADS_DIR_KEY, "/Users/s0d01bw/Downloads");
+    String def = Path.of(System.getProperty("user.dir"), "diztl", "downloads").toString();
+    return prefs.get(DOWNLOADS_DIR_KEY, def);
   }
 
   @Override
