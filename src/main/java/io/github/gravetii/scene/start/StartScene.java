@@ -72,6 +72,10 @@ public class StartScene extends FxScene {
     writeToLog("You seem to be disconnected, recheck your tracker configuration!");
   }
 
+  public void writeTrackerUnavailableToLog() {
+    writeToLog("Unable to connect to the tracker, recheck your tracker configuration!");
+  }
+
   public Stage getWindow() {
     return (Stage) root.getScene().getWindow();
   }

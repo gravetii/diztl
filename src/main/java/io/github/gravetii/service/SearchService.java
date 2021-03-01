@@ -8,6 +8,8 @@ import io.github.gravetii.grpc.SearchResp;
 import io.github.gravetii.model.SearchRequest;
 import io.github.gravetii.scene.start.ResultListComponent;
 import io.github.gravetii.scene.start.StartScene;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,15 @@ public class SearchService {
     this.scene = scene;
   }
 
+  private void checkIfUnavailable(Throwable throwable) {
+    if (throwable instanceof StatusRuntimeException) {
+      StatusRuntimeException e = (StatusRuntimeException) throwable;
+      if (e.getStatus().getCode() == Status.Code.UNAVAILABLE) {
+        scene.writeTrackerUnavailableToLog();
+      }
+    }
+  }
+
   private StreamObserver<SearchResp> newObserver(String query) {
     ResultListComponent component = scene.addNewSearchTab(query);
     return new StreamObserver<>() {
@@ -36,6 +47,7 @@ public class SearchService {
       @Override
       public void onError(Throwable throwable) {
         logger.error("File search error for query {}", query, throwable);
+        checkIfUnavailable(throwable);
       }
 
       @Override
