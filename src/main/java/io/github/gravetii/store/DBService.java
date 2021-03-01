@@ -10,7 +10,7 @@ public interface DBService {
 
   void saveDownloadsDir(String dir);
 
-  String getDownloadDir();
+  String getDownloadsDir();
 
   void saveTrackerAddress(String address);
 

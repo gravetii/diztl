@@ -3,6 +3,7 @@ package io.github.gravetii.store;
 import com.google.inject.Singleton;
 import io.github.gravetii.App;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +25,18 @@ public class LightweightDBService implements DBService {
   private static final String TRACKER_ADDR_KEY = "tracker";
   private static final String BUFFER_SIZE_KEY = "buf_size";
 
-  private final Preferences prefs = Preferences.userNodeForPackage(App.class);
+  private final Preferences prefs;
+  private final String defaultDownloadsDir;
+
+  public LightweightDBService() {
+    this.prefs = Preferences.userNodeForPackage(App.class);
+    this.defaultDownloadsDir = getDefaultDownloadsDir();
+  }
+
+  private String getDefaultDownloadsDir() {
+    String home = SystemUtils.getUserHome().getAbsolutePath();
+    return Path.of(home, "diztl", "downloads").toString();
+  }
 
   private void flush() {
     try {
@@ -61,9 +73,8 @@ public class LightweightDBService implements DBService {
   }
 
   @Override
-  public String getDownloadDir() {
-    String def = Path.of(System.getProperty("user.dir"), "diztl", "downloads").toString();
-    return prefs.get(DOWNLOADS_DIR_KEY, def);
+  public String getDownloadsDir() {
+    return prefs.get(DOWNLOADS_DIR_KEY, defaultDownloadsDir);
   }
 
   @Override

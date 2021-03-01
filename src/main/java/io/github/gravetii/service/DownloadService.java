@@ -9,16 +9,13 @@ import io.github.gravetii.model.DownloadRequest;
 import io.github.gravetii.model.DownloadResult;
 import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.DiztlExecutorService;
+import io.github.gravetii.util.Utils;
 import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class DownloadService {
 
@@ -33,7 +30,7 @@ public class DownloadService {
     this.scene = scene;
   }
 
-  private StreamObserver<FileChunk> newObserver(DownloadResult result, String outputDir) {
+  private StreamObserver<FileChunk> newObserver(DownloadResult result, File directory) {
     return new StreamObserver<>() {
       BufferedOutputStream stream = null;
 
@@ -41,9 +38,9 @@ public class DownloadService {
       public void onNext(FileChunk chunk) {
         byte[] data = chunk.getData().toByteArray();
         if (chunk.getChunk() == 1) {
-          final Path out = Paths.get(outputDir, chunk.getMetadata().getName());
+          File out = Path.of(directory.getAbsolutePath(), chunk.getMetadata().getName()).toFile();
           try {
-            stream = new BufferedOutputStream(new FileOutputStream(out.toString()));
+            stream = new BufferedOutputStream(new FileOutputStream(out));
             result.first(chunk.getChunks());
           } catch (FileNotFoundException e) {
             logger.error("Error while creating output file {}", out, e);
@@ -83,19 +80,24 @@ public class DownloadService {
     };
   }
 
-  /** Download the file represented by the given FileResult to the given folder. */
-  public void download(FileResult result, String folder) {
-    FileMetadata file = result.getFile();
-    DownloadResult download = new DownloadResult(file, folder);
+  /** Download the file represented by the given FileResult to the given directory. */
+  public void download(FileResult result, String directory) {
+    FileMetadata metadata = result.getFile();
+    DownloadResult download = new DownloadResult(metadata, directory);
     scene.show(download);
     DiztlExecutorService.execute(download);
     try {
-      StreamObserver<FileChunk> observer = newObserver(download, folder);
-      DownloadRequest request = new DownloadRequest(file, result.getSource(), observer);
+      File out = new File(directory);
+      Utils.ensureDir(out);
+      StreamObserver<FileChunk> observer = newObserver(download, out);
+      DownloadRequest request = new DownloadRequest(metadata, result.getSource(), observer);
       client.download(request);
     } catch (NodeNotConnectedException e) {
       download.onError(e);
       scene.writeConnectionErrorToLog();
+    } catch (IOException e) {
+      download.onError(e);
+      logger.error("Couldn't download file {}", metadata.getName(), e);
     }
   }
 }

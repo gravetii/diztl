@@ -46,7 +46,7 @@ public class UserDirsController implements FxController {
         .bind(shareDirsList.getSelectionModel().selectedItemProperty().isNull());
 
     Set<String> shareDirs = dbService.getShareDirs();
-    String downloadsDir = dbService.getDownloadDir();
+    String downloadsDir = dbService.getDownloadsDir();
     displayShareDirs(shareDirs);
     displayDownloadsDir(downloadsDir);
   }

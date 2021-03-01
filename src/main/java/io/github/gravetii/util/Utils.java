@@ -1,7 +1,10 @@
 package io.github.gravetii.util;
 
 import io.github.gravetii.grpc.FileMetadata;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -28,5 +31,10 @@ public class Utils {
 
   public static Path getFilePath(FileMetadata file) {
     return Paths.get(file.getDir(), file.getName());
+  }
+
+  /** Ensure that the given directory exists on the file system. */
+  public static void ensureDir(File directory) throws IOException {
+    FileUtils.forceMkdir(directory);
   }
 }
