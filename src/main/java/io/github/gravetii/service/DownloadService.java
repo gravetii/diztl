@@ -11,6 +11,7 @@ import io.github.gravetii.scene.start.StartScene;
 import io.github.gravetii.util.DiztlExecutorService;
 import io.github.gravetii.util.Utils;
 import io.grpc.stub.StreamObserver;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +31,11 @@ public class DownloadService {
     this.scene = scene;
   }
 
+  private File getTempFile(FileMetadata metadata) {
+    File directory = FileUtils.getTempDirectory();
+    return Path.of(directory.getAbsolutePath(), metadata.getName()).toFile();
+  }
+
   private File getOutFile(File directory, FileMetadata metadata) {
     return Path.of(directory.getAbsolutePath(), metadata.getName()).toFile();
   }
@@ -37,17 +43,20 @@ public class DownloadService {
   private StreamObserver<FileChunk> newObserver(DownloadResult result, File directory) {
     return new StreamObserver<>() {
       BufferedOutputStream stream = null;
+      File tempFile = null;
+      File outFile = null;
 
       @Override
       public void onNext(FileChunk chunk) {
         byte[] data = chunk.getData().toByteArray();
         if (chunk.getChunk() == 1) {
-          File out = getOutFile(directory, chunk.getMetadata());
+          tempFile = getTempFile(chunk.getMetadata());
+          outFile = getOutFile(directory, chunk.getMetadata());
           try {
-            stream = new BufferedOutputStream(new FileOutputStream(out));
+            stream = new BufferedOutputStream(new FileOutputStream(tempFile));
             result.first(chunk.getChunks());
           } catch (FileNotFoundException e) {
-            logger.error("Error while creating output file {}", out, e);
+            logger.error("Error while creating temp file {}", tempFile, e);
             result.onError(e);
           }
         }
@@ -76,6 +85,8 @@ public class DownloadService {
       public void onCompleted() {
         try {
           stream.close();
+          // after download, move the file from the temp location to the chosen output directory
+          FileUtils.moveFile(tempFile, outFile);
           result.onComplete();
         } catch (IOException e) {
           logger.error("Error while closing output file", e);
