@@ -46,10 +46,6 @@
     -fx-background-insets: 0.0;
 }
 
-.jfx-list-cell .jfx-rippler {
-    -fx-rippler-fill: BLUE;
-}
-
 .list-view {
     -fx-background-insets: 0;
     -fx-cell-vertical-margin: 0;
@@ -59,7 +55,6 @@
 .button {
     -fx-background-color: #018786;
     -fx-text-fill: #ffffff;
-    -jfx-button-type: RAISED;
 }
 
 .button:hover {
@@ -103,27 +98,14 @@
     -fx-highlight-fill: #7ECFFF;
 }
 
-.jfx-tab-pane .tab-header-area .tab-selected-line {
+.tab-pane .tab-header-area .tab-selected-line {
     -fx-background-color: #FFFFFF;
 }
 
-.jfx-tab-pane .tab-header-area .jfx-rippler {
-    -jfx-rippler-fill: #FFFFFF;
-}
-
-.jfx-tab-pane .tab-header-background {
-    -fx-background-color: #36474F;
-}
-
-.jfx-tab-pane .tab
-{
-    -fx-padding:0 0 0 40;
-}
-
 .tab-label {
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
 }
 
-.jfx-tab-pane {
-    -fx-tab-max-width: 100px;
+.tab-pane {
+    -fx-tab-max-width: 150px;
 }
