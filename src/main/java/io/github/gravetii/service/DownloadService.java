@@ -30,6 +30,10 @@ public class DownloadService {
     this.scene = scene;
   }
 
+  private File getOutFile(File directory, FileMetadata metadata) {
+    return Path.of(directory.getAbsolutePath(), metadata.getName()).toFile();
+  }
+
   private StreamObserver<FileChunk> newObserver(DownloadResult result, File directory) {
     return new StreamObserver<>() {
       BufferedOutputStream stream = null;
@@ -38,7 +42,7 @@ public class DownloadService {
       public void onNext(FileChunk chunk) {
         byte[] data = chunk.getData().toByteArray();
         if (chunk.getChunk() == 1) {
-          File out = Path.of(directory.getAbsolutePath(), chunk.getMetadata().getName()).toFile();
+          File out = getOutFile(directory, chunk.getMetadata());
           try {
             stream = new BufferedOutputStream(new FileOutputStream(out));
             result.first(chunk.getChunks());
@@ -87,8 +91,7 @@ public class DownloadService {
     scene.show(download);
     DiztlExecutorService.execute(download);
     try {
-      File out = new File(directory);
-      Utils.ensureDir(out);
+      File out = Utils.ensureDir(directory);
       StreamObserver<FileChunk> observer = newObserver(download, out);
       DownloadRequest request = new DownloadRequest(metadata, result.getSource(), observer);
       client.download(request);

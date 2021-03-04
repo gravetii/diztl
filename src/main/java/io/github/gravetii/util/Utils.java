@@ -34,7 +34,9 @@ public class Utils {
   }
 
   /** Ensure that the given directory exists on the file system. */
-  public static void ensureDir(File directory) throws IOException {
-    FileUtils.forceMkdir(directory);
+  public static File ensureDir(String directory) throws IOException {
+    File file = new File(directory);
+    FileUtils.forceMkdir(file);
+    return file;
   }
 }
