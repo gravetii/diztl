@@ -4,18 +4,18 @@
 package io.github.gravetii.grpc;
 
 /**
- * Protobuf type {@code FileConstraint}
+ * Protobuf type {@code SearchConstraints}
  */
-public  final class FileConstraint extends
+public  final class SearchConstraints extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:FileConstraint)
-    FileConstraintOrBuilder {
+    // @@protoc_insertion_point(message_implements:SearchConstraints)
+    SearchConstraintsOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use FileConstraint.newBuilder() to construct.
-  private FileConstraint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use SearchConstraints.newBuilder() to construct.
+  private SearchConstraints(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private FileConstraint() {
+  private SearchConstraints() {
   }
 
   @java.lang.Override
@@ -23,7 +23,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private FileConstraint(
+  private SearchConstraints(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -89,15 +89,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return io.github.gravetii.grpc.Diztl.internal_static_FileConstraint_descriptor;
+    return io.github.gravetii.grpc.Diztl.internal_static_SearchConstraints_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return io.github.gravetii.grpc.Diztl.internal_static_FileConstraint_fieldAccessorTable
+    return io.github.gravetii.grpc.Diztl.internal_static_SearchConstraints_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.github.gravetii.grpc.FileConstraint.class, io.github.gravetii.grpc.FileConstraint.Builder.class);
+            io.github.gravetii.grpc.SearchConstraints.class, io.github.gravetii.grpc.SearchConstraints.Builder.class);
   }
 
   public static final int CSIZE_FIELD_NUMBER = 1;
@@ -189,10 +189,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof io.github.gravetii.grpc.FileConstraint)) {
+    if (!(obj instanceof io.github.gravetii.grpc.SearchConstraints)) {
       return super.equals(obj);
     }
-    io.github.gravetii.grpc.FileConstraint other = (io.github.gravetii.grpc.FileConstraint) obj;
+    io.github.gravetii.grpc.SearchConstraints other = (io.github.gravetii.grpc.SearchConstraints) obj;
 
     boolean result = true;
     result = result && (hasCsize() == other.hasCsize());
@@ -229,69 +229,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.github.gravetii.grpc.FileConstraint parseFrom(
+  public static io.github.gravetii.grpc.SearchConstraints parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseFrom(
+  public static io.github.gravetii.grpc.SearchConstraints parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseFrom(
+  public static io.github.gravetii.grpc.SearchConstraints parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseFrom(
+  public static io.github.gravetii.grpc.SearchConstraints parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseFrom(byte[] data)
+  public static io.github.gravetii.grpc.SearchConstraints parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseFrom(
+  public static io.github.gravetii.grpc.SearchConstraints parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseFrom(java.io.InputStream input)
+  public static io.github.gravetii.grpc.SearchConstraints parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseFrom(
+  public static io.github.gravetii.grpc.SearchConstraints parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseDelimitedFrom(java.io.InputStream input)
+  public static io.github.gravetii.grpc.SearchConstraints parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseDelimitedFrom(
+  public static io.github.gravetii.grpc.SearchConstraints parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseFrom(
+  public static io.github.gravetii.grpc.SearchConstraints parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.github.gravetii.grpc.FileConstraint parseFrom(
+  public static io.github.gravetii.grpc.SearchConstraints parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -304,7 +304,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(io.github.gravetii.grpc.FileConstraint prototype) {
+  public static Builder newBuilder(io.github.gravetii.grpc.SearchConstraints prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -320,26 +320,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code FileConstraint}
+   * Protobuf type {@code SearchConstraints}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:FileConstraint)
-      io.github.gravetii.grpc.FileConstraintOrBuilder {
+      // @@protoc_insertion_point(builder_implements:SearchConstraints)
+      io.github.gravetii.grpc.SearchConstraintsOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.github.gravetii.grpc.Diztl.internal_static_FileConstraint_descriptor;
+      return io.github.gravetii.grpc.Diztl.internal_static_SearchConstraints_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.github.gravetii.grpc.Diztl.internal_static_FileConstraint_fieldAccessorTable
+      return io.github.gravetii.grpc.Diztl.internal_static_SearchConstraints_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              io.github.gravetii.grpc.FileConstraint.class, io.github.gravetii.grpc.FileConstraint.Builder.class);
+              io.github.gravetii.grpc.SearchConstraints.class, io.github.gravetii.grpc.SearchConstraints.Builder.class);
     }
 
-    // Construct using io.github.gravetii.grpc.FileConstraint.newBuilder()
+    // Construct using io.github.gravetii.grpc.SearchConstraints.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -375,17 +375,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return io.github.gravetii.grpc.Diztl.internal_static_FileConstraint_descriptor;
+      return io.github.gravetii.grpc.Diztl.internal_static_SearchConstraints_descriptor;
     }
 
     @java.lang.Override
-    public io.github.gravetii.grpc.FileConstraint getDefaultInstanceForType() {
-      return io.github.gravetii.grpc.FileConstraint.getDefaultInstance();
+    public io.github.gravetii.grpc.SearchConstraints getDefaultInstanceForType() {
+      return io.github.gravetii.grpc.SearchConstraints.getDefaultInstance();
     }
 
     @java.lang.Override
-    public io.github.gravetii.grpc.FileConstraint build() {
-      io.github.gravetii.grpc.FileConstraint result = buildPartial();
+    public io.github.gravetii.grpc.SearchConstraints build() {
+      io.github.gravetii.grpc.SearchConstraints result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -393,8 +393,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public io.github.gravetii.grpc.FileConstraint buildPartial() {
-      io.github.gravetii.grpc.FileConstraint result = new io.github.gravetii.grpc.FileConstraint(this);
+    public io.github.gravetii.grpc.SearchConstraints buildPartial() {
+      io.github.gravetii.grpc.SearchConstraints result = new io.github.gravetii.grpc.SearchConstraints(this);
       if (csizeBuilder_ == null) {
         result.csize_ = csize_;
       } else {
@@ -443,16 +443,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.github.gravetii.grpc.FileConstraint) {
-        return mergeFrom((io.github.gravetii.grpc.FileConstraint)other);
+      if (other instanceof io.github.gravetii.grpc.SearchConstraints) {
+        return mergeFrom((io.github.gravetii.grpc.SearchConstraints)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(io.github.gravetii.grpc.FileConstraint other) {
-      if (other == io.github.gravetii.grpc.FileConstraint.getDefaultInstance()) return this;
+    public Builder mergeFrom(io.github.gravetii.grpc.SearchConstraints other) {
+      if (other == io.github.gravetii.grpc.SearchConstraints.getDefaultInstance()) return this;
       if (other.hasCsize()) {
         mergeCsize(other.getCsize());
       }
@@ -474,11 +474,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      io.github.gravetii.grpc.FileConstraint parsedMessage = null;
+      io.github.gravetii.grpc.SearchConstraints parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.github.gravetii.grpc.FileConstraint) e.getUnfinishedMessage();
+        parsedMessage = (io.github.gravetii.grpc.SearchConstraints) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -734,41 +734,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:FileConstraint)
+    // @@protoc_insertion_point(builder_scope:SearchConstraints)
   }
 
-  // @@protoc_insertion_point(class_scope:FileConstraint)
-  private static final io.github.gravetii.grpc.FileConstraint DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:SearchConstraints)
+  private static final io.github.gravetii.grpc.SearchConstraints DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new io.github.gravetii.grpc.FileConstraint();
+    DEFAULT_INSTANCE = new io.github.gravetii.grpc.SearchConstraints();
   }
 
-  public static io.github.gravetii.grpc.FileConstraint getDefaultInstance() {
+  public static io.github.gravetii.grpc.SearchConstraints getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<FileConstraint>
-      PARSER = new com.google.protobuf.AbstractParser<FileConstraint>() {
+  private static final com.google.protobuf.Parser<SearchConstraints>
+      PARSER = new com.google.protobuf.AbstractParser<SearchConstraints>() {
     @java.lang.Override
-    public FileConstraint parsePartialFrom(
+    public SearchConstraints parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new FileConstraint(input, extensionRegistry);
+      return new SearchConstraints(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<FileConstraint> parser() {
+  public static com.google.protobuf.Parser<SearchConstraints> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<FileConstraint> getParserForType() {
+  public com.google.protobuf.Parser<SearchConstraints> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public io.github.gravetii.grpc.FileConstraint getDefaultInstanceForType() {
+  public io.github.gravetii.grpc.SearchConstraints getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

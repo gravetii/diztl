@@ -95,10 +95,10 @@ public final class Diztl {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_TypeConstraint_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_FileConstraint_descriptor;
+    internal_static_SearchConstraints_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_FileConstraint_fieldAccessorTable;
+      internal_static_SearchConstraints_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -117,30 +117,30 @@ public final class Diztl {
       "\014\022\r\n\005chunk\030\003 \001(\005\022\016\n\006chunks\030\004 \001(\005\"3\n\013Regi" +
       "sterReq\022\023\n\004self\030\001 \001(\0132\005.Node\022\017\n\007tracker\030" +
       "\002 \001(\t\"#\n\014RegisterResp\022\023\n\004node\030\001 \001(\0132\005.No" +
-      "de\"V\n\tSearchReq\022\r\n\005query\030\001 \001(\t\022\025\n\006source" +
-      "\030\002 \001(\0132\005.Node\022#\n\nconstraint\030\003 \001(\0132\017.File" +
-      "Constraint\"?\n\nSearchResp\022\034\n\005files\030\001 \003(\0132" +
-      "\r.FileMetadata\022\023\n\004node\030\002 \001(\0132\005.Node\"#\n\016U" +
-      "ploadContract\022\021\n\tchunkSize\030\001 \001(\005\"f\n\tUplo" +
-      "adReq\022\025\n\006source\030\001 \001(\0132\005.Node\022\037\n\010metadata" +
-      "\030\002 \001(\0132\r.FileMetadata\022!\n\010contract\030\003 \001(\0132" +
-      "\017.UploadContract\"$\n\rDisconnectReq\022\023\n\004nod" +
-      "e\030\001 \001(\0132\005.Node\"!\n\016DisconnectResp\022\017\n\007mess" +
-      "age\030\001 \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001(\0132\005.N" +
-      "ode\022\023\n\004dest\030\002 \001(\0132\005.Node\")\n\010PingResp\022\014\n\004" +
-      "code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\",\n\016SizeConst" +
-      "raint\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003\"\036\n\016Typ" +
-      "eConstraint\022\014\n\004type\030\001 \001(\005\"P\n\016FileConstra" +
-      "int\022\036\n\005csize\030\001 \001(\0132\017.SizeConstraint\022\036\n\005c" +
-      "type\030\002 \001(\0132\017.TypeConstraint2x\n\014DiztlServ" +
-      "ice\022#\n\006Search\022\n.SearchReq\032\013.SearchResp\"\000" +
-      "\022$\n\006Upload\022\n.UploadReq\032\n.FileChunk\"\0000\001\022\035" +
-      "\n\004Ping\022\010.PingReq\032\t.PingResp\"\0002\223\001\n\016Tracke" +
-      "rService\022)\n\010Register\022\014.RegisterReq\032\r.Reg" +
-      "isterResp\"\000\022%\n\006Search\022\n.SearchReq\032\013.Sear" +
-      "chResp\"\0000\001\022/\n\nDisconnect\022\016.DisconnectReq" +
-      "\032\017.DisconnectResp\"\000B\033\n\027io.github.graveti" +
-      "i.grpcP\001b\006proto3"
+      "de\"Z\n\tSearchReq\022\r\n\005query\030\001 \001(\t\022\025\n\006source" +
+      "\030\002 \001(\0132\005.Node\022\'\n\013constraints\030\003 \001(\0132\022.Sea" +
+      "rchConstraints\"?\n\nSearchResp\022\034\n\005files\030\001 " +
+      "\003(\0132\r.FileMetadata\022\023\n\004node\030\002 \001(\0132\005.Node\"" +
+      "#\n\016UploadContract\022\021\n\tchunkSize\030\001 \001(\005\"f\n\t" +
+      "UploadReq\022\025\n\006source\030\001 \001(\0132\005.Node\022\037\n\010meta" +
+      "data\030\002 \001(\0132\r.FileMetadata\022!\n\010contract\030\003 " +
+      "\001(\0132\017.UploadContract\"$\n\rDisconnectReq\022\023\n" +
+      "\004node\030\001 \001(\0132\005.Node\"!\n\016DisconnectResp\022\017\n\007" +
+      "message\030\001 \001(\t\"5\n\007PingReq\022\025\n\006source\030\001 \001(\013" +
+      "2\005.Node\022\023\n\004dest\030\002 \001(\0132\005.Node\")\n\010PingResp" +
+      "\022\014\n\004code\030\001 \001(\005\022\017\n\007message\030\002 \001(\t\",\n\016SizeC" +
+      "onstraint\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\003\"\036\n" +
+      "\016TypeConstraint\022\014\n\004type\030\001 \001(\005\"S\n\021SearchC" +
+      "onstraints\022\036\n\005csize\030\001 \001(\0132\017.SizeConstrai" +
+      "nt\022\036\n\005ctype\030\002 \001(\0132\017.TypeConstraint2x\n\014Di" +
+      "ztlService\022#\n\006Search\022\n.SearchReq\032\013.Searc" +
+      "hResp\"\000\022$\n\006Upload\022\n.UploadReq\032\n.FileChun" +
+      "k\"\0000\001\022\035\n\004Ping\022\010.PingReq\032\t.PingResp\"\0002\223\001\n" +
+      "\016TrackerService\022)\n\010Register\022\014.RegisterRe" +
+      "q\032\r.RegisterResp\"\000\022%\n\006Search\022\n.SearchReq" +
+      "\032\013.SearchResp\"\0000\001\022/\n\nDisconnect\022\016.Discon" +
+      "nectReq\032\017.DisconnectResp\"\000B\033\n\027io.github." +
+      "gravetii.grpcP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -195,7 +195,7 @@ public final class Diztl {
     internal_static_SearchReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SearchReq_descriptor,
-        new java.lang.String[] { "Query", "Source", "Constraint", });
+        new java.lang.String[] { "Query", "Source", "Constraints", });
     internal_static_SearchResp_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_SearchResp_fieldAccessorTable = new
@@ -250,11 +250,11 @@ public final class Diztl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TypeConstraint_descriptor,
         new java.lang.String[] { "Type", });
-    internal_static_FileConstraint_descriptor =
+    internal_static_SearchConstraints_descriptor =
       getDescriptor().getMessageTypes().get(16);
-    internal_static_FileConstraint_fieldAccessorTable = new
+    internal_static_SearchConstraints_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_FileConstraint_descriptor,
+        internal_static_SearchConstraints_descriptor,
         new java.lang.String[] { "Csize", "Ctype", });
   }
 

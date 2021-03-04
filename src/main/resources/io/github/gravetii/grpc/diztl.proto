@@ -75,7 +75,8 @@ message SearchReq {
   string query = 1;
   // The origin node of this request.
   Node source = 2;
-  FileConstraint constraint = 3;
+  // The search constraints
+  SearchConstraints constraints = 3;
 }
 
 message SearchResp {
@@ -142,7 +143,7 @@ message TypeConstraint {
   int32 type = 1;
 }
 
-message FileConstraint {
+message SearchConstraints {
   SizeConstraint csize = 1;
   TypeConstraint ctype = 2;
 }

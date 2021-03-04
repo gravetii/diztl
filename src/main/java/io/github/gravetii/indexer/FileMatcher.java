@@ -1,6 +1,6 @@
 package io.github.gravetii.indexer;
 
-import io.github.gravetii.grpc.FileConstraint;
+import io.github.gravetii.grpc.SearchConstraints;
 import io.github.gravetii.grpc.SizeConstraint;
 import io.github.gravetii.grpc.TypeConstraint;
 
@@ -9,16 +9,16 @@ import java.util.regex.Pattern;
 public class FileMatcher {
 
   private final String query;
-  private final FileConstraint constraint;
+  private final SearchConstraints constraints;
 
-  public FileMatcher(String query, FileConstraint constraint) {
+  public FileMatcher(String query, SearchConstraints constraints) {
     this.query = query;
-    this.constraint = constraint;
+    this.constraints = constraints;
   }
 
   private boolean checkSize(IndexedFile file) {
-    if (constraint.hasCsize()) {
-      SizeConstraint sc = constraint.getCsize();
+    if (constraints.hasCsize()) {
+      SizeConstraint sc = constraints.getCsize();
       if (sc.getKey() == 0) {
         return file.getSize() >= sc.getValue();
       } else if (sc.getKey() == 1) {
@@ -30,8 +30,8 @@ public class FileMatcher {
   }
 
   private boolean checkType(IndexedFile file) {
-    if (constraint.hasCtype()) {
-      TypeConstraint tc = constraint.getCtype();
+    if (constraints.hasCtype()) {
+      TypeConstraint tc = constraints.getCtype();
       if (tc.getType() == 0) return true;
       if (tc.getType() == 1) return file.getType() == FileType.VIDEO;
       else if (tc.getType() == 2) return file.getType() == FileType.IMAGE;

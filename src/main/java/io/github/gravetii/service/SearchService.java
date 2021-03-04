@@ -3,7 +3,7 @@ package io.github.gravetii.service;
 import io.github.gravetii.client.DiztlClient;
 import io.github.gravetii.client.NodeNotConnectedException;
 import io.github.gravetii.controller.start.FileResult;
-import io.github.gravetii.grpc.FileConstraint;
+import io.github.gravetii.grpc.SearchConstraints;
 import io.github.gravetii.grpc.SearchResp;
 import io.github.gravetii.model.SearchRequest;
 import io.github.gravetii.scene.start.ResultListComponent;
@@ -57,9 +57,9 @@ public class SearchService {
     };
   }
 
-  public void search(String query, FileConstraint constraint) {
+  public void search(String query, SearchConstraints constraints) {
     try {
-      SearchRequest request = new SearchRequest(query, constraint, newObserver(query));
+      SearchRequest request = new SearchRequest(query, constraints, newObserver(query));
       client.search(request);
     } catch (NodeNotConnectedException e) {
       scene.writeConnectionErrorToLog();

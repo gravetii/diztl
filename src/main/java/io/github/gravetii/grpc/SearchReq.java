@@ -63,14 +63,14 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 26: {
-            io.github.gravetii.grpc.FileConstraint.Builder subBuilder = null;
-            if (constraint_ != null) {
-              subBuilder = constraint_.toBuilder();
+            io.github.gravetii.grpc.SearchConstraints.Builder subBuilder = null;
+            if (constraints_ != null) {
+              subBuilder = constraints_.toBuilder();
             }
-            constraint_ = input.readMessage(io.github.gravetii.grpc.FileConstraint.parser(), extensionRegistry);
+            constraints_ = input.readMessage(io.github.gravetii.grpc.SearchConstraints.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom(constraint_);
-              constraint_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom(constraints_);
+              constraints_ = subBuilder.buildPartial();
             }
 
             break;
@@ -182,25 +182,37 @@ private static final long serialVersionUID = 0L;
     return getSource();
   }
 
-  public static final int CONSTRAINT_FIELD_NUMBER = 3;
-  private io.github.gravetii.grpc.FileConstraint constraint_;
+  public static final int CONSTRAINTS_FIELD_NUMBER = 3;
+  private io.github.gravetii.grpc.SearchConstraints constraints_;
   /**
-   * <code>.FileConstraint constraint = 3;</code>
+   * <pre>
+   * The search constraints
+   * </pre>
+   *
+   * <code>.SearchConstraints constraints = 3;</code>
    */
-  public boolean hasConstraint() {
-    return constraint_ != null;
+  public boolean hasConstraints() {
+    return constraints_ != null;
   }
   /**
-   * <code>.FileConstraint constraint = 3;</code>
+   * <pre>
+   * The search constraints
+   * </pre>
+   *
+   * <code>.SearchConstraints constraints = 3;</code>
    */
-  public io.github.gravetii.grpc.FileConstraint getConstraint() {
-    return constraint_ == null ? io.github.gravetii.grpc.FileConstraint.getDefaultInstance() : constraint_;
+  public io.github.gravetii.grpc.SearchConstraints getConstraints() {
+    return constraints_ == null ? io.github.gravetii.grpc.SearchConstraints.getDefaultInstance() : constraints_;
   }
   /**
-   * <code>.FileConstraint constraint = 3;</code>
+   * <pre>
+   * The search constraints
+   * </pre>
+   *
+   * <code>.SearchConstraints constraints = 3;</code>
    */
-  public io.github.gravetii.grpc.FileConstraintOrBuilder getConstraintOrBuilder() {
-    return getConstraint();
+  public io.github.gravetii.grpc.SearchConstraintsOrBuilder getConstraintsOrBuilder() {
+    return getConstraints();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -223,8 +235,8 @@ private static final long serialVersionUID = 0L;
     if (source_ != null) {
       output.writeMessage(2, getSource());
     }
-    if (constraint_ != null) {
-      output.writeMessage(3, getConstraint());
+    if (constraints_ != null) {
+      output.writeMessage(3, getConstraints());
     }
     unknownFields.writeTo(output);
   }
@@ -242,9 +254,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getSource());
     }
-    if (constraint_ != null) {
+    if (constraints_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getConstraint());
+        .computeMessageSize(3, getConstraints());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -269,10 +281,10 @@ private static final long serialVersionUID = 0L;
       result = result && getSource()
           .equals(other.getSource());
     }
-    result = result && (hasConstraint() == other.hasConstraint());
-    if (hasConstraint()) {
-      result = result && getConstraint()
-          .equals(other.getConstraint());
+    result = result && (hasConstraints() == other.hasConstraints());
+    if (hasConstraints()) {
+      result = result && getConstraints()
+          .equals(other.getConstraints());
     }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
@@ -291,9 +303,9 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + SOURCE_FIELD_NUMBER;
       hash = (53 * hash) + getSource().hashCode();
     }
-    if (hasConstraint()) {
-      hash = (37 * hash) + CONSTRAINT_FIELD_NUMBER;
-      hash = (53 * hash) + getConstraint().hashCode();
+    if (hasConstraints()) {
+      hash = (37 * hash) + CONSTRAINTS_FIELD_NUMBER;
+      hash = (53 * hash) + getConstraints().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -436,11 +448,11 @@ private static final long serialVersionUID = 0L;
         source_ = null;
         sourceBuilder_ = null;
       }
-      if (constraintBuilder_ == null) {
-        constraint_ = null;
+      if (constraintsBuilder_ == null) {
+        constraints_ = null;
       } else {
-        constraint_ = null;
-        constraintBuilder_ = null;
+        constraints_ = null;
+        constraintsBuilder_ = null;
       }
       return this;
     }
@@ -474,10 +486,10 @@ private static final long serialVersionUID = 0L;
       } else {
         result.source_ = sourceBuilder_.build();
       }
-      if (constraintBuilder_ == null) {
-        result.constraint_ = constraint_;
+      if (constraintsBuilder_ == null) {
+        result.constraints_ = constraints_;
       } else {
-        result.constraint_ = constraintBuilder_.build();
+        result.constraints_ = constraintsBuilder_.build();
       }
       onBuilt();
       return result;
@@ -534,8 +546,8 @@ private static final long serialVersionUID = 0L;
       if (other.hasSource()) {
         mergeSource(other.getSource());
       }
-      if (other.hasConstraint()) {
-        mergeConstraint(other.getConstraint());
+      if (other.hasConstraints()) {
+        mergeConstraints(other.getConstraints());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -808,121 +820,157 @@ private static final long serialVersionUID = 0L;
       return sourceBuilder_;
     }
 
-    private io.github.gravetii.grpc.FileConstraint constraint_ = null;
+    private io.github.gravetii.grpc.SearchConstraints constraints_ = null;
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.gravetii.grpc.FileConstraint, io.github.gravetii.grpc.FileConstraint.Builder, io.github.gravetii.grpc.FileConstraintOrBuilder> constraintBuilder_;
+        io.github.gravetii.grpc.SearchConstraints, io.github.gravetii.grpc.SearchConstraints.Builder, io.github.gravetii.grpc.SearchConstraintsOrBuilder> constraintsBuilder_;
     /**
-     * <code>.FileConstraint constraint = 3;</code>
+     * <pre>
+     * The search constraints
+     * </pre>
+     *
+     * <code>.SearchConstraints constraints = 3;</code>
      */
-    public boolean hasConstraint() {
-      return constraintBuilder_ != null || constraint_ != null;
+    public boolean hasConstraints() {
+      return constraintsBuilder_ != null || constraints_ != null;
     }
     /**
-     * <code>.FileConstraint constraint = 3;</code>
+     * <pre>
+     * The search constraints
+     * </pre>
+     *
+     * <code>.SearchConstraints constraints = 3;</code>
      */
-    public io.github.gravetii.grpc.FileConstraint getConstraint() {
-      if (constraintBuilder_ == null) {
-        return constraint_ == null ? io.github.gravetii.grpc.FileConstraint.getDefaultInstance() : constraint_;
+    public io.github.gravetii.grpc.SearchConstraints getConstraints() {
+      if (constraintsBuilder_ == null) {
+        return constraints_ == null ? io.github.gravetii.grpc.SearchConstraints.getDefaultInstance() : constraints_;
       } else {
-        return constraintBuilder_.getMessage();
+        return constraintsBuilder_.getMessage();
       }
     }
     /**
-     * <code>.FileConstraint constraint = 3;</code>
+     * <pre>
+     * The search constraints
+     * </pre>
+     *
+     * <code>.SearchConstraints constraints = 3;</code>
      */
-    public Builder setConstraint(io.github.gravetii.grpc.FileConstraint value) {
-      if (constraintBuilder_ == null) {
+    public Builder setConstraints(io.github.gravetii.grpc.SearchConstraints value) {
+      if (constraintsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        constraint_ = value;
+        constraints_ = value;
         onChanged();
       } else {
-        constraintBuilder_.setMessage(value);
+        constraintsBuilder_.setMessage(value);
       }
 
       return this;
     }
     /**
-     * <code>.FileConstraint constraint = 3;</code>
+     * <pre>
+     * The search constraints
+     * </pre>
+     *
+     * <code>.SearchConstraints constraints = 3;</code>
      */
-    public Builder setConstraint(
-        io.github.gravetii.grpc.FileConstraint.Builder builderForValue) {
-      if (constraintBuilder_ == null) {
-        constraint_ = builderForValue.build();
+    public Builder setConstraints(
+        io.github.gravetii.grpc.SearchConstraints.Builder builderForValue) {
+      if (constraintsBuilder_ == null) {
+        constraints_ = builderForValue.build();
         onChanged();
       } else {
-        constraintBuilder_.setMessage(builderForValue.build());
+        constraintsBuilder_.setMessage(builderForValue.build());
       }
 
       return this;
     }
     /**
-     * <code>.FileConstraint constraint = 3;</code>
+     * <pre>
+     * The search constraints
+     * </pre>
+     *
+     * <code>.SearchConstraints constraints = 3;</code>
      */
-    public Builder mergeConstraint(io.github.gravetii.grpc.FileConstraint value) {
-      if (constraintBuilder_ == null) {
-        if (constraint_ != null) {
-          constraint_ =
-            io.github.gravetii.grpc.FileConstraint.newBuilder(constraint_).mergeFrom(value).buildPartial();
+    public Builder mergeConstraints(io.github.gravetii.grpc.SearchConstraints value) {
+      if (constraintsBuilder_ == null) {
+        if (constraints_ != null) {
+          constraints_ =
+            io.github.gravetii.grpc.SearchConstraints.newBuilder(constraints_).mergeFrom(value).buildPartial();
         } else {
-          constraint_ = value;
+          constraints_ = value;
         }
         onChanged();
       } else {
-        constraintBuilder_.mergeFrom(value);
+        constraintsBuilder_.mergeFrom(value);
       }
 
       return this;
     }
     /**
-     * <code>.FileConstraint constraint = 3;</code>
+     * <pre>
+     * The search constraints
+     * </pre>
+     *
+     * <code>.SearchConstraints constraints = 3;</code>
      */
-    public Builder clearConstraint() {
-      if (constraintBuilder_ == null) {
-        constraint_ = null;
+    public Builder clearConstraints() {
+      if (constraintsBuilder_ == null) {
+        constraints_ = null;
         onChanged();
       } else {
-        constraint_ = null;
-        constraintBuilder_ = null;
+        constraints_ = null;
+        constraintsBuilder_ = null;
       }
 
       return this;
     }
     /**
-     * <code>.FileConstraint constraint = 3;</code>
+     * <pre>
+     * The search constraints
+     * </pre>
+     *
+     * <code>.SearchConstraints constraints = 3;</code>
      */
-    public io.github.gravetii.grpc.FileConstraint.Builder getConstraintBuilder() {
+    public io.github.gravetii.grpc.SearchConstraints.Builder getConstraintsBuilder() {
       
       onChanged();
-      return getConstraintFieldBuilder().getBuilder();
+      return getConstraintsFieldBuilder().getBuilder();
     }
     /**
-     * <code>.FileConstraint constraint = 3;</code>
+     * <pre>
+     * The search constraints
+     * </pre>
+     *
+     * <code>.SearchConstraints constraints = 3;</code>
      */
-    public io.github.gravetii.grpc.FileConstraintOrBuilder getConstraintOrBuilder() {
-      if (constraintBuilder_ != null) {
-        return constraintBuilder_.getMessageOrBuilder();
+    public io.github.gravetii.grpc.SearchConstraintsOrBuilder getConstraintsOrBuilder() {
+      if (constraintsBuilder_ != null) {
+        return constraintsBuilder_.getMessageOrBuilder();
       } else {
-        return constraint_ == null ?
-            io.github.gravetii.grpc.FileConstraint.getDefaultInstance() : constraint_;
+        return constraints_ == null ?
+            io.github.gravetii.grpc.SearchConstraints.getDefaultInstance() : constraints_;
       }
     }
     /**
-     * <code>.FileConstraint constraint = 3;</code>
+     * <pre>
+     * The search constraints
+     * </pre>
+     *
+     * <code>.SearchConstraints constraints = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        io.github.gravetii.grpc.FileConstraint, io.github.gravetii.grpc.FileConstraint.Builder, io.github.gravetii.grpc.FileConstraintOrBuilder> 
-        getConstraintFieldBuilder() {
-      if (constraintBuilder_ == null) {
-        constraintBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.github.gravetii.grpc.FileConstraint, io.github.gravetii.grpc.FileConstraint.Builder, io.github.gravetii.grpc.FileConstraintOrBuilder>(
-                getConstraint(),
+        io.github.gravetii.grpc.SearchConstraints, io.github.gravetii.grpc.SearchConstraints.Builder, io.github.gravetii.grpc.SearchConstraintsOrBuilder> 
+        getConstraintsFieldBuilder() {
+      if (constraintsBuilder_ == null) {
+        constraintsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.github.gravetii.grpc.SearchConstraints, io.github.gravetii.grpc.SearchConstraints.Builder, io.github.gravetii.grpc.SearchConstraintsOrBuilder>(
+                getConstraints(),
                 getParentForChildren(),
                 isClean());
-        constraint_ = null;
+        constraints_ = null;
       }
-      return constraintBuilder_;
+      return constraintsBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

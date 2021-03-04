@@ -1,19 +1,19 @@
 package io.github.gravetii.model;
 
-import io.github.gravetii.grpc.FileConstraint;
+import io.github.gravetii.grpc.SearchConstraints;
 import io.github.gravetii.grpc.SearchResp;
 import io.grpc.stub.StreamObserver;
 
 public class SearchRequest {
 
   private final String query;
-  private final FileConstraint constraint;
+  private final SearchConstraints constraints;
   private final StreamObserver<SearchResp> observer;
 
   public SearchRequest(
-      String query, FileConstraint constraint, StreamObserver<SearchResp> observer) {
+      String query, SearchConstraints constraints, StreamObserver<SearchResp> observer) {
     this.query = query;
-    this.constraint = constraint;
+    this.constraints = constraints;
     this.observer = observer;
   }
 
@@ -21,8 +21,8 @@ public class SearchRequest {
     return query;
   }
 
-  public FileConstraint getConstraint() {
-    return constraint;
+  public SearchConstraints getConstraints() {
+    return constraints;
   }
 
   public StreamObserver<SearchResp> getObserver() {

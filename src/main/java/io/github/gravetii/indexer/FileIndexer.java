@@ -2,7 +2,7 @@ package io.github.gravetii.indexer;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import io.github.gravetii.grpc.FileConstraint;
+import io.github.gravetii.grpc.SearchConstraints;
 import io.github.gravetii.store.DBService;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -62,8 +62,8 @@ public class FileIndexer {
     return files;
   }
 
-  public List<IndexedFile> search(String query, FileConstraint constraint) {
-    FileMatcher matcher = new FileMatcher(query, constraint);
+  public List<IndexedFile> search(String query, SearchConstraints constraints) {
+    FileMatcher matcher = new FileMatcher(query, constraints);
     return files.stream()
         .filter(matcher::matchesQuery)
         .filter(matcher::matchesConstraint)

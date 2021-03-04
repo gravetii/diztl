@@ -126,7 +126,7 @@ public class DiztlClient {
         SearchReq.newBuilder()
             .setSource(node)
             .setQuery(request.getQuery())
-            .setConstraint(request.getConstraint())
+            .setConstraints(request.getConstraints())
             .build();
 
     connection.newAsyncStub().search(req, request.getObserver());

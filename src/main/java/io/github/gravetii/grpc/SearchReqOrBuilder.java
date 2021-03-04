@@ -51,15 +51,27 @@ public interface SearchReqOrBuilder extends
   io.github.gravetii.grpc.NodeOrBuilder getSourceOrBuilder();
 
   /**
-   * <code>.FileConstraint constraint = 3;</code>
+   * <pre>
+   * The search constraints
+   * </pre>
+   *
+   * <code>.SearchConstraints constraints = 3;</code>
    */
-  boolean hasConstraint();
+  boolean hasConstraints();
   /**
-   * <code>.FileConstraint constraint = 3;</code>
+   * <pre>
+   * The search constraints
+   * </pre>
+   *
+   * <code>.SearchConstraints constraints = 3;</code>
    */
-  io.github.gravetii.grpc.FileConstraint getConstraint();
+  io.github.gravetii.grpc.SearchConstraints getConstraints();
   /**
-   * <code>.FileConstraint constraint = 3;</code>
+   * <pre>
+   * The search constraints
+   * </pre>
+   *
+   * <code>.SearchConstraints constraints = 3;</code>
    */
-  io.github.gravetii.grpc.FileConstraintOrBuilder getConstraintOrBuilder();
+  io.github.gravetii.grpc.SearchConstraintsOrBuilder getConstraintsOrBuilder();
 }
